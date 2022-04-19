@@ -154,7 +154,7 @@
         Cursor = Cursors.WaitCursor
         If BSubmit.Text = "Save" Then 'new
             If GVReportList.RowCount > 0 Then
-                Dim query As String = "INSERT INTO tb_report_mark_cancel(created_by,created_datetime,reason,report_mark_type) VALUES('" & id_user & "',NOW(),'" & addSlashes(MEReason.Text) & "','" & LEReportMarkType.EditValue.ToString & "');SELECT LAST_INSERT_ID() "
+                Dim query As String = "INSERT INTO tb_report_mark_cancel(created_by,created_dep,created_datetime,reason,report_mark_type) VALUES('" & id_user & "','" & id_departement_user & "',NOW(),'" & addSlashes(MEReason.Text) & "','" & LEReportMarkType.EditValue.ToString & "');SELECT LAST_INSERT_ID() "
                 id_report_mark_cancel = execute_query(query, 0, True, "", "", "", "")
 
                 query = "CALL gen_number('" & id_report_mark_cancel & "','142')"

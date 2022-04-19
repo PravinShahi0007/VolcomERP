@@ -81,7 +81,11 @@
         viewSearchLookupQuery(SLEBankAccount, query, "id", "nama_bank", "id")
     End Sub
 
+    Dim is_load As Boolean = False
+
     Sub action_load()
+        is_load = True
+        '
         For Each t As DevExpress.XtraTab.XtraTabPage In XTCCompany.TabPages
             XTCCompany.SelectedTabPage = t
         Next t
@@ -90,7 +94,7 @@
         'LE/SLE
         viewCOA()
         view_comp_group()
-        view_store_company()
+        'view_store_company()
         view_country(LECountry)
         view_category(LECompanyCategory)
         view_status(LEStatus)
@@ -277,7 +281,7 @@ WHERE comp.id_comp = '{0}'", id_company)
             TENPWPAddress.Text = data.Rows(0)("npwp_address").ToString
             '
             SLEGroup.EditValue = id_comp_group
-            view_store_company()
+            'view_store_company()
             SLEStoreCompany.EditValue = data.Rows(0)("id_store_company").ToString
             SLEVendorType.EditValue = id_vendor_type
 
@@ -344,19 +348,15 @@ WHERE comp.id_comp = '{0}'", id_company)
             LECountry.EditValue = Nothing
             LECountry.ItemIndex = LECountry.Properties.GetDataSourceRowIndex("id_country", id_country)
             view_region(LERegion, LECountry.EditValue.ToString)
-
             LERegion.EditValue = Nothing
             LERegion.ItemIndex = LERegion.Properties.GetDataSourceRowIndex("id_region", id_region)
             view_state(LEState, LERegion.EditValue.ToString)
-
             LEState.EditValue = Nothing
             LEState.ItemIndex = LEState.Properties.GetDataSourceRowIndex("id_state", id_state)
             view_city(LECity, LEState.EditValue.ToString)
-
             LECity.EditValue = Nothing
             LECity.ItemIndex = LECity.Properties.GetDataSourceRowIndex("id_city", id_city)
             view_district(LEDistrict, LECity.EditValue.ToString)
-
             LEDistrict.EditValue = Nothing
             LEDistrict.ItemIndex = LEDistrict.Properties.GetDataSourceRowIndex("id_sub_district", id_sub_district)
 
@@ -427,6 +427,7 @@ WHERE comp.id_comp = '{0}'", id_company)
                 GroupControlDC.Visible = False
             End If
         End If
+        is_load = False
     End Sub
 
     Sub viewLegal()
@@ -469,50 +470,60 @@ WHERE comp.id_comp = '{0}'", id_company)
 
     Private Sub LECountry_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LECountry.EditValueChanged
         Cursor = Cursors.WaitCursor
-        Try
-            If LECountry.EditValue <> Nothing Then
-                LERegion.EditValue = Nothing
-                LEState.EditValue = Nothing
-                LECity.EditValue = Nothing
-                LEDistrict.EditValue = Nothing
-                view_region(LERegion, LECountry.EditValue)
-                load_kode_bank()
-                'view_state(LEState, LERegion.EditValue)
-                'view_city(LECity, LEState.EditValue)
-            End If
-        Catch ex As Exception
-            errorConnection()
-        End Try
+        If Not is_load Then
+            Try
+                If LECountry.EditValue <> Nothing Then
+                    LERegion.EditValue = Nothing
+                    LEState.EditValue = Nothing
+                    LECity.EditValue = Nothing
+                    LEDistrict.EditValue = Nothing
+                    view_region(LERegion, LECountry.EditValue)
+                    load_kode_bank()
+                    'view_state(LEState, LERegion.EditValue)
+                    'view_city(LECity, LEState.EditValue)
+                End If
+            Catch ex As Exception
+                errorConnection()
+            End Try
+        End If
         Cursor = Cursors.Default
     End Sub
 
     Private Sub LERegion_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LERegion.EditValueChanged
         Cursor = Cursors.WaitCursor
-        Try
-            If LERegion.EditValue <> Nothing Then
-                LEState.EditValue = Nothing
-                LECity.EditValue = Nothing
-                LEDistrict.EditValue = Nothing
-                view_state(LEState, LERegion.EditValue)
-                'view_city(LECity, LEState.EditValue)
-            End If
-        Catch ex As Exception
-            errorConnection()
-        End Try
+
+        If Not is_load Then
+            Try
+                If LERegion.EditValue <> Nothing Then
+                    LEState.EditValue = Nothing
+                    LECity.EditValue = Nothing
+                    LEDistrict.EditValue = Nothing
+                    view_state(LEState, LERegion.EditValue)
+                    'view_city(LECity, LEState.EditValue)
+                End If
+            Catch ex As Exception
+                errorConnection()
+            End Try
+        End If
+
         Cursor = Cursors.Default
     End Sub
 
     Private Sub LEState_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LEState.EditValueChanged
         Cursor = Cursors.WaitCursor
-        Try
-            If LEState.EditValue <> Nothing Then
-                LECity.EditValue = Nothing
-                LEDistrict.EditValue = Nothing
-                view_city(LECity, LEState.EditValue)
-            End If
-        Catch ex As Exception
-            errorConnection()
-        End Try
+
+        If Not is_load Then
+            Try
+                If LEState.EditValue <> Nothing Then
+                    LECity.EditValue = Nothing
+                    LEDistrict.EditValue = Nothing
+                    view_city(LECity, LEState.EditValue)
+                End If
+            Catch ex As Exception
+                errorConnection()
+            End Try
+        End If
+
         Cursor = Cursors.Default
     End Sub
 

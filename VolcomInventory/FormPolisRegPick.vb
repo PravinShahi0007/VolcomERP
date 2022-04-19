@@ -9,8 +9,15 @@
     End Sub
 
     Sub load_pps()
-        Dim q As String = "SELECT pps.id_polis_pps,pps.number,sts.report_status,emp.employee_name,pps.created_by,IF(pps.id_report_status=6 OR pps.id_report_status=5,'',IF(pps.step=1,'Waiting nilai stock',IF(pps.step=2,'Waiting nilai lainnya',IF(pps.step=3,'Waiting penawaran vendor','Waiting approval')))) as step_desc
+        Dim q As String = "SELECT pps.id_polis_pps,IF(pps.id_pps_type=2,'Mandiri','Kolektif') AS typ,ppsd.store,pps.number,sts.report_status,emp.employee_name,pps.created_by,IF(pps.id_report_status=6 OR pps.id_report_status=5,'',IF(pps.step=1,'Waiting nilai stock',IF(pps.step=2,'Waiting nilai lainnya',IF(pps.step=3,'Waiting penawaran vendor','Waiting approval')))) AS step_desc
 FROM tb_polis_pps pps
+INNER JOIN 
+(
+	SELECT ppsd.id_polis_pps,GROUP_CONCAT(DISTINCT c.comp_number,' - ',c.comp_name SEPARATOR '\n') AS store
+	FROM tb_polis_pps_det ppsd
+	INNER JOIN tb_m_comp c ON c.id_comp=ppsd.id_comp
+	GROUP BY ppsd.id_polis_pps
+)ppsd ON ppsd.id_polis_pps=pps.id_polis_pps
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
@@ -22,8 +29,15 @@ WHERE pps.id_report_status=6 AND ISNULL(reg.id_polis_reg) AND pps.id_pps_type='2
     End Sub
 
     Sub load_pps_kolektif()
-        Dim q As String = "SELECT pps.id_polis_pps,pps.number,sts.report_status,emp.employee_name,pps.created_by,IF(pps.id_report_status=6 OR pps.id_report_status=5,'',IF(pps.step=1,'Waiting nilai stock',IF(pps.step=2,'Waiting nilai lainnya',IF(pps.step=3,'Waiting penawaran vendor','Waiting approval')))) as step_desc
+        Dim q As String = "SELECT pps.id_polis_pps,IF(pps.id_pps_type=2,'Mandiri','Kolektif') AS typ,ppsd.store,pps.number,sts.report_status,emp.employee_name,pps.created_by,IF(pps.id_report_status=6 OR pps.id_report_status=5,'',IF(pps.step=1,'Waiting nilai stock',IF(pps.step=2,'Waiting nilai lainnya',IF(pps.step=3,'Waiting penawaran vendor','Waiting approval')))) as step_desc
 FROM tb_polis_pps pps
+INNER JOIN 
+(
+	SELECT ppsd.id_polis_pps,GROUP_CONCAT(DISTINCT c.comp_number,' - ',c.comp_name SEPARATOR '\n') AS store
+	FROM tb_polis_pps_det ppsd
+	INNER JOIN tb_m_comp c ON c.id_comp=ppsd.id_comp
+	GROUP BY ppsd.id_polis_pps
+)ppsd ON ppsd.id_polis_pps=pps.id_polis_pps
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee

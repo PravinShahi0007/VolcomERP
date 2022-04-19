@@ -373,25 +373,46 @@ WHERE dsg.id_design = '{0}'", id_design)
                 End If
 
                 If is_ok Then
-                    If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
-                        stopCustom("You have no right to edit final COP.")
-                    ElseIf TECOPCurrent.EditValue <= 0 Or TECOPMan.EditValue <= 0 Then
+                    If TECOPCurrent.EditValue <= 0 Or TECOPMan.EditValue <= 0 Then
                         stopCustom("Please click get value COP by rate.")
                     Else
-                        Dim confirm As DialogResult
-                        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to finalize this COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                        If confirm = Windows.Forms.DialogResult.Yes Then
-                            'final COP
-                            Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_qty='{0}',prod_order_cop_last_upd=NOW(),`design_cop_addcost`='{3}',`final_cop_rate_cat`='{4}',`final_cop_kurs`='{5}',`final_cop_value`='{6}',`final_cop_mng_kurs`='{7}',`final_cop_mng_value`='{8}',final_is_approve=2 WHERE id_design='{2}'", decimalSQL(TEQty.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
-                            execute_non_query(query, True, "", "", "", "")
-                            'add pre final juga jika kosong
-                            query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}',prod_order_cop_mng_addcost='{4}',`pp_cop_rate_cat`='{5}',`pp_cop_kurs`='{6}',`pp_cop_value`='{7}',`pp_cop_mng_kurs`='{8}',`pp_cop_mng_value`='{9}',pp_is_approve=2 WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0 OR pp_cop_value=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
-                            execute_non_query(query, True, "", "", "", "")
-                            '
-                            infoCustom("Final COP updated.")
-                            load_form()
+                        If id_user = get_opt_prod_field("id_user_ast_mngr_prod") Or id_role_login = get_opt_prod_field("id_role_prod_manager") Then
+                            Dim confirm As DialogResult
+                            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to finalize this COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                            If confirm = Windows.Forms.DialogResult.Yes Then
+                                'final COP
+                                Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_qty='{0}',prod_order_cop_last_upd=NOW(),`design_cop_addcost`='{3}',`final_cop_rate_cat`='{4}',`final_cop_kurs`='{5}',`final_cop_value`='{6}',`final_cop_mng_kurs`='{7}',`final_cop_mng_value`='{8}',final_is_approve=2 WHERE id_design='{2}'", decimalSQL(TEQty.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
+                                execute_non_query(query, True, "", "", "", "")
+                                'add pre final juga jika kosong
+                                query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}',prod_order_cop_mng_addcost='{4}',`pp_cop_rate_cat`='{5}',`pp_cop_kurs`='{6}',`pp_cop_value`='{7}',`pp_cop_mng_kurs`='{8}',`pp_cop_mng_value`='{9}',pp_is_approve=2 WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0 OR pp_cop_value=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
+                                execute_non_query(query, True, "", "", "", "")
+                                '
+                                infoCustom("Final COP updated.")
+                                load_form()
+                            End If
+                        Else
+                            stopCustom("You have no right to do this.")
                         End If
                     End If
+                    'If Not id_role_login = get_opt_prod_field("id_role_prod_manager") And Not id_user = get_opt_prod_field("id_user_ast_mngr_prod") Then
+                    '    stopCustom("You have no right to edit final COP.")
+                    'ElseIf TECOPCurrent.EditValue <= 0 Or TECOPMan.EditValue <= 0 Then
+                    '    stopCustom("Please click get value COP by rate.")
+                    'Else
+                    '    Dim confirm As DialogResult
+                    '    confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to finalize this COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    '    If confirm = Windows.Forms.DialogResult.Yes Then
+                    '        'final COP
+                    '        Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_qty='{0}',prod_order_cop_last_upd=NOW(),`design_cop_addcost`='{3}',`final_cop_rate_cat`='{4}',`final_cop_kurs`='{5}',`final_cop_value`='{6}',`final_cop_mng_kurs`='{7}',`final_cop_mng_value`='{8}',final_is_approve=2 WHERE id_design='{2}'", decimalSQL(TEQty.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
+                    '        execute_non_query(query, True, "", "", "", "")
+                    '        'add pre final juga jika kosong
+                    '        query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}',prod_order_cop_mng_addcost='{4}',`pp_cop_rate_cat`='{5}',`pp_cop_kurs`='{6}',`pp_cop_value`='{7}',`pp_cop_mng_kurs`='{8}',`pp_cop_mng_value`='{9}',pp_is_approve=2 WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0 OR pp_cop_value=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
+                    '        execute_non_query(query, True, "", "", "", "")
+                    '        '
+                    '        infoCustom("Final COP updated.")
+                    '        load_form()
+                    '    End If
+                    'End If
                 Else
                     warningCustom("Cost already locked")
                 End If
@@ -700,9 +721,10 @@ WHERE `id_design`='" & id_design & "' "
         Dim query_cek As String = "SELECT * FROM tb_m_design WHERE id_design='" & id_design & "'"
         Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
         '
-        If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
-            stopCustom("You have no access to do this.")
-        ElseIf TECOPCurrent.EditValue = 0 Or TECOPMan.EditValue = 0 Then
+        'If Not id_role_login = get_opt_prod_field("id_role_prod_manager") And Not id_user = get_opt_prod_field("id_user_ast_mngr_prod") Then
+        '    stopCustom("You have no access to do this.")
+        'Else
+        If TECOPCurrent.EditValue = 0 Or TECOPMan.EditValue = 0 Then
             stopCustom("Please complete COP by rate")
         ElseIf TEUnitPrice.EditValue = 0 Then
             stopCustom("Please fill COP unit price.")
@@ -711,34 +733,38 @@ WHERE `id_design`='" & id_design & "' "
         ElseIf LEStatus.EditValue.ToString = "2" And data_cek.Rows(0)("final_cop_value") <= 0 Then
             stopCustom("Please get all value then press update COP first.")
         Else
-            If LEStatus.EditValue.ToString = "1" Then
-                'prefinal
-                Dim query As String = "UPDATE tb_m_design SET pp_is_approve='1',pp_is_approve_date=NOW(),pp_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
-                execute_non_query(query, True, "", "", "", "")
-                '
-                Try
-                    Dim nm As New ClassSendEmail
-                    nm.par1 = id_design
-                    nm.report_mark_type = "186"
-                    nm.send_email()
-                Catch ex As Exception
-                    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send Pre final COP id_design = " & id_design & "')", -1, True, "", "", "", "")
-                End Try
+            If id_user = get_opt_prod_field("id_user_ast_mngr_prod") Or id_role_login = get_opt_prod_field("id_role_prod_manager") Then
+                If LEStatus.EditValue.ToString = "1" Then
+                    'prefinal
+                    Dim query As String = "UPDATE tb_m_design SET pp_is_approve='1',pp_is_approve_date=NOW(),pp_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
+                    execute_non_query(query, True, "", "", "", "")
+                    '
+                    Try
+                        Dim nm As New ClassSendEmail
+                        nm.par1 = id_design
+                        nm.report_mark_type = "186"
+                        nm.send_email()
+                    Catch ex As Exception
+                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send Pre final COP id_design = " & id_design & "')", -1, True, "", "", "", "")
+                    End Try
+                Else
+                    'final
+                    Dim query As String = "UPDATE tb_m_design SET id_cop_status=2,pp_is_approve='1',pp_is_approve_date=NOW(),pp_approve_by='" & id_user & "',final_is_approve='1',final_is_approve_date=NOW(),final_approve_by='" & id_user & "',design_cop='" & decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString) & "' WHERE id_design='" & id_design & "'"
+                    execute_non_query(query, True, "", "", "", "")
+                    '
+                    Try
+                        Dim nm As New ClassSendEmail
+                        nm.par1 = id_design
+                        nm.report_mark_type = "185"
+                        nm.send_email()
+                    Catch ex As Exception
+                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send Final COP id_design = " & id_design & "')", -1, True, "", "", "", "")
+                    End Try
+                End If
+                load_form()
             Else
-                'final
-                Dim query As String = "UPDATE tb_m_design SET id_cop_status=2,pp_is_approve='1',pp_is_approve_date=NOW(),pp_approve_by='" & id_user & "',final_is_approve='1',final_is_approve_date=NOW(),final_approve_by='" & id_user & "',design_cop='" & decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString) & "' WHERE id_design='" & id_design & "'"
-                execute_non_query(query, True, "", "", "", "")
-                '
-                Try
-                    Dim nm As New ClassSendEmail
-                    nm.par1 = id_design
-                    nm.report_mark_type = "185"
-                    nm.send_email()
-                Catch ex As Exception
-                    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send Final COP id_design = " & id_design & "')", -1, True, "", "", "", "")
-                End Try
+                stopCustom("You have no right to do this.")
             End If
-            load_form()
         End If
     End Sub
 

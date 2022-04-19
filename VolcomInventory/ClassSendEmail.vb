@@ -1,5 +1,8 @@
-﻿Imports System.IO
+﻿Imports System.Globalization
+Imports System.IO
 Imports System.Net.Mail
+Imports System.Net.Mime
+Imports DevExpress.XtraPrinting
 
 Public Class ClassSendEmail
     Public id_report As String = "-1"
@@ -5914,6 +5917,160 @@ INNER JOIN `tb_sni_pps` pps ON pps.id_sni_pps=l.id_sni_pps AND pps.id_report_sta
 
             mail.Body += "</table>
                 Mohon konfirmasinya untuk perubahan cost estimasi SNI pada sistem ERP.
+                <br><br>
+                Terima kasih atas perhatian dan kerjasamanya. 
+</p>
+            
+             </td>
+         </tr>
+
+  <tr>
+          <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+          <div>
+          <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Terima kasih, <br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+          </div>
+          </td>
+         </tr>
+        </tbody>
+      </table>
+      <!-- end body -->
+
+
+        <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+        <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+        <div align='center'>
+        <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+         <tbody><tr>
+          <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+            <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+          <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><br></p>
+          </td>
+         </tr>
+        </tbody></table>
+        </div>
+        </td>
+       </tr>
+      </tbody></table>  
+      </div>
+      </td>
+     </tr>
+    </tbody>
+</table>"
+            client.Send(mail)
+        ElseIf report_mark_type = "404" Then
+            'send email sample development update
+            Dim subj As String = "Konfirmasi target penyelesaian sample"
+
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", subj)
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+            Dim query As String = "SELECT c.comp_name AS comp_name,DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 7 DAY),'%d %M %Y') AS dte FROM tb_m_comp c WHERE c.id_comp='" & par1 & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            'attach
+            'Dim Mem As New MemoryStream()
+            'Dim exportOptions As New XlsxExportOptionsEx()
+            'exportOptions.ExportMode = DevExpress.Export.ExportType.WYSIWYG
+
+            'FormSampleDevelopment.GVUpdate.ExportToXlsx(Mem, exportOptions)
+            '' Create a new attachment and put the PDF report into it.
+            'Mem.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Dim now_date As String = Date.Parse(data.Rows(0)("dte").ToString).ToString("dd MMMM yyyy")
+
+            'Dim Att = New Attachment(Mem, data.Rows(0)("comp_name").ToString & " " & now_date & ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            'mail.Attachments.Add(Att)
+
+            Dim Report As New ReportSampleDevTrack()
+            Report.DataSource = data
+            Report.id_comp = par1
+            ' Create a new memory stream and export the report into it as PDF.
+            Dim Mem As New MemoryStream()
+
+            Report.ExportToXlsx(Mem)
+            ' Create a new attachment and put the PDF report into it.
+            Mem.Seek(0, SeekOrigin.Begin)
+            Dim Att = New Attachment(Mem, data.Rows(0)("comp_name").ToString & " " & data.Rows(0)("dte").ToString & ".xlsx", "application/ms-excel")
+            mail.Attachments.Add(Att)
+
+            'Send to
+            'to vendor
+            Dim qv As String = "SELECT email,name FROM tb_mail_to_group c
+WHERE c.id_comp='" & par1 & "' AND report_mark_type='404'"
+            Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+            For i = 0 To dtv.Rows.Count - 1
+                Dim vendor_mail As MailAddress = New MailAddress(dtv.Rows(i)("email").ToString, dtv.Rows(i)("name").ToString)
+                mail.To.Add(vendor_mail)
+            Next
+
+            Dim query_send_mail As String = "SELECT IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',-1),emp.`email_external`) AS email_external, IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',1),emp.`employee_name`) AS employee_name
+            FROM tb_mail_to md
+            LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE md.report_mark_type='" + report_mark_type + "' AND is_to='1' AND IF(ISNULL(md.id_user),TRUE,IF(IFNULL(emp.id_employee_active,1)=1,TRUE,FALSE))"
+            Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_mail.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+                mail.To.Add(to_mail)
+            Next
+
+            'Send CC
+            Dim query_send_cc As String = "SELECT IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',-1),emp.`email_external`) AS email_external, IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',1),emp.`employee_name`) AS employee_name
+            FROM tb_mail_to md
+            LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE md.report_mark_type='" + report_mark_type + "' AND is_to='2' AND IF(ISNULL(md.id_user),TRUE,IF(IFNULL(emp.id_employee_active,1)=1,TRUE,FALSE)) "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(to_mail)
+            Next
+
+            mail.Subject = subj
+            mail.IsBodyHtml = True
+            mail.Body = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+    <tbody><tr>
+      <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+      <div align='center'>
+
+      <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+       <tbody><tr>
+        <td style='padding:0in 0in 0in 0in'></td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'>
+        <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://d3k81ch9hvuctc.cloudfront.net/company/VFgA3P/images/de2b6f13-9275-426d-ae31-640f3dcfc744.jpeg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+        </td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'></td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'>
+        <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+         <tbody><tr>
+          <td style='padding:0in 0in 0in 0in'>
+
+          </td>
+         </tr>
+        </tbody></table>
+
+
+        <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+        <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+    
+
+        <!-- start body -->
+        <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+         <tbody>
+
+         <tr>
+            <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                <p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Dear " & data.Rows(0)("comp_name").ToString & ",</p>
+                <p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Berikut kami kirimkan daftar target penyelesaian sample untuk tanggal " & Date.Parse(data.Rows(0)("dte").ToString).ToString("dd MMMM yyyy", New CultureInfo("id-ID")) & ". Detail terlampir.
+                Mohon konfirmasinya untuk target pengerjaan sample tersebut.
                 <br><br>
                 Terima kasih atas perhatian dan kerjasamanya. 
 </p>

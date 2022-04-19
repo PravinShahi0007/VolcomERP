@@ -6825,7 +6825,6 @@ INNER JOIN `tb_sni_pps` pps ON pps.id_sni_pps=l.id_sni_pps AND pps.id_report_sta
 
                 'budget used
 
-
                 ' select user prepared
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -6892,6 +6891,7 @@ HAVING amo>0"
                     SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, 1 AS `id_comp`
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
+                    INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
                     JOIN tb_opt_purchasing o
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY dd.id_item_del "
@@ -12051,7 +12051,7 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
             'sample target dev pps
 
             If id_status_reportx = "6" Then
-                Dim qv As String = "SELECT id_type FORM tb_sample_dev_pps WHERE id_sample_dev_pps ='" & id_report & "'"
+                Dim qv As String = "SELECT id_type FROM tb_sample_dev_pps WHERE id_sample_dev_pps ='" & id_report & "'"
                 Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
                 If dtv.Rows.Count > 0 Then
                     If dtv.Rows(0)("id_type").ToString = "1" Then
@@ -12065,15 +12065,44 @@ WHERE ppsd.id_sample_dev_pps='" & id_report & "'"
                     ElseIf dtv.Rows(0)("id_type").ToString = "2" Then
                         'updates
                         'pakai update select
-                        qv = "UPDATE `tb_sample_dev_tracking` tr
-INNER JOIN tb_sample_dev_pps_det ppsd ON tr.id_design=ppsd.id_design 
-INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=ppsd.id_sample_dev_pps AND tr.id_comp=pps.id_comp
-SET tr.`labdip_upd`=ppsd.`labdip`,tr.`strike_off_1_upd`=ppsd.`strike_off_1`,tr.`proto_sample_1_upd`=ppsd.`proto_sample_1`,tr.`strike_off_2_upd`=ppsd.`strike_off_2`,tr.`proto_sample_2_upd`=ppsd.`proto_sample_2`,tr.`copy_proto_sample_2_upd`=ppsd.`copy_proto_sample_2`
-WHERE ppsd.id_sample_dev_pps='6'"
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.labdip_upd=u.new_date
+WHERE u.tahapan = 'Labdip'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.strike_off_1_upd=u.new_date
+WHERE u.tahapan = 'Strike Off 1'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.proto_sample_1_upd=u.new_date
+WHERE u.tahapan = 'Proto Sample 1'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.strike_off_2_upd=u.new_date
+WHERE u.tahapan = 'Strike Off 2'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.proto_sample_2_upd=u.new_date
+WHERE u.tahapan = 'Proto Sample 2'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.copy_proto_sample_2_upd=u.new_date
+WHERE u.tahapan = 'Copy Proto Sample 2'"
                         execute_non_query(qv, True, "", "", "", "")
                     End If
                 End If
-
             End If
 
             query = String.Format("UPDATE tb_sample_dev_pps SET id_report_status = '{0}' WHERE id_sample_dev_pps = '{1}'", id_status_reportx, id_report)

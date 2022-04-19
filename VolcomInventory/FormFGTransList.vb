@@ -22,6 +22,12 @@
         DEUntilSO.EditValue = data_dt.Rows(0)("dt")
         DEFromRepair.EditValue = data_dt.Rows(0)("dt")
         DEUntilRepair.EditValue = data_dt.Rows(0)("dt")
+        DEFromRepairRec.EditValue = data_dt.Rows(0)("dt")
+        DEUntilRepairRec.EditValue = data_dt.Rows(0)("dt")
+        DEFromReturnRepair.EditValue = data_dt.Rows(0)("dt")
+        DEUntilReturnRepair.EditValue = data_dt.Rows(0)("dt")
+        DEFromRecReturnRepair.EditValue = data_dt.Rows(0)("dt")
+        DEUntilRecReturnRepair.EditValue = data_dt.Rows(0)("dt")
 
         'lookup
         viewPeriodType()
@@ -39,6 +45,9 @@
         SLStatus9.EditValue = "6"
         SLStatus10.EditValue = "6"
         SLEReportStatusRepair.EditValue = "6"
+        SLEReportStatusRepairRec.EditValue = "6"
+        SLEStatusReturnRepair.EditValue = "6"
+        SLEStatusRecReturnRepair.EditValue = "6"
 
         'set size
         setCaptionSize(GVPLMain)
@@ -98,6 +107,9 @@
         viewSearchLookupQuery(SLStatus9, query, "id_report_status", "report_status", "id_report_status")
         viewSearchLookupQuery(SLStatus10, query, "id_report_status", "report_status", "id_report_status")
         viewSearchLookupQuery(SLEReportStatusRepair, query, "id_report_status", "report_status", "id_report_status")
+        viewSearchLookupQuery(SLEReportStatusRepairRec, query, "id_report_status", "report_status", "id_report_status")
+        viewSearchLookupQuery(SLEStatusReturnRepair, query, "id_report_status", "report_status", "id_report_status")
+        viewSearchLookupQuery(SLEStatusRecReturnRepair, query, "id_report_status", "report_status", "id_report_status")
         Cursor = Cursors.Default
     End Sub
 
@@ -444,6 +456,15 @@
         ElseIf tab_index = 10 Then
             page_active = "repair"
             ActiveControl = DEFromRepair
+        ElseIf tab_index = 11 Then
+            page_active = "repair_rec"
+            ActiveControl = DEFromRepairRec
+        ElseIf tab_index = 12 Then
+            page_active = "return_repair"
+            ActiveControl = DEFromReturnRepair
+        ElseIf tab_index = 13 Then
+            page_active = "rec_return_repair"
+            ActiveControl = DEFromRecReturnRepair
         End If
     End Sub
 
@@ -1419,7 +1440,7 @@
         cf.comp_number AS `comp_number_from`, cf.comp_name AS `comp_name_from`,
         ct.comp_number AS `comp_number_to`, ct.comp_name AS `comp_name_to`,
         p.id_product, p.product_full_code AS `code`, cd.class,p.product_display_name AS `name`, cd.color, cd.sht, sz.code_detail_name AS `size`, YEAR(d.design_first_rec_wh) AS `rec_wh`,
-        COUNT(rd.id_product) AS `qty`,r.fg_repair_note, stt.report_status
+        COUNT(rd.id_product) AS `qty`,r.fg_repair_note, stt.report_status, IF(r.is_to_vendor=1,'Repair to Vendor', 'Repair to QC') AS `repair_type`
         FROM tb_fg_repair r
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
         INNER JOIN tb_fg_repair_det rd ON rd.id_fg_repair = r.id_fg_repair
@@ -1445,11 +1466,235 @@
 	        AND cd.id_code IN (32,30,14, 43)
 	        GROUP BY dc.id_design
         ) cd ON cd.id_design = d.id_design
-        WHERE r.is_to_vendor=2 AND (r.fg_repair_date>='" + date_from_selected + "' AND r.fg_repair_date<='" + date_until_selected + "') " + where_status
+        WHERE (r.fg_repair_date>='" + date_from_selected + "' AND r.fg_repair_date<='" + date_until_selected + "') " + where_status
         query += "GROUP BY rd.id_fg_repair, rd.id_product 
         ORDER BY id_fg_repair ASC, class ASC, name ASC, code ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRepair.DataSource = Data
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnRepairRec_Click(sender As Object, e As EventArgs) Handles BtnRepairRec.Click
+        viewRepairRec()
+    End Sub
+
+    Sub viewRepairRec()
+        Cursor = Cursors.WaitCursor
+        'date paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+
+        Try
+            date_from_selected = DateTime.Parse(DEFromRepairRec.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilRepairRec.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim where_status As String = If(SLEReportStatusRepairRec.EditValue.ToString = "0", "", "AND rr.id_report_status = " + SLEReportStatusRepairRec.EditValue.ToString + " ")
+
+        Dim query As String = "SELECT rr.id_fg_repair_rec,rr.fg_repair_rec_number, r.fg_repair_number, rr.fg_repair_rec_date,
+        cf.comp_number AS `comp_number_from`, cf.comp_name AS `comp_name_from`,
+        ct.comp_number AS `comp_number_to`, ct.comp_name AS `comp_name_to`,
+        p.product_full_code, cd.class, d.design_display_name AS `name`, cd.color, cd.sht, 
+        COUNT(rrd.id_fg_repair_rec_det) AS `qty`, rr.fg_repair_rec_note, stt.report_status
+        FROM tb_fg_repair_rec rr
+        INNER JOIN tb_fg_repair r ON r.id_fg_repair = rr.id_fg_repair
+        INNER JOIN tb_m_comp cf ON cf.id_drawer_def = rr.id_wh_drawer_from
+        INNER JOIN tb_m_comp ct ON ct.id_drawer_def = rr.id_wh_drawer_to
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = rr.id_report_status
+        INNER JOIN tb_fg_repair_rec_det rrd ON rrd.id_fg_repair_rec = rr.id_fg_repair_rec
+        INNER JOIN tb_m_product p ON p.id_product = rrd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        LEFT JOIN (
+          SELECT dc.id_design, 
+          MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+          MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+          MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+          MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+          MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+          MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+          FROM tb_m_design_code dc
+          INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+          AND cd.id_code IN (32,30,14, 43)
+          GROUP BY dc.id_design
+        ) cd ON cd.id_design = d.id_design
+        WHERE rr.id_fg_repair_rec>0 AND (rr.fg_repair_rec_date>='" + date_from_selected + "' AND rr.fg_repair_rec_date<='" + date_until_selected + "')
+        " + where_status + "
+        GROUP BY rrd.id_fg_repair_rec, rrd.id_product
+        ORDER BY rrd.id_fg_repair_rec ASC, `class` ASC, `name` ASC, `product_full_code` ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRepairRec.DataSource = data
+        'GVRepairRec.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnXLSRepairRec_Click(sender As Object, e As EventArgs) Handles BtnXLSRepairRec.Click
+        If GVRepairRec.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "tl_repair_rec.xlsx"
+            exportToXLS(path, "repair_rec", GCRepairRec)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnViewReturnRepair_Click(sender As Object, e As EventArgs) Handles BtnViewReturnRepair.Click
+        ViewReturnRepair()
+    End Sub
+
+    Sub viewReturnRepair()
+        Cursor = Cursors.WaitCursor
+        'date paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+
+        Try
+            date_from_selected = DateTime.Parse(DEFromReturnRepair.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilReturnRepair.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim where_status As String = If(SLEStatusReturnRepair.EditValue.ToString = "0", "", "AND r.id_report_status = " + SLEStatusReturnRepair.EditValue.ToString + " ")
+        Dim query As String = "SELECT r.id_fg_repair_return,r.fg_repair_return_number, r.fg_repair_return_date,
+        cf.comp_number AS `comp_number_from`, cf.comp_name AS `comp_name_from`,
+        ct.comp_number AS `comp_number_to`, ct.comp_name AS `comp_name_to`,
+        p.product_full_code, cd.class, d.design_display_name AS `name`, cd.color, cd.sht, 
+        COUNT(rd.id_fg_repair_return_det) AS `qty`, r.fg_repair_return_note, stt.report_status,
+        IF(r.is_from_vendor=1,'Return from Vendor','Return from QC') AS `type`
+        FROM tb_fg_repair_return r
+        INNER JOIN tb_m_comp cf ON cf.id_drawer_def = r.id_wh_drawer_from
+        INNER JOIN tb_m_comp ct ON ct.id_drawer_def = r.id_wh_drawer_to
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
+        INNER JOIN tb_fg_repair_return_det rd ON rd.id_fg_repair_return = r.id_fg_repair_return
+        INNER JOIN tb_m_product p ON p.id_product = rd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        LEFT JOIN (
+          SELECT dc.id_design, 
+          MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+          MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+          MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+          MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+          MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+          MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+          FROM tb_m_design_code dc
+          INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+          AND cd.id_code IN (32,30,14, 43)
+          GROUP BY dc.id_design
+        ) cd ON cd.id_design = d.id_design
+        WHERE r.id_fg_repair_return>0 AND (r.fg_repair_return_date>='" + date_from_selected + "' AND r.fg_repair_return_date<='" + date_until_selected + "')
+       " + where_status + "
+        GROUP BY rd.id_fg_repair_return, rd.id_product
+        ORDER BY rd.id_fg_repair_return ASC, `class` ASC, `name` ASC, `product_full_code` ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCReturnRepair.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportXLSReturnRepair_Click(sender As Object, e As EventArgs) Handles BtnExportXLSReturnRepair.Click
+        If GVReturnRepair.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "tl_return_repair.xlsx"
+            exportToXLS(path, "return_repair", GCReturnRepair)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnViewRecReturnRepair_Click(sender As Object, e As EventArgs) Handles BtnViewRecReturnRepair.Click
+        viewRecReturnRepair()
+    End Sub
+
+    Sub viewRecReturnRepair()
+        Cursor = Cursors.WaitCursor
+        'date paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+
+        Try
+            date_from_selected = DateTime.Parse(DEFromRecReturnRepair.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilRecReturnRepair.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim where_status As String = If(SLEStatusRecReturnRepair.EditValue.ToString = "0", "", "AND r.id_report_status = " + SLEStatusRecReturnRepair.EditValue.ToString + " ")
+        Dim query As String = "SELECT rr.id_fg_repair_return_rec,rr.fg_repair_return_rec_number, r.fg_repair_return_number, rr.fg_repair_return_rec_date,
+        cf.comp_number AS `comp_number_from`, cf.comp_name AS `comp_name_from`,
+        ct.comp_number AS `comp_number_to`, ct.comp_name AS `comp_name_to`,
+        p.product_full_code, cd.class, d.design_display_name AS `name`, cd.color, cd.sht, 
+        COUNT(rrd.id_fg_repair_return_rec_det) AS `qty`, rr.fg_repair_return_rec_note, stt.report_status
+        FROM tb_fg_repair_return_rec rr
+        INNER JOIN tb_fg_repair_return r ON r.id_fg_repair_return = rr.id_fg_repair_return
+        INNER JOIN tb_m_comp cf ON cf.id_drawer_def = rr.id_wh_drawer_from
+        INNER JOIN tb_m_comp ct ON ct.id_drawer_def = rr.id_wh_drawer_to
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = rr.id_report_status
+        INNER JOIN tb_fg_repair_return_rec_det rrd ON rrd.id_fg_repair_return_rec = rr.id_fg_repair_return_rec
+        INNER JOIN tb_m_product p ON p.id_product = rrd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        LEFT JOIN (
+          SELECT dc.id_design, 
+          MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+          MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+          MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+          MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+          MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+          MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+          FROM tb_m_design_code dc
+          INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+          AND cd.id_code IN (32,30,14, 43)
+          GROUP BY dc.id_design
+        ) cd ON cd.id_design = d.id_design
+        WHERE rr.id_fg_repair_return_rec>0 AND (rr.fg_repair_return_rec_date>='" + date_from_selected + "' AND rr.fg_repair_return_rec_date<='" + date_until_selected + "')
+        " + where_status + "
+        GROUP BY rrd.id_fg_repair_return_rec, rrd.id_product
+        ORDER BY rrd.id_fg_repair_return_rec ASC, `class` ASC, `name` ASC, `product_full_code` ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRecReturnRepair.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportToXLSRecReturnRepair_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSRecReturnRepair.Click
+        If GVRecReturnRepair.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "tl_rec_return_repair.xlsx"
+            exportToXLS(path, "rec_return_repair", GCRecReturnRepair)
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

@@ -153,6 +153,10 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select `Seller SKU` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Seller SKU]='') GROUP BY `Seller SKU` ", oledbconn)
         ElseIf id_pop_up = "63" Then
             MyCommand = New OleDbDataAdapter("select Code, Account, SUM(Qty) AS Qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Code]='') GROUP BY Code,Account", oledbconn)
+        ElseIf id_pop_up = "65" Then
+            MyCommand = New OleDbDataAdapter("select [id] AS id_design,[Tahapan] AS tahapan,[Artikel] AS artikel,[Confirm (yes/no)] AS confirm,[Reason not confirm] AS reason,[New Date (If not confirm)] AS new_date,[vendor] AS id_comp from [" & CBWorksheetName.SelectedItem.ToString & "A2:ZZ] WHERE [Confirm (yes/no)]='no'", oledbconn)
+        ElseIf id_pop_up = "66" Then
+            MyCommand = New OleDbDataAdapter("select [id] AS id_design,[Labdip] AS labdip,[Strike Off 1] AS strike_off_1,[Proto Sample 1] AS proto_sample_1,[Strike Off 2] AS strike_off_2,[Proto Sample 2] AS proto_sample_2,[Copy Proto Sample 2] AS copy_proto_sample_2 from [" & CBWorksheetName.SelectedItem.ToString & "A2:ZZ]", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -3680,7 +3684,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                                 .shipping_region = table1("Provinsi").ToString,
                                 .shipping_district = "",
                                 .payment_method = "",
-                                .Status = If(Not o1 Is Nothing Or table1("Status Pesanan").ToString <> "Perlu Dikirim" Or table1("Jumlah") = 0 Or table1("Jumlah").ToString = "", If(Not o1 Is Nothing, "Order already exist;", "") + If(table1("Status Pesanan").ToString <> "Perlu Dikirim", "Invalid status;", "") + If(table1("Jumlah") = 0 Or table1("Jumlah").ToString = "", "Qty not valid;", ""), "OK")
+                                .Status = If(Not o1 Is Nothing Or table1("Status Pesanan").ToString <> "Perlu Dikirim" Or table1("Jumlah") = 0 Or table1("Jumlah").ToString = "" Or table1("No# Resi").ToString = "", If(Not o1 Is Nothing, "Order already exist;", "") + If(table1("Status Pesanan").ToString <> "Perlu Dikirim", "Invalid status;", "") + If(table1("Jumlah") = 0 Or table1("Jumlah").ToString = "", "Qty not valid;", "") + If(table1("No# Resi").ToString = "", "Tracking code not valid;", ""), "OK")
                             }
                 '.discount_allocations_amo = Decimal.Parse(Trim(table1("Diskon Dari Penjual").ToString.Replace("Rp", "").Replace(".", "").Replace(",", ""))),
 
@@ -4808,6 +4812,195 @@ GROUP BY ol.checkout_id
             GVData.Columns("qty").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("qty_erp").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("qty_erp").DisplayFormat.FormatString = "{0:n0}"
+        ElseIf id_pop_up = "65" Then
+            Dim qry As String = "SELECT tb.*,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color)  AS design_display_name 
+FROM(
+(SELECT t.id_design AS id_design,t.id_comp,'Lab dip' AS tahapan,DATE(IFNULL(t.labdip_upd,t.labdip)) AS cur_date,LEAST(IFNULL(DATE(IFNULL(t.strike_off_1_upd,t.strike_off_1)),'9999-12-31'),IFNULL(DATE(IFNULL(t.proto_sample_1_upd,t.proto_sample_1)),'9999-12-31'),IFNULL(DATE(IFNULL(t.strike_off_2_upd,t.strike_off_2)),'9999-12-31'),IFNULL(DATE(IFNULL(t.proto_sample_2_upd,t.proto_sample_2)),'9999-12-31'),DATE(IFNULL(t.copy_proto_sample_2_upd,t.copy_proto_sample_2))) AS next_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.labdip_act))
+UNION ALL
+(SELECT t.id_design AS id_design,t.id_comp,'Strike Off 1' AS tahapan,DATE(IFNULL(t.strike_off_1_upd,t.strike_off_1)) AS cur_date,LEAST(IFNULL(DATE(IFNULL(t.proto_sample_1_upd,t.proto_sample_1)),'9999-12-31'),IFNULL(DATE(IFNULL(t.strike_off_2_upd,t.strike_off_2)),'9999-12-31'),IFNULL(DATE(IFNULL(t.proto_sample_2_upd,t.proto_sample_2)),'9999-12-31'),DATE(IFNULL(t.copy_proto_sample_2_upd,t.copy_proto_sample_2))) AS next_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.strike_off_1_act))
+UNION ALL
+(SELECT t.id_design AS id_design,t.id_comp,'Proto Sample 1' AS tahapan,DATE(IFNULL(t.proto_sample_1_upd,t.proto_sample_1)) AS cur_date,LEAST(IFNULL(DATE(IFNULL(t.strike_off_2_upd,t.strike_off_2)),'9999-12-31'),IFNULL(DATE(IFNULL(t.proto_sample_2_upd,t.proto_sample_2)),'9999-12-31'),DATE(IFNULL(t.copy_proto_sample_2_upd,t.copy_proto_sample_2))) AS next_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.proto_sample_1_act))
+UNION ALL
+(SELECT t.id_design AS id_design,t.id_comp,'Strike Off 2' AS tahapan,DATE(IFNULL(t.strike_off_2_upd,t.strike_off_2)) AS cur_date,LEAST(IFNULL(DATE(IFNULL(t.proto_sample_2_upd,t.proto_sample_2)),'9999-12-31'),DATE(IFNULL(t.copy_proto_sample_2_upd,t.copy_proto_sample_2))) AS next_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.strike_off_2_act))
+UNION ALL
+(SELECT t.id_design AS id_design,t.id_comp,'Proto Sample 2' AS tahapan,DATE(IFNULL(t.proto_sample_2_upd,t.proto_sample_2)) AS cur_date,DATE(IFNULL(t.copy_proto_sample_2_upd,t.copy_proto_sample_2)) next_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.proto_sample_2_act))
+UNION ALL
+(SELECT t.id_design AS id_design,t.id_comp,'Copy Proto Sample 2' AS tahapan,DATE(IFNULL(t.copy_proto_sample_2_upd,t.copy_proto_sample_2)) AS cur_date,NULL AS next_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.copy_proto_sample_2_act))
+) tb
+INNER JOIN tb_m_design d ON tb.id_design=d.id_design
+INNER JOIN tb_season s ON s.id_season=d.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
+WHERE d.id_lookup_status_order!=2 "
+            Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("id_design").ToString Equals table_tmp("id_design").ToString And table1("id_comp").ToString Equals table_tmp("id_comp").ToString And table1("tahapan").ToString Equals table_tmp("tahapan").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .id_design = If(y1 Is Nothing, "", y1("id_design")),
+                            .id_comp = If(y1 Is Nothing, "", y1("id_comp")),
+                            .description = If(y1 Is Nothing, "", y1("design_display_name")),
+                            .tahapan = table1("tahapan"),
+                            .reason = table1("reason"),
+                            .current_date = If(y1 Is Nothing, "", y1("cur_date")),
+                            .new_date = Date.Parse(table1("new_date").ToString),
+                            .status = If(y1 Is Nothing, "Data not found", If(Date.Parse(table1("new_date").ToString) >= Date.Parse(y1("next_date").ToString), "Tanggal yang diajukan lebih besar atau sama dengan tanggal step selanjutnya", "Ok"))
+                        }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_design").Visible = False
+            GVData.Columns("id_comp").Visible = False
+            GVData.Columns("new_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("new_date").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("current_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("current_date").DisplayFormat.FormatString = "dd MMMM yyyy"
+        ElseIf id_pop_up = "66" Then
+            Dim qry As String = "SELECT tb.*,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color)  AS design_display_name 
+FROM(
+    SELECT ppsd.id_design,ppsd.`labdip`,ppsd.`strike_off_1`,ppsd.`proto_sample_1`,ppsd.`strike_off_2`,ppsd.`proto_sample_2`,ppsd.`copy_proto_sample_2`
+    FROM tb_sample_dev_pps_det ppsd
+    WHERE ppsd.id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "'
+) tb
+INNER JOIN tb_m_design d ON tb.id_design=d.id_design
+INNER JOIN tb_season s ON s.id_season=d.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
+WHERE d.id_lookup_status_order!=2 "
+            Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("id_design").ToString Equals table_tmp("id_design").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .id_design = If(y1 Is Nothing, "", y1("id_design")),
+                            .design_display_name = If(y1 Is Nothing, "", y1("design_display_name")),
+                            .labdip = If(table1("labdip").ToString = "", "", Date.Parse(table1("labdip").ToString)),
+                            .strike_off_1 = If(table1("strike_off_1").ToString = "", "", Date.Parse(table1("strike_off_1").ToString)),
+                            .proto_sample_1 = If(table1("proto_sample_1").ToString = "", "", Date.Parse(table1("proto_sample_1").ToString)),
+                            .strike_off_2 = If(table1("strike_off_2").ToString = "", "", Date.Parse(table1("strike_off_2").ToString)),
+                            .proto_sample_2 = If(table1("proto_sample_2").ToString = "", "", Date.Parse(table1("proto_sample_2").ToString)),
+                            .copy_proto_sample_2 = If(table1("copy_proto_sample_2").ToString = "", "", Date.Parse(table1("copy_proto_sample_2").ToString)),
+                            .status = If(y1 Is Nothing, "Data not found", "Ok")
+                        }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'check
+            Dim err_text As String = ""
+            For i = 0 To GVData.RowCount - 1
+                err_text = ""
+
+                If GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString = "" Then
+                    err_text = "Tanggal copy proto sample 2 tidak boleh kosong;"
+                End If
+                '
+                If Not GVData.GetRowCellValue(i, "labdip").ToString = "" Then
+                    If If(GVData.GetRowCellValue(i, "strike_off_1").ToString = "", False, GVData.GetRowCellValue(i, "labdip") >= GVData.GetRowCellValue(i, "strike_off_1")) Or If(GVData.GetRowCellValue(i, "proto_sample_1").ToString = "", False, GVData.GetRowCellValue(i, "labdip") >= GVData.GetRowCellValue(i, "proto_sample_1")) Or If(GVData.GetRowCellValue(i, "strike_off_2").ToString = "", False, GVData.GetRowCellValue(i, "labdip") >= GVData.GetRowCellValue(i, "strike_off_2")) Or If(GVData.GetRowCellValue(i, "proto_sample_2").ToString = "", False, GVData.GetRowCellValue(i, "labdip") >= GVData.GetRowCellValue(i, "proto_sample_2")) Or If(GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString = "", False, GVData.GetRowCellValue(i, "labdip") >= GVData.GetRowCellValue(i, "copy_proto_sample_2")) Then
+                        err_text += "Tanggal labdip lebih besar atau sama dengan step selanjutnya;"
+                    End If
+                End If
+                '
+                If Not GVData.GetRowCellValue(i, "strike_off_1").ToString = "" Then
+                    If If(GVData.GetRowCellValue(i, "proto_sample_1").ToString = "", False, GVData.GetRowCellValue(i, "strike_off_1") >= GVData.GetRowCellValue(i, "proto_sample_1")) Or If(GVData.GetRowCellValue(i, "strike_off_2").ToString = "", False, GVData.GetRowCellValue(i, "strike_off_1") >= GVData.GetRowCellValue(i, "strike_off_2")) Or If(GVData.GetRowCellValue(i, "proto_sample_2").ToString = "", False, GVData.GetRowCellValue(i, "strike_off_1") >= GVData.GetRowCellValue(i, "proto_sample_2")) Or If(GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString = "", False, GVData.GetRowCellValue(i, "strike_off_1") >= GVData.GetRowCellValue(i, "copy_proto_sample_2")) Then
+                        err_text += "Tanggal strike off 1 lebih besar atau sama dengan step selanjutnya;"
+                    End If
+                End If
+                '
+                If Not GVData.GetRowCellValue(i, "proto_sample_1").ToString = "" Then
+                    If If(GVData.GetRowCellValue(i, "strike_off_2").ToString = "", False, GVData.GetRowCellValue(i, "proto_sample_1") >= GVData.GetRowCellValue(i, "strike_off_2")) Or If(GVData.GetRowCellValue(i, "proto_sample_2").ToString = "", False, GVData.GetRowCellValue(i, "proto_sample_1") >= GVData.GetRowCellValue(i, "proto_sample_2")) Or If(GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString = "", False, GVData.GetRowCellValue(i, "proto_sample_1") >= GVData.GetRowCellValue(i, "copy_proto_sample_2")) Then
+                        err_text += "Tanggal proto sample 1 lebih besar atau sama dengan step selanjutnya;"
+                    End If
+                End If
+                '
+                If Not GVData.GetRowCellValue(i, "strike_off_2").ToString = "" Then
+                    If If(GVData.GetRowCellValue(i, "proto_sample_2").ToString = "", False, GVData.GetRowCellValue(i, "strike_off_2") >= GVData.GetRowCellValue(i, "proto_sample_2")) Or If(GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString = "", False, GVData.GetRowCellValue(i, "strike_off_2") >= GVData.GetRowCellValue(i, "copy_proto_sample_2")) Then
+                        err_text += "Tanggal strike off 2 lebih besar atau sama dengan step selanjutnya;"
+                    End If
+                End If
+                '
+                If Not GVData.GetRowCellValue(i, "proto_sample_2").ToString = "" Then
+                    If If(GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString = "", False, GVData.GetRowCellValue(i, "proto_sample_2") >= GVData.GetRowCellValue(i, "copy_proto_sample_2")) Then
+                        err_text += "Tanggal proto sample 2 lebih besar atau sama dengan step selanjutnya;"
+                    End If
+                End If
+                '
+                If Not err_text = "" Then
+                    GVData.SetRowCellValue(i, "status", err_text)
+                End If
+            Next
+
+            'Customize column
+            GVData.Columns("id_design").Visible = False
+            GVData.Columns("design_display_name").Caption = "Artikel"
+            GVData.Columns("labdip").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("labdip").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("strike_off_1").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("strike_off_1").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("proto_sample_1").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("proto_sample_1").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("strike_off_2").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("strike_off_2").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("proto_sample_2").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("proto_sample_2").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("copy_proto_sample_2").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("copy_proto_sample_2").DisplayFormat.FormatString = "dd MMMM yyyy"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -7968,6 +8161,76 @@ GROUP BY ol.checkout_id
                         infoCustom("Import Success")
                         Close()
                     End If
+                End If
+            ElseIf id_pop_up = "65" Then
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status] = 'ok' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only ok data will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        FormSampleDevTargetPps.SLEVendor.EditValue = GVData.GetRowCellValue(0, "id_comp").ToString
+
+                        'detail data
+                        Dim id_bsp As String = FormBSPDet.id
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim newRow As DataRow = (TryCast(FormSampleDevTargetPps.GCChanges.DataSource, DataTable)).NewRow()
+                            newRow("id_design") = GVData.GetRowCellValue(i, "id_design").ToString
+                            newRow("design_display_name") = GVData.GetRowCellValue(i, "description").ToString
+                            newRow("tahapan") = GVData.GetRowCellValue(i, "tahapan").ToString
+                            newRow("reason") = GVData.GetRowCellValue(i, "reason").ToString
+                            newRow("current_date") = GVData.GetRowCellValue(i, "current_date").ToString
+                            newRow("new_date") = GVData.GetRowCellValue(i, "new_date").ToString
+                            TryCast(FormSampleDevTargetPps.GCChanges.DataSource, DataTable).Rows.Add(newRow)
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+
+                        'refresh
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
+                End If
+            ElseIf id_pop_up = "66" Then
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status] = 'Ok' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only ok data will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        'detail data
+                        Dim id_bsp As String = FormBSPDet.id
+                        For i As Integer = 0 To GVData.RowCount - 1
+
+                            Dim q As String = "UPDATE `tb_sample_dev_pps_det` SET labdip=" & If(GVData.GetRowCellValue(i, "labdip").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "labdip").ToString).ToString("yyyy-MM-dd") & "'") & ",strike_off_1=" & If(GVData.GetRowCellValue(i, "strike_off_1").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "strike_off_1").ToString).ToString("yyyy-MM-dd") & "'") & ",proto_sample_1=" & If(GVData.GetRowCellValue(i, "proto_sample_1").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "proto_sample_1").ToString).ToString("yyyy-MM-dd") & "'") & ",strike_off_2=" & If(GVData.GetRowCellValue(i, "strike_off_2").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "strike_off_2").ToString).ToString("yyyy-MM-dd") & "'") & ",proto_sample_2=" & If(GVData.GetRowCellValue(i, "proto_sample_2").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "proto_sample_2").ToString).ToString("yyyy-MM-dd") & "'") & ",copy_proto_sample_2=" & If(GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString).ToString("yyyy-MM-dd") & "'") & "
+WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='" & GVData.GetRowCellValue(i, "id_design").ToString & "'"
+                            execute_non_query(q, True, "", "", "", "")
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+
+                        FormSampleDevTargetPps.load_det()
+
+                        'refresh
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
                 End If
             End If
         End If

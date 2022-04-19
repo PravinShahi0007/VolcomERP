@@ -124,36 +124,37 @@
     End Sub
 
     Sub viewData()
-        Cursor = Cursors.WaitCursor
-        GridColumnPic.Visible = False
-        CheckImg.EditValue = False
-        GVDesign.RowHeight = 10
+        'not used
+        'Cursor = Cursors.WaitCursor
+        'GridColumnPic.Visible = False
+        'CheckImg.EditValue = False
+        'GVDesign.RowHeight = 10
 
-        Dim id_ss As String = SLESeason.EditValue.ToString
-        Dim cond As String = ""
-        If id_ss = "-1" Then
-            cond = "-1"
-        Else
-            cond = "And f1.id_season=" + id_ss + " "
-        End If
-        Dim query As String = "CALL view_design_aging('" + cond + "')"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCDesign.DataSource = data
+        'Dim id_ss As String = SLESeason.EditValue.ToString
+        'Dim cond As String = ""
+        'If id_ss = "-1" Then
+        '    cond = "-1"
+        'Else
+        '    cond = "And f1.id_season=" + id_ss + " "
+        'End If
+        'Dim query As String = "CALL view_design_aging('" + cond + "')"
+        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'GCDesign.DataSource = data
 
-        If GVDesign.RowCount > 0 Then
-            PanelOpt.Visible = True
-            PanelControlFreeze.Visible = True
-            If is_view = "-1" Then
-                BtnEdit.Visible = True
-            End If
-        Else
-            PanelOpt.Visible = False
-            PanelControlFreeze.Visible = False
-            BtnEdit.Visible = False
-        End If
+        'If GVDesign.RowCount > 0 Then
+        '    PanelOpt.Visible = True
+        '    PanelControlFreeze.Visible = True
+        '    If is_view = "-1" Then
+        '        BtnEdit.Visible = True
+        '    End If
+        'Else
+        '    PanelOpt.Visible = False
+        '    PanelControlFreeze.Visible = False
+        '    BtnEdit.Visible = False
+        'End If
 
-        noEdit()
-        Cursor = Cursors.Default
+        'noEdit()
+        'Cursor = Cursors.Default
     End Sub
 
     Sub noEdit()

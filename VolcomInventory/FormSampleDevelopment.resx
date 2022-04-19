@@ -184,6 +184,63 @@
   <metadata name="CMTracking.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>267, 14</value>
   </metadata>
+  <data name="FormatConditionRuleValue2.Expression" xml:space="preserve">
+    <value>Iif([strike_off_1_act] = '' Or IsNullOrEmpty([strike_off_1_act]), Iif([cur_date] &gt;= Iif([strike_off_1_upd] = '' Or IsNullOrEmpty([strike_off_1_upd]), [strike_off_1], [strike_off_1_upd]), True, False), False)</value>
+  </data>
+  <data name="FormatConditionRuleValue3.Expression" xml:space="preserve">
+    <value>Iif([proto_sample_1_act] = '' Or IsNullOrEmpty([proto_sample_1_act]), Iif([cur_date] &gt;= Iif([proto_sample_1_upd] = '' Or IsNullOrEmpty([proto_sample_1_upd]), [proto_sample_1], [proto_sample_1_upd]), True, False), False)</value>
+  </data>
+  <data name="FormatConditionRuleValue4.Expression" xml:space="preserve">
+    <value>Iif([strike_off_2_act] = '' Or IsNullOrEmpty([strike_off_2_act]), Iif([cur_date] &gt;= Iif([strike_off_2_upd] = '' Or IsNullOrEmpty([strike_off_2_upd]), [strike_off_2], [strike_off_2_upd]), True, False), False)</value>
+  </data>
+  <data name="FormatConditionRuleValue5.Expression" xml:space="preserve">
+    <value>Iif([proto_sample_2_act] = '' Or IsNullOrEmpty([proto_sample_2_act]), Iif([cur_date] &gt;= Iif([proto_sample_2_upd] = '' Or IsNullOrEmpty([proto_sample_2_upd]), [proto_sample_2], [proto_sample_2_upd]), True, False), False)</value>
+  </data>
+  <data name="FormatConditionRuleValue6.Expression" xml:space="preserve">
+    <value>Iif([copy_proto_sample_2_act] = '' Or IsNullOrEmpty([copy_proto_sample_2_act]), Iif([cur_date] &gt;= Iif([copy_proto_sample_2_upd] = '' Or IsNullOrEmpty([copy_proto_sample_2_upd]), [copy_proto_sample_2], [copy_proto_sample_2_upd]), True, False), False)</value>
+  </data>
+  <data name="FormatConditionRuleValue7.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([labdip]) And IsNullOrEmpty([labdip_upd]), Iif(IsNullOrEmpty([strike_off_1_act]) And IsNullOrEmpty([proto_sample_1_act]) And IsNullOrEmpty([strike_off_2_act]) And IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([labdip_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue8.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([labdip]) And IsNullOrEmpty([labdip_upd]), Iif(IsNullOrEmpty([strike_off_1_act]) And IsNullOrEmpty([proto_sample_1_act]) And IsNullOrEmpty([strike_off_2_act]) And IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([labdip_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue9.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([labdip]) And IsNullOrEmpty([labdip_upd]), Iif(IsNullOrEmpty([strike_off_1_act]) And IsNullOrEmpty([proto_sample_1_act]) And IsNullOrEmpty([strike_off_2_act]) And IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([labdip_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue10.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([strike_off_1]) And IsNullOrEmpty([strike_off_1_upd]), Iif(IsNullOrEmpty([proto_sample_1_act]) And IsNullOrEmpty([strike_off_2_act]) And IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([strike_off_1_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue11.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([strike_off_1]) And IsNullOrEmpty([strike_off_1_upd]), Iif(IsNullOrEmpty([proto_sample_1_act]) And IsNullOrEmpty([strike_off_2_act]) And IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([strike_off_1_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue12.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([strike_off_1]) And IsNullOrEmpty([strike_off_1_upd]), Iif(IsNullOrEmpty([proto_sample_1_act]) And IsNullOrEmpty([strike_off_2_act]) And IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([strike_off_1_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue13.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([proto_sample_1]) And IsNullOrEmpty([proto_sample_1_upd]), Iif(IsNullOrEmpty([strike_off_2_act]) And IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([proto_sample_1_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue14.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([proto_sample_1]) And IsNullOrEmpty([proto_sample_1_upd]), Iif(IsNullOrEmpty([strike_off_2_act]) And IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([proto_sample_1_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue15.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([proto_sample_1]) And IsNullOrEmpty([proto_sample_1_upd]), Iif(IsNullOrEmpty([strike_off_2_act]) And IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([proto_sample_1_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue16.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([strike_off_2]) And IsNullOrEmpty([strike_off_2_upd]), Iif(IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([strike_off_2_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue17.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([strike_off_2]) And IsNullOrEmpty([strike_off_2_upd]), Iif(IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([strike_off_2_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleValue18.Expression" xml:space="preserve">
+    <value>Iif(IsNullOrEmpty([strike_off_2]) And IsNullOrEmpty([strike_off_2_upd]), Iif(IsNullOrEmpty([proto_sample_2_act]) And IsNullOrEmpty([copy_proto_sample_2_act]), False, True), Iif(IsNullOrEmpty([strike_off_2_act]), False, True))</value>
+  </data>
+  <data name="FormatConditionRuleContains1.Values" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAEAQAAABxTeXN0ZW0uQ29sbGVjdGlvbnMuQXJyYXlMaXN0AwAAAAZfaXRl
+        bXMFX3NpemUIX3ZlcnNpb24FAAAICAkCAAAAAQAAAAEAAAAQAgAAAAQAAAAGAwAAAAANAws=
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>68</value>
   </metadata>

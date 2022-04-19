@@ -33,6 +33,7 @@
 
     Private Sub FormSampleDevelopment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
+        viewSeasonTracker()
         '
         viewDesign()
         viewVendor()
@@ -106,6 +107,13 @@ SELECT id_comp,CONCAT(comp_number,' - ',comp_name) AS comp_name FROM tb_m_comp w
         query += "WHERE b.id_range >0 "
         query += "ORDER BY b.range DESC"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
+    End Sub
+
+    Sub viewSeasonTracker()
+        Dim query As String = "(SELECT 0 AS id_season,'ALL' AS season) UNION ALL (SELECT a.id_season,a.season FROM tb_season a "
+        query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
+        query += "WHERE b.id_range >0 "
+        query += "ORDER BY b.range DESC)"
         viewSearchLookupQuery(SLESeasonTracker, query, "id_season", "season", "id_season")
     End Sub
 
@@ -390,9 +398,9 @@ ORDER BY kp.id_prod_order_cps2 DESC"
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-        Dim q As String = "SELECT IF(pps.id_type=1,'New Target',IF(pps.id_type=2,'Update','Actual')) AS type, pps.id_sample_dev_pps,pps.created_date,c.comp_name AS vendor,pps.number,pps.note,sts.report_status,GROUP_CONCAT(dsg.design_code,' - ',CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS display_name
+        Dim q As String = "(SELECT IF(pps.id_type=1,'New Target',IF(pps.id_type=2,'Update','Actual')) AS type, pps.id_sample_dev_pps,pps.created_date,c.comp_name AS vendor,pps.number,pps.note,sts.report_status,GROUP_CONCAT(dsg.design_code,' - ',CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS display_name
 FROM tb_sample_dev_pps pps
-INNER JOIN tb_sample_dev_pps_det ppsd ON ppsd.id_sample_dev_pps=pps.id_sample_dev_pps
+INNER JOIN tb_sample_dev_pps_det ppsd ON ppsd.id_sample_dev_pps=pps.id_sample_dev_pps AND pps.id_type=1
 INNER JOIN tb_m_comp c ON c.id_comp=pps.id_comp
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
 INNER JOIN tb_m_design dsg ON dsg.id_design=ppsd.id_design
@@ -416,7 +424,35 @@ LEFT JOIN (
 	AND cd.id_code IN (32,30,14, 43, 34, 5)
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design
-GROUP BY pps.id_sample_dev_pps"
+GROUP BY pps.id_sample_dev_pps)
+UNION ALL
+(SELECT IF(pps.id_type=1,'New Target',IF(pps.id_type=2,'Update','Actual')) AS type, pps.id_sample_dev_pps,pps.created_date,c.comp_name AS vendor,pps.number,pps.note,sts.report_status,GROUP_CONCAT(dsg.design_code,' - ',CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS display_name
+FROM tb_sample_dev_pps pps
+INNER JOIN tb_sample_dev_upd ppsd ON ppsd.id_sample_dev_pps=pps.id_sample_dev_pps AND pps.id_type=2
+INNER JOIN tb_m_comp c ON c.id_comp=pps.id_comp
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+INNER JOIN tb_m_design dsg ON dsg.id_design=ppsd.id_design
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`,
+	MAX(CASE WHEN cd.id_code=5 THEN cd.id_code_detail END) AS `src`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34, 5)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+GROUP BY pps.id_sample_dev_pps)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCPpsTarget.DataSource = dt
         GVPpsTarget.BestFitColumns()
@@ -437,13 +473,17 @@ GROUP BY pps.id_sample_dev_pps"
         Dim qw As String = ""
 
         If Not SLEVendorTracker.EditValue.ToString = "0" Then
-            qw = ""
+            qw += " AND t.id_comp='" & SLEVendorTracker.EditValue.ToString & "'"
         End If
 
-        Dim q As String = "SELECT 'no' AS is_check,t.*,CONCAT(c.comp_number,' - ',c.comp_name) AS vendor,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
+        If Not SLESeasonTracker.EditValue.ToString = "0" Then
+            qw += " AND s.id_season='" & SLESeasonTracker.EditValue.ToString & "'"
+        End If
+
+        Dim q As String = "SELECT DATE(NOW()) AS cur_date,'no' AS is_check,t.*,CONCAT(c.comp_number,' - ',c.comp_name) AS vendor,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
 FROM `tb_sample_dev_tracking` t
 INNER JOIN tb_m_design dsg ON dsg.id_design=t.id_design
-INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_season s ON s.id_season=dsg.id_season " & qw & "
 INNER JOIN tb_range r ON r.id_range=s.id_range
 LEFT JOIN (
 	SELECT dc.id_design, 
@@ -473,9 +513,54 @@ INNER JOIN tb_m_comp c ON c.id_comp=t.id_comp"
     End Sub
 
     Private Sub ProposeChangesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProposeChangesToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Dim q As String = "SELECT tb.id_comp
+FROM
+(
+	(SELECT id_comp,id_design,'Lab dip' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(labdip_act) AND DATE(IF(ISNULL(labdip_upd),labdip,labdip_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+	UNION ALL
+	(SELECT id_comp,id_design,'Strike Off 1' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(strike_off_1_act) AND DATE(IF(ISNULL(strike_off_1_upd),strike_off_1,strike_off_1_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+	UNION ALL
+	(SELECT id_comp,id_design,'Proto Sample 1' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(proto_sample_1_act) AND DATE(IF(ISNULL(proto_sample_1_upd),proto_sample_1,proto_sample_1_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+	UNION ALL
+	(SELECT id_comp,id_design,'Strike Off 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(strike_off_2_act) AND DATE(IF(ISNULL(strike_off_2_upd),strike_off_2,strike_off_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+	UNION ALL
+	(SELECT id_comp,id_design,'Proto Sample 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(proto_sample_2_act) AND DATE(IF(ISNULL(proto_sample_2_upd),proto_sample_2,proto_sample_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+	UNION ALL
+	(SELECT id_comp,id_design,'Copy Proto Sample 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(copy_proto_sample_2_act) AND DATE(IF(ISNULL(copy_proto_sample_2_upd),copy_proto_sample_2,copy_proto_sample_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+)tb 
+GROUP BY tb.id_comp"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            'per vendor
+            For i = 0 To dt.Rows.Count - 1
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = "404"
+                'id_comp
+                mail.par1 = dt.Rows(i)("id_comp").ToString
+                mail.send_email()
+            Next
+        End If
+    End Sub
+
+    Private Sub BUpdatePps_Click(sender As Object, e As EventArgs) Handles BUpdatePps.Click
+        FormSampleDevTargetPps.is_changes = "1"
+        FormSampleDevTargetPps.ShowDialog()
+    End Sub
+
+    Private Sub InputActualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InputActualToolStripMenuItem.Click
         GVTracker.ActiveFilterString = "[is_check]='yes'"
         If GVTracker.RowCount = 0 Then
-            warningCustom("No item selected")
+            warningCustom("Centang artikel terlebih dahulu")
         Else
             Dim is_ok As Boolean = True
             For i = 0 To GVTracker.RowCount - 1
@@ -487,7 +572,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=t.id_comp"
             Next
             '
             If is_ok Then
-                FormSampleDevTargetPps.is_changes = "1"
+                FormSampleDevTargetPps.is_actual = "1"
                 FormSampleDevTargetPps.ShowDialog()
             End If
         End If

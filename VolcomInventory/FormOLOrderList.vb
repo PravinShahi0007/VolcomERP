@@ -71,7 +71,7 @@
            ) lp ON lp.id_sales_order = a.id_sales_order 
           WHERE a.id_sales_order>0 
           AND a.id_so_status!=5 AND a.id_report_status='6' AND a.id_prepare_status='1' 
-          AND d.id_commerce_type=2 
+          AND d.id_commerce_type=2 " + cond_group + "
           HAVING so_completness<100
         ) a
         LEFT JOIN tb_store_priority_order pri ON pri.id_comp = a.id_comp
