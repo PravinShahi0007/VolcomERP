@@ -396,6 +396,14 @@
 
             submit_who_prepared(report_mark_type, id_st_store_bap, id_user)
 
+            'closing unique not found
+            Try
+                Dim sts As New ClassStockTakeStore()
+                sts.checkClosedStockTake(id_st_store_bap)
+            Catch ex As Exception
+                stopCustom("Failed to identify unique code : " + ex.ToString)
+            End Try
+
             Close()
         End If
     End Sub
