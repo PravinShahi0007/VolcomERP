@@ -158,7 +158,8 @@ WHERE dsg.`id_design` NOT IN (
 	WHERE pd.`id_report_status`=6 AND pd.`is_void_pd`!=1 AND pd.`is_pd`=1
 	GROUP BY pdd.`id_design`
 )
-AND ISNULL(pps.id_design) AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_order`!=2 AND dsg.prod_order_cop_pd>0"
+AND ISNULL(pps.id_design) AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_order`!=2 "
+        'AND dsg.prod_order_cop_pd>0
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
