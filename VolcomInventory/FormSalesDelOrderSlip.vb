@@ -335,18 +335,36 @@ Public Class FormSalesDelOrderSlip
         GCItemList.DataSource = Nothing
         GVSalesDelOrder.ActiveFilterString = "[is_select]='Yes' "
         If GVSalesDelOrder.RowCount > 0 Then
-            Dim predel As String = ""
+            'cek first
+            Dim is_ok As Boolean = True
+
             For i As Integer = 0 To ((GVSalesDelOrder.RowCount - 1) - GetGroupRowCount(GVSalesDelOrder))
-                If i > 0 Then
-                    predel += "OR "
+                Dim qc As String = "SELECT awbd.id_awbill
+FROM tb_wh_awbill_det awbd
+INNER JOIN tb_wh_awbill awb ON awb.id_awbill=awbd.id_awbill AND awb.id_report_status!=5
+WHERE awbd.id_pl_sales_order_del='" & GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString & "'"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows.Count > 0 Then
+                    warningCustom("SDO nomor " & GVSalesDelOrder.GetRowCellValue(i, "pl_sales_order_del_number").ToString & " sudah diterbitkan outbound label")
+                    is_ok = False
+                    Exit For
                 End If
-                predel += "k.id_pl_sales_order_del=" + GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString + " "
             Next
-            viewDetail(predel)
-            CheckSelAll.Enabled = False
-            GVSalesDelOrder.OptionsBehavior.Editable = False
-            BtnLoad.Enabled = False
-            XTCDel.SelectedTabPageIndex = 1
+
+            If is_ok Then
+                Dim predel As String = ""
+                For i As Integer = 0 To ((GVSalesDelOrder.RowCount - 1) - GetGroupRowCount(GVSalesDelOrder))
+                    If i > 0 Then
+                        predel += "OR "
+                    End If
+                    predel += "k.id_pl_sales_order_del=" + GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString + " "
+                Next
+                viewDetail(predel)
+                CheckSelAll.Enabled = False
+                GVSalesDelOrder.OptionsBehavior.Editable = False
+                BtnLoad.Enabled = False
+                XTCDel.SelectedTabPageIndex = 1
+            End If
         End If
         GVSalesDelOrder.ActiveFilterString = ""
         Cursor = Cursors.Default
