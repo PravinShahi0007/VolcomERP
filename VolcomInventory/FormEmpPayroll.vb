@@ -1576,7 +1576,7 @@
                 IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND 
                 IF(d.is_store = 2, IF(e.employee_last_date IS NULL, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), e.employee_last_date), IF(e.employee_last_date IS NULL, (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), e.employee_last_date)) 
                 AND s.id_schedule_type IN (1, 3)
-                AND IF(d.is_store = 2, WEEKDAY(s.date) NOT IN (5, 6), '')
+                AND IF(d.is_store = 2, WEEKDAY(s.date) NOT IN (5, 6), 1 = 1)
             GROUP BY s.id_employee
         "
 
@@ -1585,6 +1585,24 @@
                 -- actual workdays
                 SELECT id_employee, ROUND(DATEDIFF(IFNULL(employee_last_date, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")), employee_actual_join_date) / 365, 2) AS actual_workdays
                 FROM tb_m_employee
+            "
+        End If
+
+        If is_dw = "1" Then
+            where_actual_workdays = "
+                -- actual workdays
+                SELECT s.id_employee, COUNT(*) AS actual_workdays
+                FROM tb_emp_schedule AS s
+                LEFT JOIN tb_m_employee AS e
+                    ON s.id_employee = e.id_employee
+                LEFT JOIN tb_m_departement AS d 
+                    ON e.id_departement = d.id_departement
+                WHERE s.date BETWEEN 
+                    IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND 
+                    IF(d.is_store = 2, IF(e.employee_last_date IS NULL, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), e.employee_last_date), IF(e.employee_last_date IS NULL, (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), e.employee_last_date)) 
+                    AND s.id_schedule_type IN (1, 3)
+                    AND IF(d.is_store = 2, WEEKDAY(s.date) NOT IN (5, 6), 1 = 1)
+                GROUP BY s.id_employee
             "
         End If
 
