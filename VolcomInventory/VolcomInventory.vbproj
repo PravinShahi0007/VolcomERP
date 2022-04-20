@@ -345,6 +345,7 @@
     <Compile Include="ClassSampleReturnPL.vb" />
     <Compile Include="ClassSendEmail.vb" />
     <Compile Include="ClassShipInvoice.vb" />
+    <Compile Include="ClassStockTakeStore.vb" />
     <Compile Include="ClassStoreDisplay.vb" />
     <Compile Include="ClassVirtualSales.vb" />
     <Compile Include="ClassVMStoreDisplay.vb" />

@@ -46,7 +46,12 @@ FROM `tb_pl_mat_type`"
             BPrint.Visible = False
             BtnAttachment.Visible = False
         Else
-            Dim query As String = String.Format("SELECT *,DATE_FORMAT(prod_order_mrs_date,'%Y-%m-%d') as prod_order_mrs_datex FROM tb_prod_order_mrs WHERE id_prod_order_mrs = '{0}'", id_mrs)
+            Dim query As String = String.Format("SELECT mrs.*,DATE_FORMAT(prod_order_mrs_date,'%Y-%m-%d') AS prod_order_mrs_datex,SUM(pod.prod_order_qty) AS qty_po 
+FROM tb_prod_order_mrs mrs 
+LEFT JOIN tb_prod_order po ON mrs.id_prod_order=po.id_prod_order
+LEFT JOIN tb_prod_order_det pod ON pod.id_prod_order=po.id_prod_order
+WHERE mrs.id_prod_order_mrs = '{0}'
+GROUP BY mrs.id_prod_order_mrs", id_mrs)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             TECompName.Text = get_company_x(get_id_company(id_comp_req_from), "1")
@@ -61,6 +66,8 @@ FROM `tb_pl_mat_type`"
 
             SLEType.EditValue = data.Rows(0)("id_pl_mat_type").ToString
             TEMemo.Text = data.Rows(0)("memo_number").ToString
+
+            TEQty.EditValue = data.Rows(0)("qty_po")
 
             If Not data.Rows(0)("created_by").ToString = "" Then
                 TECreatedBy.Text = get_emp(data.Rows(0)("created_by").ToString, "3")

@@ -514,4 +514,12 @@ WHERE pps.id_sample_dev_pps = '" & id_pps & "'"
         FormImportExcel.id_pop_up = "66"
         FormImportExcel.ShowDialog()
     End Sub
+
+    Private Sub BAddActual_Click(sender As Object, e As EventArgs) Handles BAddActual.Click
+
+    End Sub
+
+    Private Sub BDelActual_Click(sender As Object, e As EventArgs) Handles BDelActual.Click
+
+    End Sub
 End Class

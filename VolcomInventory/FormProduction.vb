@@ -552,7 +552,7 @@ GROUP BY recd.id_prod_order_det
         query += "d.comp_name AS comp_name_req_from,c.id_comp_contact AS id_comp_name_req_from, "
         query += "f.comp_name AS comp_name_req_to,e.id_comp_contact AS id_comp_name_req_to, "
         query += "a.prod_order_mrs_date "
-        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark "
+        query += ",IF(ISNULL(mark.id_report_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark "
         query += "FROM tb_prod_order_mrs a "
         query += "LEFT JOIN tb_prod_order_wo b ON a.id_prod_order_wo = b.id_prod_order_wo "
         '
@@ -569,8 +569,8 @@ GROUP BY recd.id_prod_order_det
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
         query += "LEFT JOIN 
                     (
-	                    SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
-                    ) mark ON mark.id_report=a.id_prod_order_mrs AND mark.report_mark_type='29' "
+	                    SELECT id_report_mark FROM tb_report_mark WHERE report_mark_type='29' GROUP BY id_report
+                    ) mark ON mark.id_report=a.id_prod_order_mrs "
         '
         query += "LEFT JOIN
                  (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
