@@ -96,6 +96,7 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
         If is_view_list Then
             BGetCOP.Visible = False
             XTPBudgetPropose.PageVisible = False
+            GridColumn7.Visible = False
         End If
     End Sub
 
