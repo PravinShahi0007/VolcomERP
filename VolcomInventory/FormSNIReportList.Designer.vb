@@ -159,7 +159,6 @@ Partial Class FormSNIReportList
         Me.Controls.Add(Me.GCList)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSNIReportList"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

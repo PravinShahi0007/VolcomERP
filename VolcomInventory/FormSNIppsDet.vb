@@ -91,11 +91,11 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                     BMark.Text = "Submit"
                 End If
             End If
+        End If
 
-            If is_view_list Then
-                BGetCOP.Visible = False
-                XTPBudgetPropose.Visible = False
-            End If
+        If is_view_list Then
+            BGetCOP.Visible = False
+            XTPBudgetPropose.PageVisible = False
         End If
     End Sub
 
@@ -194,7 +194,6 @@ LEFT JOIN (
 	AND cd.id_code IN (32,30,14, 43, 34)
 	GROUP BY dc.id_design
 ) cdx ON cdx.id_design = dsg.id_design
-WHERE dsg.id_design='1a'
 LEFT JOIN tb_m_design_information di ON di.id_design=dsg.id_design AND di.id_design_column=25
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
 INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery`

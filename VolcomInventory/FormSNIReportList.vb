@@ -25,6 +25,7 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_sta
 
     Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
         If GVList.RowCount > 0 Then
+            FormSNIppsDet.is_view_list = True
             FormSNIppsDet.id_pps = GVList.GetFocusedRowCellValue("id_sni_pps").ToString
             FormSNIppsDet.ShowDialog()
         End If
