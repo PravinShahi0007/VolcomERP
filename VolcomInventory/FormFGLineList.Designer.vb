@@ -19,7 +19,6 @@ Partial Class FormFGLineList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGLineList))
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
@@ -37,7 +36,7 @@ Partial Class FormFGLineList
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditOpt = New DevExpress.XtraEditors.CheckEdit()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -56,7 +55,7 @@ Partial Class FormFGLineList
         Me.PanelImg = New DevExpress.XtraEditors.PanelControl()
         Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.GCLineList = New DevExpress.XtraGrid.GridControl()
         Me.BGVLineList = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
@@ -77,8 +76,8 @@ Partial Class FormFGLineList
         Me.BtnCopyFrom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDesign = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDropQuickMenu = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.SMEditDesign = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewDupe = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMDeleteDesign = New System.Windows.Forms.ToolStripMenuItem()
@@ -87,6 +86,7 @@ Partial Class FormFGLineList
         Me.SMViewCostHist = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewHistoryProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -277,8 +277,8 @@ Partial Class FormFGLineList
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc, Me.BBQuickUpdate, Me.BBRateManagementToday})
-        Me.BarManager1.MaxItemId = 14
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc, Me.BBQuickUpdate, Me.BBRateManagementToday, Me.BarButtonItem1})
+        Me.BarManager1.MaxItemId = 15
         '
         'barDockControlTop
         '
@@ -362,7 +362,7 @@ Partial Class FormFGLineList
         '
         Me.BBSubOther.Caption = "Other Menu"
         Me.BBSubOther.Id = 10
-        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BBSetAddPrc), New DevExpress.XtraBars.LinkPersistInfo(Me.BBRateManagementToday)})
+        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BBSetAddPrc), New DevExpress.XtraBars.LinkPersistInfo(Me.BBRateManagementToday), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1)})
         Me.BBSubOther.Name = "BBSubOther"
         '
         'BBSetAddPrc
@@ -707,6 +707,12 @@ Partial Class FormFGLineList
         Me.ProposeChangesToolStripMenuItem.Size = New System.Drawing.Size(235, 22)
         Me.ProposeChangesToolStripMenuItem.Text = "[changes]"
         '
+        'BarButtonItem1
+        '
+        Me.BarButtonItem1.Caption = "SNI Ready To Propose List"
+        Me.BarButtonItem1.Id = 14
+        Me.BarButtonItem1.Name = "BarButtonItem1"
+        '
         'FormFGLineList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -827,4 +833,5 @@ Partial Class FormFGLineList
     Friend WithEvents BBQuickUpdate As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BtnSetActualInStoreDate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BBRateManagementToday As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
 End Class

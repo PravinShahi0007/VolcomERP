@@ -1430,4 +1430,8 @@ Public Class FormFGLineList
             End If
         End If
     End Sub
+
+    Private Sub BarButtonItem1_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem1.ItemClick
+        FormSNIReportList.ShowDialog()
+    End Sub
 End Class
