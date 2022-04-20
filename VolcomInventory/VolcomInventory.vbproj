@@ -7720,6 +7720,12 @@
     <Compile Include="FormSNIRealisasiPop.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNIReportList.Designer.vb">
+      <DependentUpon>FormSNIReportList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIReportList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSNISerahTerima.Designer.vb">
       <DependentUpon>FormSNISerahTerima.vb</DependentUpon>
     </Compile>
@@ -14991,6 +14997,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNIRealisasiPop.resx">
       <DependentUpon>FormSNIRealisasiPop.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIReportList.resx">
+      <DependentUpon>FormSNIReportList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNISerahTerima.resx">
       <DependentUpon>FormSNISerahTerima.vb</DependentUpon>

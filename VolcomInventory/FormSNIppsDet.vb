@@ -2,6 +2,8 @@
     Public id_pps As String = "-1"
     Public is_view As String = "-1"
 
+    Public is_view_list As Boolean = False
+
     Dim is_submit As String = "-1"
 
     Private Sub FormSNIppsDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -90,15 +92,40 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                 End If
             End If
         End If
+
+        If is_view_list Then
+            BGetCOP.Visible = False
+            XTPBudgetPropose.PageVisible = False
+            GridColumn7.Visible = False
+        End If
     End Sub
 
     Sub load_pending_kids()
-        Dim q As String = "SELECT 'yes' AS is_check,dsg.`id_design`,dsg.`design_code`,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
+        Dim q As String = "SELECT 'yes' AS is_check,dsg.`id_design`,dsg.`design_code`,CONCAT(IF(r.is_md=1,'',CONCAT(cdx.prm,' ')),cdx.class,' ',dsg.design_name,' ',cdx.color) AS `design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
 ,pdl.qty_line_list, IFNULL(pdp.id_prod_demand_product,0) AS id_prod_demand_product
 FROM tb_m_design dsg
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
 INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery` AND dsg.id_season='" & SLESeason.EditValue.ToString & "'
 INNER JOIN tb_season ssn ON ssn.id_season=del.id_season
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cdx ON cdx.id_design = dsg.id_design
 LEFT JOIN 
 (
     SELECT spl.id_design FROM `tb_sni_pps_list` spl
@@ -143,12 +170,31 @@ AND ISNULL(pps.id_design) AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND 
 
     Sub load_proposed()
         Dim q As String = "SELECT 'no' AS is_check,clr.color,IFNULL(p.id_product,0) AS id_product,dsg.`id_design`,dsg.`design_code`,dsg.design_fabrication
-,CONCAT(dsg.`design_display_name`,IF(ISNULL(di.value),'',CONCAT(' (',di.value,')'))) AS design_display_name,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop
+,CONCAT(CONCAT(IF(r.is_md=1,'',CONCAT(cdx.prm,' ')),cdx.class,' ',dsg.design_name,' ',cdx.color),IF(ISNULL(di.value),'',CONCAT(' (',di.value,')'))) AS design_display_name,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop
 ,del.`delivery`,ssn.`season`
 ,'VOLCOM' AS brand,co.country,ppsl.qty AS qty_line_list,so.season_orign
 FROM tb_sni_pps_list `ppsl`
 LEFT JOIN tb_m_product p ON p.id_design=ppsl.id_design AND p.product_code='931' -- hanya S
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=ppsl.`id_design`
+LEFT JOIN tb_season s ON s.id_season=dsg.id_season
+LEFT JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cdx ON cdx.id_design = dsg.id_design
 LEFT JOIN tb_m_design_information di ON di.id_design=dsg.id_design AND di.id_design_column=25
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
 INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery`
@@ -242,6 +288,9 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
                 warningCustom("Zero amount on budget")
             Else
                 'save
+                Dim qu As String = "UPDATE tb_sni_pps SET created_by='" & id_user & "',created_date=NOW() WHERE id_sni_pps='" & id_pps & "'"
+                execute_non_query(qu, True, "", "", "", "")
+                '
                 Dim q As String = ""
                 q = "DELETE FROM tb_sni_pps_budget WHERE id_sni_pps='" & id_pps & "'"
                 execute_non_query(q, True, "", "", "", "")
