@@ -67,8 +67,8 @@ SELECT '3' AS id_type,'Actual' AS `type`
             If is_actual = "1" Then
                 PCAddDel.Visible = False
                 load_det_actual()
-                SLEVendor.Properties.ReadOnly = True
-                SLEVendor.EditValue = FormSampleDevelopment.GVTracker.GetRowCellValue(0, "id_comp").ToString
+                SLEVendor.Properties.ReadOnly = False
+                'SLEVendor.EditValue = FormSampleDevelopment.GVTracker.GetRowCellValue(0, "id_comp").ToString
 
                 SLEType.EditValue = "3"
             End If
@@ -516,10 +516,12 @@ WHERE pps.id_sample_dev_pps = '" & id_pps & "'"
     End Sub
 
     Private Sub BAddActual_Click(sender As Object, e As EventArgs) Handles BAddActual.Click
-
+        FormSampleDevActual.ShowDialog()
     End Sub
 
     Private Sub BDelActual_Click(sender As Object, e As EventArgs) Handles BDelActual.Click
-
+        If GVActual.RowCount > 0 Then
+            GVActual.DeleteSelectedRows()
+        End If
     End Sub
 End Class

@@ -580,6 +580,7 @@ GROUP BY tb.id_comp"
     End Sub
 
     Private Sub BProposeActual_Click(sender As Object, e As EventArgs) Handles BProposeActual.Click
-
+        FormSampleDevTargetPps.is_actual = "1"
+        FormSampleDevTargetPps.ShowDialog()
     End Sub
 End Class

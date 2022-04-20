@@ -5,8 +5,18 @@
     End Sub
 
     Sub load_tahapan()
-        Dim q As String = ""
-
+        Dim q As String = "SELECT 'Lab dip' AS tahapan
+UNION ALL
+SELECT 'Strike Off 1' AS tahapan
+UNION ALL
+SELECT 'Proto Sample 1' AS tahapan
+UNION ALL
+SELECT 'Strike Off 2' AS tahapan
+UNION ALL
+SELECT 'Proto Sample 2' AS tahapan
+UNION ALL
+SELECT 'Copy Proto Sample 2' AS tahapan"
+        viewSearchLookupQuery(SLETahapan, q, "tahapan", "tahapan", "tahapan")
     End Sub
 
     Sub load_view()
