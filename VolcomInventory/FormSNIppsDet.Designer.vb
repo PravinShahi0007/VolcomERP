@@ -247,9 +247,9 @@ Partial Class FormSNIppsDet
         '
         Me.LabelControl3.Location = New System.Drawing.Point(410, 42)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
         Me.LabelControl3.TabIndex = 25
-        Me.LabelControl3.Text = "Propose Date"
+        Me.LabelControl3.Text = "Last Update"
         '
         'DEProposeDate
         '
@@ -285,9 +285,9 @@ Partial Class FormSNIppsDet
         '
         Me.LabelControl2.Location = New System.Drawing.Point(12, 42)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(73, 13)
         Me.LabelControl2.TabIndex = 1
-        Me.LabelControl2.Text = "Proposed By"
+        Me.LabelControl2.Text = "Last Update By"
         '
         'LabelControl1
         '
