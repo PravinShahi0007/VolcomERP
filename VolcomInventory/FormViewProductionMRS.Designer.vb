@@ -65,6 +65,8 @@ Partial Class FormViewProductionMRS
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEMRSNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LQty = New DevExpress.XtraEditors.LabelControl()
+        Me.TEQty = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,6 +94,7 @@ Partial Class FormViewProductionMRS
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEMRSNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -331,6 +334,8 @@ Partial Class FormViewProductionMRS
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.TEQty)
+        Me.GroupGeneralHeader.Controls.Add(Me.LQty)
         Me.GroupGeneralHeader.Controls.Add(Me.SLEType)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl9)
         Me.GroupGeneralHeader.Controls.Add(Me.TEMemo)
@@ -454,7 +459,7 @@ Partial Class FormViewProductionMRS
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(183, 20)
+        Me.TEPONumber.Size = New System.Drawing.Size(102, 20)
         Me.TEPONumber.TabIndex = 167
         '
         'LPONumber
@@ -569,6 +574,27 @@ Partial Class FormViewProductionMRS
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "MRS Number"
         '
+        'LQty
+        '
+        Me.LQty.Location = New System.Drawing.Point(551, 38)
+        Me.LQty.Name = "LQty"
+        Me.LQty.Size = New System.Drawing.Size(18, 13)
+        Me.LQty.TabIndex = 188
+        Me.LQty.Text = "Qty"
+        '
+        'TEQty
+        '
+        Me.TEQty.EditValue = ""
+        Me.TEQty.Location = New System.Drawing.Point(575, 35)
+        Me.TEQty.Name = "TEQty"
+        Me.TEQty.Properties.EditValueChangedDelay = 1
+        Me.TEQty.Properties.Mask.EditMask = "N0"
+        Me.TEQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEQty.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEQty.Properties.ReadOnly = True
+        Me.TEQty.Size = New System.Drawing.Size(51, 20)
+        Me.TEQty.TabIndex = 189
+        '
         'FormViewProductionMRS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -614,6 +640,7 @@ Partial Class FormViewProductionMRS
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEMRSNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -663,4 +690,6 @@ Partial Class FormViewProductionMRS
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEMemo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEQty As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LQty As DevExpress.XtraEditors.LabelControl
 End Class

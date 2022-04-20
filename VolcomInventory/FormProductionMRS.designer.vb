@@ -59,6 +59,8 @@ Partial Class FormProductionMRS
         Me.BEditMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.TEQty = New DevExpress.XtraEditors.TextEdit()
+        Me.LQty = New DevExpress.XtraEditors.LabelControl()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
@@ -107,6 +109,7 @@ Partial Class FormProductionMRS
         Me.PCAddDel.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEMemo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -538,6 +541,8 @@ Partial Class FormProductionMRS
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.TEQty)
+        Me.GroupGeneralHeader.Controls.Add(Me.LQty)
         Me.GroupGeneralHeader.Controls.Add(Me.SLEType)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl9)
         Me.GroupGeneralHeader.Controls.Add(Me.TEMemo)
@@ -571,6 +576,27 @@ Partial Class FormProductionMRS
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 118)
         Me.GroupGeneralHeader.TabIndex = 57
+        '
+        'TEQty
+        '
+        Me.TEQty.EditValue = ""
+        Me.TEQty.Location = New System.Drawing.Point(270, 61)
+        Me.TEQty.Name = "TEQty"
+        Me.TEQty.Properties.EditValueChangedDelay = 1
+        Me.TEQty.Properties.Mask.EditMask = "N0"
+        Me.TEQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEQty.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEQty.Properties.ReadOnly = True
+        Me.TEQty.Size = New System.Drawing.Size(80, 20)
+        Me.TEQty.TabIndex = 185
+        '
+        'LQty
+        '
+        Me.LQty.Location = New System.Drawing.Point(246, 64)
+        Me.LQty.Name = "LQty"
+        Me.LQty.Size = New System.Drawing.Size(18, 13)
+        Me.LQty.TabIndex = 184
+        Me.LQty.Text = "Qty"
         '
         'SLEType
         '
@@ -712,7 +738,7 @@ Partial Class FormProductionMRS
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(244, 20)
+        Me.TEPONumber.Size = New System.Drawing.Size(134, 20)
         Me.TEPONumber.TabIndex = 167
         '
         'LabelControl16
@@ -875,6 +901,7 @@ Partial Class FormProductionMRS
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEMemo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -959,4 +986,6 @@ Partial Class FormProductionMRS
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents TEQty As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LQty As DevExpress.XtraEditors.LabelControl
 End Class
