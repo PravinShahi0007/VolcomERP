@@ -2296,6 +2296,7 @@ Partial Class FormSampleDevelopment
         Me.GridBand2.Columns.Add(Me.BandedGridColumn17)
         Me.GridBand2.Columns.Add(Me.GridColumn33)
         Me.GridBand2.Columns.Add(Me.GridColumn34)
+        Me.GridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridBand2.Name = "GridBand2"
         Me.GridBand2.VisibleIndex = 0
         Me.GridBand2.Width = 107

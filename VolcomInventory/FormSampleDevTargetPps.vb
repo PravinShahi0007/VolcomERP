@@ -291,7 +291,7 @@ VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSl
                                 q += ","
                             End If
 
-                            q += "('" & id_pps & "','" & GVActual.GetRowCellValue(i, "id_design").ToString & "','" & GVActual.GetRowCellValue(i, "tahapan").ToString & "'," & If(GVActual.GetRowCellValue(i, "current_date").ToString = "", "NULL", "'" & Date.Parse(GVActual.GetRowCellValue(i, "current_date").ToString).ToString("yyyy-MM-dd") & "'") & ",'" & Date.Parse(GVActual.GetRowCellValue(i, "new_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(GVActual.GetRowCellValue(i, "reason").ToString) & "')"
+                            q += "('" & id_pps & "','" & GVActual.GetRowCellValue(i, "id_design").ToString & "','" & GVActual.GetRowCellValue(i, "tahapan").ToString & "'," & If(GVActual.GetRowCellValue(i, "current_date").ToString = "", "NULL", "'" & Date.Parse(GVActual.GetRowCellValue(i, "current_date").ToString).ToString("yyyy-MM-dd") & "'") & ",'" & Date.Parse(GVActual.GetRowCellValue(i, "new_date").ToString).ToString("yyyy-MM-dd") & "'"
                         Next
 
                         execute_non_query(q, True, "", "", "", "")
