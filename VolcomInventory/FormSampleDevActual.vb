@@ -172,7 +172,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=t.id_comp"
             Dim is_ok As Boolean = True
 
             For i As Integer = 0 To FormSampleDevTargetPps.GVActual.RowCount - 1
-                If GVTracker.GetFocusedRowCellValue("id_design").ToString = FormSampleDevTargetPps.GVActual.GetRowCellValue(i, "id_design").ToString Then
+                If GVTracker.GetFocusedRowCellValue("id_design").ToString = FormSampleDevTargetPps.GVActual.GetRowCellValue(i, "id_design").ToString And SLETahapan.EditValue.ToString = FormSampleDevTargetPps.GVActual.GetRowCellValue(i, "tahapan").ToString Then
                     is_ok = False
                     warningCustom("Design already listed")
                 End If

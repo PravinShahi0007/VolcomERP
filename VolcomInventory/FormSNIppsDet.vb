@@ -173,10 +173,11 @@ AND ISNULL(pps.id_design) AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND 
         Dim q As String = "SELECT 'no' AS is_check,clr.color,IFNULL(p.id_product,0) AS id_product,dsg.`id_design`,dsg.`design_code`,dsg.design_fabrication
 ,CONCAT(CONCAT(IF(r.is_md=1,'',CONCAT(cdx.prm,' ')),cdx.class,' ',dsg.design_name,' ',cdx.color),IF(ISNULL(di.value),'',CONCAT(' (',di.value,')'))) AS design_display_name,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop
 ,del.`delivery`,ssn.`season`
-,'VOLCOM' AS brand,co.country,ppsl.qty AS qty_line_list,so.season_orign
+,'VOLCOM' AS brand,coo.country,ppsl.qty AS qty_line_list,so.season_orign
 FROM tb_sni_pps_list `ppsl`
 LEFT JOIN tb_m_product p ON p.id_design=ppsl.id_design AND p.product_code='931' -- hanya S
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=ppsl.`id_design`
+INNER JOIN tb_m_country coo ON coo.id_country=dsg.coo
 LEFT JOIN tb_season s ON s.id_season=dsg.id_season
 LEFT JOIN tb_range r ON r.id_range=s.id_range
 LEFT JOIN (

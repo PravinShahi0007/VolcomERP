@@ -400,7 +400,7 @@ ORDER BY kp.id_prod_order_cps2 DESC"
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
         Dim qw As String = ""
 
-        If SLEVendorPPS.EditValue.ToString = "0" Then
+        If Not SLEVendorPPS.EditValue.ToString = "0" Then
             qw += " AND pps.id_comp='" & SLEVendorPPS.EditValue.ToString & "'"
         End If
 

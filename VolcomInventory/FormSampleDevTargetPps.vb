@@ -98,8 +98,10 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
                 '
                 If dt.Rows(0)("id_type").ToString = "2" Then
                     is_changes = "1"
+                    PCAddDel.Visible = False
                 ElseIf dt.Rows(0)("id_type").ToString = "3" Then
                     is_actual = "1"
+                    PCAddDel.Visible = False
                 End If
                 '
                 If id_report_status = "6" Or id_report_status = "5" Then
@@ -291,7 +293,7 @@ VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSl
                                 q += ","
                             End If
 
-                            q += "('" & id_pps & "','" & GVActual.GetRowCellValue(i, "id_design").ToString & "','" & GVActual.GetRowCellValue(i, "tahapan").ToString & "'," & If(GVActual.GetRowCellValue(i, "current_date").ToString = "", "NULL", "'" & Date.Parse(GVActual.GetRowCellValue(i, "current_date").ToString).ToString("yyyy-MM-dd") & "'") & ",'" & Date.Parse(GVActual.GetRowCellValue(i, "new_date").ToString).ToString("yyyy-MM-dd") & "'"
+                            q += "('" & id_pps & "','" & GVActual.GetRowCellValue(i, "id_design").ToString & "','" & GVActual.GetRowCellValue(i, "tahapan").ToString & "'," & If(GVActual.GetRowCellValue(i, "current_date").ToString = "", "NULL", "'" & Date.Parse(GVActual.GetRowCellValue(i, "current_date").ToString).ToString("yyyy-MM-dd") & "'") & ",'" & Date.Parse(GVActual.GetRowCellValue(i, "new_date").ToString).ToString("yyyy-MM-dd") & "')"
                         Next
 
                         execute_non_query(q, True, "", "", "", "")
@@ -490,13 +492,19 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
     Private Sub BRelease_Click(sender As Object, e As EventArgs) Handles BRelease.Click
         'check attachment dan approval
         Dim is_ok As Boolean = True
-        'check attachment
-        Dim qc As String = "SELECT * FROM tb_doc WHERE report_mark_type='403' AND id_report='" & id_pps & "'"
-        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-        If dtc.Rows.Count = 0 Then
-            is_ok = False
-            warningCustom("Please attach signed copy of this document")
+
+        If SLEType.EditValue.ToString = "2" Or SLEType.EditValue.ToString = "3" Then
+
+        Else
+            'check attachment
+            Dim qc As String = "SELECT * FROM tb_doc WHERE report_mark_type='403' AND id_report='" & id_pps & "'"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count = 0 Then
+                is_ok = False
+                warningCustom("Please attach signed copy of this document")
+            End If
         End If
+
         'status approval
         If Not id_report_status = "3" Then
             is_ok = False
