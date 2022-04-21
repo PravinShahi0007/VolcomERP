@@ -240,7 +240,6 @@ Partial Class FormSampleDevelopment
         Me.CMTracking = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetActualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.InputActualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVTracker = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn32 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -280,6 +279,7 @@ Partial Class FormSampleDevelopment
         Me.RIMemoVendor = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BProposeActual = New DevExpress.XtraEditors.SimpleButton()
         Me.BUpdatePps = New DevExpress.XtraEditors.SimpleButton()
         Me.BProposeSampleDev = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -303,7 +303,6 @@ Partial Class FormSampleDevelopment
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.BProposeActual = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2036,9 +2035,9 @@ Partial Class FormSampleDevelopment
         '
         'CMTracking
         '
-        Me.CMTracking.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProposeChangesToolStripMenuItem, Me.SetActualToolStripMenuItem, Me.InputActualToolStripMenuItem})
+        Me.CMTracking.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProposeChangesToolStripMenuItem, Me.SetActualToolStripMenuItem})
         Me.CMTracking.Name = "CMTracking"
-        Me.CMTracking.Size = New System.Drawing.Size(141, 70)
+        Me.CMTracking.Size = New System.Drawing.Size(141, 48)
         '
         'ProposeChangesToolStripMenuItem
         '
@@ -2051,12 +2050,6 @@ Partial Class FormSampleDevelopment
         Me.SetActualToolStripMenuItem.Name = "SetActualToolStripMenuItem"
         Me.SetActualToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.SetActualToolStripMenuItem.Text = "Log Actual"
-        '
-        'InputActualToolStripMenuItem
-        '
-        Me.InputActualToolStripMenuItem.Name = "InputActualToolStripMenuItem"
-        Me.InputActualToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
-        Me.InputActualToolStripMenuItem.Text = "Input Actual"
         '
         'GVTracker
         '
@@ -2303,6 +2296,7 @@ Partial Class FormSampleDevelopment
         Me.GridBand2.Columns.Add(Me.BandedGridColumn17)
         Me.GridBand2.Columns.Add(Me.GridColumn33)
         Me.GridBand2.Columns.Add(Me.GridColumn34)
+        Me.GridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridBand2.Name = "GridBand2"
         Me.GridBand2.VisibleIndex = 0
         Me.GridBand2.Width = 107
@@ -2631,6 +2625,25 @@ Partial Class FormSampleDevelopment
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 5
         '
+        'BProposeActual
+        '
+        Me.BProposeActual.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BProposeActual.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BProposeActual.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BProposeActual.Appearance.Options.UseBackColor = True
+        Me.BProposeActual.Appearance.Options.UseFont = True
+        Me.BProposeActual.Appearance.Options.UseForeColor = True
+        Me.BProposeActual.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BProposeActual.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BProposeActual.Location = New System.Drawing.Point(0, 325)
+        Me.BProposeActual.LookAndFeel.SkinName = "Metropolis"
+        Me.BProposeActual.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BProposeActual.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BProposeActual.Name = "BProposeActual"
+        Me.BProposeActual.Size = New System.Drawing.Size(1111, 28)
+        Me.BProposeActual.TabIndex = 143
+        Me.BProposeActual.Text = "Propose Actual"
+        '
         'BUpdatePps
         '
         Me.BUpdatePps.Appearance.BackColor = System.Drawing.Color.Yellow
@@ -2870,25 +2883,6 @@ Partial Class FormSampleDevelopment
         Me.SimpleButton1.Size = New System.Drawing.Size(52, 23)
         Me.SimpleButton1.TabIndex = 8935
         Me.SimpleButton1.Text = "test mail"
-        '
-        'BProposeActual
-        '
-        Me.BProposeActual.Appearance.BackColor = System.Drawing.Color.OrangeRed
-        Me.BProposeActual.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BProposeActual.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.BProposeActual.Appearance.Options.UseBackColor = True
-        Me.BProposeActual.Appearance.Options.UseFont = True
-        Me.BProposeActual.Appearance.Options.UseForeColor = True
-        Me.BProposeActual.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BProposeActual.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BProposeActual.Location = New System.Drawing.Point(0, 325)
-        Me.BProposeActual.LookAndFeel.SkinName = "Metropolis"
-        Me.BProposeActual.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BProposeActual.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BProposeActual.Name = "BProposeActual"
-        Me.BProposeActual.Size = New System.Drawing.Size(1111, 28)
-        Me.BProposeActual.TabIndex = 143
-        Me.BProposeActual.Text = "Propose Actual"
         '
         'FormSampleDevelopment
         '
@@ -3230,6 +3224,5 @@ Partial Class FormSampleDevelopment
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BUpdatePps As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents InputActualToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BProposeActual As DevExpress.XtraEditors.SimpleButton
 End Class

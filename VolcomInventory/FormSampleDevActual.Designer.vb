@@ -68,7 +68,33 @@ Partial Class FormSampleDevActual
         Dim FormatConditionRuleValue23 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim GridFormatRule24 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleValue24 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Me.GridColumnActual1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnActual2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnActual3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnActual4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnActual5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnActual6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEActual = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEUpd = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLETahapan = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCTracker = New DevExpress.XtraGrid.GridControl()
         Me.GVTracker = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -79,55 +105,245 @@ Partial Class FormSampleDevActual
         Me.GridColumn33 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.SLETahapan = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEUpd = New DevExpress.XtraEditors.DateEdit()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DEActual.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEActual.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUpd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUpd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLETahapan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCTracker, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVTracker, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICE, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLETahapan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUpd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUpd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'GridColumnActual1
+        '
+        Me.GridColumnActual1.Caption = "Actual"
+        Me.GridColumnActual1.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual1.FieldName = "labdip_act"
+        Me.GridColumnActual1.Name = "GridColumnActual1"
+        Me.GridColumnActual1.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual1.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual1.Visible = True
+        Me.GridColumnActual1.Width = 56
+        '
+        'GridColumnActual2
+        '
+        Me.GridColumnActual2.Caption = "Actual"
+        Me.GridColumnActual2.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual2.FieldName = "strike_off_1_act"
+        Me.GridColumnActual2.Name = "GridColumnActual2"
+        Me.GridColumnActual2.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual2.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual2.Visible = True
+        Me.GridColumnActual2.Width = 56
+        '
+        'GridColumnActual3
+        '
+        Me.GridColumnActual3.Caption = "Actual"
+        Me.GridColumnActual3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual3.FieldName = "proto_sample_1_act"
+        Me.GridColumnActual3.Name = "GridColumnActual3"
+        Me.GridColumnActual3.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual3.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual3.Visible = True
+        Me.GridColumnActual3.Width = 56
+        '
+        'GridColumnActual4
+        '
+        Me.GridColumnActual4.Caption = "Actual"
+        Me.GridColumnActual4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual4.FieldName = "strike_off_2_act"
+        Me.GridColumnActual4.Name = "GridColumnActual4"
+        Me.GridColumnActual4.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual4.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual4.Visible = True
+        Me.GridColumnActual4.Width = 56
+        '
+        'GridColumnActual5
+        '
+        Me.GridColumnActual5.Caption = "Actual"
+        Me.GridColumnActual5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual5.FieldName = "proto_sample_2_act"
+        Me.GridColumnActual5.Name = "GridColumnActual5"
+        Me.GridColumnActual5.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual5.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual5.Visible = True
+        Me.GridColumnActual5.Width = 56
+        '
+        'GridColumnActual6
+        '
+        Me.GridColumnActual6.Caption = "Actual"
+        Me.GridColumnActual6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual6.FieldName = "copy_proto_sample_2_act"
+        Me.GridColumnActual6.Name = "GridColumnActual6"
+        Me.GridColumnActual6.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual6.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual6.Visible = True
+        Me.GridColumnActual6.Width = 57
+        '
+        'GridColumnTarget1
+        '
+        Me.GridColumnTarget1.Caption = "Target"
+        Me.GridColumnTarget1.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget1.FieldName = "labdip"
+        Me.GridColumnTarget1.Name = "GridColumnTarget1"
+        Me.GridColumnTarget1.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget1.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget1.Visible = True
+        Me.GridColumnTarget1.Width = 51
+        '
+        'GridColumnUpdate1
+        '
+        Me.GridColumnUpdate1.Caption = "Update"
+        Me.GridColumnUpdate1.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate1.FieldName = "labdip_upd"
+        Me.GridColumnUpdate1.Name = "GridColumnUpdate1"
+        Me.GridColumnUpdate1.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate1.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate1.Visible = True
+        Me.GridColumnUpdate1.Width = 51
+        '
+        'GridColumnTarget2
+        '
+        Me.GridColumnTarget2.Caption = "Target"
+        Me.GridColumnTarget2.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget2.FieldName = "strike_off_1"
+        Me.GridColumnTarget2.Name = "GridColumnTarget2"
+        Me.GridColumnTarget2.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget2.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget2.Visible = True
+        Me.GridColumnTarget2.Width = 51
+        '
+        'GridColumnUpdate2
+        '
+        Me.GridColumnUpdate2.Caption = "Update"
+        Me.GridColumnUpdate2.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate2.FieldName = "strike_off_1_upd"
+        Me.GridColumnUpdate2.Name = "GridColumnUpdate2"
+        Me.GridColumnUpdate2.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate2.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate2.Visible = True
+        Me.GridColumnUpdate2.Width = 51
+        '
+        'GridColumnTarget3
+        '
+        Me.GridColumnTarget3.Caption = "Target"
+        Me.GridColumnTarget3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget3.FieldName = "proto_sample_1"
+        Me.GridColumnTarget3.Name = "GridColumnTarget3"
+        Me.GridColumnTarget3.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget3.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget3.Visible = True
+        Me.GridColumnTarget3.Width = 51
+        '
+        'GridColumnUpdate3
+        '
+        Me.GridColumnUpdate3.Caption = "Update"
+        Me.GridColumnUpdate3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate3.FieldName = "proto_sample_1_upd"
+        Me.GridColumnUpdate3.Name = "GridColumnUpdate3"
+        Me.GridColumnUpdate3.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate3.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate3.Visible = True
+        Me.GridColumnUpdate3.Width = 51
+        '
+        'GridColumnTarget4
+        '
+        Me.GridColumnTarget4.Caption = "Target"
+        Me.GridColumnTarget4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget4.FieldName = "strike_off_2"
+        Me.GridColumnTarget4.Name = "GridColumnTarget4"
+        Me.GridColumnTarget4.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget4.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget4.Visible = True
+        Me.GridColumnTarget4.Width = 51
+        '
+        'GridColumnUpdate4
+        '
+        Me.GridColumnUpdate4.Caption = "Update"
+        Me.GridColumnUpdate4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate4.FieldName = "strike_off_2_upd"
+        Me.GridColumnUpdate4.Name = "GridColumnUpdate4"
+        Me.GridColumnUpdate4.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate4.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate4.Visible = True
+        Me.GridColumnUpdate4.Width = 51
+        '
+        'GridColumnTarget5
+        '
+        Me.GridColumnTarget5.Caption = "Target"
+        Me.GridColumnTarget5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget5.FieldName = "proto_sample_2"
+        Me.GridColumnTarget5.Name = "GridColumnTarget5"
+        Me.GridColumnTarget5.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget5.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget5.Visible = True
+        Me.GridColumnTarget5.Width = 51
+        '
+        'GridColumnUpdate5
+        '
+        Me.GridColumnUpdate5.Caption = "Update"
+        Me.GridColumnUpdate5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate5.FieldName = "proto_sample_2_upd"
+        Me.GridColumnUpdate5.Name = "GridColumnUpdate5"
+        Me.GridColumnUpdate5.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate5.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate5.Visible = True
+        Me.GridColumnUpdate5.Width = 51
+        '
+        'GridColumnTarget6
+        '
+        Me.GridColumnTarget6.Caption = "Target"
+        Me.GridColumnTarget6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget6.FieldName = "copy_proto_sample_2"
+        Me.GridColumnTarget6.Name = "GridColumnTarget6"
+        Me.GridColumnTarget6.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget6.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget6.Visible = True
+        Me.GridColumnTarget6.Width = 53
+        '
+        'GridColumnUpdate6
+        '
+        Me.GridColumnUpdate6.Caption = "Update"
+        Me.GridColumnUpdate6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate6.FieldName = "copy_proto_sample_2_upd"
+        Me.GridColumnUpdate6.Name = "GridColumnUpdate6"
+        Me.GridColumnUpdate6.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate6.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate6.Visible = True
+        Me.GridColumnUpdate6.Width = 53
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.DateEdit1)
+        Me.PanelControl1.Controls.Add(Me.DEActual)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.DEUpd)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
@@ -139,6 +355,80 @@ Partial Class FormSampleDevActual
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(860, 47)
         Me.PanelControl1.TabIndex = 0
+        '
+        'DEActual
+        '
+        Me.DEActual.EditValue = Nothing
+        Me.DEActual.Location = New System.Drawing.Point(535, 14)
+        Me.DEActual.Name = "DEActual"
+        Me.DEActual.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEActual.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEActual.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEActual.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEActual.Size = New System.Drawing.Size(169, 20)
+        Me.DEActual.TabIndex = 8930
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(499, 17)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl3.TabIndex = 8929
+        Me.LabelControl3.Text = "Actual"
+        '
+        'DEUpd
+        '
+        Me.DEUpd.EditValue = Nothing
+        Me.DEUpd.Location = New System.Drawing.Point(324, 14)
+        Me.DEUpd.Name = "DEUpd"
+        Me.DEUpd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUpd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUpd.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUpd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUpd.Properties.ReadOnly = True
+        Me.DEUpd.Size = New System.Drawing.Size(169, 20)
+        Me.DEUpd.TabIndex = 8928
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(247, 17)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl2.TabIndex = 3
+        Me.LabelControl2.Text = "Target/Update"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 17)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl1.TabIndex = 2
+        Me.LabelControl1.Text = "Tahapan"
+        '
+        'SLETahapan
+        '
+        Me.SLETahapan.Location = New System.Drawing.Point(60, 14)
+        Me.SLETahapan.Name = "SLETahapan"
+        Me.SLETahapan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLETahapan.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLETahapan.Size = New System.Drawing.Size(181, 20)
+        Me.SLETahapan.TabIndex = 1
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Tahapan"
+        Me.GridColumn1.FieldName = "tahapan"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
         '
         'BAdd
         '
@@ -406,6 +696,7 @@ Partial Class FormSampleDevActual
         Me.GridBand2.Columns.Add(Me.BandedGridColumn17)
         Me.GridBand2.Columns.Add(Me.GridColumn33)
         Me.GridBand2.Columns.Add(Me.GridColumn34)
+        Me.GridBand2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridBand2.Name = "GridBand2"
         Me.GridBand2.VisibleIndex = 0
         Me.GridBand2.Width = 107
@@ -467,42 +758,6 @@ Partial Class FormSampleDevActual
         Me.gridBand3.VisibleIndex = 1
         Me.gridBand3.Width = 158
         '
-        'GridColumnTarget1
-        '
-        Me.GridColumnTarget1.Caption = "Target"
-        Me.GridColumnTarget1.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget1.FieldName = "labdip"
-        Me.GridColumnTarget1.Name = "GridColumnTarget1"
-        Me.GridColumnTarget1.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget1.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget1.Visible = True
-        Me.GridColumnTarget1.Width = 51
-        '
-        'GridColumnUpdate1
-        '
-        Me.GridColumnUpdate1.Caption = "Update"
-        Me.GridColumnUpdate1.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate1.FieldName = "labdip_upd"
-        Me.GridColumnUpdate1.Name = "GridColumnUpdate1"
-        Me.GridColumnUpdate1.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate1.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate1.Visible = True
-        Me.GridColumnUpdate1.Width = 51
-        '
-        'GridColumnActual1
-        '
-        Me.GridColumnActual1.Caption = "Actual"
-        Me.GridColumnActual1.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual1.FieldName = "labdip_act"
-        Me.GridColumnActual1.Name = "GridColumnActual1"
-        Me.GridColumnActual1.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual1.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual1.Visible = True
-        Me.GridColumnActual1.Width = 56
-        '
         'gridBand4
         '
         Me.gridBand4.Caption = "Strike Off 1"
@@ -512,42 +767,6 @@ Partial Class FormSampleDevActual
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.VisibleIndex = 2
         Me.gridBand4.Width = 158
-        '
-        'GridColumnTarget2
-        '
-        Me.GridColumnTarget2.Caption = "Target"
-        Me.GridColumnTarget2.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget2.FieldName = "strike_off_1"
-        Me.GridColumnTarget2.Name = "GridColumnTarget2"
-        Me.GridColumnTarget2.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget2.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget2.Visible = True
-        Me.GridColumnTarget2.Width = 51
-        '
-        'GridColumnUpdate2
-        '
-        Me.GridColumnUpdate2.Caption = "Update"
-        Me.GridColumnUpdate2.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate2.FieldName = "strike_off_1_upd"
-        Me.GridColumnUpdate2.Name = "GridColumnUpdate2"
-        Me.GridColumnUpdate2.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate2.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate2.Visible = True
-        Me.GridColumnUpdate2.Width = 51
-        '
-        'GridColumnActual2
-        '
-        Me.GridColumnActual2.Caption = "Actual"
-        Me.GridColumnActual2.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual2.FieldName = "strike_off_1_act"
-        Me.GridColumnActual2.Name = "GridColumnActual2"
-        Me.GridColumnActual2.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual2.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual2.Visible = True
-        Me.GridColumnActual2.Width = 56
         '
         'gridBand5
         '
@@ -559,42 +778,6 @@ Partial Class FormSampleDevActual
         Me.gridBand5.VisibleIndex = 3
         Me.gridBand5.Width = 158
         '
-        'GridColumnTarget3
-        '
-        Me.GridColumnTarget3.Caption = "Target"
-        Me.GridColumnTarget3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget3.FieldName = "proto_sample_1"
-        Me.GridColumnTarget3.Name = "GridColumnTarget3"
-        Me.GridColumnTarget3.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget3.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget3.Visible = True
-        Me.GridColumnTarget3.Width = 51
-        '
-        'GridColumnUpdate3
-        '
-        Me.GridColumnUpdate3.Caption = "Update"
-        Me.GridColumnUpdate3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate3.FieldName = "proto_sample_1_upd"
-        Me.GridColumnUpdate3.Name = "GridColumnUpdate3"
-        Me.GridColumnUpdate3.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate3.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate3.Visible = True
-        Me.GridColumnUpdate3.Width = 51
-        '
-        'GridColumnActual3
-        '
-        Me.GridColumnActual3.Caption = "Actual"
-        Me.GridColumnActual3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual3.FieldName = "proto_sample_1_act"
-        Me.GridColumnActual3.Name = "GridColumnActual3"
-        Me.GridColumnActual3.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual3.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual3.Visible = True
-        Me.GridColumnActual3.Width = 56
-        '
         'gridBand6
         '
         Me.gridBand6.Caption = "Strike Off 2"
@@ -604,42 +787,6 @@ Partial Class FormSampleDevActual
         Me.gridBand6.Name = "gridBand6"
         Me.gridBand6.VisibleIndex = 4
         Me.gridBand6.Width = 158
-        '
-        'GridColumnTarget4
-        '
-        Me.GridColumnTarget4.Caption = "Target"
-        Me.GridColumnTarget4.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget4.FieldName = "strike_off_2"
-        Me.GridColumnTarget4.Name = "GridColumnTarget4"
-        Me.GridColumnTarget4.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget4.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget4.Visible = True
-        Me.GridColumnTarget4.Width = 51
-        '
-        'GridColumnUpdate4
-        '
-        Me.GridColumnUpdate4.Caption = "Update"
-        Me.GridColumnUpdate4.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate4.FieldName = "strike_off_2_upd"
-        Me.GridColumnUpdate4.Name = "GridColumnUpdate4"
-        Me.GridColumnUpdate4.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate4.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate4.Visible = True
-        Me.GridColumnUpdate4.Width = 51
-        '
-        'GridColumnActual4
-        '
-        Me.GridColumnActual4.Caption = "Actual"
-        Me.GridColumnActual4.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual4.FieldName = "strike_off_2_act"
-        Me.GridColumnActual4.Name = "GridColumnActual4"
-        Me.GridColumnActual4.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual4.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual4.Visible = True
-        Me.GridColumnActual4.Width = 56
         '
         'gridBand7
         '
@@ -651,42 +798,6 @@ Partial Class FormSampleDevActual
         Me.gridBand7.VisibleIndex = 5
         Me.gridBand7.Width = 158
         '
-        'GridColumnTarget5
-        '
-        Me.GridColumnTarget5.Caption = "Target"
-        Me.GridColumnTarget5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget5.FieldName = "proto_sample_2"
-        Me.GridColumnTarget5.Name = "GridColumnTarget5"
-        Me.GridColumnTarget5.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget5.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget5.Visible = True
-        Me.GridColumnTarget5.Width = 51
-        '
-        'GridColumnUpdate5
-        '
-        Me.GridColumnUpdate5.Caption = "Update"
-        Me.GridColumnUpdate5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate5.FieldName = "proto_sample_2_upd"
-        Me.GridColumnUpdate5.Name = "GridColumnUpdate5"
-        Me.GridColumnUpdate5.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate5.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate5.Visible = True
-        Me.GridColumnUpdate5.Width = 51
-        '
-        'GridColumnActual5
-        '
-        Me.GridColumnActual5.Caption = "Actual"
-        Me.GridColumnActual5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual5.FieldName = "proto_sample_2_act"
-        Me.GridColumnActual5.Name = "GridColumnActual5"
-        Me.GridColumnActual5.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual5.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual5.Visible = True
-        Me.GridColumnActual5.Width = 56
-        '
         'gridBand8
         '
         Me.gridBand8.Caption = "Copy Proto Sample 2"
@@ -696,42 +807,6 @@ Partial Class FormSampleDevActual
         Me.gridBand8.Name = "gridBand8"
         Me.gridBand8.VisibleIndex = 6
         Me.gridBand8.Width = 163
-        '
-        'GridColumnTarget6
-        '
-        Me.GridColumnTarget6.Caption = "Target"
-        Me.GridColumnTarget6.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget6.FieldName = "copy_proto_sample_2"
-        Me.GridColumnTarget6.Name = "GridColumnTarget6"
-        Me.GridColumnTarget6.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget6.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget6.Visible = True
-        Me.GridColumnTarget6.Width = 53
-        '
-        'GridColumnUpdate6
-        '
-        Me.GridColumnUpdate6.Caption = "Update"
-        Me.GridColumnUpdate6.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate6.FieldName = "copy_proto_sample_2_upd"
-        Me.GridColumnUpdate6.Name = "GridColumnUpdate6"
-        Me.GridColumnUpdate6.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate6.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate6.Visible = True
-        Me.GridColumnUpdate6.Width = 53
-        '
-        'GridColumnActual6
-        '
-        Me.GridColumnActual6.Caption = "Actual"
-        Me.GridColumnActual6.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual6.FieldName = "copy_proto_sample_2_act"
-        Me.GridColumnActual6.Name = "GridColumnActual6"
-        Me.GridColumnActual6.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual6.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual6.Visible = True
-        Me.GridColumnActual6.Width = 57
         '
         'BandedGridColumn16
         '
@@ -746,79 +821,6 @@ Partial Class FormSampleDevActual
         Me.BandedGridColumn18.Caption = "Current Date"
         Me.BandedGridColumn18.FieldName = "cur_date"
         Me.BandedGridColumn18.Name = "BandedGridColumn18"
-        '
-        'SLETahapan
-        '
-        Me.SLETahapan.Location = New System.Drawing.Point(60, 14)
-        Me.SLETahapan.Name = "SLETahapan"
-        Me.SLETahapan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLETahapan.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLETahapan.Size = New System.Drawing.Size(181, 20)
-        Me.SLETahapan.TabIndex = 1
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 17)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(42, 13)
-        Me.LabelControl1.TabIndex = 2
-        Me.LabelControl1.Text = "Tahapan"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Tahapan"
-        Me.GridColumn1.FieldName = "tahapan"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(247, 17)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(71, 13)
-        Me.LabelControl2.TabIndex = 3
-        Me.LabelControl2.Text = "Target/Update"
-        '
-        'DEUpd
-        '
-        Me.DEUpd.EditValue = Nothing
-        Me.DEUpd.Location = New System.Drawing.Point(324, 14)
-        Me.DEUpd.Name = "DEUpd"
-        Me.DEUpd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUpd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUpd.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEUpd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUpd.Size = New System.Drawing.Size(169, 20)
-        Me.DEUpd.TabIndex = 8928
-        '
-        'DateEdit1
-        '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(535, 14)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Size = New System.Drawing.Size(169, 20)
-        Me.DateEdit1.TabIndex = 8930
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(499, 17)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(30, 13)
-        Me.LabelControl3.TabIndex = 8929
-        Me.LabelControl3.Text = "Actual"
         '
         'FormSampleDevActual
         '
@@ -835,15 +837,15 @@ Partial Class FormSampleDevActual
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DEActual.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEActual.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUpd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUpd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLETahapan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCTracker, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVTracker, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICE, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLETahapan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUpd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUpd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -889,7 +891,7 @@ Partial Class FormSampleDevActual
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEActual As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEUpd As DevExpress.XtraEditors.DateEdit
 End Class
