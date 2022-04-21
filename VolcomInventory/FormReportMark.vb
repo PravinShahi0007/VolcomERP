@@ -12109,6 +12109,45 @@ INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AN
 SET t.copy_proto_sample_2_upd=u.new_date
 WHERE u.tahapan = 'Copy Proto Sample 2'"
                         execute_non_query(qv, True, "", "", "", "")
+                    ElseIf dtv.Rows(0)("id_type").ToString = "3" Then
+                        'actual
+                        'pakai update select
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.labdip_act=u.new_date
+WHERE u.tahapan = 'Labdip'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.strike_off_1_act=u.new_date
+WHERE u.tahapan = 'Strike Off 1'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.proto_sample_1_act=u.new_date
+WHERE u.tahapan = 'Proto Sample 1'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.strike_off_2_act=u.new_date
+WHERE u.tahapan = 'Strike Off 2'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.proto_sample_2_act=u.new_date
+WHERE u.tahapan = 'Proto Sample 2'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.copy_proto_sample_2_act=u.new_date
+WHERE u.tahapan = 'Copy Proto Sample 2'"
+                        execute_non_query(qv, True, "", "", "", "")
                     End If
                 End If
             End If

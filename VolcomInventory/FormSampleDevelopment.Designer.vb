@@ -240,7 +240,6 @@ Partial Class FormSampleDevelopment
         Me.CMTracking = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetActualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.InputActualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVTracker = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn32 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -2036,9 +2035,9 @@ Partial Class FormSampleDevelopment
         '
         'CMTracking
         '
-        Me.CMTracking.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProposeChangesToolStripMenuItem, Me.SetActualToolStripMenuItem, Me.InputActualToolStripMenuItem})
+        Me.CMTracking.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProposeChangesToolStripMenuItem, Me.SetActualToolStripMenuItem})
         Me.CMTracking.Name = "CMTracking"
-        Me.CMTracking.Size = New System.Drawing.Size(141, 70)
+        Me.CMTracking.Size = New System.Drawing.Size(141, 48)
         '
         'ProposeChangesToolStripMenuItem
         '
@@ -2051,12 +2050,6 @@ Partial Class FormSampleDevelopment
         Me.SetActualToolStripMenuItem.Name = "SetActualToolStripMenuItem"
         Me.SetActualToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
         Me.SetActualToolStripMenuItem.Text = "Log Actual"
-        '
-        'InputActualToolStripMenuItem
-        '
-        Me.InputActualToolStripMenuItem.Name = "InputActualToolStripMenuItem"
-        Me.InputActualToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
-        Me.InputActualToolStripMenuItem.Text = "Input Actual"
         '
         'GVTracker
         '
@@ -3230,6 +3223,5 @@ Partial Class FormSampleDevelopment
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BUpdatePps As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents InputActualToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BProposeActual As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -269,6 +269,39 @@ VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSl
                     'no edit pls
                 End If
             End If
+        ElseIf is_actual = "1" Then
+            If GVActual.RowCount = 0 Then
+                warningCustom("No data found.")
+            Else
+                If id_pps = "-1" Then
+                    'check sudah ada apa belum
+                    Dim is_ok As Boolean = True
+                    '
+                    If is_ok Then
+                        Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,id_comp,created_by,note,id_report_status,id_type)
+VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & SLEType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                        id_pps = execute_query(q, 0, True, "", "", "", "")
+
+                        execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
+
+                        'detail
+                        q = "INSERT INTO `tb_sample_dev_upd`(`id_sample_dev_pps`,`id_design`,`tahapan`,`current_date`,`new_date`) VALUES"
+                        For i = 0 To GVActual.RowCount - 1
+                            If Not i = 0 Then
+                                q += ","
+                            End If
+
+                            q += "('" & id_pps & "','" & GVActual.GetRowCellValue(i, "id_design").ToString & "','" & GVActual.GetRowCellValue(i, "tahapan").ToString & "'," & If(GVActual.GetRowCellValue(i, "current_date").ToString = "", "NULL", "'" & Date.Parse(GVActual.GetRowCellValue(i, "current_date").ToString).ToString("yyyy-MM-dd") & "'") & ",'" & Date.Parse(GVActual.GetRowCellValue(i, "new_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(GVActual.GetRowCellValue(i, "reason").ToString) & "')"
+                        Next
+
+                        execute_non_query(q, True, "", "", "", "")
+                        submit_who_prepared("403", id_pps, id_user)
+                        Close()
+                    End If
+                Else
+                    'no edit pls
+                End If
+            End If
         Else
             If GVPps.RowCount = 0 Then
                 warningCustom("No data found, please put some design.")
