@@ -856,6 +856,7 @@ Partial Class FormProductionWO
         Me.TEDelDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.TEDelDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.TEDelDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TEDelDate.Properties.ReadOnly = True
         Me.TEDelDate.Size = New System.Drawing.Size(163, 20)
         Me.TEDelDate.TabIndex = 167
         '

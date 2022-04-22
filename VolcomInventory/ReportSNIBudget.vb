@@ -3,7 +3,7 @@
     Public Shared tot_qty As Decimal = 1
 
     Private Sub ReportSNIBudget_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        Dim q As String = "SELECT sni.number,ssn.season 
+        Dim q As String = "SELECT sni.number,ssn.season ,sni.vat
 FROM `tb_sni_pps` sni
 INNER JOIN `tb_season` ssn ON ssn.id_season=sni.`id_season`
 WHERE sni.`id_sni_pps`='" & id_pps & "'"
@@ -28,8 +28,8 @@ ORDER BY IFNULL(ppsb.id_design,'A') ASC"
                 insert_footer(row_baru, tot_nilai, "Total Budget")
                 insert_footer(row_baru, tot_qty, "Total Qty Artikel KIDS")
                 insert_footer(row_baru, Math.Round(tot_nilai / tot_qty, 2), "Cost per Pcs")
-                insert_footer(row_baru, Math.Round(tot_nilai * 0.1, 2), "VAT 10%")
-                insert_footer(row_baru, Math.Round(tot_nilai * 1.1, 2), "Grand Total Budget")
+                insert_footer(row_baru, Math.Round(tot_nilai * (dt.Rows(0)("vat") / 100), 2), "VAT " & Decimal.Parse(dt.Rows(0)("vat").ToString).ToString("N0") & "%")
+                insert_footer(row_baru, Math.Round(tot_nilai * ((dt.Rows(0)("vat") + 100) / 100), 2), "Grand Total Budget")
             End If
         Next
         '
