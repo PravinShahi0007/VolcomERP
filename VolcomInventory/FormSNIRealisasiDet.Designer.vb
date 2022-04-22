@@ -94,6 +94,9 @@ Partial Class FormSNIRealisasiDet
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
@@ -125,9 +128,6 @@ Partial Class FormSNIRealisasiDet
         Me.Battach = New DevExpress.XtraEditors.SimpleButton()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -978,6 +978,24 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn36.VisibleIndex = 0
         Me.GridColumn36.Width = 124
         '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "GridColumn37"
+        Me.GridColumn37.FieldName = "id_report"
+        Me.GridColumn37.Name = "GridColumn37"
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "GridColumn38"
+        Me.GridColumn38.FieldName = "id_report_det"
+        Me.GridColumn38.Name = "GridColumn38"
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "GridColumn39"
+        Me.GridColumn39.FieldName = "report_mark_type"
+        Me.GridColumn39.Name = "GridColumn39"
+        '
         'RepositoryItemCheckEdit3
         '
         Me.RepositoryItemCheckEdit3.AutoHeight = False
@@ -1340,24 +1358,6 @@ Partial Class FormSNIRealisasiDet
         Me.BSave.Size = New System.Drawing.Size(96, 43)
         Me.BSave.TabIndex = 4
         Me.BSave.Text = "Save"
-        '
-        'GridColumn37
-        '
-        Me.GridColumn37.Caption = "GridColumn37"
-        Me.GridColumn37.FieldName = "id_report"
-        Me.GridColumn37.Name = "GridColumn37"
-        '
-        'GridColumn38
-        '
-        Me.GridColumn38.Caption = "GridColumn38"
-        Me.GridColumn38.FieldName = "id_report_det"
-        Me.GridColumn38.Name = "GridColumn38"
-        '
-        'GridColumn39
-        '
-        Me.GridColumn39.Caption = "GridColumn39"
-        Me.GridColumn39.FieldName = "report_mark_type"
-        Me.GridColumn39.Name = "GridColumn39"
         '
         'FormSNIRealisasiDet
         '
