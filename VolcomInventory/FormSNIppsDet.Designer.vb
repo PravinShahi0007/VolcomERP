@@ -115,6 +115,8 @@ Partial Class FormSNIppsDet
         Me.BLoadTemplate = New DevExpress.XtraEditors.SimpleButton()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEVATPercent = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,6 +166,7 @@ Partial Class FormSNIppsDet
         CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
+        CType(Me.TEVATPercent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -924,6 +927,8 @@ Partial Class FormSNIppsDet
         'PanelControl7
         '
         Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.LabelControl10)
+        Me.PanelControl7.Controls.Add(Me.TEVATPercent)
         Me.PanelControl7.Controls.Add(Me.LabelControl9)
         Me.PanelControl7.Controls.Add(Me.TEGrandTot)
         Me.PanelControl7.Controls.Add(Me.LabelControl8)
@@ -965,9 +970,9 @@ Partial Class FormSNIppsDet
         '
         Me.LabelControl8.Location = New System.Drawing.Point(13, 93)
         Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl8.Size = New System.Drawing.Size(19, 13)
         Me.LabelControl8.TabIndex = 7
-        Me.LabelControl8.Text = "VAT 10%"
+        Me.LabelControl8.Text = "VAT"
         '
         'TEVat
         '
@@ -1197,6 +1202,27 @@ Partial Class FormSNIppsDet
         Me.BAdd.TabIndex = 3
         Me.BAdd.Text = "Add Budget Item"
         '
+        'TEVATPercent
+        '
+        Me.TEVATPercent.Location = New System.Drawing.Point(38, 90)
+        Me.TEVATPercent.Name = "TEVATPercent"
+        Me.TEVATPercent.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEVATPercent.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEVATPercent.Properties.Mask.EditMask = "N2"
+        Me.TEVATPercent.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEVATPercent.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEVATPercent.Properties.ReadOnly = True
+        Me.TEVATPercent.Size = New System.Drawing.Size(38, 20)
+        Me.TEVATPercent.TabIndex = 10
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(82, 93)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(11, 13)
+        Me.LabelControl10.TabIndex = 8
+        Me.LabelControl10.Text = "%"
+        '
         'FormSNIppsDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1261,6 +1287,7 @@ Partial Class FormSNIppsDet
         CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
+        CType(Me.TEVATPercent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1360,4 +1387,6 @@ Partial Class FormSNIppsDet
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEVat As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BLoadTemplate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEVATPercent As DevExpress.XtraEditors.TextEdit
 End Class

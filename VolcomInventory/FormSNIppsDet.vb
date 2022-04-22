@@ -49,7 +49,7 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             '
         Else
             'edit
-            Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`,pps.id_report_status,pps.is_submit 
+            Dim q As String = "SELECT pps.vat,pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`,pps.id_report_status,pps.is_submit 
 FROM tb_sni_pps pps
 INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -59,6 +59,8 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                 TENumber.Text = dt.Rows(0)("number").ToString
                 TEProposedBy.Text = dt.Rows(0)("employee_name").ToString
                 DEProposeDate.EditValue = dt.Rows(0)("created_date")
+                '
+                TEVATPercent.EditValue = dt.Rows(0)("vat")
                 '
                 load_proposed()
 
@@ -244,7 +246,9 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
             If Not is_ok Then
                 warningCustom("Pastikan data ecop pd purchasing, qty, dan size S sudah terinput")
             Else
-                Dim q As String = "INSERT INTO tb_sni_pps(id_season,created_by,created_date) VALUES('" & SLESeason.EditValue.ToString & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
+                Dim vat As String = get_current_vat()
+
+                Dim q As String = "INSERT INTO tb_sni_pps(id_season,created_by,created_date,vat) VALUES('" & SLESeason.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(Decimal.Parse(vat).ToString) & "'); SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(q, 0, True, "", "", "", "")
 
                 execute_non_query("CALL gen_number('" & id_pps & "','319')", True, "", "", "", "")
@@ -462,8 +466,8 @@ HAVING NOT ISNULL(err)"
         GVBudgetCop.RefreshData()
 
         TETotalBudget.EditValue = GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue
-        TEVat.EditValue = Math.Round(TETotalBudget.EditValue * 0.1, 2)
-        TEGrandTot.EditValue = Math.Round(TETotalBudget.EditValue * 1.1, 2)
+        TEVat.EditValue = Math.Round(TETotalBudget.EditValue * (TEVATPercent.EditValue / 100), 2)
+        TEGrandTot.EditValue = Math.Round(TETotalBudget.EditValue * (((100 + TEVATPercent.EditValue) / 100)), 2)
 
         TETotalQty.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
         TESNICop.EditValue = Math.Round((GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
