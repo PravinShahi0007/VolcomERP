@@ -429,6 +429,7 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
     End Sub
 
     Private Sub CMChangeDate_Click(sender As Object, e As EventArgs) Handles CMChangeDate.Click
+        'check again
         If is_submit Then
             warningCustom("This summary is already locked")
         Else

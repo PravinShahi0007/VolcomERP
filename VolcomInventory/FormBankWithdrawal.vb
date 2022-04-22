@@ -664,7 +664,9 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
     Private Sub ToolStripMenuItemAdd_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemAdd.Click
         If XTPPOList.SelectedTabPageIndex = 0 Then
-            infoCustom("Already active.")
+            'infoCustom("Already active.")
+            FormBankWithdrawalAttachement.id_purc_order = GVPOList.GetFocusedRowCellValue("id_purc_order").ToString
+            FormBankWithdrawalAttachement.ShowDialog()
         ElseIf XTPPOList.SelectedTabPageIndex.ToString = 1 Then
             FormBankWithdrawalAttachement.id_purc_order = GVPOListNonActive.GetFocusedRowCellValue("id_purc_order").ToString
             FormBankWithdrawalAttachement.ShowDialog()
