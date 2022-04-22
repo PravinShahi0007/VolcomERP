@@ -17205,4 +17205,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBRoyaltyRate_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRoyaltyRate.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormRoyaltyRate.MdiParent = Me
+            FormRoyaltyRate.Show()
+            FormRoyaltyRate.WindowState = FormWindowState.Maximized
+            FormRoyaltyRate.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
