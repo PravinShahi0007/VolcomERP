@@ -12,7 +12,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT r.id_royalty_rate, r.created_date, r.created_by, e.employee_name AS `created_by_name`, 
+        Dim query As String = "SELECT r.id_royalty_rate, r,number, r.created_date, r.created_by, e.employee_name AS `created_by_name`, 
         r.royalty_rate, r.year_start, r.year_end, r.note, r.id_report_status, stt.report_status
         FROM tb_royalty_rate r
         INNER JOIN tb_m_user u ON u.id_user = r.created_by

@@ -41,6 +41,8 @@ Partial Class FormRoyaltyRateDet
         Me.TxtStart = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtEnd = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtRoyaltyRate = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +56,7 @@ Partial Class FormRoyaltyRateDet
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtRoyaltyRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlBottom
@@ -64,7 +67,7 @@ Partial Class FormRoyaltyRateDet
         Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
         Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 179)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 209)
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(469, 62)
         Me.PanelControlBottom.TabIndex = 17
@@ -155,16 +158,16 @@ Partial Class FormRoyaltyRateDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(89, 39)
+        Me.MENote.Location = New System.Drawing.Point(107, 65)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(362, 41)
+        Me.MENote.Size = New System.Drawing.Size(344, 41)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(29, 41)
+        Me.LabelControl7.Location = New System.Drawing.Point(29, 67)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 150
@@ -173,11 +176,11 @@ Partial Class FormRoyaltyRateDet
         'TxtNumber
         '
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(89, 14)
+        Me.TxtNumber.Location = New System.Drawing.Point(107, 14)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtNumber.Size = New System.Drawing.Size(156, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(152, 20)
         Me.TxtNumber.TabIndex = 147
         '
         'LabelControl2
@@ -201,7 +204,7 @@ Partial Class FormRoyaltyRateDet
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(251, 17)
+        Me.LabelControl4.Location = New System.Drawing.Point(262, 17)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl4.TabIndex = 7
@@ -210,7 +213,7 @@ Partial Class FormRoyaltyRateDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(89, 40)
+        Me.LEReportStatus.Location = New System.Drawing.Point(107, 40)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
@@ -220,14 +223,14 @@ Partial Class FormRoyaltyRateDet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(362, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(344, 20)
         Me.LEReportStatus.TabIndex = 7
         '
         'DECreated
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(280, 14)
+        Me.DECreated.Location = New System.Drawing.Point(290, 14)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
@@ -235,12 +238,14 @@ Partial Class FormRoyaltyRateDet
         Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreated.Size = New System.Drawing.Size(171, 20)
+        Me.DECreated.Size = New System.Drawing.Size(161, 20)
         Me.DECreated.TabIndex = 6
         '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.LabelControl5)
+        Me.GroupControl1.Controls.Add(Me.TxtRoyaltyRate)
         Me.GroupControl1.Controls.Add(Me.TxtEnd)
         Me.GroupControl1.Controls.Add(Me.LabelControl3)
         Me.GroupControl1.Controls.Add(Me.TxtStart)
@@ -250,7 +255,7 @@ Partial Class FormRoyaltyRateDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 76)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(469, 103)
+        Me.GroupControl1.Size = New System.Drawing.Size(469, 133)
         Me.GroupControl1.TabIndex = 19
         '
         'LabelControl1
@@ -264,17 +269,17 @@ Partial Class FormRoyaltyRateDet
         '
         'TxtStart
         '
-        Me.TxtStart.Location = New System.Drawing.Point(89, 13)
+        Me.TxtStart.Location = New System.Drawing.Point(107, 13)
         Me.TxtStart.Name = "TxtStart"
         Me.TxtStart.Properties.Mask.EditMask = "f0"
         Me.TxtStart.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtStart.Size = New System.Drawing.Size(156, 20)
+        Me.TxtStart.Size = New System.Drawing.Size(152, 20)
         Me.TxtStart.TabIndex = 8928
         '
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(251, 16)
+        Me.LabelControl3.Location = New System.Drawing.Point(263, 16)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl3.TabIndex = 8929
@@ -282,18 +287,38 @@ Partial Class FormRoyaltyRateDet
         '
         'TxtEnd
         '
-        Me.TxtEnd.Location = New System.Drawing.Point(280, 13)
+        Me.TxtEnd.Location = New System.Drawing.Point(290, 13)
         Me.TxtEnd.Name = "TxtEnd"
         Me.TxtEnd.Properties.Mask.EditMask = "f0"
         Me.TxtEnd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtEnd.Size = New System.Drawing.Size(171, 20)
+        Me.TxtEnd.Size = New System.Drawing.Size(161, 20)
         Me.TxtEnd.TabIndex = 8930
+        '
+        'TxtRoyaltyRate
+        '
+        Me.TxtRoyaltyRate.Location = New System.Drawing.Point(107, 39)
+        Me.TxtRoyaltyRate.Name = "TxtRoyaltyRate"
+        Me.TxtRoyaltyRate.Properties.DisplayFormat.FormatString = "{0:n2} %"
+        Me.TxtRoyaltyRate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtRoyaltyRate.Properties.Mask.EditMask = "N2"
+        Me.TxtRoyaltyRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtRoyaltyRate.Size = New System.Drawing.Size(344, 20)
+        Me.TxtRoyaltyRate.TabIndex = 8931
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(29, 42)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl5.TabIndex = 8932
+        Me.LabelControl5.Text = "Royalty Rate"
         '
         'FormRoyaltyRateDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(469, 241)
+        Me.ClientSize = New System.Drawing.Size(469, 271)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupControlHead)
         Me.Controls.Add(Me.PanelControlBottom)
@@ -314,6 +339,7 @@ Partial Class FormRoyaltyRateDet
         Me.GroupControl1.PerformLayout()
         CType(Me.TxtStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtRoyaltyRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -339,4 +365,6 @@ Partial Class FormRoyaltyRateDet
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtStart As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtRoyaltyRate As DevExpress.XtraEditors.TextEdit
 End Class
