@@ -2023,6 +2023,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormQCReport1Sum.id = "-1"
                 FormQCReport1Sum.ShowDialog()
             End If
+        ElseIf formName = "FormRoyaltyRate" Then
+            FormRoyaltyRate.createNew()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3398,6 +3400,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormQCReport1" Then
                 FormQCReport1Det.id = FormQCReport1.GVQCReport.GetFocusedRowCellValue("id_qc_report1").ToString
                 FormQCReport1Det.ShowDialog()
+            ElseIf formName = "FormRoyaltyRate" Then
+                FormRoyaltyRate.viewDetail()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8913,6 +8917,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormQCReport1.GCQCReport, "List QC Report 1")
         ElseIf formName = "FormAgingProductList" Then
             print(FormAgingProductList.GCList, "Product Age List")
+        ElseIf formName = "FormRoyaltyRate" Then
+            FormRoyaltyRate.printList()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9994,6 +10000,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAgingProductList" Then
             FormAgingProductList.Close()
             FormAgingProductList.Dispose()
+        ElseIf formName = "FormRoyaltyRate" Then
+            FormRoyaltyRate.Close()
+            FormRoyaltyRate.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11060,6 +11069,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormStoreDisplay.refreshData()
         ElseIf formName = "FormDesignOrderView" Then
             FormDesignOrderView.viewData()
+        ElseIf formName = "FormRoyaltyRate" Then
+            FormRoyaltyRate.viewData()
         End If
     End Sub
     'Switch
