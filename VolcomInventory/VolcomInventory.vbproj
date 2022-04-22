@@ -5033,6 +5033,12 @@
     <Compile Include="FormRoyaltyRate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRoyaltyRateDet.Designer.vb">
+      <DependentUpon>FormRoyaltyRateDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRoyaltyRateDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesBranch.Designer.vb">
       <DependentUpon>FormSalesBranch.vb</DependentUpon>
     </Compile>
@@ -13323,6 +13329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRoyaltyRate.resx">
       <DependentUpon>FormRoyaltyRate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRoyaltyRateDet.resx">
+      <DependentUpon>FormRoyaltyRateDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesBranch.resx">
       <DependentUpon>FormSalesBranch.vb</DependentUpon>
