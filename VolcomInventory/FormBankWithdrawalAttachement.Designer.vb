@@ -67,6 +67,8 @@ Partial Class FormBankWithdrawalAttachement
         Me.RITEGrossupValue = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEReffDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TEUnit = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TEInvNumber = New DevExpress.XtraEditors.TextEdit()
@@ -94,8 +96,6 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.DEReffDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.RepositoryItemTextEditPph, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEditDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,6 +118,8 @@ Partial Class FormBankWithdrawalAttachement
         CType(Me.RITEGrossupValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.DEReffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInvNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,8 +133,6 @@ Partial Class FormBankWithdrawalAttachement
         Me.XTPBPLDP.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEReffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemTextEditPph
@@ -656,6 +656,31 @@ Partial Class FormBankWithdrawalAttachement
         Me.PanelControl3.Size = New System.Drawing.Size(927, 100)
         Me.PanelControl3.TabIndex = 12
         '
+        'DEReffDate
+        '
+        Me.DEReffDate.EditValue = Nothing
+        Me.DEReffDate.Location = New System.Drawing.Point(709, 38)
+        Me.DEReffDate.Name = "DEReffDate"
+        Me.DEReffDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEReffDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEReffDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEReffDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEReffDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEReffDate.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DEReffDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEReffDate.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEReffDate.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEReffDate.Size = New System.Drawing.Size(199, 20)
+        Me.DEReffDate.TabIndex = 8910
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(658, 41)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl11.TabIndex = 8911
+        Me.LabelControl11.Text = "Reff Date"
+        '
         'TEUnit
         '
         Me.TEUnit.Location = New System.Drawing.Point(287, 38)
@@ -916,31 +941,6 @@ Partial Class FormBankWithdrawalAttachement
         Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 453
         '
-        'DEReffDate
-        '
-        Me.DEReffDate.EditValue = Nothing
-        Me.DEReffDate.Location = New System.Drawing.Point(709, 38)
-        Me.DEReffDate.Name = "DEReffDate"
-        Me.DEReffDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEReffDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEReffDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEReffDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEReffDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEReffDate.Properties.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.DEReffDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEReffDate.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEReffDate.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEReffDate.Size = New System.Drawing.Size(199, 20)
-        Me.DEReffDate.TabIndex = 8910
-        '
-        'LabelControl11
-        '
-        Me.LabelControl11.Location = New System.Drawing.Point(658, 41)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(47, 13)
-        Me.LabelControl11.TabIndex = 8911
-        Me.LabelControl11.Text = "Reff Date"
-        '
         'FormBankWithdrawalAttachement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -978,6 +978,8 @@ Partial Class FormBankWithdrawalAttachement
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.DEReffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEInvNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -991,8 +993,6 @@ Partial Class FormBankWithdrawalAttachement
         Me.XTPBPLDP.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEReffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEReffDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
