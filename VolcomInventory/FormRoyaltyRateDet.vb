@@ -72,6 +72,10 @@
         MENote.Enabled = False
         BtnPrint.Visible = True
 
+        If is_view = "1" Then
+            BtnCancell.Visible = False
+        End If
+
         If id_report_status = "6" Then
             BtnCancell.Visible = False
         ElseIf id_report_status = "5" Then
@@ -83,7 +87,67 @@
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to submit this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Dim royalty_rate As String = decimalSQL(TxtRoyaltyRate.Text.ToString).ToString
+            Dim year_start As String = TxtStart.Text
+            Dim year_end As String = TxtEnd.Text
+            Dim note As String = addSlashes(MENote.Text)
+            Dim id_report_status As String = LEReportStatus.EditValue.ToString
+            Dim query_head As String = "INSERT INTO tb_royalty_rate(created_date, created_by, royalty_rate, year_start, year_end, note, id_report_status)
+            VALUES(NOW(), '" + id_user + "', '" + royalty_rate + "', '" + year_start + "', '" + year_end + "', '" + note + "', 1); SELECT LAST_INSERT_ID(); "
+            id = execute_query(query_head, 0, True, "", "", "", "")
 
+            'update number
+            execute_non_query("CALL gen_number('" + id + "', '" + rmt + "');", True, "", "", "", "")
+
+            'submit
+            submit_who_prepared(rmt, id, id_user)
+
+            FormRoyaltyRate.viewData()
+            FormRoyaltyRate.GVData.FocusedRowHandle = find_row(FormRoyaltyRate.GVData, "id_royalty_rate", id)
+            FormRoyaltyRate.is_load_new = True
+            Close()
         End If
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_royalty_rate SET id_report_status=5 WHERE id_royalty_rate='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id)
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            FormRoyaltyRate.viewData()
+            FormRoyaltyRate.GVData.FocusedRowHandle = find_row(FormRoyaltyRate.GVData, "id_royalty_rate", id)
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.id_report = id
+        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = rmt
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
     End Sub
 End Class

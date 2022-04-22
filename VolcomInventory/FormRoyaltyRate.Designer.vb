@@ -30,6 +30,7 @@ Partial Class FormRoyaltyRate
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -46,7 +47,7 @@ Partial Class FormRoyaltyRate
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_royalty_rate, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnroyalty_rate, Me.GridColumnyear_start, Me.GridColumnyear_end, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_royalty_rate, Me.GridColumncreated_date, Me.GridColumncreated_by_name, Me.GridColumnroyalty_rate, Me.GridColumnyear_start, Me.GridColumnyear_end, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnnumber})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.[True]
@@ -71,7 +72,7 @@ Partial Class FormRoyaltyRate
         Me.GridColumncreated_date.FieldName = "created_date"
         Me.GridColumncreated_date.Name = "GridColumncreated_date"
         Me.GridColumncreated_date.Visible = True
-        Me.GridColumncreated_date.VisibleIndex = 0
+        Me.GridColumncreated_date.VisibleIndex = 1
         '
         'GridColumncreated_by_name
         '
@@ -79,7 +80,7 @@ Partial Class FormRoyaltyRate
         Me.GridColumncreated_by_name.FieldName = "created_by_name"
         Me.GridColumncreated_by_name.Name = "GridColumncreated_by_name"
         Me.GridColumncreated_by_name.Visible = True
-        Me.GridColumncreated_by_name.VisibleIndex = 1
+        Me.GridColumncreated_by_name.VisibleIndex = 2
         '
         'GridColumnroyalty_rate
         '
@@ -89,7 +90,7 @@ Partial Class FormRoyaltyRate
         Me.GridColumnroyalty_rate.FieldName = "royalty_rate"
         Me.GridColumnroyalty_rate.Name = "GridColumnroyalty_rate"
         Me.GridColumnroyalty_rate.Visible = True
-        Me.GridColumnroyalty_rate.VisibleIndex = 2
+        Me.GridColumnroyalty_rate.VisibleIndex = 3
         '
         'GridColumnyear_start
         '
@@ -97,7 +98,7 @@ Partial Class FormRoyaltyRate
         Me.GridColumnyear_start.FieldName = "year_start"
         Me.GridColumnyear_start.Name = "GridColumnyear_start"
         Me.GridColumnyear_start.Visible = True
-        Me.GridColumnyear_start.VisibleIndex = 3
+        Me.GridColumnyear_start.VisibleIndex = 4
         '
         'GridColumnyear_end
         '
@@ -105,7 +106,7 @@ Partial Class FormRoyaltyRate
         Me.GridColumnyear_end.FieldName = "year_end"
         Me.GridColumnyear_end.Name = "GridColumnyear_end"
         Me.GridColumnyear_end.Visible = True
-        Me.GridColumnyear_end.VisibleIndex = 4
+        Me.GridColumnyear_end.VisibleIndex = 5
         '
         'GridColumnnote
         '
@@ -113,7 +114,7 @@ Partial Class FormRoyaltyRate
         Me.GridColumnnote.FieldName = "note"
         Me.GridColumnnote.Name = "GridColumnnote"
         Me.GridColumnnote.Visible = True
-        Me.GridColumnnote.VisibleIndex = 5
+        Me.GridColumnnote.VisibleIndex = 6
         '
         'GridColumnid_report_status
         '
@@ -127,7 +128,15 @@ Partial Class FormRoyaltyRate
         Me.GridColumnreport_status.FieldName = "report_status"
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
-        Me.GridColumnreport_status.VisibleIndex = 6
+        Me.GridColumnreport_status.VisibleIndex = 7
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 0
         '
         'FormRoyaltyRate
         '
@@ -155,4 +164,5 @@ Partial Class FormRoyaltyRate
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
 End Class
