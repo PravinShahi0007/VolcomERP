@@ -322,7 +322,11 @@ Partial Class FormRoyaltyRateDet
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupControlHead)
         Me.Controls.Add(Me.PanelControlBottom)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormRoyaltyRateDet"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Royalty Rate"
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)

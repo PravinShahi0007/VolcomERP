@@ -17,7 +17,7 @@
         FROM tb_royalty_rate r
         INNER JOIN tb_m_user u ON u.id_user = r.created_by
         INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_royalty_rate
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
         WHERE r.id_royalty_rate>0 "
         query += condition + " "
         query += "ORDER BY r.id_royalty_rate " + order_type

@@ -42,7 +42,10 @@
             DECreated.EditValue = curr_date
             TxtStart.Text = curr_year
             TxtEnd.Text = curr_year
+            TxtRoyaltyRate.EditValue = 0.00
             TxtNumber.Text = "[auto generated]"
+            BtnSaveChanges.Visible = True
+            BtnPrint.Visible = False
         ElseIf action = "upd" Then
             Dim r As New ClassRoyaltyRate()
             Dim query As String = r.queryMain("AND  r.id_royalty_rate='" + id + "' ", "1")
@@ -66,11 +69,12 @@
         BtnSaveChanges.Visible = False
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
+        BtnMark.Visible = True
         TxtStart.Enabled = False
         TxtEnd.Enabled = False
         TxtRoyaltyRate.Enabled = False
         MENote.Enabled = False
-        BtnPrint.Visible = True
+        BtnPrint.Visible = False
 
         If is_view = "1" Then
             BtnCancell.Visible = False

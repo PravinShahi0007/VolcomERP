@@ -370,6 +370,8 @@ Partial Class FormABGRoyaltyZone
         'GridColumnroyalty_rate
         '
         Me.GridColumnroyalty_rate.Caption = "Royalty Rate"
+        Me.GridColumnroyalty_rate.DisplayFormat.FormatString = "N2"
+        Me.GridColumnroyalty_rate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnroyalty_rate.FieldName = "royalty_rate"
         Me.GridColumnroyalty_rate.Name = "GridColumnroyalty_rate"
         Me.GridColumnroyalty_rate.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
@@ -379,6 +381,8 @@ Partial Class FormABGRoyaltyZone
         'GridColumnearned_royalty
         '
         Me.GridColumnearned_royalty.Caption = "Earned Royalties "
+        Me.GridColumnearned_royalty.DisplayFormat.FormatString = "N2"
+        Me.GridColumnearned_royalty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnearned_royalty.FieldName = "earned_royalty"
         Me.GridColumnearned_royalty.Name = "GridColumnearned_royalty"
         Me.GridColumnearned_royalty.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
