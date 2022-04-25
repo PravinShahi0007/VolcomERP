@@ -566,6 +566,9 @@
         ElseIf report_mark_type = "403" Then
             'sample dev target pps
             FormSampleDevTargetPps.Close()
+        ElseIf report_mark_type = "407" Then
+            'abg roylat rate
+            FormRoyaltyRateDet.Close()
         End If
     End Sub
     Sub show()
@@ -1801,6 +1804,12 @@ GROUP BY rec.`id_prod_order`"
             FormSampleDevTargetPps.is_view = "1"
             FormSampleDevTargetPps.id_pps = id_report
             FormStoreDisplayDet.ShowDialog()
+        ElseIf report_mark_type = "407" Then
+            'abg roylat rate
+            FormRoyaltyRateDet.is_view = "1"
+            FormRoyaltyRateDet.action = "upd"
+            FormRoyaltyRateDet.id = id_report
+            FormRoyaltyRateDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3206,6 +3215,12 @@ GROUP BY rec.`id_prod_order`"
             'sample dev target pps
             table_name = "tb_sample_dev_pps"
             field_id = "id_sample_dev_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "407" Then
+            'abg roylat rate
+            table_name = "tb_royalty_rate"
+            field_id = "id_royalty_rate"
             field_number = "number"
             field_date = "created_date"
         Else

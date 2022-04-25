@@ -798,6 +798,9 @@
         ElseIf report_mark_type = "403" Then
             'sample target dev pps
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sample_dev_pps WHERE id_sample_dev_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "407" Then
+            'abg royalty rate
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_royalty_rate WHERE id_royalty_rate = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -12153,6 +12156,14 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
             End If
 
             query = String.Format("UPDATE tb_sample_dev_pps SET id_report_status = '{0}' WHERE id_sample_dev_pps = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "407" Then
+            'abg royalty rate
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            query = String.Format("UPDATE tb_royalty_rate SET id_report_status = '{0}' WHERE id_royalty_rate = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
