@@ -108,6 +108,9 @@ Partial Class FormViewProductionPLToWHRec
         Me.GridColumnQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNox = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl()
         Me.GCBarcode = New DevExpress.XtraGrid.GridControl()
         Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -119,9 +122,6 @@ Partial Class FormViewProductionPLToWHRec
         Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -934,6 +934,7 @@ Partial Class FormViewProductionPLToWHRec
         Me.GVRetDetail.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVRetDetail.OptionsCustomization.AllowGroup = False
         Me.GVRetDetail.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVRetDetail.OptionsView.ShowFooter = True
         Me.GVRetDetail.OptionsView.ShowGroupPanel = False
         '
         'GridColumnIdRet
@@ -1093,6 +1094,30 @@ Partial Class FormViewProductionPLToWHRec
         Me.GridColumnNox.VisibleIndex = 0
         Me.GridColumnNox.Width = 68
         '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 5
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.Visible = True
+        Me.GridColumnsht.VisibleIndex = 4
+        '
         'GroupControlListBarcode
         '
         Me.GroupControlListBarcode.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -1194,30 +1219,6 @@ Partial Class FormViewProductionPLToWHRec
         Me.RepositoryItemSpinEdit2.Mask.SaveLiteral = False
         Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
         Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
-        '
-        'GridColumnclass
-        '
-        Me.GridColumnclass.Caption = "Class"
-        Me.GridColumnclass.FieldName = "class"
-        Me.GridColumnclass.Name = "GridColumnclass"
-        Me.GridColumnclass.Visible = True
-        Me.GridColumnclass.VisibleIndex = 2
-        '
-        'GridColumncolor
-        '
-        Me.GridColumncolor.Caption = "Color"
-        Me.GridColumncolor.FieldName = "color"
-        Me.GridColumncolor.Name = "GridColumncolor"
-        Me.GridColumncolor.Visible = True
-        Me.GridColumncolor.VisibleIndex = 5
-        '
-        'GridColumnsht
-        '
-        Me.GridColumnsht.Caption = "Silhouette"
-        Me.GridColumnsht.FieldName = "sht"
-        Me.GridColumnsht.Name = "GridColumnsht"
-        Me.GridColumnsht.Visible = True
-        Me.GridColumnsht.VisibleIndex = 4
         '
         'FormViewProductionPLToWHRec
         '

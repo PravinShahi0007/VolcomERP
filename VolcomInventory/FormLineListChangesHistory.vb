@@ -85,4 +85,15 @@
         GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub RepoLinkDoc_Click(sender As Object, e As EventArgs) Handles RepoLinkDoc.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim rmt As String = GVData.GetFocusedRowCellValue("report_mark_type").ToString
+            Dim id_report As String = GVData.GetFocusedRowCellValue("id_report").ToString
+            Dim sm As New ClassShowPopUp()
+            sm.id_report = id_report
+            sm.report_mark_type = rmt
+            sm.show()
+        End If
+    End Sub
 End Class
