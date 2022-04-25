@@ -19,6 +19,15 @@ Module Common
     Public username_user As String
     Public name_user As String
     Public code_user As String
+
+    Public id_super_user As String = "0"
+    Public auto_update As String = "0"
+    Public update_url As String = ""
+
+    Public sample_image_path As String = ""
+    Public mat_image_path As String = ""
+    Public logo_image_path As String = ""
+
     Public product_image_path As String = ""
     Public emp_image_path As String = ""
     Public is_change_pass_user As String = ""
@@ -36,9 +45,24 @@ Module Common
         End If
     End Sub
 
-    Sub loadImgPath()
-        product_image_path = get_setup_field("pic_path_design") & "\"
-        emp_image_path = get_setup_field("pic_path_emp") & "\"
+    Sub load_startup()
+        FormMain.LoginToolStripMenuItem.Visible = True
+        FormMain.DashboardToolStripMenuItem.Visible = False
+
+        Dim q As String = "SELECT pic_path_mat,pic_path_sample,pic_path_design,pic_path_logo,pic_path_emp,id_role_super_admin,auto_update,update_address FROM tb_opt"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        'image path
+        mat_image_path = dt.Rows(0)("pic_path_mat").ToString & "\"
+        sample_image_path = dt.Rows(0)("pic_path_sample").ToString & "\"
+        logo_image_path = dt.Rows(0)("pic_path_logo").ToString & "\"
+        product_image_path = dt.Rows(0)("pic_path_design").ToString & "\"
+        emp_image_path = dt.Rows(0)("pic_path_emp").ToString & "\"
+
+        'other opt
+        id_super_user = dt.Rows(0)("id_role_super_admin").ToString
+        auto_update = dt.Rows(0)("auto_update").ToString
+        update_url = dt.Rows(0)("update_address").ToString
     End Sub
 
     Sub set_min_date_reference(ByRef date_edit As DateEdit, ByVal id_coa_tag As String)

@@ -130,7 +130,9 @@ GROUP BY pr.id_purc_req"
         load_item_cat()
         load_item()
         load_po_status()
-        loadImgPath()
+
+        'loadImgPath()
+
         load_expense_type()
         '
         load_rec_status()
