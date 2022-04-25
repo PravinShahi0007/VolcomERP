@@ -45,7 +45,9 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
         load_report_status()
         is_reload = " Then1"
 
-        DEYearBudget.EditValue = getTimeDB()
+        Dim now_time As Date = getTimeDB()
+
+        DEYearBudget.EditValue = now_time
 
         load_purc_type()
         is_reload = "2"
@@ -74,17 +76,15 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
             '
             TEReqBy.Text = name_user
             id_user_created = id_user
-            DEDateCreated.EditValue = getTimeDB()
+            DEDateCreated.EditValue = now_time
             TEReqNUmber.Text = "[auto generate]"
 
-            DERequirementDate.EditValue = Date.Parse(getTimeDB().ToString).AddDays(7)
+            DERequirementDate.EditValue = Date.Parse(now_time.ToString).AddDays(7)
             '
             GVItemList.OptionsBehavior.Editable = True
             BtnAttachment.Visible = False
             '
-            Dim query As String = "Select NOW() As time_server"
-            Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
-            DERequirementDate.Properties.MinValue = Date.Parse(dt.Rows(0)("time_server")).AddDays(7)
+            DERequirementDate.Properties.MinValue = Date.Parse(now_time.ToString).AddDays(7)
 
             If is_duplicate = "1" Then
                 Dim data As DataTable = execute_query("Select id_expense_type, is_store_purchase, note FROM tb_purc_req WHERE id_purc_req = '" & id_req & "'", -1, True, "", "", "", "")
@@ -390,9 +390,9 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
 
         If is_ok Then
             Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
-            newRow("ship_to") = get_setup_field("id_own_company")
-            newRow("ship_destination") = get_company_x(get_setup_field("id_own_company"), "1")
-            newRow("ship_address") = get_company_x(get_setup_field("id_own_company"), "3")
+            newRow("ship_to") = id_own_company
+            newRow("ship_destination") = own_company_name
+            newRow("ship_address") = own_company_address
             newRow("is_listed") = "no"
             TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
             GCItemList.RefreshDataSource()

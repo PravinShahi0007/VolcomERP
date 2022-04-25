@@ -21,7 +21,7 @@ Module Common
     Public code_user As String
 
     Public id_super_user As String = "0"
-    Public auto_update As String = "0"
+    Public auto_update As String = "2"
     Public update_url As String = ""
 
     Public sample_image_path As String = ""
@@ -33,6 +33,11 @@ Module Common
     Public is_change_pass_user As String = ""
     Public again_awb As String = ""
     Public id_login_season As String = ""
+    Public load_notif As String = ""
+
+    Public id_own_company As String = ""
+    Public own_company_name As String = ""
+    Public own_company_address As String = ""
 
     Sub check_login_season()
         Dim q As String = "SELECT is_season_over FROM tb_log_login WHERE id_season='" & id_login_season & "'"
@@ -49,7 +54,11 @@ Module Common
         FormMain.LoginToolStripMenuItem.Visible = True
         FormMain.DashboardToolStripMenuItem.Visible = False
 
-        Dim q As String = "SELECT pic_path_mat,pic_path_sample,pic_path_design,pic_path_logo,pic_path_emp,id_role_super_admin,auto_update,update_address FROM tb_opt"
+        Dim q As String = "SELECT o.pic_path_mat,o.pic_path_sample,o.pic_path_design,o.pic_path_logo,o.pic_path_emp,o.id_role_super_admin,o.auto_update,o.update_address,o.id_own_company
+,o.load_notif
+,c.comp_name,c.address_primary
+FROM tb_opt o
+LEFT JOIN tb_m_comp c ON c.id_comp=o.id_own_company"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
         'image path
@@ -63,6 +72,12 @@ Module Common
         id_super_user = dt.Rows(0)("id_role_super_admin").ToString
         auto_update = dt.Rows(0)("auto_update").ToString
         update_url = dt.Rows(0)("update_address").ToString
+        load_notif = dt.Rows(0)("load_notif").ToString
+
+        'company setup
+        id_own_company = dt.Rows(0)("id_own_company").ToString
+        own_company_name = dt.Rows(0)("comp_name").ToString
+        own_company_address = dt.Rows(0)("address_primary").ToString
     End Sub
 
     Sub set_min_date_reference(ByRef date_edit As DateEdit, ByVal id_coa_tag As String)

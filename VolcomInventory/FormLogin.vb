@@ -55,7 +55,7 @@ Public Class FormLogin
                     FormMain.Focus()
 
                     FormMain.checkNumberNotif()
-                    Dim interval As Integer = Integer.Parse(get_setup_field("load_notif").ToString)
+                    Dim interval As Integer = Integer.Parse(load_notif.ToString)
                     FormMain.TimerNotif.Interval = interval
                     If show_notif = "1" Then
                         FormMain.TimerNotif.Enabled = True

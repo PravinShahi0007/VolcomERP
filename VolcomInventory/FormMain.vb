@@ -46,7 +46,7 @@ Public Class FormMain
             'check_pic_location()
             load_startup()
 
-            If get_setup_field("auto_update") = "1" Then
+            If auto_update = "1" Then
                 check_and_update_version()
             End If
 
@@ -103,11 +103,11 @@ HAVING NOT ISNULL(id_user)"
         Dim web As New Net.WebClient
         Dim LatestVersion As String = web.DownloadString(update_url & "version.txt") 'To download the Lastest Version from a specified URL.
         If Application.ProductVersion.ToString < LatestVersion Then
-            infoCustom("New version of application is available! Please update application.")
-            My.Computer.Network.DownloadFile(update_url & "setup.exe", Application.StartupPath & "\setup.exe", "", "", True, 100, True)
-            My.Computer.Network.DownloadFile(update_url & "SetupVolcomERP.msi", Application.StartupPath & "\SetupVolcomERP.msi", "", "", True, 100, True)
-            infoCustom("File downloaded. Begin installing new version.")
-            Process.Start(Application.StartupPath & "\setup.exe")
+            infoCustom("ERP New version is available! Please update application.")
+            'My.Computer.Network.DownloadFile(update_url & "setup.exe", Application.StartupPath & "\setup.exe", "", "", True, 100, True)
+            'My.Computer.Network.DownloadFile(update_url & "SetupVolcomERP.msi", Application.StartupPath & "\SetupVolcomERP.msi", "", "", True, 100, True)
+            'infoCustom("File downloaded. Begin installing new version.")
+            'Process.Start(Application.StartupPath & "\setup.exe")
             Application.Exit()
         End If
     End Sub
