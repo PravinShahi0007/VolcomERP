@@ -53,7 +53,7 @@ Public Class FormDatabase
         Try
             write_database_configuration(TextEditHost.Text, TextEditUsername.Text, TextEditPassword.Text, ListBoxControlDatabase.SelectedValue.ToString)
             read_database_configuration()
-            FormMain.check_pic_location()
+            load_startup()
             'FormMain.LoginToolStripMenuItem.Visible = True
         Catch ex As Exception
             XtraMessageBox.Show("Connection failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
