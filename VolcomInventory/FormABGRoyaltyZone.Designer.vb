@@ -370,7 +370,7 @@ Partial Class FormABGRoyaltyZone
         'GridColumnroyalty_rate
         '
         Me.GridColumnroyalty_rate.Caption = "Royalty Rate"
-        Me.GridColumnroyalty_rate.DisplayFormat.FormatString = "N2"
+        Me.GridColumnroyalty_rate.DisplayFormat.FormatString = "{0:n2}%"
         Me.GridColumnroyalty_rate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnroyalty_rate.FieldName = "royalty_rate"
         Me.GridColumnroyalty_rate.Name = "GridColumnroyalty_rate"

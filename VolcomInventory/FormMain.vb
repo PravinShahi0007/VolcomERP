@@ -6,7 +6,6 @@ Imports System.Xml
 
 Public Class FormMain
     Public connection_problem As Boolean = False
-    Dim id_super_user As String = "0"
 
     Sub badgeVisible()
         If (RibbonControl.SelectedPage.ToString = "General" Or RibbonControl.SelectedPage.ToString = "") And Badge1.Properties.Text > "0" Then
@@ -43,10 +42,14 @@ Public Class FormMain
             DashboardToolStripMenuItem.Visible = False
             read_database_configuration()
             check_connection(True, "", "", "", "")
-            check_pic_location()
-            If get_setup_field("auto_update") = "1" Then
+
+            'check_pic_location()
+            load_startup()
+
+            If auto_update = "1" Then
                 check_and_update_version()
             End If
+
             'show hide login
             'LoginToolStripMenuItem.Visible = True
         Catch ex As Exception
@@ -62,7 +65,8 @@ Public Class FormMain
         End Try
 
         'change connection shortkey & role superuser
-        id_super_user = get_setup_field("id_role_super_admin")
+
+
         For Each ex As Control In Me.Controls
             AddHandler ex.KeyDown, AddressOf FormMain_KeyUp
         Next
@@ -96,15 +100,14 @@ HAVING NOT ISNULL(id_user)"
 
     '----------- check version
     Sub check_and_update_version()
-        Dim update_url As String = get_setup_field("update_address")
         Dim web As New Net.WebClient
         Dim LatestVersion As String = web.DownloadString(update_url & "version.txt") 'To download the Lastest Version from a specified URL.
         If Application.ProductVersion.ToString < LatestVersion Then
-            infoCustom("New version of application is available! System will automatically update to new version.")
-            My.Computer.Network.DownloadFile(update_url & "setup.exe", Application.StartupPath & "\setup.exe", "", "", True, 100, True)
-            My.Computer.Network.DownloadFile(update_url & "SetupVolcomERP.msi", Application.StartupPath & "\SetupVolcomERP.msi", "", "", True, 100, True)
-            infoCustom("File downloaded. Begin installing new version.")
-            Process.Start(Application.StartupPath & "\setup.exe")
+            infoCustom("ERP New version is available! Please update application.")
+            'My.Computer.Network.DownloadFile(update_url & "setup.exe", Application.StartupPath & "\setup.exe", "", "", True, 100, True)
+            'My.Computer.Network.DownloadFile(update_url & "SetupVolcomERP.msi", Application.StartupPath & "\SetupVolcomERP.msi", "", "", True, 100, True)
+            'infoCustom("File downloaded. Begin installing new version.")
+            'Process.Start(Application.StartupPath & "\setup.exe")
             Application.Exit()
         End If
     End Sub
@@ -210,44 +213,51 @@ HAVING NOT ISNULL(id_user)"
     End Sub
 
     'check pic location
-    Sub check_pic_location()
-        'picture location
-        Dim err_pic As String = "-1"
-        Try
-            Dim pic_path_mat As String = get_setup_field("pic_path_mat")
-            Dim pic_path_sample As String = get_setup_field("pic_path_sample")
-            Dim pic_path_design As String = get_setup_field("pic_path_design")
-            Dim pic_path_logo As String = get_setup_field("pic_path_logo")
+    'Sub check_pic_location()
+    '    'picture location
+    '    'Dim err_pic As String = "-1"
+    '    'Try
+    '    '    Dim q As String = "SELECT pic_path_mat,pic_path_sample,pic_path_design,pic_path_logo FROM tb_opt"
+    '    '    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
-            If pic_path_mat = "" Or pic_path_sample = "" Or pic_path_design = "" Or pic_path_logo = "" Then
-                err_pic = "1"
-            Else
-                If Not System.IO.Directory.Exists(pic_path_sample) Or Not System.IO.Directory.Exists(pic_path_mat) Or Not System.IO.Directory.Exists(pic_path_design) Or Not System.IO.Directory.Exists(pic_path_logo) Then
-                    err_pic = "1"
-                Else
-                    If Not System.IO.File.Exists(pic_path_mat & "\default.jpg") Or Not System.IO.File.Exists(pic_path_sample & "\default.jpg") Or Not System.IO.File.Exists(pic_path_design & "\default.jpg") Or Not System.IO.File.Exists(pic_path_logo & "\default.jpg") Then
-                        err_pic = "2"
-                    End If
-                End If
-            End If
-        Catch ex As Exception
-            'err_pic = "1"
-            MsgBox(ex.ToString)
-        End Try
-        '
-        If err_pic <> "-1" Then
-            LoginToolStripMenuItem.Visible = False
-            stopCustom("Connection error, please contact administrator.")
-            'FormSetupPicLocation.TopMost = True
-            'FormSetupPicLocation.Show()
-            'FormSetupPicLocation.Focus()
-            'FormSetupPicLocation.TopMost = False
-        Else
-            LoginToolStripMenuItem.Visible = True
-            DashboardToolStripMenuItem.Visible = False
-            loadImgPath()
-        End If
-    End Sub
+    '    '    Dim pic_path_mat As String = dt.Rows(0)("pic_path_mat").ToString
+    '    '    Dim pic_path_sample As String = dt.Rows(0)("pic_path_sample").ToString
+    '    '    Dim pic_path_design As String = dt.Rows(0)("pic_path_design").ToString
+    '    '    Dim pic_path_logo As String = dt.Rows(0)("pic_path_logo").ToString
+
+    '    '    If pic_path_mat = "" Or pic_path_sample = "" Or pic_path_design = "" Or pic_path_logo = "" Then
+    '    '        err_pic = "1"
+    '    '    Else
+    '    '        If Not System.IO.Directory.Exists(pic_path_sample) Or Not System.IO.Directory.Exists(pic_path_mat) Or Not System.IO.Directory.Exists(pic_path_design) Or Not System.IO.Directory.Exists(pic_path_logo) Then
+    '    '            err_pic = "1"
+    '    '        Else
+    '    '            If Not System.IO.File.Exists(pic_path_mat & "\default.jpg") Or Not System.IO.File.Exists(pic_path_sample & "\default.jpg") Or Not System.IO.File.Exists(pic_path_design & "\default.jpg") Or Not System.IO.File.Exists(pic_path_logo & "\default.jpg") Then
+    '    '                err_pic = "2"
+    '    '            End If
+    '    '        End If
+    '    '    End If
+    '    'Catch ex As Exception
+    '    '    'err_pic = "1"
+    '    '    MsgBox(ex.ToString)
+    '    'End Try
+    '    ''
+    '    'If err_pic <> "-1" Then
+    '    '    LoginToolStripMenuItem.Visible = False
+    '    '    stopCustom("Connection error, please contact administrator.")
+    '    '    'FormSetupPicLocation.TopMost = True
+    '    '    'FormSetupPicLocation.Show()
+    '    '    'FormSetupPicLocation.Focus()
+    '    '    'FormSetupPicLocation.TopMost = False
+    '    'Else
+    '    '    LoginToolStripMenuItem.Visible = True
+    '    '    DashboardToolStripMenuItem.Visible = False
+    '    '    loadImgPath()
+    '    'End If
+
+    '    LoginToolStripMenuItem.Visible = True
+    '    DashboardToolStripMenuItem.Visible = False
+    '    load_startup()
+    'End Sub
     'Show Ribbon
     Sub show_rb(ByVal formnamex As String)
         formName = formnamex

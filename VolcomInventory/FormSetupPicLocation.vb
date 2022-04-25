@@ -46,43 +46,43 @@
         'Try
         Dim mat_path, sample_path, design_path, logo_path As String
 
-            '
-            EP_TE_cant_blank(EPPicLocation, TEPicMat)
-            EP_TE_cant_blank(EPPicLocation, TEPicSample)
-            EP_TE_cant_blank(EPPicLocation, TEPicDesign)
-            EP_TE_cant_blank(EPPicLocation, TEPicLogo)
-            '
-            If Not formIsValidInPanel(EPPicLocation, PC2) Then
-                errorInput()
-            Else
-                If Not System.IO.File.Exists(TEPicMat.Text & "\default.jpg") Then
-                    System.IO.File.Copy(My.Application.Info.DirectoryPath.ToString & "\pic_default.jpg", TEPicMat.Text & "\default.jpg", True)
-                End If
-
-                If Not System.IO.File.Exists(TEPicSample.Text & "\default.jpg") Then
-                    System.IO.File.Copy(My.Application.Info.DirectoryPath.ToString & "\pic_default.jpg", TEPicSample.Text & "\default.jpg", True)
-                End If
-
-                If Not System.IO.File.Exists(TEPicDesign.Text & "\default.jpg") Then
-                    System.IO.File.Copy(My.Application.Info.DirectoryPath.ToString & "\pic_default.jpg", TEPicDesign.Text & "\default.jpg", True)
-                End If
-
-                If Not System.IO.File.Exists(TEPicLogo.Text & "\default.jpg") Then
-                    System.IO.File.Copy(My.Application.Info.DirectoryPath.ToString & "\pic_default.jpg", TEPicLogo.Text & "\default.jpg", True)
-                End If
-
-                mat_path = Replace(TEPicMat.Text, "\", "\\")
-                sample_path = Replace(TEPicSample.Text, "\", "\\")
-                design_path = Replace(TEPicDesign.Text, "\", "\\")
-                logo_path = Replace(TEPicLogo.Text, "\", "\\")
-                Dim query As String = String.Format("UPDATE tb_opt SET pic_path_mat='{0}', pic_path_sample='{1}', pic_path_design='{2}', pic_path_logo='{3}'", mat_path, sample_path, design_path, logo_path)
-                execute_non_query(query, True, "", "", "", "")
-                If id_user = "" Then
-                    FormMain.LoginToolStripMenuItem.Visible = True
-                End If
-                loadImgPath()
-                Close()
+        '
+        EP_TE_cant_blank(EPPicLocation, TEPicMat)
+        EP_TE_cant_blank(EPPicLocation, TEPicSample)
+        EP_TE_cant_blank(EPPicLocation, TEPicDesign)
+        EP_TE_cant_blank(EPPicLocation, TEPicLogo)
+        '
+        If Not formIsValidInPanel(EPPicLocation, PC2) Then
+            errorInput()
+        Else
+            If Not System.IO.File.Exists(TEPicMat.Text & "\default.jpg") Then
+                System.IO.File.Copy(My.Application.Info.DirectoryPath.ToString & "\pic_default.jpg", TEPicMat.Text & "\default.jpg", True)
             End If
+
+            If Not System.IO.File.Exists(TEPicSample.Text & "\default.jpg") Then
+                System.IO.File.Copy(My.Application.Info.DirectoryPath.ToString & "\pic_default.jpg", TEPicSample.Text & "\default.jpg", True)
+            End If
+
+            If Not System.IO.File.Exists(TEPicDesign.Text & "\default.jpg") Then
+                System.IO.File.Copy(My.Application.Info.DirectoryPath.ToString & "\pic_default.jpg", TEPicDesign.Text & "\default.jpg", True)
+            End If
+
+            If Not System.IO.File.Exists(TEPicLogo.Text & "\default.jpg") Then
+                System.IO.File.Copy(My.Application.Info.DirectoryPath.ToString & "\pic_default.jpg", TEPicLogo.Text & "\default.jpg", True)
+            End If
+
+            mat_path = Replace(TEPicMat.Text, "\", "\\")
+            sample_path = Replace(TEPicSample.Text, "\", "\\")
+            design_path = Replace(TEPicDesign.Text, "\", "\\")
+            logo_path = Replace(TEPicLogo.Text, "\", "\\")
+            Dim query As String = String.Format("UPDATE tb_opt SET pic_path_mat='{0}', pic_path_sample='{1}', pic_path_design='{2}', pic_path_logo='{3}'", mat_path, sample_path, design_path, logo_path)
+            execute_non_query(query, True, "", "", "", "")
+            If id_user = "" Then
+                FormMain.LoginToolStripMenuItem.Visible = True
+            End If
+            load_startup()
+            Close()
+        End If
         'Catch ex As Exception
         '    errorCustom("please check your picture path or your database connection!")
         'End Try
