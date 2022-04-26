@@ -28,11 +28,15 @@
     End Sub
 
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEBBKFrom.EditValue = getTimeDB()
-        DEBBKTo.EditValue = getTimeDB()
+        Dim dte_now As Date = getTimeDB()
+        DEBBKFrom.EditValue = dte_now
+        DEBBKTo.EditValue = dte_now
         '
-        DEFromSum.EditValue = getTimeDB()
-        DEToSum.EditValue = getTimeDB()
+        DEFromSum.EditValue = dte_now
+        DEToSum.EditValue = dte_now
+        '
+        DECAFrom.EditValue = dte_now
+        DECATo.EditValue = dte_now
         '
         TEKurs.EditValue = 1.0
         TEKursDPKhusus.EditValue = 1.0
@@ -62,8 +66,7 @@
         'cabang
         load_unit()
 
-        DECAFrom.EditValue = Date.Parse(Now)
-        DECATo.EditValue = Date.Parse(Now)
+
     End Sub
 
     Sub load_coa_type()
