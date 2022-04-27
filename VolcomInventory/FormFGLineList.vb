@@ -1105,7 +1105,7 @@ Public Class FormFGLineList
                     End If
 
                     'cek add cost utk kids
-                    Dim qsni As String = "SELECT d.design_code AS `code`, d.design_display_name AS `name` 
+                    Dim qsni As String = "SELECT d.design_code AS `code`, d.design_display_name AS `name`, i.id_division, i.id_subkat
                     FROM tb_m_design d
                     INNER JOIN (
                       SELECT c.id_design, 
@@ -1113,12 +1113,13 @@ Public Class FormFGLineList
                       MAX(CASE WHEN d.id_code=31 THEN d.id_code_detail END) AS `id_subkat`
                       FROM tb_m_design_code AS c
                       INNER JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-                      WHERE d.id_code IN (31,32) AND d.id_code_detail=14696 AND d.id_code_detail!=3822
+                      WHERE d.id_code IN (31,32) 
                       GROUP BY c.id_design
                     ) i ON i.id_design = d.id_design
                     INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = d.id_prod_demand_design_line
                     WHERE 1=1
                     AND d.id_design IN (" + id_design_in + ") 
+                    AND i.id_division=14696 AND i.id_subkat!=3822
                     AND pdd.additional_cost<=0
                     GROUP BY d.id_design 
                     ORDER BY d.design_display_name ASC "
