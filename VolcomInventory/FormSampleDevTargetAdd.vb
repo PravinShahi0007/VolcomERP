@@ -153,12 +153,6 @@ ORDER BY dsg.id_design DESC"
             Dim newRow As DataRow = (TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable)).NewRow()
             newRow("id_design") = SLEDesignStockStore.EditValue.ToString
             newRow("design_display_name") = SLEDesignStockStore.Text
-            newRow("labdip") = ""
-            newRow("strike_off_1") = ""
-            newRow("proto_sample_1") = ""
-            newRow("strike_off_2") = ""
-            newRow("proto_sample_2") = ""
-            newRow("copy_proto_sample_2") = ""
             TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable).Rows.Add(newRow)
         End If
     End Sub
