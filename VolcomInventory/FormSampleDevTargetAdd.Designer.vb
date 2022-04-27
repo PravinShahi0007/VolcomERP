@@ -38,6 +38,7 @@ Partial Class FormSampleDevTargetAdd
         Me.GridColumnCodeSearch = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddBlank = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.DELabDip.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DELabDip.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStrikeOff1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -233,7 +234,7 @@ Partial Class FormSampleDevTargetAdd
         Me.BAdd.Appearance.Options.UseForeColor = True
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BAdd.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BAdd.Location = New System.Drawing.Point(0, 207)
+        Me.BAdd.Location = New System.Drawing.Point(0, 201)
         Me.BAdd.LookAndFeel.SkinName = "Metropolis"
         Me.BAdd.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BAdd.LookAndFeel.UseDefaultLookAndFeel = False
@@ -242,12 +243,32 @@ Partial Class FormSampleDevTargetAdd
         Me.BAdd.TabIndex = 8939
         Me.BAdd.Text = "Add"
         '
+        'BAddBlank
+        '
+        Me.BAddBlank.Appearance.BackColor = System.Drawing.Color.Teal
+        Me.BAddBlank.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BAddBlank.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BAddBlank.Appearance.Options.UseBackColor = True
+        Me.BAddBlank.Appearance.Options.UseFont = True
+        Me.BAddBlank.Appearance.Options.UseForeColor = True
+        Me.BAddBlank.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BAddBlank.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BAddBlank.Location = New System.Drawing.Point(0, 229)
+        Me.BAddBlank.LookAndFeel.SkinName = "Metropolis"
+        Me.BAddBlank.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BAddBlank.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BAddBlank.Name = "BAddBlank"
+        Me.BAddBlank.Size = New System.Drawing.Size(389, 28)
+        Me.BAddBlank.TabIndex = 8940
+        Me.BAddBlank.Text = "Add Blank"
+        '
         'FormSampleDevTargetAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(389, 235)
+        Me.ClientSize = New System.Drawing.Size(389, 257)
         Me.Controls.Add(Me.BAdd)
+        Me.Controls.Add(Me.BAddBlank)
         Me.Controls.Add(Me.SLEDesignStockStore)
         Me.Controls.Add(Me.DECopyProtoSample2)
         Me.Controls.Add(Me.LabelControl7)
@@ -306,4 +327,5 @@ Partial Class FormSampleDevTargetAdd
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BAddBlank As DevExpress.XtraEditors.SimpleButton
 End Class

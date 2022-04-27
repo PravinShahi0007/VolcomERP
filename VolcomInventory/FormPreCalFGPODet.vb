@@ -520,8 +520,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             ElseIf TERatePayment.EditValue <= 1 Or TERateManagement.EditValue <= 1 Then
                 warningCustom("Kurs not found, please contact Accounting Departement")
             Else
-                Dim q As String = "INSERT INTO `tb_pre_cal_fgpo`(created_date,created_by,id_report_status,step,`id_comp`,`id_type`,`weight`,`cbm`,`pol`,`ctn`,`rate_management`,`rate_current`) 
-VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "','" & SLETypeImport.EditValue.ToString & "','" & decimalSQL(Decimal.Parse(TEWeight.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TECBM.EditValue.ToString).ToString) & "','" & addSlashes(TEPOL.Text) & "','" & decimalSQL(Decimal.Parse(TECTN.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TERateManagement.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TERatePayment.EditValue.ToString).ToString) & "');SELECT LAST_INSERT_ID();"
+                Dim q As String = "INSERT INTO `tb_pre_cal_fgpo`(created_date,created_by,id_report_status,step,`id_comp`,`id_type`,`weight`,`cbm`,`pol`,`ctn`,`rate_management`,`rate_current`,`sales_ppn`) 
+VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "','" & SLETypeImport.EditValue.ToString & "','" & decimalSQL(Decimal.Parse(TEWeight.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TECBM.EditValue.ToString).ToString) & "','" & addSlashes(TEPOL.Text) & "','" & decimalSQL(Decimal.Parse(TECTN.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TERateManagement.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TERatePayment.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(get_current_vat().ToString).ToString) & "');SELECT LAST_INSERT_ID();"
                 id = execute_query(q, 0, True, "", "", "", "")
 
                 execute_non_query("CALL gen_number('" & id & "','334')", True, "", "", "", "")
