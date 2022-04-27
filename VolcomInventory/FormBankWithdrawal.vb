@@ -1819,22 +1819,27 @@ HAVING balance>0"
     Private Sub SLEFGPOVendor_EditValueChanged(sender As Object, e As EventArgs) Handles SLEFGPOVendor.EditValueChanged
         clear_list()
 
-        Dim q As String = "SELECT co.`id_country`,co.`country`,IF(co.`id_country`=5,'no','yes') AS is_valas
+        If SLEFGPOVendor.EditValue.ToString = "KGS" Then
+            view_valas()
+        Else
+            Dim q As String = "SELECT co.`id_country`,co.`country`,IF(co.`id_country`=5,'no','yes') AS is_valas
 FROM tb_m_comp c
 INNER JOIN tb_m_city ct ON ct.`id_city`=c.`id_city`
 INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
 INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
 INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
 WHERE c.`id_comp`='" & SLEFGPOVendor.EditValue.ToString & "'"
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-        If dt.Rows.Count > 0 Then
-            If dt.Rows(0)("is_valas").ToString = "yes" Then
-                'valas
-                view_valas()
-            Else
-                view_no_valas()
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                If dt.Rows(0)("is_valas").ToString = "yes" Then
+                    'valas
+                    view_valas()
+                Else
+                    view_no_valas()
+                End If
             End If
         End If
+
         load_valas_rate()
     End Sub
 
