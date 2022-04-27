@@ -2053,9 +2053,9 @@ Partial Class FormSampleDevelopment
         '
         'GVTracker
         '
-        Me.GVTracker.Appearance.BandPanel.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.GVTracker.Appearance.BandPanel.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
         Me.GVTracker.Appearance.BandPanel.Options.UseFont = True
-        Me.GVTracker.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GVTracker.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
         Me.GVTracker.Appearance.HeaderPanel.Options.UseFont = True
         Me.GVTracker.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8})
         Me.GVTracker.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn17, Me.GridColumn32, Me.BandedGridColumn16, Me.BandedGridColumn18, Me.GridColumn33, Me.GridColumn34, Me.GridColumnTarget1, Me.GridColumnUpdate1, Me.GridColumnActual1, Me.GridColumnTarget2, Me.GridColumnUpdate2, Me.GridColumnActual2, Me.GridColumnTarget3, Me.GridColumnUpdate3, Me.GridColumnActual3, Me.GridColumnTarget4, Me.GridColumnUpdate4, Me.GridColumnActual4, Me.GridColumnTarget5, Me.GridColumnUpdate5, Me.GridColumnActual5, Me.GridColumnTarget6, Me.GridColumnUpdate6, Me.GridColumnActual6})
@@ -2065,9 +2065,7 @@ Partial Class FormSampleDevelopment
         FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Red
         FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
         FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue1.Expression = "Iif([labdip_act] = '' Or IsNullOrEmpty([labdip_act]), Iif([cur_date] >= Iif([labd" &
-    "ip_upd] = '' Or IsNullOrEmpty([labdip_upd]), [labdip], [labdip_upd]), True, Fals" &
-    "e), False)"
+        FormatConditionRuleValue1.Expression = resources.GetString("FormatConditionRuleValue1.Expression")
         GridFormatRule1.Rule = FormatConditionRuleValue1
         GridFormatRule2.Column = Me.GridColumnActual2
         GridFormatRule2.ColumnApplyTo = Me.GridColumnActual2

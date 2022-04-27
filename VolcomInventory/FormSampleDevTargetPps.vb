@@ -246,6 +246,7 @@ WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
                     'check sudah ada apa belum
                     Dim is_ok As Boolean = True
                     '
+                    '
                     If is_ok Then
                         Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,id_comp,created_by,note,id_report_status,id_type)
 VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & SLEType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
