@@ -104,9 +104,12 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
                     PCAddDel.Visible = False
                 End If
                 '
-                If id_report_status = "6" Or id_report_status = "5" Then
-                    is_view = "1"
+                If id_report_status = "3" Or id_report_status = "6" Or id_report_status = "5" Then
                     PCAddDel.Visible = False
+                    is_view = "1"
+                End If
+
+                If id_report_status = "6" Or id_report_status = "5" Then
                     BRelease.Visible = False
                 End If
             End If
@@ -483,7 +486,7 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.report_mark_type = "403"
         FormDocumentUpload.id_report = id_pps
-        If is_view = "1" Or Not check_edit_report_status(id_report_status, "403", id_pps) Then
+        If id_report_status = "5" Or id_report_status = "6" Then
             FormDocumentUpload.is_view = "1"
         End If
         FormDocumentUpload.ShowDialog()
@@ -549,6 +552,7 @@ WHERE pps.id_sample_dev_pps = '" & id_pps & "'"
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+
         Cursor = Cursors.Default
     End Sub
 

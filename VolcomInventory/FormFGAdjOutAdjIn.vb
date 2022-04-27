@@ -159,6 +159,8 @@
             If Not data.Rows(i)("adj_out_fg_det_qty") <= adj_in_qty Then
                 data.Rows(i)("adj_out_fg_det_qty") = adj_in_qty
                 data.Rows(i)("qty_fixed") = adj_in_qty
+
+                data.Rows(i)("retail_price_amount") = data.Rows(i)("adj_out_fg_det_qty") * data.Rows(i)("retail_price")
             End If
         Next
 

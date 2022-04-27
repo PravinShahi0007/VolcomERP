@@ -1803,7 +1803,7 @@ GROUP BY rec.`id_prod_order`"
             'sample dev target pps
             FormSampleDevTargetPps.is_view = "1"
             FormSampleDevTargetPps.id_pps = id_report
-            FormStoreDisplayDet.ShowDialog()
+            FormSampleDevTargetPps.ShowDialog()
         ElseIf report_mark_type = "407" Then
             'abg roylat rate
             FormRoyaltyRateDet.is_view = "1"
