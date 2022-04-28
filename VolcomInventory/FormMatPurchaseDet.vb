@@ -879,7 +879,7 @@ WHERE report_mark_type='13' AND id_report='" & id_purc & "'"
 ,FORMAT(SUM(plp.total_qty_pd),0,'id_ID') AS total_qty_pd
 ,FORMAT(CEIL(SUM((plp.total_qty_pd*pl.`qty_consumption`))),0,'id_ID') AS total_qty_order
 ,FORMAT(pl.tolerance,2,'id_ID') AS tolerance
-,FORMAT(CEIL(SUM((plp.total_qty_pd*pl.`qty_consumption`))*(pl.tolerance/100))+plp.allowance_qty,0,'id_ID') AS total_toleransi
+,FORMAT(CEIL(SUM((plp.total_qty_pd*pl.`qty_consumption`))*(pl.tolerance/100))+SUM(plp.allowance_qty),0,'id_ID') AS total_toleransi
 ,FORMAT(CEIL(SUM((plp.total_qty_pd*pl.`qty_consumption`)+plp.allowance_qty)+(CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))),0,'id_ID') AS total 
 ,md.mat_det_code
 ,FORMAT(mdp.min_qty_in_bulk,0,'id_ID') AS min_qty_in_bulk,mdp.bulk_unit
