@@ -612,6 +612,7 @@ WHERE ovhp.`id_ovh_price`='" & id_ovh_price & "'"
 
     Private Sub BAddMRS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAddMRS.Click
         FormProductionMRS.id_prod_order = id_prod_order
+        FormProductionMRS.TEQty.EditValue = GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue
         FormProductionMRS.TEPONumber.Text = TEPONumber.Text
         FormProductionMRS.TEDesign.Text = TEDesign.Text
         FormProductionMRS.TEDesignCode.Text = TEDesignCode.Text
