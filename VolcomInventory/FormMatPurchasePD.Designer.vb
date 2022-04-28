@@ -74,6 +74,9 @@ Partial Class FormMatPurchasePD
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
         Me.UnselectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEBreakDown.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -283,7 +286,9 @@ Partial Class FormMatPurchasePD
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.BCancel)
+        Me.PanelControl2.Controls.Add(Me.TEToleransi)
         Me.PanelControl2.Controls.Add(Me.BClose)
         Me.PanelControl2.Controls.Add(Me.BSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -335,7 +340,7 @@ Partial Class FormMatPurchasePD
         '
         'GVPD
         '
-        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCheck, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4, Me.GridColumn11, Me.GridColumnSize})
+        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCheck, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4, Me.GridColumn16, Me.GridColumn13, Me.GridColumn17, Me.GridColumn11, Me.GridColumnSize})
         Me.GVPD.GridControl = Me.GCPD
         Me.GVPD.Name = "GVPD"
         Me.GVPD.OptionsFind.AlwaysVisible = True
@@ -352,7 +357,7 @@ Partial Class FormMatPurchasePD
         Me.GridColumnCheck.Name = "GridColumnCheck"
         Me.GridColumnCheck.Visible = True
         Me.GridColumnCheck.VisibleIndex = 0
-        Me.GridColumnCheck.Width = 65
+        Me.GridColumnCheck.Width = 56
         '
         'RICEPD
         '
@@ -378,7 +383,7 @@ Partial Class FormMatPurchasePD
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 108
+        Me.GridColumn2.Width = 94
         '
         'GridColumn5
         '
@@ -389,7 +394,7 @@ Partial Class FormMatPurchasePD
         Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
-        Me.GridColumn5.Width = 114
+        Me.GridColumn5.Width = 99
         '
         'GridColumn6
         '
@@ -400,7 +405,7 @@ Partial Class FormMatPurchasePD
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
-        Me.GridColumn6.Width = 327
+        Me.GridColumn6.Width = 285
         '
         'GridColumn3
         '
@@ -418,7 +423,7 @@ Partial Class FormMatPurchasePD
         Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 4
-        Me.GridColumn3.Width = 99
+        Me.GridColumn3.Width = 86
         '
         'GridColumn4
         '
@@ -426,7 +431,7 @@ Partial Class FormMatPurchasePD
         Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.Caption = "Qty Order Material"
+        Me.GridColumn4.Caption = "Qty Order Mat"
         Me.GridColumn4.DisplayFormat.FormatString = "N2"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "qty_order"
@@ -443,9 +448,7 @@ Partial Class FormMatPurchasePD
         Me.GridColumn11.Caption = "Note"
         Me.GridColumn11.FieldName = "note"
         Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 6
-        Me.GridColumn11.Width = 214
+        Me.GridColumn11.Width = 135
         '
         'GridColumnSize
         '
@@ -496,8 +499,6 @@ Partial Class FormMatPurchasePD
         'PanelControl9
         '
         Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl9.Controls.Add(Me.LabelControl2)
-        Me.PanelControl9.Controls.Add(Me.TEToleransi)
         Me.PanelControl9.Controls.Add(Me.TETotalAmount)
         Me.PanelControl9.Controls.Add(Me.LabelControl3)
         Me.PanelControl9.Controls.Add(Me.LabelControl16)
@@ -512,16 +513,17 @@ Partial Class FormMatPurchasePD
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(169, 42)
+        Me.LabelControl2.Location = New System.Drawing.Point(209, 18)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(11, 13)
         Me.LabelControl2.TabIndex = 163
         Me.LabelControl2.Text = "%"
+        Me.LabelControl2.Visible = False
         '
         'TEToleransi
         '
         Me.TEToleransi.EditValue = ""
-        Me.TEToleransi.Location = New System.Drawing.Point(112, 39)
+        Me.TEToleransi.Location = New System.Drawing.Point(152, 15)
         Me.TEToleransi.Name = "TEToleransi"
         Me.TEToleransi.Properties.Appearance.Options.UseTextOptions = True
         Me.TEToleransi.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -532,6 +534,7 @@ Partial Class FormMatPurchasePD
         Me.TEToleransi.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEToleransi.Size = New System.Drawing.Size(51, 20)
         Me.TEToleransi.TabIndex = 162
+        Me.TEToleransi.Visible = False
         '
         'TETotalAmount
         '
@@ -584,7 +587,7 @@ Partial Class FormMatPurchasePD
         'TEToleransiAmount
         '
         Me.TEToleransiAmount.EditValue = ""
-        Me.TEToleransiAmount.Location = New System.Drawing.Point(183, 39)
+        Me.TEToleransiAmount.Location = New System.Drawing.Point(112, 39)
         Me.TEToleransiAmount.Name = "TEToleransiAmount"
         Me.TEToleransiAmount.Properties.Appearance.Options.UseTextOptions = True
         Me.TEToleransiAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -594,7 +597,7 @@ Partial Class FormMatPurchasePD
         Me.TEToleransiAmount.Properties.Mask.SaveLiteral = False
         Me.TEToleransiAmount.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEToleransiAmount.Properties.ReadOnly = True
-        Me.TEToleransiAmount.Size = New System.Drawing.Size(140, 20)
+        Me.TEToleransiAmount.Size = New System.Drawing.Size(211, 20)
         Me.TEToleransiAmount.TabIndex = 146
         '
         'LabelControl15
@@ -632,6 +635,52 @@ Partial Class FormMatPurchasePD
         Me.UnselectAllToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.UnselectAllToolStripMenuItem.Text = "Unselect all"
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn13.Caption = "Allowance Qty"
+        Me.GridColumn13.DisplayFormat.FormatString = "N2"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn13.FieldName = "allowance_qty"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allowance_qty", "{0:N2}")})
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 7
+        Me.GridColumn13.Width = 86
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn16.Caption = "Allowance (%)"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "allowance"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 6
+        Me.GridColumn16.Width = 86
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn17.Caption = "Total Order Mat"
+        Me.GridColumn17.DisplayFormat.FormatString = "N2"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn17.FieldName = "allowance_qty_order"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allowance_qty_order", "{0:N2}")})
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 8
+        '
         'FormMatPurchasePD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -661,6 +710,7 @@ Partial Class FormMatPurchasePD
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
         CType(Me.GCPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPD, System.ComponentModel.ISupportInitialize).EndInit()
@@ -735,4 +785,7 @@ Partial Class FormMatPurchasePD
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
