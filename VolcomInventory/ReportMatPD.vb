@@ -223,11 +223,12 @@
             tb_qty_pd.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Me.XPTableAmount.Controls.Add(tb_qty_pd)
+
             'column consumption
             Dim tb_cons As New DevExpress.XtraReports.UI.XRLabel
 
             tb_cons.Text = dt_det.Rows(i)("qty_consumption").ToString
-            tb_cons.SizeF = New Size(70, 20)
+            tb_cons.SizeF = New Size(40, 20)
             tb_cons.LocationF = New Point(425, po_height)
             tb_cons.Font = New Font("Calibri", 10)
             tb_cons.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -235,19 +236,61 @@
             tb_cons.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Me.XPTableAmount.Controls.Add(tb_cons)
+
+            'column qty order
+            Dim tb_qty_o As New DevExpress.XtraReports.UI.XRLabel
+
+            tb_qty_o.Text = dt_det.Rows(i)("qty_o").ToString
+            tb_qty_o.SizeF = New Size(75, 20)
+            tb_qty_o.LocationF = New Point(465, po_height)
+            tb_qty_o.Font = New Font("Calibri", 10)
+            tb_qty_o.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            tb_qty_o.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            tb_qty_o.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+
+            Me.XPTableAmount.Controls.Add(tb_qty_o)
+
+            'column allowance
+            Dim tb_allowance As New DevExpress.XtraReports.UI.XRLabel
+
+            tb_allowance.Text = dt_det.Rows(i)("allowance").ToString
+            tb_allowance.SizeF = New Size(50, 20)
+            tb_allowance.LocationF = New Point(540, po_height)
+            tb_allowance.Font = New Font("Calibri", 10)
+            tb_allowance.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            tb_allowance.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            tb_allowance.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+
+            Me.XPTableAmount.Controls.Add(tb_allowance)
+
+            'column allowance qty
+            Dim tb_allowance_qty As New DevExpress.XtraReports.UI.XRLabel
+
+            tb_allowance_qty.Text = dt_det.Rows(i)("allowance_qty").ToString
+            tb_allowance_qty.SizeF = New Size(50, 20)
+            tb_allowance_qty.LocationF = New Point(590, po_height)
+            tb_allowance_qty.Font = New Font("Calibri", 10)
+            tb_allowance_qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            tb_allowance_qty.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            tb_allowance_qty.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+
+            Me.XPTableAmount.Controls.Add(tb_allowance_qty)
+
             'column qty order
             Dim tb_qty_order As New DevExpress.XtraReports.UI.XRLabel
 
             tb_qty_order.Text = dt_det.Rows(i)("qty_order").ToString
-            tb_qty_order.SizeF = New Size(229, 20)
-            tb_qty_order.LocationF = New Point(495, po_height)
+            tb_qty_order.SizeF = New Size(84, 20)
+            tb_qty_order.LocationF = New Point(640, po_height)
             tb_qty_order.Font = New Font("Calibri", 10)
             tb_qty_order.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             tb_qty_order.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_qty_order.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom Or DevExpress.XtraPrinting.BorderSide.Right
 
             Me.XPTableAmount.Controls.Add(tb_qty_order)
+
             po_height = po_height + 20
+
         Next
 
         pre_load_mark_horz("13", id_purc, "2", "2", XrTable1)

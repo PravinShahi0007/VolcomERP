@@ -471,7 +471,7 @@ GROUP BY mpd.`id_mat_purc`"
     End Function
 
     Function q_list(ByVal q_where As String)
-        Dim query As String = "SELECT 'no' AS is_check,c.id_tax,pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS number
+        Dim query As String = "SELECT 'no' AS is_check,c.id_tax,pl.`id_mat_purc_list`,LPAD(pl.`id_mat_purc_list`,6,'0') AS `number`
 ,md.mat_det_display_name,md.mat_det_code,IFNULL(mp.mat_purc_number,'-') AS mat_purc_number,IF(ISNULL(pl.id_mat_purc),IF(pl.is_cancel=1,'Canceled','Waiting to PO'),'PO Created') AS `status`
 ,mdp.id_mat_det_price,mdp.id_comp_contact,mdp.mat_det_price,mdp.id_currency,cur.currency
 ,cc.id_comp_contact,c.comp_name,c.comp_number,c.address_primary,cc.contact_person
@@ -479,10 +479,10 @@ GROUP BY mpd.`id_mat_purc`"
 ,m.mat_code,m.mat_display_name,m.id_mat,md.id_mat_det
 ,mdp.min_qty_in_bulk,mdp.bulk_unit, CONCAT(mdp.min_qty_in_bulk,'/',IF(mdp.bulk_unit='','pcs',mdp.bulk_unit)) AS conversion
 ,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_list
-,ROUND((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk,2) AS total_qty_list_conv
+,ROUND((SUM((plp.`total_qty_pd`*pl.`qty_consumption`)+plp.allowance_qty)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk,2) AS total_qty_list_conv
 ,IF(mdp.min_qty_in_bulk=1,'',CONCAT(CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk),' ',mdp.bulk_unit)) AS order_note
-,CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk) AS total_qty_order_conv
-,CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk)*mdp.min_qty_in_bulk AS total_qty_order
+,CEIL((SUM((plp.`total_qty_pd`*pl.`qty_consumption`)+plp.allowance_qty)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk) AS total_qty_order_conv
+,CEIL((SUM((plp.`total_qty_pd`*pl.`qty_consumption`)+plp.allowance_qty)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk)*mdp.min_qty_in_bulk AS total_qty_order
 ,mdp.moq
 FROM `tb_mat_purc_list` pl
 INNER JOIN `tb_mat_purc_list_pd` plp ON plp.id_mat_purc_list=pl.id_mat_purc_list

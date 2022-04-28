@@ -69,7 +69,7 @@ WHERE p.id_mat_purc_list='" & id_list & "'"
     Sub load_head()
         TEConsumption.EditValue = 0.00
         TEToleransiAmount.EditValue = 0.00
-        TEToleransi.EditValue = 2.5
+        TEToleransi.EditValue = 0
         TETotal.EditValue = 0.00
         TETotalAmount.EditValue = 0.00
     End Sub
@@ -89,7 +89,8 @@ INNER JOIN tb_m_uom uom ON uom.`id_uom`=mat.`id_uom`"
             'breakdown
             query = "SELECT 'no' AS is_check,pdp.size,'' AS note,pdp.id_prod_demand_design,pdp.id_prod_demand_product,pdp.id_design,pdp.qty
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name
-,dsg.design_code,pdp.prod_demand_number,pdp.qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty) AS qty_order 
+,dsg.design_code,pdp.prod_demand_number,pdp.qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty) AS qty_order
+,al.allowance ,CEIL((al.allowance/100)*(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty)) AS allowance_qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty)+CEIL((al.allowance/100)*(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty)) AS allowance_qty_order
 FROM (
 	SELECT pd_dsg.id_prod_demand_design, pd_prd.`id_prod_demand_product`, pd_dsg.id_prod_demand, pd.prod_demand_number, pd_dsg.id_design, 
 	pd_dsg.prod_demand_design_propose_price, pd_dsg.prod_demand_design_total_cost, pd_dsg.msrp
@@ -112,6 +113,25 @@ FROM (
 	)pc ON pc.`id_product`=pd_prd.`id_product`
 	GROUP BY pd_prd.id_prod_demand_product
 ) pdp
+INNER JOIN 
+(
+    SELECT pdd.id_design,pdd.qty,al.allowance FROM 
+    (
+    SELECT pdd.id_design,SUM(pdp.prod_demand_product_qty) AS qty
+    FROM tb_prod_demand_product pdp 
+    INNER JOIN (
+	    SELECT pd_prd.id_product,MAX(pd_prd.id_prod_demand_product) AS id_prod_demand_product
+	    FROM  tb_prod_demand_design pd_dsg
+	    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pd_dsg.id_prod_demand
+	    INNER JOIN tb_prod_demand_product pd_prd ON pd_prd.id_prod_demand_design = pd_dsg.id_prod_demand_design 
+	    WHERE pd.id_report_status = '6' AND pd_dsg.is_void=2 AND pd.is_pd=1
+	    GROUP BY pd_prd.id_product
+    )pdpm ON pdpm.id_prod_demand_product=pdp.id_prod_demand_product
+    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=pdp.id_prod_demand_design
+    GROUP BY pdd.id_design
+    ) pdd 
+    INNER JOIN tb_mat_pd_allowance al ON pdd.qty<=al.qty_max AND pdd.qty>=al.qty_min
+)al ON al.id_design=pdp.id_design
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdp.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
 INNER JOIN tb_range r ON r.id_range=s.id_range
@@ -144,7 +164,8 @@ ORDER BY pdp.id_prod_demand_design,pdp.id_prod_demand_product DESC"
             'normal
             query = "SELECT 'no' AS is_check,'' AS note,pdd.id_prod_demand_design,'' AS id_prod_demand_product,pdd.id_design,pdd.qty
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name
-,dsg.design_code,pdd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty) AS qty_order 
+,dsg.design_code,pdd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty) AS qty_order
+,al.allowance ,CEIL((al.allowance/100)*(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty)) AS allowance_qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty)+CEIL((al.allowance/100)*(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty)) AS allowance_qty_order
 FROM (
 	SELECT pd_dsg.id_prod_demand_design, pd_dsg.id_prod_demand, pd.prod_demand_number, pd_dsg.id_design, 
 	pd_dsg.prod_demand_design_propose_price, pd_dsg.prod_demand_design_total_cost, pd_dsg.msrp,
@@ -162,6 +183,25 @@ FROM (
 	)pdd ON pdd.id_prod_demand_design=pd_dsg.id_prod_demand_design
 	GROUP BY pd_dsg.id_design
 ) pdd
+INNER JOIN 
+(
+    SELECT pdd.id_design,pdd.qty,al.allowance FROM 
+    (
+    SELECT pdd.id_design,SUM(pdp.prod_demand_product_qty) AS qty
+    FROM tb_prod_demand_product pdp 
+    INNER JOIN (
+	    SELECT pd_prd.id_product,MAX(pd_prd.id_prod_demand_product) AS id_prod_demand_product
+	    FROM  tb_prod_demand_design pd_dsg
+	    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pd_dsg.id_prod_demand
+	    INNER JOIN tb_prod_demand_product pd_prd ON pd_prd.id_prod_demand_design = pd_dsg.id_prod_demand_design 
+	    WHERE pd.id_report_status = '6' AND pd_dsg.is_void=2 AND pd.is_pd=1
+	    GROUP BY pd_prd.id_product
+    )pdpm ON pdpm.id_prod_demand_product=pdp.id_prod_demand_product
+    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=pdp.id_prod_demand_design
+    GROUP BY pdd.id_design
+    ) pdd 
+    INNER JOIN tb_mat_pd_allowance al ON pdd.qty<=al.qty_max AND pdd.qty>=al.qty_min
+)al ON al.id_design=pdd.id_design
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
 INNER JOIN tb_range r ON r.id_range=s.id_range
@@ -201,6 +241,7 @@ WHERE ISNULL(pl.id_prod_demand_design)"
             query = "SELECT 'yes' AS is_check,pc.size,lp.note AS note,lp.id_prod_demand_design,lp.id_prod_demand_product,pdd.id_design,lp.total_qty_pd AS qty
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name
 ,dsg.design_code,pd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd) AS qty_order 
+,lp.allowance,lp.allowance_qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd)+lp.allowance_qty AS allowance_qty_order
 FROM tb_mat_purc_list_pd lp
 INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product=lp.id_prod_demand_product
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=pdp.id_prod_demand_design
@@ -238,6 +279,7 @@ ORDER BY pdd.id_prod_demand_design DESC"
             query = "SELECT 'yes' AS is_check,lp.note AS note,lp.id_prod_demand_design,'' AS id_prod_demand_product,pdd.id_design,lp.total_qty_pd AS qty
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name
 ,dsg.design_code,pd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd) AS qty_order 
+,lp.allowance,lp.allowance_qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd)+lp.allowance_qty AS allowance_qty_order
 FROM tb_mat_purc_list_pd lp
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=lp.id_prod_demand_design
 INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
@@ -276,6 +318,7 @@ ORDER BY pdd.id_prod_demand_design DESC"
             query = "SELECT 'yes' AS is_check,pc.size,lp.note AS note,lp.id_prod_demand_design,lp.id_prod_demand_product,pdd.id_design,lp.total_qty_pd AS qty
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name
 ,dsg.design_code,pd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd) AS qty_order 
+,lp.allowance,lp.allowance_qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd)+lp.allowance_qty AS allowance_qty_order
 FROM tb_mat_purc_list_pd lp
 INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product=lp.id_prod_demand_product
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=pdp.id_prod_demand_design
@@ -311,6 +354,8 @@ UNION
 SELECT 'no' AS is_check,pdp.size,'' AS note,pdp.id_prod_demand_design,pdp.id_prod_demand_product,pdp.id_design,pdp.qty
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name
 ,dsg.design_code,pdp.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty) AS qty_order 
+,dsg.design_code,pdp.prod_demand_number,pdp.qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty) AS qty_order
+,al.allowance ,CEIL((al.allowance/100)*(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty)) AS allowance_qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty)+CEIL((al.allowance/100)*(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty)) AS allowance_qty_order
 FROM (
 	SELECT pd_dsg.id_prod_demand_design, pd_prd.`id_prod_demand_product`, pd_dsg.id_prod_demand, pd.prod_demand_number, pd_dsg.id_design, 
 	pd_dsg.prod_demand_design_propose_price, pd_dsg.prod_demand_design_total_cost, pd_dsg.msrp
@@ -333,6 +378,25 @@ FROM (
 	)pc ON pc.`id_product`=pd_prd.`id_product`
 	GROUP BY pd_prd.id_prod_demand_product
 ) pdp
+INNER JOIN 
+(
+    SELECT pdd.id_design,pdd.qty,al.allowance FROM 
+    (
+    SELECT pdd.id_design,SUM(pdp.prod_demand_product_qty) AS qty
+    FROM tb_prod_demand_product pdp 
+    INNER JOIN (
+	    SELECT pd_prd.id_product,MAX(pd_prd.id_prod_demand_product) AS id_prod_demand_product
+	    FROM  tb_prod_demand_design pd_dsg
+	    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pd_dsg.id_prod_demand
+	    INNER JOIN tb_prod_demand_product pd_prd ON pd_prd.id_prod_demand_design = pd_dsg.id_prod_demand_design 
+	    WHERE pd.id_report_status = '6' AND pd_dsg.is_void=2 AND pd.is_pd=1
+	    GROUP BY pd_prd.id_product
+    )pdpm ON pdpm.id_prod_demand_product=pdp.id_prod_demand_product
+    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=pdp.id_prod_demand_design
+    GROUP BY pdd.id_design
+    ) pdd 
+    INNER JOIN tb_mat_pd_allowance al ON pdd.qty<=al.qty_max AND pdd.qty>=al.qty_min
+)al ON al.id_design=pdp.id_design
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdp.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
 INNER JOIN tb_range r ON r.id_range=s.id_range
@@ -365,6 +429,7 @@ ORDER BY is_check DESC,id_prod_demand_design DESC"
             query = "SELECT 'yes' AS is_check,lp.note AS note,lp.id_prod_demand_design,'' AS id_prod_demand_product,pdd.id_design,lp.total_qty_pd AS qty
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name
 ,dsg.design_code,pd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd) AS qty_order 
+,lp.allowance,lp.allowance_qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd)+lp.allowance_qty AS allowance_qty_order
 FROM tb_mat_purc_list_pd lp
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=lp.id_prod_demand_design
 INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
@@ -393,6 +458,7 @@ UNION
 SELECT 'no' AS is_check,'' AS note,pdd.id_prod_demand_design,pdd.id_design,'' AS id_prod_demand_product,pdd.qty
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name
 ,dsg.design_code,pdd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty) AS qty_order 
+,al.allowance ,CEIL((al.allowance/100)*(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty)) AS allowance_qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty)+CEIL((al.allowance/100)*(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty)) AS allowance_qty_order
 FROM (
 	SELECT pd_dsg.id_prod_demand_design, pd_dsg.id_prod_demand, pd.prod_demand_number, pd_dsg.id_design, 
 	pd_dsg.prod_demand_design_propose_price, pd_dsg.prod_demand_design_total_cost, pd_dsg.msrp,
@@ -410,6 +476,25 @@ FROM (
 	)pdd ON pdd.id_prod_demand_design=pd_dsg.id_prod_demand_design
 	GROUP BY pd_dsg.id_design
 ) pdd
+INNER JOIN 
+(
+    SELECT pdd.id_design,pdd.qty,al.allowance FROM 
+    (
+    SELECT pdd.id_design,SUM(pdp.prod_demand_product_qty) AS qty
+    FROM tb_prod_demand_product pdp 
+    INNER JOIN (
+	    SELECT pd_prd.id_product,MAX(pd_prd.id_prod_demand_product) AS id_prod_demand_product
+	    FROM  tb_prod_demand_design pd_dsg
+	    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pd_dsg.id_prod_demand
+	    INNER JOIN tb_prod_demand_product pd_prd ON pd_prd.id_prod_demand_design = pd_dsg.id_prod_demand_design 
+	    WHERE pd.id_report_status = '6' AND pd_dsg.is_void=2 AND pd.is_pd=1
+	    GROUP BY pd_prd.id_product
+    )pdpm ON pdpm.id_prod_demand_product=pdp.id_prod_demand_product
+    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=pdp.id_prod_demand_design
+    GROUP BY pdd.id_design
+    ) pdd 
+    INNER JOIN tb_mat_pd_allowance al ON pdd.qty<=al.qty_max AND pdd.qty>=al.qty_min
+)al ON al.id_design=pdd.id_design
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
 INNER JOIN tb_range r ON r.id_range=s.id_range
@@ -466,25 +551,26 @@ ORDER BY is_check DESC,id_prod_demand_design DESC"
 
     Sub calculate()
         Dim total_qty As Decimal = 0.00
-        Dim toleransi As Decimal = 0.00
+        Dim total_toleransi As Decimal = 0.00
 
         For i As Integer = 0 To GVPD.RowCount - 1
             total_qty += GVPD.GetRowCellValue(i, "qty_order")
+            total_toleransi += GVPD.GetRowCellValue(i, "allowance_qty")
         Next
         'calculate
-        toleransi = TEToleransi.EditValue
+        TEToleransiAmount.EditValue = total_toleransi
         TETotal.EditValue = total_qty
         '
-        TEToleransiAmount.EditValue = Math.Ceiling((toleransi / 100) * total_qty)
         TETotalAmount.EditValue = TETotal.EditValue + TEToleransiAmount.EditValue
     End Sub
 
     Private Sub BCalculate_Click(sender As Object, e As EventArgs) Handles BCalculate.Click
-        If TEToleransi.EditValue >= 0 And TEToleransi.EditValue <= 2.5 Then
-            set_calculate()
-        Else
-            stopCustom("Please input toleransi between 0 - 2.5")
-        End If
+        set_calculate()
+        'If TEToleransi.EditValue >= 0 And TEToleransi.EditValue <= 2.5 Then
+        '    set_calculate()
+        'Else
+        '    stopCustom("Please input toleransi between 0 - 2.5")
+        'End If
     End Sub
 
     Sub set_calculate()
@@ -591,10 +677,10 @@ WHERE l.`is_cancel`=2 AND lp.`id_prod_demand_design`='" & GVPD.GetRowCellValue(i
                             query += ","
                         End If
 
-                        query += "('" & id_list & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_design").ToString & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_product").ToString & "','" & decimalSQL(GVPD.GetRowCellValue(i, "qty").ToString) & "','" & GVPD.GetRowCellValue(i, "note").ToString & "')"
+                        query += "('" & id_list & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_design").ToString & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_product").ToString & "','" & decimalSQL(GVPD.GetRowCellValue(i, "qty").ToString) & "','" & GVPD.GetRowCellValue(i, "note").ToString & "','" & decimalSQL(GVPD.GetRowCellValue(i, "allowance").ToString) & "','" & decimalSQL(GVPD.GetRowCellValue(i, "allowance_qty").ToString) & "')"
                     Next
 
-                    query = "INSERT INTO tb_mat_purc_list_pd(id_mat_purc_list,id_prod_demand_design,id_prod_demand_product,total_qty_pd,note) VALUES " & query
+                    query = "INSERT INTO tb_mat_purc_list_pd(id_mat_purc_list,id_prod_demand_design,id_prod_demand_product,total_qty_pd,note,allowance,allowance_qty) VALUES " & query
                     execute_non_query(query, True, "", "", "", "")
 
                     FormMatPurchase.load_list_mat_from_pd()
@@ -632,10 +718,10 @@ WHERE l.`is_cancel`=2 AND lp.id_mat_purc_list='" & id_list & "' AND lp.`id_prod_
                             query += ","
                         End If
 
-                        query += "('" & id_list & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_design").ToString & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_product").ToString & "','" & decimalSQL(GVPD.GetRowCellValue(i, "qty").ToString) & "','" & GVPD.GetRowCellValue(i, "note").ToString & "')"
+                        query += "('" & id_list & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_design").ToString & "','" & GVPD.GetRowCellValue(i, "id_prod_demand_product").ToString & "','" & decimalSQL(GVPD.GetRowCellValue(i, "qty").ToString) & "','" & GVPD.GetRowCellValue(i, "note").ToString & "','" & decimalSQL(GVPD.GetRowCellValue(i, "allowance").ToString) & "','" & decimalSQL(GVPD.GetRowCellValue(i, "allowance_qty").ToString) & "')"
                     Next
 
-                    query = "DELETE FROM tb_mat_purc_list_pd WHERE id_mat_purc_list='" & id_list & "';INSERT INTO tb_mat_purc_list_pd(id_mat_purc_list,id_prod_demand_design,id_prod_demand_product,total_qty_pd,note) VALUES " & query
+                    query = "DELETE FROM tb_mat_purc_list_pd WHERE id_mat_purc_list='" & id_list & "';INSERT INTO tb_mat_purc_list_pd(id_mat_purc_list,id_prod_demand_design,id_prod_demand_product,total_qty_pd,note,allowance,allowance_qty) VALUES " & query
                     execute_non_query(query, True, "", "", "", "")
 
                     FormMatPurchase.load_list_mat_from_pd()
