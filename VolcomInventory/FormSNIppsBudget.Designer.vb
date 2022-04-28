@@ -95,7 +95,7 @@ Partial Class FormSNIppsBudget
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Created By"
+        Me.GridColumn3.Caption = "Last Update By"
         Me.GridColumn3.FieldName = "employee_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
@@ -103,7 +103,7 @@ Partial Class FormSNIppsBudget
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Created Date"
+        Me.GridColumn4.Caption = "Last Update"
         Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn4.FieldName = "created_date"

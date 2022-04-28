@@ -798,6 +798,9 @@
         ElseIf report_mark_type = "403" Then
             'sample target dev pps
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sample_dev_pps WHERE id_sample_dev_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "407" Then
+            'abg royalty rate
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_royalty_rate WHERE id_royalty_rate = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -11059,6 +11062,14 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
                     WHERE id_report = " + id_report + " AND report_mark_type IN (340, 343)
                 "
                 execute_non_query(query_revert, True, "", "", "", "")
+
+                'cancel closing unique not found
+                Try
+                    Dim sts As New ClassStockTakeStore()
+                    sts.cancelClosedStockTake(id_report)
+                Catch ex As Exception
+                    stopCustom("Failed to cancel closing unique code : " + ex.ToString)
+                End Try
             End If
 
             'update status
@@ -12101,11 +12112,58 @@ INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AN
 SET t.copy_proto_sample_2_upd=u.new_date
 WHERE u.tahapan = 'Copy Proto Sample 2'"
                         execute_non_query(qv, True, "", "", "", "")
+                    ElseIf dtv.Rows(0)("id_type").ToString = "3" Then
+                        'actual
+                        'pakai update select
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.labdip_act=u.new_date
+WHERE u.tahapan = 'Labdip'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.strike_off_1_act=u.new_date
+WHERE u.tahapan = 'Strike Off 1'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.proto_sample_1_act=u.new_date
+WHERE u.tahapan = 'Proto Sample 1'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.strike_off_2_act=u.new_date
+WHERE u.tahapan = 'Strike Off 2'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.proto_sample_2_act=u.new_date
+WHERE u.tahapan = 'Proto Sample 2'"
+                        execute_non_query(qv, True, "", "", "", "")
+                        qv = "UPDATE `tb_sample_dev_tracking` t
+INNER JOIN `tb_sample_dev_upd` u ON u.id_design=t.id_design
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=u.id_sample_dev_pps AND pps.id_sample_dev_pps='" & id_report & "' AND pps.id_comp=t.id_comp
+SET t.copy_proto_sample_2_act=u.new_date
+WHERE u.tahapan = 'Copy Proto Sample 2'"
+                        execute_non_query(qv, True, "", "", "", "")
                     End If
                 End If
             End If
 
             query = String.Format("UPDATE tb_sample_dev_pps SET id_report_status = '{0}' WHERE id_sample_dev_pps = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "407" Then
+            'abg royalty rate
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            query = String.Format("UPDATE tb_royalty_rate SET id_report_status = '{0}' WHERE id_royalty_rate = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

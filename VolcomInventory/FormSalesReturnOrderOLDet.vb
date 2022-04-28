@@ -697,9 +697,11 @@
     End Sub
 
     Sub checkOrder()
-        Dim query_c As ClassSalesOrder = New ClassSalesOrder()
+        'Dim query_c As ClassSalesOrder = New ClassSalesOrder()
         Dim cond As String = "AND a.sales_order_ol_shop_number='" + addSlashes(TxtOLStoreNumber.Text) + "' AND a.id_report_status='6' AND a.id_so_status!=5 And a.id_store_contact_to=" + id_store_contact_to + " "
-        Dim query As String = query_c.queryMain(cond, "1")
+        Dim query As String = "SELECT a.id_sales_order, a.sales_order_ol_shop_number 
+        FROM tb_sales_order a
+        WHERE a.id_sales_order>0 " + cond
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count = 0 Then
             stopCustom("Order not found !")

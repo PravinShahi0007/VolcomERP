@@ -586,9 +586,11 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
 
                     'check if KIDS
                     Dim is_kids As Boolean = False
-                    Dim qc As String = "SELECT * 
+                    Dim qc As String = "SELECT dsg.id_design,cd.id_code_detail,cd2.id_code_detail,mcd.id_code
 FROM tb_m_design dsg
-INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design` AND dsg.id_design='" & id_design & "'"
+INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design` AND dsg.id_design='" & id_design & "'
+INNER JOIN tb_m_design_code cd2 ON cd2.`id_design`=dsg.`id_design` AND dsg.id_design='" & id_design & "'
+INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=cd2.id_code_detail AND mcd.id_code='30' AND cd2.id_code_detail!=14996"
                     Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
                     If dtc.Rows.Count > 0 Then
                         is_kids = True

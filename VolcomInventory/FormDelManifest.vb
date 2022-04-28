@@ -1,7 +1,9 @@
 ﻿Public Class FormDelManifest
     Private Sub FormDelManifest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEStart.EditValue = Now()
+        DEUntil.EditValue = Now()
+        '
         view_3pl()
-        form_load()
     End Sub
 
     Private Sub FormDelManifest_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -43,7 +45,7 @@
                 LEFT JOIN tb_odm_print p ON p.`id_odm_print`=pd.`id_odm_print`
                 GROUP BY scd.`id_del_manifest`
             )odm ON odm.id_del_manifest=m.id_del_manifest
-            WHERE 1 " + query_where + "
+            WHERE DATE(m.created_date)>='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(m.created_date)<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' " + query_where + "
             ORDER BY m.id_del_manifest DESC
         "
 

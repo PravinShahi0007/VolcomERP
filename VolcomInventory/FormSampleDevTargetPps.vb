@@ -3,6 +3,8 @@
     Public is_view As String = "-1"
     Public is_changes As String = "-1"
 
+    Public is_actual As String = "-1"
+
     Dim id_report_status As String = "-1"
 
     Private Sub FormSampleDevTargetPps_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -61,6 +63,15 @@ SELECT '3' AS id_type,'Actual' AS `type`
                 FormImportExcel.id_pop_up = "65"
                 FormImportExcel.ShowDialog()
             End If
+
+            If is_actual = "1" Then
+                PCAddDel.Visible = False
+                load_det_actual()
+                SLEVendor.Properties.ReadOnly = False
+                'SLEVendor.EditValue = FormSampleDevelopment.GVTracker.GetRowCellValue(0, "id_comp").ToString
+
+                SLEType.EditValue = "3"
+            End If
         Else
             'update
             BtnSave.Visible = False
@@ -87,17 +98,26 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
                 '
                 If dt.Rows(0)("id_type").ToString = "2" Then
                     is_changes = "1"
+                    PCAddDel.Visible = False
+                ElseIf dt.Rows(0)("id_type").ToString = "3" Then
+                    is_actual = "1"
+                    PCAddDel.Visible = False
                 End If
                 '
-                If id_report_status = "6" Or id_report_status = "5" Then
-                    is_view = "1"
+                If id_report_status = "3" Or id_report_status = "6" Or id_report_status = "5" Then
                     PCAddDel.Visible = False
+                    is_view = "1"
+                End If
+
+                If id_report_status = "6" Or id_report_status = "5" Then
                     BRelease.Visible = False
                 End If
             End If
 
             If is_changes = "1" Then
                 load_det_changes()
+            ElseIf is_actual = "1" Then
+                load_det_actual()
             Else
                 load_det()
             End If
@@ -106,9 +126,15 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
         If is_changes = "1" Then
             XTPUpdate.PageVisible = True
             XTPNew.PageVisible = False
+            XTPActual.PageVisible = False
+        ElseIf is_actual = "1" Then
+            XTPUpdate.PageVisible = False
+            XTPNew.PageVisible = False
+            XTPActual.PageVisible = True
         Else
             XTPUpdate.PageVisible = False
             XTPNew.PageVisible = True
+            XTPActual.PageVisible = False
         End If
     End Sub
 
@@ -144,6 +170,36 @@ WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCPps.DataSource = dt
         GVPps.BestFitColumns()
+    End Sub
+
+    Sub load_det_actual()
+        Dim q As String = "SELECT ppsd.*,dsg.design_code,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
+FROM tb_sample_dev_upd ppsd
+INNER JOIN tb_m_design dsg ON dsg.id_design=ppsd.id_design
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`,
+	MAX(CASE WHEN cd.id_code=5 THEN cd.id_code_detail END) AS `src`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34, 5)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCActual.DataSource = dt
+        GVActual.BestFitColumns()
     End Sub
 
     Sub load_det_changes()
@@ -193,6 +249,7 @@ WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
                     'check sudah ada apa belum
                     Dim is_ok As Boolean = True
                     '
+                    '
                     If is_ok Then
                         Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,id_comp,created_by,note,id_report_status,id_type)
 VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & SLEType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
@@ -208,6 +265,39 @@ VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSl
                             End If
 
                             q += "('" & id_pps & "','" & GVChanges.GetRowCellValue(i, "id_design").ToString & "','" & GVChanges.GetRowCellValue(i, "tahapan").ToString & "'," & If(GVChanges.GetRowCellValue(i, "current_date").ToString = "", "NULL", "'" & Date.Parse(GVChanges.GetRowCellValue(i, "current_date").ToString).ToString("yyyy-MM-dd") & "'") & ",'" & Date.Parse(GVChanges.GetRowCellValue(i, "new_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(GVChanges.GetRowCellValue(i, "reason").ToString) & "')"
+                        Next
+
+                        execute_non_query(q, True, "", "", "", "")
+                        submit_who_prepared("403", id_pps, id_user)
+                        Close()
+                    End If
+                Else
+                    'no edit pls
+                End If
+            End If
+        ElseIf is_actual = "1" Then
+            If GVActual.RowCount = 0 Then
+                warningCustom("No data found.")
+            Else
+                If id_pps = "-1" Then
+                    'check sudah ada apa belum
+                    Dim is_ok As Boolean = True
+                    '
+                    If is_ok Then
+                        Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,id_comp,created_by,note,id_report_status,id_type)
+VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & SLEType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                        id_pps = execute_query(q, 0, True, "", "", "", "")
+
+                        execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
+
+                        'detail
+                        q = "INSERT INTO `tb_sample_dev_upd`(`id_sample_dev_pps`,`id_design`,`tahapan`,`current_date`,`new_date`) VALUES"
+                        For i = 0 To GVActual.RowCount - 1
+                            If Not i = 0 Then
+                                q += ","
+                            End If
+
+                            q += "('" & id_pps & "','" & GVActual.GetRowCellValue(i, "id_design").ToString & "','" & GVActual.GetRowCellValue(i, "tahapan").ToString & "'," & If(GVActual.GetRowCellValue(i, "current_date").ToString = "", "NULL", "'" & Date.Parse(GVActual.GetRowCellValue(i, "current_date").ToString).ToString("yyyy-MM-dd") & "'") & ",'" & Date.Parse(GVActual.GetRowCellValue(i, "new_date").ToString).ToString("yyyy-MM-dd") & "')"
                         Next
 
                         execute_non_query(q, True, "", "", "", "")
@@ -396,7 +486,7 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.report_mark_type = "403"
         FormDocumentUpload.id_report = id_pps
-        If is_view = "1" Or Not check_edit_report_status(id_report_status, "403", id_pps) Then
+        If id_report_status = "5" Or id_report_status = "6" Then
             FormDocumentUpload.is_view = "1"
         End If
         FormDocumentUpload.ShowDialog()
@@ -406,13 +496,19 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
     Private Sub BRelease_Click(sender As Object, e As EventArgs) Handles BRelease.Click
         'check attachment dan approval
         Dim is_ok As Boolean = True
-        'check attachment
-        Dim qc As String = "SELECT * FROM tb_doc WHERE report_mark_type='403' AND id_report='" & id_pps & "'"
-        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-        If dtc.Rows.Count = 0 Then
-            is_ok = False
-            warningCustom("Please attach signed copy of this document")
+
+        If SLEType.EditValue.ToString = "2" Or SLEType.EditValue.ToString = "3" Then
+
+        Else
+            'check attachment
+            Dim qc As String = "SELECT * FROM tb_doc WHERE report_mark_type='403' AND id_report='" & id_pps & "'"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count = 0 Then
+                is_ok = False
+                warningCustom("Please attach signed copy of this document")
+            End If
         End If
+
         'status approval
         If Not id_report_status = "3" Then
             is_ok = False
@@ -456,11 +552,22 @@ WHERE pps.id_sample_dev_pps = '" & id_pps & "'"
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+
         Cursor = Cursors.Default
     End Sub
 
     Private Sub BImportData_Click(sender As Object, e As EventArgs) Handles BImportData.Click
         FormImportExcel.id_pop_up = "66"
         FormImportExcel.ShowDialog()
+    End Sub
+
+    Private Sub BAddActual_Click(sender As Object, e As EventArgs) Handles BAddActual.Click
+        FormSampleDevActual.ShowDialog()
+    End Sub
+
+    Private Sub BDelActual_Click(sender As Object, e As EventArgs) Handles BDelActual.Click
+        If GVActual.RowCount > 0 Then
+            GVActual.DeleteSelectedRows()
+        End If
     End Sub
 End Class

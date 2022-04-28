@@ -577,26 +577,28 @@
         Next
 
         'set caption
-        Dim query_caption As String = " SELECT cd.index_size,CONCAT('qty',cd.index_size) AS `col`,GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.code_detail_name ASC SEPARATOR '\n') AS `caption` FROM tb_m_code_detail cd
+        Dim query_caption As String = "SELECT cd.index_size,CONCAT('qty',cd.index_size) AS `col`,GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.code_detail_name ASC SEPARATOR '\n') AS `caption` 
+                FROM tb_m_code_detail cd
+                INNER JOIN (
+	                SELECT cd.`index_size` 
+	                FROM tb_prod_demand_design pdd 
+	                INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design =  pdd.id_prod_demand_design
+	                INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
+	                INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+	                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+ 	                WHERE pdd.id_prod_demand=" + id_prod_demand + " AND pdp.prod_demand_product_qty>0
+	                GROUP BY cd.`index_size`
+                ) i ON  i.index_size = cd.index_size
+                INNER JOIN (
+	                SELECT cd.`size_type` FROM tb_prod_demand_design pdd 
+	                INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design =  pdd.id_prod_demand_design
+	                INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
+	                INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+	                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+	                WHERE pdd.id_prod_demand=" + id_prod_demand + " AND pdp.prod_demand_product_qty>0
+	                GROUP BY cd.`size_type`
+                ) s ON s.size_type = cd.size_type
                 WHERE cd.id_code='33'
-                AND cd.`index_size` IN (
-                    SELECT cd.`index_size` FROM tb_prod_demand_design pdd 
-                    INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design =  pdd.id_prod_demand_design
-                    INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
-                    INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
-                    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
-                    WHERE pdd.id_prod_demand=" + id_prod_demand + " AND pdp.prod_demand_product_qty>0
-                    GROUP BY cd.`index_size`
-                )
-                AND cd.`size_type` IN (
-                    SELECT cd.`size_type` FROM tb_prod_demand_design pdd 
-                    INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design =  pdd.id_prod_demand_design
-                    INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
-                    INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
-                    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
-                    WHERE pdd.id_prod_demand=" + id_prod_demand + " AND pdp.prod_demand_product_qty>0
-                    GROUP BY cd.`size_type`
-                )
                 GROUP BY cd.index_size "
         Dim data_caption As DataTable = execute_query(query_caption, -1, True, "", "", "", "")
         For c As Integer = 0 To data_caption.Rows.Count - 1

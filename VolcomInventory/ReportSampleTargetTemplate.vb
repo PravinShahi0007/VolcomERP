@@ -59,37 +59,37 @@ WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
 
         'labdip
         Dim labdip As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
-        labdip.Text = If(dt.Rows(row_i)("labdip").ToString = "", "", Date.Parse(dt.Rows(row_i)("labdip").ToString).ToString("dd-MM-yyyy"))
+        labdip.Text = If(dt.Rows(row_i)("labdip").ToString = "", "", dt.Rows(row_i)("labdip"))
         labdip.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         labdip.Font = font_row_style
 
         'strike off 1
         Dim strike_off_1 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
-        strike_off_1.Text = If(dt.Rows(row_i)("strike_off_1").ToString = "", "", Date.Parse(dt.Rows(row_i)("strike_off_1").ToString).ToString("dd-MM-yyyy"))
+        strike_off_1.Text = If(dt.Rows(row_i)("strike_off_1").ToString = "", "", dt.Rows(row_i)("strike_off_1"))
         strike_off_1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         strike_off_1.Font = font_row_style
 
         'proto sample 1
         Dim proto_sample_1 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
-        proto_sample_1.Text = If(dt.Rows(row_i)("proto_sample_1").ToString = "", "", Date.Parse(dt.Rows(row_i)("proto_sample_1").ToString).ToString("dd-MM-yyyy"))
+        proto_sample_1.Text = If(dt.Rows(row_i)("proto_sample_1").ToString = "", "", dt.Rows(row_i)("proto_sample_1"))
         proto_sample_1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         proto_sample_1.Font = font_row_style
 
         'strike off 2
         Dim strike_off_2 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
-        strike_off_2.Text = If(dt.Rows(row_i)("strike_off_2").ToString = "", "", Date.Parse(dt.Rows(row_i)("strike_off_2").ToString).ToString("dd-MM-yyyy"))
+        strike_off_2.Text = If(dt.Rows(row_i)("strike_off_2").ToString = "", "", dt.Rows(row_i)("strike_off_2"))
         strike_off_2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         strike_off_2.Font = font_row_style
 
         'proto sample 2
         Dim proto_sample_2 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
-        proto_sample_2.Text = If(dt.Rows(row_i)("proto_sample_2").ToString = "", "", Date.Parse(dt.Rows(row_i)("proto_sample_2").ToString).ToString("dd-MM-yyyy"))
+        proto_sample_2.Text = If(dt.Rows(row_i)("proto_sample_2").ToString = "", "", dt.Rows(row_i)("proto_sample_2"))
         proto_sample_2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         proto_sample_2.Font = font_row_style
 
         'copy proto sample 2
         Dim copy_proto_sample_2 As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
-        copy_proto_sample_2.Text = If(dt.Rows(row_i)("copy_proto_sample_2").ToString = "", "", Date.Parse(dt.Rows(row_i)("copy_proto_sample_2").ToString).ToString("dd-MM-yyyy"))
+        copy_proto_sample_2.Text = If(dt.Rows(row_i)("copy_proto_sample_2").ToString = "", "", dt.Rows(row_i)("copy_proto_sample_2"))
         copy_proto_sample_2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         copy_proto_sample_2.Font = font_row_style
     End Sub

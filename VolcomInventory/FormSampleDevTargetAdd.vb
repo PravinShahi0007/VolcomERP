@@ -139,4 +139,21 @@ ORDER BY dsg.id_design DESC"
     Private Sub FormSampleDevTargetAdd_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub BAddBlank_Click(sender As Object, e As EventArgs) Handles BAddBlank.Click
+        'check on list
+        Dim is_ok As Boolean = True
+        For i As Integer = 0 To FormSampleDevTargetPps.GVPps.RowCount - 1
+            If SLEDesignStockStore.EditValue.ToString = FormSampleDevTargetPps.GVPps.GetRowCellValue(i, "id_design").ToString Then
+                is_ok = False
+                warningCustom("Design already listed")
+            End If
+        Next
+        If is_ok Then
+            Dim newRow As DataRow = (TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable)).NewRow()
+            newRow("id_design") = SLEDesignStockStore.EditValue.ToString
+            newRow("design_display_name") = SLEDesignStockStore.Text
+            TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable).Rows.Add(newRow)
+        End If
+    End Sub
 End Class

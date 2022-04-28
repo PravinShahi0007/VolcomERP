@@ -425,7 +425,7 @@ Public Class FormFGTrfNewDet
     Sub viewDetail()
         If action = "ins" Then
             'action
-            Dim query As String = "CALL view_sales_order_limit_for_trf('" + id_sales_order + "', '0', '0')"
+            Dim query As String = "CALL view_sales_order_limit_for_trf_lite('" + id_sales_order + "', '0', '0')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
         ElseIf action = "upd" Then
@@ -1087,9 +1087,9 @@ Public Class FormFGTrfNewDet
         Dim cond_check_data As Boolean = True
         Dim dt_cek As DataTable
         If action = "ins" Then
-            dt_cek = execute_query("CALL view_sales_order_limit_for_trf(" + id_sales_order + ", 0, 0)", -1, True, "", "", "", "")
+            dt_cek = execute_query("CALL view_sales_order_limit_for_trf_lite(" + id_sales_order + ", 0, 0)", -1, True, "", "", "", "")
         Else
-            dt_cek = execute_query("CALL view_sales_order_limit_for_trf(" + id_sales_order + ", 0, " + id_fg_trf + ")", -1, True, "", "", "", "")
+            dt_cek = execute_query("CALL view_sales_order_limit_for_trf_lite(" + id_sales_order + ", 0, " + id_fg_trf + ")", -1, True, "", "", "", "")
         End If
         For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
             Dim id_sales_order_det_cekya As String = GVItemList.GetRowCellValue(i, "id_sales_order_det").ToString

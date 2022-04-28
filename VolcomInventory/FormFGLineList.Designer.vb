@@ -53,6 +53,7 @@ Partial Class FormFGLineList
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
         Me.BBRateManagementToday = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.PanelImg = New DevExpress.XtraEditors.PanelControl()
         Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -277,8 +278,8 @@ Partial Class FormFGLineList
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc, Me.BBQuickUpdate, Me.BBRateManagementToday})
-        Me.BarManager1.MaxItemId = 14
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc, Me.BBQuickUpdate, Me.BBRateManagementToday, Me.BarButtonItem1})
+        Me.BarManager1.MaxItemId = 15
         '
         'barDockControlTop
         '
@@ -362,7 +363,7 @@ Partial Class FormFGLineList
         '
         Me.BBSubOther.Caption = "Other Menu"
         Me.BBSubOther.Id = 10
-        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BBSetAddPrc), New DevExpress.XtraBars.LinkPersistInfo(Me.BBRateManagementToday)})
+        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BBSetAddPrc), New DevExpress.XtraBars.LinkPersistInfo(Me.BBRateManagementToday), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1)})
         Me.BBSubOther.Name = "BBSubOther"
         '
         'BBSetAddPrc
@@ -376,6 +377,12 @@ Partial Class FormFGLineList
         Me.BBRateManagementToday.Caption = "Today Rate Management"
         Me.BBRateManagementToday.Id = 13
         Me.BBRateManagementToday.Name = "BBRateManagementToday"
+        '
+        'BarButtonItem1
+        '
+        Me.BarButtonItem1.Caption = "KIDS Ready To Propose SNI"
+        Me.BarButtonItem1.Id = 14
+        Me.BarButtonItem1.Name = "BarButtonItem1"
         '
         'PanelImg
         '
@@ -827,4 +834,5 @@ Partial Class FormFGLineList
     Friend WithEvents BBQuickUpdate As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BtnSetActualInStoreDate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BBRateManagementToday As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
 End Class

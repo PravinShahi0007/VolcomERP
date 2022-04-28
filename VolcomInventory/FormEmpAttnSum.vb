@@ -494,6 +494,9 @@
 
         GVScheduleTable.Columns.Clear()
 
+        Dim q As String = "SELECT emp_holiday_date FROM tb_emp_holiday WHERE id_religion=0"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
         If data.Rows.Count > 0 Then
             '
             GVScheduleTable.Columns.AddVisible("id_employee", "ID")
@@ -509,11 +512,13 @@
             GVScheduleTable.Columns("employee_name").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
 
             While (curD <= endP)
+                Dim data_filter_cek_public_holiday As DataRow() = dt.Select("[emp_holiday_date]='" + curD + "' ")
+
                 GVScheduleTable.Columns.AddVisible(curD.ToString("yyyy-MM-dd"), curD.ToString("dddd, dd MMM yyyy"))
 
                 If curD.DayOfWeek = DayOfWeek.Saturday Or curD.DayOfWeek = DayOfWeek.Sunday Then
                     GVScheduleTable.Columns(curD.ToString("yyyy-MM-dd")).AppearanceCell.BackColor = Color.Pink
-                ElseIf check_public_holiday(curD) = "1" Then
+                ElseIf data_filter_cek_public_holiday.Count > 0 Then
                     GVScheduleTable.Columns(curD.ToString("yyyy-MM-dd")).AppearanceCell.BackColor = Color.Red
                 End If
 
@@ -526,23 +531,27 @@
             GCScheduleTable.DataSource = data_x
             GVScheduleTable.DeleteRow(0)
             '
-            For i As Integer = 0 To data.Rows.Count - 1
-                Dim query_emp As String = "SELECT emp.date,IFNULL(t.leave_type,emp.shift_code) AS shift_code FROM tb_emp_schedule emp LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type WHERE emp.id_employee='" & data.Rows(i)("id_employee").ToString & "' AND emp.date >= '" & startP.ToString("yyyy-MM-dd") & "' AND emp.date <= '" & endP.ToString("yyyy-MM-dd") & "'"
-                Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
+            Dim query_emp As String = "SELECT emp.id_employee AS id_employee,emp.date AS date,IFNULL(t.leave_type,emp.shift_code) AS shift_code FROM tb_emp_schedule emp LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type "
+            Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
 
+            For i As Integer = 0 To data.Rows.Count - 1
                 Dim newRow As DataRow = (TryCast(GCScheduleTable.DataSource, DataTable)).NewRow()
                 newRow("id_employee") = data.Rows(i)("id_employee").ToString
                 newRow("employee_code") = data.Rows(i)("employee_code").ToString
                 newRow("employee_name") = data.Rows(i)("employee_name").ToString
-                If data_emp.Rows.Count > 0 Then
-                    For j As Integer = 0 To data_emp.Rows.Count - 1
-                        newRow(Date.Parse(data_emp.Rows(j)("date").ToString).ToString("yyyy-MM-dd")) = data_emp.Rows(j)("shift_code").ToString.ToUpper
+
+                Dim data_filter_sch As DataRow() = data_emp.Select("[id_employee]='" + data.Rows(i)("id_employee").ToString + "' AND [date] >= '" & startP.ToString("yyyy-MM-dd") & "' AND [date] <= '" & endP.ToString("yyyy-MM-dd") & "' ")
+
+                If data_filter_sch.Count > 0 Then
+                    For j As Integer = 0 To data_filter_sch.Count - 1
+                        newRow(Date.Parse(data_filter_sch(j)("date").ToString).ToString("yyyy-MM-dd")) = data_filter_sch(j)("shift_code").ToString.ToUpper
                     Next
                 End If
 
                 TryCast(GCScheduleTable.DataSource, DataTable).Rows.Add(newRow)
                 GCScheduleTable.RefreshDataSource()
             Next
+
             GVScheduleTable.BestFitColumns()
             GVScheduleTable.OptionsSelection.EnableAppearanceFocusedRow = False
             GVScheduleTable.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -589,8 +598,10 @@
 
         GVScheduleTable.Columns.Clear()
 
+        Dim q As String = "SELECT emp_holiday_date FROM tb_emp_holiday WHERE id_religion=0"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
         If data.Rows.Count > 0 Then
-            '
             GVScheduleTable.Columns.AddVisible("id_employee", "ID")
             GVScheduleTable.Columns("id_employee").OptionsColumn.AllowEdit = False
             GVScheduleTable.Columns("id_employee").Visible = False
@@ -605,10 +616,11 @@
 
             While (curD <= endP)
                 GVScheduleTable.Columns.AddVisible(curD.ToString("yyyy-MM-dd"), curD.ToString("dddd, dd MMM yyyy"))
+                Dim data_filter_cek_public_holiday As DataRow() = dt.Select("[emp_holiday_date]='" + curD + "' ")
 
                 If curD.DayOfWeek = DayOfWeek.Saturday Or curD.DayOfWeek = DayOfWeek.Sunday Then
                     GVScheduleTable.Columns(curD.ToString("yyyy-MM-dd")).AppearanceCell.BackColor = Color.Pink
-                ElseIf check_public_holiday(curD) = "1" Then
+                ElseIf data_filter_cek_public_holiday.Count > 0 Then
                     GVScheduleTable.Columns(curD.ToString("yyyy-MM-dd")).AppearanceCell.BackColor = Color.Red
                 End If
 
@@ -621,23 +633,27 @@
             GCScheduleTable.DataSource = data_x
             GVScheduleTable.DeleteRow(0)
             '
-            For i As Integer = 0 To data.Rows.Count - 1
-                Dim query_emp As String = "SELECT emp.date,IFNULL(t.leave_type,emp.shift_code) AS shift_code FROM tb_emp_schedule emp LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type WHERE emp.id_employee='" & data.Rows(i)("id_employee").ToString & "' AND emp.date >= '" & startP.ToString("yyyy-MM-dd") & "' AND emp.date <= '" & endP.ToString("yyyy-MM-dd") & "'"
-                Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
+            Dim query_emp As String = "SELECT emp.id_employee AS id_employee,emp.date AS date,IFNULL(t.leave_type,emp.shift_code) AS shift_code FROM tb_emp_schedule emp LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type "
+            Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
 
+            For i As Integer = 0 To data.Rows.Count - 1
                 Dim newRow As DataRow = (TryCast(GCScheduleTable.DataSource, DataTable)).NewRow()
                 newRow("id_employee") = data.Rows(i)("id_employee").ToString
                 newRow("employee_code") = data.Rows(i)("employee_code").ToString
                 newRow("employee_name") = data.Rows(i)("employee_name").ToString
-                If data_emp.Rows.Count > 0 Then
-                    For j As Integer = 0 To data_emp.Rows.Count - 1
-                        newRow(Date.Parse(data_emp.Rows(j)("date").ToString).ToString("yyyy-MM-dd")) = data_emp.Rows(j)("shift_code").ToString.ToUpper
+
+                Dim data_filter_sch As DataRow() = data_emp.Select("[id_employee]='" + data.Rows(i)("id_employee").ToString + "' AND [date] >= '" & startP.ToString("yyyy-MM-dd") & "' AND [date] <= '" & endP.ToString("yyyy-MM-dd") & "' ")
+
+                If data_filter_sch.Count > 0 Then
+                    For j As Integer = 0 To data_filter_sch.Count - 1
+                        newRow(Date.Parse(data_filter_sch(j)("date").ToString).ToString("yyyy-MM-dd")) = data_filter_sch(j)("shift_code").ToString.ToUpper
                     Next
                 End If
 
                 TryCast(GCScheduleTable.DataSource, DataTable).Rows.Add(newRow)
                 GCScheduleTable.RefreshDataSource()
             Next
+
             GVScheduleTable.BestFitColumns()
             GVScheduleTable.OptionsSelection.EnableAppearanceFocusedRow = False
             GVScheduleTable.OptionsSelection.EnableAppearanceFocusedCell = False

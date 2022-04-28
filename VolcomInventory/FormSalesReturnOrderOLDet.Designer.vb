@@ -91,6 +91,8 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnid_ol_store_ret_list = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_void = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddLine = New DevExpress.XtraEditors.SimpleButton()
@@ -121,8 +123,6 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -228,14 +228,14 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(854, 97)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(854, 103)
         Me.GroupGeneralHeader.TabIndex = 185
         '
         'BtnBrowseOrder
         '
         Me.BtnBrowseOrder.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseOrder.Appearance.Options.UseFont = True
-        Me.BtnBrowseOrder.Location = New System.Drawing.Point(464, 62)
+        Me.BtnBrowseOrder.Location = New System.Drawing.Point(241, 139)
         Me.BtnBrowseOrder.Name = "BtnBrowseOrder"
         Me.BtnBrowseOrder.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowseOrder.TabIndex = 2
@@ -246,7 +246,7 @@ Partial Class FormSalesReturnOrderOLDet
         '
         Me.BtnBrowseWH.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseWH.Appearance.Options.UseFont = True
-        Me.BtnBrowseWH.Location = New System.Drawing.Point(464, 36)
+        Me.BtnBrowseWH.Location = New System.Drawing.Point(212, 139)
         Me.BtnBrowseWH.Name = "BtnBrowseWH"
         Me.BtnBrowseWH.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowseWH.TabIndex = 1
@@ -257,7 +257,7 @@ Partial Class FormSalesReturnOrderOLDet
         '
         Me.BtnBrowseStore.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseStore.Appearance.Options.UseFont = True
-        Me.BtnBrowseStore.Location = New System.Drawing.Point(464, 12)
+        Me.BtnBrowseStore.Location = New System.Drawing.Point(182, 139)
         Me.BtnBrowseStore.Name = "BtnBrowseStore"
         Me.BtnBrowseStore.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowseStore.TabIndex = 0
@@ -297,7 +297,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(589, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(263, 93)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(263, 99)
         Me.PanelControlTopRight.TabIndex = 8892
         '
         'DERetDueDate
@@ -580,7 +580,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(848, 283)
+        Me.GroupControlList.Size = New System.Drawing.Size(848, 277)
         Me.GroupControlList.TabIndex = 186
         Me.GroupControlList.Text = "Item List"
         '
@@ -592,7 +592,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(826, 244)
+        Me.GCItemList.Size = New System.Drawing.Size(826, 238)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -888,6 +888,22 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnStatus.Visible = True
         Me.GridColumnStatus.VisibleIndex = 13
         '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 4
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 6
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -963,10 +979,10 @@ Partial Class FormSalesReturnOrderOLDet
         'XTCROR
         '
         Me.XTCROR.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCROR.Location = New System.Drawing.Point(0, 97)
+        Me.XTCROR.Location = New System.Drawing.Point(0, 103)
         Me.XTCROR.Name = "XTCROR"
         Me.XTCROR.SelectedTabPage = Me.XTPROR
-        Me.XTCROR.Size = New System.Drawing.Size(854, 311)
+        Me.XTCROR.Size = New System.Drawing.Size(854, 305)
         Me.XTCROR.TabIndex = 8
         Me.XTCROR.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPROR, Me.XTPRTS, Me.XTPRRF})
         '
@@ -974,7 +990,7 @@ Partial Class FormSalesReturnOrderOLDet
         '
         Me.XTPROR.Controls.Add(Me.GroupControlList)
         Me.XTPROR.Name = "XTPROR"
-        Me.XTPROR.Size = New System.Drawing.Size(848, 283)
+        Me.XTPROR.Size = New System.Drawing.Size(848, 277)
         Me.XTPROR.Text = "ROR List"
         '
         'XTPRTS
@@ -1174,22 +1190,6 @@ Partial Class FormSalesReturnOrderOLDet
         Me.SimpleButton2.Size = New System.Drawing.Size(98, 42)
         Me.SimpleButton2.TabIndex = 1
         Me.SimpleButton2.Text = "Print List"
-        '
-        'GridColumnclass
-        '
-        Me.GridColumnclass.Caption = "Class"
-        Me.GridColumnclass.FieldName = "class"
-        Me.GridColumnclass.Name = "GridColumnclass"
-        Me.GridColumnclass.Visible = True
-        Me.GridColumnclass.VisibleIndex = 4
-        '
-        'GridColumncolor
-        '
-        Me.GridColumncolor.Caption = "Color"
-        Me.GridColumncolor.FieldName = "color"
-        Me.GridColumncolor.Name = "GridColumncolor"
-        Me.GridColumncolor.Visible = True
-        Me.GridColumncolor.VisibleIndex = 6
         '
         'FormSalesReturnOrderOLDet
         '

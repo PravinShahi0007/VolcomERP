@@ -1126,6 +1126,7 @@
             Dim total_all As Decimal = 0.00
 
             Dim insert_detail As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, id_comp, vendor, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number) VALUES "
+            Dim insert_detail_check As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, id_comp, vendor, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number) VALUES "
 
             For i = 0 To data_sum.Rows.Count - 1
                 If data_sum.Rows(i)("is_office_payroll").ToString = "1" Then
@@ -1279,7 +1280,9 @@
                 insert_detail = insert_detail + "('" + id_acc_trans + "', 1223, 1, '000', " + decimalSQL(total_all) + ", 0, 'Gaji Karyawan " + payroll_det.Rows(0)("periode").ToString + " - Sogo', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
             End If
 
-            execute_non_query(insert_detail.Substring(0, insert_detail.Length - 2), True, "", "", "", "")
+            If Not insert_detail = insert_detail_check Then
+                execute_non_query(insert_detail.Substring(0, insert_detail.Length - 2), True, "", "", "", "")
+            End If
         Else
             Dim payroll_det As DataTable = execute_query("SELECT (SELECT payroll_type FROM tb_emp_payroll_type WHERE id_payroll_type = tb_emp_payroll.id_payroll_type) AS `type`, DATE_FORMAT(periode_end, '%Y') AS periode, report_number FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, -1, True, "", "", "", "")
 
@@ -1313,6 +1316,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             Dim insert_detail As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, id_comp, vendor, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number) VALUES "
+            Dim insert_detail_check As String = "INSERT INTO tb_a_acc_trans_det (id_acc_trans, id_acc, id_comp, vendor, credit, debit, acc_trans_det_note, report_mark_type, id_report, report_number) VALUES "
 
             Dim total_all As Decimal = 0.00
 
@@ -1369,7 +1373,9 @@
                 insert_detail = insert_detail + "('" + id_acc_trans + "', 1223, 1, '000', " + decimalSQL(total_all) + ", 0, '" + payroll_det.Rows(0)("type").ToString + " " + payroll_det.Rows(0)("periode").ToString + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "'), "
             End If
 
-            execute_non_query(insert_detail.Substring(0, insert_detail.Length - 2), True, "", "", "", "")
+            If Not insert_detail = insert_detail_check Then
+                execute_non_query(insert_detail.Substring(0, insert_detail.Length - 2), True, "", "", "", "")
+            End If
         End If
     End Sub
 
@@ -1576,7 +1582,7 @@
                 IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND 
                 IF(d.is_store = 2, IF(e.employee_last_date IS NULL, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), e.employee_last_date), IF(e.employee_last_date IS NULL, (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), e.employee_last_date)) 
                 AND s.id_schedule_type IN (1, 3)
-                AND IF(d.is_store = 2, WEEKDAY(s.date) NOT IN (5, 6), '')
+                AND IF(d.is_store = 2, WEEKDAY(s.date) NOT IN (5, 6), 1 = 1)
             GROUP BY s.id_employee
         "
 
@@ -1585,6 +1591,24 @@
                 -- actual workdays
                 SELECT id_employee, ROUND(DATEDIFF(IFNULL(employee_last_date, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")), employee_actual_join_date) / 365, 2) AS actual_workdays
                 FROM tb_m_employee
+            "
+        End If
+
+        If is_dw = "1" Then
+            where_actual_workdays = "
+                -- actual workdays
+                SELECT s.id_employee, COUNT(*) AS actual_workdays
+                FROM tb_emp_schedule AS s
+                LEFT JOIN tb_m_employee AS e
+                    ON s.id_employee = e.id_employee
+                LEFT JOIN tb_m_departement AS d 
+                    ON e.id_departement = d.id_departement
+                WHERE s.date BETWEEN 
+                    IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND 
+                    IF(d.is_store = 2, IF(e.employee_last_date IS NULL, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), e.employee_last_date), IF(e.employee_last_date IS NULL, (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), e.employee_last_date)) 
+                    AND s.id_schedule_type IN (1, 3)
+                    AND IF(d.is_store = 2, WEEKDAY(s.date) NOT IN (5, 6), 1 = 1)
+                GROUP BY s.id_employee
             "
         End If
 

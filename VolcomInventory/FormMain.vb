@@ -6,7 +6,6 @@ Imports System.Xml
 
 Public Class FormMain
     Public connection_problem As Boolean = False
-    Dim id_super_user As String = "0"
 
     Sub badgeVisible()
         If (RibbonControl.SelectedPage.ToString = "General" Or RibbonControl.SelectedPage.ToString = "") And Badge1.Properties.Text > "0" Then
@@ -43,10 +42,14 @@ Public Class FormMain
             DashboardToolStripMenuItem.Visible = False
             read_database_configuration()
             check_connection(True, "", "", "", "")
-            check_pic_location()
-            If get_setup_field("auto_update") = "1" Then
+
+            'check_pic_location()
+            load_startup()
+
+            If auto_update = "1" Then
                 check_and_update_version()
             End If
+
             'show hide login
             'LoginToolStripMenuItem.Visible = True
         Catch ex As Exception
@@ -62,7 +65,8 @@ Public Class FormMain
         End Try
 
         'change connection shortkey & role superuser
-        id_super_user = get_setup_field("id_role_super_admin")
+
+
         For Each ex As Control In Me.Controls
             AddHandler ex.KeyDown, AddressOf FormMain_KeyUp
         Next
@@ -96,15 +100,14 @@ HAVING NOT ISNULL(id_user)"
 
     '----------- check version
     Sub check_and_update_version()
-        Dim update_url As String = get_setup_field("update_address")
         Dim web As New Net.WebClient
         Dim LatestVersion As String = web.DownloadString(update_url & "version.txt") 'To download the Lastest Version from a specified URL.
         If Application.ProductVersion.ToString < LatestVersion Then
-            infoCustom("New version of application is available! System will automatically update to new version.")
-            My.Computer.Network.DownloadFile(update_url & "setup.exe", Application.StartupPath & "\setup.exe", "", "", True, 100, True)
-            My.Computer.Network.DownloadFile(update_url & "SetupVolcomERP.msi", Application.StartupPath & "\SetupVolcomERP.msi", "", "", True, 100, True)
-            infoCustom("File downloaded. Begin installing new version.")
-            Process.Start(Application.StartupPath & "\setup.exe")
+            infoCustom("ERP New version is available! Please update application.")
+            'My.Computer.Network.DownloadFile(update_url & "setup.exe", Application.StartupPath & "\setup.exe", "", "", True, 100, True)
+            'My.Computer.Network.DownloadFile(update_url & "SetupVolcomERP.msi", Application.StartupPath & "\SetupVolcomERP.msi", "", "", True, 100, True)
+            'infoCustom("File downloaded. Begin installing new version.")
+            'Process.Start(Application.StartupPath & "\setup.exe")
             Application.Exit()
         End If
     End Sub
@@ -210,44 +213,51 @@ HAVING NOT ISNULL(id_user)"
     End Sub
 
     'check pic location
-    Sub check_pic_location()
-        'picture location
-        Dim err_pic As String = "-1"
-        Try
-            Dim pic_path_mat As String = get_setup_field("pic_path_mat")
-            Dim pic_path_sample As String = get_setup_field("pic_path_sample")
-            Dim pic_path_design As String = get_setup_field("pic_path_design")
-            Dim pic_path_logo As String = get_setup_field("pic_path_logo")
+    'Sub check_pic_location()
+    '    'picture location
+    '    'Dim err_pic As String = "-1"
+    '    'Try
+    '    '    Dim q As String = "SELECT pic_path_mat,pic_path_sample,pic_path_design,pic_path_logo FROM tb_opt"
+    '    '    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
-            If pic_path_mat = "" Or pic_path_sample = "" Or pic_path_design = "" Or pic_path_logo = "" Then
-                err_pic = "1"
-            Else
-                If Not System.IO.Directory.Exists(pic_path_sample) Or Not System.IO.Directory.Exists(pic_path_mat) Or Not System.IO.Directory.Exists(pic_path_design) Or Not System.IO.Directory.Exists(pic_path_logo) Then
-                    err_pic = "1"
-                Else
-                    If Not System.IO.File.Exists(pic_path_mat & "\default.jpg") Or Not System.IO.File.Exists(pic_path_sample & "\default.jpg") Or Not System.IO.File.Exists(pic_path_design & "\default.jpg") Or Not System.IO.File.Exists(pic_path_logo & "\default.jpg") Then
-                        err_pic = "2"
-                    End If
-                End If
-            End If
-        Catch ex As Exception
-            'err_pic = "1"
-            MsgBox(ex.ToString)
-        End Try
-        '
-        If err_pic <> "-1" Then
-            LoginToolStripMenuItem.Visible = False
-            stopCustom("Connection error, please contact administrator.")
-            'FormSetupPicLocation.TopMost = True
-            'FormSetupPicLocation.Show()
-            'FormSetupPicLocation.Focus()
-            'FormSetupPicLocation.TopMost = False
-        Else
-            LoginToolStripMenuItem.Visible = True
-            DashboardToolStripMenuItem.Visible = False
-            loadImgPath()
-        End If
-    End Sub
+    '    '    Dim pic_path_mat As String = dt.Rows(0)("pic_path_mat").ToString
+    '    '    Dim pic_path_sample As String = dt.Rows(0)("pic_path_sample").ToString
+    '    '    Dim pic_path_design As String = dt.Rows(0)("pic_path_design").ToString
+    '    '    Dim pic_path_logo As String = dt.Rows(0)("pic_path_logo").ToString
+
+    '    '    If pic_path_mat = "" Or pic_path_sample = "" Or pic_path_design = "" Or pic_path_logo = "" Then
+    '    '        err_pic = "1"
+    '    '    Else
+    '    '        If Not System.IO.Directory.Exists(pic_path_sample) Or Not System.IO.Directory.Exists(pic_path_mat) Or Not System.IO.Directory.Exists(pic_path_design) Or Not System.IO.Directory.Exists(pic_path_logo) Then
+    '    '            err_pic = "1"
+    '    '        Else
+    '    '            If Not System.IO.File.Exists(pic_path_mat & "\default.jpg") Or Not System.IO.File.Exists(pic_path_sample & "\default.jpg") Or Not System.IO.File.Exists(pic_path_design & "\default.jpg") Or Not System.IO.File.Exists(pic_path_logo & "\default.jpg") Then
+    '    '                err_pic = "2"
+    '    '            End If
+    '    '        End If
+    '    '    End If
+    '    'Catch ex As Exception
+    '    '    'err_pic = "1"
+    '    '    MsgBox(ex.ToString)
+    '    'End Try
+    '    ''
+    '    'If err_pic <> "-1" Then
+    '    '    LoginToolStripMenuItem.Visible = False
+    '    '    stopCustom("Connection error, please contact administrator.")
+    '    '    'FormSetupPicLocation.TopMost = True
+    '    '    'FormSetupPicLocation.Show()
+    '    '    'FormSetupPicLocation.Focus()
+    '    '    'FormSetupPicLocation.TopMost = False
+    '    'Else
+    '    '    LoginToolStripMenuItem.Visible = True
+    '    '    DashboardToolStripMenuItem.Visible = False
+    '    '    loadImgPath()
+    '    'End If
+
+    '    LoginToolStripMenuItem.Visible = True
+    '    DashboardToolStripMenuItem.Visible = False
+    '    load_startup()
+    'End Sub
     'Show Ribbon
     Sub show_rb(ByVal formnamex As String)
         formName = formnamex
@@ -2023,6 +2033,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormQCReport1Sum.id = "-1"
                 FormQCReport1Sum.ShowDialog()
             End If
+        ElseIf formName = "FormRoyaltyRate" Then
+            FormRoyaltyRate.createNew()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3398,6 +3410,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormQCReport1" Then
                 FormQCReport1Det.id = FormQCReport1.GVQCReport.GetFocusedRowCellValue("id_qc_report1").ToString
                 FormQCReport1Det.ShowDialog()
+            ElseIf formName = "FormRoyaltyRate" Then
+                FormRoyaltyRate.viewDetail()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8332,6 +8346,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 print(FormFGTransList.GCRepair, "Repair (" + FormFGTransList.DEFromRepair.Text + " - " + FormFGTransList.DEUntilRepair.Text + ")")
             ElseIf page = "repair_rec" Then
                 print(FormFGTransList.GCRepairRec, "Receive Repair (" + FormFGTransList.DEFromRepairRec.Text + " - " + FormFGTransList.DEUntilRepairRec.Text + ")")
+            ElseIf page = "return_repair" Then
+                print(FormFGTransList.GCReturnRepair, "Return Repair (" + FormFGTransList.DEFromReturnRepair.Text + " - " + FormFGTransList.DEUntilReturnRepair.Text + ")")
+            ElseIf page = "rec_return_repair" Then
+                print(FormFGTransList.GCRecReturnRepair, "Receive Return Repair (" + FormFGTransList.DEFromRecReturnRepair.Text + " - " + FormFGTransList.DEUntilRecReturnRepair.Text + ")")
             End If
         ElseIf formName = "FormProdClosing" Then
             print_raw(FormProdClosing.GCProd, "")
@@ -8909,6 +8927,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormQCReport1.GCQCReport, "List QC Report 1")
         ElseIf formName = "FormAgingProductList" Then
             print(FormAgingProductList.GCList, "Product Age List")
+        ElseIf formName = "FormRoyaltyRate" Then
+            FormRoyaltyRate.printList()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9990,6 +10010,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormAgingProductList" Then
             FormAgingProductList.Close()
             FormAgingProductList.Dispose()
+        ElseIf formName = "FormRoyaltyRate" Then
+            FormRoyaltyRate.Close()
+            FormRoyaltyRate.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11056,6 +11079,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormStoreDisplay.refreshData()
         ElseIf formName = "FormDesignOrderView" Then
             FormDesignOrderView.viewData()
+        ElseIf formName = "FormRoyaltyRate" Then
+            FormRoyaltyRate.viewData()
         End If
     End Sub
     'Switch
@@ -17196,6 +17221,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormAgingProductList.Show()
             FormAgingProductList.WindowState = FormWindowState.Maximized
             FormAgingProductList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRoyaltyRate_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRoyaltyRate.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormRoyaltyRate.MdiParent = Me
+            FormRoyaltyRate.Show()
+            FormRoyaltyRate.WindowState = FormWindowState.Maximized
+            FormRoyaltyRate.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

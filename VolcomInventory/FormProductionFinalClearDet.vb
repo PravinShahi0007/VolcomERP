@@ -304,13 +304,6 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
             BtnPrePrinting.Enabled = False
         End If
 
-        'ATTACH
-        If check_attach_report_status(id_report_status, report_mark_type, id_prod_fc) Then
-            BtnAttachment.Enabled = True
-        Else
-            BtnAttachment.Enabled = False
-        End If
-
         If check_print_report_status(id_report_status) Then
             BtnPrint.Enabled = True
         Else
@@ -456,11 +449,22 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
-        FormDocumentUpload.report_mark_type = execute_query("SELECT report_mark_type FROM tb_prod_fc WHERE id_prod_fc = " + id_prod_fc, 0, True, "", "", "", "")
+
+        Dim report_mark_type As String = execute_query("SELECT report_mark_type FROM tb_prod_fc WHERE id_prod_fc = " + id_prod_fc, 0, True, "", "", "", "")
+
+        FormDocumentUpload.report_mark_type = report_mark_type
         FormDocumentUpload.id_report = id_prod_fc
+
+        If check_attach_report_status(id_report_status, report_mark_type, id_prod_fc) Then
+
+        Else
+            FormDocumentUpload.is_view = "1"
+        End If
+
         If is_view = "1" Then
             FormDocumentUpload.is_view = "1"
         End If
+
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub

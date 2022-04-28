@@ -10,7 +10,7 @@
         End If
 
         If id_payroll_before = "" Then
-            id_payroll_before = execute_query("SELECT id_payroll FROM tb_emp_payroll WHERE MONTH(periode_end) = (SELECT MONTH(periode_end - INTERVAL 1 MONTH) FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "') AND YEAR(periode_end) = (SELECT YEAR(periode_end - INTERVAL 1 MONTH) FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "') AND id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "')", 0, True, "", "", "", "")
+            id_payroll_before = execute_query("SELECT IFNULL((SELECT id_payroll FROM tb_emp_payroll WHERE MONTH(periode_end) = (SELECT MONTH(periode_end - INTERVAL 1 MONTH) FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "') AND YEAR(periode_end) = (SELECT YEAR(periode_end - INTERVAL 1 MONTH) FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "') AND id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "')), 0)", 0, True, "", "", "", "")
         End If
 
         data_payroll = execute_query("

@@ -551,10 +551,10 @@
     End Sub
 
     Sub load_sum_before()
-        Dim id_payroll_before As String = execute_query("SELECT id_payroll FROM tb_emp_payroll WHERE MONTH(periode_end) = (SELECT MONTH(periode_end - INTERVAL 1 MONTH) FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "') AND YEAR(periode_end) = (SELECT YEAR(periode_end - INTERVAL 1 MONTH) FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "') AND id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "')", 0, True, "", "", "", "")
+        Dim id_payroll_before As String = execute_query("SELECT IFNULL((SELECT id_payroll FROM tb_emp_payroll WHERE MONTH(periode_end) = (SELECT MONTH(periode_end - INTERVAL 1 MONTH) FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "') AND YEAR(periode_end) = (SELECT YEAR(periode_end - INTERVAL 1 MONTH) FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "') AND id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = '" & id_payroll & "')), 0)", 0, True, "", "", "", "")
 
         'title
-        Dim period_month_year As String = execute_query("SELECT DATE_FORMAT(periode_end, '%M %Y') AS period_month_year FROM tb_emp_payroll WHERE id_payroll = '" + id_payroll_before + "'", 0, True, "", "", "", "")
+        'Dim period_month_year As String = execute_query("SELECT DATE_FORMAT(periode_end, '%M %Y') AS period_month_year FROM tb_emp_payroll WHERE id_payroll = '" + id_payroll_before + "'", 0, True, "", "", "", "")
 
         'GVSummary.Columns("balance_before").Caption = "Balance (" + period_month_year + ")"
 

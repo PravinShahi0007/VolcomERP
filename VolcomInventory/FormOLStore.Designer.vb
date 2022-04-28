@@ -208,6 +208,10 @@ Partial Class FormOLStore
         Me.GridColumnnote_promo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_group_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlFollowUp = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLESyncStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.CEAllow = New DevExpress.XtraEditors.CheckEdit()
         Me.SBCloseOrder = New DevExpress.XtraEditors.SimpleButton()
@@ -227,10 +231,7 @@ Partial Class FormOLStore
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip()
         Me.CantProceedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLESyncStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumndiscount_code = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -293,6 +294,10 @@ Partial Class FormOLStore
         CType(Me.LinkSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlFollowUp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlFollowUp.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.SLESyncStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
         CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -303,10 +308,6 @@ Partial Class FormOLStore
         CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripOwnOlStore.SuspendLayout()
-        CType(Me.SLESyncStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -1632,7 +1633,7 @@ Partial Class FormOLStore
         '
         'GVVolcom
         '
-        Me.GVVolcom.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsCheck, Me.GridColumnid, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_name, Me.GridColumnshipping_address, Me.GridColumnshipping_phone, Me.GridColumnshipping_city, Me.GridColumnshipping_post_code, Me.GridColumnshipping_region, Me.GridColumnpayment_method, Me.GridColumntracking_code, Me.GridColumnol_store_sku, Me.GridColumnol_store_id, Me.GridColumnsku, Me.GridColumndesign_price, Me.GridColumnsales_order_det_qty, Me.GridColumnis_process, Me.GridColumnnote_price, Me.GridColumnid_design_cat, Me.GridColumnid_design_price, Me.GridColumnid_product, Me.GridColumnnote_stock, Me.GridColumnid_report_trf_order, Me.GridColumnrmt_trf_order, Me.GridColumnid_report_trf, Me.GridColumnrmt_trf, Me.GridColumnid_report_order, Me.GridColumnrmt_order, Me.GridColumntrf_order_number, Me.GridColumntrf_number, Me.GridColumnsales_order_number, Me.GridColumn39, Me.GridColumn, Me.GridColumnFailReason, Me.GridColumnnote_promo, Me.GridColumncomp_group_name})
+        Me.GVVolcom.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsCheck, Me.GridColumnid, Me.GridColumnsales_order_ol_shop_number, Me.GridColumnsales_order_ol_shop_date, Me.GridColumncustomer_name, Me.GridColumnshipping_name, Me.GridColumnshipping_address, Me.GridColumnshipping_phone, Me.GridColumnshipping_city, Me.GridColumnshipping_post_code, Me.GridColumnshipping_region, Me.GridColumnpayment_method, Me.GridColumntracking_code, Me.GridColumnol_store_sku, Me.GridColumnol_store_id, Me.GridColumnsku, Me.GridColumndesign_price, Me.GridColumnsales_order_det_qty, Me.GridColumnis_process, Me.GridColumnnote_price, Me.GridColumnid_design_cat, Me.GridColumnid_design_price, Me.GridColumnid_product, Me.GridColumnnote_stock, Me.GridColumnid_report_trf_order, Me.GridColumnrmt_trf_order, Me.GridColumnid_report_trf, Me.GridColumnrmt_trf, Me.GridColumnid_report_order, Me.GridColumnrmt_order, Me.GridColumntrf_order_number, Me.GridColumntrf_number, Me.GridColumnsales_order_number, Me.GridColumn39, Me.GridColumn, Me.GridColumnFailReason, Me.GridColumnnote_promo, Me.GridColumncomp_group_name, Me.GridColumndiscount_code})
         Me.GVVolcom.GridControl = Me.GCVolcom
         Me.GVVolcom.Name = "GVVolcom"
         Me.GVVolcom.OptionsBehavior.AutoExpandAllGroups = True
@@ -1763,7 +1764,7 @@ Partial Class FormOLStore
         Me.GridColumntracking_code.Name = "GridColumntracking_code"
         Me.GridColumntracking_code.OptionsColumn.ReadOnly = True
         Me.GridColumntracking_code.Visible = True
-        Me.GridColumntracking_code.VisibleIndex = 12
+        Me.GridColumntracking_code.VisibleIndex = 13
         '
         'GridColumnol_store_sku
         '
@@ -1772,7 +1773,7 @@ Partial Class FormOLStore
         Me.GridColumnol_store_sku.Name = "GridColumnol_store_sku"
         Me.GridColumnol_store_sku.OptionsColumn.ReadOnly = True
         Me.GridColumnol_store_sku.Visible = True
-        Me.GridColumnol_store_sku.VisibleIndex = 13
+        Me.GridColumnol_store_sku.VisibleIndex = 14
         '
         'GridColumnol_store_id
         '
@@ -1781,7 +1782,7 @@ Partial Class FormOLStore
         Me.GridColumnol_store_id.Name = "GridColumnol_store_id"
         Me.GridColumnol_store_id.OptionsColumn.ReadOnly = True
         Me.GridColumnol_store_id.Visible = True
-        Me.GridColumnol_store_id.VisibleIndex = 14
+        Me.GridColumnol_store_id.VisibleIndex = 15
         '
         'GridColumnsku
         '
@@ -1790,7 +1791,7 @@ Partial Class FormOLStore
         Me.GridColumnsku.Name = "GridColumnsku"
         Me.GridColumnsku.OptionsColumn.ReadOnly = True
         Me.GridColumnsku.Visible = True
-        Me.GridColumnsku.VisibleIndex = 15
+        Me.GridColumnsku.VisibleIndex = 16
         '
         'GridColumndesign_price
         '
@@ -1801,7 +1802,7 @@ Partial Class FormOLStore
         Me.GridColumndesign_price.Name = "GridColumndesign_price"
         Me.GridColumndesign_price.OptionsColumn.ReadOnly = True
         Me.GridColumndesign_price.Visible = True
-        Me.GridColumndesign_price.VisibleIndex = 16
+        Me.GridColumndesign_price.VisibleIndex = 17
         '
         'GridColumnsales_order_det_qty
         '
@@ -1813,7 +1814,7 @@ Partial Class FormOLStore
         Me.GridColumnsales_order_det_qty.OptionsColumn.ReadOnly = True
         Me.GridColumnsales_order_det_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:N0}")})
         Me.GridColumnsales_order_det_qty.Visible = True
-        Me.GridColumnsales_order_det_qty.VisibleIndex = 17
+        Me.GridColumnsales_order_det_qty.VisibleIndex = 18
         '
         'GridColumnis_process
         '
@@ -1829,7 +1830,7 @@ Partial Class FormOLStore
         Me.GridColumnnote_price.Name = "GridColumnnote_price"
         Me.GridColumnnote_price.OptionsColumn.ReadOnly = True
         Me.GridColumnnote_price.Visible = True
-        Me.GridColumnnote_price.VisibleIndex = 19
+        Me.GridColumnnote_price.VisibleIndex = 20
         '
         'GridColumnid_design_cat
         '
@@ -1859,7 +1860,7 @@ Partial Class FormOLStore
         Me.GridColumnnote_stock.Name = "GridColumnnote_stock"
         Me.GridColumnnote_stock.OptionsColumn.ReadOnly = True
         Me.GridColumnnote_stock.Visible = True
-        Me.GridColumnnote_stock.VisibleIndex = 20
+        Me.GridColumnnote_stock.VisibleIndex = 21
         '
         'GridColumnid_report_trf_order
         '
@@ -1911,7 +1912,7 @@ Partial Class FormOLStore
         Me.GridColumntrf_order_number.Name = "GridColumntrf_order_number"
         Me.GridColumntrf_order_number.OptionsColumn.ReadOnly = True
         Me.GridColumntrf_order_number.Visible = True
-        Me.GridColumntrf_order_number.VisibleIndex = 22
+        Me.GridColumntrf_order_number.VisibleIndex = 23
         '
         'LinkTrfOrder
         '
@@ -1926,7 +1927,7 @@ Partial Class FormOLStore
         Me.GridColumntrf_number.Name = "GridColumntrf_number"
         Me.GridColumntrf_number.OptionsColumn.ReadOnly = True
         Me.GridColumntrf_number.Visible = True
-        Me.GridColumntrf_number.VisibleIndex = 23
+        Me.GridColumntrf_number.VisibleIndex = 24
         '
         'LinkTrf
         '
@@ -1941,7 +1942,7 @@ Partial Class FormOLStore
         Me.GridColumnsales_order_number.Name = "GridColumnsales_order_number"
         Me.GridColumnsales_order_number.OptionsColumn.ReadOnly = True
         Me.GridColumnsales_order_number.Visible = True
-        Me.GridColumnsales_order_number.VisibleIndex = 24
+        Me.GridColumnsales_order_number.VisibleIndex = 25
         '
         'LinkSalesOrder
         '
@@ -1955,7 +1956,7 @@ Partial Class FormOLStore
         Me.GridColumn39.Name = "GridColumn39"
         Me.GridColumn39.OptionsColumn.ReadOnly = True
         Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 25
+        Me.GridColumn39.VisibleIndex = 26
         '
         'GridColumn
         '
@@ -1963,7 +1964,7 @@ Partial Class FormOLStore
         Me.GridColumn.Name = "GridColumn"
         Me.GridColumn.OptionsColumn.ReadOnly = True
         Me.GridColumn.Visible = True
-        Me.GridColumn.VisibleIndex = 18
+        Me.GridColumn.VisibleIndex = 19
         '
         'GridColumnFailReason
         '
@@ -1972,7 +1973,7 @@ Partial Class FormOLStore
         Me.GridColumnFailReason.Name = "GridColumnFailReason"
         Me.GridColumnFailReason.OptionsColumn.ReadOnly = True
         Me.GridColumnFailReason.Visible = True
-        Me.GridColumnFailReason.VisibleIndex = 26
+        Me.GridColumnFailReason.VisibleIndex = 27
         '
         'GridColumnnote_promo
         '
@@ -1980,7 +1981,7 @@ Partial Class FormOLStore
         Me.GridColumnnote_promo.FieldName = "note_promo"
         Me.GridColumnnote_promo.Name = "GridColumnnote_promo"
         Me.GridColumnnote_promo.Visible = True
-        Me.GridColumnnote_promo.VisibleIndex = 21
+        Me.GridColumnnote_promo.VisibleIndex = 22
         '
         'GridColumncomp_group_name
         '
@@ -2000,6 +2001,47 @@ Partial Class FormOLStore
         Me.PanelControlFollowUp.Name = "PanelControlFollowUp"
         Me.PanelControlFollowUp.Size = New System.Drawing.Size(994, 40)
         Me.PanelControlFollowUp.TabIndex = 2
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.LabelControl2)
+        Me.PanelControl4.Controls.Add(Me.SLESyncStatus)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl4.Location = New System.Drawing.Point(12, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(319, 36)
+        Me.PanelControl4.TabIndex = 8
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(8, 8)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(81, 19)
+        Me.LabelControl2.TabIndex = 6
+        Me.LabelControl2.Text = "Sync Status"
+        '
+        'SLESyncStatus
+        '
+        Me.SLESyncStatus.EditValue = "- Sync Status -"
+        Me.SLESyncStatus.Enabled = False
+        Me.SLESyncStatus.Location = New System.Drawing.Point(95, 4)
+        Me.SLESyncStatus.Name = "SLESyncStatus"
+        Me.SLESyncStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLESyncStatus.Properties.Appearance.Options.UseFont = True
+        Me.SLESyncStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESyncStatus.Properties.NullText = "- Sync Status -"
+        Me.SLESyncStatus.Properties.View = Me.GridView6
+        Me.SLESyncStatus.Size = New System.Drawing.Size(211, 26)
+        Me.SLESyncStatus.TabIndex = 7
+        '
+        'GridView6
+        '
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
         '
         'PanelControl6
         '
@@ -2193,46 +2235,13 @@ Partial Class FormOLStore
         Me.CantProceedToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.CantProceedToolStripMenuItem.Text = "Can't proceed"
         '
-        'LabelControl2
+        'GridColumndiscount_code
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(8, 8)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(81, 19)
-        Me.LabelControl2.TabIndex = 6
-        Me.LabelControl2.Text = "Sync Status"
-        '
-        'SLESyncStatus
-        '
-        Me.SLESyncStatus.EditValue = "- Sync Status -"
-        Me.SLESyncStatus.Enabled = False
-        Me.SLESyncStatus.Location = New System.Drawing.Point(95, 4)
-        Me.SLESyncStatus.Name = "SLESyncStatus"
-        Me.SLESyncStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLESyncStatus.Properties.Appearance.Options.UseFont = True
-        Me.SLESyncStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLESyncStatus.Properties.NullText = "- Sync Status -"
-        Me.SLESyncStatus.Properties.View = Me.GridView6
-        Me.SLESyncStatus.Size = New System.Drawing.Size(211, 26)
-        Me.SLESyncStatus.TabIndex = 7
-        '
-        'GridView6
-        '
-        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView6.Name = "GridView6"
-        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView6.OptionsView.ShowGroupPanel = False
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.LabelControl2)
-        Me.PanelControl4.Controls.Add(Me.SLESyncStatus)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl4.Location = New System.Drawing.Point(12, 2)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(319, 36)
-        Me.PanelControl4.TabIndex = 8
+        Me.GridColumndiscount_code.Caption = "Discount Code"
+        Me.GridColumndiscount_code.FieldName = "discount_code"
+        Me.GridColumndiscount_code.Name = "GridColumndiscount_code"
+        Me.GridColumndiscount_code.Visible = True
+        Me.GridColumndiscount_code.VisibleIndex = 12
         '
         'FormOLStore
         '
@@ -2307,6 +2316,11 @@ Partial Class FormOLStore
         CType(Me.LinkSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlFollowUp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlFollowUp.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.SLESyncStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         CType(Me.CEAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2318,11 +2332,6 @@ Partial Class FormOLStore
         CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripOwnOlStore.ResumeLayout(False)
-        CType(Me.SLESyncStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2538,4 +2547,5 @@ Partial Class FormOLStore
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLESyncStatus As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumndiscount_code As DevExpress.XtraGrid.Columns.GridColumn
 End Class

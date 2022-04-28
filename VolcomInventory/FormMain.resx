@@ -7504,6 +7504,25 @@
         tBJtVdr/w7nq1Us0Amj4CwyayyuLHmfeAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="NBRoyaltyRate.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAZdEVYdFRpdGxlAFBlcmNlbnRhZ2U7UGVyY2VudDt5
+        /GGCAAAC7ElEQVQ4T6VSe0tTYRgfEfRH9AmkTxBROa9NndOZtmVqspmZs1brprvp8q6gBNkykUiiVARF
+        MNF0Wl4q87KJf1hiSSlkYunOOcPsOIfTnR339jzHqA/ggeecl+d3Oc/lFRFC9hX4OrS7u2vhef6l3+8X
+        As+QMyMm+vvAOQXyY4CP4RdxAYBDoXvTM1FlbaKSM/N9yRfzfdXWZifmEJMkalF8CoTvWtr7vsnO3SKl
+        VY+dHMftGQAwWHn/GX0m3UQ6uofmO7qG5uVpelJ27ymNGIiD4I/9b95PzchTcwPZN8pYt3sTzfcMfD7f
+        oEJt5lG0/pu1Y8Sl5JHEdAO/s7MzCOK22bmF8SSVwa9U6b0/VygU14HxQcEASQq1kYtLzSVrv9btGLLk
+        22CQx21vbw9RtMuerinySpU6//TM3AQYtoP4iFiaKeixhV5LeR0dfVZHOnuGv3bZ3n6RJGlJfmktzbIb
+        9mv6ajYyISdgezXyCbivQXxUHJ0hCo7K2DOAcixYtrnkISNT6LhY5XXOVPyAcVK0o6T6CRUu15D6htZF
+        j8czurW11eP1enug7f9bwhdOG5K9QLBhAHmkobFjMSIhh5iKauhVJzVZUPaIliq1nFSh5e5W1NFra+t2
+        1AlVYD/i6Ew0CwKj/r6B0VlJ0tWAOqdgg6YZh6nYyoTHa0hjy4uF5xBhcdnEUFTD4PwEg2DoCcSHYbdt
+        0x8/T8TCwOTnr3u/Ly3b3W73cFTiFR5FTiftWF2lJkNlWSRSruGh0mHBAMQHYEC1yz9WHEqVwRsRf5l3
+        TH2wg2E7ksCACwERtoIhll4Cg2zunwH0YsSJZ+lKNoJjMgKd3QNzUJ4wcRia7Y6pijkpUZPm1q6Flrbu
+        +ROnVeSmsZJBTDAAsslcXEMdj0gj1vqmJQBG4e+hx8JScM0WhnE5dPoKV4hUzYXEqDhdXrmLgi0hJhgA
+        2QiXZhxKGscvXJYLAgAPbgmIhbgdlmX7MPCMOcSQsI8goj9jBakvBhNezgAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="NBGAccounting.LargeImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -10022,9 +10041,9 @@
     <value>1004, 17</value>
   </metadata>
   <metadata name="TimerNotif.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+    <value>1150, 17</value>
   </metadata>
   <metadata name="AdornerUIManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>127, 56</value>
+    <value>1260, 17</value>
   </metadata>
 </root>

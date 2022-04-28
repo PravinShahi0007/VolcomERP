@@ -326,6 +326,7 @@
     <Compile Include="ClassRetExos.vb" />
     <Compile Include="ClassRetOLStore.vb" />
     <Compile Include="ClassReturn.vb" />
+    <Compile Include="ClassRoyaltyRate.vb" />
     <Compile Include="ClassSalesBranch.vb" />
     <Compile Include="ClassSalesDelOrder.vb" />
     <Compile Include="ClassSalesInv.vb" />
@@ -345,6 +346,7 @@
     <Compile Include="ClassSampleReturnPL.vb" />
     <Compile Include="ClassSendEmail.vb" />
     <Compile Include="ClassShipInvoice.vb" />
+    <Compile Include="ClassStockTakeStore.vb" />
     <Compile Include="ClassStoreDisplay.vb" />
     <Compile Include="ClassVirtualSales.vb" />
     <Compile Include="ClassVMStoreDisplay.vb" />
@@ -5025,6 +5027,18 @@
     <Compile Include="FormRiderContractDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRoyaltyRate.Designer.vb">
+      <DependentUpon>FormRoyaltyRate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRoyaltyRate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRoyaltyRateDet.Designer.vb">
+      <DependentUpon>FormRoyaltyRateDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRoyaltyRateDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesBranch.Designer.vb">
       <DependentUpon>FormSalesBranch.vb</DependentUpon>
     </Compile>
@@ -7077,6 +7091,12 @@
     <Compile Include="FormSampleDelSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleDevActual.Designer.vb">
+      <DependentUpon>FormSampleDevActual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleDevActual.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleDevelopment.Designer.vb">
       <DependentUpon>FormSampleDevelopment.vb</DependentUpon>
     </Compile>
@@ -7711,6 +7731,12 @@
       <DependentUpon>FormSNIRealisasiPop.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSNIRealisasiPop.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSNIReportList.Designer.vb">
+      <DependentUpon>FormSNIReportList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIReportList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSNISerahTerima.Designer.vb">
@@ -13301,6 +13327,12 @@
     <EmbeddedResource Include="FormRiderContractDet.resx">
       <DependentUpon>FormRiderContractDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRoyaltyRate.resx">
+      <DependentUpon>FormRoyaltyRate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRoyaltyRateDet.resx">
+      <DependentUpon>FormRoyaltyRateDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesBranch.resx">
       <DependentUpon>FormSalesBranch.vb</DependentUpon>
     </EmbeddedResource>
@@ -14603,6 +14635,9 @@
       <DependentUpon>FormSampleDelSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleDevActual.resx">
+      <DependentUpon>FormSampleDevActual.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSampleDevelopment.resx">
       <DependentUpon>FormSampleDevelopment.vb</DependentUpon>
     </EmbeddedResource>
@@ -14981,6 +15016,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNIRealisasiPop.resx">
       <DependentUpon>FormSNIRealisasiPop.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIReportList.resx">
+      <DependentUpon>FormSNIReportList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSNISerahTerima.resx">
       <DependentUpon>FormSNISerahTerima.vb</DependentUpon>

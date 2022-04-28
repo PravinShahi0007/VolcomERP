@@ -30,6 +30,11 @@ Partial Class FormMasterRawMatPps
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEActive = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECurrency = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -87,17 +92,14 @@ Partial Class FormMasterRawMatPps
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TxtMaterialTypeCode = New DevExpress.XtraEditors.TextEdit()
         Me.EPMaterial = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.SLEActive = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLotTitle.SuspendLayout()
         CType(Me.PCSave, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSave.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,8 +125,6 @@ Partial Class FormMasterRawMatPps
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMaterialTypeCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCLotTitle
@@ -241,6 +241,46 @@ Partial Class FormMasterRawMatPps
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(430, 386)
         Me.PanelControl1.TabIndex = 15
+        '
+        'SLEActive
+        '
+        Me.SLEActive.Location = New System.Drawing.Point(14, 319)
+        Me.SLEActive.Name = "SLEActive"
+        Me.SLEActive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEActive.Properties.View = Me.GridView5
+        Me.SLEActive.Size = New System.Drawing.Size(190, 20)
+        Me.SLEActive.TabIndex = 109
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn14})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID"
+        Me.GridColumn12.FieldName = "is_active"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "GridColumn14"
+        Me.GridColumn14.FieldName = "active"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(14, 298)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(34, 15)
+        Me.LabelControl10.TabIndex = 108
+        Me.LabelControl10.Text = "Status"
         '
         'SLECurrency
         '
@@ -549,7 +589,7 @@ Partial Class FormMasterRawMatPps
         Me.TxtDisplayName.Name = "TxtDisplayName"
         Me.TxtDisplayName.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDisplayName.Properties.Appearance.Options.UseFont = True
-        Me.TxtDisplayName.Properties.MaxLength = 50
+        Me.TxtDisplayName.Properties.MaxLength = 99
         Me.TxtDisplayName.Size = New System.Drawing.Size(191, 22)
         Me.TxtDisplayName.TabIndex = 84
         Me.TxtDisplayName.ToolTip = "Max : 30 character."
@@ -571,7 +611,7 @@ Partial Class FormMasterRawMatPps
         Me.TxtName.Name = "TxtName"
         Me.TxtName.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtName.Properties.Appearance.Options.UseFont = True
-        Me.TxtName.Properties.MaxLength = 50
+        Me.TxtName.Properties.MaxLength = 99
         Me.TxtName.Size = New System.Drawing.Size(191, 22)
         Me.TxtName.TabIndex = 83
         Me.TxtName.ToolTip = "Max : 50 character."
@@ -769,46 +809,6 @@ Partial Class FormMasterRawMatPps
         Me.EPMaterial.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPMaterial.ContainerControl = Me
         '
-        'SLEActive
-        '
-        Me.SLEActive.Location = New System.Drawing.Point(14, 319)
-        Me.SLEActive.Name = "SLEActive"
-        Me.SLEActive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEActive.Properties.View = Me.GridView5
-        Me.SLEActive.Size = New System.Drawing.Size(190, 20)
-        Me.SLEActive.TabIndex = 109
-        '
-        'GridView5
-        '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn14})
-        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView5.Name = "GridView5"
-        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView5.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "ID"
-        Me.GridColumn12.FieldName = "is_active"
-        Me.GridColumn12.Name = "GridColumn12"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "GridColumn14"
-        Me.GridColumn14.FieldName = "active"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(14, 298)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(34, 15)
-        Me.LabelControl10.TabIndex = 108
-        Me.LabelControl10.Text = "Status"
-        '
         'FormMasterRawMatPps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -832,6 +832,8 @@ Partial Class FormMasterRawMatPps
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -859,8 +861,6 @@ Partial Class FormMasterRawMatPps
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMaterialTypeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

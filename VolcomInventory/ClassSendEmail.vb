@@ -5966,7 +5966,7 @@ INNER JOIN `tb_sni_pps` pps ON pps.id_sni_pps=l.id_sni_pps AND pps.id_report_sta
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
-            Dim query As String = "SELECT c.comp_name AS comp_name,DATE_FORMAT(NOW(),'%d %M %Y') AS dte FROM tb_m_comp c WHERE c.id_comp='" & par1 & "'"
+            Dim query As String = "SELECT c.comp_name AS comp_name,DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 7 DAY),'%d %M %Y') AS dte FROM tb_m_comp c WHERE c.id_comp='" & par1 & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             'attach

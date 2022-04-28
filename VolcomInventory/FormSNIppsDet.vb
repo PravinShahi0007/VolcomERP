@@ -2,6 +2,8 @@
     Public id_pps As String = "-1"
     Public is_view As String = "-1"
 
+    Public is_view_list As Boolean = False
+
     Dim is_submit As String = "-1"
 
     Private Sub FormSNIppsDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -47,7 +49,7 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             '
         Else
             'edit
-            Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`,pps.id_report_status,pps.is_submit 
+            Dim q As String = "SELECT pps.vat,pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`,pps.id_report_status,pps.is_submit 
 FROM tb_sni_pps pps
 INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -57,6 +59,8 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                 TENumber.Text = dt.Rows(0)("number").ToString
                 TEProposedBy.Text = dt.Rows(0)("employee_name").ToString
                 DEProposeDate.EditValue = dt.Rows(0)("created_date")
+                '
+                TEVATPercent.EditValue = dt.Rows(0)("vat")
                 '
                 load_proposed()
 
@@ -90,15 +94,40 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                 End If
             End If
         End If
+
+        If is_view_list Then
+            BGetCOP.Visible = False
+            XTPBudgetPropose.PageVisible = False
+            GridColumn7.Visible = False
+        End If
     End Sub
 
     Sub load_pending_kids()
-        Dim q As String = "SELECT 'yes' AS is_check,dsg.`id_design`,dsg.`design_code`,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
+        Dim q As String = "SELECT 'yes' AS is_check,dsg.`id_design`,dsg.`design_code`,CONCAT(IF(r.is_md=1,'',CONCAT(cdx.prm,' ')),cdx.class,' ',dsg.design_name,' ',cdx.color) AS `design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
 ,pdl.qty_line_list, IFNULL(pdp.id_prod_demand_product,0) AS id_prod_demand_product
 FROM tb_m_design dsg
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
 INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery` AND dsg.id_season='" & SLESeason.EditValue.ToString & "'
 INNER JOIN tb_season ssn ON ssn.id_season=del.id_season
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cdx ON cdx.id_design = dsg.id_design
 LEFT JOIN 
 (
     SELECT spl.id_design FROM `tb_sni_pps_list` spl
@@ -131,7 +160,8 @@ WHERE dsg.`id_design` NOT IN (
 	WHERE pd.`id_report_status`=6 AND pd.`is_void_pd`!=1 AND pd.`is_pd`=1
 	GROUP BY pdd.`id_design`
 )
-AND ISNULL(pps.id_design) AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_order`!=2 AND dsg.prod_order_cop_pd>0"
+AND ISNULL(pps.id_design) AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND dsg.`id_lookup_status_order`!=2 "
+        'AND dsg.prod_order_cop_pd>0
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCList.DataSource = dt
         GVList.BestFitColumns()
@@ -143,12 +173,32 @@ AND ISNULL(pps.id_design) AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND 
 
     Sub load_proposed()
         Dim q As String = "SELECT 'no' AS is_check,clr.color,IFNULL(p.id_product,0) AS id_product,dsg.`id_design`,dsg.`design_code`,dsg.design_fabrication
-,CONCAT(dsg.`design_display_name`,IF(ISNULL(di.value),'',CONCAT(' (',di.value,')'))) AS design_display_name,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop
+,CONCAT(CONCAT(IF(r.is_md=1,'',CONCAT(cdx.prm,' ')),cdx.class,' ',dsg.design_name,' ',cdx.color),IF(ISNULL(di.value),'',CONCAT(' (',di.value,')'))) AS design_display_name,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop
 ,del.`delivery`,ssn.`season`
-,'VOLCOM' AS brand,co.country,ppsl.qty AS qty_line_list,so.season_orign
+,'VOLCOM' AS brand,coo.country,ppsl.qty AS qty_line_list,so.season_orign
 FROM tb_sni_pps_list `ppsl`
 LEFT JOIN tb_m_product p ON p.id_design=ppsl.id_design AND p.product_code='931' -- hanya S
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=ppsl.`id_design`
+INNER JOIN tb_m_country coo ON coo.id_country=dsg.coo
+LEFT JOIN tb_season s ON s.id_season=dsg.id_season
+LEFT JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cdx ON cdx.id_design = dsg.id_design
 LEFT JOIN tb_m_design_information di ON di.id_design=dsg.id_design AND di.id_design_column=25
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
 INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery`
@@ -196,7 +246,9 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
             If Not is_ok Then
                 warningCustom("Pastikan data ecop pd purchasing, qty, dan size S sudah terinput")
             Else
-                Dim q As String = "INSERT INTO tb_sni_pps(id_season,created_by,created_date) VALUES('" & SLESeason.EditValue.ToString & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
+                Dim vat As String = get_current_vat()
+
+                Dim q As String = "INSERT INTO tb_sni_pps(id_season,created_by,created_date,vat) VALUES('" & SLESeason.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(Decimal.Parse(vat).ToString) & "'); SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(q, 0, True, "", "", "", "")
 
                 execute_non_query("CALL gen_number('" & id_pps & "','319')", True, "", "", "", "")
@@ -242,6 +294,9 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
                 warningCustom("Zero amount on budget")
             Else
                 'save
+                Dim qu As String = "UPDATE tb_sni_pps SET created_by='" & id_user & "',created_date=NOW() WHERE id_sni_pps='" & id_pps & "'"
+                execute_non_query(qu, True, "", "", "", "")
+                '
                 Dim q As String = ""
                 q = "DELETE FROM tb_sni_pps_budget WHERE id_sni_pps='" & id_pps & "'"
                 execute_non_query(q, True, "", "", "", "")
@@ -411,8 +466,8 @@ HAVING NOT ISNULL(err)"
         GVBudgetCop.RefreshData()
 
         TETotalBudget.EditValue = GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue
-        TEVat.EditValue = Math.Round(TETotalBudget.EditValue * 0.1, 2)
-        TEGrandTot.EditValue = Math.Round(TETotalBudget.EditValue * 1.1, 2)
+        TEVat.EditValue = Math.Round(TETotalBudget.EditValue * (TEVATPercent.EditValue / 100), 2)
+        TEGrandTot.EditValue = Math.Round(TETotalBudget.EditValue * (((100 + TEVATPercent.EditValue) / 100)), 2)
 
         TETotalQty.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
         TESNICop.EditValue = Math.Round((GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
