@@ -80,7 +80,7 @@ LEFT JOIN (
 ) cd ON cd.id_design = dsg.id_design
 WHERE lp.id_mat_purc_list='" & FormMatPurchasePD.id_list & "'
 UNION
-SELECT 'no' AS is_check,pdp.size,'' AS note,pdp.id_prod_demand_design,pdp.id_prod_demand_product,pdp.id_design,pdp.qty,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,dsg.design_code,pdp.prod_demand_number,pdp.qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty) AS qty_order 
+SELECT 'no' AS is_check,pdp.size,'' AS note,pdp.id_prod_demand_design,pdp.id_prod_demand_product,pdp.id_design,pdp.qty,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,dsg.design_code,pdp.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty) AS qty_order 
 ,al.allowance ,CEIL((al.allowance/100)*(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty)) AS allowance_qty,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty)+CEIL((al.allowance/100)*(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdp.qty)) AS allowance_qty_order
 FROM (
 	SELECT pd_dsg.id_prod_demand_design, pd_prd.`id_prod_demand_product`, pd_dsg.id_prod_demand, pd.prod_demand_number, pd_dsg.id_design, 
