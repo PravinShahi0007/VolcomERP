@@ -960,12 +960,12 @@ Partial Class FormProductionDet
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMMainVendor})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(176, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(175, 26)
         '
         'SMMainVendor
         '
         Me.SMMainVendor.Name = "SMMainVendor"
-        Me.SMMainVendor.Size = New System.Drawing.Size(175, 22)
+        Me.SMMainVendor.Size = New System.Drawing.Size(174, 22)
         Me.SMMainVendor.Text = "Set as Main Vendor"
         '
         'GVWO
@@ -1455,7 +1455,7 @@ Partial Class FormProductionDet
         Me.BCOP.Name = "BCOP"
         Me.BCOP.Size = New System.Drawing.Size(170, 36)
         Me.BCOP.TabIndex = 5
-        Me.BCOP.Text = "Get Cost of Production"
+        Me.BCOP.Text = "Final / Pre Final COP"
         Me.BCOP.Visible = False
         '
         'BtnAttachment

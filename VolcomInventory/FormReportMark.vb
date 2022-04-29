@@ -12157,6 +12157,32 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
 
             query = String.Format("UPDATE tb_sample_dev_pps SET id_report_status = '{0}' WHERE id_sample_dev_pps = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "405" Then
+            'revisi ko approval QC
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim qs As String = "SELECT id_prod_order_ko FROM tb_prod_order_ko_app WHERE id_prod_order_ko_app='" & id_report & "'"
+                Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+                If dts.Rows.Count > 0 Then
+                    Dim id_prod_order_ko As String = "-1"
+
+                    id_prod_order_ko = dts.Rows(0)("id_prod_order_ko").ToString
+
+                    Dim q As String = "INSERT INTO tb_prod_order_ko(`id_prod_order_ko_reff`,`number`,`revision`,`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`id_emp_vice_director`,`is_purc_mat`)
+                SELECT `id_prod_order_ko_reff`,`number`,(SELECT COUNT(id_prod_order_ko) FROM tb_prod_order_ko WHERE id_prod_order_ko_reff=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_prod_order_ko & "')),`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`id_emp_vice_director`,`is_purc_mat` FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_prod_order_ko & "'; SELECT LAST_INSERT_ID(); "
+                    Dim new_id_ko As String = execute_query(q, 0, True, "", "", "", "")
+                    'det
+                    q = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment`)
+                SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment` FROM tb_prod_order_ko_det WHERE id_prod_order_ko='" & id_prod_order_ko & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                End If
+            End If
+
+            query = String.Format("UPDATE tb_prod_order_ko_app SET id_report_status = '{0}' WHERE id_prod_order_ko_app = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "407" Then
             'abg royalty rate
             If id_status_reportx = "3" Then
