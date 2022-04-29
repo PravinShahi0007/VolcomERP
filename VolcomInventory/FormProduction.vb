@@ -569,7 +569,7 @@ GROUP BY recd.id_prod_order_det
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
         query += "LEFT JOIN 
                     (
-	                    SELECT id_report_mark FROM tb_report_mark WHERE report_mark_type='29' GROUP BY id_report
+	                    SELECT id_report,id_report_mark FROM tb_report_mark WHERE report_mark_type='29' GROUP BY id_report
                     ) mark ON mark.id_report=a.id_prod_order_mrs "
         '
         query += "LEFT JOIN
