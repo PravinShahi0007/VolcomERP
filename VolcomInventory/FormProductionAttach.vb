@@ -126,7 +126,7 @@ GROUP BY po.`id_prod_order`"
         Cursor = Cursors.WaitCursor
         If Not SLEFGPO.EditValue = Nothing Then
             'check if already
-            Dim qc As String = "SELECT * FROM tb_prod_order_attach WHERE id_prod_order='" & SLEFGPO.EditValue.ToString & "'"
+            Dim qc As String = "SELECT * FROM tb_prod_order_attach WHERE id_prod_order='" & SLEFGPO.EditValue.ToString & "' AND id_report_status!=5"
             Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
             If dtc.Rows.Count > 0 Then
                 warningCustom("Already proposed before")
