@@ -511,6 +511,8 @@
             GVScheduleTable.Columns("employee_name").OptionsColumn.AllowEdit = False
             GVScheduleTable.Columns("employee_name").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
 
+            Dim qb As String = ""
+
             While (curD <= endP)
                 Dim data_filter_cek_public_holiday As DataRow() = dt.Select("[emp_holiday_date]='" + curD + "' ")
 
@@ -523,35 +525,53 @@
                 End If
 
                 string_date += ",'" & curD.ToString("yyyy-MM-dd") & "'"
+                qb += ",MAX(CASE WHEN emp.date='" & curD.ToString("yyyy-MM-dd") & "' THEN IFNULL(t.leave_type,emp.shift_code) END) AS `" & curD.ToString("yyyy-MM-dd") & "`"
                 curD = curD.AddDays(1)
             End While
+
             '
-            Dim query_x As String = "SELECT '' as id_employee,'' as employee_code,'' as employee_name" & string_date
-            Dim data_x As DataTable = execute_query(query_x, -1, True, "", "", "", "")
-            GCScheduleTable.DataSource = data_x
-            GVScheduleTable.DeleteRow(0)
-            '
-            Dim query_emp As String = "SELECT emp.id_employee AS id_employee,emp.date AS date,IFNULL(t.leave_type,emp.shift_code) AS shift_code FROM tb_emp_schedule emp LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type "
+            Dim query_emp As String = ""
+            query_emp = "SELECT emp.id_employee AS id_employee,empl.employee_code,empl.employee_name,emp.date AS `date`,IFNULL(t.leave_type,emp.shift_code) AS shift_code 
+" & qb & "
+FROM tb_emp_schedule emp 
+LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type
+INNER JOIN tb_m_employee empl ON empl.id_employee=emp.id_employee
+WHERE emp.date >= '" & startP.ToString("yyyy-MM-dd") & "' AND emp.date <= '" & endP.ToString("yyyy-MM-dd") & "' AND empl.id_departement LIKE '" & dept & "' AND empl.id_employee_active LIKE '" & status & "' AND empl.id_employee LIKE '" & employee & "'
+GROUP BY emp.id_employee"
+
             Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
 
-            For i As Integer = 0 To data.Rows.Count - 1
-                Dim newRow As DataRow = (TryCast(GCScheduleTable.DataSource, DataTable)).NewRow()
-                newRow("id_employee") = data.Rows(i)("id_employee").ToString
-                newRow("employee_code") = data.Rows(i)("employee_code").ToString
-                newRow("employee_name") = data.Rows(i)("employee_name").ToString
+            'Dim query_emp As String = "SELECT emp.id_employee AS id_employee,emp.date AS date,IFNULL(t.leave_type,emp.shift_code) AS shift_code FROM tb_emp_schedule emp LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type "
+            'Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
 
-                Dim data_filter_sch As DataRow() = data_emp.Select("[id_employee]='" + data.Rows(i)("id_employee").ToString + "' AND [date] >= '" & startP.ToString("yyyy-MM-dd") & "' AND [date] <= '" & endP.ToString("yyyy-MM-dd") & "' ")
+            'Dim query_x As String = "SELECT '' as id_employee,'' as employee_code,'' as employee_name" & string_date
+            'Dim data_x As DataTable = execute_query(query_x, -1, True, "", "", "", "")
+            'GCScheduleTable.DataSource = data_x
+            'GVScheduleTable.DeleteRow(0)
+            ''
+            'Dim query_emp As String = "SELECT emp.id_employee AS id_employee,emp.date AS date,IFNULL(t.leave_type,emp.shift_code) AS shift_code FROM tb_emp_schedule emp LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type "
+            'Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
 
-                If data_filter_sch.Count > 0 Then
-                    For j As Integer = 0 To data_filter_sch.Count - 1
-                        newRow(Date.Parse(data_filter_sch(j)("date").ToString).ToString("yyyy-MM-dd")) = data_filter_sch(j)("shift_code").ToString.ToUpper
-                    Next
-                End If
+            'For i As Integer = 0 To data.Rows.Count - 1
+            '    Console.WriteLine(i.ToString)
+            '    Dim newRow As DataRow = (TryCast(GCScheduleTable.DataSource, DataTable)).NewRow()
+            '    newRow("id_employee") = data.Rows(i)("id_employee").ToString
+            '    newRow("employee_code") = data.Rows(i)("employee_code").ToString
+            '    newRow("employee_name") = data.Rows(i)("employee_name").ToString
 
-                TryCast(GCScheduleTable.DataSource, DataTable).Rows.Add(newRow)
-                GCScheduleTable.RefreshDataSource()
-            Next
+            '    Dim data_filter_sch As DataRow() = data_emp.Select("[id_employee]='" + data.Rows(i)("id_employee").ToString + "' AND [date] >= '" & startP.ToString("yyyy-MM-dd") & "' AND [date] <= '" & endP.ToString("yyyy-MM-dd") & "' ")
 
+            '    If data_filter_sch.Count > 0 Then
+            '        For j As Integer = 0 To data_filter_sch.Count - 1
+            '            newRow(Date.Parse(data_filter_sch(j)("date").ToString).ToString("yyyy-MM-dd")) = data_filter_sch(j)("shift_code").ToString.ToUpper
+            '        Next
+            '    End If
+
+            '    TryCast(GCScheduleTable.DataSource, DataTable).Rows.Add(newRow)
+
+            'Next
+            GCScheduleTable.DataSource = data_emp
+            GCScheduleTable.RefreshDataSource()
             GVScheduleTable.BestFitColumns()
             GVScheduleTable.OptionsSelection.EnableAppearanceFocusedRow = False
             GVScheduleTable.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -614,6 +634,8 @@
             GVScheduleTable.Columns("employee_name").OptionsColumn.AllowEdit = False
             GVScheduleTable.Columns("employee_name").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
 
+            Dim qb As String = ""
+
             While (curD <= endP)
                 GVScheduleTable.Columns.AddVisible(curD.ToString("yyyy-MM-dd"), curD.ToString("dddd, dd MMM yyyy"))
                 Dim data_filter_cek_public_holiday As DataRow() = dt.Select("[emp_holiday_date]='" + curD + "' ")
@@ -625,35 +647,60 @@
                 End If
 
                 string_date += ",'" & curD.ToString("yyyy-MM-dd") & "'"
+                qb += ",MAX(CASE WHEN emp.date='" & curD.ToString("yyyy-MM-dd") & "' THEN IFNULL(t.leave_type,emp.shift_code) END) AS `" & curD.ToString("yyyy-MM-dd") & "`"
                 curD = curD.AddDays(1)
             End While
             '
-            Dim query_x As String = "SELECT '' as id_employee,'' as employee_code,'' as employee_name" & string_date
-            Dim data_x As DataTable = execute_query(query_x, -1, True, "", "", "", "")
-            GCScheduleTable.DataSource = data_x
-            GVScheduleTable.DeleteRow(0)
-            '
-            Dim query_emp As String = "SELECT emp.id_employee AS id_employee,emp.date AS date,IFNULL(t.leave_type,emp.shift_code) AS shift_code FROM tb_emp_schedule emp LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type "
+
+            Dim query_emp As String = ""
+            query_emp = "SELECT emp.id_employee AS id_employee,empl.employee_code,empl.employee_name,emp.date AS `date`,IFNULL(t.leave_type,emp.shift_code) AS shift_code 
+" & qb & "
+FROM tb_emp_schedule emp 
+LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type
+INNER JOIN tb_m_employee empl ON empl.id_employee=emp.id_employee
+INNER JOIN 
+(
+	SELECT emp.id_employee
+	FROM tb_m_departement dep
+	INNER JOIN tb_m_user usr ON usr.id_user=dep.id_user_head OR usr.id_user=dep.`id_user_asst_head`
+	INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+	WHERE dep.is_office_dept='1'
+	UNION
+	SELECT id_employee FROM tb_emp_attn_spec
+	GROUP BY id_employee
+) dept_head ON dept_head.id_employee=empl.id_employee
+WHERE emp.date >= '" & startP.ToString("yyyy-MM-dd") & "' AND emp.date <= '" & endP.ToString("yyyy-MM-dd") & "' AND empl.id_departement LIKE '" & dept & "' AND empl.id_employee_active LIKE '" & status & "'
+GROUP BY emp.id_employee"
+
             Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
 
-            For i As Integer = 0 To data.Rows.Count - 1
-                Dim newRow As DataRow = (TryCast(GCScheduleTable.DataSource, DataTable)).NewRow()
-                newRow("id_employee") = data.Rows(i)("id_employee").ToString
-                newRow("employee_code") = data.Rows(i)("employee_code").ToString
-                newRow("employee_name") = data.Rows(i)("employee_name").ToString
+            'Dim query_x As String = "SELECT '' as id_employee,'' as employee_code,'' as employee_name" & string_date
+            'Dim data_x As DataTable = execute_query(query_x, -1, True, "", "", "", "")
+            'GCScheduleTable.DataSource = data_x
+            'GVScheduleTable.DeleteRow(0)
+            ''
+            'Dim query_emp As String = "SELECT emp.id_employee AS id_employee,emp.date AS date,IFNULL(t.leave_type,emp.shift_code) AS shift_code FROM tb_emp_schedule emp LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type "
+            'Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
 
-                Dim data_filter_sch As DataRow() = data_emp.Select("[id_employee]='" + data.Rows(i)("id_employee").ToString + "' AND [date] >= '" & startP.ToString("yyyy-MM-dd") & "' AND [date] <= '" & endP.ToString("yyyy-MM-dd") & "' ")
+            'For i As Integer = 0 To data.Rows.Count - 1
+            '    Dim newRow As DataRow = (TryCast(GCScheduleTable.DataSource, DataTable)).NewRow()
+            '    newRow("id_employee") = data.Rows(i)("id_employee").ToString
+            '    newRow("employee_code") = data.Rows(i)("employee_code").ToString
+            '    newRow("employee_name") = data.Rows(i)("employee_name").ToString
 
-                If data_filter_sch.Count > 0 Then
-                    For j As Integer = 0 To data_filter_sch.Count - 1
-                        newRow(Date.Parse(data_filter_sch(j)("date").ToString).ToString("yyyy-MM-dd")) = data_filter_sch(j)("shift_code").ToString.ToUpper
-                    Next
-                End If
+            '    Dim data_filter_sch As DataRow() = data_emp.Select("[id_employee]='" + data.Rows(i)("id_employee").ToString + "' AND [date] >= '" & startP.ToString("yyyy-MM-dd") & "' AND [date] <= '" & endP.ToString("yyyy-MM-dd") & "' ")
 
-                TryCast(GCScheduleTable.DataSource, DataTable).Rows.Add(newRow)
-                GCScheduleTable.RefreshDataSource()
-            Next
+            '    If data_filter_sch.Count > 0 Then
+            '        For j As Integer = 0 To data_filter_sch.Count - 1
+            '            newRow(Date.Parse(data_filter_sch(j)("date").ToString).ToString("yyyy-MM-dd")) = data_filter_sch(j)("shift_code").ToString.ToUpper
+            '        Next
+            '    End If
 
+            '    TryCast(GCScheduleTable.DataSource, DataTable).Rows.Add(newRow)
+
+            'Next
+            GCScheduleTable.DataSource = data_emp
+            GCScheduleTable.RefreshDataSource()
             GVScheduleTable.BestFitColumns()
             GVScheduleTable.OptionsSelection.EnableAppearanceFocusedRow = False
             GVScheduleTable.OptionsSelection.EnableAppearanceFocusedCell = False
