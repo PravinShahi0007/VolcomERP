@@ -131,6 +131,8 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`mat_purc_number` AS prod_order_number,md.mat_det_display_name AS class_dsg,cd.`display_name` AS color
 ,(pod.mat_purc_det_qty) AS qty_order,pod.mat_purc_det_price AS bom_unit,(pod.mat_purc_det_price*pod.mat_purc_det_qty) AS po_amount_rp
 ,kod.lead_time_prod AS lead_time,kod.lead_time_payment,po.mat_purc_date AS prod_order_wo_del_date,DATE_ADD(po.mat_purc_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
+,DATE_ADD(po.mat_purc_date,INTERVAL kod.lead_time_prod_before DAY) AS esti_del_date_before
+,IF(DATE_ADD(po.mat_purc_date,INTERVAL kod.lead_time_prod_before DAY) > dte_limit.working_date,true,false) AS ok_edit
 ,IFNULL(revtimes.revision_times,0) AS revision_times
 FROM `tb_prod_order_ko_det` kod
 INNER JOIN tb_mat_purc po ON po.id_mat_purc=kod.id_purc_order
@@ -139,6 +141,11 @@ INNER JOIN tb_m_mat_det_price mdp ON mdp.`id_mat_det_price`=pod.`id_mat_det_pric
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=mdp.`id_mat_det`
 INNER JOIN `tb_m_mat_det_code` mdc ON mdc.id_mat_det = md.id_mat_det
 INNER JOIN `tb_m_code_detail` cd ON cd.id_code_detail=mdc.id_code_detail AND cd.id_code='1'
+INNER JOIN
+(
+    SELECT wd.id_working_day,wd.working_date FROM `tb_working_date` wd
+    INNER JOIN tb_prod_order_ko ko ON wd.working_date>=DATE(ko.date_created) AND ko.id_prod_order_ko='" & id_ko & "' ORDER BY wd.working_date ASC LIMIT 2,1
+)dte_limit
 LEFT JOIN(
     SELECT revtimes.id_purc_order,COUNT(DISTINCT revtimes.revision) AS revision_times FROM
     (
@@ -152,10 +159,14 @@ WHERE kod.id_prod_order_ko='" & id_ko & "'
 -- GROUP BY po.id_mat_purc
 ORDER BY po.`id_mat_purc` ASC"
             GCAttachment.Visible = False
+            GridColumnBefore.Visible = False
         Else
             query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`prod_order_number`,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name) AS class_dsg,cd.color AS color
 ,wo_price.qty_po AS qty_order,wo_price.prod_order_wo_det_price AS bom_unit,wo_price.price_amount AS po_amount_rp
-,kod.lead_time_prod AS lead_time,kod.lead_time_payment,wo_price.prod_order_wo_del_date,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
+,kod.lead_time_prod AS lead_time,kod.lead_time_payment,wo_price.prod_order_wo_del_date
+,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
+,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kod.lead_time_prod_before DAY) AS esti_del_date_before
+,IF(DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kod.lead_time_prod_before DAY) > dte_limit.working_date,true,false) AS ok_edit
 ,IFNULL(revtimes.revision_times,0) AS revision_times
 ,IF(ISNULL(att.id_prod_order),'Not Complete','Complete') AS att_sts
 FROM `tb_prod_order_ko_det` kod
@@ -164,6 +175,11 @@ INNER JOIN tb_prod_demand_design pdd ON po.`id_prod_demand_design`=pdd.`id_prod_
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
 INNER JOIN tb_range r ON r.id_range=s.id_range
+INNER JOIN
+(
+    SELECT wd.id_working_day,wd.working_date FROM `tb_working_date` wd
+    INNER JOIN tb_prod_order_ko ko ON wd.working_date>=DATE(ko.date_created) AND ko.id_prod_order_ko='" & id_ko & "' ORDER BY wd.working_date ASC LIMIT 2,1
+)dte_limit
 LEFT JOIN (
 	SELECT wo.id_prod_order, wo.id_ovh_price, wo.prod_order_wo_kurs, cur.currency,wo.prod_order_wo_vat,wod.prod_order_wo_det_price
 	,(SUM(wod.prod_order_wo_det_price * pod.prod_order_qty) * wo.prod_order_wo_kurs * (100 + wo.prod_order_wo_vat)/100) AS `wo_price`
@@ -213,6 +229,7 @@ LEFT JOIN
 )att ON att.id_prod_order=po.id_prod_order
 WHERE kod.id_prod_order_ko='" & id_ko & "'
 ORDER BY po.`id_prod_order` ASC"
+            GridColumnBefore.Visible = True
             GCAttachment.Visible = True
         End If
 
@@ -318,8 +335,8 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
                 'SELECT `id_prod_order_ko_reff`,`number`,(SELECT COUNT(id_prod_order_ko) FROM tb_prod_order_ko WHERE id_prod_order_ko_reff=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "')),`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`id_emp_vice_director`,`is_purc_mat` FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "'; SELECT LAST_INSERT_ID(); "
                 'Dim new_id_ko As String = execute_query(query, 0, True, "", "", "", "")
                 ''det
-                'query = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment`)
-                'SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment` FROM tb_prod_order_ko_det WHERE id_prod_order_ko='" & id_ko & "'"
+                'query = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_prod_before`,`lead_time_payment`)
+                'SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_prod`,`lead_time_payment` FROM tb_prod_order_ko_det WHERE id_prod_order_ko='" & id_ko & "'"
                 'execute_non_query(query, True, "", "", "", "")
                 ''
                 'infoCustom("KO revised")
@@ -426,5 +443,13 @@ AND ISNULL(att.id_prod_order)"
         FormReportMark.id_report = id_ko
         FormReportMark.report_mark_type = "252"
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub GVData_ShowingEditor(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles GVProd.ShowingEditor
+        If GVProd.GetFocusedRowCellValue("ok_edit") Then
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
     End Sub
 End Class

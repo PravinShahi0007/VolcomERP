@@ -97,12 +97,12 @@ WHERE dep.id_departement=4", 0, True, "", "", "", "")
             Dim query_ko As String = "INSERT INTO tb_prod_order_ko(`revision`,`id_comp_contact`,`id_ko_template`,`id_term_production`,`vat`,`date_created`,`created_by`,id_emp_purc_mngr,id_emp_fc,id_emp_director,id_emp_vice_director,is_purc_mat) VALUES('0','" & GVProd.GetFocusedRowCellValue("id_comp_contact").ToString & "','" & id_ko_template & "','3','" & decimalSQL(GVProd.GetFocusedRowCellValue("vat").ToString) & "',NOW(),'" & id_user & "','" & id_emp_purc_mngr & "','" & id_emp_fc & "','" & id_emp_director & "','" & id_emp_vice_director & "','1'); SELECT LAST_INSERT_ID(); "
             Dim id_ko As String = execute_query(query_ko, 0, True, "", "", "", "")
             'insert po
-            Dim query_kod As String = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_purc_order`,`lead_time_prod`,`lead_time_payment`) VALUES"
+            Dim query_kod As String = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_purc_order`,`lead_time_prod`,`lead_time_prod_before`,`lead_time_payment`) VALUES"
             For i As Integer = 0 To GVProd.RowCount - 1
                 If Not i = 0 Then
                     query_kod += ","
                 End If
-                query_kod += "('" & id_ko & "','0','" & GVProd.GetRowCellValue(i, "id_mat_purc").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time").ToString & "','" & GVProd.GetRowCellValue(i, "top").ToString & "')"
+                query_kod += "('" & id_ko & "','0','" & GVProd.GetRowCellValue(i, "id_mat_purc").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time_before").ToString & "','" & GVProd.GetRowCellValue(i, "top").ToString & "')"
             Next
             execute_non_query(query_kod, True, "", "", "", "")
             'generate KO number

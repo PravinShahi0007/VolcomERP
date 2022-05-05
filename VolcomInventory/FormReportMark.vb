@@ -12175,8 +12175,8 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
                 SELECT `id_prod_order_ko_reff`,`number`,(SELECT COUNT(id_prod_order_ko) FROM tb_prod_order_ko WHERE id_prod_order_ko_reff=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_prod_order_ko & "')),`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`id_emp_vice_director`,`is_purc_mat` FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_prod_order_ko & "'; SELECT LAST_INSERT_ID(); "
                     Dim new_id_ko As String = execute_query(q, 0, True, "", "", "", "")
                     'det
-                    q = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment`)
-                SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment` FROM tb_prod_order_ko_det WHERE id_prod_order_ko='" & id_prod_order_ko & "'"
+                    q = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_prod_before`,`lead_time_payment`)
+                SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_prod_before`,`lead_time_payment` FROM tb_prod_order_ko_det WHERE id_prod_order_ko='" & id_prod_order_ko & "'"
                     execute_non_query(q, True, "", "", "", "")
                 End If
             End If
