@@ -511,7 +511,7 @@ Partial Class FormBankWithdrawal
         Me.GridView25 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn249 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn250 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCPreapaidExpense = New DevExpress.XtraEditors.PanelControl()
         Me.BCreatePaymentPrepaidEx = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
@@ -752,8 +752,8 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemCheckEdit13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView25, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl10.SuspendLayout()
+        CType(Me.PCPreapaidExpense, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPreapaidExpense.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEUnitPrepaidEx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -5417,7 +5417,7 @@ Partial Class FormBankWithdrawal
         'XTPPrepaidExpense
         '
         Me.XTPPrepaidExpense.Controls.Add(Me.GCPrepaidExp)
-        Me.XTPPrepaidExpense.Controls.Add(Me.PanelControl10)
+        Me.XTPPrepaidExpense.Controls.Add(Me.PCPreapaidExpense)
         Me.XTPPrepaidExpense.Controls.Add(Me.PanelControl2)
         Me.XTPPrepaidExpense.Name = "XTPPrepaidExpense"
         Me.XTPPrepaidExpense.Size = New System.Drawing.Size(1352, 513)
@@ -5675,14 +5675,14 @@ Partial Class FormBankWithdrawal
         Me.GridColumn250.Visible = True
         Me.GridColumn250.VisibleIndex = 0
         '
-        'PanelControl10
+        'PCPreapaidExpense
         '
-        Me.PanelControl10.Controls.Add(Me.BCreatePaymentPrepaidEx)
-        Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl10.Location = New System.Drawing.Point(0, 470)
-        Me.PanelControl10.Name = "PanelControl10"
-        Me.PanelControl10.Size = New System.Drawing.Size(1352, 43)
-        Me.PanelControl10.TabIndex = 22
+        Me.PCPreapaidExpense.Controls.Add(Me.BCreatePaymentPrepaidEx)
+        Me.PCPreapaidExpense.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCPreapaidExpense.Location = New System.Drawing.Point(0, 470)
+        Me.PCPreapaidExpense.Name = "PCPreapaidExpense"
+        Me.PCPreapaidExpense.Size = New System.Drawing.Size(1352, 43)
+        Me.PCPreapaidExpense.TabIndex = 22
         '
         'BCreatePaymentPrepaidEx
         '
@@ -6590,8 +6590,8 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemCheckEdit13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView25, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl10.ResumeLayout(False)
+        CType(Me.PCPreapaidExpense, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPreapaidExpense.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -7135,7 +7135,7 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn262 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn263 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn264 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl10 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCPreapaidExpense As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BCreatePaymentPrepaidEx As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl

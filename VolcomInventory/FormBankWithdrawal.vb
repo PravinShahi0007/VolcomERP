@@ -168,7 +168,9 @@ SELECT  c.id_comp,cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as 
     End Sub
 
     Sub load_vendor_prepaid_expense()
-        Dim query As String = "SELECT  c.id_comp,cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+        Dim query As String = "SELECT 0 AS id_comp,0 AS id_comp_contact,'All' as comp_name
+UNION ALL
+SELECT  c.id_comp,cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1' "
         viewSearchLookupQuery(SLEVendorPrepaidEx, query, "id_comp", "comp_name", "id_comp")
@@ -935,6 +937,8 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             view_expense()
         ElseIf XTCPO.SelectedTabPage.Name = "XTPFGPO" Then
             load_fgpo()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPPrepaidExpense" Then
+            view_preapaid_expense()
         End If
     End Sub
 
@@ -1648,15 +1652,23 @@ WHERE is_active=1"
     End Sub
 
     Private Sub BPrepaidExpense_Click(sender As Object, e As EventArgs) Handles BPrepaidExpense.Click
-        Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap,IFNULL(id_acc_cabang_dp,0) AS id_acc_cabang_dp,IFNULL(id_acc_cabang_ap,0) AS id_acc_cabang_ap FROM tb_m_comp c
-WHERE c.id_comp='" & SLEVendorPrepaidEx.EditValue & "'"
-        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        If SLEUnitPrepaidEx.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
-            warningCustom("This vendor AP account is not set.")
-        ElseIf Not SLEUnitPrepaidEx.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
-            warningCustom("This vendor AP account is not set.")
-        Else
+        view_preapaid_expense()
+    End Sub
+
+    Sub view_preapaid_expense()
+        If SLEVendorPrepaidEx.EditValue.ToString = "0" Then
             load_prepaid_expense()
+        Else
+            Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap,IFNULL(id_acc_cabang_dp,0) AS id_acc_cabang_dp,IFNULL(id_acc_cabang_ap,0) AS id_acc_cabang_ap FROM tb_m_comp c
+WHERE c.id_comp='" & SLEVendorPrepaidEx.EditValue & "'"
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If SLEUnitPrepaidEx.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+                warningCustom("This vendor AP account is not set.")
+            ElseIf Not SLEUnitPrepaidEx.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+                warningCustom("This vendor AP account is not set.")
+            Else
+                load_prepaid_expense()
+            End If
         End If
     End Sub
 
@@ -1671,6 +1683,12 @@ WHERE c.id_comp='" & SLEVendorPrepaidEx.EditValue & "'"
 
         If Not SLEVendorPrepaidEx.EditValue.ToString = "0" Then
             where_string = "AND e.id_comp='" & SLEVendorPrepaidEx.EditValue.ToString & "' "
+        End If
+
+        If SLEVendorPrepaidEx.EditValue.ToString = "0" Then
+            PCPreapaidExpense.Visible = False
+        Else
+            PCPreapaidExpense.Visible = True
         End If
 
         'cabang
