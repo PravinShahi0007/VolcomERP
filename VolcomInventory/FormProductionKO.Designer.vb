@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormProductionKO
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormProductionKO
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionKO))
@@ -340,13 +340,13 @@ Partial Class FormProductionKO
         '
         'SLEContractTemplate
         '
-        Me.SLEContractTemplate.Location = New System.Drawing.Point(109, 59)
+        Me.SLEContractTemplate.Location = New System.Drawing.Point(109, 61)
         Me.SLEContractTemplate.Name = "SLEContractTemplate"
         Me.SLEContractTemplate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEContractTemplate.Properties.Appearance.Options.UseFont = True
         Me.SLEContractTemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEContractTemplate.Properties.View = Me.GridView2
-        Me.SLEContractTemplate.Size = New System.Drawing.Size(194, 20)
+        Me.SLEContractTemplate.Size = New System.Drawing.Size(189, 20)
         Me.SLEContractTemplate.TabIndex = 8915
         '
         'GridView2
@@ -386,7 +386,7 @@ Partial Class FormProductionKO
         Me.BRevise.Appearance.Options.UseFont = True
         Me.BRevise.Location = New System.Drawing.Point(372, 6)
         Me.BRevise.Name = "BRevise"
-        Me.BRevise.Size = New System.Drawing.Size(67, 22)
+        Me.BRevise.Size = New System.Drawing.Size(62, 22)
         Me.BRevise.TabIndex = 8914
         Me.BRevise.TabStop = False
         Me.BRevise.Text = "Revise"
@@ -394,17 +394,17 @@ Partial Class FormProductionKO
         'TETermOrder
         '
         Me.TETermOrder.EditValue = ""
-        Me.TETermOrder.Location = New System.Drawing.Point(109, 84)
+        Me.TETermOrder.Location = New System.Drawing.Point(109, 86)
         Me.TETermOrder.Name = "TETermOrder"
         Me.TETermOrder.Properties.EditValueChangedDelay = 1
         Me.TETermOrder.Properties.ReadOnly = True
-        Me.TETermOrder.Size = New System.Drawing.Size(330, 20)
+        Me.TETermOrder.Size = New System.Drawing.Size(325, 20)
         Me.TETermOrder.TabIndex = 8913
         Me.TETermOrder.TabStop = False
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(14, 87)
+        Me.LabelControl7.Location = New System.Drawing.Point(9, 89)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl7.TabIndex = 8912
@@ -415,7 +415,7 @@ Partial Class FormProductionKO
         Me.BrefreshTemplateContract.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BrefreshTemplateContract.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BrefreshTemplateContract.Appearance.Options.UseFont = True
-        Me.BrefreshTemplateContract.Location = New System.Drawing.Point(309, 57)
+        Me.BrefreshTemplateContract.Location = New System.Drawing.Point(304, 59)
         Me.BrefreshTemplateContract.Name = "BrefreshTemplateContract"
         Me.BrefreshTemplateContract.Size = New System.Drawing.Size(57, 22)
         Me.BrefreshTemplateContract.TabIndex = 8911
@@ -427,7 +427,7 @@ Partial Class FormProductionKO
         Me.BManageContractVendor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BManageContractVendor.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BManageContractVendor.Appearance.Options.UseFont = True
-        Me.BManageContractVendor.Location = New System.Drawing.Point(372, 57)
+        Me.BManageContractVendor.Location = New System.Drawing.Point(367, 59)
         Me.BManageContractVendor.Name = "BManageContractVendor"
         Me.BManageContractVendor.Size = New System.Drawing.Size(67, 22)
         Me.BManageContractVendor.TabIndex = 8910
@@ -437,7 +437,7 @@ Partial Class FormProductionKO
         'LabelControl37
         '
         Me.LabelControl37.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl37.Location = New System.Drawing.Point(14, 62)
+        Me.LabelControl37.Location = New System.Drawing.Point(9, 64)
         Me.LabelControl37.Name = "LabelControl37"
         Me.LabelControl37.Size = New System.Drawing.Size(89, 13)
         Me.LabelControl37.TabIndex = 8908
@@ -453,7 +453,7 @@ Partial Class FormProductionKO
         Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDateCreated.Size = New System.Drawing.Size(330, 20)
+        Me.DEDateCreated.Size = New System.Drawing.Size(325, 20)
         Me.DEDateCreated.TabIndex = 8907
         '
         'LabelControl5
