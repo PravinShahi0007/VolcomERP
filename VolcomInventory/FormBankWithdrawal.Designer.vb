@@ -219,7 +219,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumnDiffExpense = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDueDays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsOpenExpense = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCExpense = New DevExpress.XtraEditors.PanelControl()
         Me.BCreateExpense = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
@@ -656,8 +656,8 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CESelectExpense, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
+        CType(Me.PCExpense, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCExpense.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.SLEUnitExpense.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1482,7 +1482,6 @@ Partial Class FormBankWithdrawal
         '
         Me.XTPPO.Controls.Add(Me.XTPPOList)
         Me.XTPPO.Controls.Add(Me.BCreatePO)
-        Me.XTPPO.Controls.Add(Me.PanelControl1)
         Me.XTPPO.Name = "XTPPO"
         Me.XTPPO.Size = New System.Drawing.Size(1352, 513)
         Me.XTPPO.Text = "PO Operational Goods"
@@ -1490,25 +1489,26 @@ Partial Class FormBankWithdrawal
         'XTPPOList
         '
         Me.XTPPOList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTPPOList.Location = New System.Drawing.Point(0, 42)
+        Me.XTPPOList.Location = New System.Drawing.Point(0, 0)
         Me.XTPPOList.Name = "XTPPOList"
-        Me.XTPPOList.SelectedTabPage = Me.XPOListActive
-        Me.XTPPOList.Size = New System.Drawing.Size(1352, 439)
+        Me.XTPPOList.SelectedTabPage = Me.XTPOGJasa
+        Me.XTPPOList.Size = New System.Drawing.Size(1352, 481)
         Me.XTPPOList.TabIndex = 19
         Me.XTPPOList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XPOListActive, Me.XPOListNonActive, Me.XTPOGJasa})
         '
         'XPOListActive
         '
         Me.XPOListActive.Controls.Add(Me.GCPOList)
+        Me.XPOListActive.Controls.Add(Me.PanelControl1)
         Me.XPOListActive.Name = "XPOListActive"
-        Me.XPOListActive.Size = New System.Drawing.Size(1346, 411)
+        Me.XPOListActive.Size = New System.Drawing.Size(1346, 453)
         Me.XPOListActive.Text = "Active"
         '
         'GCPOList
         '
         Me.GCPOList.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCPOList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPOList.Location = New System.Drawing.Point(0, 0)
+        Me.GCPOList.Location = New System.Drawing.Point(0, 42)
         Me.GCPOList.MainView = Me.GVPOList
         Me.GCPOList.Name = "GCPOList"
         Me.GCPOList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RICEAttachment})
@@ -1869,7 +1869,7 @@ Partial Class FormBankWithdrawal
         Me.XPOListNonActive.Controls.Add(Me.GCPOListNonActive)
         Me.XPOListNonActive.Name = "XPOListNonActive"
         Me.XPOListNonActive.PageVisible = False
-        Me.XPOListNonActive.Size = New System.Drawing.Size(1346, 411)
+        Me.XPOListNonActive.Size = New System.Drawing.Size(1346, 453)
         Me.XPOListNonActive.Text = "Non Active"
         '
         'GCPOListNonActive
@@ -1880,7 +1880,7 @@ Partial Class FormBankWithdrawal
         Me.GCPOListNonActive.MainView = Me.GVPOListNonActive
         Me.GCPOListNonActive.Name = "GCPOListNonActive"
         Me.GCPOListNonActive.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GCPOListNonActive.Size = New System.Drawing.Size(1346, 411)
+        Me.GCPOListNonActive.Size = New System.Drawing.Size(1346, 453)
         Me.GCPOListNonActive.TabIndex = 18
         Me.GCPOListNonActive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPOListNonActive})
         '
@@ -2155,7 +2155,7 @@ Partial Class FormBankWithdrawal
         Me.XTPOGJasa.Controls.Add(Me.GCPO)
         Me.XTPOGJasa.Controls.Add(Me.BViewPOOG)
         Me.XTPOGJasa.Name = "XTPOGJasa"
-        Me.XTPOGJasa.Size = New System.Drawing.Size(1346, 411)
+        Me.XTPOGJasa.Size = New System.Drawing.Size(1346, 453)
         Me.XTPOGJasa.Text = "Set PPH"
         '
         'GCPO
@@ -2165,7 +2165,7 @@ Partial Class FormBankWithdrawal
         Me.GCPO.Location = New System.Drawing.Point(0, 26)
         Me.GCPO.MainView = Me.GVPO
         Me.GCPO.Name = "GCPO"
-        Me.GCPO.Size = New System.Drawing.Size(1346, 385)
+        Me.GCPO.Size = New System.Drawing.Size(1346, 427)
         Me.GCPO.TabIndex = 8915
         Me.GCPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPO})
         '
@@ -2297,7 +2297,7 @@ Partial Class FormBankWithdrawal
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1352, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(1346, 42)
         Me.PanelControl1.TabIndex = 2
         '
         'SLEStatusPayment
@@ -2438,7 +2438,7 @@ Partial Class FormBankWithdrawal
         'XTPExpense
         '
         Me.XTPExpense.Controls.Add(Me.GCExpense)
-        Me.XTPExpense.Controls.Add(Me.PanelControl4)
+        Me.XTPExpense.Controls.Add(Me.PCExpense)
         Me.XTPExpense.Controls.Add(Me.PanelControl3)
         Me.XTPExpense.Name = "XTPExpense"
         Me.XTPExpense.Size = New System.Drawing.Size(1352, 513)
@@ -2725,14 +2725,14 @@ Partial Class FormBankWithdrawal
         Me.GridColumnIsOpenExpense.FieldName = "is_open"
         Me.GridColumnIsOpenExpense.Name = "GridColumnIsOpenExpense"
         '
-        'PanelControl4
+        'PCExpense
         '
-        Me.PanelControl4.Controls.Add(Me.BCreateExpense)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 470)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1352, 43)
-        Me.PanelControl4.TabIndex = 21
+        Me.PCExpense.Controls.Add(Me.BCreateExpense)
+        Me.PCExpense.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCExpense.Location = New System.Drawing.Point(0, 470)
+        Me.PCExpense.Name = "PCExpense"
+        Me.PCExpense.Size = New System.Drawing.Size(1352, 43)
+        Me.PCExpense.TabIndex = 21
         '
         'BCreateExpense
         '
@@ -6488,8 +6488,8 @@ Partial Class FormBankWithdrawal
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CESelectExpense, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.PCExpense, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCExpense.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -6727,7 +6727,7 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumnBeneficiary As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnSelectExpense As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCExpense As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumnTotalExpenseDP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalExpensePaid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CESelectExpense As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit

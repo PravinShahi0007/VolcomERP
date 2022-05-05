@@ -206,7 +206,7 @@ GROUP BY pod.`id_purc_order`"
 
         DateEditDueDate.EditValue = data.Rows(0)("due_date")
         DEReffDate.EditValue = data.Rows(0)("pph_reff_date")
-
+        DateEditDueDate.Properties.MinValue = getTimeDB()
         DEReffDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & id_coa_tag & "'", 0, True, "", "", "", "")
 
         'item
