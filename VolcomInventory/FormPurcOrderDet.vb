@@ -92,7 +92,7 @@
                 End If
                 'create summary
                 load_summary()
-                check_budget()
+                'check_budget()
             Catch ex As Exception
                 infoCustom(ex.ToString)
             End Try
@@ -162,7 +162,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                 '
                 load_det()
                 load_summary()
-                check_budget()
+                'check_budget()
 
                 TETotal.EditValue = GVSummary.Columns("sub_total").SummaryItem.SummaryValue
 
@@ -228,6 +228,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                 BMark.Visible = False
                 BSubmit.Visible = True
                 GridColumnBudgetStatus.Visible = True
+                check_budget()
                 PCPrice.Visible = True
             End If
         End If
