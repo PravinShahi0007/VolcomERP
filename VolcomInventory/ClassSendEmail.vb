@@ -6115,7 +6115,7 @@ WHERE c.id_comp='" & par1 & "' AND report_mark_type='404'"
         ElseIf report_mark_type = "408" Then
             Dim query As String = "SELECT dsg.design_code,dsg.design_display_name,cd.class,cd.sht,po.prod_order_number,cd.color
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
-,DATE_FORMAT(DATE(DATE_ADD('2022-03-18',INTERVAL 10 DAY)),'%d %M %Y') AS dte
+,DATE_FORMAT(DATE(DATE_ADD('2022-05-13',INTERVAL 10 DAY)),'%d %M %Y') AS dte
 ,c.id_comp,c.comp_name
 FROM tb_prod_order po
 INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.id_prod_order AND wo.is_main_vendor=1
@@ -6153,7 +6153,7 @@ LEFT JOIN (
 	AND cd.id_code IN (32,30,14, 43, 34)
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design
-WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-03-18') = DATE(DATE_SUB((DATE_ADD(prod_order_wo_del_date,INTERVAL ko.lead_time_prod DAY)), INTERVAL 10 DAY))
+WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-05-13') = DATE(DATE_SUB((DATE_ADD(prod_order_wo_del_date,INTERVAL ko.lead_time_prod DAY)), INTERVAL 10 DAY))
 GROUP BY c.id_comp"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
@@ -6203,13 +6203,17 @@ WHERE c.id_comp='" & data.Rows(c)("id_comp").ToString & "' AND report_mark_type=
                     Dim qdet As String = "SELECT dsg.design_code,dsg.design_display_name,cd.class,cd.sht,po.prod_order_number,cd.color
 ,ko.revision
 ,DATE_FORMAT(DATE(DATE_ADD(prod_order_wo_del_date,INTERVAL ko.lead_time_prod DAY)),'%d %M %Y') AS dte
+,FORMAT(SUM(pod.prod_order_qty),0,'ID_id') AS qty
+,po.prod_order_number
+,ko.number
 FROM tb_prod_order po
+INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=po.id_prod_order
 INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.id_prod_order AND wo.is_main_vendor=1
 INNER JOIN tb_m_ovh_price prc ON prc.id_ovh_price=wo.id_ovh_price
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=prc.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp AND c.id_comp='" & data.Rows(c)("id_comp").ToString & "'
 LEFT JOIN (
-	SELECT kod.* FROM (
+	SELECT kod.*,ko.number FROM (
 		SELECT MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
 		FROM tb_prod_order_ko_det kod
 		INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
@@ -6239,7 +6243,8 @@ LEFT JOIN (
 	AND cd.id_code IN (32,30,14, 43, 34)
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design
-WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-03-18') = DATE(DATE_SUB((DATE_ADD(prod_order_wo_del_date,INTERVAL ko.lead_time_prod DAY)), INTERVAL 10 DAY))"
+WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-05-13') = DATE(DATE_SUB((DATE_ADD(prod_order_wo_del_date,INTERVAL ko.lead_time_prod DAY)), INTERVAL 10 DAY))
+GROUP BY po.id_prod_order"
                     Dim dt_det As DataTable = execute_query(qdet, -1, True, "", "", "", "")
 
                     mail.Body = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
@@ -6261,7 +6266,7 @@ WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-03-1
      </tr>
      <tr>
       <td style='padding:0in 0in 0in 0in'>
-      <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+      <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:1000px;background:white'>
        <tbody><tr>
         <td style='padding:0in 0in 0in 0in'>
 
@@ -6283,25 +6288,31 @@ WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-03-1
               <p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Dear " & data.Rows(c)("comp_name").ToString & ",</p>
               <p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Email ini adalah pengingat untuk tanggal barang hasil produksi diterima di Gudang barang jadi Volcom (ETA Bali):
               <br><br>
-              <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+              <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='text-align:center; background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
                 <tr>
                   <th>No</th>
+                  <th>FGPO#</th>
                   <th>CODE</th>
                   <th>CLASS</th>
                   <th>ARTIKEL</th>
                   <th>SILHOUETTE</th>
                   <th>COLOR</th>
-                  <th>NO REVISI</th>
+                  <th>QTY</th>
+                  <th>KO#</th>
+                  <th>REVISI#</th>
                   <th>ETA BALI</th>
                 </tr>"
                     For i = 0 To dt_det.Rows.Count - 1
                         mail.Body += "<tr>
                   <td>" & (i + 1).ToString & "</td>
+                  <td>" & dt_det.Rows(i)("prod_order_number").ToString & "</td>
                   <td>" & dt_det.Rows(i)("design_code").ToString & "</td>
                   <td>" & dt_det.Rows(i)("class").ToString & "</td>
                   <td>" & dt_det.Rows(i)("design_display_name").ToString & "</td>
                   <td>" & dt_det.Rows(i)("sht").ToString & "</td>
                   <td>" & dt_det.Rows(i)("color").ToString & "</td>
+                  <td>" & dt_det.Rows(i)("qty").ToString & "</td>
+                  <td>" & dt_det.Rows(i)("number").ToString & "</td>
                   <td>" & dt_det.Rows(i)("revision").ToString & "</td>
                   <td>" & dt_det.Rows(i)("dte").ToString & "</td>
                 </tr>"
