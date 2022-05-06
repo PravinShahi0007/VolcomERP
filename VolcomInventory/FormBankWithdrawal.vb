@@ -128,7 +128,9 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
     End Sub
 
     Sub load_vendor_po()
-        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name,sts.comp_status
+        Dim query As String = "SELECT 0 AS id_comp_contact,'All' as comp_name,'' AS comp_status
+UNION ALL
+SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name,sts.comp_status
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
                                 INNER JOIN tb_lookup_comp_status sts ON sts.id_comp_status=c.is_active
@@ -138,7 +140,9 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
     End Sub
 
     Sub load_vendor_fgpo()
-        Dim query As String = "SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name,sts.comp_status  
+        Dim query As String = "SELECT 0 AS id_comp,'All' as comp_name,'' AS comp_status
+UNION ALL
+SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name,sts.comp_status  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_lookup_comp_status sts ON sts.id_comp_status=c.is_active
                                 WHERE c.id_comp_cat='1' OR c.id_comp_cat='8' AND (c.is_active='1' OR c.is_active='2')
@@ -155,14 +159,18 @@ SELECT 'KGS' AS id_comp,'KGS Group' AS comp_name,'KGS' AS comp_status  "
     End Sub
 
     Sub load_vendor_expense()
-        Dim query As String = "SELECT  c.id_comp,cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+        Dim query As String = "SELECT 0 AS id_comp,0 AS id_comp_contact,'All' as comp_name
+UNION ALL
+SELECT  c.id_comp,cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1' "
         viewSearchLookupQuery(SLEVendorExpense, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_vendor_prepaid_expense()
-        Dim query As String = "SELECT  c.id_comp,cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+        Dim query As String = "SELECT 0 AS id_comp,0 AS id_comp_contact,'All' as comp_name
+UNION ALL
+SELECT  c.id_comp,cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1' "
         viewSearchLookupQuery(SLEVendorPrepaidEx, query, "id_comp", "comp_name", "id_comp")
@@ -258,6 +266,7 @@ WHERE py.id_coa_tag='" & SLEUnitBBKList.EditValue.ToString & "' AND DATE(py.date
 
             GCFGPO.DataSource = data
             GVFGPO.BestFitColumns()
+            '
         End If
     End Sub
     '
@@ -319,7 +328,7 @@ GROUP BY ds.`id_comp`"
             End If
         End If
 
-        If XTPPOList.SelectedTabPageIndex = 1 Then
+        If XTPPOList.SelectedTabPageIndex = 1 Or SLEVendor.EditValue.ToString = "0" Then
             BCreatePO.Visible = False
         Else
             BCreatePO.Visible = True
@@ -409,16 +418,20 @@ WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY po.id_p
     End Sub
 
     Sub buttonView_click()
-        Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap FROM tb_m_comp c
+        If SLEFGPOVendor.EditValue.ToString = "0" Then
+            load_po()
+        Else
+            Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap FROM tb_m_comp c
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp
 WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
-        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        If data_check.Rows(0)("id_acc_dp").ToString = "0" And SLEPayType.EditValue.ToString = "1" Then
-            warningCustom("This vendor DP account is not set.")
-        ElseIf data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayType.EditValue.ToString = "2" Then
-            warningCustom("This vendor AP account is not set.")
-        Else
-            load_po()
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If data_check.Rows(0)("id_acc_dp").ToString = "0" And SLEPayType.EditValue.ToString = "1" Then
+                warningCustom("This vendor DP account is not set.")
+            ElseIf data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayType.EditValue.ToString = "2" Then
+                warningCustom("This vendor AP account is not set.")
+            Else
+                load_po()
+            End If
         End If
     End Sub
 
@@ -488,19 +501,27 @@ WHERE cc.id_comp_contact='" & SLEVendor.EditValue & "'"
     End Sub
 
     Private Sub BtnViewExpense_Click(sender As Object, e As EventArgs) Handles BtnViewExpense.Click
-        Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap,IFNULL(id_acc_cabang_dp,0) AS id_acc_cabang_dp,IFNULL(id_acc_cabang_ap,0) AS id_acc_cabang_ap FROM tb_m_comp c
-WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
-        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        If SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_dp").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "1" Then
-            warningCustom("This vendor DP account is not set.")
-        ElseIf SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
-            warningCustom("This vendor AP account is not set.")
-        ElseIf Not SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_dp").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "1" Then
-            warningCustom("This vendor DP account is not set.")
-        ElseIf Not SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
-            warningCustom("This vendor AP account is not set.")
-        Else
+        view_expense()
+    End Sub
+
+    Sub view_expense()
+        If SLEVendorExpense.EditValue.ToString = "0" Then
             load_expense()
+        Else
+            Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap,IFNULL(id_acc_cabang_dp,0) AS id_acc_cabang_dp,IFNULL(id_acc_cabang_ap,0) AS id_acc_cabang_ap FROM tb_m_comp c
+WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_dp").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "1" Then
+                warningCustom("This vendor DP account is not set.")
+            ElseIf SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+                warningCustom("This vendor AP account is not set.")
+            ElseIf Not SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_dp").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "1" Then
+                warningCustom("This vendor DP account is not set.")
+            ElseIf Not SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+                warningCustom("This vendor AP account is not set.")
+            Else
+                load_expense()
+            End If
         End If
     End Sub
 
@@ -540,6 +561,10 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         ElseIf SLEStatusPaymentExpense.EditValue.ToString = "3" Then 'overdue H-7
             where_string += "AND e.is_pay_later=1 AND e.is_open=1 AND DATE_SUB(e.due_date, INTERVAL 7 DAY)<DATE(NOW()) "
             BCreateExpense.Visible = True
+        End If
+
+        If SLEVendorExpense.EditValue.ToString = "0" Then
+            BCreateExpense.Visible = False
         End If
 
         Dim e As New ClassItemExpense()
@@ -699,18 +724,14 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
 
             BView.Location = New Point(438, 9)
 
-            BCreatePO.Visible = False
-
             PanelControl1.Enabled = True
-            BCreatePO.Enabled = True
+            BCreatePO.Enabled = False
         ElseIf XTPPOList.SelectedTabPageIndex = 2 Then
             PanelControl1.Enabled = False
             BCreatePO.Enabled = False
         Else
             LabelControl5.Visible = True
             SLEStatusPayment.Visible = True
-
-            BCreatePO.Visible = True
 
             BView.Location = New Point(649, 9)
 
@@ -910,6 +931,14 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             view_summary_pph()
         ElseIf XTCPO.SelectedTabPage.Name = "XTPSummaryPPN" Then
             view_summary_ppn()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPPO" Then
+            view_po_og()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPExpense" Then
+            view_expense()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPFGPO" Then
+            load_fgpo()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPPrepaidExpense" Then
+            view_preapaid_expense()
         End If
     End Sub
 
@@ -1370,7 +1399,8 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.`id_employee`
 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
 INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
-WHERE po.`is_active_payment`=2 AND po.`is_close_pay`=2 AND po.is_close_rec='1' AND po.is_cash_purchase=2
+INNER JOIN tb_lookup_payment_purchasing lp ON lp.id_payment_purchasing=po.id_payment_purchasing
+WHERE po.`is_active_payment`=2 AND po.`is_close_pay`=2 AND po.is_close_rec='1' AND po.is_cash_purchase=2 AND lp.is_only_cash_purchase=2
 GROUP BY pod.`id_purc_order`
 ORDER BY pod.id_purc_order DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -1622,15 +1652,23 @@ WHERE is_active=1"
     End Sub
 
     Private Sub BPrepaidExpense_Click(sender As Object, e As EventArgs) Handles BPrepaidExpense.Click
-        Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap,IFNULL(id_acc_cabang_dp,0) AS id_acc_cabang_dp,IFNULL(id_acc_cabang_ap,0) AS id_acc_cabang_ap FROM tb_m_comp c
-WHERE c.id_comp='" & SLEVendorPrepaidEx.EditValue & "'"
-        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        If SLEUnitPrepaidEx.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
-            warningCustom("This vendor AP account is not set.")
-        ElseIf Not SLEUnitPrepaidEx.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
-            warningCustom("This vendor AP account is not set.")
-        Else
+        view_preapaid_expense()
+    End Sub
+
+    Sub view_preapaid_expense()
+        If SLEVendorPrepaidEx.EditValue.ToString = "0" Then
             load_prepaid_expense()
+        Else
+            Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap,IFNULL(id_acc_cabang_dp,0) AS id_acc_cabang_dp,IFNULL(id_acc_cabang_ap,0) AS id_acc_cabang_ap FROM tb_m_comp c
+WHERE c.id_comp='" & SLEVendorPrepaidEx.EditValue & "'"
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If SLEUnitPrepaidEx.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+                warningCustom("This vendor AP account is not set.")
+            ElseIf Not SLEUnitPrepaidEx.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+                warningCustom("This vendor AP account is not set.")
+            Else
+                load_prepaid_expense()
+            End If
         End If
     End Sub
 
@@ -1645,6 +1683,12 @@ WHERE c.id_comp='" & SLEVendorPrepaidEx.EditValue & "'"
 
         If Not SLEVendorPrepaidEx.EditValue.ToString = "0" Then
             where_string = "AND e.id_comp='" & SLEVendorPrepaidEx.EditValue.ToString & "' "
+        End If
+
+        If SLEVendorPrepaidEx.EditValue.ToString = "0" Then
+            PCPreapaidExpense.Visible = False
+        Else
+            PCPreapaidExpense.Visible = True
         End If
 
         'cabang
@@ -1848,5 +1892,21 @@ WHERE c.`id_comp`='" & SLEFGPOVendor.EditValue.ToString & "'"
             GVFGPO.DeleteRow(i)
         Next
         BCreatePaymentFGPO.Visible = False
+    End Sub
+
+    Private Sub ViewDetailOGPOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailOGPOToolStripMenuItem.Click
+        If XTPPOList.SelectedTabPageIndex = 2 Then
+            If GVPO.RowCount > 0 Then
+                FormPurcOrderDet.id_po = GVPO.GetFocusedRowCellValue("id_purc_order").ToString
+                FormPurcOrderDet.is_view = "1"
+                FormPurcOrderDet.ShowDialog()
+            End If
+        ElseIf XTPPOList.SelectedTabPageIndex = 0
+            If GVPOList.RowCount > 0 Then
+                FormPurcOrderDet.id_po = GVPOList.GetFocusedRowCellValue("id_purc_order").ToString
+                FormPurcOrderDet.is_view = "1"
+                FormPurcOrderDet.ShowDialog()
+            End If
+        End If
     End Sub
 End Class
