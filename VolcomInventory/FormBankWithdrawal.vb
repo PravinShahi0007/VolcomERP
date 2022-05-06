@@ -1893,4 +1893,20 @@ WHERE c.`id_comp`='" & SLEFGPOVendor.EditValue.ToString & "'"
         Next
         BCreatePaymentFGPO.Visible = False
     End Sub
+
+    Private Sub ViewDetailOGPOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailOGPOToolStripMenuItem.Click
+        If XTPPOList.SelectedTabPageIndex = 2 Then
+            If GVPO.RowCount > 0 Then
+                FormPurcOrderDet.id_po = GVPO.GetFocusedRowCellValue("id_purc_order").ToString
+                FormPurcOrderDet.is_view = "1"
+                FormPurcOrderDet.ShowDialog()
+            End If
+        ElseIf XTPPOList.SelectedTabPageIndex = 0
+            If GVPOList.RowCount > 0 Then
+                FormPurcOrderDet.id_po = GVPOList.GetFocusedRowCellValue("id_purc_order").ToString
+                FormPurcOrderDet.is_view = "1"
+                FormPurcOrderDet.ShowDialog()
+            End If
+        End If
+    End Sub
 End Class
