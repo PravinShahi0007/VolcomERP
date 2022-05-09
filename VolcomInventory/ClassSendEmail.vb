@@ -6292,7 +6292,6 @@ GROUP BY po.id_prod_order"
                 <tr>
                   <th>No</th>
                   <th>FGPO#</th>
-                  <th>CODE</th>
                   <th>CLASS</th>
                   <th>ARTIKEL</th>
                   <th>SILHOUETTE</th>
@@ -6306,7 +6305,6 @@ GROUP BY po.id_prod_order"
                         mail.Body += "<tr>
                   <td>" & (i + 1).ToString & "</td>
                   <td>" & dt_det.Rows(i)("prod_order_number").ToString & "</td>
-                  <td>" & dt_det.Rows(i)("design_code").ToString & "</td>
                   <td>" & dt_det.Rows(i)("class").ToString & "</td>
                   <td>" & dt_det.Rows(i)("design_display_name").ToString & "</td>
                   <td>" & dt_det.Rows(i)("sht").ToString & "</td>
@@ -6327,7 +6325,7 @@ GROUP BY po.id_prod_order"
 <tr>
         <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
         <div>
-        <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Mohon dipastikan barang hasil produksi dikirimkan sesuai dengan tanggal yang sudah disetujui diatas.
+        <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Mohon dipastikan barang hasil produksi diterima sesuai dengan tanggal yang disetujui diatas.
           <br /><br />Terima kasih.
           <br />Purchasing Dept.
           <br />PT. Volcom Indonesia
