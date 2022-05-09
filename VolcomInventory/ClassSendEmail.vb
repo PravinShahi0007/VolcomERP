@@ -6286,7 +6286,6 @@ WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-03-1
               <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
                 <tr>
                   <th>No</th>
-                  <th>CODE</th>
                   <th>CLASS</th>
                   <th>ARTIKEL</th>
                   <th>SILHOUETTE</th>
@@ -6297,7 +6296,6 @@ WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-03-1
                     For i = 0 To dt_det.Rows.Count - 1
                         mail.Body += "<tr>
                   <td>" & (i + 1).ToString & "</td>
-                  <td>" & dt_det.Rows(i)("design_code").ToString & "</td>
                   <td>" & dt_det.Rows(i)("class").ToString & "</td>
                   <td>" & dt_det.Rows(i)("design_display_name").ToString & "</td>
                   <td>" & dt_det.Rows(i)("sht").ToString & "</td>
@@ -6316,7 +6314,7 @@ WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-03-1
 <tr>
         <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
         <div>
-        <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Mohon dipastikan barang hasil produksi dikirimkan sesuai dengan tanggal yang sudah disetujui diatas.
+        <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Mohon dipastikan barang hasil produksi diterima sesuai dengan tanggal yang disetujui diatas.
           <br /><br />Terima kasih.
           <br />Purchasing Dept.
           <br />PT. Volcom Indonesia
