@@ -424,6 +424,81 @@ WHERE dsg.id_design='" & par1 & "'"
             mail.IsBodyHtml = True
             mail.Body = email_body_ecop(cop, additional_cop, non_additional, design_name, design_class, design_color, design_code, cop_pd_note, "")
             client.Send(mail)
+        ElseIf report_mark_type = "409" Then 'ECOP PD SNI
+            'par1 = id_design
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "ECOP SNI - Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+            'Send to
+            Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='1' AND md.report_mark_type=409 "
+            Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_to.Rows.Count - 1
+                If Not data_send_to.Rows(i)("email_external").ToString = "" Then
+                    Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
+                    mail.To.Add(to_mail)
+                End If
+            Next
+            'CC
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' AND md.report_mark_type=409 "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                If Not data_send_cc.Rows(i)("email_external").ToString = "" Then
+                    Dim cc_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                    mail.CC.Add(cc_mail)
+                End If
+            Next
+
+            Dim design_name, cop, design_code, design_class, design_color, cop_pd_note, non_additional As String
+            Dim query As String = "SELECT dsg.design_display_name,IFNULL(cd.color,'-') AS color,IFNULL(cd.class,'-') AS class,dsg.design_code,dsg.prod_order_cop_pd,dsg.prod_order_cop_pd_addcost,dsg.cop_pd_note 
+FROM tb_m_design dsg
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+WHERE dsg.id_design='" & par1 & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                design_name = data.Rows(0)("design_display_name").ToString
+                design_code = data.Rows(0)("design_code").ToString
+                design_class = data.Rows(0)("class").ToString
+                design_color = data.Rows(0)("color").ToString
+                cop = Decimal.Parse(data.Rows(0)("prod_order_cop_pd").ToString).ToString("N2")
+                non_additional = Decimal.Parse(data.Rows(0)("prod_order_cop_pd") - data.Rows(0)("prod_order_cop_pd_addcost").ToString).ToString("N2")
+                cop_pd_note = data.Rows(0)("cop_pd_note").ToString
+            Else
+                design_name = ""
+                design_code = ""
+                design_class = ""
+                design_color = ""
+                cop = ""
+                non_additional = ""
+                cop_pd_note = ""
+            End If
+
+            mail.Subject = "Entry ECOP PD (" & design_code & " - " & design_name & ")"
+            mail.IsBodyHtml = True
+            mail.Body = email_body_ecop_sni(non_additional, design_name, design_class, design_color, design_code, cop_pd_note)
+            client.Send(mail)
         ElseIf report_mark_type = "291" Then 'Reset ECOP PD
             'par1 = id_design
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Reset ECOP PD - Volcom ERP")
@@ -6286,7 +6361,6 @@ WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-03-1
               <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
                 <tr>
                   <th>No</th>
-                  <th>CODE</th>
                   <th>CLASS</th>
                   <th>ARTIKEL</th>
                   <th>SILHOUETTE</th>
@@ -6297,7 +6371,6 @@ WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-03-1
                     For i = 0 To dt_det.Rows.Count - 1
                         mail.Body += "<tr>
                   <td>" & (i + 1).ToString & "</td>
-                  <td>" & dt_det.Rows(i)("design_code").ToString & "</td>
                   <td>" & dt_det.Rows(i)("class").ToString & "</td>
                   <td>" & dt_det.Rows(i)("design_display_name").ToString & "</td>
                   <td>" & dt_det.Rows(i)("sht").ToString & "</td>
@@ -6316,7 +6389,7 @@ WHERE po.id_report_status=6 AND NOT ISNULL(ko.id_prod_order) AND DATE('2022-03-1
 <tr>
         <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
         <div>
-        <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Mohon dipastikan barang hasil produksi dikirimkan sesuai dengan tanggal yang sudah disetujui diatas.
+        <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Mohon dipastikan barang hasil produksi diterima sesuai dengan tanggal yang disetujui diatas.
           <br /><br />Terima kasih.
           <br />Purchasing Dept.
           <br />PT. Volcom Indonesia
@@ -7580,6 +7653,236 @@ WHERE rm.id_report='" & id_report & "' AND rm.report_mark_type='" & report_mark_
       <td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
       <div>
       <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>ECOP " & If(opt = "reset", "reset", "updated") & ". </span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+      </div>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+      </div>
+      </td>
+     </tr>
+    </tbody></table>
+    <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+    <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+    <div align='center'>
+    <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+     <tbody><tr>
+      <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+        <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+      <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
+      </td>
+     </tr>
+    </tbody></table>
+    </div>
+    </td>
+   </tr>
+  </tbody></table>
+  </div>
+  </td>
+ </tr>
+</tbody></table>"
+        Return body_temp
+    End Function
+
+    Function email_body_ecop_sni(ByVal cop_non_additional As String, ByVal design_name As String, ByVal design_class As String, ByVal design_color As String, ByVal design_code As String, ByVal note As String)
+        Dim body_temp As String = ""
+        body_temp = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+ <tbody><tr>
+  <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+  <div align='center'>
+
+  <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+   <tbody><tr>
+    <td style='padding:0in 0in 0in 0in'></td>
+   </tr>
+   <tr>
+    <td style='padding:0in 0in 0in 0in'>
+    <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://ci3.googleusercontent.com/proxy/x-zXDZUS-2knkEkbTh3HzgyAAusw1Wz7dqV-lbnl39W_4F6T97fJ2_b9doP3nYi0B6KHstdb-tK8VAF_kOaLt2OH=s0-d-e1-ft#http://www.volcom.co.id/enews/img/volcom.jpg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+    </td>
+   </tr>
+   <tr>
+    <td style='padding:0in 0in 0in 0in'></td>
+   </tr>
+   <tr>
+    <td style='padding:0in 0in 0in 0in'>
+    <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+     <tbody><tr>
+      <td style='padding:0in 0in 0in 0in'>
+
+      </td>
+     </tr>
+    </tbody></table>
+    <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+    <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+    <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+     <tbody>
+     <tr>
+      <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'><b><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear All,</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+      </div>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Article with detail below, </span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+      </div>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Code
+        </span>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+          
+        </span>
+      </p>
+
+      </div>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_code & "
+        </span>
+      </p>
+      </div>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Description
+        </span>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+          
+        </span>
+      </p>
+
+      </div>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_name & "
+        </span>
+      </p>
+      </div>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Class
+        </span>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+          
+        </span>
+      </p>
+
+      </div>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_class & "
+        </span>
+      </p>
+      </div>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Color
+        </span>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+          
+        </span>
+      </p>
+
+      </div>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_color & "
+        </span>
+      </p>
+      </div>
+      </td>
+     </tr>
+        <tr>
+          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>
+            ECOP Non Additional
+            </span>
+          </td>
+          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+          <div>
+          <p class='MsoNormal' style='line-height:14.25pt'>
+            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+          
+            </span>
+          </p>
+
+          </div>
+          </td>
+          <td style='padding:1.0pt 10.0pt 1.0pt 10.0pt'>
+          <div>
+          <p class='MsoNormal' style='line-height:14.25pt'>
+            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & cop_non_additional & "
+            </span>
+          </p>
+          </div>
+          </td>
+        </tr>
+        <tr>
+          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>
+            Note
+            </span>
+          </td>
+          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+          <div>
+          <p class='MsoNormal' style='line-height:14.25pt'>
+            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+          
+            </span>
+          </p>
+
+          </div>
+          </td>
+          <td style='padding:1.0pt 10.0pt 1.0pt 10.0pt'>
+          <div>
+          <p class='MsoNormal' style='line-height:14.25pt'>
+            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & note & "
+            </span>
+          </p>
+          </div>
+          </td>
+        </tr>
+     <tr>
+      <td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>ECOP updated. Please proceed to SNI proposal. </span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
       </div>
       </td>
      </tr>

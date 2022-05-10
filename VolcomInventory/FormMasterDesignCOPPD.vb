@@ -597,7 +597,17 @@ INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=cd2.id_code_detail AND mcd
                     End If
 
                     If is_kids And is_sni_enabled = "1" Then
-                        warningCustom("ECOP PD Lock complete, waiting for SNI proposal.")
+                        'send email
+                        Try
+                            Dim nm As New ClassSendEmail
+                            nm.par1 = id_design
+                            nm.report_mark_type = "409"
+                            nm.send_email()
+                        Catch ex As Exception
+                            execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD SNI, id_design = " & id_design & " | error : " & ex.ToString & "')", -1, True, "", "", "", "")
+                        End Try
+
+                        infoCustom("ECOP PD Lock complete, waiting for SNI proposal.")
                     Else
                         'send email
                         Try
@@ -609,7 +619,7 @@ INNER JOIN tb_m_code_detail mcd ON mcd.id_code_detail=cd2.id_code_detail AND mcd
                             execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD id_design = " & id_design & " | error : " & ex.ToString & "')", -1, True, "", "", "", "")
                         End Try
 
-                        warningCustom("ECOP PD Lock complete")
+                        infoCustom("ECOP PD Lock complete")
                     End If
                     '
                     load_form()

@@ -309,7 +309,7 @@
         Catch ex As Exception
         End Try
 
-        Dim query As String = "SELECT 0 AS id_employee, '' AS employee_code, 'All employee' AS employee_name UNION (SELECT id_employee, employee_code, employee_name FROM tb_m_employee e WHERE 1 " + where_department + " ORDER BY e.departement ASC, e.id_employee_level ASC)"
+        Dim query As String = "SELECT 0 AS id_employee, '' AS employee_code, 'All employee' AS employee_name UNION (SELECT id_employee, employee_code, employee_name FROM tb_m_employee e WHERE 1 " + where_department + " ORDER BY e.id_departement ASC, e.id_employee_level ASC)"
 
         viewSearchLookupQuery(SLUEEmployee, query, "id_employee", "employee_name", "id_employee")
     End Sub
