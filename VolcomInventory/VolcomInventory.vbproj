@@ -261,6 +261,7 @@
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
     <Compile Include="ClassDisableExos.vb" />
+    <Compile Include="ClassDropChanges.vb" />
     <Compile Include="ClassEmpUni.vb" />
     <Compile Include="ClassEmpUniExpense.vb" />
     <Compile Include="ClassEOSChange.vb" />
