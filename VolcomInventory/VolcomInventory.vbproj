@@ -1518,6 +1518,12 @@
     <Compile Include="FormDocumentScanUpload.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDropChanges.Designer.vb">
+      <DependentUpon>FormDropChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDropChanges.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmloyeePps.Designer.vb">
       <DependentUpon>FormEmloyeePps.vb</DependentUpon>
     </Compile>
@@ -11561,6 +11567,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDocumentScanUpload.resx">
       <DependentUpon>FormDocumentScanUpload.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDropChanges.resx">
+      <DependentUpon>FormDropChanges.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmloyeePps.resx">
       <DependentUpon>FormEmloyeePps.vb</DependentUpon>
