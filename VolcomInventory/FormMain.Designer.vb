@@ -19,7 +19,6 @@ Partial Class FormMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
         Me.BarButtonItemAddMasterItemCategory = New DevExpress.XtraBars.BarButtonItem()
@@ -98,7 +97,7 @@ Partial Class FormMain
         Me.BBGuide = New DevExpress.XtraBars.BarButtonItem()
         Me.BBNotif = New DevExpress.XtraBars.BarButtonItem()
         Me.BBDarkMode = New DevExpress.XtraBars.BarButtonItem()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.RPSubMenu = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RGAreaManage = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RGAreaPrint = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -108,14 +107,14 @@ Partial Class FormMain
         Me.RPGManageUser = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RPGAbout = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
-        Me.ImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.ContextMenuStripYM = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ImageCollection = New DevExpress.Utils.ImageCollection()
+        Me.ContextMenuStripYM = New System.Windows.Forms.ContextMenuStrip()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoginToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DashboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NotifyIconVI = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.NotifyIconVI = New System.Windows.Forms.NotifyIcon()
         Me.NBProdRet = New DevExpress.XtraNavBar.NavBarControl()
         Me.NBGGeneral = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBWork = New DevExpress.XtraNavBar.NavBarItem()
@@ -564,16 +563,16 @@ Partial Class FormMain
         Me.NBSampleStorage = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSampleTrf = New DevExpress.XtraNavBar.NavBarItem()
         Me.NavBarItem2 = New DevExpress.XtraNavBar.NavBarItem()
-        Me.MenuImages = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.XTMDI = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
+        Me.MenuImages = New DevExpress.Utils.ImageCollection()
+        Me.XTMDI = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager()
         Me.BBCompanyContact = New DevExpress.XtraBars.BarButtonItem()
-        Me.AlertControlNotif = New DevExpress.XtraBars.Alerter.AlertControl(Me.components)
-        Me.TimerNotif = New System.Windows.Forms.Timer(Me.components)
+        Me.AlertControlNotif = New DevExpress.XtraBars.Alerter.AlertControl()
+        Me.TimerNotif = New System.Windows.Forms.Timer()
         Me.PCMenu = New DevExpress.XtraEditors.PanelControl()
         Me.PCSearch = New DevExpress.XtraEditors.PanelControl()
         Me.TESearchNavbar = New DevExpress.XtraEditors.TextEdit()
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
-        Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
+        Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager()
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2215,7 +2214,7 @@ Partial Class FormMain
         '
         'NBDesignColumn
         '
-        Me.NBDesignColumn.Caption = "Design Column (Not Used)"
+        Me.NBDesignColumn.Caption = "Design Column"
         Me.NBDesignColumn.Name = "NBDesignColumn"
         Me.NBDesignColumn.SmallImage = CType(resources.GetObject("NBDesignColumn.SmallImage"), System.Drawing.Image)
         '
