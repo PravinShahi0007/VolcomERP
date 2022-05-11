@@ -399,7 +399,7 @@ WHERE ovhp.`id_ovh_price`='" & id_ovh_price & "'"
                 Dim vat_opt As String = get_current_vat()
                 vat = If(dtvat.Rows(0)("id_tax").ToString = "2", vat_opt, "0")
             End If
-            del_date = Date.Parse(Now().ToString).ToString("yyyy-MM-dd")
+            del_date = Date.Parse(getTimeDB()).ToString("yyyy-MM-dd")
             kurs = data.Rows(i)("kurs").ToString
             id_currency = data.Rows(i)("id_currency").ToString
             is_main_vendor = data.Rows(i)("is_ovh_main").ToString
