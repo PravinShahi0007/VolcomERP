@@ -478,9 +478,9 @@ GROUP BY mpd.`id_mat_purc`"
 ,md.mat_det_name,color.display_name AS color,size.display_name AS size
 ,m.mat_code,m.mat_display_name,m.id_mat,md.id_mat_det
 ,mdp.min_qty_in_bulk,mdp.bulk_unit, CONCAT(mdp.min_qty_in_bulk,'/',IF(mdp.bulk_unit='','pcs',mdp.bulk_unit)) AS conversion
-,SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_list
+,SUM((plp.`total_qty_pd`*pl.`qty_consumption`)+plp.allowance_qty)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)) AS total_qty_list
 ,ROUND((SUM((plp.`total_qty_pd`*pl.`qty_consumption`)+plp.allowance_qty)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk,2) AS total_qty_list_conv
-,IF(mdp.min_qty_in_bulk=1,'',CONCAT(CEIL((SUM(plp.`total_qty_pd`*pl.`qty_consumption`)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk),' ',mdp.bulk_unit)) AS order_note
+,IF(mdp.min_qty_in_bulk=1,'',CONCAT(CEIL((SUM((plp.`total_qty_pd`*pl.`qty_consumption`)+plp.allowance_qty)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk),' ',mdp.bulk_unit)) AS order_note
 ,CEIL((SUM((plp.`total_qty_pd`*pl.`qty_consumption`)+plp.allowance_qty)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk) AS total_qty_order_conv
 ,CEIL((SUM((plp.`total_qty_pd`*pl.`qty_consumption`)+plp.allowance_qty)+CEIL(SUM(plp.total_qty_pd*pl.`qty_consumption`)*(pl.tolerance/100)))/mdp.min_qty_in_bulk)*mdp.min_qty_in_bulk AS total_qty_order
 ,mdp.moq
