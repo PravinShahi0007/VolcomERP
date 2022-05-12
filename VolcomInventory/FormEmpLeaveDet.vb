@@ -15,7 +15,16 @@
 
     Public adv_leave As Integer = 0
 
+    'id for attachment
+    Private id_attachment As String = "-1"
+
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If id_emp_leave = "-1" Then
+            execute_non_query("UPDATE tb_opt_emp SET id_attachment = (id_attachment + 1)", True, "", "", "", "")
+
+            id_attachment = get_opt_emp_field("id_attachment")
+        End If
+
         If get_opt_emp_field("is_leave_hour") = "2" Then
             TERemainingLeave.Properties.DisplayFormat.FormatString = "N1"
             TERemainingLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -156,6 +165,12 @@
             '
             TERemainingLeave.EditValue = data.Rows(0)("leave_remaining") / 60
             TETotLeave.EditValue = data.Rows(0)("leave_total") / 60
+
+            If data.Rows(0)("id_attachment").ToString = "" Then
+                id_attachment = "-1"
+            Else
+                id_attachment = data.Rows(0)("id_attachment").ToString
+            End If
             'search adv leave this report and before
             Dim query_adv As String = "SELECT id_adv_leave FROM tb_emp_stock_leave_adv WHERE id_emp_leave='" & id_emp_leave & "'"
             Dim data_adv As DataTable = execute_query(query_adv, -1, True, "", "", "", "")
@@ -681,6 +696,15 @@
                         End If
                     End If
                 End If
+
+                If LEFormDC.EditValue.ToString = "3" And Not is_hrd = "1" Then
+                    Dim count_attachment As String = execute_query("SELECT COUNT(*) FROM tb_doc WHERE id_report = " + id_attachment + " AND report_mark_type = 411", 0, True, "", "", "", "")
+
+                    If count_attachment = "0" And get_opt_emp_field("required_dc") = "1" Then
+                        stopCustom("Mohon scan/upload DC anda pada tombol 'Attachment'.")
+                        problem = True
+                    End If
+                End If
             End If
 
             If leave_type = "6" Then
@@ -746,6 +770,16 @@
                         query += "('" & id_emp_leave & "','" & id_employee & "','" & (GVLeaveUsage.GetRowCellValue(i, "qty") * 60).ToString & "',2,NOW(),'" & Date.Parse(GVLeaveUsage.GetRowCellValue(i, "date_expired").ToString).ToString("yyyy-MM-dd") & "',2,'" & number & "','" & GVLeaveUsage.GetRowCellValue(i, "type").ToString & "')"
                     Next
                     execute_non_query(query, True, "", "", "", "")
+                End If
+
+                'store id_attachment dc
+                If leave_type = "2" Then
+                    Dim count_attachment As String = execute_query("SELECT COUNT(*) FROM tb_doc WHERE id_report = " + id_attachment + " AND report_mark_type = 411", 0, True, "", "", "", "")
+
+                    If Not count_attachment = "0" Then
+                        query = "UPDATE tb_emp_leave SET id_attachment = '" + id_attachment + "' WHERE id_emp_leave='" & id_emp_leave & "'"
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
                 End If
 
                 If is_hrd = "1" Then
@@ -1039,6 +1073,11 @@
                 load_but_calc()
             End If
         End If
+        If id_emp_leave = "-1" And LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "3" Then 'sick
+            SBAttachment.Visible = True
+        Else
+            SBAttachment.Visible = False
+        End If
         is_reload = "2"
     End Sub
 
@@ -1145,13 +1184,21 @@
     Private Sub SBAttachment_Click(sender As Object, e As EventArgs) Handles SBAttachment.Click
         Cursor = Cursors.WaitCursor
 
-        Dim data As DataTable = execute_query("SELECT id_report_status, report_mark_type FROM tb_emp_leave WHERE id_emp_leave = " + id_emp_leave, -1, True, "", "", "", "")
+        If LELeaveType.EditValue.ToString = "2" Then
+            FormDocumentUpload.is_no_delete = "1"
+            FormDocumentUpload.is_view = If(id_emp_leave = "-1", "-1", "1")
+            FormDocumentUpload.report_mark_type = "411"
+            FormDocumentUpload.id_report = id_attachment
+            FormDocumentUpload.ShowDialog()
+        Else
+            Dim data As DataTable = execute_query("SELECT id_report_status, report_mark_type FROM tb_emp_leave WHERE id_emp_leave = " + id_emp_leave, -1, True, "", "", "", "")
 
-        FormDocumentUpload.is_no_delete = "2"
-        FormDocumentUpload.is_view = If(LEFormDC.EditValue.ToString = "3", If(data.Rows(0)("id_report_status").ToString = "6", "1", If(is_hrd = "1", "-1", "1")), If(data.Rows(0)("id_report_status").ToString = "0", "-1", "1"))
-        FormDocumentUpload.id_report = id_emp_leave
-        FormDocumentUpload.report_mark_type = data.Rows(0)("report_mark_type").ToString
-        FormDocumentUpload.ShowDialog()
+            FormDocumentUpload.is_no_delete = "2"
+            FormDocumentUpload.is_view = If(LEFormDC.EditValue.ToString = "3", If(data.Rows(0)("id_report_status").ToString = "6", "1", If(is_hrd = "1", "-1", "1")), If(data.Rows(0)("id_report_status").ToString = "0", "-1", "1"))
+            FormDocumentUpload.id_report = id_emp_leave
+            FormDocumentUpload.report_mark_type = data.Rows(0)("report_mark_type").ToString
+            FormDocumentUpload.ShowDialog()
+        End If
 
         Cursor = Cursors.Default
     End Sub
@@ -1176,6 +1223,14 @@
             Close()
         Else
             stopCustom("Mohon lampirkan memo yg telah disetujui Management.")
+        End If
+    End Sub
+
+    Private Sub LEFormDC_EditValueChanged(sender As Object, e As EventArgs) Handles LEFormDC.EditValueChanged
+        If id_emp_leave = "-1" And LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "3" Then 'sick
+            SBAttachment.Visible = True
+        Else
+            SBAttachment.Visible = False
         End If
     End Sub
 End Class
