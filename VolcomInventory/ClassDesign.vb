@@ -2031,6 +2031,7 @@
         LEFT JOIN tb_prod_order po ON po.id_prod_order = det.id_prod_order
         INNER JOIN tb_m_design d ON d.id_design = det.id_design
         INNER JOIN tb_season_orign sor ON sor.id_season_orign = d.id_season_orign
+        INNER JOIN tb_lookup_critical_product cp_new ON cp_new.id_critical_product = d.id_critical_product
         LEFT JOIN (
 	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `source_new`
 	        FROM tb_m_design_changes_det det
@@ -2081,6 +2082,7 @@
         ) sht_new ON sht_new.id_design = d.id_design
         INNER JOIN tb_m_design dr ON dr.id_design = d.id_design_rev_from
         INNER JOIN tb_season_orign sordr ON sordr.id_season_orign = dr.id_season_orign
+        INNER JOIN tb_lookup_critical_product cp ON cp.id_critical_product = dr.id_critical_product
         LEFT JOIN (
 	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `source`
 	        FROM tb_m_design_changes_det det
