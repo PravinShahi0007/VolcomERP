@@ -298,6 +298,11 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEProductType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView18 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_critical_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncritical_product = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -432,6 +437,8 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlComment.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
         CType(Me.EPChanges, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEProductType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView18, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RILEValNon
@@ -1012,6 +1019,8 @@ Partial Class FormMasterDesignSingle
         '
         'XtraScrollableControl1
         '
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEProductType)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl21)
         Me.XtraScrollableControl1.Controls.Add(Me.SBFabricationBrowse)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl22)
         Me.XtraScrollableControl1.Controls.Add(Me.TEPrimaryName)
@@ -1099,7 +1108,7 @@ Partial Class FormMasterDesignSingle
         Me.SLUECoolStorage.Properties.ShowClearButton = False
         Me.SLUECoolStorage.Properties.ShowFooter = False
         Me.SLUECoolStorage.Properties.View = Me.GridView17
-        Me.SLUECoolStorage.Size = New System.Drawing.Size(373, 20)
+        Me.SLUECoolStorage.Size = New System.Drawing.Size(167, 20)
         Me.SLUECoolStorage.TabIndex = 140
         Me.SLUECoolStorage.TabStop = False
         '
@@ -3175,6 +3184,50 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
         '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(182, 651)
+        Me.LabelControl21.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl21.TabIndex = 145
+        Me.LabelControl21.Text = "Product Type"
+        '
+        'SLEProductType
+        '
+        Me.SLEProductType.Location = New System.Drawing.Point(182, 666)
+        Me.SLEProductType.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.SLEProductType.Name = "SLEProductType"
+        Me.SLEProductType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEProductType.Properties.NullText = "- Select Product Type -"
+        Me.SLEProductType.Properties.ShowClearButton = False
+        Me.SLEProductType.Properties.ShowFooter = False
+        Me.SLEProductType.Properties.View = Me.GridView18
+        Me.SLEProductType.Size = New System.Drawing.Size(199, 20)
+        Me.SLEProductType.TabIndex = 146
+        Me.SLEProductType.TabStop = False
+        '
+        'GridView18
+        '
+        Me.GridView18.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_critical_product, Me.GridColumncritical_product})
+        Me.GridView18.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView18.Name = "GridView18"
+        Me.GridView18.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView18.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_critical_product
+        '
+        Me.GridColumnid_critical_product.FieldName = "id_critical_product"
+        Me.GridColumnid_critical_product.Name = "GridColumnid_critical_product"
+        '
+        'GridColumncritical_product
+        '
+        Me.GridColumncritical_product.Caption = "Product Type"
+        Me.GridColumncritical_product.FieldName = "critical_product"
+        Me.GridColumncritical_product.Name = "GridColumncritical_product"
+        Me.GridColumncritical_product.Visible = True
+        Me.GridColumncritical_product.VisibleIndex = 0
+        '
         'FormMasterDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3332,6 +3385,8 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlComment.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.EPChanges, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEProductType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView18, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3612,4 +3667,9 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridColumnproduct_active_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnseason_orign_display As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncountry_display_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEProductType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView18 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_critical_product As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncritical_product As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
 End Class
