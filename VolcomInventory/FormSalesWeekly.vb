@@ -1469,6 +1469,16 @@
         Dim date_from As String = SLUEUSASales.EditValue.ToString
         Dim date_to As String = SLUEUSASales.EditValue.ToString.Substring(0, 8) + last_day.ToString
 
+        'get vat
+        Dim curr_vat As Decimal = 0.00
+        Dim query_vat As String = "SELECT v.vat FROM tb_m_vat v WHERE '" + date_to + "'>=v.start_period AND '" + date_to + "'<=v.end_period "
+        Dim data_vat As DataTable = execute_query(query_vat, -1, True, "", "", "", "")
+        If data_vat.Rows.Count > 0 Then
+            curr_vat = data_vat.Rows(0)("vat")
+        Else
+            curr_vat = 0.00
+        End If
+
         Dim query_c As ClassSalesInv = New ClassSalesInv()
 
         Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 AND (a.sales_pos_end_period >= ''" + date_from + "'' AND a.sales_pos_end_period <= ''" + date_to + "'') AND a.sales_pos_total > 0 AND a.report_mark_type != 116 ", "1", "2", "2")
@@ -1497,7 +1507,7 @@
         For i = 0 To store_detail.Rows.Count - 1
             store_detail.Rows(i)("total_sales") = (store_detail.Rows(i)("total_sales") * store_detail.Rows(i)("ppn_ptc")) / (100 - store_detail.Rows(i)("ppn_ptc"))
 
-            store_detail.Rows(i)("total_sales") = store_detail.Rows(i)("total_sales") * 100 / 110
+            store_detail.Rows(i)("total_sales") = store_detail.Rows(i)("total_sales") * 100 / (100 + curr_vat)
         Next
 
         For i = 0 To store.Rows.Count - 1

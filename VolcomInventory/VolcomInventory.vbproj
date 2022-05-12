@@ -8118,6 +8118,12 @@
     <Compile Include="FormTestImage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormThreading.Designer.vb">
+      <DependentUpon>FormThreading.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormThreading.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormTrackingReturn.Designer.vb">
       <DependentUpon>FormTrackingReturn.vb</DependentUpon>
     </Compile>
@@ -15224,6 +15230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTestCheckvb.resx">
       <DependentUpon>FormTestCheckvb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormThreading.resx">
+      <DependentUpon>FormThreading.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTrackingReturn.resx">
       <DependentUpon>FormTrackingReturn.vb</DependentUpon>
