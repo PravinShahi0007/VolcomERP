@@ -23,6 +23,8 @@ Partial Class FormDropChangesDet
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_season = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnseason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnChangeEffectiveDate = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelEffectiveDate = New DevExpress.XtraEditors.LabelControl()
@@ -48,8 +50,6 @@ Partial Class FormDropChangesDet
         Me.BtnAddPTH = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_season = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnseason = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,6 +102,20 @@ Partial Class FormDropChangesDet
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_season
+        '
+        Me.GridColumnid_season.Caption = "id_season"
+        Me.GridColumnid_season.FieldName = "id_season"
+        Me.GridColumnid_season.Name = "GridColumnid_season"
+        '
+        'GridColumnseason
+        '
+        Me.GridColumnseason.Caption = "Season"
+        Me.GridColumnseason.FieldName = "season"
+        Me.GridColumnseason.Name = "GridColumnseason"
+        Me.GridColumnseason.Visible = True
+        Me.GridColumnseason.VisibleIndex = 0
         '
         'BtnChangeEffectiveDate
         '
@@ -372,20 +386,6 @@ Partial Class FormDropChangesDet
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnid_season
-        '
-        Me.GridColumnid_season.Caption = "id_season"
-        Me.GridColumnid_season.FieldName = "id_season"
-        Me.GridColumnid_season.Name = "GridColumnid_season"
-        '
-        'GridColumnseason
-        '
-        Me.GridColumnseason.Caption = "Season"
-        Me.GridColumnseason.FieldName = "season"
-        Me.GridColumnseason.Name = "GridColumnseason"
-        Me.GridColumnseason.Visible = True
-        Me.GridColumnseason.VisibleIndex = 0
         '
         'FormDropChangesDet
         '
