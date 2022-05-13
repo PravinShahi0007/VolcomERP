@@ -39,6 +39,13 @@ Module Common
     Public own_company_name As String = ""
     Public own_company_address As String = ""
 
+    Public volcom_erp_api_host As String = ""
+    Public volcom_erp_api_email As String = ""
+    Public volcom_erp_api_password As String = ""
+
+    Public volcom_erp_api_type As String = ""
+    Public volcom_erp_api_token As String = ""
+
     Sub check_login_season()
         Dim q As String = "SELECT is_season_over FROM tb_log_login WHERE id_season='" & id_login_season & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -2759,10 +2766,32 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
             Console.WriteLine(ex.ToString)
         End Try
     End Sub
+    Public Sub viewLookupQueryO(ByVal LE As DevExpress.XtraEditors.LookUpEdit, ByVal data As DataTable, ByVal index_selected As Integer, ByVal display As String, ByVal value As String)
+        Try
+            LE.Properties.DataSource = data
+            LE.Properties.DisplayMember = display
+            LE.Properties.ValueMember = value
+            LE.ItemIndex = index_selected
+        Catch ex As Exception
+            'errorConnection()
+            Console.WriteLine(ex.ToString)
+        End Try
+    End Sub
     'view repository lookupedit
     Public Sub viewLookupRepositoryQuery(ByVal LE As Repository.RepositoryItemLookUpEdit, ByVal query As String, ByVal index_selected As Integer, ByVal display As String, ByVal value As String)
         Try
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            LE.DataSource = Nothing
+            LE.DataSource = data
+            LE.DisplayMember = display
+            LE.ValueMember = value
+        Catch ex As Exception
+            'errorConnection()
+            Console.WriteLine(ex.ToString)
+        End Try
+    End Sub
+    Public Sub viewSearchLookupRepositoryQueryO(ByVal LE As Repository.RepositoryItemSearchLookUpEdit, ByVal data As DataTable, ByVal index_selected As Integer, ByVal display As String, ByVal value As String)
+        Try
             LE.DataSource = Nothing
             LE.DataSource = data
             LE.DisplayMember = display
@@ -2777,6 +2806,21 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
         'Try
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         SLE.Properties.DataSource = Nothing
+        SLE.Properties.DataSource = data
+        SLE.Properties.DisplayMember = display
+        SLE.Properties.ValueMember = value
+        If data.Rows.Count.ToString >= 1 Then
+            SLE.EditValue = data.Rows(0)(index_selected).ToString
+        Else
+            SLE.EditValue = Nothing
+        End If
+        'Catch ex As Exception
+        'errorConnection()
+        'errorCustom(ex.ToString)
+        'End Try
+    End Sub
+    Public Sub viewSearchLookupQueryO(ByVal SLE As DevExpress.XtraEditors.SearchLookUpEdit, ByVal data As DataTable, ByVal index_selected As String, ByVal display As String, ByVal value As String)
+        'Try
         SLE.Properties.DataSource = data
         SLE.Properties.DisplayMember = display
         SLE.Properties.ValueMember = value
@@ -7830,4 +7874,90 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
             infoCustom(info_str)
         End If
     End Sub
+
+    Sub volcomErpApiCreateToken()
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+
+        Dim value As Specialized.NameValueCollection = New Specialized.NameValueCollection
+
+        Dim erp_api As DataTable = execute_query("SELECT erp_api_host, erp_api_email, erp_api_password FROM tb_opt LIMIT 1", -1, True, "", "", "", "")
+
+        volcom_erp_api_host = erp_api.Rows(0)("erp_api_host").ToString
+        volcom_erp_api_email = erp_api.Rows(0)("erp_api_email").ToString
+        volcom_erp_api_password = erp_api.Rows(0)("erp_api_password").ToString
+
+        value.Add("email", volcom_erp_api_email)
+        value.Add("password", volcom_erp_api_password)
+
+        Dim response As Byte() = wc.UploadValues(volcom_erp_api_host + "api/create-token", "POST", value)
+
+        Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(System.Text.Encoding.ASCII.GetString(response))
+
+        volcom_erp_api_type = json("results")("type").ToString()
+        volcom_erp_api_token = json("results")("token").ToString()
+    End Sub
+
+    Function volcomErpApiGetDT(ByVal json As Newtonsoft.Json.Linq.JObject, ByVal element As Integer) As DataTable
+        Dim srcArray = json.Descendants().Where(Function(d) TypeOf d Is Newtonsoft.Json.Linq.JArray).ElementAt(element)
+
+        Dim trgArray = New Newtonsoft.Json.Linq.JArray()
+
+        For Each row As Newtonsoft.Json.Linq.JObject In srcArray.Children(Of Newtonsoft.Json.Linq.JObject)()
+            Dim cleanRow = New Newtonsoft.Json.Linq.JObject()
+
+            For Each column As Newtonsoft.Json.Linq.JProperty In row.Properties()
+                If TypeOf column.Value Is Newtonsoft.Json.Linq.JValue Then
+                    cleanRow.Add(column.Name, column.Value)
+                End If
+            Next
+
+            trgArray.Add(cleanRow)
+        Next
+
+        Dim data As DataTable = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(trgArray.ToString())
+
+        If data.Rows.Count = 1 Then
+            Dim emptyTable As Boolean = True
+
+            For c = 0 To data.Columns.Count - 1
+                If Not data.Rows(0)(data.Columns(c).ColumnName).ToString = "" Then
+                    emptyTable = False
+                End If
+            Next
+
+            If emptyTable Then
+                data.Clear()
+            End If
+        End If
+
+        Return data
+    End Function
+
+    Function volcomErpApiGetJson(ByVal address As String) As Newtonsoft.Json.Linq.JObject
+        Dim request As Net.HttpWebRequest = Net.WebRequest.Create(address)
+
+        request.Method = "GET"
+
+        request.Accept = "application/json"
+
+        request.Headers.Add("Authorization", volcom_erp_api_type + " " + volcom_erp_api_token)
+
+        Dim json As New Newtonsoft.Json.Linq.JObject()
+
+        Dim response As Net.HttpWebResponse = request.GetResponse()
+
+        Using dataStream As IO.Stream = response.GetResponseStream()
+            Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
+
+            Dim responseFromServer As String = reader.ReadToEnd()
+
+            json = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
+        End Using
+
+        response.Close()
+
+        Return json
+    End Function
 End Module
