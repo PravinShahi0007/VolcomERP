@@ -21,19 +21,20 @@ Partial Class FormDropChangesDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDropChangesDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BtnChangeEffectiveDate = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelEffectiveDate = New DevExpress.XtraEditors.LabelControl()
-        Me.DEEffectDate = New DevExpress.XtraEditors.DateEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -42,26 +43,28 @@ Partial Class FormDropChangesDet
         Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControlNavPTH = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDeletePTH = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddPTH = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_season = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnseason = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
-        CType(Me.DEEffectDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEEffectDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
-        CType(Me.PanelControlNavPTH, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlNavPTH.SuspendLayout()
+        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -69,18 +72,36 @@ Partial Class FormDropChangesDet
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlHead.Controls.Add(Me.SLESeason)
         Me.GroupControlHead.Controls.Add(Me.BtnChangeEffectiveDate)
         Me.GroupControlHead.Controls.Add(Me.BtnCreateNew)
         Me.GroupControlHead.Controls.Add(Me.LabelEffectiveDate)
-        Me.GroupControlHead.Controls.Add(Me.DEEffectDate)
         Me.GroupControlHead.Controls.Add(Me.MENote)
         Me.GroupControlHead.Controls.Add(Me.LabelControl7)
         Me.GroupControlHead.Controls.Add(Me.PanelControl1)
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(821, 134)
+        Me.GroupControlHead.Size = New System.Drawing.Size(738, 118)
         Me.GroupControlHead.TabIndex = 12
+        '
+        'SLESeason
+        '
+        Me.SLESeason.Location = New System.Drawing.Point(94, 14)
+        Me.SLESeason.Name = "SLESeason"
+        Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESeason.Properties.ShowClearButton = False
+        Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLESeason.Size = New System.Drawing.Size(323, 20)
+        Me.SLESeason.TabIndex = 8927
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_season, Me.GridColumnseason})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'BtnChangeEffectiveDate
         '
@@ -97,9 +118,9 @@ Partial Class FormDropChangesDet
         Me.BtnCreateNew.Image = CType(resources.GetObject("BtnCreateNew.Image"), System.Drawing.Image)
         Me.BtnCreateNew.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
         Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.BtnCreateNew.Location = New System.Drawing.Point(20, 103)
+        Me.BtnCreateNew.Location = New System.Drawing.Point(20, 87)
         Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(544, 29)
+        Me.BtnCreateNew.Size = New System.Drawing.Size(465, 29)
         Me.BtnCreateNew.TabIndex = 8925
         Me.BtnCreateNew.Text = "Create New"
         Me.BtnCreateNew.Visible = False
@@ -113,26 +134,11 @@ Partial Class FormDropChangesDet
         Me.LabelEffectiveDate.TabIndex = 8922
         Me.LabelEffectiveDate.Text = "Season"
         '
-        'DEEffectDate
-        '
-        Me.DEEffectDate.EditValue = Nothing
-        Me.DEEffectDate.Location = New System.Drawing.Point(94, 14)
-        Me.DEEffectDate.Name = "DEEffectDate"
-        Me.DEEffectDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEEffectDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DEEffectDate.Properties.Appearance.Options.UseFont = True
-        Me.DEEffectDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEEffectDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEEffectDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEEffectDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEEffectDate.Size = New System.Drawing.Size(273, 20)
-        Me.DEEffectDate.TabIndex = 145
-        '
         'MENote
         '
         Me.MENote.Location = New System.Drawing.Point(94, 40)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(273, 41)
+        Me.MENote.Size = New System.Drawing.Size(323, 41)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
@@ -145,25 +151,6 @@ Partial Class FormDropChangesDet
         Me.LabelControl7.TabIndex = 150
         Me.LabelControl7.Text = "Note"
         '
-        'TxtNumber
-        '
-        Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(64, 12)
-        Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtNumber.Size = New System.Drawing.Size(172, 20)
-        Me.TxtNumber.TabIndex = 147
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(10, 15)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl2.TabIndex = 147
-        Me.LabelControl2.Text = "Number"
-        '
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -174,9 +161,9 @@ Partial Class FormDropChangesDet
         Me.PanelControl1.Controls.Add(Me.TxtNumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(564, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(485, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(255, 130)
+        Me.PanelControl1.Size = New System.Drawing.Size(251, 114)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl21
@@ -228,6 +215,25 @@ Partial Class FormDropChangesDet
         Me.DECreated.Size = New System.Drawing.Size(172, 20)
         Me.DECreated.TabIndex = 6
         '
+        'TxtNumber
+        '
+        Me.TxtNumber.Enabled = False
+        Me.TxtNumber.Location = New System.Drawing.Point(64, 12)
+        Me.TxtNumber.Name = "TxtNumber"
+        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNumber.Properties.Appearance.Options.UseFont = True
+        Me.TxtNumber.Size = New System.Drawing.Size(172, 20)
+        Me.TxtNumber.TabIndex = 147
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl2.TabIndex = 147
+        Me.LabelControl2.Text = "Number"
+        '
         'PanelControlBottom
         '
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
@@ -238,16 +244,16 @@ Partial Class FormDropChangesDet
         Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 446)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 502)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(821, 44)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(738, 44)
         Me.PanelControlBottom.TabIndex = 17
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(161, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(78, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -257,7 +263,7 @@ Partial Class FormDropChangesDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(248, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(165, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -279,7 +285,7 @@ Partial Class FormDropChangesDet
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(354, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(271, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
@@ -290,7 +296,7 @@ Partial Class FormDropChangesDet
         '
         Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(480, 2)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(397, 2)
         Me.BtnResetPropose.Name = "BtnResetPropose"
         Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
         Me.BtnResetPropose.TabIndex = 9
@@ -300,7 +306,7 @@ Partial Class FormDropChangesDet
         '
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(603, 2)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(520, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
         Me.BtnSaveChanges.TabIndex = 8
@@ -311,29 +317,29 @@ Partial Class FormDropChangesDet
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(723, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(640, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(96, 40)
         Me.BtnConfirm.TabIndex = 6
         Me.BtnConfirm.Text = "Confirm"
         Me.BtnConfirm.Visible = False
         '
-        'PanelControlNavPTH
+        'PanelControlNav
         '
-        Me.PanelControlNavPTH.Controls.Add(Me.BtnDeletePTH)
-        Me.PanelControlNavPTH.Controls.Add(Me.BtnAddPTH)
-        Me.PanelControlNavPTH.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNavPTH.Location = New System.Drawing.Point(0, 134)
-        Me.PanelControlNavPTH.Name = "PanelControlNavPTH"
-        Me.PanelControlNavPTH.Size = New System.Drawing.Size(821, 62)
-        Me.PanelControlNavPTH.TabIndex = 20
+        Me.PanelControlNav.Controls.Add(Me.BtnDeletePTH)
+        Me.PanelControlNav.Controls.Add(Me.BtnAddPTH)
+        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 118)
+        Me.PanelControlNav.Name = "PanelControlNav"
+        Me.PanelControlNav.Size = New System.Drawing.Size(738, 62)
+        Me.PanelControlNav.TabIndex = 20
         '
         'BtnDeletePTH
         '
         Me.BtnDeletePTH.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDeletePTH.Image = CType(resources.GetObject("BtnDeletePTH.Image"), System.Drawing.Image)
         Me.BtnDeletePTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnDeletePTH.Location = New System.Drawing.Point(683, 2)
+        Me.BtnDeletePTH.Location = New System.Drawing.Point(600, 2)
         Me.BtnDeletePTH.Name = "BtnDeletePTH"
         Me.BtnDeletePTH.Size = New System.Drawing.Size(68, 58)
         Me.BtnDeletePTH.TabIndex = 8934
@@ -344,7 +350,7 @@ Partial Class FormDropChangesDet
         Me.BtnAddPTH.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddPTH.Image = CType(resources.GetObject("BtnAddPTH.Image"), System.Drawing.Image)
         Me.BtnAddPTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnAddPTH.Location = New System.Drawing.Point(751, 2)
+        Me.BtnAddPTH.Location = New System.Drawing.Point(668, 2)
         Me.BtnAddPTH.Name = "BtnAddPTH"
         Me.BtnAddPTH.Size = New System.Drawing.Size(68, 58)
         Me.BtnAddPTH.TabIndex = 8933
@@ -353,10 +359,10 @@ Partial Class FormDropChangesDet
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 196)
+        Me.GCData.Location = New System.Drawing.Point(0, 180)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(821, 250)
+        Me.GCData.Size = New System.Drawing.Size(738, 322)
         Me.GCData.TabIndex = 21
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -367,13 +373,27 @@ Partial Class FormDropChangesDet
         Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnid_season
+        '
+        Me.GridColumnid_season.Caption = "id_season"
+        Me.GridColumnid_season.FieldName = "id_season"
+        Me.GridColumnid_season.Name = "GridColumnid_season"
+        '
+        'GridColumnseason
+        '
+        Me.GridColumnseason.Caption = "Season"
+        Me.GridColumnseason.FieldName = "season"
+        Me.GridColumnseason.Name = "GridColumnseason"
+        Me.GridColumnseason.Visible = True
+        Me.GridColumnseason.VisibleIndex = 0
+        '
         'FormDropChangesDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(821, 490)
+        Me.ClientSize = New System.Drawing.Size(738, 546)
         Me.Controls.Add(Me.GCData)
-        Me.Controls.Add(Me.PanelControlNavPTH)
+        Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.GroupControlHead)
         Me.MinimizeBox = False
@@ -384,20 +404,20 @@ Partial Class FormDropChangesDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
-        CType(Me.DEEffectDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEEffectDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
-        CType(Me.PanelControlNavPTH, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlNavPTH.ResumeLayout(False)
+        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -408,7 +428,6 @@ Partial Class FormDropChangesDet
     Friend WithEvents BtnChangeEffectiveDate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCreateNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelEffectiveDate As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DEEffectDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
@@ -426,9 +445,13 @@ Partial Class FormDropChangesDet
     Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControlNavPTH As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDeletePTH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddPTH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SLESeason As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_season As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnseason As DevExpress.XtraGrid.Columns.GridColumn
 End Class
