@@ -41,6 +41,7 @@ Public Class FormMain
         Try
             DashboardToolStripMenuItem.Visible = False
             read_database_configuration()
+            volcomErpApiCreateToken()
             check_connection(True, "", "", "", "")
 
             'check_pic_location()
