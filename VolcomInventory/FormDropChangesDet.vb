@@ -348,6 +348,12 @@
     End Sub
 
     Private Sub BtnDeletePTH_Click(sender As Object, e As EventArgs) Handles BtnDeletePTH.Click
-
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim id_drop_changes_det As String = GVData.GetFocusedRowCellValue("id_drop_changes_det").ToString
+            Dim query As String = "DELETE FROM tb_drop_changes_det WHERE id_drop_changes_det='" + id_drop_changes_det + "' "
+            execute_non_query(query, True, "", "", "", "")
+            viewDetail()
+        End If
     End Sub
 End Class
