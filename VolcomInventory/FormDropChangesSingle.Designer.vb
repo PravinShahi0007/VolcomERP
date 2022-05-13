@@ -92,6 +92,7 @@ Partial Class FormDropChangesSingle
         Me.SLESeasonMove.Location = New System.Drawing.Point(146, 33)
         Me.SLESeasonMove.Name = "SLESeasonMove"
         Me.SLESeasonMove.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESeasonMove.Properties.NullText = "- Select Season -"
         Me.SLESeasonMove.Properties.ShowClearButton = False
         Me.SLESeasonMove.Properties.View = Me.GridView1
         Me.SLESeasonMove.Size = New System.Drawing.Size(123, 20)
@@ -118,6 +119,7 @@ Partial Class FormDropChangesSingle
         Me.SLEStatus.Location = New System.Drawing.Point(17, 33)
         Me.SLEStatus.Name = "SLEStatus"
         Me.SLEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStatus.Properties.NullText = "- Select Status-"
         Me.SLEStatus.Properties.ShowClearButton = False
         Me.SLEStatus.Properties.View = Me.SearchLookUpEdit1View
         Me.SLEStatus.Size = New System.Drawing.Size(123, 20)
