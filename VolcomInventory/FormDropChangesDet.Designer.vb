@@ -82,7 +82,7 @@ Partial Class FormDropChangesDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(738, 118)
+        Me.GroupControlHead.Size = New System.Drawing.Size(798, 118)
         Me.GroupControlHead.TabIndex = 12
         '
         'SLESeason
@@ -134,7 +134,7 @@ Partial Class FormDropChangesDet
         Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
         Me.BtnCreateNew.Location = New System.Drawing.Point(20, 87)
         Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(465, 29)
+        Me.BtnCreateNew.Size = New System.Drawing.Size(525, 29)
         Me.BtnCreateNew.TabIndex = 8925
         Me.BtnCreateNew.Text = "Create New"
         Me.BtnCreateNew.Visible = False
@@ -175,7 +175,7 @@ Partial Class FormDropChangesDet
         Me.PanelControl1.Controls.Add(Me.TxtNumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(485, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(545, 2)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(251, 114)
         Me.PanelControl1.TabIndex = 4
@@ -260,14 +260,14 @@ Partial Class FormDropChangesDet
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 502)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(738, 44)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(798, 44)
         Me.PanelControlBottom.TabIndex = 17
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(78, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(138, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -277,7 +277,7 @@ Partial Class FormDropChangesDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(165, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(225, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -299,7 +299,7 @@ Partial Class FormDropChangesDet
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(271, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(331, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
@@ -310,7 +310,7 @@ Partial Class FormDropChangesDet
         '
         Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(397, 2)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(457, 2)
         Me.BtnResetPropose.Name = "BtnResetPropose"
         Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
         Me.BtnResetPropose.TabIndex = 9
@@ -320,7 +320,7 @@ Partial Class FormDropChangesDet
         '
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(520, 2)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(580, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
         Me.BtnSaveChanges.TabIndex = 8
@@ -331,7 +331,7 @@ Partial Class FormDropChangesDet
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(640, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(700, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(96, 40)
         Me.BtnConfirm.TabIndex = 6
@@ -345,7 +345,7 @@ Partial Class FormDropChangesDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 118)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(738, 62)
+        Me.PanelControlNav.Size = New System.Drawing.Size(798, 62)
         Me.PanelControlNav.TabIndex = 20
         '
         'BtnDeletePTH
@@ -353,7 +353,7 @@ Partial Class FormDropChangesDet
         Me.BtnDeletePTH.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDeletePTH.Image = CType(resources.GetObject("BtnDeletePTH.Image"), System.Drawing.Image)
         Me.BtnDeletePTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnDeletePTH.Location = New System.Drawing.Point(600, 2)
+        Me.BtnDeletePTH.Location = New System.Drawing.Point(660, 2)
         Me.BtnDeletePTH.Name = "BtnDeletePTH"
         Me.BtnDeletePTH.Size = New System.Drawing.Size(68, 58)
         Me.BtnDeletePTH.TabIndex = 8934
@@ -364,7 +364,7 @@ Partial Class FormDropChangesDet
         Me.BtnAddPTH.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddPTH.Image = CType(resources.GetObject("BtnAddPTH.Image"), System.Drawing.Image)
         Me.BtnAddPTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnAddPTH.Location = New System.Drawing.Point(668, 2)
+        Me.BtnAddPTH.Location = New System.Drawing.Point(728, 2)
         Me.BtnAddPTH.Name = "BtnAddPTH"
         Me.BtnAddPTH.Size = New System.Drawing.Size(68, 58)
         Me.BtnAddPTH.TabIndex = 8933
@@ -376,7 +376,7 @@ Partial Class FormDropChangesDet
         Me.GCData.Location = New System.Drawing.Point(0, 180)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(738, 322)
+        Me.GCData.Size = New System.Drawing.Size(798, 322)
         Me.GCData.TabIndex = 21
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -391,7 +391,7 @@ Partial Class FormDropChangesDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(738, 546)
+        Me.ClientSize = New System.Drawing.Size(798, 546)
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.PanelControlBottom)

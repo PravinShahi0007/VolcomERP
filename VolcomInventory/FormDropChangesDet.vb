@@ -282,4 +282,71 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.id_report = id
+        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        'Cursor = Cursors.WaitCursor
+        'ReportEts.id = id
+        'ReportEts.dt = GCProduct.DataSource
+        'ReportEts.rmt = rmt
+        'Dim Report As New ReportEts()
+
+        ''... 
+        '' creating and saving the view's layout to a new memory stream 
+        'Dim str As System.IO.Stream
+        'str = New System.IO.MemoryStream()
+        'GVProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Report.GVProduct.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        ''Grid Detail
+        'ReportStyleGridview(Report.GVProduct)
+
+        ''Parse Val
+        'Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        'Report.LabelDate.Text = DECreated.Text.ToUpper
+        'Report.LNote.Text = MENote.Text
+        'Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        'Report.LabelEffectDate.Text = DEEffectDate.Text.ToUpper
+
+        ''Show the report's preview. 
+        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        'Tool.ShowPreviewDialog()
+        'Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = rmt
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BtnAddPTH_Click(sender As Object, e As EventArgs) Handles BtnAddPTH.Click
+
+    End Sub
+
+    Private Sub BtnDeletePTH_Click(sender As Object, e As EventArgs) Handles BtnDeletePTH.Click
+
+    End Sub
 End Class
