@@ -53,18 +53,19 @@ Partial Class FormDropChangesDet
         Me.GridColumnid_drop_changes_det = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnid_drop_changes = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnid_design = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumndesign_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumndesign_display_name = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumncolor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsht = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnstt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnseason_del_from = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnseason_del_to = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnin_store_date_from = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnin_store_date_to = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnstt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnreason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumncritical_product = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -402,7 +403,7 @@ Partial Class FormDropChangesDet
         'GVData
         '
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnid_drop_changes_det, Me.GridColumnid_drop_changes, Me.GridColumnid_design, Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndesign_display_name, Me.GridColumncolor, Me.GridColumnsht, Me.GridColumnseason_del_from, Me.GridColumnseason_del_to, Me.GridColumnin_store_date_from, Me.GridColumnin_store_date_to, Me.GridColumnstt, Me.GridColumnreason, Me.GridColumnno})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnid_drop_changes_det, Me.GridColumnid_drop_changes, Me.GridColumnid_design, Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndesign_display_name, Me.GridColumncolor, Me.GridColumnsht, Me.GridColumnseason_del_from, Me.GridColumnseason_del_to, Me.GridColumnin_store_date_from, Me.GridColumnin_store_date_to, Me.GridColumnstt, Me.GridColumnreason, Me.GridColumnno, Me.BandedGridColumncritical_product})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -426,6 +427,15 @@ Partial Class FormDropChangesDet
         Me.GridColumnid_design.Caption = "id_design"
         Me.GridColumnid_design.FieldName = "id_design"
         Me.GridColumnid_design.Name = "GridColumnid_design"
+        '
+        'GridColumnno
+        '
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.Width = 50
         '
         'GridColumndesign_code
         '
@@ -462,6 +472,13 @@ Partial Class FormDropChangesDet
         Me.GridColumnsht.Name = "GridColumnsht"
         Me.GridColumnsht.Visible = True
         '
+        'GridColumnstt
+        '
+        Me.GridColumnstt.Caption = "Status"
+        Me.GridColumnstt.FieldName = "stt"
+        Me.GridColumnstt.Name = "GridColumnstt"
+        Me.GridColumnstt.Visible = True
+        '
         'GridColumnseason_del_from
         '
         Me.GridColumnseason_del_from.Caption = "From"
@@ -494,13 +511,6 @@ Partial Class FormDropChangesDet
         Me.GridColumnin_store_date_to.Name = "GridColumnin_store_date_to"
         Me.GridColumnin_store_date_to.Visible = True
         '
-        'GridColumnstt
-        '
-        Me.GridColumnstt.Caption = "Status"
-        Me.GridColumnstt.FieldName = "stt"
-        Me.GridColumnstt.Name = "GridColumnstt"
-        Me.GridColumnstt.Visible = True
-        '
         'GridColumnreason
         '
         Me.GridColumnreason.Caption = "Reason"
@@ -508,14 +518,12 @@ Partial Class FormDropChangesDet
         Me.GridColumnreason.Name = "GridColumnreason"
         Me.GridColumnreason.Visible = True
         '
-        'GridColumnno
+        'BandedGridColumncritical_product
         '
-        Me.GridColumnno.Caption = "No"
-        Me.GridColumnno.FieldName = "no"
-        Me.GridColumnno.Name = "GridColumnno"
-        Me.GridColumnno.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnno.Visible = True
-        Me.GridColumnno.Width = 50
+        Me.BandedGridColumncritical_product.Caption = "Type"
+        Me.BandedGridColumncritical_product.FieldName = "critical_product"
+        Me.BandedGridColumncritical_product.Name = "BandedGridColumncritical_product"
+        Me.BandedGridColumncritical_product.Visible = True
         '
         'GridBand1
         '
@@ -528,10 +536,11 @@ Partial Class FormDropChangesDet
         Me.GridBand1.Columns.Add(Me.GridColumndesign_display_name)
         Me.GridBand1.Columns.Add(Me.GridColumncolor)
         Me.GridBand1.Columns.Add(Me.GridColumnsht)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumncritical_product)
         Me.GridBand1.Columns.Add(Me.GridColumnstt)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 500
+        Me.GridBand1.Width = 575
         '
         'gridBand2
         '
@@ -625,7 +634,6 @@ Partial Class FormDropChangesDet
     Friend WithEvents GridColumnid_season As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnseason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnid_drop_changes_det As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnid_drop_changes As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnid_design As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -636,12 +644,14 @@ Partial Class FormDropChangesDet
     Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnstt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnseason_del_from As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnseason_del_to As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnin_store_date_from As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnin_store_date_to As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnreason As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumncritical_product As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

@@ -70,9 +70,9 @@
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT dc.id_drop_changes_det, dc.id_drop_changes, 
-        dc.id_design, d.design_code, cd.class, d.design_display_name, cd.color, cd.sht,
-        dc.id_season_from, dc.id_delivery_from, CONCAT(sf.season, ' ', df.delivery) AS `season_del_from`, df.delivery_date AS `in_store_date_from`,
-        dc.id_season_to, dc.id_delivery_to ,CONCAT(st.season, ' ', dt.delivery) AS `season_del_to`, dt.delivery_date AS `in_store_date_to`,
+        dc.id_design, d.design_code, cd.class, d.design_display_name, cd.color, cd.sht, cp.critical_product,
+        dc.id_season_from, dc.id_delivery_from, CONCAT(sf.season, ' D', df.delivery) AS `season_del_from`, df.delivery_date AS `in_store_date_from`,
+        dc.id_season_to, dc.id_delivery_to ,CONCAT(st.season, ' D', dt.delivery) AS `season_del_to`, dt.delivery_date AS `in_store_date_to`,
         dc.id_lookup_status_order AS `id_stt`, stt.lookup_status_order AS `stt`, dc.reason
         FROM tb_drop_changes_det dc
         INNER JOIN tb_m_design d ON d.id_design = dc.id_design
@@ -97,6 +97,7 @@
         INNER JOIN tb_season st ON st.id_season = dc.id_season_to
         INNER JOIN tb_season_delivery dt ON dt.id_delivery = dc.id_delivery_to
         INNER JOIN tb_lookup_status_order stt ON stt.id_lookup_status_order = dc.id_lookup_status_order
+        INNER JOIN tb_lookup_critical_product cp ON cp.id_critical_product = d.id_critical_product
         WHERE dc.id_drop_changes=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
@@ -336,7 +337,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) 
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
