@@ -32,7 +32,7 @@ Partial Class FormDropChangesSingle
         Me.SLEStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
@@ -90,7 +90,6 @@ Partial Class FormDropChangesSingle
         Me.PanelControlMove.Name = "PanelControlMove"
         Me.PanelControlMove.Size = New System.Drawing.Size(295, 62)
         Me.PanelControlMove.TabIndex = 7
-        Me.PanelControlMove.Visible = False
         '
         'DEInStoreDate
         '
@@ -184,18 +183,18 @@ Partial Class FormDropChangesSingle
         Me.LabelControl1.TabIndex = 1
         Me.LabelControl1.Text = "Status"
         '
-        'SimpleButton1
+        'BtnAddProduct
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.SimpleButton1.Location = New System.Drawing.Point(0, 423)
-        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(591, 38)
-        Me.SimpleButton1.TabIndex = 1
-        Me.SimpleButton1.Text = "Add Product"
+        Me.BtnAddProduct.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnAddProduct.Image = CType(resources.GetObject("BtnAddProduct.Image"), System.Drawing.Image)
+        Me.BtnAddProduct.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnAddProduct.Location = New System.Drawing.Point(0, 423)
+        Me.BtnAddProduct.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtnAddProduct.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnAddProduct.Name = "BtnAddProduct"
+        Me.BtnAddProduct.Size = New System.Drawing.Size(591, 38)
+        Me.BtnAddProduct.TabIndex = 1
+        Me.BtnAddProduct.Text = "Add Product"
         '
         'CESelectAll
         '
@@ -318,7 +317,7 @@ Partial Class FormDropChangesSingle
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
-        Me.Controls.Add(Me.SimpleButton1)
+        Me.Controls.Add(Me.BtnAddProduct)
         Me.MinimizeBox = False
         Me.Name = "FormDropChangesSingle"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -347,7 +346,7 @@ Partial Class FormDropChangesSingle
     End Sub
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddProduct As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEStatus As DevExpress.XtraEditors.SearchLookUpEdit
