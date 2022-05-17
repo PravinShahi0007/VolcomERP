@@ -248,6 +248,7 @@
         Dim whereNotInclude As String = ""
 
         Dim whereDate As String = ""
+        Dim whereDateIn As String = ""
 
         While date_from <= date_to
             Dim datetime_from As DateTime = Date.Parse(date_from.ToString("yyyy-MM-dd") + " " + time_from.ToString("HH:mm:ss"))
@@ -259,10 +260,13 @@
 
             whereDate += "((('" + datetime_from.ToString("yyyy-MM-dd HH:mm:ss") + "' > ot_det.ot_start_time AND '" + datetime_from.ToString("yyyy-MM-dd HH:mm:ss") + "' < ot_det.ot_end_time) OR ('" + datetime_to.ToString("yyyy-MM-dd HH:mm:ss") + "' > ot_det.ot_start_time AND  '" + datetime_to.ToString("yyyy-MM-dd HH:mm:ss") + "' < ot_det.ot_end_time)) OR ((ot_det.ot_start_time > '" + datetime_from.ToString("yyyy-MM-dd HH:mm:ss") + "' AND ot_det.ot_start_time < '" + datetime_to.ToString("yyyy-MM-dd HH:mm:ss") + "') OR (ot_det.ot_end_time > '" + datetime_from.ToString("yyyy-MM-dd HH:mm:ss") + "' AND ot_det.ot_end_time < '" + datetime_to.ToString("yyyy-MM-dd HH:mm:ss") + "')) OR (ot_det.ot_start_time = '" + datetime_from.ToString("yyyy-MM-dd HH:mm:ss") + "' AND ot_det.ot_end_time = '" + datetime_to.ToString("yyyy-MM-dd HH:mm:ss") + "')) OR "
 
+            whereDateIn += "DATE(v.ot_date) = '" + date_from.ToString("yyyy-MM-dd") + "' OR "
+
             date_from = date_from.AddDays(1)
         End While
 
         whereDate = whereDate.Substring(0, whereDate.Length - 4)
+        whereDateIn = whereDateIn.Substring(0, whereDateIn.Length - 4)
 
         'not include employee from other propose
         Dim query_not_include As String = "
@@ -271,6 +275,19 @@
             LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
             WHERE ot.id_report_status <> 5
 	            AND (" + whereDate + ")
+                AND ot_det.id_employee NOT IN (
+                    SELECT vd.id_employee
+                    FROM tb_ot_verification_det AS vd
+                    LEFT JOIN tb_ot_verification AS v ON vd.id_ot_verification = v.id_ot_verification
+                    WHERE v.id_report_status = 6 AND vd.is_valid = 2 AND (" + whereDateIn + ") AND vd.id_employee NOT IN (
+                        SELECT vd.id_employee
+                        FROM tb_ot_verification_det AS vd
+                        LEFT JOIN tb_ot_verification AS v ON vd.id_ot_verification = v.id_ot_verification
+                        WHERE v.id_report_status = 6 AND vd.is_valid = 1 AND (" + whereDateIn + ")
+                        GROUP BY vd.id_employee
+                    )
+                    GROUP BY vd.id_employee
+                )
         "
 
         Dim data_not_include As DataTable = execute_query(query_not_include, -1, True, "", "", "", "")
