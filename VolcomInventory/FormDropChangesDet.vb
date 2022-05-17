@@ -345,6 +345,7 @@
 
     Private Sub BtnAddPTH_Click(sender As Object, e As EventArgs) Handles BtnAddPTH.Click
         Cursor = Cursors.WaitCursor
+        FormDropChangesSingle.id = id
         FormDropChangesSingle.id_season = SLESeason.EditValue.ToString
         FormDropChangesSingle.ShowDialog()
         Cursor = Cursors.Default
