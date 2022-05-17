@@ -25,7 +25,7 @@
         Dim query As String = "SELECT 'No' AS `is_select`,d.id_design, d.design_code, cd.class AS `design_class`, d.design_display_name AS `design_desc`,
         cd.sht AS `design_sht`,  cd.color AS `design_color`, cp.id_critical_product, cp.critical_product AS `tags`, d.id_delivery
         FROM tb_m_design d 
-        LEFT JOIN tb_drop_changes_det dd ON dd.id_design = d.id_design AND dd.id_drop_changes=1
+        LEFT JOIN tb_drop_changes_det dd ON dd.id_design = d.id_design AND dd.id_drop_changes=" + id + "
         LEFT JOIN (
 	        SELECT dc.id_design, 
 	        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
