@@ -415,7 +415,12 @@
                 SELECT ot_det.id_employee, ot_det.ot_start_time, ot_det.ot_end_time
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
-                WHERE ot.id_report_status <> 5 AND ot_det.ot_date = '" + date_search.ToString + "' AND ot.id_ot <> '" + id_ot + "'
+                WHERE ot.id_report_status <> 5 AND ot_det.ot_date = '" + date_search.ToString + "' AND ot.id_ot <> '" + id_ot + "' AND ot_det.id_employee NOT IN (
+                    SELECT vd.id_employee
+                    FROM tb_ot_verification_det AS vd
+                    LEFT JOIN tb_ot_verification AS v ON vd.id_ot_verification = v.id_ot_verification
+                    WHERE vd.is_valid = 2 AND v.ot_date = '" + date_search.ToString + "'
+                )
             "
 
             Dim data_other As DataTable = execute_query(query_other, -1, True, "", "", "", "")
