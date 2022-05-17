@@ -50,6 +50,10 @@ Partial Class FormDropChangesSingle
         Me.GridColumntags = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnbtn_history = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoBtnHistory = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumnid_delivery = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_season = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnseason_del = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnin_store_date = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlMove, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,6 +133,7 @@ Partial Class FormDropChangesSingle
         '
         'GridView1
         '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_delivery, Me.GridColumnid_season, Me.GridColumnseason_del, Me.GridColumnin_store_date})
         Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -344,6 +349,36 @@ Partial Class FormDropChangesSingle
         Me.RepoBtnHistory.Name = "RepoBtnHistory"
         Me.RepoBtnHistory.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
+        'GridColumnid_delivery
+        '
+        Me.GridColumnid_delivery.Caption = "id_delivery"
+        Me.GridColumnid_delivery.FieldName = "id_delivery"
+        Me.GridColumnid_delivery.Name = "GridColumnid_delivery"
+        '
+        'GridColumnid_season
+        '
+        Me.GridColumnid_season.Caption = "id_season"
+        Me.GridColumnid_season.FieldName = "id_season"
+        Me.GridColumnid_season.Name = "GridColumnid_season"
+        '
+        'GridColumnseason_del
+        '
+        Me.GridColumnseason_del.Caption = "Season"
+        Me.GridColumnseason_del.FieldName = "season_del"
+        Me.GridColumnseason_del.Name = "GridColumnseason_del"
+        Me.GridColumnseason_del.Visible = True
+        Me.GridColumnseason_del.VisibleIndex = 0
+        '
+        'GridColumnin_store_date
+        '
+        Me.GridColumnin_store_date.Caption = "In Store Date"
+        Me.GridColumnin_store_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnin_store_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnin_store_date.FieldName = "in_store_date"
+        Me.GridColumnin_store_date.Name = "GridColumnin_store_date"
+        Me.GridColumnin_store_date.Visible = True
+        Me.GridColumnin_store_date.VisibleIndex = 1
+        '
         'FormDropChangesSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -410,4 +445,8 @@ Partial Class FormDropChangesSingle
     Friend WithEvents GridColumntags As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnbtn_history As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoBtnHistory As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents GridColumnid_delivery As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_season As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnseason_del As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnin_store_date As DevExpress.XtraGrid.Columns.GridColumn
 End Class
