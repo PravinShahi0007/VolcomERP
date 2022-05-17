@@ -92,10 +92,10 @@
         Catch ex As Exception
         End Try
         If id_ss = "0" Then
-            DEInStoreDate.EditValue = Now
+            DEInStoreDate.EditValue = Nothing
         Else
             Try
-                DEInStoreDate.EditValue = SLESeasonMove.Properties.View.GetFocusedRowCellValue("in_store_date").ToString
+                DEInStoreDate.EditValue = SLESeasonMove.Properties.View.GetFocusedRowCellValue("in_store_date")
             Catch ex As Exception
             End Try
         End If
@@ -202,5 +202,16 @@
 
     Private Sub FormDropChangesSingle_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub RepoBtnHistory_Click(sender As Object, e As EventArgs) Handles RepoBtnHistory.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowModified >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormDropChangesMoveHistory.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormDropChangesMoveHistory.id_exclude = id
+            FormDropChangesMoveHistory.Text = FormDropChangesMoveHistory.Text + " : " + GVData.GetFocusedRowCellValue("design_code").ToString + " - " + GVData.GetFocusedRowCellValue("design_class").ToString + " - " + GVData.GetFocusedRowCellValue("design_desc").ToString + " - " + GVData.GetFocusedRowCellValue("design_color").ToString
+            FormDropChangesMoveHistory.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

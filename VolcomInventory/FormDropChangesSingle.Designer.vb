@@ -20,6 +20,7 @@ Partial Class FormDropChangesSingle
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDropChangesSingle))
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlMove = New DevExpress.XtraEditors.PanelControl()
         Me.DEInStoreDate = New DevExpress.XtraEditors.DateEdit()
@@ -47,6 +48,8 @@ Partial Class FormDropChangesSingle
         Me.GridColumndesign_color = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_critical_product = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntags = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnbtn_history = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoBtnHistory = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlMove, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,6 +67,7 @@ Partial Class FormDropChangesSingle
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoBtnHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -219,14 +223,14 @@ Partial Class FormDropChangesSingle
         Me.GCData.Location = New System.Drawing.Point(0, 33)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepoBtnHistory})
         Me.GCData.Size = New System.Drawing.Size(591, 258)
         Me.GCData.TabIndex = 4
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelect, Me.GridColumnid_design, Me.GridColumndesign_code, Me.GridColumndesign_class, Me.GridColumndesign_desc, Me.GridColumndesign_sht, Me.GridColumndesign_color, Me.GridColumnid_critical_product, Me.GridColumntags})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelect, Me.GridColumnid_design, Me.GridColumndesign_code, Me.GridColumndesign_class, Me.GridColumndesign_desc, Me.GridColumndesign_sht, Me.GridColumndesign_color, Me.GridColumnid_critical_product, Me.GridColumntags, Me.GridColumnbtn_history})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsFind.AlwaysVisible = True
@@ -254,12 +258,14 @@ Partial Class FormDropChangesSingle
         Me.GridColumnid_design.Caption = "id_design"
         Me.GridColumnid_design.FieldName = "id_design"
         Me.GridColumnid_design.Name = "GridColumnid_design"
+        Me.GridColumnid_design.OptionsColumn.AllowEdit = False
         '
         'GridColumndesign_code
         '
         Me.GridColumndesign_code.Caption = "Code"
         Me.GridColumndesign_code.FieldName = "design_code"
         Me.GridColumndesign_code.Name = "GridColumndesign_code"
+        Me.GridColumndesign_code.OptionsColumn.AllowEdit = False
         Me.GridColumndesign_code.Visible = True
         Me.GridColumndesign_code.VisibleIndex = 1
         '
@@ -268,6 +274,7 @@ Partial Class FormDropChangesSingle
         Me.GridColumndesign_class.Caption = "Class"
         Me.GridColumndesign_class.FieldName = "design_class"
         Me.GridColumndesign_class.Name = "GridColumndesign_class"
+        Me.GridColumndesign_class.OptionsColumn.AllowEdit = False
         Me.GridColumndesign_class.Visible = True
         Me.GridColumndesign_class.VisibleIndex = 2
         '
@@ -276,6 +283,7 @@ Partial Class FormDropChangesSingle
         Me.GridColumndesign_desc.Caption = "Description"
         Me.GridColumndesign_desc.FieldName = "design_desc"
         Me.GridColumndesign_desc.Name = "GridColumndesign_desc"
+        Me.GridColumndesign_desc.OptionsColumn.AllowEdit = False
         Me.GridColumndesign_desc.Visible = True
         Me.GridColumndesign_desc.VisibleIndex = 3
         '
@@ -284,6 +292,7 @@ Partial Class FormDropChangesSingle
         Me.GridColumndesign_sht.Caption = "Silhouette"
         Me.GridColumndesign_sht.FieldName = "design_sht"
         Me.GridColumndesign_sht.Name = "GridColumndesign_sht"
+        Me.GridColumndesign_sht.OptionsColumn.AllowEdit = False
         Me.GridColumndesign_sht.Visible = True
         Me.GridColumndesign_sht.VisibleIndex = 4
         '
@@ -292,6 +301,7 @@ Partial Class FormDropChangesSingle
         Me.GridColumndesign_color.Caption = "Color"
         Me.GridColumndesign_color.FieldName = "design_color"
         Me.GridColumndesign_color.Name = "GridColumndesign_color"
+        Me.GridColumndesign_color.OptionsColumn.AllowEdit = False
         Me.GridColumndesign_color.Visible = True
         Me.GridColumndesign_color.VisibleIndex = 5
         '
@@ -300,14 +310,39 @@ Partial Class FormDropChangesSingle
         Me.GridColumnid_critical_product.Caption = "id_critical_product"
         Me.GridColumnid_critical_product.FieldName = "id_critical_product"
         Me.GridColumnid_critical_product.Name = "GridColumnid_critical_product"
+        Me.GridColumnid_critical_product.OptionsColumn.AllowEdit = False
         '
         'GridColumntags
         '
         Me.GridColumntags.Caption = "Tags"
         Me.GridColumntags.FieldName = "tags"
         Me.GridColumntags.Name = "GridColumntags"
+        Me.GridColumntags.OptionsColumn.AllowEdit = False
         Me.GridColumntags.Visible = True
         Me.GridColumntags.VisibleIndex = 6
+        '
+        'GridColumnbtn_history
+        '
+        Me.GridColumnbtn_history.Caption = "  "
+        Me.GridColumnbtn_history.ColumnEdit = Me.RepoBtnHistory
+        Me.GridColumnbtn_history.FieldName = "btn_history"
+        Me.GridColumnbtn_history.Name = "GridColumnbtn_history"
+        Me.GridColumnbtn_history.Visible = True
+        Me.GridColumnbtn_history.VisibleIndex = 7
+        '
+        'RepoBtnHistory
+        '
+        Me.RepoBtnHistory.AutoHeight = False
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.RepoBtnHistory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "History", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.RepoBtnHistory.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.RepoBtnHistory.Name = "RepoBtnHistory"
+        Me.RepoBtnHistory.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
         'FormDropChangesSingle
         '
@@ -341,6 +376,7 @@ Partial Class FormDropChangesSingle
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoBtnHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -372,4 +408,6 @@ Partial Class FormDropChangesSingle
     Friend WithEvents GridColumndesign_color As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_critical_product As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntags As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnbtn_history As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoBtnHistory As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

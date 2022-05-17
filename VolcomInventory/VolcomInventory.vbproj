@@ -1531,6 +1531,12 @@
     <Compile Include="FormDropChangesDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDropChangesMoveHistory.Designer.vb">
+      <DependentUpon>FormDropChangesMoveHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDropChangesMoveHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDropChangesSingle.Designer.vb">
       <DependentUpon>FormDropChangesSingle.vb</DependentUpon>
     </Compile>
@@ -11592,6 +11598,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDropChangesDet.resx">
       <DependentUpon>FormDropChangesDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDropChangesMoveHistory.resx">
+      <DependentUpon>FormDropChangesMoveHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDropChangesSingle.resx">
       <DependentUpon>FormDropChangesSingle.vb</DependentUpon>
