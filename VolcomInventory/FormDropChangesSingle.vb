@@ -12,7 +12,7 @@
 
     Sub viewStt()
         viewSearchLookupQueryO(SLEStatus, volcomErpApiGetDT(dt_json, 0), "id_lookup_status_order", "lookup_status_order", "id_lookup_status_order")
-        SLEStatus.EditValue = Nothing
+        'SLEStatus.EditValue = Nothing
     End Sub
 
     Sub viewSeasonMove()

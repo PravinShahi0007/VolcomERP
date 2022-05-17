@@ -27,6 +27,10 @@ Partial Class FormDropChangesSingle
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLESeasonMove = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_delivery = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_season = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnseason_del = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnin_store_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.MEReason = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -50,10 +54,6 @@ Partial Class FormDropChangesSingle
         Me.GridColumntags = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnbtn_history = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoBtnHistory = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.GridColumnid_delivery = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_season = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnseason_del = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnin_store_date = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlMove, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,6 +98,7 @@ Partial Class FormDropChangesSingle
         Me.PanelControlMove.Name = "PanelControlMove"
         Me.PanelControlMove.Size = New System.Drawing.Size(295, 62)
         Me.PanelControlMove.TabIndex = 7
+        Me.PanelControlMove.Visible = False
         '
         'DEInStoreDate
         '
@@ -139,6 +140,36 @@ Partial Class FormDropChangesSingle
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnid_delivery
+        '
+        Me.GridColumnid_delivery.Caption = "id_delivery"
+        Me.GridColumnid_delivery.FieldName = "id_delivery"
+        Me.GridColumnid_delivery.Name = "GridColumnid_delivery"
+        '
+        'GridColumnid_season
+        '
+        Me.GridColumnid_season.Caption = "id_season"
+        Me.GridColumnid_season.FieldName = "id_season"
+        Me.GridColumnid_season.Name = "GridColumnid_season"
+        '
+        'GridColumnseason_del
+        '
+        Me.GridColumnseason_del.Caption = "Season"
+        Me.GridColumnseason_del.FieldName = "season_del"
+        Me.GridColumnseason_del.Name = "GridColumnseason_del"
+        Me.GridColumnseason_del.Visible = True
+        Me.GridColumnseason_del.VisibleIndex = 0
+        '
+        'GridColumnin_store_date
+        '
+        Me.GridColumnin_store_date.Caption = "In Store Date"
+        Me.GridColumnin_store_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnin_store_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnin_store_date.FieldName = "in_store_date"
+        Me.GridColumnin_store_date.Name = "GridColumnin_store_date"
+        Me.GridColumnin_store_date.Visible = True
+        Me.GridColumnin_store_date.VisibleIndex = 1
+        '
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -167,6 +198,7 @@ Partial Class FormDropChangesSingle
         '
         'SLEStatus
         '
+        Me.SLEStatus.Enabled = False
         Me.SLEStatus.Location = New System.Drawing.Point(17, 33)
         Me.SLEStatus.Name = "SLEStatus"
         Me.SLEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -348,36 +380,6 @@ Partial Class FormDropChangesSingle
         Me.RepoBtnHistory.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnHistory.Name = "RepoBtnHistory"
         Me.RepoBtnHistory.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
-        '
-        'GridColumnid_delivery
-        '
-        Me.GridColumnid_delivery.Caption = "id_delivery"
-        Me.GridColumnid_delivery.FieldName = "id_delivery"
-        Me.GridColumnid_delivery.Name = "GridColumnid_delivery"
-        '
-        'GridColumnid_season
-        '
-        Me.GridColumnid_season.Caption = "id_season"
-        Me.GridColumnid_season.FieldName = "id_season"
-        Me.GridColumnid_season.Name = "GridColumnid_season"
-        '
-        'GridColumnseason_del
-        '
-        Me.GridColumnseason_del.Caption = "Season"
-        Me.GridColumnseason_del.FieldName = "season_del"
-        Me.GridColumnseason_del.Name = "GridColumnseason_del"
-        Me.GridColumnseason_del.Visible = True
-        Me.GridColumnseason_del.VisibleIndex = 0
-        '
-        'GridColumnin_store_date
-        '
-        Me.GridColumnin_store_date.Caption = "In Store Date"
-        Me.GridColumnin_store_date.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnin_store_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnin_store_date.FieldName = "in_store_date"
-        Me.GridColumnin_store_date.Name = "GridColumnin_store_date"
-        Me.GridColumnin_store_date.Visible = True
-        Me.GridColumnin_store_date.VisibleIndex = 1
         '
         'FormDropChangesSingle
         '

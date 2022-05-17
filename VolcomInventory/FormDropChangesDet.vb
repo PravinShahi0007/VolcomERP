@@ -216,6 +216,7 @@
                 'submit approval 
                 submit_who_prepared(rmt, id, id_user)
                 BtnConfirm.Visible = False
+                dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/dropchanges-det/" + id + "")
                 actionLoad()
                 infoCustom("Proposal submitted. Waiting for approval.")
                 Cursor = Cursors.Default
@@ -236,6 +237,7 @@
                     'actionLoad()
                     FormDropChanges.viewData()
                     FormDropChanges.GVData.FocusedRowHandle = find_row(FormDropChanges.GVData, "id_drop_changes", id)
+                    dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/dropchanges-det/" + id + "")
                     actionLoad()
                     infoCustom("Save changes success")
                 Catch ex As Exception
@@ -261,6 +263,7 @@
                 'refresh
                 FormDropChanges.viewData()
                 FormDropChanges.GVData.FocusedRowHandle = find_row(FormDropChanges.GVData, "id_drop_changes", id)
+                dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/dropchanges-det/" + id + "")
                 actionLoad()
             End If
         Else
@@ -281,6 +284,7 @@
 
             FormDropChanges.viewData()
             FormDropChanges.GVData.FocusedRowHandle = find_row(FormDropChanges.GVData, "id_drop_changes", id)
+            dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/dropchanges-det/" + id + "")
             actionLoad()
             Cursor = Cursors.Default
         End If
@@ -360,6 +364,12 @@
             Dim query As String = "DELETE FROM tb_drop_changes_det WHERE id_drop_changes_det='" + id_drop_changes_det + "' "
             execute_non_query(query, True, "", "", "", "")
             viewDetail()
+        End If
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 End Class

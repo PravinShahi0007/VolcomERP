@@ -528,7 +528,7 @@ Partial Class FormDropChangesDet
         '
         'GridColumnchanges
         '
-        Me.GridColumnchanges.Caption = "Drop/Changes"
+        Me.GridColumnchanges.Caption = "Changes"
         Me.GridColumnchanges.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumnchanges.FieldName = "changes"
         Me.GridColumnchanges.Name = "GridColumnchanges"
@@ -552,7 +552,7 @@ Partial Class FormDropChangesDet
         Me.MinimizeBox = False
         Me.Name = "FormDropChangesDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Propose Drop & Changes"
+        Me.Text = "Proposal Perubahan Delivery"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)

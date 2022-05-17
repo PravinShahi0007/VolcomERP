@@ -116,7 +116,7 @@ Partial Class FormDropChanges
         Me.MinimizeBox = False
         Me.Name = "FormDropChanges"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Propose Drop Changes"
+        Me.Text = "Proposal Perubahan Delivery"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
