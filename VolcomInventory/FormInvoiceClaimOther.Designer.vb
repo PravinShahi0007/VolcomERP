@@ -41,6 +41,7 @@ Partial Class FormInvoiceClaimOther
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddNewRow = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintDolar = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -110,7 +111,7 @@ Partial Class FormInvoiceClaimOther
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BPrintDolar = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -275,7 +276,7 @@ Partial Class FormInvoiceClaimOther
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn1, Me.GridColumn14})
         Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -293,7 +294,8 @@ Partial Class FormInvoiceClaimOther
         Me.GridColumn14.FieldName = "comp_name"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
+        Me.GridColumn14.VisibleIndex = 1
+        Me.GridColumn14.Width = 1394
         '
         'TENumber
         '
@@ -367,6 +369,18 @@ Partial Class FormInvoiceClaimOther
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(1003, 46)
         Me.PanelControl7.TabIndex = 22
+        '
+        'BPrintDolar
+        '
+        Me.BPrintDolar.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintDolar.Image = CType(resources.GetObject("BPrintDolar.Image"), System.Drawing.Image)
+        Me.BPrintDolar.ImageIndex = 6
+        Me.BPrintDolar.Location = New System.Drawing.Point(384, 2)
+        Me.BPrintDolar.Name = "BPrintDolar"
+        Me.BPrintDolar.Size = New System.Drawing.Size(122, 42)
+        Me.BPrintDolar.TabIndex = 23
+        Me.BPrintDolar.TabStop = False
+        Me.BPrintDolar.Text = "Print Dolar"
         '
         'BMark
         '
@@ -1048,17 +1062,14 @@ Partial Class FormInvoiceClaimOther
         Me.GridColumncc.VisibleIndex = 1
         Me.GridColumncc.Width = 39
         '
-        'BPrintDolar
+        'GridColumn1
         '
-        Me.BPrintDolar.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintDolar.Image = CType(resources.GetObject("BPrintDolar.Image"), System.Drawing.Image)
-        Me.BPrintDolar.ImageIndex = 6
-        Me.BPrintDolar.Location = New System.Drawing.Point(384, 2)
-        Me.BPrintDolar.Name = "BPrintDolar"
-        Me.BPrintDolar.Size = New System.Drawing.Size(122, 42)
-        Me.BPrintDolar.TabIndex = 23
-        Me.BPrintDolar.TabStop = False
-        Me.BPrintDolar.Text = "Print Dolar"
+        Me.GridColumn1.Caption = "Code"
+        Me.GridColumn1.FieldName = "comp_number"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 222
         '
         'FormInvoiceClaimOther
         '
@@ -1223,4 +1234,5 @@ Partial Class FormInvoiceClaimOther
     Friend WithEvents GridColumncredit_draft As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrintDolar As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
