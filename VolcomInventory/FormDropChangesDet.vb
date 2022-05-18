@@ -74,7 +74,8 @@
         dc.id_season_from, dc.id_delivery_from, CONCAT(sf.season, ' D', df.delivery) AS `season_del_from`, df.delivery_date AS `in_store_date_from`,
         dc.id_season_to, dc.id_delivery_to ,CONCAT(st.season, ' D', dt.delivery) AS `season_del_to`, dt.delivery_date AS `in_store_date_to`,
         dc.id_lookup_status_order AS `id_stt`, stt.lookup_status_order AS `stt`, dc.reason, 
-        IF(dc.id_lookup_status_order=2,'Drop', CONCAT(sf.season, ' D', df.delivery,' => ',st.season,' D', dt.delivery)) AS `changes`
+        dc.id_prod_order, dc.total_qty, dc.final_price, dc.estimate_price,
+        IF(dc.id_lookup_status_order=2,'Drop', CONCAT(sf.season, ' D', df.delivery,' => ',st.season,' D', dt.delivery, IF(dt.delivery_date<df.delivery_date,' (early)',' (late)'))) AS `changes`
         FROM tb_drop_changes_det dc
         INNER JOIN tb_m_design d ON d.id_design = dc.id_design
         LEFT JOIN (
@@ -358,12 +359,14 @@
     End Sub
 
     Private Sub BtnDeletePTH_Click(sender As Object, e As EventArgs) Handles BtnDeletePTH.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim id_drop_changes_det As String = GVData.GetFocusedRowCellValue("id_drop_changes_det").ToString
-            Dim query As String = "DELETE FROM tb_drop_changes_det WHERE id_drop_changes_det='" + id_drop_changes_det + "' "
-            execute_non_query(query, True, "", "", "", "")
-            viewDetail()
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id_drop_changes_det As String = GVData.GetFocusedRowCellValue("id_drop_changes_det").ToString
+                Dim query As String = "DELETE FROM tb_drop_changes_det WHERE id_drop_changes_det='" + id_drop_changes_det + "' "
+                execute_non_query(query, True, "", "", "", "")
+                viewDetail()
+            End If
         End If
     End Sub
 

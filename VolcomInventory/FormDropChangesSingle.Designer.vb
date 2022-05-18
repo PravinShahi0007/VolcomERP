@@ -20,7 +20,7 @@ Partial Class FormDropChangesSingle
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDropChangesSingle))
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlMove = New DevExpress.XtraEditors.PanelControl()
         Me.DEInStoreDate = New DevExpress.XtraEditors.DateEdit()
@@ -54,6 +54,11 @@ Partial Class FormDropChangesSingle
         Me.GridColumntags = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnbtn_history = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoBtnHistory = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumnid_prod_order = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnestimate_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndelivery = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlMove, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +108,7 @@ Partial Class FormDropChangesSingle
         'DEInStoreDate
         '
         Me.DEInStoreDate.EditValue = Nothing
+        Me.DEInStoreDate.Enabled = False
         Me.DEInStoreDate.Location = New System.Drawing.Point(133, 29)
         Me.DEInStoreDate.Name = "DEInStoreDate"
         Me.DEInStoreDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -267,10 +273,11 @@ Partial Class FormDropChangesSingle
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelect, Me.GridColumnid_design, Me.GridColumndesign_code, Me.GridColumndesign_class, Me.GridColumndesign_desc, Me.GridColumndesign_sht, Me.GridColumndesign_color, Me.GridColumnid_critical_product, Me.GridColumntags, Me.GridColumnbtn_history})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSelect, Me.GridColumnid_design, Me.GridColumndesign_code, Me.GridColumndesign_class, Me.GridColumndesign_desc, Me.GridColumndesign_sht, Me.GridColumndesign_color, Me.GridColumnid_critical_product, Me.GridColumntags, Me.GridColumnbtn_history, Me.GridColumnid_prod_order, Me.GridColumntotal_qty, Me.GridColumnfinal_price, Me.GridColumnestimate_price, Me.GridColumndelivery})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumnSelect
@@ -330,8 +337,6 @@ Partial Class FormDropChangesSingle
         Me.GridColumndesign_sht.FieldName = "design_sht"
         Me.GridColumndesign_sht.Name = "GridColumndesign_sht"
         Me.GridColumndesign_sht.OptionsColumn.AllowEdit = False
-        Me.GridColumndesign_sht.Visible = True
-        Me.GridColumndesign_sht.VisibleIndex = 4
         '
         'GridColumndesign_color
         '
@@ -340,7 +345,7 @@ Partial Class FormDropChangesSingle
         Me.GridColumndesign_color.Name = "GridColumndesign_color"
         Me.GridColumndesign_color.OptionsColumn.AllowEdit = False
         Me.GridColumndesign_color.Visible = True
-        Me.GridColumndesign_color.VisibleIndex = 5
+        Me.GridColumndesign_color.VisibleIndex = 4
         '
         'GridColumnid_critical_product
         '
@@ -365,21 +370,69 @@ Partial Class FormDropChangesSingle
         Me.GridColumnbtn_history.FieldName = "btn_history"
         Me.GridColumnbtn_history.Name = "GridColumnbtn_history"
         Me.GridColumnbtn_history.Visible = True
-        Me.GridColumnbtn_history.VisibleIndex = 7
+        Me.GridColumnbtn_history.VisibleIndex = 9
         '
         'RepoBtnHistory
         '
         Me.RepoBtnHistory.AutoHeight = False
-        SerializableAppearanceObject1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject1.Options.UseBackColor = True
-        SerializableAppearanceObject1.Options.UseFont = True
-        SerializableAppearanceObject1.Options.UseForeColor = True
-        Me.RepoBtnHistory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "History", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject2.Options.UseBackColor = True
+        SerializableAppearanceObject2.Options.UseFont = True
+        SerializableAppearanceObject2.Options.UseForeColor = True
+        Me.RepoBtnHistory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "History", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.RepoBtnHistory.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnHistory.Name = "RepoBtnHistory"
         Me.RepoBtnHistory.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'GridColumnid_prod_order
+        '
+        Me.GridColumnid_prod_order.Caption = "id_prod_order"
+        Me.GridColumnid_prod_order.FieldName = "id_prod_order"
+        Me.GridColumnid_prod_order.Name = "GridColumnid_prod_order"
+        Me.GridColumnid_prod_order.OptionsColumn.AllowEdit = False
+        '
+        'GridColumntotal_qty
+        '
+        Me.GridColumntotal_qty.Caption = "Total Qty"
+        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty.FieldName = "total_qty"
+        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.OptionsColumn.AllowEdit = False
+        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        Me.GridColumntotal_qty.Visible = True
+        Me.GridColumntotal_qty.VisibleIndex = 7
+        '
+        'GridColumnfinal_price
+        '
+        Me.GridColumnfinal_price.Caption = "Price"
+        Me.GridColumnfinal_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnfinal_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnfinal_price.FieldName = "final_price"
+        Me.GridColumnfinal_price.Name = "GridColumnfinal_price"
+        Me.GridColumnfinal_price.OptionsColumn.AllowEdit = False
+        Me.GridColumnfinal_price.Visible = True
+        Me.GridColumnfinal_price.VisibleIndex = 8
+        '
+        'GridColumnestimate_price
+        '
+        Me.GridColumnestimate_price.Caption = "Est. Price"
+        Me.GridColumnestimate_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnestimate_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnestimate_price.FieldName = "estimate_price"
+        Me.GridColumnestimate_price.Name = "GridColumnestimate_price"
+        Me.GridColumnestimate_price.OptionsColumn.AllowEdit = False
+        '
+        'GridColumndelivery
+        '
+        Me.GridColumndelivery.Caption = "Del"
+        Me.GridColumndelivery.FieldName = "delivery"
+        Me.GridColumndelivery.Name = "GridColumndelivery"
+        Me.GridColumndelivery.OptionsColumn.AllowEdit = False
+        Me.GridColumndelivery.Visible = True
+        Me.GridColumndelivery.VisibleIndex = 5
         '
         'FormDropChangesSingle
         '
@@ -451,4 +504,9 @@ Partial Class FormDropChangesSingle
     Friend WithEvents GridColumnid_season As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnseason_del As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnin_store_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_prod_order As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfinal_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnestimate_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndelivery As DevExpress.XtraGrid.Columns.GridColumn
 End Class

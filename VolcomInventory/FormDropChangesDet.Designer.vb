@@ -68,6 +68,9 @@ Partial Class FormDropChangesDet
         Me.BandedGridColumncritical_product = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnchanges = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnestimate_price = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -402,10 +405,19 @@ Partial Class FormDropChangesDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_drop_changes_det, Me.GridColumnid_drop_changes, Me.GridColumnid_design, Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndesign_display_name, Me.GridColumncolor, Me.GridColumnsht, Me.GridColumnseason_del_from, Me.GridColumnseason_del_to, Me.GridColumnin_store_date_from, Me.GridColumnin_store_date_to, Me.GridColumnstt, Me.GridColumnreason, Me.GridColumnno, Me.BandedGridColumncritical_product, Me.GridColumnchanges})
+        Me.GVData.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVData.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVData.AppearancePrint.Row.Options.UseTextOptions = True
+        Me.GVData.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVData.ColumnPanelRowHeight = 35
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_drop_changes_det, Me.GridColumnid_drop_changes, Me.GridColumnid_design, Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndesign_display_name, Me.GridColumncolor, Me.GridColumnsht, Me.GridColumnseason_del_from, Me.GridColumnseason_del_to, Me.GridColumnin_store_date_from, Me.GridColumnin_store_date_to, Me.GridColumnstt, Me.GridColumnreason, Me.GridColumnno, Me.BandedGridColumncritical_product, Me.GridColumnchanges, Me.GridColumntotal_qty, Me.GridColumnfinal_price, Me.GridColumnestimate_price})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsCustomization.AllowRowSizing = True
+        Me.GVData.OptionsPrint.AllowMultilineHeaders = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.RowHeight = 30
@@ -506,7 +518,7 @@ Partial Class FormDropChangesDet
         Me.GridColumnreason.FieldName = "reason"
         Me.GridColumnreason.Name = "GridColumnreason"
         Me.GridColumnreason.Visible = True
-        Me.GridColumnreason.VisibleIndex = 6
+        Me.GridColumnreason.VisibleIndex = 9
         '
         'GridColumnno
         '
@@ -524,7 +536,7 @@ Partial Class FormDropChangesDet
         Me.BandedGridColumncritical_product.FieldName = "critical_product"
         Me.BandedGridColumncritical_product.Name = "BandedGridColumncritical_product"
         Me.BandedGridColumncritical_product.Visible = True
-        Me.BandedGridColumncritical_product.VisibleIndex = 7
+        Me.BandedGridColumncritical_product.VisibleIndex = 5
         '
         'GridColumnchanges
         '
@@ -533,12 +545,41 @@ Partial Class FormDropChangesDet
         Me.GridColumnchanges.FieldName = "changes"
         Me.GridColumnchanges.Name = "GridColumnchanges"
         Me.GridColumnchanges.Visible = True
-        Me.GridColumnchanges.VisibleIndex = 5
+        Me.GridColumnchanges.VisibleIndex = 8
         Me.GridColumnchanges.Width = 116
         '
         'RepositoryItemMemoEdit1
         '
         Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'GridColumntotal_qty
+        '
+        Me.GridColumntotal_qty.Caption = "Total Qty"
+        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty.FieldName = "total_qty"
+        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        Me.GridColumntotal_qty.Visible = True
+        Me.GridColumntotal_qty.VisibleIndex = 6
+        '
+        'GridColumnfinal_price
+        '
+        Me.GridColumnfinal_price.Caption = "Price"
+        Me.GridColumnfinal_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnfinal_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnfinal_price.FieldName = "final_price"
+        Me.GridColumnfinal_price.Name = "GridColumnfinal_price"
+        Me.GridColumnfinal_price.Visible = True
+        Me.GridColumnfinal_price.VisibleIndex = 7
+        '
+        'GridColumnestimate_price
+        '
+        Me.GridColumnestimate_price.Caption = "Est. Price"
+        Me.GridColumnestimate_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnestimate_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnestimate_price.FieldName = "estimate_price"
+        Me.GridColumnestimate_price.Name = "GridColumnestimate_price"
         '
         'FormDropChangesDet
         '
@@ -626,4 +667,7 @@ Partial Class FormDropChangesDet
     Friend WithEvents BandedGridColumncritical_product As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnchanges As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents GridColumntotal_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfinal_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnestimate_price As DevExpress.XtraGrid.Columns.GridColumn
 End Class
