@@ -182,7 +182,17 @@ HAVING debit+credit!=0)
 UNION ALL"
         End If
 
-        query += "(SELECT trx.id_acc_trans,trxd.id_report,trxd.report_number,trxd.report_mark_type,emp.`employee_name`,trx.`date_created`,trx.`date_reference`,bt.`bill_type`,trx.`acc_trans_number`,SUM(trxd.`debit`) AS debit,SUM(trxd.credit) AS credit,IF(SUM(trxd.`debit`)!=SUM(trxd.credit),'Not Balance',IF(SUM(trxd.`debit`)<=0,'Value zero','Ok')) AS sts 
+        query += "(SELECT trxd.id_acc_trans,trxd.id_report,trxd.report_number,trxd.report_mark_type,'' AS `employee_name`,trx.`date_created`,trx.`date_reference`,'' AS `bill_type`,trx.`acc_trans_number`
+,trxd.debit
+,trxd.credit
+,'Salah pembukuan, beda unit' AS sts
+FROM `tb_a_acc_trans_det` trxd
+INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status=6
+INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc
+WHERE DATE_FORMAT(IFNULL(trx.date_reference,trx.date_created),'%Y%M') = DATE_FORMAT('2022-04-30' ,'%Y%M') 
+AND IF(trxd.id_coa_tag=1,1,2)!=acc.id_coa_type)
+UNION ALL
+(SELECT trx.id_acc_trans,trxd.id_report,trxd.report_number,trxd.report_mark_type,emp.`employee_name`,trx.`date_created`,trx.`date_reference`,bt.`bill_type`,trx.`acc_trans_number`,SUM(trxd.`debit`) AS debit,SUM(trxd.credit) AS credit,IF(SUM(trxd.`debit`)!=SUM(trxd.credit),'Not Balance',IF(SUM(trxd.`debit`)<=0,'Value zero','Ok')) AS sts 
 FROM tb_a_acc_trans_det trxd
 INNER JOIN tb_a_acc_trans trx ON trxd.`id_acc_trans`=trx.`id_acc_trans`
 INNER JOIN `tb_lookup_bill_type` bt ON bt.`id_bill_type`=trx.`id_bill_type`
