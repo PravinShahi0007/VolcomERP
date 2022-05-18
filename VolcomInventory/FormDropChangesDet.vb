@@ -306,35 +306,35 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        'Cursor = Cursors.WaitCursor
-        'ReportEts.id = id
-        'ReportEts.dt = GCProduct.DataSource
-        'ReportEts.rmt = rmt
-        'Dim Report As New ReportEts()
+        Cursor = Cursors.WaitCursor
+        ReportDropChanges.id = id
+        ReportDropChanges.dt = GCData.DataSource
+        ReportDropChanges.rmt = rmt
+        Dim Report As New ReportDropChanges()
 
-        ''... 
-        '' creating and saving the view's layout to a new memory stream 
-        'Dim str As System.IO.Stream
-        'str = New System.IO.MemoryStream()
-        'GVProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-        'Report.GVProduct.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        '... 
+        ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        ''Grid Detail
-        'ReportStyleGridview(Report.GVProduct)
+        'Grid Detail
+        ReportStyleGridview(Report.GVData)
 
-        ''Parse Val
-        'Report.LabelNumber.Text = TxtNumber.Text.ToUpper
-        'Report.LabelDate.Text = DECreated.Text.ToUpper
-        'Report.LNote.Text = MENote.Text
-        'Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-        'Report.LabelEffectDate.Text = DEEffectDate.Text.ToUpper
+        'Parse Val
+        Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        Report.LabelDate.Text = DECreated.Text.ToUpper
+        Report.LNote.Text = MENote.Text
+        Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        Report.LabelSeason.Text = SLESeason.Text.ToUpper
 
-        ''Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreviewDialog()
-        'Cursor = Cursors.Default
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click

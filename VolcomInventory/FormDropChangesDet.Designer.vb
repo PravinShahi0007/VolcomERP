@@ -518,7 +518,7 @@ Partial Class FormDropChangesDet
         Me.GridColumnreason.FieldName = "reason"
         Me.GridColumnreason.Name = "GridColumnreason"
         Me.GridColumnreason.Visible = True
-        Me.GridColumnreason.VisibleIndex = 9
+        Me.GridColumnreason.VisibleIndex = 8
         '
         'GridColumnno
         '
@@ -535,8 +535,6 @@ Partial Class FormDropChangesDet
         Me.BandedGridColumncritical_product.Caption = "Tag"
         Me.BandedGridColumncritical_product.FieldName = "critical_product"
         Me.BandedGridColumncritical_product.Name = "BandedGridColumncritical_product"
-        Me.BandedGridColumncritical_product.Visible = True
-        Me.BandedGridColumncritical_product.VisibleIndex = 5
         '
         'GridColumnchanges
         '
@@ -545,7 +543,7 @@ Partial Class FormDropChangesDet
         Me.GridColumnchanges.FieldName = "changes"
         Me.GridColumnchanges.Name = "GridColumnchanges"
         Me.GridColumnchanges.Visible = True
-        Me.GridColumnchanges.VisibleIndex = 8
+        Me.GridColumnchanges.VisibleIndex = 7
         Me.GridColumnchanges.Width = 116
         '
         'RepositoryItemMemoEdit1
@@ -561,7 +559,7 @@ Partial Class FormDropChangesDet
         Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
         Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
         Me.GridColumntotal_qty.Visible = True
-        Me.GridColumntotal_qty.VisibleIndex = 6
+        Me.GridColumntotal_qty.VisibleIndex = 5
         '
         'GridColumnfinal_price
         '
@@ -571,7 +569,7 @@ Partial Class FormDropChangesDet
         Me.GridColumnfinal_price.FieldName = "final_price"
         Me.GridColumnfinal_price.Name = "GridColumnfinal_price"
         Me.GridColumnfinal_price.Visible = True
-        Me.GridColumnfinal_price.VisibleIndex = 7
+        Me.GridColumnfinal_price.VisibleIndex = 6
         '
         'GridColumnestimate_price
         '

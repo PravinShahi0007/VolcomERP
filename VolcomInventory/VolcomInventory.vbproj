@@ -9219,6 +9219,12 @@
     <Compile Include="ReportDisableExos.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDropChanges.Designer.vb">
+      <DependentUpon>ReportDropChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDropChanges.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDynamic.Designer.vb">
       <DependentUpon>ReportDynamic.vb</DependentUpon>
     </Compile>
@@ -15872,6 +15878,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDisableExos.resx">
       <DependentUpon>ReportDisableExos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDropChanges.resx">
+      <DependentUpon>ReportDropChanges.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDynamic.resx">
       <DependentUpon>ReportDynamic.vb</DependentUpon>
