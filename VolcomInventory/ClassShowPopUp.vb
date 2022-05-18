@@ -569,6 +569,9 @@
         ElseIf report_mark_type = "407" Then
             'abg roylat rate
             FormRoyaltyRateDet.Close()
+        ElseIf report_mark_type = "410" Then
+            'perubahan del
+            FormDropChangesDet.Close()
         End If
     End Sub
     Sub show()
@@ -1810,6 +1813,12 @@ GROUP BY rec.`id_prod_order`"
             FormRoyaltyRateDet.action = "upd"
             FormRoyaltyRateDet.id = id_report
             FormRoyaltyRateDet.ShowDialog()
+        ElseIf report_mark_type = "410" Then
+            'perubahan del
+            FormDropChangesDet.is_view = "1"
+            FormDropChangesDet.action = "upd"
+            FormDropChangesDet.id = id_report
+            FormDropChangesDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3221,6 +3230,12 @@ GROUP BY rec.`id_prod_order`"
             'abg roylat rate
             table_name = "tb_royalty_rate"
             field_id = "id_royalty_rate"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "410" Then
+            'perubahan del
+            table_name = "tb_drop_changes"
+            field_id = "id_drop_changes"
             field_number = "number"
             field_date = "created_date"
         Else

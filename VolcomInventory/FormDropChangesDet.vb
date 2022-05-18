@@ -121,6 +121,7 @@
             BtnSaveChanges.Visible = True
             MENote.Enabled = True
             GVData.OptionsBehavior.ReadOnly = False
+            PanelControlNav.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -129,6 +130,7 @@
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
             GVData.OptionsBehavior.ReadOnly = True
+            PanelControlNav.Visible = False
         End If
 
         'reset propose
@@ -150,6 +152,7 @@
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
             GVData.OptionsBehavior.ReadOnly = True
+            PanelControlNav.Visible = False
         End If
     End Sub
 
