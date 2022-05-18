@@ -353,7 +353,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
 	                        FROM `tb_b_expense_opex_trans` ot
 	                        INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
                             INNER JOIN tb_item i ON i.id_item=ot.id_item 
-	                        WHERE ((ot.is_po=2 AND ot.report_mark_type='148' AND i.id_item_type=1) OR ot.is_po=1) opex.`year`='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' 
+	                        WHERE ((ot.is_po=2 AND ot.report_mark_type='148' AND i.id_item_type=1) OR ot.is_po=1) AND opex.`year`='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' 
 	                        GROUP BY opex.id_item_cat_main
                         )used ON used.id_item_cat_main=icm.id_item_cat_main
                         GROUP BY opex.`id_item_cat_main`
