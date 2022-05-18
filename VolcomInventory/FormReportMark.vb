@@ -801,6 +801,9 @@
         ElseIf report_mark_type = "407" Then
             'abg royalty rate
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_royalty_rate WHERE id_royalty_rate = '{0}'", id_report)
+        ElseIf report_mark_type = "410" Then
+            'perubahan del
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_drop_changes WHERE id_drop_changes = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -12197,6 +12200,22 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
             End If
 
             query = String.Format("UPDATE tb_royalty_rate SET id_report_status = '{0}' WHERE id_royalty_rate = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "410" Then
+            'perubahan del
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'ubah master
+
+                'post ke line list
+
+                'ubah display
+            End If
+
+            query = String.Format("UPDATE tb_drop_changes SET id_report_status = '{0}' WHERE id_drop_changes = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
