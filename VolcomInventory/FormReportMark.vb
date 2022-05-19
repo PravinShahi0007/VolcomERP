@@ -12209,10 +12209,36 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
 
             If id_status_reportx = "6" Then
                 'ubah master
+                Dim qm As String = "UPDATE tb_m_design main 
+                INNER JOIN (
+	                SELECT dd.id_design, dd.id_season_from, dd.id_season_to, dd.id_delivery_from, dd.id_delivery_to
+	                FROM tb_drop_changes_det dd
+	                WHERE dd.id_drop_changes=" + id_report + "
+                ) src ON src.id_design = main.id_design
+                SET main.id_season=IF(src.id_season_to!=main.id_season, src.id_season_to, main.id_season),
+                main.id_season_move=IF(src.id_season_to!=main.id_season, src.id_season_from, main.id_season_move),
+                main.id_lookup_status_order=IF(src.id_season_to!=main.id_season, 3, main.id_lookup_status_order),
+                main.id_delivery = src.id_delivery_to,
+                main.id_delivery_act = src.id_delivery_to "
+                execute_non_query(qm, True, "", "", "", "")
 
                 'post ke line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
 
                 'ubah display
+                'Dim qd As String = " -- update stock
+                'UPDATE tb_display_stock main
+                'INNER JOIN (
+                ' SELECT dd.id_design, dd.id_season_to, dd.id_delivery_to, sd.delivery_date
+                ' FROM tb_drop_changes_det dd 
+                ' INNER JOIN tb_season_delivery sd ON sd.id_delivery = dd.id_delivery_to
+                ' WHERE dd.id_drop_changes=" + id_report + "
+                ') src ON src.id_design = main.id_design
+                'SET main.id_season = src.id_season_to, main.id_delivery = src.id_delivery_to, main.in_store_date = src.delivery_date; 
+                '-- changeslog
+                '"
+                execute_non_query(qd, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_drop_changes SET id_report_status = '{0}' WHERE id_drop_changes = '{1}'", id_status_reportx, id_report)
