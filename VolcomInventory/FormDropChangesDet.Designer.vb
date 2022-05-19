@@ -419,6 +419,7 @@ Partial Class FormDropChangesDet
         Me.GVData.OptionsCustomization.AllowRowSizing = True
         Me.GVData.OptionsPrint.AllowMultilineHeaders = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.RowHeight = 30
         '
