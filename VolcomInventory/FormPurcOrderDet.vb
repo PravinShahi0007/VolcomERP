@@ -282,8 +282,14 @@ WHERE po.id_purc_order='" & id_po & "'"
                 'WHERE bdg.`id_b_expense_opex`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense_opex").ToString & "'"
                 q_budget = "SELECT bdg.value_expense-IFNULL(SUM(bdgu.value),0)-IFNULL(act.val,0) AS remaining_budget ,IFNULL(SUM(bdgu.value),0) AS used, IFNULL(act.val,0) AS act
 FROM `tb_b_expense_opex` bdg 
-LEFT JOIN `tb_b_expense_opex_trans` bdgu ON bdgu.`id_b_expense_opex`=bdg.`id_b_expense_opex` 
-AND (bdgu.is_po=1 OR (bdgu.`is_po`=2 AND bdgu.`report_mark_type`=148))
+LEFT JOIN 
+(
+	SELECT opex.id_b_expense_opex,ot.value
+	FROM `tb_b_expense_opex_trans` ot
+	INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
+	INNER JOIN tb_item i ON i.id_item=ot.id_item 
+	WHERE (ot.is_po=2 AND ot.report_mark_type='148' AND i.id_item_type=1) OR ot.is_po=1
+) bdgu ON bdgu.`id_b_expense_opex`=bdg.`id_b_expense_opex`  
 LEFT JOIN
 (
 	SELECT opex.`id_b_expense_opex`,IFNULL(SUM(val.val),0) AS val
@@ -299,7 +305,7 @@ LEFT JOIN
 		FROM tb_a_acc_trans_det trxd
 		INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans` AND YEAR(trx.`date_reference`)=(SELECT `year` FROM tb_b_expense_opex WHERE `id_b_expense_opex`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense_opex").ToString & "')
 		INNER JOIN tb_a_acc acc ON acc.`id_acc`=trxd.`id_acc`
-		WHERE trx.`id_report_status`=6 
+		WHERE trx.`id_report_status`=6  AND trxd.report_mark_type!=166 AND trxd.report_mark_type!=156
 		GROUP BY acc.`id_acc`
 	)val ON LEFT(val.acc_name,4)=LEFT(acc.`acc_name`,4) AND acc.`id_coa_type`=val.`id_coa_type`
 )act ON act.id_b_expense_opex=bdg.id_b_expense_opex

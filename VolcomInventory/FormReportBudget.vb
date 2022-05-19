@@ -57,7 +57,7 @@ LEFT JOIN
 	FROM tb_a_acc_trans_det trxd
 	INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans` AND YEAR(trx.`date_reference`)='" & LEYear.Text.ToString & "'
 	INNER JOIN tb_a_acc acc ON acc.`id_acc`=trxd.`id_acc`
-	WHERE trx.`id_report_status`=6 AND DATE(trx.date_reference) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	WHERE trx.`id_report_status`=6 AND DATE(trx.date_reference) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')  AND trxd.report_mark_type!=166 AND trxd.report_mark_type!=156
 	GROUP BY acc.`id_acc`
 )val ON LEFT(val.acc_name,4)=LEFT(acc.`acc_name`,4) AND acc.`id_coa_type`=val.`id_coa_type`
 LEFT JOIN
@@ -73,6 +73,7 @@ LEFT JOIN
 	SELECT opex.id_item_cat_main,SUM(ot.value) AS val
 	FROM `tb_b_expense_opex_trans` ot
 	INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
+    INNER JOIN tb_item i ON i.id_item=ot.id_item AND i.id_item_type=1
 	WHERE ot.is_po=2 AND ot.report_mark_type='148' AND opex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
 	GROUP BY opex.id_item_cat_main
 )stok ON stok.id_item_cat_main=icm.id_item_cat_main
@@ -106,7 +107,7 @@ LEFT JOIN
 	FROM tb_a_acc_trans_det trxd
 	INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans` AND YEAR(trx.`date_reference`)='" & LEYear.Text.ToString & "'
 	INNER JOIN tb_a_acc acc ON acc.`id_acc`=trxd.`id_acc`
-	WHERE trx.`id_report_status`=6 AND DATE(trx.date_reference) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	WHERE trx.`id_report_status`=6 AND DATE(trx.date_reference) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')  AND trxd.report_mark_type!=166 AND trxd.report_mark_type!=156
 	GROUP BY acc.`id_acc`
 )val ON LEFT(val.acc_name,4)=LEFT(acc.`acc_name`,4) AND acc.`id_coa_type`=val.`id_coa_type`
 LEFT JOIN
