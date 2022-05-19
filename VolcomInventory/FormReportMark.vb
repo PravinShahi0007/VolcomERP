@@ -12227,17 +12227,24 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
                 cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
 
                 'ubah display
-                'Dim qd As String = " -- update stock
-                'UPDATE tb_display_stock main
-                'INNER JOIN (
-                ' SELECT dd.id_design, dd.id_season_to, dd.id_delivery_to, sd.delivery_date
-                ' FROM tb_drop_changes_det dd 
-                ' INNER JOIN tb_season_delivery sd ON sd.id_delivery = dd.id_delivery_to
-                ' WHERE dd.id_drop_changes=" + id_report + "
-                ') src ON src.id_design = main.id_design
-                'SET main.id_season = src.id_season_to, main.id_delivery = src.id_delivery_to, main.in_store_date = src.delivery_date; 
-                '-- changeslog
-                '"
+                Dim qd As String = " -- update stock
+                UPDATE tb_display_stock main
+                INNER JOIN (
+                     SELECT dd.id_design, dd.id_season_to, dd.id_delivery_to, sd.delivery_date
+                     FROM tb_drop_changes_det dd 
+                     INNER JOIN tb_season_delivery sd ON sd.id_delivery = dd.id_delivery_to
+                     WHERE dd.id_drop_changes=" + id_report + "
+                ) src ON src.id_design = main.id_design
+                SET main.id_season = src.id_season_to, main.id_delivery = src.id_delivery_to, main.in_store_date = src.delivery_date; 
+                -- changeslog
+                INSERT INTO tb_display_stock_changes_log(id_design, id_report, report_mark_type, report_number, report_date, log_date, log_note, id_user)
+                SELECT dd.id_design, dd.id_drop_changes, '" + report_mark_type + "', d.`number`, d.created_date, NOW(), CONCAT('In store date : ',DATE_FORMAT(df.delivery_date,'%d %M %Y'),' => ',DATE_FORMAT(dt.delivery_date,'%d %M %Y')), '" + id_user + "'
+                FROM tb_drop_changes_det dd
+                INNER JOIN tb_drop_changes d ON d.id_drop_changes = dd.id_drop_changes
+                INNER JOIN tb_season_delivery df ON df.id_delivery = dd.id_delivery_from
+                INNER JOIN tb_season_delivery dt ON dt.id_delivery = dd.id_delivery_to
+                INNER JOIN tb_display_stock ds ON ds.id_design = dd.id_design
+                WHERE dd.id_drop_changes=" + id_report + "; "
                 execute_non_query(qd, True, "", "", "", "")
             End If
 
