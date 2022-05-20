@@ -2314,6 +2314,13 @@
                     INNER JOIN tb_report_mark rm ON rm.id_report = pdr.id_prod_demand_rev AND rm.report_mark_type= pdr.report_mark_type AND rm.id_report_status=1
                     INNER JOIN tb_prod_demand_design_rev pddr ON pddr.id_prod_demand_rev = pdr.id_prod_demand_rev
                     WHERE pdr.id_prod_demand_rev=" + id_report_trans + " AND pddr.id_pd_status_rev=2 "
+                ElseIf rmt = "410" Then
+                    'proposal perubahan delivery
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note) 
+                    SELECT NOW(), '" + id_user + "', d.created_by,'" + rmt + "' AS `report_mark_type`,dd.id_drop_changes, d.`number`, d.created_date, dd.id_design, dd.reason AS note
+                    FROM tb_drop_changes_det dd
+                    INNER JOIN tb_drop_changes d ON d.id_drop_changes = dd.id_drop_changes
+                    WHERE dd.id_drop_changes=" + id_report_trans + " "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If

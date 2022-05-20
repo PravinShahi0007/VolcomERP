@@ -1525,6 +1525,24 @@
     <Compile Include="FormDropChanges.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDropChangesDet.Designer.vb">
+      <DependentUpon>FormDropChangesDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDropChangesDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDropChangesMoveHistory.Designer.vb">
+      <DependentUpon>FormDropChangesMoveHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDropChangesMoveHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDropChangesSingle.Designer.vb">
+      <DependentUpon>FormDropChangesSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDropChangesSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmloyeePps.Designer.vb">
       <DependentUpon>FormEmloyeePps.vb</DependentUpon>
     </Compile>
@@ -9201,6 +9219,12 @@
     <Compile Include="ReportDisableExos.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDropChanges.Designer.vb">
+      <DependentUpon>ReportDropChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDropChanges.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDynamic.Designer.vb">
       <DependentUpon>ReportDynamic.vb</DependentUpon>
     </Compile>
@@ -11577,6 +11601,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDropChanges.resx">
       <DependentUpon>FormDropChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDropChangesDet.resx">
+      <DependentUpon>FormDropChangesDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDropChangesMoveHistory.resx">
+      <DependentUpon>FormDropChangesMoveHistory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDropChangesSingle.resx">
+      <DependentUpon>FormDropChangesSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmloyeePps.resx">
       <DependentUpon>FormEmloyeePps.vb</DependentUpon>
@@ -15845,6 +15878,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDisableExos.resx">
       <DependentUpon>ReportDisableExos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDropChanges.resx">
+      <DependentUpon>ReportDropChanges.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDynamic.resx">
       <DependentUpon>ReportDynamic.vb</DependentUpon>
