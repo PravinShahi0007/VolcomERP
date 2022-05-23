@@ -2036,6 +2036,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormRoyaltyRate" Then
             FormRoyaltyRate.createNew()
+        ElseIf formName = "FormDropChanges" Then
+            FormDropChanges.createNew()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3413,6 +3415,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormQCReport1Det.ShowDialog()
             ElseIf formName = "FormRoyaltyRate" Then
                 FormRoyaltyRate.viewDetail()
+            ElseIf formName = "FormDropChanges" Then
+                FormDropChanges.viewDetail()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8930,6 +8934,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormAgingProductList.GCList, "Product Age List")
         ElseIf formName = "FormRoyaltyRate" Then
             FormRoyaltyRate.printList()
+        ElseIf formName = "FormDropChanges" Then
+            FormDropChanges.printList()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10014,6 +10020,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormRoyaltyRate" Then
             FormRoyaltyRate.Close()
             FormRoyaltyRate.Dispose()
+        ElseIf formName = "FormDropChanges" Then
+            FormDropChanges.Close()
+            FormDropChanges.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11082,6 +11091,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDesignOrderView.viewData()
         ElseIf formName = "FormRoyaltyRate" Then
             FormRoyaltyRate.viewData()
+        ElseIf formName = "FormDropChanges" Then
+            FormDropChanges.viewData()
         End If
     End Sub
     'Switch

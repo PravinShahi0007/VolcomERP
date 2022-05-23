@@ -9,7 +9,7 @@
     End Sub
 
     Sub viewPlanOrder()
-        Dim query As String = "SELECT * FROM tb_lookup_status_order WHERE id_lookup_status_order>1 ORDER BY id_lookup_status_order ASC"
+        Dim query As String = "SELECT * FROM tb_lookup_status_order WHERE id_lookup_status_order=2 ORDER BY id_lookup_status_order ASC"
         viewLookupQuery(LEPlanStatus, query, 0, "lookup_status_order", "id_lookup_status_order")
     End Sub
 
