@@ -8786,7 +8786,7 @@ SET pir.is_active=2"
             FormWorkOrderDet.load_form()
         ElseIf report_mark_type = "192" Then
             'payroll
-            If id_status_reportx = "2" Then
+            If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
 
