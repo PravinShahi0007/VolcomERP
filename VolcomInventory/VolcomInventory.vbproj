@@ -3450,6 +3450,12 @@
     <Compile Include="FormMasterStoreDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterStoreFaktur.Designer.vb">
+      <DependentUpon>FormMasterStoreFaktur.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterStoreFaktur.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMaterialRequisition.Designer.vb">
       <DependentUpon>FormMaterialRequisition.vb</DependentUpon>
     </Compile>
@@ -12579,6 +12585,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterStoreDet.resx">
       <DependentUpon>FormMasterStoreDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterStoreFaktur.resx">
+      <DependentUpon>FormMasterStoreFaktur.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMaterialRequisition.resx">
       <DependentUpon>FormMaterialRequisition.vb</DependentUpon>

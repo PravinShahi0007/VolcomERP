@@ -17264,4 +17264,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBMasterStoreEFaktur_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMasterStoreEFaktur.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterStoreFaktur.MdiParent = Me
+            FormMasterStoreFaktur.Show()
+            FormMasterStoreFaktur.WindowState = FormWindowState.Maximized
+            FormMasterStoreFaktur.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
