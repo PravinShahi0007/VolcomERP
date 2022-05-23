@@ -424,9 +424,12 @@ WHERE req_menu_erp != ''"
                 SBSetComplete.Visible = True
             End If
 
+            SBEdit.Visible = True
+
             If Not GVScheduleAdmin.GetFocusedRowCellValue("status").ToString = "" Then
                 SBSetComplete.Visible = False
                 SBSetSOP.Visible = False
+                SBEdit.Visible = False
             End If
         Catch ex As Exception
             SBSetComplete.Visible = False
@@ -455,6 +458,13 @@ WHERE req_menu_erp != ''"
             FormSOPNew.id_pps = GVPengajuanKelengkapan.GetFocusedRowCellValue("id_sop_dep_pps").ToString
             FormSOPNew.id_sop = GVPengajuanKelengkapan.GetFocusedRowCellValue("id_sop").ToString
             FormSOPNew.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub SBEdit_Click(sender As Object, e As EventArgs) Handles SBEdit.Click
+        If GVScheduleAdmin.RowCount > 0 Then
+            FormSOPIndexScheduleEdit.id_sop_schedule = GVScheduleAdmin.GetFocusedRowCellValue("id_sop_schedule").ToString
+            FormSOPIndexScheduleEdit.Show()
         End If
     End Sub
 End Class
