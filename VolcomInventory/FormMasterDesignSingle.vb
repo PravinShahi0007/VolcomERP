@@ -1319,6 +1319,7 @@
                 GCCodeDsg.Enabled = False
                 BtnAddSeaason.Enabled = False
                 LESeason.Enabled = False
+                SLEDel.Enabled = False
                 XTPPrice.PageVisible = False
                 LEUOM.Enabled = False
                 TxtDelDate.Enabled = False
