@@ -5001,6 +5001,35 @@ WHERE d.id_lookup_status_order!=2 "
             GVData.Columns("proto_sample_2").DisplayFormat.FormatString = "dd MMMM yyyy"
             GVData.Columns("copy_proto_sample_2").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             GVData.Columns("copy_proto_sample_2").DisplayFormat.FormatString = "dd MMMM yyyy"
+        ElseIf id_pop_up = "67" Then
+            Dim qry As String = "SELECT c.id_comp, c.comp_number,c.comp_name, c.address_efaktur
+            FROM tb_m_comp c 
+            INNER JOIN tb_m_comp kp ON kp.id_comp = c.id_store_company
+            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+            WHERE c.id_comp_cat = 6 AND c.is_active=1 AND c.id_comp_group!=7 "
+            Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("akun_toko").ToString Equals table_tmp("comp_number").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .id_comp = If(y1 Is Nothing, "0", y1("id_comp")),
+                            .akun_toko = table1("akun_toko").ToString,
+                            .nama_toko = If(y1 Is Nothing, "", y1("comp_name")),
+                            .current_faktur_address = If(y1 Is Nothing, "", y1("address_efaktur")),
+                            .new_faktur_address = table1("alamat_faktur").ToString,
+                            .Status = If(y1 Is Nothing, "Not found", "OK")
+                        }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_comp").Visible = False
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -5072,7 +5101,7 @@ WHERE d.id_lookup_status_order!=2 "
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Or id_pop_up = "64" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Or id_pop_up = "64" Or id_pop_up = "67" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -8223,6 +8252,39 @@ WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='"
                         Next
 
                         FormSampleDevTargetPps.load_det()
+
+                        'refresh
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
+                End If
+            ElseIf id_pop_up = "67" Then
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status] = 'OK' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only ok data will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        'detail data
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim id_comp As String = GVData.GetRowCellValue(i, "id_comp").ToString
+                            Dim address_efaktur As String = addSlashes(GVData.GetRowCellValue(i, "new_faktur_address").ToString)
+
+                            Dim q As String = "UPDATE tb_m_comp SET address_efaktur='" + address_efaktur + "' WHERE id_comp='" + id_comp + "' "
+                            execute_non_query(q, True, "", "", "", "")
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+
+                        FormMasterStoreFaktur.viewData()
 
                         'refresh
                         infoCustom("Import Success")

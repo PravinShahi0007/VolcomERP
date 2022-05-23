@@ -26,4 +26,11 @@
     Private Sub FormMasterStoreFaktur_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
+
+    Private Sub BtnImportXLS_Click(sender As Object, e As EventArgs) Handles BtnImportXLS.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "67"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
