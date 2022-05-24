@@ -6916,13 +6916,14 @@ HAVING amo>0"
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY i.id_item_cat, dd.id_comp
                     UNION ALL
-                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, 1 AS `id_comp`
+                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS `credit`, i.item_desc AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, 1 AS `id_comp`
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
+                    INNER JOIN tb_item i ON i.id_item = dd.id_item
                     JOIN tb_opt_purchasing o
                     WHERE dd.id_item_del=" + id_report + "
-                    GROUP BY dd.id_item_del "
+                    GROUP BY dd.id_item_del_det "
                         execute_non_query(qjd, True, "", "", "", "")
                     ElseIf FormItemDelDetail.is_for_store = "2" Then
                         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_comp,id_coa_tag)
