@@ -85,7 +85,7 @@
             gridBandStatus.VisibleIndex = 3
         End If
 
-        Dim query As String = "SELECT p.id_report,  p.id_comp, CONCAT(p.comp_number,' - ', p.comp_name) AS `comp`, 
+        Dim query As String = "SELECT p.inv_number,p.reff,p.id_report,  p.id_comp, CONCAT(p.comp_number,' - ', p.comp_name) AS `comp`, 
 p.created_date, p.due_date, p.number, p.note, 
 p.amount,
 IF(DATEDIFF(NOW(), p.due_date)<=0, DATEDIFF(NOW(), p.due_date),CONCAT('+', DATEDIFF(NOW(), p.due_date))) AS age,
@@ -99,17 +99,18 @@ pyd.`number` AS `paid_number`, IFNULL(pyd.`value`,0) AS `paid`, pyd.date_created
 IF(p.is_open=1,'Open','Close') AS `payment_status`
 FROM (		
 	-- pembelian
-	SELECT pn.id_pn_fgpo AS id_report, c.id_comp, c.comp_number, c.comp_name,'189' AS report_mark_type, pn.is_open,
+	SELECT GROUP_CONCAT(DISTINCT(pnd.inv_number)) AS inv_number,GROUP_CONCAT(DISTINCT(fgpo.prod_order_number)) AS reff,pn.id_pn_fgpo AS id_report, c.id_comp, c.comp_number, c.comp_name,'189' AS report_mark_type, pn.is_open,
 	        pn.created_date, pn.due_date_inv AS due_date, pn.number, pn.note, 
 	        SUM(pnd.value+pnd.vat) AS amount
 	FROM `tb_pn_fgpo_det` pnd
 	INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo AND pn.id_report_status=6
+    LEFT JOIN tb_prod_order fgpo ON fgpo.id_prod_order=pnd.id_prod_order
 	INNER JOIN tb_m_comp c ON c.id_comp = pn.id_comp " & cond_vendor & "
 	GROUP BY pnd.id_pn_fgpo
 	HAVING amount > 0
     UNION ALL 
 	-- debit note
-	SELECT dn.id_debit_note AS id_report, c.id_comp, c.comp_number, c.comp_name,'221' AS report_mark_type, dn.is_open,
+	SELECT '-' AS inv_number,GROUP_CONCAT(DISTINCT(dnd.report_number)) AS reff,dn.id_debit_note AS id_report, c.id_comp, c.comp_number, c.comp_name,'221' AS report_mark_type, dn.is_open,
 	        dn.created_date,dn.due_date_inv AS due_date, dn.number, dn.note, 
 	        CAST(-SUM((dnd.claim_percent/100)*dnd.unit_price*qty) AS DECIMAL(13,2)) AS amount
 	FROM `tb_debit_note_det` dnd
@@ -119,17 +120,18 @@ FROM (
 	HAVING amount != 0
 	UNION ALL 
 	-- inv pl mat, return mat
-	SELECT dn.id_inv_mat AS id_report, c.id_comp, c.comp_number, c.comp_name,'221' AS report_mark_type, dn.is_open,
+	SELECT '-' AS inv_number,GROUP_CONCAT(DISTINCT(fgpo.prod_order_number)) AS reff,dn.id_inv_mat AS id_report, c.id_comp, c.comp_number, c.comp_name,'221' AS report_mark_type, dn.is_open,
 	        dn.created_date,dn.due_date AS due_date, dn.number, dn.note, 
 	        CAST(IF(id_inv_mat_type=1,1,-1) * SUM(dnd.value) AS DECIMAL(13,2)) AS amount
 	FROM `tb_inv_mat_det` dnd
 	INNER JOIN tb_inv_mat dn ON dn.id_inv_mat=dnd.id_inv_mat AND dn.id_report_status=6
+    LEFT JOIN tb_prod_order fgpo ON fgpo.id_prod_order=dnd.id_prod_order
 	INNER JOIN tb_m_comp c ON c.id_comp = dn.id_comp " & cond_vendor & "
 	GROUP BY dnd.id_inv_mat
 	HAVING amount != 0
     UNION ALL 
     -- PO OG
-	SELECT po.`id_purc_order` AS id_report,c.id_comp,c.`comp_number`,c.`comp_name`,po.report_mark_type, IF(po.is_close_pay=2,1,2) AS is_open,
+	SELECT po.inv_number,GROUP_CONCAT(DISTINCT(po.purc_order_number)) AS reff,po.`id_purc_order` AS id_report,c.id_comp,c.`comp_number`,c.`comp_name`,po.report_mark_type, IF(po.is_close_pay=2,1,2) AS is_open,
 		MIN(rec.date_created) AS created_date,po.due_date AS due_date, po.purc_order_number AS number, po.note,
 		SUM(recd.`qty`*(pod.`value`-pod.`discount`))-po.disc_value AS amount 
 	FROM tb_purc_rec_det recd 
@@ -141,7 +143,7 @@ FROM (
 	GROUP BY po.`id_purc_order`
 	UNION ALL
 	-- Expense pay later
-	SELECT ex.`id_item_expense` AS id_report,c.id_comp,c.`comp_number`,c.`comp_name`,'157' AS report_mark_type, ex.is_open,
+	SELECT ex.inv_number,'' AS reff,ex.`id_item_expense` AS id_report,c.id_comp,c.`comp_number`,c.`comp_name`,'157' AS report_mark_type, ex.is_open,
 		ex.created_date,ex.due_date AS due_date, ex.number AS number, ex.note,
 		SUM(exd.`tax_value`+exd.`amount`) AS amount 
 	FROM `tb_item_expense_det` exd 

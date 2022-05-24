@@ -119,6 +119,7 @@ Partial Class FormSOPIndex
         Me.RepositoryItemHyperLinkEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBEdit = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOPIndex.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
@@ -515,6 +516,7 @@ Partial Class FormSOPIndex
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SBEdit)
         Me.PanelControl2.Controls.Add(Me.SBSetComplete)
         Me.PanelControl2.Controls.Add(Me.SBSetSOP)
         Me.PanelControl2.Controls.Add(Me.SBAddSchedule)
@@ -980,6 +982,16 @@ Partial Class FormSOPIndex
         Me.BRefresh.TabIndex = 1
         Me.BRefresh.Text = "Refresh"
         '
+        'SBEdit
+        '
+        Me.SBEdit.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBEdit.Image = CType(resources.GetObject("SBEdit.Image"), System.Drawing.Image)
+        Me.SBEdit.Location = New System.Drawing.Point(82, 2)
+        Me.SBEdit.Name = "SBEdit"
+        Me.SBEdit.Size = New System.Drawing.Size(80, 44)
+        Me.SBEdit.TabIndex = 3
+        Me.SBEdit.Text = "Edit"
+        '
         'FormSOPIndex
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1137,4 +1149,5 @@ Partial Class FormSOPIndex
     Friend WithEvents RepoReqMenu As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemHyperLinkEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents SBEdit As DevExpress.XtraEditors.SimpleButton
 End Class

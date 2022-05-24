@@ -33,24 +33,26 @@ Partial Class FormAPReport
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBandInvoice = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnsales_pos_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumncomp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsales_pos_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsales_pos_due_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandAgingAR = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn60 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn90 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn90_up = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandPaid = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnpaid_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnpaid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnpaid_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnon_process = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandStatus = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnrec_payment_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBandInvoice = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandAgingAR = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandPaid = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandStatus = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEStatusInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,7 +177,7 @@ Partial Class FormAPReport
         'GVData
         '
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandInvoice, Me.gridBandAgingAR, Me.gridBandPaid, Me.gridBandStatus})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnsales_pos_number, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.GridColumn30, Me.GridColumn60, Me.GridColumn90, Me.GridColumn90_up, Me.GridColumnpaid_number, Me.GridColumnpaid_date, Me.GridColumnon_process, Me.GridColumnrec_payment_status, Me.GridColumncomp, Me.GridColumnpaid})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnsales_pos_number, Me.GridColumnsales_pos_date, Me.GridColumnsales_pos_due_date, Me.BandedGridColumn2, Me.BandedGridColumn1, Me.GridColumn30, Me.GridColumn60, Me.GridColumn90, Me.GridColumn90_up, Me.GridColumnpaid_number, Me.GridColumnpaid_date, Me.GridColumnon_process, Me.GridColumnrec_payment_status, Me.GridColumncomp, Me.GridColumnpaid})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "30", Me.GridColumn30, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "60", Me.GridColumn60, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "90", Me.GridColumn90, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "90_up", Me.GridColumn90_up, "{0:N2}")})
         Me.GVData.Name = "GVData"
@@ -185,17 +187,6 @@ Partial Class FormAPReport
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'GridBandInvoice
-        '
-        Me.GridBandInvoice.Caption = "Refference"
-        Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_number)
-        Me.GridBandInvoice.Columns.Add(Me.GridColumncomp)
-        Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_date)
-        Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_due_date)
-        Me.GridBandInvoice.Name = "GridBandInvoice"
-        Me.GridBandInvoice.VisibleIndex = 0
-        Me.GridBandInvoice.Width = 300
         '
         'GridColumnsales_pos_number
         '
@@ -228,17 +219,6 @@ Partial Class FormAPReport
         Me.GridColumnsales_pos_due_date.FieldName = "due_date"
         Me.GridColumnsales_pos_due_date.Name = "GridColumnsales_pos_due_date"
         Me.GridColumnsales_pos_due_date.Visible = True
-        '
-        'gridBandAgingAR
-        '
-        Me.gridBandAgingAR.Caption = "AGING AP"
-        Me.gridBandAgingAR.Columns.Add(Me.GridColumn30)
-        Me.gridBandAgingAR.Columns.Add(Me.GridColumn60)
-        Me.gridBandAgingAR.Columns.Add(Me.GridColumn90)
-        Me.gridBandAgingAR.Columns.Add(Me.GridColumn90_up)
-        Me.gridBandAgingAR.Name = "gridBandAgingAR"
-        Me.gridBandAgingAR.VisibleIndex = 1
-        Me.gridBandAgingAR.Width = 300
         '
         'GridColumn30
         '
@@ -289,17 +269,6 @@ Partial Class FormAPReport
         Me.GridColumn90_up.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "90_up", "{0:N2}")})
         Me.GridColumn90_up.Visible = True
         '
-        'gridBandPaid
-        '
-        Me.gridBandPaid.Caption = "PAID"
-        Me.gridBandPaid.Columns.Add(Me.GridColumnpaid_number)
-        Me.gridBandPaid.Columns.Add(Me.GridColumnpaid)
-        Me.gridBandPaid.Columns.Add(Me.GridColumnpaid_date)
-        Me.gridBandPaid.Columns.Add(Me.GridColumnon_process)
-        Me.gridBandPaid.Name = "gridBandPaid"
-        Me.gridBandPaid.VisibleIndex = 2
-        Me.gridBandPaid.Width = 300
-        '
         'GridColumnpaid_number
         '
         Me.GridColumnpaid_number.Caption = "Payment No."
@@ -309,7 +278,7 @@ Partial Class FormAPReport
         '
         'GridColumnpaid
         '
-        Me.GridColumnpaid.Caption = "Paid"
+        Me.GridColumnpaid.Caption = "Payment Date"
         Me.GridColumnpaid.DisplayFormat.FormatString = "N2"
         Me.GridColumnpaid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnpaid.FieldName = "paid"
@@ -332,19 +301,68 @@ Partial Class FormAPReport
         Me.GridColumnon_process.Name = "GridColumnon_process"
         Me.GridColumnon_process.Visible = True
         '
-        'gridBandStatus
-        '
-        Me.gridBandStatus.Columns.Add(Me.GridColumnrec_payment_status)
-        Me.gridBandStatus.Name = "gridBandStatus"
-        Me.gridBandStatus.VisibleIndex = 3
-        Me.gridBandStatus.Width = 75
-        '
         'GridColumnrec_payment_status
         '
         Me.GridColumnrec_payment_status.Caption = "Status"
         Me.GridColumnrec_payment_status.FieldName = "payment_status"
         Me.GridColumnrec_payment_status.Name = "GridColumnrec_payment_status"
         Me.GridColumnrec_payment_status.Visible = True
+        '
+        'BandedGridColumn1
+        '
+        Me.BandedGridColumn1.Caption = "Reff"
+        Me.BandedGridColumn1.FieldName = "reff"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.Visible = True
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "Invoice No"
+        Me.BandedGridColumn2.FieldName = "inv_number"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        '
+        'GridBandInvoice
+        '
+        Me.GridBandInvoice.Caption = "Refference"
+        Me.GridBandInvoice.Columns.Add(Me.GridColumncomp)
+        Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_number)
+        Me.GridBandInvoice.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBandInvoice.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_date)
+        Me.GridBandInvoice.Columns.Add(Me.GridColumnsales_pos_due_date)
+        Me.GridBandInvoice.Name = "GridBandInvoice"
+        Me.GridBandInvoice.VisibleIndex = 0
+        Me.GridBandInvoice.Width = 450
+        '
+        'gridBandAgingAR
+        '
+        Me.gridBandAgingAR.Caption = "AGING AP"
+        Me.gridBandAgingAR.Columns.Add(Me.GridColumn30)
+        Me.gridBandAgingAR.Columns.Add(Me.GridColumn60)
+        Me.gridBandAgingAR.Columns.Add(Me.GridColumn90)
+        Me.gridBandAgingAR.Columns.Add(Me.GridColumn90_up)
+        Me.gridBandAgingAR.Name = "gridBandAgingAR"
+        Me.gridBandAgingAR.VisibleIndex = 1
+        Me.gridBandAgingAR.Width = 300
+        '
+        'gridBandPaid
+        '
+        Me.gridBandPaid.Caption = "PAID"
+        Me.gridBandPaid.Columns.Add(Me.GridColumnpaid_number)
+        Me.gridBandPaid.Columns.Add(Me.GridColumnpaid)
+        Me.gridBandPaid.Columns.Add(Me.GridColumnpaid_date)
+        Me.gridBandPaid.Columns.Add(Me.GridColumnon_process)
+        Me.gridBandPaid.Name = "gridBandPaid"
+        Me.gridBandPaid.VisibleIndex = 2
+        Me.gridBandPaid.Width = 300
+        '
+        'gridBandStatus
+        '
+        Me.gridBandStatus.Columns.Add(Me.GridColumnrec_payment_status)
+        Me.gridBandStatus.Name = "gridBandStatus"
+        Me.gridBandStatus.VisibleIndex = 3
+        Me.gridBandStatus.Width = 75
         '
         'FormAPReport
         '
@@ -386,22 +404,24 @@ Partial Class FormAPReport
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBandInvoice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnsales_pos_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumncomp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnsales_pos_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnsales_pos_due_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandAgingAR As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn90 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn90_up As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandPaid As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnpaid_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnpaid As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnpaid_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnon_process As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandStatus As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnrec_payment_status As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBandInvoice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandAgingAR As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandPaid As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandStatus As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

@@ -3450,6 +3450,12 @@
     <Compile Include="FormMasterStoreDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterStoreFaktur.Designer.vb">
+      <DependentUpon>FormMasterStoreFaktur.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterStoreFaktur.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMaterialRequisition.Designer.vb">
       <DependentUpon>FormMaterialRequisition.vb</DependentUpon>
     </Compile>
@@ -7852,6 +7858,12 @@
       <DependentUpon>FormSOPIndexSchedule.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSOPIndexSchedule.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSOPIndexScheduleEdit.Designer.vb">
+      <DependentUpon>FormSOPIndexScheduleEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSOPIndexScheduleEdit.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSOPNew.Designer.vb">
@@ -12580,6 +12592,9 @@
     <EmbeddedResource Include="FormMasterStoreDet.resx">
       <DependentUpon>FormMasterStoreDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterStoreFaktur.resx">
+      <DependentUpon>FormMasterStoreFaktur.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMaterialRequisition.resx">
       <DependentUpon>FormMaterialRequisition.vb</DependentUpon>
     </EmbeddedResource>
@@ -15121,6 +15136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSOPIndexSchedule.resx">
       <DependentUpon>FormSOPIndexSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSOPIndexScheduleEdit.resx">
+      <DependentUpon>FormSOPIndexScheduleEdit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSOPNew.resx">
       <DependentUpon>FormSOPNew.vb</DependentUpon>

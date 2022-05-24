@@ -75,7 +75,7 @@
         dc.id_season_to, dc.id_delivery_to ,CONCAT(st.season, ' D', dt.delivery) AS `season_del_to`, dt.delivery_date AS `in_store_date_to`,
         dc.id_lookup_status_order AS `id_stt`, stt.lookup_status_order AS `stt`, dc.reason, 
         dc.id_prod_order, dc.total_qty, dc.final_price, dc.estimate_price,
-        IF(dc.id_lookup_status_order=2,'Drop', CONCAT(sf.season, ' D', df.delivery,' => ',st.season,' D', dt.delivery, IF(dt.delivery_date<df.delivery_date,' (early)',' (late)'))) AS `changes`
+        IF(dc.id_lookup_status_order=2,'Drop', CONCAT(sf.season, ' D', df.delivery,' => ',st.season,' D', dt.delivery)) AS `changes`
         FROM tb_drop_changes_det dc
         INNER JOIN tb_m_design d ON d.id_design = dc.id_design
         LEFT JOIN (
