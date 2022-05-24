@@ -7860,6 +7860,12 @@
     <Compile Include="FormSOPIndexSchedule.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSOPIndexScheduleEdit.Designer.vb">
+      <DependentUpon>FormSOPIndexScheduleEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSOPIndexScheduleEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSOPNew.Designer.vb">
       <DependentUpon>FormSOPNew.vb</DependentUpon>
     </Compile>
@@ -15130,6 +15136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSOPIndexSchedule.resx">
       <DependentUpon>FormSOPIndexSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSOPIndexScheduleEdit.resx">
+      <DependentUpon>FormSOPIndexScheduleEdit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSOPNew.resx">
       <DependentUpon>FormSOPNew.vb</DependentUpon>
