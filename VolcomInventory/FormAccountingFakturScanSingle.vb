@@ -579,4 +579,9 @@ Public Class FormAccountingFakturScanSingle
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnLoadSales_Click(sender As Object, e As EventArgs) Handles BtnLoadSales.Click
+        Cursor = Cursors.WaitCursor
+        Cursor = Cursors.Default
+    End Sub
 End Class

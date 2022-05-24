@@ -85,6 +85,7 @@ Partial Class FormAccountingFakturScanSingle
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn0 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportFKDetail = New DevExpress.XtraEditors.SimpleButton()
@@ -120,7 +121,7 @@ Partial Class FormAccountingFakturScanSingle
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnLoadSales = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -735,6 +736,14 @@ Partial Class FormAccountingFakturScanSingle
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 18
         '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "GridColumn20"
+        Me.GridColumn20.FieldName = "col20"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 19
+        '
         'GridColumn0
         '
         Me.GridColumn0.Caption = "id"
@@ -744,6 +753,7 @@ Partial Class FormAccountingFakturScanSingle
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BtnLoadSales)
         Me.PanelControl3.Controls.Add(Me.BtnImportFKDetail)
         Me.PanelControl3.Controls.Add(Me.BtnImportFK)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
@@ -1012,13 +1022,14 @@ Partial Class FormAccountingFakturScanSingle
         Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.DeleteRowToolStripMenuItem.Text = "Delete row"
         '
-        'GridColumn20
+        'BtnLoadSales
         '
-        Me.GridColumn20.Caption = "GridColumn20"
-        Me.GridColumn20.FieldName = "col20"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 19
+        Me.BtnLoadSales.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnLoadSales.Location = New System.Drawing.Point(0, 0)
+        Me.BtnLoadSales.Name = "BtnLoadSales"
+        Me.BtnLoadSales.Size = New System.Drawing.Size(86, 36)
+        Me.BtnLoadSales.TabIndex = 5
+        Me.BtnLoadSales.Text = "Load Sales"
         '
         'FormAccountingFakturScanSingle
         '
@@ -1174,4 +1185,5 @@ Partial Class FormAccountingFakturScanSingle
     Friend WithEvents GridColumnFAPR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTglApproval As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnLoadSales As DevExpress.XtraEditors.SimpleButton
 End Class
