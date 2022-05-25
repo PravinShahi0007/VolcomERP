@@ -1001,7 +1001,13 @@
 
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading " + (Math.Round(100 / d_total * d_current, 0)).ToString + "%")
 
-                        xlsWorkSheet.Cells(row + j, i + 1) = GVBatchUpload.GetRowCellValue(j + x, GVBatchUpload.Columns(i).FieldName)
+                        Dim value As String = GVBatchUpload.GetRowCellValue(j + x, GVBatchUpload.Columns(i).FieldName)
+
+                        If Not IsNothing(value) Then
+                            value = value.Replace(vbCrLf, vbLf)
+                        End If
+
+                        xlsWorkSheet.Cells(row + j, i + 1) = value
                     Next
                 Next
 
