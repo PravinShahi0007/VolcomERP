@@ -442,8 +442,21 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
                 Cursor = Cursors.Default
                 Exit Sub
             End If
-            FormViewProdDemand.id_prod_demand = id_prod_demand
-            FormViewProdDemand.ShowDialog()
+            Dim id_pd_kind As String = execute_query("SELECT id_pd_kind FROM tb_prod_demand WHERE id_prod_demand='" + id_prod_demand + "' ", 0, True, "", "", "", "")
+            Dim rmt As String = ""
+            If id_pd_kind = "1" Then 'MD
+                rmt = "9"
+            ElseIf id_pd_kind = "2" Then 'MKT
+                rmt = "80"
+            ElseIf id_pd_kind = "3" Then 'HRD
+                rmt = "81"
+            ElseIf id_pd_kind = "4" Then 'SALES
+                rmt = "206"
+            End If
+            Dim sm As New ClassShowPopUp()
+            sm.report_mark_type = rmt
+            sm.id_report = id_prod_demand
+            sm.show()
             Cursor = Cursors.Default
         End If
     End Sub
