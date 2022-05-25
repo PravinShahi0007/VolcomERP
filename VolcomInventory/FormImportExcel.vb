@@ -5481,7 +5481,7 @@ WHERE d.id_lookup_status_order!=2 "
                     End If
                     Cursor = Cursors.Default
                 End If
-            ElseIf id_pop_up = "8" Then 'import faktur keluaran
+            ElseIf id_pop_up = "8" Or id_pop_up = "68" Then 'import faktur keluaran
                 If GVData.RowCount > 0 Then
                     PBC.Properties.Minimum = 0
                     PBC.Properties.Maximum = GVData.RowCount - 1
@@ -8346,6 +8346,28 @@ WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='"
         If id_pop_up = "50" Or id_pop_up = "53" Then
             GCData.ContextMenuStrip = CMSImport
             OtherActionToolStripMenuItem.Text = "Reconcile && Upload BAP"
+        End If
+
+        'faktur load
+        If id_pop_up = "68" Then
+            PanelControl1.Visible = False
+            Dim query As String = "CALL view_fk_fg(" + FormAccountingFakturScanSingle.id_acc_fak_scan + ", '010.','002-22.','82921186') "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCData.DataSource = Nothing
+            GCData.DataSource = data
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            GVData.ActiveFilterString = "[status]<>'OK' "
+            Dim cond_status As Boolean = True
+            If GVData.RowCount > 0 Then
+                cond_status = False
+            End If
+            If GVData.RowCount = 0 Or Not cond_status Then
+                BImport.Visible = False
+            Else
+                BImport.Text = "Load Data"
+            End If
         End If
     End Sub
 

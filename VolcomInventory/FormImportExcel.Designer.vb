@@ -220,12 +220,12 @@ Partial Class FormImportExcel
         '
         Me.CMSImport.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OtherActionToolStripMenuItem})
         Me.CMSImport.Name = "CMSImport"
-        Me.CMSImport.Size = New System.Drawing.Size(153, 48)
+        Me.CMSImport.Size = New System.Drawing.Size(143, 26)
         '
         'OtherActionToolStripMenuItem
         '
         Me.OtherActionToolStripMenuItem.Name = "OtherActionToolStripMenuItem"
-        Me.OtherActionToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OtherActionToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.OtherActionToolStripMenuItem.Text = "Other Action"
         '
         'FormImportExcel
