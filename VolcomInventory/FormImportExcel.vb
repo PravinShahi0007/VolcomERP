@@ -5101,7 +5101,7 @@ WHERE d.id_lookup_status_order!=2 "
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Or id_pop_up = "64" Or id_pop_up = "67" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Or id_pop_up = "64" Or id_pop_up = "67" Or id_pop_up = "68" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -8351,7 +8351,9 @@ WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='"
         'faktur load
         If id_pop_up = "68" Then
             PanelControl1.Visible = False
-            Dim query As String = "CALL view_fk_fg(" + FormAccountingFakturScanSingle.id_acc_fak_scan + ", '010.','002-22.','82921186') "
+            Dim no_seri As String = "010." + "002-22."
+            Dim nomer As String = "82921186"
+            Dim query As String = "CALL view_fk_fg(" + FormAccountingFakturScanSingle.id_acc_fak_scan + ", '" + no_seri + "','" + nomer + "') "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCData.DataSource = Nothing
             GCData.DataSource = data
@@ -8363,6 +8365,7 @@ WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='"
             If GVData.RowCount > 0 Then
                 cond_status = False
             End If
+            GVData.ActiveFilterString = ""
             If GVData.RowCount = 0 Or Not cond_status Then
                 BImport.Visible = False
             Else
