@@ -5004,7 +5004,6 @@ WHERE d.id_lookup_status_order!=2 "
         ElseIf id_pop_up = "67" Then
             Dim qry As String = "SELECT c.id_comp, c.comp_number,c.comp_name, c.address_efaktur
             FROM tb_m_comp c 
-            INNER JOIN tb_m_comp kp ON kp.id_comp = c.id_store_company
             INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
             WHERE c.id_comp_cat = 6 AND c.is_active=1 AND c.id_comp_group!=7 "
             Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
@@ -8351,8 +8350,8 @@ WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='"
         'faktur load
         If id_pop_up = "68" Then
             PanelControl1.Visible = False
-            Dim no_seri As String = "010." + "002-22."
-            Dim nomer As String = "82921186"
+            Dim no_seri As String = FormFKNumber.Txtno1.Text + "." + FormFKNumber.Txtno2.Text + "."
+            Dim nomer As String = FormFKNumber.Txtno3.Text
             Dim query As String = "CALL view_fk_fg(" + FormAccountingFakturScanSingle.id_acc_fak_scan + ", '" + no_seri + "','" + nomer + "') "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCData.DataSource = Nothing
