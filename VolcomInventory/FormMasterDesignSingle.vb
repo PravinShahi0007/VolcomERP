@@ -1594,6 +1594,18 @@
         TECode.Text = code_full
     End Sub
 
+    Sub setExtraTag(ByVal id_design_par As String, ByVal id_design_tag_par As String)
+        Cursor = Cursors.WaitCursor
+        'delete
+        Dim query As String = "DELETE FROM tb_design_tag_detail WHERE id_design = '" + id_design_par + "';
+        INSERT INTO tb_design_tag_detail(id_design_tag, id_design)
+        SELECT t.id_design_tag, '" + id_design_par + "' 
+        FROM tb_m_design_tag t
+        WHERE t.id_design_tag IN (" + id_design_tag_par + "); "
+        execute_non_query(query, True, "", "", "", "")
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         'generate code
         If id_pop_up = "-1" Then
@@ -1731,6 +1743,14 @@
         If SLEProductType.EditValue = Nothing Then
             stopCustom("Please input product type")
             Exit Sub
+        End If
+
+        'extra tag
+        Dim id_design_tag As String = ""
+        If CCBEExtraTag.EditValue = Nothing Then
+            id_design_tag = ""
+        Else
+            id_design_tag = CCBEExtraTag.EditValue.ToString
         End If
 
         Cursor = Cursors.WaitCursor
