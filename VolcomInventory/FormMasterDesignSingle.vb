@@ -420,6 +420,10 @@
     End Sub
 
     Sub load_extra_tag()
+        Try
+            CCBEExtraTag.Properties.Items.Clear()
+        Catch ex As Exception
+        End Try
         Dim query As String = "SELECT dt.id_design_tag, dt.design_tag FROM tb_m_design_tag dt"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -1595,15 +1599,21 @@
     End Sub
 
     Sub setExtraTag(ByVal id_design_par As String, ByVal id_design_tag_par As String)
-        Cursor = Cursors.WaitCursor
-        'delete
-        Dim query As String = "DELETE FROM tb_design_tag_detail WHERE id_design = '" + id_design_par + "';
-        INSERT INTO tb_design_tag_detail(id_design_tag, id_design)
-        SELECT t.id_design_tag, '" + id_design_par + "' 
-        FROM tb_m_design_tag t
-        WHERE t.id_design_tag IN (" + id_design_tag_par + "); "
-        execute_non_query(query, True, "", "", "", "")
-        Cursor = Cursors.Default
+        If id_pop_up = "5" Then
+            Cursor = Cursors.WaitCursor
+            If id_design_tag_par = "" Then
+                id_design_tag_par = "0"
+            End If
+
+            'delete
+            Dim query As String = "DELETE FROM tb_design_tag_detail WHERE id_design = '" + id_design_par + "';
+            INSERT INTO tb_design_tag_detail(id_design_tag, id_design)
+            SELECT t.id_design_tag, '" + id_design_par + "' 
+            FROM tb_m_design_tag t
+            WHERE t.id_design_tag IN (" + id_design_tag_par + "); "
+            execute_non_query(query, True, "", "", "", "")
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
@@ -2065,6 +2075,9 @@
                                 setDefaultPrice(id_design_tersimpan, 0)
                             End If
 
+                            'extra tag
+                            setExtraTag(id_design_tersimpan, id_design_tag)
+
                             'new line list
                             NewLineList(id_design_tersimpan, id_season, id_delivery)
 
@@ -2181,6 +2194,9 @@
 
                             'pdate product code
                             updProductCode(id_design)
+
+                            'extra tag
+                            setExtraTag(id_design, id_design_tag)
 
                             If form_name = "FormMasterProduct" Then
                                 FormMasterProduct.view_design()
@@ -2342,6 +2358,9 @@
                         If id_pop_up = "3" Then
                             setDefaultPrice(id_design_tersimpan, 0)
                         End If
+
+                        'extra tag
+                        setExtraTag(id_design_tersimpan, id_design_tag)
 
                         'new line list
                         NewLineList(id_design_tersimpan, id_season, id_delivery)
