@@ -804,6 +804,9 @@
         ElseIf report_mark_type = "410" Then
             'perubahan del
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_drop_changes WHERE id_drop_changes = '{0}'", id_report)
+        ElseIf report_mark_type = "412" Then
+            'propose voucher pos
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_pos_voucher_pps WHERE id_voucher_pps = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -12265,6 +12268,15 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
             End If
 
             query = String.Format("UPDATE tb_drop_changes SET id_report_status = '{0}' WHERE id_drop_changes = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "412" Then
+            'propose voucher pos
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            query = String.Format("UPDATE tb_pos_voucher_pps SET id_report_status = '{0}' WHERE id_voucher_pps = '{1}'", id_status_reportx, id_report)
+
             execute_non_query(query, True, "", "", "", "")
         End If
 

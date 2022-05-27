@@ -4644,6 +4644,18 @@
     <Compile Include="FormProposePromoPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProposeVoucherPOS.Designer.vb">
+      <DependentUpon>FormProposeVoucherPOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposeVoucherPOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposeVoucherPOSDet.Designer.vb">
+      <DependentUpon>FormProposeVoucherPOSDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposeVoucherPOSDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcAsset.Designer.vb">
       <DependentUpon>FormPurcAsset.vb</DependentUpon>
     </Compile>
@@ -10341,6 +10353,12 @@
     <Compile Include="ReportProposePromo.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProposeVoucherPOS.Designer.vb">
+      <DependentUpon>ReportProposeVoucherPOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProposeVoucherPOS.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPurcAssetDep.Designer.vb">
       <DependentUpon>ReportPurcAssetDep.vb</DependentUpon>
     </Compile>
@@ -13183,6 +13201,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposePromoPick.resx">
       <DependentUpon>FormProposePromoPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposeVoucherPOS.resx">
+      <DependentUpon>FormProposeVoucherPOS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposeVoucherPOSDet.resx">
+      <DependentUpon>FormProposeVoucherPOSDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAsset.resx">
       <DependentUpon>FormPurcAsset.vb</DependentUpon>
@@ -16500,6 +16524,9 @@
     <EmbeddedResource Include="ReportProposePromo.resx">
       <DependentUpon>ReportProposePromo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportProposeVoucherPOS.resx">
+      <DependentUpon>ReportProposeVoucherPOS.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcAssetDep.resx">
       <DependentUpon>ReportPurcAssetDep.vb</DependentUpon>
     </EmbeddedResource>
@@ -16855,7 +16882,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="VolcomInventory_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
