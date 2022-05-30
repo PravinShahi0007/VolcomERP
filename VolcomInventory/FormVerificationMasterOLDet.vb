@@ -464,9 +464,11 @@
 
                 If SLUETemplate.EditValue.ToString = "1" Then
                     q = "
-                        SELECT de.design_code AS SkuSupplierConfig, de.design_display_name AS Name, 'Volcom' AS Brand, color.code_detail_name AS Color, pro_parent.product_full_code AS ParentSku, pro.product_full_code AS SellerSku, FLOOR(de_pn.design_price) AS Price, IF(de_pc.id_design_price_type = 1, '', FLOOR(de_pc.design_price)) AS SalePrice, cd_det.display_name AS Variation " + column_is_valid + "
+                        SELECT de.design_code AS SkuSupplierConfig, CONCAT(IF(r.is_md = 2, 'PRM ', ''), class.display_name, ' ', de.design_name, ' ', color.display_name) AS Name, 'Volcom' AS Brand, color.code_detail_name AS Color, pro_parent.product_full_code AS ParentSku, pro.product_full_code AS SellerSku, FLOOR(de_pn.design_price) AS Price, IF(de_pc.id_design_price_type = 1, '', FLOOR(de_pc.design_price)) AS SalePrice, cd_det.display_name AS Variation " + column_is_valid + "
                         FROM tb_m_product AS pro
                         LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                        LEFT JOIN tb_season AS e ON de.id_season = e.id_season
+                        LEFT JOIN tb_range AS r ON e.id_range = r.id_range
                         LEFT JOIN (
                             SELECT id_design, design_price, id_design_price_type
                             FROM tb_m_design_price
@@ -493,10 +495,15 @@
                             GROUP BY id_design
                         ) AS pro_parent ON de.id_design = pro_parent.id_design
                         LEFT JOIN (
-                            SELECT dc.id_design, cd.code_detail_name
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
                             FROM tb_m_design_code AS dc
                             INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
                         ) AS color ON de.id_design = color.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 30
+                        ) AS class ON de.id_design = class.id_design
                         LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
                         LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
                         WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
@@ -504,9 +511,11 @@
                     "
                 ElseIf SLUETemplate.EditValue.ToString = "2" Then
                     q = "
-                        SELECT de.design_display_name AS Name, pro.product_full_code AS SellerSku, FLOOR(de_pn.design_price) AS Price, IF(de_pc.id_design_price_type = 1, '', FLOOR(de_pc.design_price)) AS SalePrice " + column_is_valid + "
+                        SELECT CONCAT(IF(r.is_md = 2, 'PRM ', ''), class.display_name, ' ', de.design_name, ' ', color.display_name) AS Name, pro.product_full_code AS SellerSku, FLOOR(de_pn.design_price) AS Price, IF(de_pc.id_design_price_type = 1, '', FLOOR(de_pc.design_price)) AS SalePrice " + column_is_valid + "
                         FROM tb_m_product AS pro
                         LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                        LEFT JOIN tb_season AS e ON de.id_season = e.id_season
+                        LEFT JOIN tb_range AS r ON e.id_range = r.id_range
                         LEFT JOIN (
                             SELECT id_design, design_price, id_design_price_type
                             FROM tb_m_design_price
@@ -533,10 +542,15 @@
                             GROUP BY id_design
                         ) AS pro_parent ON de.id_design = pro_parent.id_design
                         LEFT JOIN (
-                            SELECT dc.id_design, cd.code_detail_name
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
                             FROM tb_m_design_code AS dc
                             INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
                         ) AS color ON de.id_design = color.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 30
+                        ) AS class ON de.id_design = class.id_design
                         LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
                         LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
                         WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
@@ -809,12 +823,12 @@
                     column_check.Add("Warna")
                     column_check.Add("Parent")
                     column_check.Add("KodeTokoGudang")
-                    column_check.Add("HargaRp")
+                    column_check.Add("NormalHargaRp")
                     column_check.Add("HargaPenjualanRp")
                 ElseIf SLUETemplate.EditValue.ToString = "2" Then
                     column_check.Add("NamaProduk")
                     column_check.Add("SellerSKU")
-                    column_check.Add("HargaRp")
+                    column_check.Add("NormalHargaRp")
                     column_check.Add("HargaPenjualanRp")
                     column_check.Add("TokoGudang")
                 End If
@@ -848,7 +862,7 @@
                 Dim id_product_in As String = ""
 
                 If SLUETemplate.EditValue.ToString = "1" Then
-                    row = 3
+                    row = 5
                     column = 1
                 ElseIf SLUETemplate.EditValue.ToString = "2" Then
                     row = 2
@@ -934,11 +948,15 @@
 
                 Dim query As String = ""
 
+                Dim selectDisplayNameFull As String = "IF(r.is_md = 2, 'PRM ', ''), class.display_name, ' ', de.design_name"
+
                 If SLUETemplate.EditValue.ToString = "1" Then
                     query = "
-                        SELECT CONCAT('VOLCOM ', TRIM(LEFT(de.design_display_name, LENGTH(de.design_display_name) - 3))) AS NamaProduk, pro.product_full_code AS SellerSKU, cd_det.display_name AS Ukuran, color.code_detail_name AS Warna, CONCAT('VOLCOM ', TRIM(LEFT(de.design_display_name, LENGTH(de.design_display_name) - 3))) AS Parent, (SELECT code_toko_gudang_blibli FROM tb_opt LIMIT 1) AS KodeTokoGudang, FLOOR(de_pn.design_price) AS HargaRp, FLOOR(de_pc.design_price) AS HargaPenjualanRp " + column_is_valid + "
+                        SELECT CONCAT('VOLCOM ', " + selectDisplayNameFull + ") AS NamaProduk, pro.product_full_code AS SellerSKU, cd_det.display_name AS Ukuran, color.code_detail_name AS Warna, CONCAT('VOLCOM ', " + selectDisplayNameFull + ") AS Parent, (SELECT code_toko_gudang_blibli FROM tb_opt LIMIT 1) AS KodeTokoGudang, FLOOR(de_pn.design_price) AS NormalHargaRp, FLOOR(de_pc.design_price) AS HargaPenjualanRp " + column_is_valid + "
                         FROM tb_m_product AS pro
                         LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                        LEFT JOIN tb_season AS e ON de.id_season = e.id_season
+                        LEFT JOIN tb_range AS r ON e.id_range = r.id_range
                         LEFT JOIN (
                             SELECT id_design, design_price, id_design_price_type
                             FROM tb_m_design_price
@@ -965,10 +983,15 @@
                             GROUP BY id_design
                         ) AS pro_parent ON de.id_design = pro_parent.id_design
                         LEFT JOIN (
-                            SELECT dc.id_design, cd.code_detail_name
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
                             FROM tb_m_design_code AS dc
                             INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
                         ) AS color ON de.id_design = color.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 30
+                        ) AS class ON de.id_design = class.id_design
                         LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
                         LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
                         WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
@@ -976,9 +999,11 @@
                     "
                 ElseIf SLUETemplate.EditValue.ToString = "2" Then
                     query = "
-                        SELECT CONCAT('VOLCOM ', TRIM(LEFT(de.design_display_name, LENGTH(de.design_display_name) - 3))) AS NamaProduk, pro.product_full_code AS SellerSKU, FLOOR(de_pn.design_price) AS HargaRp, FLOOR(de_pc.design_price) AS HargaPenjualanRp, (SELECT code_toko_gudang_blibli FROM tb_opt LIMIT 1) AS TokoGudang " + column_is_valid + "
+                        SELECT CONCAT('VOLCOM ', " + selectDisplayNameFull + ") AS NamaProduk, pro.product_full_code AS SellerSKU, FLOOR(de_pn.design_price) AS NormalHargaRp, FLOOR(de_pc.design_price) AS HargaPenjualanRp, (SELECT code_toko_gudang_blibli FROM tb_opt LIMIT 1) AS TokoGudang " + column_is_valid + "
                         FROM tb_m_product AS pro
                         LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                        LEFT JOIN tb_season AS e ON de.id_season = e.id_season
+                        LEFT JOIN tb_range AS r ON e.id_range = r.id_range
                         LEFT JOIN (
                             SELECT id_design, design_price, id_design_price_type
                             FROM tb_m_design_price
@@ -1005,10 +1030,15 @@
                             GROUP BY id_design
                         ) AS pro_parent ON de.id_design = pro_parent.id_design
                         LEFT JOIN (
-                            SELECT dc.id_design, cd.code_detail_name
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
                             FROM tb_m_design_code AS dc
                             INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
                         ) AS color ON de.id_design = color.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 30
+                        ) AS class ON de.id_design = class.id_design
                         LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
                         LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
                         WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 4) + ")
@@ -1116,7 +1146,7 @@
                             Dim Warna As String = data_excel.Rows(i)("Warna").ToString
                             Dim Parent As String = data_excel.Rows(i)("Parent").ToString
                             Dim KodeTokoGudang As String = data_excel.Rows(i)("KodeTokoGudang").ToString
-                            Dim HargaRp As String = data_excel.Rows(i)("HargaRp").ToString
+                            Dim HargaRp As String = data_excel.Rows(i)("NormalHargaRp").ToString
                             Dim HargaPenjualanRp As String = data_excel.Rows(i)("HargaPenjualanRp").ToString
 
                             Dim NamaProduk_erp As String = ""
@@ -1159,7 +1189,7 @@
                             End Try
 
                             Try
-                                HargaRp_erp = data_erp.Rows(i)("HargaRp").ToString
+                                HargaRp_erp = data_erp.Rows(i)("NormalHargaRp").ToString
                             Catch ex As Exception
                             End Try
 
@@ -1176,7 +1206,7 @@
                         For i = 0 To data_excel.Rows.Count - 1
                             Dim NamaProduk As String = data_excel.Rows(i)("NamaProduk").ToString
                             Dim SellerSKU As String = data_excel.Rows(i)("SellerSKU").ToString
-                            Dim HargaRp As String = data_excel.Rows(i)("HargaRp").ToString
+                            Dim HargaRp As String = data_excel.Rows(i)("NormalHargaRp").ToString
                             Dim HargaPenjualanRp As String = data_excel.Rows(i)("HargaPenjualanRp").ToString
                             Dim TokoGudang As String = data_excel.Rows(i)("TokoGudang").ToString
 
@@ -1197,7 +1227,7 @@
                             End Try
 
                             Try
-                                HargaRp_erp = data_erp.Rows(i)("HargaRp").ToString
+                                HargaRp_erp = data_erp.Rows(i)("NormalHargaRp").ToString
                             Catch ex As Exception
                             End Try
 
@@ -1758,10 +1788,12 @@
 
                 If SLUETemplate.EditValue.ToString = "1" Then
                     q = "
-                        SELECT CONCAT('VOLCOM - ', de.design_display_name) AS NamaProduk, LEFT(pro.product_full_code, 9) AS SKUInduk, LEFT(pro.product_full_code, 9) AS KodeIntegrasiVariasi, cd_det.display_name AS VarianuntukVariasi1, FLOOR(de_pc.design_price) AS Harga, pro.product_full_code AS KodeVariasi
+                        SELECT CONCAT('VOLCOM - ', IF(r.is_md = 2, 'PRM ', ''), class.display_name, ' ', de.design_name, ' ', color.display_name) AS NamaProduk, LEFT(pro.product_full_code, 9) AS SKUInduk, LEFT(pro.product_full_code, 9) AS KodeIntegrasiVariasi, cd_det.display_name AS VarianuntukVariasi1, FLOOR(de_pc.design_price) AS Harga, pro.product_full_code AS KodeVariasi
                         " + column_is_valid + "
                         FROM tb_m_product AS pro
                         LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                        LEFT JOIN tb_season AS e ON de.id_season = e.id_season
+                        LEFT JOIN tb_range AS r ON e.id_range = r.id_range
                         LEFT JOIN (
                             SELECT id_design, design_price, id_design_price_type
                             FROM tb_m_design_price
@@ -1782,6 +1814,16 @@
                                 GROUP BY id_design
                             )
                         ) AS de_pn ON de.id_design = de_pn.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
+                        ) AS color ON de.id_design = color.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 30
+                        ) AS class ON de.id_design = class.id_design
                         LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
                         LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
                         WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 2) + ")
@@ -1789,10 +1831,12 @@
                     "
                 ElseIf SLUETemplate.EditValue.ToString = "2" Then
                     q = "
-                        SELECT CONCAT('VOLCOM - ', de.design_display_name) AS ProductNameOptional, cd_det.display_name AS NamaVariasiOpsional, pro.product_full_code AS SKURefNoOptional, FLOOR(de_pn.design_price) AS HargaAwalOpsional, FLOOR(de_pc.design_price) AS Hargadiskon
+                        SELECT CONCAT('VOLCOM - ', IF(r.is_md = 2, 'PRM ', ''), class.display_name, ' ', de.design_name, ' ', color.display_name) AS ProductNameOptional, cd_det.display_name AS NamaVariasiOpsional, pro.product_full_code AS SKURefNoOptional, FLOOR(de_pn.design_price) AS HargaAwalOpsional, FLOOR(de_pc.design_price) AS Hargadiskon
                         " + column_is_valid + "
                         FROM tb_m_product AS pro
                         LEFT JOIN tb_m_design AS de ON pro.id_design = de.id_design
+                        LEFT JOIN tb_season AS e ON de.id_season = e.id_season
+                        LEFT JOIN tb_range AS r ON e.id_range = r.id_range
                         LEFT JOIN (
                             SELECT id_design, design_price, id_design_price_type
                             FROM tb_m_design_price
@@ -1813,6 +1857,16 @@
                                 GROUP BY id_design
                             )
                         ) AS de_pn ON de.id_design = de_pn.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 14
+                        ) AS color ON de.id_design = color.id_design
+                        LEFT JOIN (
+                            SELECT dc.id_design, cd.display_name, cd.code_detail_name
+                            FROM tb_m_design_code AS dc
+                            INNER JOIN tb_m_code_detail AS cd ON dc.id_code_detail = cd.id_code_detail AND cd.id_code = 30
+                        ) AS class ON de.id_design = class.id_design
                         LEFT JOIN tb_m_product_code AS pro_cd ON pro.id_product = pro_cd.id_product
                         LEFT JOIN tb_m_code_detail AS cd_det ON pro_cd.id_code_detail = cd_det.id_code_detail
                         WHERE pro.product_full_code IN (" + id_product_in.Substring(0, id_product_in.Length - 2) + ")
