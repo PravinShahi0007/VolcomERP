@@ -2038,6 +2038,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormRoyaltyRate.createNew()
         ElseIf formName = "FormDropChanges" Then
             FormDropChanges.createNew()
+        ElseIf formName = "FormProposeVoucherPOS" Then
+            FormProposeVoucherPOSDet.id = "0"
+            FormProposeVoucherPOSDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3417,6 +3420,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormRoyaltyRate.viewDetail()
             ElseIf formName = "FormDropChanges" Then
                 FormDropChanges.viewDetail()
+            ElseIf formName = "FormProposeVoucherPOS" Then
+                FormProposeVoucherPOSDet.id = FormProposeVoucherPOS.GVData.GetFocusedRowCellValue("id_voucher_pps").ToString
+                FormProposeVoucherPOSDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8936,6 +8942,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormRoyaltyRate.printList()
         ElseIf formName = "FormDropChanges" Then
             FormDropChanges.printList()
+        ElseIf formname = "FormProposeVoucherPOS" Then
+            print(FormProposeVoucherPOS.GCData, "List Propose Voucher POS")
         Else
             RPSubMenu.Visible = False
         End If
@@ -10023,6 +10031,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDropChanges" Then
             FormDropChanges.Close()
             FormDropChanges.Dispose()
+        ElseIf formname = "FormProposeVoucherPOS" Then
+            FormProposeVoucherPOS.Close()
+            FormProposeVoucherPOS.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11093,6 +11104,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormRoyaltyRate.viewData()
         ElseIf formName = "FormDropChanges" Then
             FormDropChanges.viewData()
+        ElseIf formName = "FormProposeVoucherPOS" Then
+            FormProposeVoucherPOS.load_view()
         End If
     End Sub
     'Switch
@@ -17272,6 +17285,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMasterStoreFaktur.Show()
             FormMasterStoreFaktur.WindowState = FormWindowState.Maximized
             FormMasterStoreFaktur.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeVoucherPOS_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeVoucherPOS.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProposeVoucherPOS.MdiParent = Me
+            FormProposeVoucherPOS.Show()
+            FormProposeVoucherPOS.WindowState = FormWindowState.Maximized
+            FormProposeVoucherPOS.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

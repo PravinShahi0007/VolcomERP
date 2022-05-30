@@ -402,10 +402,15 @@ AND ISNULL(att.id_prod_order)"
 
     Private Sub Bdel_Click(sender As Object, e As EventArgs) Handles Bdel.Click
         If is_locked = "2" Then
-            Dim query As String = "DELETE FROM tb_prod_order_ko_det WHERE id_prod_order_ko_det='" & GVProd.GetFocusedRowCellValue("id_prod_order_ko_det").ToString & "'"
-            execute_non_query(query, True, "", "", "", "")
-            infoCustom("KO updated")
-            load_head()
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete item ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query As String = "DELETE FROM tb_prod_order_ko_det WHERE id_prod_order_ko_det='" & GVProd.GetFocusedRowCellValue("id_prod_order_ko_det").ToString & "'"
+                execute_non_query(query, True, "", "", "", "")
+                infoCustom("KO updated")
+                load_head()
+            End If
         Else
             warningCustom("KO locked")
         End If
