@@ -26,69 +26,83 @@ Partial Class FormFKNumber
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.BtnLogin = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_desc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.Txtno1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Txtno2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Txtno3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Txtno1
         '
         Me.Txtno1.EditValue = "010"
         Me.Txtno1.Enabled = False
-        Me.Txtno1.Location = New System.Drawing.Point(16, 43)
+        Me.Txtno1.Location = New System.Drawing.Point(100, 10)
         Me.Txtno1.Name = "Txtno1"
-        Me.Txtno1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Txtno1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Txtno1.Properties.Appearance.Options.UseFont = True
-        Me.Txtno1.Size = New System.Drawing.Size(68, 36)
+        Me.Txtno1.Size = New System.Drawing.Size(68, 26)
         Me.Txtno1.TabIndex = 0
         '
         'Txtno2
         '
         Me.Txtno2.EditValue = ""
-        Me.Txtno2.Location = New System.Drawing.Point(104, 43)
+        Me.Txtno2.Location = New System.Drawing.Point(188, 10)
         Me.Txtno2.Name = "Txtno2"
-        Me.Txtno2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Txtno2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Txtno2.Properties.Appearance.Options.UseFont = True
-        Me.Txtno2.Size = New System.Drawing.Size(138, 36)
+        Me.Txtno2.Size = New System.Drawing.Size(138, 26)
         Me.Txtno2.TabIndex = 1
         '
         'Txtno3
         '
         Me.Txtno3.EditValue = ""
-        Me.Txtno3.Location = New System.Drawing.Point(262, 43)
+        Me.Txtno3.Location = New System.Drawing.Point(348, 10)
         Me.Txtno3.Name = "Txtno3"
-        Me.Txtno3.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Txtno3.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Txtno3.Properties.Appearance.Options.UseFont = True
-        Me.Txtno3.Size = New System.Drawing.Size(177, 36)
+        Me.Txtno3.Size = New System.Drawing.Size(177, 26)
         Me.Txtno3.TabIndex = 2
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(84, 46)
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(170, 13)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(20, 29)
+        Me.Label1.Size = New System.Drawing.Size(14, 19)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "."
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(242, 46)
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(330, 15)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(20, 29)
+        Me.Label2.Size = New System.Drawing.Size(14, 19)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "."
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(12, 17)
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(13, 13)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(99, 23)
+        Me.Label3.Size = New System.Drawing.Size(84, 19)
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "Start From"
         '
@@ -101,29 +115,97 @@ Partial Class FormFKNumber
         Me.BtnLogin.Appearance.Options.UseFont = True
         Me.BtnLogin.Appearance.Options.UseForeColor = True
         Me.BtnLogin.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnLogin.Location = New System.Drawing.Point(0, 104)
+        Me.BtnLogin.Location = New System.Drawing.Point(0, 406)
         Me.BtnLogin.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnLogin.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
         Me.BtnLogin.LookAndFeel.SkinName = "Metropolis"
         Me.BtnLogin.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnLogin.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnLogin.Name = "BtnLogin"
-        Me.BtnLogin.Size = New System.Drawing.Size(451, 24)
+        Me.BtnLogin.Size = New System.Drawing.Size(538, 24)
         Me.BtnLogin.TabIndex = 6
         Me.BtnLogin.Text = "Confirm"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.CESelectAll)
+        Me.PanelControl1.Controls.Add(Me.Txtno3)
+        Me.PanelControl1.Controls.Add(Me.Txtno1)
+        Me.PanelControl1.Controls.Add(Me.Label3)
+        Me.PanelControl1.Controls.Add(Me.Label2)
+        Me.PanelControl1.Controls.Add(Me.Txtno2)
+        Me.PanelControl1.Controls.Add(Me.Label1)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(538, 63)
+        Me.PanelControl1.TabIndex = 7
+        '
+        'CESelectAll
+        '
+        Me.CESelectAll.Location = New System.Drawing.Point(458, 38)
+        Me.CESelectAll.Name = "CESelectAll"
+        Me.CESelectAll.Properties.Caption = "Select All"
+        Me.CESelectAll.Size = New System.Drawing.Size(67, 19)
+        Me.CESelectAll.TabIndex = 8
+        '
+        'GCData
+        '
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 63)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCData.Size = New System.Drawing.Size(538, 343)
+        Me.GCData.TabIndex = 8
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumncomp_group_desc, Me.GridColumnis_select})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_comp_group
+        '
+        Me.GridColumnid_comp_group.Caption = "id_comp_group"
+        Me.GridColumnid_comp_group.FieldName = "id_comp_group"
+        Me.GridColumnid_comp_group.Name = "GridColumnid_comp_group"
+        '
+        'GridColumncomp_group_desc
+        '
+        Me.GridColumncomp_group_desc.Caption = "Store Group"
+        Me.GridColumncomp_group_desc.FieldName = "comp_group_desc"
+        Me.GridColumncomp_group_desc.Name = "GridColumncomp_group_desc"
+        Me.GridColumncomp_group_desc.Visible = True
+        Me.GridColumncomp_group_desc.VisibleIndex = 0
+        '
+        'GridColumnis_select
+        '
+        Me.GridColumnis_select.Caption = "Select"
+        Me.GridColumnis_select.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnis_select.FieldName = "is_select"
+        Me.GridColumnis_select.Name = "GridColumnis_select"
+        Me.GridColumnis_select.Visible = True
+        Me.GridColumnis_select.VisibleIndex = 1
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'FormFKNumber
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(451, 128)
+        Me.ClientSize = New System.Drawing.Size(538, 430)
+        Me.Controls.Add(Me.GCData)
+        Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.BtnLogin)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Txtno3)
-        Me.Controls.Add(Me.Txtno2)
-        Me.Controls.Add(Me.Txtno1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -133,8 +215,14 @@ Partial Class FormFKNumber
         CType(Me.Txtno1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Txtno2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Txtno3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -145,4 +233,12 @@ Partial Class FormFKNumber
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents BtnLogin As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_comp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group_desc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
