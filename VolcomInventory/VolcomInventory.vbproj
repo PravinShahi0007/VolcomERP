@@ -2743,6 +2743,12 @@
     <Compile Include="FormFingerPrint.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFKNumber.Designer.vb">
+      <DependentUpon>FormFKNumber.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFKNumber.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFollowUpAR.Designer.vb">
       <DependentUpon>FormFollowUpAR.vb</DependentUpon>
     </Compile>
@@ -12266,6 +12272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFingerPrint.resx">
       <DependentUpon>FormFingerPrint.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFKNumber.resx">
+      <DependentUpon>FormFKNumber.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFollowUpAR.resx">
       <DependentUpon>FormFollowUpAR.vb</DependentUpon>

@@ -21,6 +21,7 @@ Partial Class FormMasterStoreFaktur
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterStoreFaktur))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -38,6 +39,7 @@ Partial Class FormMasterStoreFaktur
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnExport)
         Me.PanelControl1.Controls.Add(Me.BtnImportXLS)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -45,9 +47,29 @@ Partial Class FormMasterStoreFaktur
         Me.PanelControl1.Size = New System.Drawing.Size(665, 53)
         Me.PanelControl1.TabIndex = 0
         '
+        'BtnExport
+        '
+        Me.BtnExport.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnExport.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnExport.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnExport.Appearance.Image = CType(resources.GetObject("SimpleButton1.Appearance.Image"), System.Drawing.Image)
+        Me.BtnExport.Appearance.Options.UseBackColor = True
+        Me.BtnExport.Appearance.Options.UseFont = True
+        Me.BtnExport.Appearance.Options.UseForeColor = True
+        Me.BtnExport.Appearance.Options.UseImage = True
+        Me.BtnExport.Location = New System.Drawing.Point(154, 12)
+        Me.BtnExport.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnExport.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnExport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnExport.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnExport.Name = "BtnExport"
+        Me.BtnExport.Size = New System.Drawing.Size(113, 29)
+        Me.BtnExport.TabIndex = 24
+        Me.BtnExport.Text = "Export to XLS"
+        '
         'BtnImportXLS
         '
-        Me.BtnImportXLS.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnImportXLS.Appearance.BackColor = System.Drawing.Color.Gray
         Me.BtnImportXLS.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnImportXLS.Appearance.ForeColor = System.Drawing.Color.White
         Me.BtnImportXLS.Appearance.Image = CType(resources.GetObject("BtnImportXLS.Appearance.Image"), System.Drawing.Image)
@@ -61,9 +83,9 @@ Partial Class FormMasterStoreFaktur
         Me.BtnImportXLS.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnImportXLS.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnImportXLS.Name = "BtnImportXLS"
-        Me.BtnImportXLS.Size = New System.Drawing.Size(107, 29)
+        Me.BtnImportXLS.Size = New System.Drawing.Size(138, 29)
         Me.BtnImportXLS.TabIndex = 23
-        Me.BtnImportXLS.Text = "+ Import XLS"
+        Me.BtnImportXLS.Text = "+ Import from XLS"
         '
         'GCData
         '
@@ -162,4 +184,5 @@ Partial Class FormMasterStoreFaktur
     Friend WithEvents GridColumnakun_toko As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnama_toko As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnaddress_efaktur As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnExport As DevExpress.XtraEditors.SimpleButton
 End Class
