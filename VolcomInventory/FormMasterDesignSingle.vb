@@ -3646,4 +3646,22 @@
             CCBEExtraTag.EditValue = Nothing
         End If
     End Sub
+
+    Private Sub BtnAddExtraTag_Click(sender As Object, e As EventArgs) Handles BtnAddExtraTag.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_design_tag_old As String = ""
+        If CCBEExtraTag.EditValue = Nothing Then
+            id_design_tag_old = ""
+        Else
+            id_design_tag_old = CCBEExtraTag.EditValue.ToString
+        End If
+        FormMasterExtraTag.ShowDialog()
+        load_extra_tag()
+        If id_design_tag_old = "" Then
+            CCBEExtraTag.EditValue = Nothing
+        Else
+            CCBEExtraTag.SetEditValue(id_design_tag_old)
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class

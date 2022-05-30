@@ -201,6 +201,9 @@ Partial Class FormMasterDesignSingle
         Me.RILEDesgValue = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.DNCodeDesign = New DevExpress.XtraEditors.DataNavigator()
         Me.PanelDesc = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAddExtraTag = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.CCBEExtraTag = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.BGenerateDesc = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefreshCodeDsg = New DevExpress.XtraEditors.SimpleButton()
@@ -303,8 +306,6 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.CCBEExtraTag = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -392,6 +393,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.RILEDesgValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelDesc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelDesc.SuspendLayout()
+        CType(Me.CCBEExtraTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LETemplateDsg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -441,7 +443,6 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlComment.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
         CType(Me.EPChanges, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCBEExtraTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RILEValNon
@@ -2226,6 +2227,7 @@ Partial Class FormMasterDesignSingle
         'PanelDesc
         '
         Me.PanelDesc.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelDesc.Controls.Add(Me.BtnAddExtraTag)
         Me.PanelDesc.Controls.Add(Me.LabelControl23)
         Me.PanelDesc.Controls.Add(Me.CCBEExtraTag)
         Me.PanelDesc.Controls.Add(Me.TEDisplayName)
@@ -2237,6 +2239,39 @@ Partial Class FormMasterDesignSingle
         Me.PanelDesc.Name = "PanelDesc"
         Me.PanelDesc.Size = New System.Drawing.Size(499, 108)
         Me.PanelDesc.TabIndex = 100
+        '
+        'BtnAddExtraTag
+        '
+        Me.BtnAddExtraTag.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddExtraTag.Image = CType(resources.GetObject("BtnAddExtraTag.Image"), System.Drawing.Image)
+        Me.BtnAddExtraTag.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnAddExtraTag.Location = New System.Drawing.Point(441, 29)
+        Me.BtnAddExtraTag.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BtnAddExtraTag.Name = "BtnAddExtraTag"
+        Me.BtnAddExtraTag.Size = New System.Drawing.Size(32, 18)
+        Me.BtnAddExtraTag.TabIndex = 97
+        Me.BtnAddExtraTag.ToolTip = "Add Season"
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Location = New System.Drawing.Point(14, 9)
+        Me.LabelControl23.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl23.TabIndex = 96
+        Me.LabelControl23.Text = "Extra Tag"
+        '
+        'CCBEExtraTag
+        '
+        Me.CCBEExtraTag.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CCBEExtraTag.EditValue = ""
+        Me.CCBEExtraTag.Location = New System.Drawing.Point(13, 28)
+        Me.CCBEExtraTag.Name = "CCBEExtraTag"
+        Me.CCBEExtraTag.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEExtraTag.Properties.NullText = "None"
+        Me.CCBEExtraTag.Size = New System.Drawing.Size(423, 20)
+        Me.CCBEExtraTag.TabIndex = 95
         '
         'BGenerateDesc
         '
@@ -3233,25 +3268,6 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
         '
-        'CCBEExtraTag
-        '
-        Me.CCBEExtraTag.EditValue = ""
-        Me.CCBEExtraTag.Location = New System.Drawing.Point(13, 28)
-        Me.CCBEExtraTag.Name = "CCBEExtraTag"
-        Me.CCBEExtraTag.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBEExtraTag.Properties.NullText = "None"
-        Me.CCBEExtraTag.Size = New System.Drawing.Size(460, 20)
-        Me.CCBEExtraTag.TabIndex = 95
-        '
-        'LabelControl23
-        '
-        Me.LabelControl23.Location = New System.Drawing.Point(14, 9)
-        Me.LabelControl23.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.LabelControl23.Name = "LabelControl23"
-        Me.LabelControl23.Size = New System.Drawing.Size(47, 13)
-        Me.LabelControl23.TabIndex = 96
-        Me.LabelControl23.Text = "Extra Tag"
-        '
         'FormMasterDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3358,6 +3374,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanelDesc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelDesc.ResumeLayout(False)
         Me.PanelDesc.PerformLayout()
+        CType(Me.CCBEExtraTag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -3411,7 +3428,6 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlComment.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.EPChanges, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCBEExtraTag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3699,4 +3715,5 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CCBEExtraTag As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents BtnAddExtraTag As DevExpress.XtraEditors.SimpleButton
 End Class
