@@ -89,10 +89,11 @@
             IF(det.c_class=1, cls.class, '-') AS `class`, IF(det.c_class=1, cls_new.class_new, '-') AS `class_new`,
             IF(det.c_color=1, col.color,'-') AS `color`, IF(det.c_color=1, col_new.color_new,'-') AS `color_new`,
             IF(det.c_sht=1, sht.sht_name,'-') AS `sht`, IF(det.c_sht=1, sht_new.sht_name_new,'-') AS `sht_new`,
+            IF(det.c_extra_tag=1, et.design_tag,'-') AS `design_tag`, IF(det.c_extra_tag=1, et_new.design_tag_new,'-') AS `design_tag_new`,
             IF(det.c_critical_product=1, cp.critical_product,'-') AS `critical_product`, IF(det.c_critical_product=1, cp_new.critical_product,'-') AS `critical_product_new`,
             det.c_design_name, det.c_is_cold_storage, det.c_design_code_import, det.c_design_display_name, det.c_id_season_orign, 
             det.c_design_fabrication, det.c_design_detail,
-            det.c_source, det.c_division, det.c_subcategory, det.c_class, det.c_color, det.c_sht, det.c_critical_product "
+            det.c_source, det.c_division, det.c_subcategory, det.c_class, det.c_color, det.c_sht, det.c_critical_product, det.c_extra_tag "
             Dim dsg As New ClassDesign()
             query += dsg.queryPCDBodyDetail(id)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -150,6 +151,10 @@
             GVData.ActiveFilterString = "c_critical_product=1 "
             If GVData.RowCount <= 0 Then
                 gridBandCriticalProduct.Visible = False
+            End If
+            GVData.ActiveFilterString = "c_extra_tag=1 "
+            If GVData.RowCount <= 0 Then
+                gridBandExtraTag.Visible = False
             End If
             makeSafeGV(GVData)
             GVData.BestFitColumns()

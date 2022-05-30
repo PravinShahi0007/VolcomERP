@@ -419,6 +419,26 @@
         viewSearchLookupQuery(SLEActive, query, "id_status", "status", "id_status")
     End Sub
 
+    Sub load_extra_tag()
+        Try
+            CCBEExtraTag.Properties.Items.Clear()
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT dt.id_design_tag, dt.design_tag FROM tb_m_design_tag dt"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("design_tag").ToString
+            c.Value = data.Rows(i)("id_design_tag").ToString
+
+            CCBEExtraTag.Properties.Items.Add(c)
+        Next
+        CCBEExtraTag.EditValue = Nothing
+    End Sub
+
     Sub actionLoad()
         viewUOM(LEUOM)
         viewSeason(LESeason)
@@ -430,6 +450,8 @@
         load_isi_param("1")
         load_isi_param("2")
         load_isi_param("3")
+        load_extra_tag()
+
         '
         load_comment()
 
@@ -652,6 +674,16 @@
                         End If
                     End If
                 End If
+
+                'cek extra tag
+                Dim qet As String = "SELECT GROUP_CONCAT(DISTINCT dtd.id_design_tag) AS `id_design_tag` FROM tb_design_tag_detail dtd WHERE dtd.id_design=" + id_design + " "
+                Dim det As DataTable = execute_query(qet, -1, True, "", "", "", "")
+                If det.Rows.Count <= 0 Then
+                    CCBEExtraTag.EditValue = Nothing
+                Else
+                    CCBEExtraTag.SetEditValue(det.Rows(0)("id_design_tag").ToString)
+                End If
+
                 inputPermission()  'access limit
             Catch ex As Exception
                 'errorConnection()
@@ -1085,6 +1117,7 @@
 
             'comment
             PanelControlComment.Visible = False
+            CCBEExtraTag.Enabled = False
 
         ElseIf id_pop_up = "2" Then 'sample dept
             XTPLineList.PageVisible = False
@@ -1124,7 +1157,7 @@
 
             'comment
             PanelControlComment.Visible = False
-
+            CCBEExtraTag.Enabled = False
         ElseIf id_pop_up = "3" Then 'non merch
             'TxtFabrication.Enabled = True
             SBFabricationBrowse.Enabled = True
@@ -1140,7 +1173,6 @@
 
             'comment
             PanelControlComment.Visible = False
-
         ElseIf id_pop_up = "4" Then 'preview design
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
@@ -1186,7 +1218,7 @@
             SLEProductType.Visible = False
             'comment
             PanelControlComment.Visible = False
-
+            CCBEExtraTag.Enabled = False
         ElseIf id_pop_up = "5" Then 'design dept
             If is_approved = "2" Then
                 BtnReviseStyle.Visible = False
@@ -1208,6 +1240,7 @@
                 BtnAddSeasonOrign.Enabled = True
                 SLUECoolStorage.Enabled = True
                 SLEProductType.Enabled = True
+                CCBEExtraTag.Enabled = True
             Else
                 BtnReviseStyle.Visible = True
                 TEName.Enabled = False
@@ -1228,6 +1261,7 @@
                 BtnAddSeasonOrign.Enabled = False
                 SLUECoolStorage.Enabled = False
                 SLEProductType.Enabled = False
+                CCBEExtraTag.Enabled = False
             End If
             PictureEdit1.Properties.ReadOnly = False
             XTPLineList.PageVisible = False
@@ -1292,6 +1326,7 @@
             LERetCode.Enabled = True
             DEEOS.Enabled = True
             SLEActive.Enabled = True
+            CCBEExtraTag.Enabled = False
         End If
 
         'cek PO & FG Line List
@@ -1346,6 +1381,7 @@
                 DEWHDate.Enabled = False
                 BtnAddRetCode.Enabled = False
                 SLELinePlan.Enabled = False
+                CCBEExtraTag.Enabled = False
             End If
         End If
 
@@ -1562,6 +1598,24 @@
         TECode.Text = code_full
     End Sub
 
+    Sub setExtraTag(ByVal id_design_par As String, ByVal id_design_tag_par As String)
+        If id_pop_up = "5" Then
+            Cursor = Cursors.WaitCursor
+            If id_design_tag_par = "" Then
+                id_design_tag_par = "0"
+            End If
+
+            'delete
+            Dim query As String = "DELETE FROM tb_design_tag_detail WHERE id_design = '" + id_design_par + "';
+            INSERT INTO tb_design_tag_detail(id_design_tag, id_design)
+            SELECT t.id_design_tag, '" + id_design_par + "' 
+            FROM tb_m_design_tag t
+            WHERE t.id_design_tag IN (" + id_design_tag_par + "); "
+            execute_non_query(query, True, "", "", "", "")
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         'generate code
         If id_pop_up = "-1" Then
@@ -1699,6 +1753,14 @@
         If SLEProductType.EditValue = Nothing Then
             stopCustom("Please input product type")
             Exit Sub
+        End If
+
+        'extra tag
+        Dim id_design_tag As String = ""
+        If CCBEExtraTag.EditValue = Nothing Then
+            id_design_tag = ""
+        Else
+            id_design_tag = CCBEExtraTag.EditValue.ToString
         End If
 
         Cursor = Cursors.WaitCursor
@@ -2013,6 +2075,9 @@
                                 setDefaultPrice(id_design_tersimpan, 0)
                             End If
 
+                            'extra tag
+                            setExtraTag(id_design_tersimpan, id_design_tag)
+
                             'new line list
                             NewLineList(id_design_tersimpan, id_season, id_delivery)
 
@@ -2129,6 +2194,9 @@
 
                             'pdate product code
                             updProductCode(id_design)
+
+                            'extra tag
+                            setExtraTag(id_design, id_design_tag)
 
                             If form_name = "FormMasterProduct" Then
                                 FormMasterProduct.view_design()
@@ -2290,6 +2358,9 @@
                         If id_pop_up = "3" Then
                             setDefaultPrice(id_design_tersimpan, 0)
                         End If
+
+                        'extra tag
+                        setExtraTag(id_design_tersimpan, id_design_tag)
 
                         'new line list
                         NewLineList(id_design_tersimpan, id_season, id_delivery)
@@ -3569,4 +3640,10 @@
             Return False
         End If
     End Function
+
+    Private Sub CCBEExtraTag_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEExtraTag.EditValueChanged
+        If CCBEExtraTag.EditValue = "" Then
+            CCBEExtraTag.EditValue = Nothing
+        End If
+    End Sub
 End Class

@@ -2080,6 +2080,14 @@
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	        WHERE det.id_changes=" + id + " AND cd.id_code=" + id_code_fg_sht + "
         ) sht_new ON sht_new.id_design = d.id_design
+        LEFT JOIN (
+            SELECT det.id_design, GROUP_CONCAT(dt.design_tag ORDER BY dt.id_design_tag ASC) AS `design_tag_new`
+            FROM tb_m_design_changes_det det
+            INNER JOIN tb_design_tag_detail dtd ON dtd.id_design = det.id_design
+            INNER JOIN tb_m_design_tag dt ON dt.id_design_tag = dtd.id_design_tag
+            WHERE det.id_changes=" + id + "
+            GROUP BY det.id_design
+        ) et_new ON et_new.id_design = d.id_design
         INNER JOIN tb_m_design dr ON dr.id_design = d.id_design_rev_from
         INNER JOIN tb_season_orign sordr ON sordr.id_season_orign = dr.id_season_orign
         INNER JOIN tb_lookup_critical_product cp ON cp.id_critical_product = dr.id_critical_product
@@ -2131,6 +2139,15 @@
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	        WHERE det.id_changes=" + id + " AND cd.id_code=" + id_code_fg_sht + "
         ) sht ON sht.id_design = dr.id_design
+        LEFT JOIN (
+            SELECT dr.id_design_rev_from AS `id_design`, GROUP_CONCAT(dt.design_tag ORDER BY dt.id_design_tag ASC) AS `design_tag`
+            FROM tb_m_design_changes_det det
+            INNER JOIN tb_m_design dr ON dr.id_design = det.id_design
+            INNER JOIN tb_design_tag_detail dtd ON dtd.id_design = dr.id_design_rev_from
+            INNER JOIN tb_m_design_tag dt ON dt.id_design_tag = dtd.id_design_tag
+            WHERE det.id_changes=" + id + "
+            GROUP BY dr.id_design_rev_from
+        ) et ON et.id_design = dr.id_design
         LEFT JOIN tb_lookup_cool_storage AS cst ON d.is_cold_storage = cst.id_cool_storage
         LEFT JOIN tb_lookup_cool_storage AS cstdr ON dr.is_cold_storage = cstdr.id_cool_storage
         WHERE det.id_changes=" + id + " "
