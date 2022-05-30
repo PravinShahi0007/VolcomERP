@@ -8352,7 +8352,14 @@ WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='"
             PanelControl1.Visible = False
             Dim no_seri As String = FormFKNumber.Txtno1.Text + "." + FormFKNumber.Txtno2.Text + "."
             Dim nomer As String = FormFKNumber.Txtno3.Text
-            Dim query As String = "CALL view_fk_fg(" + FormAccountingFakturScanSingle.id_acc_fak_scan + ", '" + no_seri + "','" + nomer + "') "
+            Dim id_grp As String = ""
+            For i As Integer = 0 To FormFKNumber.GVData.RowCount - 1
+                If i > 0 Then
+                    id_grp += ","
+                End If
+                id_grp += FormFKNumber.GVData.GetRowCellValue(i, "id_comp_group").ToString
+            Next
+            Dim query As String = "CALL view_fk_fg(" + FormAccountingFakturScanSingle.id_acc_fak_scan + ", '" + no_seri + "','" + nomer + "','" + id_grp + "') "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCData.DataSource = Nothing
             GCData.DataSource = data
