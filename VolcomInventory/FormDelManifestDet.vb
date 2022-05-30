@@ -796,14 +796,19 @@ WHERE dmd.`id_del_manifest`='" & id_del_manifest & "'"
     End Sub
 
     Sub online_pc_changed()
-        If SLEOnlineShop.EditValue.ToString = "1" Then
-            PCOnline.Visible = True
-            PCOffline.Visible = False
-            TEOrderNumber.Focus()
-        ElseIf SLEOnlineShop.EditValue.ToString = "2" Then
-            PCOnline.Visible = False
-            PCOffline.Visible = True
-            TEComp.Focus()
+        If SLEDelType.EditValue.ToString = "6" And SLEOnlineShop.EditValue.ToString = "1" Then
+            warningCustom("Please pick online type no.")
+            SLEOnlineShop.EditValue = "2"
+        Else
+            If SLEOnlineShop.EditValue.ToString = "1" Then
+                PCOnline.Visible = True
+                PCOffline.Visible = False
+                TEOrderNumber.Focus()
+            ElseIf SLEOnlineShop.EditValue.ToString = "2" Then
+                PCOnline.Visible = False
+                PCOffline.Visible = True
+                TEComp.Focus()
+            End If
         End If
     End Sub
 
@@ -1249,6 +1254,13 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
 
     Private Sub SLEDelType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEDelType.EditValueChanged
         If loaded = True Then
+            If SLEDelType.EditValue.ToString = "6" And SLEOnlineShop.EditValue.ToString = "1" Then
+                warningCustom("Please pick online type no.")
+                SLEOnlineShop.EditValue = "2"
+            Else
+
+            End If
+
             If SLEOnlineShop.EditValue.ToString = "1" Then
                 TEOrderNumber.Focus()
             ElseIf SLEOnlineShop.EditValue.ToString = "2" Then

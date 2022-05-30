@@ -572,6 +572,9 @@
         ElseIf report_mark_type = "410" Then
             'perubahan del
             FormDropChangesDet.Close()
+        ElseIf report_mark_type = "412" Then
+            'propose voucher pos
+            FormProposeVoucherPOSDet.Close()
         End If
     End Sub
     Sub show()
@@ -1819,6 +1822,10 @@ GROUP BY rec.`id_prod_order`"
             FormDropChangesDet.action = "upd"
             FormDropChangesDet.id = id_report
             FormDropChangesDet.ShowDialog()
+        ElseIf report_mark_type = "412" Then
+            'propose voucher pos
+            FormProposeVoucherPOSDet.id = id_report
+            FormProposeVoucherPOSDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3236,6 +3243,12 @@ GROUP BY rec.`id_prod_order`"
             'perubahan del
             table_name = "tb_drop_changes"
             field_id = "id_drop_changes"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "412" Then
+            'propose voucher pos
+            table_name = "tb_pos_voucher_pps"
+            field_id = "id_voucher_pps"
             field_number = "number"
             field_date = "created_date"
         Else
