@@ -575,6 +575,9 @@
         ElseIf report_mark_type = "412" Then
             'propose voucher pos
             FormProposeVoucherPOSDet.Close()
+        ElseIf report_mark_type = "413" Then
+            'propose gwp pos
+            FormPromoRulesDet.Close()
         End If
     End Sub
     Sub show()
@@ -1826,6 +1829,11 @@ GROUP BY rec.`id_prod_order`"
             'propose voucher pos
             FormProposeVoucherPOSDet.id = id_report
             FormProposeVoucherPOSDet.ShowDialog()
+        ElseIf report_mark_type = "413" Then
+            'propose gwp pos
+            FormPromoRulesDet.id = id_report
+            FormPromoRulesDet.action = "upd"
+            FormPromoRulesDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3250,6 +3258,12 @@ GROUP BY rec.`id_prod_order`"
             table_name = "tb_pos_voucher_pps"
             field_id = "id_voucher_pps"
             field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "413" Then
+            'propose gwp pos
+            table_name = "tb_promo_rules"
+            field_id = "id_rules"
+            field_number = "report_number"
             field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"

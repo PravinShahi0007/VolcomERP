@@ -54,6 +54,10 @@ Partial Class FormEOSChangeDet
         Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpropose_price_final = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumnid_pp_change = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumneffective_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnplan_end_date = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.DENewEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -243,6 +247,7 @@ Partial Class FormEOSChangeDet
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pp_change, Me.GridColumnnumber, Me.GridColumneffective_date, Me.GridColumnplan_end_date})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -440,6 +445,40 @@ Partial Class FormEOSChangeDet
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
+        'GridColumnid_pp_change
+        '
+        Me.GridColumnid_pp_change.Caption = "id_pp_change"
+        Me.GridColumnid_pp_change.FieldName = "id_pp_change"
+        Me.GridColumnid_pp_change.Name = "GridColumnid_pp_change"
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Number"
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 0
+        '
+        'GridColumneffective_date
+        '
+        Me.GridColumneffective_date.Caption = "Start"
+        Me.GridColumneffective_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumneffective_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumneffective_date.FieldName = "effective_date"
+        Me.GridColumneffective_date.Name = "GridColumneffective_date"
+        Me.GridColumneffective_date.Visible = True
+        Me.GridColumneffective_date.VisibleIndex = 1
+        '
+        'GridColumnplan_end_date
+        '
+        Me.GridColumnplan_end_date.Caption = "End"
+        Me.GridColumnplan_end_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnplan_end_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnplan_end_date.FieldName = "plan_end_date"
+        Me.GridColumnplan_end_date.Name = "GridColumnplan_end_date"
+        Me.GridColumnplan_end_date.Visible = True
+        Me.GridColumnplan_end_date.VisibleIndex = 2
+        '
         'FormEOSChangeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -513,4 +552,8 @@ Partial Class FormEOSChangeDet
     Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents GridColumnpropose_price_final As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_pp_change As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumneffective_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnplan_end_date As DevExpress.XtraGrid.Columns.GridColumn
 End Class
