@@ -20,7 +20,7 @@
         Dim query As String = "SELECT p.id_pp_change, p.number, p.effective_date, p.plan_end_date 
         FROM tb_pp_change p WHERE p.id_report_status=6 "
         If action = "ins" Then
-            query += "AND p.id_design_mkd=1 AND p.plan_end_date>=NOW() "
+            query += "AND p.id_design_mkd=1 AND p.plan_end_date>=DATE(NOW()) "
         End If
         viewSearchLookupQuery(SLEMKD, query, "id_pp_change", "number", "id_pp_change")
     End Sub
