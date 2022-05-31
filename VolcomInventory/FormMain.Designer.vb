@@ -485,6 +485,7 @@ Partial Class FormMain
         Me.NBDesignOrderView = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAgingProductList = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBDropChanges = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBProposeVoucherPOS = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBBankWithdrawal = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBDebitNote = New DevExpress.XtraNavBar.NavBarItem()
@@ -566,7 +567,6 @@ Partial Class FormMain
         Me.NBSampleStorage = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSampleTrf = New DevExpress.XtraNavBar.NavBarItem()
         Me.NavBarItem2 = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBProposeVoucherPOS = New DevExpress.XtraNavBar.NavBarItem()
         Me.MenuImages = New DevExpress.Utils.ImageCollection(Me.components)
         Me.XTMDI = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         Me.BBCompanyContact = New DevExpress.XtraBars.BarButtonItem()
@@ -3418,7 +3418,7 @@ Partial Class FormMain
         '
         'NBPromoRules
         '
-        Me.NBPromoRules.Caption = "Promo Product Rules"
+        Me.NBPromoRules.Caption = "Propose GWP POS"
         Me.NBPromoRules.Name = "NBPromoRules"
         Me.NBPromoRules.SmallImage = CType(resources.GetObject("NBPromoRules.SmallImage"), System.Drawing.Image)
         '
@@ -3793,6 +3793,12 @@ Partial Class FormMain
         Me.NBDropChanges.Caption = "Perubahan Delivery"
         Me.NBDropChanges.Name = "NBDropChanges"
         Me.NBDropChanges.SmallImage = CType(resources.GetObject("NBDropChanges.SmallImage"), System.Drawing.Image)
+        '
+        'NBProposeVoucherPOS
+        '
+        Me.NBProposeVoucherPOS.Caption = "Propose Voucher POS"
+        Me.NBProposeVoucherPOS.Name = "NBProposeVoucherPOS"
+        Me.NBProposeVoucherPOS.SmallImage = CType(resources.GetObject("NBProposeVoucherPOS.SmallImage"), System.Drawing.Image)
         '
         'NBGAccounting
         '
@@ -4296,12 +4302,6 @@ Partial Class FormMain
         '
         Me.NavBarItem2.Caption = "NavBarItem2"
         Me.NavBarItem2.Name = "NavBarItem2"
-        '
-        'NBProposeVoucherPOS
-        '
-        Me.NBProposeVoucherPOS.Caption = "Propose Voucher POS"
-        Me.NBProposeVoucherPOS.Name = "NBProposeVoucherPOS"
-        Me.NBProposeVoucherPOS.SmallImage = CType(resources.GetObject("NBProposeVoucherPOS.SmallImage"), System.Drawing.Image)
         '
         'MenuImages
         '
