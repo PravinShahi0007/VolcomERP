@@ -76,14 +76,16 @@ Public Class FormProductionFinalClearDet
             is_block_int = get_opt_prod_field("is_block_qcr_int")
 
             Dim is_int_po As Boolean = False
+            Dim is_aql As Boolean = False
 
-            Dim qc As String = "SELECT po.id_po_type,co.`id_country`
+            Dim qc As String = "SELECT po.id_po_type,co.`id_country`,IF(ISNULL(vv.id_comp),'2','1') AS is_aql
 FROM tb_prod_order_rec rec
 INNER JOIN tb_prod_order po ON po.id_prod_order=rec.id_prod_order
 INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
 INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
 INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+LEFT JOIN tb_import_rule_vendor vv ON vv.id_comp=comp.id_comp
 INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
 INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
 INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
@@ -94,13 +96,16 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
                 If dt.Rows(0)("id_po_type").ToString = "2" Or Not dt.Rows(0)("id_country").ToString = "5" Then
                     is_int_po = True
                 End If
+                If dt.Rows(0)("is_aql").ToString = "1" Then
+                    is_aql = True
+                End If
             End If
 
             If is_block_int = "1" And is_int_po Then
                 warningCustom("QC Report International tidak dapat dikerjakan untuk sementara waktu")
                 Close()
             Else
-                If is_int_po Then
+                If is_int_po And is_aql Then
                     SLEMetode.EditValue = "2"
                 End If
                 '
