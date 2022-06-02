@@ -12,7 +12,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT f.id_prod_fc,f.id_service_type, f.id_prod_order, po.prod_order_number, po.id_delivery, sd.delivery, s.id_season,s.season, rg.id_range, rg.`range`,
+        Dim query As String = "SELECT f.id_metode_qc,f.id_prod_fc,f.id_service_type, f.id_prod_order, po.prod_order_number, po.id_delivery, sd.delivery, s.id_season,s.season, rg.id_range, rg.`range`,
         v.comp_number AS `vendor_number`, v.comp_name AS `vendor_name`, CONCAT(v.comp_number, ' - ', v.comp_name) AS `vendor`,
         f.id_comp_from, cf.comp_number AS `comp_from_number`, cf.comp_name AS `comp_from_name`, CONCAT(cf.comp_number, ' - ', cf.comp_name) AS `comp_from`,
         f.id_comp_to, ct.comp_number AS `comp_to_number`, ct.comp_name AS `comp_to_name`, CONCAT(ct.comp_number, ' - ', ct.comp_name) AS `comp_to`,
