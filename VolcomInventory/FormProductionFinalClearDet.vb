@@ -21,12 +21,18 @@ Public Class FormProductionFinalClearDet
         viewPLCat()
         viewPLCatSub()
         view_service_type()
+        view_metode_type()
         actionLoad()
     End Sub
 
     Sub view_service_type()
         Dim q As String = "SELECT id_service_type,service_type FROM tb_lookup_service_type"
         viewSearchLookupQuery(SLEServiceNote, q, "id_service_type", "service_type", "id_service_type")
+    End Sub
+
+    Sub view_metode_type()
+        Dim q As String = "SELECT `id_metode_qc`,`metode_qc` FROM `tb_metode_qc`"
+        viewSearchLookupQuery(SLEMetode, q, "id_metode_qc", "metode_qc", "id_metode_qc")
     End Sub
 
     Sub load_cat_rec()
@@ -94,6 +100,10 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
                 warningCustom("QC Report International tidak dapat dikerjakan untuk sementara waktu")
                 Close()
             Else
+                If is_int_po Then
+                    SLEMetode.EditValue = "2"
+                End If
+                '
                 Try
                     'initiation datatable jika blm ada
                     dt.Columns.Add("id_product")
@@ -179,6 +189,7 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
             id_report_status = data.Rows(0)("id_report_status").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LEPLCategory.ItemIndex = LEPLCategory.Properties.GetDataSourceRowIndex("id_pl_category", data.Rows(0)("id_pl_category").ToString)
+            SLEMetode.EditValue = data.Rows(0)("id_metode_qc").ToString
             If Not IsDBNull(data.Rows(0)("id_pl_category_sub")) Then
                 LECLaim.ItemIndex = LECLaim.Properties.GetDataSourceRowIndex("id_pl_category_sub", data.Rows(0)("id_pl_category_sub").ToString)
             Else
@@ -292,6 +303,7 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
         LEPLCategory.Enabled = False
         LECLaim.Enabled = False
         SLEServiceNote.Enabled = False
+        SLEMetode.Enabled = False
         BtnBrowseFrom.Enabled = False
         BtnBrowseTo.Enabled = False
         BtnBrowsePO.Enabled = False
@@ -630,6 +642,7 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
         Report.LDesign.Text = TxtStyleCode.Text + " - " + TxtStyle.Text
         Report.Lcat.Text = LEPLCategory.Text
         Report.LServiceNote.Text = SLEServiceNote.Text
+        Report.LMetode.Text = SLEMetode.Text
 
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
@@ -685,8 +698,8 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     Dim report_mark_type As String = If(id_pl_category = "1", "224", "105")
-                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order,id_prod_order_rec, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status, id_service_type, report_mark_type) "
-                    query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1','" + SLEServiceNote.EditValue.ToString + "', '" + report_mark_type + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order,id_prod_order_rec, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status, id_service_type, report_mark_type, id_metode_qc) "
+                    query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1','" + SLEServiceNote.EditValue.ToString + "', '" + report_mark_type + "','" & SLEMetode.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                     id_prod_fc = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_prod("12")
 
