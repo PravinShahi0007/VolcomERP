@@ -273,7 +273,7 @@ WHERE v.id_pre_cal_fgpo='" & id & "'"
     End Sub
 
     Sub load_vendor()
-        Dim query As String = "(SELECT id_comp, comp_name AS comp_name FROM tb_m_comp WHERE id_comp_cat = 1)"
+        Dim query As String = "(SELECT id_comp, comp_name AS comp_name FROM tb_m_comp WHERE (id_comp_cat = 1 OR id_comp_cat=8))"
         viewSearchLookupQuery(SLEVendorFGPO, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
