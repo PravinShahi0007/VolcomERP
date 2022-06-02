@@ -134,7 +134,7 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name,s
                                 FROM tb_m_comp c
                                 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
                                 INNER JOIN tb_lookup_comp_status sts ON sts.id_comp_status=c.is_active
-                                WHERE (c.id_comp_cat='8' or c.id_comp_cat='1')
+                                WHERE (c.id_comp_cat='8' or c.id_comp_cat='1' or c.id_comp_cat='7')
                                 AND (c.is_active='1' OR c.is_active='2') "
         viewSearchLookupQuery(SLEVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
