@@ -435,7 +435,7 @@ FROM
         INNER JOIN tb_debit_note dn ON dn.`id_debit_note`=dnd.`id_debit_note` AND dnd.`report_mark_type`=22 AND dn.`id_report_status`!=5
         GROUP BY dnd.id_reff
     ) dn ON dn.id_reff=fc.id_prod_fc
-    WHERE fc.id_report_status = '6' AND ISNULL(dn.id_reff) " & q_where & "
+    WHERE fc.id_report_status = '6' AND fc.is_not_claim=2 AND ISNULL(dn.id_reff) " & q_where & "
     GROUP BY fc.`id_prod_fc`
     HAVING (amo_claim_minor + amo_claim_major + amo_claim_afkir) >= 0
 )dn
