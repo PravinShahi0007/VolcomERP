@@ -195,7 +195,7 @@ FROM (
 	(SELECT a.note AS `name`, 5 AS `id_group`, 'Adjustment' AS `group`, IFNULL(a.id_report,0) AS `id_ref`, IFNULL(a.report_mark_type,0) AS `rmt_ref`, IFNULL(a.report_number,'')  AS `ref`, a.adj_value AS `amo`, a.id_acc, 'Manual' AS `recon_type`, '' AS `manual_recon_reason`, a.id_payout_zalora_det_adj, cf.id_comp, cf.comp_number, 6 AS `indeks`,  IFNULL(a.id_report,0)  AS `id_sort`
 	FROM tb_payout_zalora_det_adj a
     INNER JOIN tb_m_comp cf ON cf.id_comp=1
-	WHERE a.id_payout_zalora=" + id + " AND a.adj_value>0)
+	WHERE a.id_payout_zalora=" + id + ")
 )a
 INNER JOIN tb_a_acc coa ON coa.id_acc = a.id_acc
 LEFT JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = a.rmt_ref
