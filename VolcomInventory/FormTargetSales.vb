@@ -47,7 +47,7 @@
         INNER JOIN tb_m_user u ON u.id_user = t.id_created_user
         INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = t.id_report_status 
-        WHERE t.`year`='" + tahun + "' "
+        WHERE t.`year`='" + tahun + "' ORDER BY t.id_b_revenue_propose DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPropose.DataSource = data
         GVPropose.BestFitColumns()
