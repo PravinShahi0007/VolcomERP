@@ -1,13 +1,29 @@
 ﻿Public Class FormTargetSales
-    Private Sub FormTargetSales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Dim dt_json As New Newtonsoft.Json.Linq.JObject()
 
+    Private Sub FormTargetSales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/target-sales-controller")
+        viewYearList()
+        viewYearPropose()
+    End Sub
+
+    Sub viewYearList()
+        viewSearchLookupQueryO(SLEYear, volcomErpApiGetDT(dt_json, 0), "year", "year", "year")
     End Sub
 
     Sub viewYearPropose()
-
+        viewSearchLookupQueryO(SLEYearPropose, volcomErpApiGetDT(dt_json, 1), "year", "year", "year")
     End Sub
 
     Private Sub BtnViewPropose_Click(sender As Object, e As EventArgs) Handles BtnViewPropose.Click
+        viewPropose()
+    End Sub
+
+    Sub refreshProposeList(ByVal is_new_propose As Boolean)
+        If is_new_propose Then
+            dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/target-sales-controller")
+            viewYearPropose()
+        End If
         viewPropose()
     End Sub
 

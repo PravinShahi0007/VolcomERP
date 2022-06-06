@@ -44,11 +44,15 @@ Partial Class FormTargetSales
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_confirm = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEYear = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCSalesTarget, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesTarget.SuspendLayout()
         Me.XTPList.SuspendLayout()
         Me.XTPPropose.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEYearPropose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +61,8 @@ Partial Class FormTargetSales
         Me.PanelControl3.SuspendLayout()
         CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPropose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSalesTarget
@@ -87,6 +93,8 @@ Partial Class FormTargetSales
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLEYear)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -116,6 +124,8 @@ Partial Class FormTargetSales
         Me.SLEYearPropose.Location = New System.Drawing.Point(37, 10)
         Me.SLEYearPropose.Name = "SLEYearPropose"
         Me.SLEYearPropose.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEYearPropose.Properties.NullText = "- Select Year -"
+        Me.SLEYearPropose.Properties.ShowClearButton = False
         Me.SLEYearPropose.Properties.View = Me.SearchLookUpEdit1View
         Me.SLEYearPropose.Size = New System.Drawing.Size(140, 20)
         Me.SLEYearPropose.TabIndex = 2
@@ -267,6 +277,32 @@ Partial Class FormTargetSales
         Me.GridColumnis_confirm.FieldName = "is_confirm"
         Me.GridColumnis_confirm.Name = "GridColumnis_confirm"
         '
+        'SLEYear
+        '
+        Me.SLEYear.Location = New System.Drawing.Point(41, 19)
+        Me.SLEYear.Name = "SLEYear"
+        Me.SLEYear.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEYear.Properties.NullText = "- Select Year -"
+        Me.SLEYear.Properties.ShowClearButton = False
+        Me.SLEYear.Properties.View = Me.GridView1
+        Me.SLEYear.Size = New System.Drawing.Size(140, 20)
+        Me.SLEYear.TabIndex = 3
+        '
+        'GridView1
+        '
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(13, 22)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl2.TabIndex = 4
+        Me.LabelControl2.Text = "Year"
+        '
         'FormTargetSales
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -282,6 +318,8 @@ Partial Class FormTargetSales
         Me.XTPList.ResumeLayout(False)
         Me.XTPPropose.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.SLEYearPropose.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -291,6 +329,8 @@ Partial Class FormTargetSales
         Me.PanelControl3.PerformLayout()
         CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPropose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -319,4 +359,7 @@ Partial Class FormTargetSales
     Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_confirm As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEYear As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class
