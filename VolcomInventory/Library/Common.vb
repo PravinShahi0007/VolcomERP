@@ -7884,8 +7884,8 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
 
         Dim erp_api As DataTable = execute_query("SELECT erp_api_host, erp_api_email, erp_api_password FROM tb_opt LIMIT 1", -1, True, "", "", "", "")
 
-        'volcom_erp_api_host = "http://127.0.0.1:8000/"
-        volcom_erp_api_host = erp_api.Rows(0)("erp_api_host").ToString
+        volcom_erp_api_host = "http://127.0.0.1:8000/"
+        'volcom_erp_api_host = erp_api.Rows(0)("erp_api_host").ToString
         volcom_erp_api_email = erp_api.Rows(0)("erp_api_email").ToString
         volcom_erp_api_password = erp_api.Rows(0)("erp_api_password").ToString
 

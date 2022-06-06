@@ -8136,6 +8136,12 @@
     <Compile Include="FormTabunganMissing.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormTargetSales.Designer.vb">
+      <DependentUpon>FormTargetSales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTargetSales.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormTemplateCode.Designer.vb">
       <DependentUpon>FormTemplateCode.vb</DependentUpon>
     </Compile>
@@ -15316,6 +15322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTabunganMissing.resx">
       <DependentUpon>FormTabunganMissing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTargetSales.resx">
+      <DependentUpon>FormTargetSales.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTemplateCode.resx">
       <DependentUpon>FormTemplateCode.vb</DependentUpon>
