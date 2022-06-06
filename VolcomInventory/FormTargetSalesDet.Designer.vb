@@ -21,6 +21,7 @@ Partial Class FormTargetSalesDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormTargetSalesDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtYear = New DevExpress.XtraEditors.TextEdit()
         Me.BtnChangeEffectiveDate = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelEffectiveDate = New DevExpress.XtraEditors.LabelControl()
@@ -44,11 +45,11 @@ Partial Class FormTargetSalesDet
         Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtYear = New DevExpress.XtraEditors.TextEdit()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
+        CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -60,7 +61,6 @@ Partial Class FormTargetSalesDet
         Me.PanelControlNav.SuspendLayout()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
-        CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -80,6 +80,18 @@ Partial Class FormTargetSalesDet
         Me.GroupControlHead.Name = "GroupControlHead"
         Me.GroupControlHead.Size = New System.Drawing.Size(798, 118)
         Me.GroupControlHead.TabIndex = 13
+        '
+        'TxtYear
+        '
+        Me.TxtYear.Location = New System.Drawing.Point(94, 14)
+        Me.TxtYear.Name = "TxtYear"
+        Me.TxtYear.Properties.DisplayFormat.FormatString = "F0"
+        Me.TxtYear.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtYear.Properties.Mask.EditMask = "f0"
+        Me.TxtYear.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtYear.Properties.MaxLength = 4
+        Me.TxtYear.Size = New System.Drawing.Size(323, 20)
+        Me.TxtYear.TabIndex = 23
         '
         'BtnChangeEffectiveDate
         '
@@ -334,18 +346,6 @@ Partial Class FormTargetSalesDet
         Me.BtnConfirm.Text = "Confirm"
         Me.BtnConfirm.Visible = False
         '
-        'TxtYear
-        '
-        Me.TxtYear.Location = New System.Drawing.Point(94, 14)
-        Me.TxtYear.Name = "TxtYear"
-        Me.TxtYear.Properties.DisplayFormat.FormatString = "F0"
-        Me.TxtYear.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtYear.Properties.Mask.EditMask = "f0"
-        Me.TxtYear.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtYear.Properties.MaxLength = 4
-        Me.TxtYear.Size = New System.Drawing.Size(323, 20)
-        Me.TxtYear.TabIndex = 23
-        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
@@ -381,6 +381,7 @@ Partial Class FormTargetSalesDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
+        CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -393,7 +394,6 @@ Partial Class FormTargetSalesDet
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
-        CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
