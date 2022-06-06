@@ -25,7 +25,7 @@
         If action = "ins" Then
             BtnCreateNew.Visible = True
             Width = 459
-            Height = 155
+            Height = 170
             WindowState = FormWindowState.Normal
             MaximizeBox = False
             StartPosition = FormStartPosition.CenterScreen
@@ -53,6 +53,7 @@
             TxtYear.EditValue = data.Rows(0)("year").ToString
             MENote.Text = data.Rows(0)("note").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
+            TxtType.Text = data.Rows(0)("proposal_type").ToString
 
             'detail
             viewDetail()
@@ -143,6 +144,14 @@
             Dim query_head As String = "INSERT INTO tb_b_revenue_propose(year, total, created_date, id_created_user, note, id_report_status, is_confirm)
             VALUES('" + year + "', '0', NOW(), '" + id_user + "', '" + note + "',1,2); SELECT LAST_INSERT_ID(); "
             id = execute_query(query_head, 0, True, "", "", "", "")
+
+            'cek type
+            Dim qc As String = "SELECT * FROM tb_b_revenue_propose WHERE year='" + year + "' AND id_b_revenue_propose!='" + id + "' AND id_report_status!=5 "
+            Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dc.Rows.Count > 0 Then
+                execute_non_query("UPDATE tb_b_revenue_propose SET id_proposal_type=2 WHERE id_b_revenue_propose='" + id + "'", True, "", "", "", "")
+            End If
+
             'update number
             execute_non_query("CALL gen_number('" + id + "', '" + rmt + "');", True, "", "", "", "")
             FormTargetSales.refreshProposeList(True)

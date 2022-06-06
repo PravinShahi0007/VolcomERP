@@ -48,6 +48,8 @@ Partial Class FormTargetSalesDet
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtType = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,6 +66,7 @@ Partial Class FormTargetSalesDet
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -79,7 +82,7 @@ Partial Class FormTargetSalesDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(798, 118)
+        Me.GroupControlHead.Size = New System.Drawing.Size(798, 130)
         Me.GroupControlHead.TabIndex = 13
         '
         'TxtYear
@@ -109,7 +112,7 @@ Partial Class FormTargetSalesDet
         Me.BtnCreateNew.Image = CType(resources.GetObject("BtnCreateNew.Image"), System.Drawing.Image)
         Me.BtnCreateNew.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
         Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.BtnCreateNew.Location = New System.Drawing.Point(20, 87)
+        Me.BtnCreateNew.Location = New System.Drawing.Point(20, 99)
         Me.BtnCreateNew.Name = "BtnCreateNew"
         Me.BtnCreateNew.Size = New System.Drawing.Size(525, 29)
         Me.BtnCreateNew.TabIndex = 8925
@@ -145,6 +148,8 @@ Partial Class FormTargetSalesDet
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.TxtType)
         Me.PanelControl1.Controls.Add(Me.LabelControl21)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
         Me.PanelControl1.Controls.Add(Me.LEReportStatus)
@@ -154,13 +159,13 @@ Partial Class FormTargetSalesDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(545, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(251, 114)
+        Me.PanelControl1.Size = New System.Drawing.Size(251, 126)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl21
         '
         Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl21.Location = New System.Drawing.Point(10, 66)
+        Me.LabelControl21.Location = New System.Drawing.Point(10, 92)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -169,7 +174,7 @@ Partial Class FormTargetSalesDet
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(10, 41)
+        Me.LabelControl4.Location = New System.Drawing.Point(10, 67)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl4.TabIndex = 7
@@ -178,7 +183,7 @@ Partial Class FormTargetSalesDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(64, 63)
+        Me.LEReportStatus.Location = New System.Drawing.Point(64, 89)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
@@ -195,7 +200,7 @@ Partial Class FormTargetSalesDet
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(64, 38)
+        Me.DECreated.Location = New System.Drawing.Point(64, 64)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
@@ -231,7 +236,7 @@ Partial Class FormTargetSalesDet
         Me.PanelControlNav.Controls.Add(Me.BtnDeletePTH)
         Me.PanelControlNav.Controls.Add(Me.BtnAddPTH)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(0, 118)
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 130)
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(798, 62)
         Me.PanelControlNav.TabIndex = 21
@@ -351,10 +356,10 @@ Partial Class FormTargetSalesDet
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 180)
+        Me.GCData.Location = New System.Drawing.Point(0, 192)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(798, 322)
+        Me.GCData.Size = New System.Drawing.Size(798, 310)
         Me.GCData.TabIndex = 23
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -370,11 +375,30 @@ Partial Class FormTargetSalesDet
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(20, 25)
+        Me.LabelControl1.Location = New System.Drawing.Point(20, 22)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl1.TabIndex = 8935
         Me.LabelControl1.Text = "View Option"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(10, 41)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl3.TabIndex = 8927
+        Me.LabelControl3.Text = "Type"
+        '
+        'TxtType
+        '
+        Me.TxtType.Enabled = False
+        Me.TxtType.Location = New System.Drawing.Point(64, 38)
+        Me.TxtType.Name = "TxtType"
+        Me.TxtType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtType.Properties.Appearance.Options.UseFont = True
+        Me.TxtType.Size = New System.Drawing.Size(172, 20)
+        Me.TxtType.TabIndex = 148
         '
         'FormTargetSalesDet
         '
@@ -408,6 +432,7 @@ Partial Class FormTargetSalesDet
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -440,4 +465,6 @@ Partial Class FormTargetSalesDet
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtType As DevExpress.XtraEditors.TextEdit
 End Class

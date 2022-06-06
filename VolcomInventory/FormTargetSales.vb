@@ -101,4 +101,8 @@
             viewDetail()
         End If
     End Sub
+
+    Private Sub BtnCreateNew_Click(sender As Object, e As EventArgs) Handles BtnCreateNew.Click
+        createNew()
+    End Sub
 End Class
