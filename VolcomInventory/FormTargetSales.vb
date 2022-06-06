@@ -1,10 +1,16 @@
 ﻿Public Class FormTargetSales
     Dim dt_json As New Newtonsoft.Json.Linq.JObject()
+    Public is_test As String = "-1"
+    Public is_load_new As Boolean = False
+
 
     Private Sub FormTargetSales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/target-sales-controller")
         viewYearList()
         viewYearPropose()
+        If is_test = "1" Then
+            createNew()
+        End If
     End Sub
 
     Sub viewYearList()
@@ -59,5 +65,40 @@
 
     Private Sub FormTargetSales_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Sub viewDetail()
+        If GVPropose.RowCount > 0 And GVPropose.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormTargetSalesDet.id = GVPropose.GetFocusedRowCellValue("id_b_revenue_propose").ToString
+            FormTargetSalesDet.action = "upd"
+            FormTargetSalesDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub printList()
+        Cursor = Cursors.WaitCursor
+        print(GCPropose, "Propose Sales Target List")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub createNew()
+        Cursor = Cursors.WaitCursor
+        FormTargetSalesDet.action = "ins"
+        FormTargetSalesDet.ShowDialog()
+        loadNewDetail()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVPropose_DoubleClick(sender As Object, e As EventArgs) Handles GVPropose.DoubleClick
+        viewDetail()
+    End Sub
+
+    Sub loadNewDetail()
+        If is_load_new Then
+            is_load_new = False
+            viewDetail()
+        End If
     End Sub
 End Class
