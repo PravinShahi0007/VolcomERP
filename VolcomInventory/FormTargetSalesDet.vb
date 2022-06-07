@@ -336,6 +336,8 @@
     End Sub
 
     Private Sub BtnAddPTH_Click(sender As Object, e As EventArgs) Handles BtnAddPTH.Click
-
+        Cursor = Cursors.WaitCursor
+        FormTargetSalesSingle.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
