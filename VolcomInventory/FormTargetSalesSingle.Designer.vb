@@ -21,26 +21,28 @@ Partial Class FormTargetSalesSingle
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormTargetSalesSingle))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_month = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnmonth = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnvalue_bef = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnvalue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -53,16 +55,6 @@ Partial Class FormTargetSalesSingle
         Me.PanelControl1.Size = New System.Drawing.Size(595, 43)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnConfirm
-        '
-        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(504, 2)
-        Me.BtnConfirm.Name = "BtnConfirm"
-        Me.BtnConfirm.Size = New System.Drawing.Size(89, 39)
-        Me.BtnConfirm.TabIndex = 1
-        Me.BtnConfirm.Text = "Confirm"
-        '
         'BtnDiscard
         '
         Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Right
@@ -73,6 +65,16 @@ Partial Class FormTargetSalesSingle
         Me.BtnDiscard.TabIndex = 2
         Me.BtnDiscard.Text = "Discard"
         '
+        'BtnConfirm
+        '
+        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
+        Me.BtnConfirm.Location = New System.Drawing.Point(504, 2)
+        Me.BtnConfirm.Name = "BtnConfirm"
+        Me.BtnConfirm.Size = New System.Drawing.Size(89, 39)
+        Me.BtnConfirm.TabIndex = 1
+        Me.BtnConfirm.Text = "Confirm"
+        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.SLEStore)
@@ -82,6 +84,26 @@ Partial Class FormTargetSalesSingle
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(595, 47)
         Me.PanelControl2.TabIndex = 1
+        '
+        'SLEStore
+        '
+        Me.SLEStore.Location = New System.Drawing.Point(63, 10)
+        Me.SLEStore.Name = "SLEStore"
+        Me.SLEStore.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEStore.Properties.Appearance.Options.UseFont = True
+        Me.SLEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStore.Properties.NullText = "- Select Store -"
+        Me.SLEStore.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEStore.Size = New System.Drawing.Size(517, 24)
+        Me.SLEStore.TabIndex = 1
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp, Me.GridColumncomp})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'LabelControl1
         '
@@ -112,25 +134,6 @@ Partial Class FormTargetSalesSingle
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'SLEStore
-        '
-        Me.SLEStore.Location = New System.Drawing.Point(63, 10)
-        Me.SLEStore.Name = "SLEStore"
-        Me.SLEStore.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLEStore.Properties.Appearance.Options.UseFont = True
-        Me.SLEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEStore.Properties.NullText = "- Select Store -"
-        Me.SLEStore.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEStore.Size = New System.Drawing.Size(517, 24)
-        Me.SLEStore.TabIndex = 1
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'GridColumnid_month
         '
@@ -175,6 +178,20 @@ Partial Class FormTargetSalesSingle
         Me.GridColumnvalue.Visible = True
         Me.GridColumnvalue.VisibleIndex = 2
         '
+        'GridColumnid_comp
+        '
+        Me.GridColumnid_comp.Caption = "id_comp"
+        Me.GridColumnid_comp.FieldName = "id_comp"
+        Me.GridColumnid_comp.Name = "GridColumnid_comp"
+        '
+        'GridColumncomp
+        '
+        Me.GridColumncomp.Caption = "Store"
+        Me.GridColumncomp.FieldName = "comp"
+        Me.GridColumncomp.Name = "GridColumncomp"
+        Me.GridColumncomp.Visible = True
+        Me.GridColumncomp.VisibleIndex = 0
+        '
         'FormTargetSalesSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -192,10 +209,10 @@ Partial Class FormTargetSalesSingle
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -213,4 +230,6 @@ Partial Class FormTargetSalesSingle
     Friend WithEvents GridColumnmonth As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnvalue_bef As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnvalue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_comp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp As DevExpress.XtraGrid.Columns.GridColumn
 End Class

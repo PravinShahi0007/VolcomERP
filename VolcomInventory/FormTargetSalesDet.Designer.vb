@@ -37,7 +37,6 @@ Partial Class FormTargetSalesDet
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnDeletePTH = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddPTH = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
@@ -251,7 +250,6 @@ Partial Class FormTargetSalesDet
         '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.LabelControl1)
         Me.PanelControlNav.Controls.Add(Me.BtnDeletePTH)
         Me.PanelControlNav.Controls.Add(Me.BtnAddPTH)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
@@ -259,15 +257,6 @@ Partial Class FormTargetSalesDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(798, 62)
         Me.PanelControlNav.TabIndex = 21
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(20, 22)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl1.TabIndex = 8935
-        Me.LabelControl1.Text = "View Option"
         '
         'BtnDeletePTH
         '
@@ -428,7 +417,6 @@ Partial Class FormTargetSalesDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
-        Me.PanelControlNav.PerformLayout()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
@@ -464,7 +452,6 @@ Partial Class FormTargetSalesDet
     Friend WithEvents TxtYear As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtType As DevExpress.XtraEditors.TextEdit
 End Class
