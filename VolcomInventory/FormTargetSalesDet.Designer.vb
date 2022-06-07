@@ -37,6 +37,10 @@ Partial Class FormTargetSalesDet
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlOptionView = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEOptionView = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnDeletePTH = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddPTH = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
@@ -48,7 +52,7 @@ Partial Class FormTargetSalesDet
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,6 +66,10 @@ Partial Class FormTargetSalesDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.PanelControlOptionView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlOptionView.SuspendLayout()
+        CType(Me.SLEOptionView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -250,22 +258,58 @@ Partial Class FormTargetSalesDet
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.PanelControlOptionView)
         Me.PanelControlNav.Controls.Add(Me.BtnDeletePTH)
         Me.PanelControlNav.Controls.Add(Me.BtnAddPTH)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 130)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(798, 62)
+        Me.PanelControlNav.Size = New System.Drawing.Size(798, 42)
         Me.PanelControlNav.TabIndex = 21
+        '
+        'PanelControlOptionView
+        '
+        Me.PanelControlOptionView.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlOptionView.Controls.Add(Me.SLEOptionView)
+        Me.PanelControlOptionView.Controls.Add(Me.LabelControl1)
+        Me.PanelControlOptionView.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlOptionView.Location = New System.Drawing.Point(401, 2)
+        Me.PanelControlOptionView.Name = "PanelControlOptionView"
+        Me.PanelControlOptionView.Size = New System.Drawing.Size(238, 38)
+        Me.PanelControlOptionView.TabIndex = 8937
+        '
+        'SLEOptionView
+        '
+        Me.SLEOptionView.Location = New System.Drawing.Point(72, 9)
+        Me.SLEOptionView.Name = "SLEOptionView"
+        Me.SLEOptionView.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEOptionView.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEOptionView.Size = New System.Drawing.Size(160, 20)
+        Me.SLEOptionView.TabIndex = 8936
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(9, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl1.TabIndex = 8935
+        Me.LabelControl1.Text = "Option View"
         '
         'BtnDeletePTH
         '
         Me.BtnDeletePTH.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDeletePTH.Image = CType(resources.GetObject("BtnDeletePTH.Image"), System.Drawing.Image)
-        Me.BtnDeletePTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnDeletePTH.Location = New System.Drawing.Point(660, 2)
+        Me.BtnDeletePTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
+        Me.BtnDeletePTH.Location = New System.Drawing.Point(639, 2)
         Me.BtnDeletePTH.Name = "BtnDeletePTH"
-        Me.BtnDeletePTH.Size = New System.Drawing.Size(68, 58)
+        Me.BtnDeletePTH.Size = New System.Drawing.Size(82, 38)
         Me.BtnDeletePTH.TabIndex = 8934
         Me.BtnDeletePTH.Text = "Delete"
         '
@@ -273,10 +317,10 @@ Partial Class FormTargetSalesDet
         '
         Me.BtnAddPTH.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddPTH.Image = CType(resources.GetObject("BtnAddPTH.Image"), System.Drawing.Image)
-        Me.BtnAddPTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnAddPTH.Location = New System.Drawing.Point(728, 2)
+        Me.BtnAddPTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
+        Me.BtnAddPTH.Location = New System.Drawing.Point(721, 2)
         Me.BtnAddPTH.Name = "BtnAddPTH"
-        Me.BtnAddPTH.Size = New System.Drawing.Size(68, 58)
+        Me.BtnAddPTH.Size = New System.Drawing.Size(75, 38)
         Me.BtnAddPTH.TabIndex = 8933
         Me.BtnAddPTH.Text = "Add"
         '
@@ -372,11 +416,10 @@ Partial Class FormTargetSalesDet
         '
         'GCData
         '
-        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 192)
+        Me.GCData.Location = New System.Drawing.Point(0, 172)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(798, 310)
+        Me.GCData.Size = New System.Drawing.Size(798, 330)
         Me.GCData.TabIndex = 23
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -417,6 +460,11 @@ Partial Class FormTargetSalesDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
+        CType(Me.PanelControlOptionView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlOptionView.ResumeLayout(False)
+        Me.PanelControlOptionView.PerformLayout()
+        CType(Me.SLEOptionView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
@@ -451,7 +499,11 @@ Partial Class FormTargetSalesDet
     Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtYear As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLEOptionView As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents PanelControlOptionView As DevExpress.XtraEditors.PanelControl
 End Class

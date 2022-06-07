@@ -6,10 +6,12 @@
     Dim is_confirm As String = "-1"
     Dim rmt As String = "414"
     Dim dt_json As New Newtonsoft.Json.Linq.JObject()
+    Dim id_proposal_type As String = "-1"
 
     Private Sub FormTargetSalesDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/target-sales-det-controller/" + id + "")
         viewReportStatus()
+        viewOption()
         actionLoad()
     End Sub
 
@@ -19,6 +21,10 @@
 
     Sub viewReportStatus()
         viewLookupQueryO(LEReportStatus, volcomErpApiGetDT(dt_json, 0), 0, "report_status", "id_report_status")
+    End Sub
+
+    Sub viewOption()
+        viewSearchLookupQueryO(SLEOptionView, volcomErpApiGetDT(dt_json, 2), "id_type_view", "type_view", "id_type_view")
     End Sub
 
     Sub actionLoad()
@@ -54,20 +60,142 @@
             MENote.Text = data.Rows(0)("note").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
             TxtType.Text = data.Rows(0)("proposal_type").ToString
+            id_proposal_type = data.Rows(0)("id_proposal_type").ToString
+            If id_proposal_type = "1" Then
+                SLEOptionView.Enabled = False
+                PanelControlOptionView.Visible = False
+
+                'hide band current
+                For i As Integer = 0 To GVData.Bands.VisibleBandCount - 1
+                    Try
+                        If GVData.Bands.GetVisibleBand(i).Caption.ToString = "CURRENT" Then
+                            GVData.Bands.GetVisibleBand(i).Visible = False
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+
+                Next i
+            End If
+            If is_confirm = "1" Then
+                SLEOptionView.EditValue = "2"
+            End If
 
             'detail
-            viewDetail()
             allowStatus()
         End If
     End Sub
 
     Sub viewDetail()
-        'Cursor = Cursors.WaitCursor
-        'Dim query As String = ""
-        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        'GCData.DataSource = data
-        'GVData.BestFitColumns()
-        'Cursor = Cursors.Default
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Build query")
+        Dim id_option_view As String = ""
+        Try
+            id_option_view = SLEOptionView.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Dim qm As String = "SELECT m.id_month, m.`month` FROM tb_lookup_month m ORDER BY m.id_month ASC "
+        Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
+        Dim col_curr As String = ""
+        Dim col_new As String = ""
+        For m As Integer = 0 To dm.Rows.Count - 1
+            If m > 0 Then
+                col_curr += ","
+                col_new += ","
+            End If
+            col_curr += "SUM(CASE WHEN ptd.`month`=" + dm.Rows(m)("id_month").ToString + " THEN ptd.value_before END) AS `CURRENT|" + dm.Rows(m)("month").ToString + "` "
+            col_new += "SUM(CASE WHEN ptd.`month`=" + dm.Rows(m)("id_month").ToString + " THEN ptd.value_propose END) AS `NEW PROPOSE|" + dm.Rows(m)("month").ToString + "` "
+        Next
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Load data")
+        Dim query As String = "SELECT ptd.id_store AS `INFO|id_store`, MAX(c.comp_number) AS `INFO|STORE ACC.`, MAX(c.comp_name) AS `INFO|STORE`,ptd.type_view AS `INFO|type_view`,
+        " + col_curr + ",
+        SUM(ptd.value_before) AS `CURRENT|TOTAL`,
+        " + col_new + ",
+        SUM(ptd.value_propose) AS `NEW PROPOSE|TOTAL`
+        FROM (
+	        SELECT ptd.id_store, ptd.`month`, ptd.value_before, ptd.value_propose, 1 AS `type_view` 
+	        FROM tb_b_revenue_propose_det ptd
+	        WHERE ptd.id_b_revenue_propose='" + id + "' "
+        If id_option_view = "2" Then
+            query += "UNION ALL
+	        SELECT t.id_store, t.`month`, t.b_revenue AS `value_before`, 0.00 AS `value_propose`, 2 AS `type_view` 
+	        FROM tb_b_revenue t 
+	        LEFT JOIN tb_b_revenue_propose_det ptd ON ptd.id_store = t.id_store AND ptd.id_b_revenue_propose='" + id + "'
+	        WHERE t.`year`='" + TxtYear.Text + "' AND t.is_active=1 AND ISNULL(ptd.id_store) "
+        End If
+        query += ") ptd
+        INNER JOIN tb_m_comp c ON c.id_comp = ptd.id_store
+        GROUP BY ptd.id_store
+        ORDER BY `INFO|type_view` ASC, `INFO|STORE ACC.` ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Setup view data")
+        'clear band
+        GVData.Bands.Clear()
+        GVData.Columns.Clear()
+        'array kolom
+        Dim column As List(Of String) = New List(Of String)
+        For i = 0 To data.Columns.Count - 1
+            Dim bandName As String = data.Columns(i).Caption.Split("|")(0)
+
+            If Not column.Contains(bandName) Then
+                column.Add(bandName)
+            End If
+        Next
+        'setu band
+        For i = 0 To column.Count - 1
+            Dim band As DevExpress.XtraGrid.Views.BandedGrid.GridBand = New DevExpress.XtraGrid.Views.BandedGrid.GridBand
+
+            band.Caption = column(i)
+
+            GVData.Bands.Add(band)
+
+            For j = 0 To data.Columns.Count - 1
+                Dim bandName As String = data.Columns(j).Caption.Split("|")(0)
+                Dim coluName As String = data.Columns(j).Caption.Split("|")(1)
+
+                If bandName = column(i) Then
+                    Dim col As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+
+                    col.Caption = coluName
+                    col.VisibleIndex = j
+                    col.FieldName = data.Columns(j).Caption
+
+                    band.Columns.Add(col)
+
+                    If Not bandName.Contains("INFO") Then
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n0}"
+
+                        'summary
+                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        col.SummaryItem.DisplayFormat = "{0:n0}"
+
+
+                        'group summary
+                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                        summary.DisplayFormat = "{0:N0}"
+                        summary.FieldName = data.Columns(j).Caption
+                        summary.ShowInGroupColumnFooter = col
+                        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        GVData.GroupSummary.Add(summary)
+                    End If
+                End If
+            Next
+        Next
+        GVData.Columns("INFO|id_store").Visible = False
+        GVData.Columns("INFO|type_view").Visible = False
+
+        GVData.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
     End Sub
 
     Sub allowStatus()
@@ -317,7 +445,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
@@ -339,5 +467,27 @@
         Cursor = Cursors.WaitCursor
         FormTargetSalesSingle.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEOptionView_EditValueChanged(sender As Object, e As EventArgs) Handles SLEOptionView.EditValueChanged
+        Dim id_option_view As String = ""
+        Try
+            id_option_view = SLEOptionView.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        If id_option_view = "1" Then
+            BtnAddPTH.Enabled = True
+            BtnDeletePTH.Enabled = True
+        Else
+            BtnAddPTH.Enabled = False
+            BtnDeletePTH.Enabled = False
+        End If
+        viewDetail()
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And id_report_status = "1" And is_confirm = "2" And SLEOptionView.EditValue.ToString = "1" Then
+            'edit link
+        End If
     End Sub
 End Class
