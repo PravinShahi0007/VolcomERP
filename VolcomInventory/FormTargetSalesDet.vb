@@ -111,7 +111,7 @@
 	        WHERE ptd.id_b_revenue_propose='" + id + "' "
         If id_option_view = "2" Then
             query += "UNION ALL
-	        SELECT t.id_store, t.`month`, t.b_revenue AS `value_before`, 0.00 AS `value_propose`, 2 AS `type_view` 
+	        SELECT t.id_store, t.`month`, t.b_revenue AS `value_before`, t.b_revenue AS `value_propose`, 2 AS `type_view` 
 	        FROM tb_b_revenue t 
 	        LEFT JOIN tb_b_revenue_propose_det ptd ON ptd.id_store = t.id_store AND ptd.id_b_revenue_propose='" + id + "'
 	        WHERE t.`year`='" + TxtYear.Text + "' AND t.is_active=1 AND ISNULL(ptd.id_store) "
@@ -291,7 +291,11 @@
             FormTargetSales.is_load_new = True
             Close()
         ElseIf action = "upd" Then
-            Dim query As String = "UPDATE tb_b_revenue_propose SET note='" + note + "' WHERE id_b_revenue_propose='" + id + "' "
+            GCData.RefreshDataSource()
+            GVData.RefreshData()
+            Dim total As String = decimalSQL(GVData.Columns("NEW PROPOSE|TTL").SummaryItem.SummaryValue)
+
+            Dim query As String = "UPDATE tb_b_revenue_propose SET note='" + note + "',total='" + total + "' WHERE id_b_revenue_propose='" + id + "' "
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
@@ -314,9 +318,6 @@
                 Cursor = Cursors.WaitCursor
                 'update 
                 saveHead()
-
-                'update total
-                updateTotal()
 
                 'update confirm
                 Dim query As String = "UPDATE tb_b_revenue_propose SET is_confirm=1 WHERE id_b_revenue_propose='" + id + "'"
@@ -342,9 +343,6 @@
                 Try
                     'head
                     saveHead()
-
-                    'update total
-                    updateTotal()
 
                     'actionLoad()
                     FormTargetSales.refreshProposeList(False)
@@ -533,19 +531,5 @@
             FormTargetSalesSingle.id_store = GVData.GetFocusedRowCellValue("INFO|id_store").ToString
             FormTargetSalesSingle.ShowDialog()
         End If
-    End Sub
-
-    Sub updateTotal()
-        Cursor = Cursors.WaitCursor
-        Dim query As String = "UPDATE tb_b_revenue_propose main
-        INNER JOIN (
-	        SELECT ptd.id_b_revenue_propose, SUM(ptd.value_propose) AS `ttl`
-	        FROM tb_b_revenue_propose_det ptd
-	        WHERE ptd.id_b_revenue_propose='" + id + "'
-	        GROUP BY ptd.id_b_revenue_propose
-        ) src ON src.id_b_revenue_propose = main.id_b_revenue_propose
-        SET main.total = src.ttl "
-        execute_non_query(query, True, "", "", "", "")
-        Cursor = Cursors.Default
     End Sub
 End Class
