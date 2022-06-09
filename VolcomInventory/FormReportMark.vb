@@ -12300,6 +12300,24 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
 
             If id_status_reportx = "6" Then
                 'jika complete
+                Dim qf As String = "-- update non active
+                UPDATE tb_b_revenue main
+                INNER JOIN (
+	                SELECT pt.`year`, ptd.id_store
+	                FROM tb_b_revenue_propose_det ptd
+	                INNER JOIN tb_b_revenue_propose pt ON pt.id_b_revenue_propose = ptd.id_b_revenue_propose
+	                WHERE ptd.id_b_revenue_propose='" + id_report + "'
+	                GROUP BY ptd.id_store
+                ) src ON src.`year` = main.`year` AND src.id_store = main.id_store
+                SET main.is_active=2
+                WHERE main.is_active=1; 
+                -- insert active
+                INSERT INTO tb_b_revenue(id_b_revenue_propose, `year`, `month`, id_store, b_revenue, is_active)
+                SELECT ptd.id_b_revenue_propose, pt.`year`, ptd.`month`, ptd.id_store, ptd.value_propose,1
+                FROM tb_b_revenue_propose_det ptd
+                INNER JOIN tb_b_revenue_propose pt ON pt.id_b_revenue_propose = ptd.id_b_revenue_propose
+                WHERE ptd.id_b_revenue_propose='" + id_report + "' "
+                execute_non_query(qf, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_b_revenue_propose SET id_report_status = '{0}' WHERE id_b_revenue_propose = '{1}'", id_status_reportx, id_report)
