@@ -31,7 +31,7 @@
         If action = "ins" Then
             BtnCreateNew.Visible = True
             Width = 459
-            Height = 170
+            Height = 150
             WindowState = FormWindowState.Normal
             MaximizeBox = False
             StartPosition = FormStartPosition.CenterScreen
@@ -86,7 +86,7 @@
             id_option_view = SLEOptionView.EditValue.ToString
         Catch ex As Exception
         End Try
-        Dim qm As String = "SELECT m.id_month, UPPER(m.`month`) AS `month` FROM tb_lookup_month m ORDER BY m.id_month ASC "
+        Dim qm As String = "SELECT m.id_month, UPPER(m.`month_short`) AS `month` FROM tb_lookup_month m ORDER BY m.id_month ASC "
         Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
         Dim col_curr As String = ""
         Dim col_new As String = ""
@@ -100,7 +100,7 @@
         Next
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Load data")
-        Dim query As String = "SELECT ptd.id_store AS `INFO|id_store`, MAX(c.comp_number) AS `INFO|STORE ACC.`, MAX(c.comp_name) AS `INFO|STORE`,ptd.type_view AS `INFO|type_view`,
+        Dim query As String = "SELECT ptd.id_store AS `INFO|id_store`, MAX(c.comp_number) AS `INFO|ACC.`, MAX(c.comp_name) AS `INFO|STORE`,ptd.type_view AS `INFO|type_view`,
         " + col_curr + ",
         SUM(ptd.value_before) AS `CURRENT|TOTAL`,
         " + col_new + ",
@@ -119,7 +119,7 @@
         query += ") ptd
         INNER JOIN tb_m_comp c ON c.id_comp = ptd.id_store
         GROUP BY ptd.id_store
-        ORDER BY `INFO|type_view` ASC, `INFO|STORE ACC.` ASC "
+        ORDER BY `INFO|type_view` ASC, `INFO|ACC.` ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
 
@@ -183,15 +183,17 @@
         GVData.Columns("INFO|type_view").Visible = False
 
         'hide band current
-        For i As Integer = 0 To GVData.Bands.VisibleBandCount - 1
-            Try
-                If GVData.Bands.GetVisibleBand(i).Caption.ToString = "CURRENT" Then
-                    GVData.Bands.GetVisibleBand(i).Visible = False
-                End If
-            Catch ex As Exception
+        If id_proposal_type = "1" Then
+            For i As Integer = 0 To GVData.Bands.VisibleBandCount - 1
+                Try
+                    If GVData.Bands.GetVisibleBand(i).Caption.ToString = "CURRENT" Then
+                        GVData.Bands.GetVisibleBand(i).Visible = False
+                    End If
+                Catch ex As Exception
 
-            End Try
-        Next i
+                End Try
+            Next i
+        End If
 
         GVData.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -404,35 +406,67 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        'Cursor = Cursors.WaitCursor
-        'ReportDropChanges.id = id
-        'ReportDropChanges.dt = GCData.DataSource
-        'ReportDropChanges.rmt = rmt
-        'Dim Report As New ReportDropChanges()
+        Cursor = Cursors.WaitCursor
+        ReportTargetSales.id = id
+        ReportTargetSales.dt = GCData.DataSource
+        ReportTargetSales.rmt = rmt
+        Dim Report As New ReportTargetSales()
 
-        ''... 
-        '' creating and saving the view's layout to a new memory stream 
-        'Dim str As System.IO.Stream
-        'str = New System.IO.MemoryStream()
-        'GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-        'Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        '... 
+        ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        ''Grid Detail
-        'ReportStyleGridview(Report.GVData)
+        'Grid Detail
+        Report.GVData.OptionsPrint.UsePrintStyles = True
+        GVData.AppearancePrint.BandPanel.Font = New Font(Report.GVData.Appearance.Row.Font.FontFamily, Report.GVData.Appearance.Row.Font.Size, FontStyle.Bold)
 
-        ''Parse Val
-        'Report.LabelNumber.Text = TxtNumber.Text.ToUpper
-        'Report.LabelDate.Text = DECreated.Text.ToUpper
-        'Report.LNote.Text = MENote.Text
-        'Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-        'Report.LabelSeason.Text = SLESeason.Text.ToUpper
+        Report.GVData.AppearancePrint.BandPanel.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.BandPanel.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.BandPanel.Font = New Font("Segoe UI", 5, FontStyle.Bold)
 
-        ''Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreviewDialog()
-        'Cursor = Cursors.Default
+        Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", 5, FontStyle.Regular)
+
+        Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Segoe UI", 5, FontStyle.Bold)
+
+        Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.GroupRow.Font = New Font("Segoe UI", 5, FontStyle.Bold)
+
+        Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 5, FontStyle.Bold)
+
+        Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 5, FontStyle.Bold)
+
+        Report.GVData.AppearancePrint.Row.Font = New Font("Segoe UI", 5, FontStyle.Regular)
+        Report.GVData.OptionsPrint.ExpandAllDetails = True
+        Report.GVData.OptionsPrint.UsePrintStyles = True
+        Report.GVData.OptionsPrint.PrintDetails = True
+        Report.GVData.OptionsPrint.PrintFooter = True
+
+        'Parse Val
+        Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        Report.LabelDate.Text = DECreated.Text.ToUpper
+        Report.LNote.Text = MENote.Text
+        Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        Report.LabelYear.Text = TxtYear.Text.ToUpper
+        Report.LabelType.Text = TxtType.Text.ToUpper
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click

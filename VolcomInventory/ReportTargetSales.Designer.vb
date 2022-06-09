@@ -413,11 +413,10 @@ Partial Public Class ReportTargetSales
         '
         'GCData
         '
-        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 0)
+        Me.GCData.Location = New System.Drawing.Point(0, 172)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(16, 16)
+        Me.GCData.Size = New System.Drawing.Size(1019, 286)
         Me.GCData.TabIndex = 23
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -432,9 +431,9 @@ Partial Public Class ReportTargetSales
         '
         'WinControlContainer1
         '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(475.0!, 150.0!)
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(17.0!, 17.0!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1061.0!, 298.0!)
         Me.WinControlContainer1.WinControl = Me.GCData
         '
         'ReportTargetSales
