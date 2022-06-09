@@ -811,7 +811,7 @@
             'propose gwp pos
             query = String.Format("SELECT id_report_status, report_number FROM tb_promo_rules WHERE id_rules = '{0}'", id_report)
         ElseIf report_mark_type = "414" Then
-            query = String.Format("SELECT id_report_status, number as report_number FROM tb_b_revenue_propose WHERE id_rules = '{0}'", id_report)
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_b_revenue_propose WHERE id_b_revenue_propose = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
