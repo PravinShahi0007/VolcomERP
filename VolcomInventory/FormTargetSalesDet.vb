@@ -102,9 +102,9 @@
         FormMain.SplashScreenManager1.SetWaitFormDescription("Load data")
         Dim query As String = "SELECT ptd.id_store AS `INFO|id_store`, MAX(c.comp_number) AS `INFO|ACC.`, MAX(c.comp_name) AS `INFO|STORE`,ptd.type_view AS `INFO|type_view`,
         " + col_curr + ",
-        SUM(ptd.value_before) AS `CURRENT|TOTAL`,
+        SUM(ptd.value_before) AS `CURRENT|TTL`,
         " + col_new + ",
-        SUM(ptd.value_propose) AS `NEW PROPOSE|TOTAL`
+        SUM(ptd.value_propose) AS `NEW PROPOSE|TTL`
         FROM (
 	        SELECT ptd.id_store, ptd.`month`, ptd.value_before, ptd.value_propose, 1 AS `type_view` 
 	        FROM tb_b_revenue_propose_det ptd
@@ -174,6 +174,8 @@
                         summary.ShowInGroupColumnFooter = col
                         summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
                         GVData.GroupSummary.Add(summary)
+                    Else
+                        col.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
                     End If
                 End If
             Next
