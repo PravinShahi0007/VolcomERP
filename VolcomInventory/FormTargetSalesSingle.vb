@@ -54,7 +54,7 @@
         Dim query As String = ""
         If id_store = "-1" Then
             'new
-            query = "SELECT bln.id_month, bln.`month`, SUM(IFNULL(t.b_revenue,0.00)) AS `value_bef`, 0.00 AS `value`
+            query = "SELECT bln.id_month, bln.`month`, SUM(IFNULL(t.b_revenue,0.00)) AS `value_bef`, SUM(IFNULL(t.b_revenue,0.00)) AS `value`
             FROM tb_lookup_month bln
             LEFT JOIN tb_b_revenue t ON t.`month` = bln.id_month AND t.`year`=" + year + " AND t.id_store='" + id_store_selected + "' AND t.is_active=1
             GROUP BY bln.id_month "

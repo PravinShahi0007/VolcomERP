@@ -105,4 +105,46 @@
     Private Sub BtnCreateNew_Click(sender As Object, e As EventArgs) Handles BtnCreateNew.Click
         createNew()
     End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnViewList.Click
+        viewList()
+    End Sub
+
+    Sub viewList()
+        Cursor = Cursors.WaitCursor
+        Dim year As String = ""
+        Try
+            year = SLEYear.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        Dim query As String = "SELECT t.id_store, c.comp_number, c.comp_name,
+        SUM(CASE WHEN t.`month`=1 THEN t.b_revenue END) AS `01`,
+        SUM(CASE WHEN t.`month`=2 THEN t.b_revenue END) AS `02`,
+        SUM(CASE WHEN t.`month`=3 THEN t.b_revenue END) AS `03`,
+        SUM(CASE WHEN t.`month`=4 THEN t.b_revenue END) AS `04`,
+        SUM(CASE WHEN t.`month`=5 THEN t.b_revenue END) AS `05`,
+        SUM(CASE WHEN t.`month`=6 THEN t.b_revenue END) AS `06`,
+        SUM(CASE WHEN t.`month`=7 THEN t.b_revenue END) AS `07`,
+        SUM(CASE WHEN t.`month`=8 THEN t.b_revenue END) AS `08`,
+        SUM(CASE WHEN t.`month`=9 THEN t.b_revenue END) AS `09`,
+        SUM(CASE WHEN t.`month`=10 THEN t.b_revenue END) AS `10`,
+        SUM(CASE WHEN t.`month`=11 THEN t.b_revenue END) AS `11`,
+        SUM(CASE WHEN t.`month`=12 THEN t.b_revenue END) AS `12`,
+        SUM(t.b_revenue) AS `total` 
+        FROM tb_b_revenue t
+        INNER JOIN tb_m_comp c ON c.id_comp = t.id_store
+        WHERE t.`year`='" + year + "' AND t.is_active=1
+        GROUP BY t.id_store "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrintList_Click(sender As Object, e As EventArgs) Handles BtnPrintList.Click
+        Cursor = Cursors.WaitCursor
+        print(GCData, "SALES TARGET : " + SLEYear.Text)
+        Cursor = Cursors.Default
+    End Sub
 End Class

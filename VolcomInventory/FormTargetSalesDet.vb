@@ -31,7 +31,7 @@
         If action = "ins" Then
             BtnCreateNew.Visible = True
             Width = 459
-            Height = 150
+            Height = 170
             WindowState = FormWindowState.Normal
             MaximizeBox = False
             StartPosition = FormStartPosition.CenterScreen
@@ -256,7 +256,7 @@
             Exit Sub
         End If
 
-        Dim qcek As String = "SELECT * FROM tb_b_revenue_propose p WHERE p.year='" + TxtYear.Text + "' AND p.id_report_status!=5 "
+        Dim qcek As String = "SELECT * FROM tb_b_revenue_propose p WHERE p.year='" + TxtYear.Text + "' AND p.id_report_status<5 "
         Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
 
         If dcek.Rows.Count > 0 Then
