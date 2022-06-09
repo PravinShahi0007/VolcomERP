@@ -315,6 +315,9 @@
                 'update 
                 saveHead()
 
+                'update total
+                updateTotal()
+
                 'update confirm
                 Dim query As String = "UPDATE tb_b_revenue_propose SET is_confirm=1 WHERE id_b_revenue_propose='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
@@ -339,6 +342,9 @@
                 Try
                     'head
                     saveHead()
+
+                    'update total
+                    updateTotal()
 
                     'actionLoad()
                     FormTargetSales.refreshProposeList(False)
@@ -527,5 +533,19 @@
             FormTargetSalesSingle.id_store = GVData.GetFocusedRowCellValue("INFO|id_store").ToString
             FormTargetSalesSingle.ShowDialog()
         End If
+    End Sub
+
+    Sub updateTotal()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "UPDATE tb_b_revenue_propose main
+        INNER JOIN (
+	        SELECT ptd.id_b_revenue_propose, SUM(ptd.value_propose) AS `ttl`
+	        FROM tb_b_revenue_propose_det ptd
+	        WHERE ptd.id_b_revenue_propose='" + id + "'
+	        GROUP BY ptd.id_b_revenue_propose
+        ) src ON src.id_b_revenue_propose = main.id_b_revenue_propose
+        SET main.total = src.ttl "
+        execute_non_query(query, True, "", "", "", "")
+        Cursor = Cursors.Default
     End Sub
 End Class
