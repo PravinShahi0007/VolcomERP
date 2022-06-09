@@ -416,6 +416,7 @@ Partial Class FormTargetSalesDet
         '
         'GCData
         '
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 172)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"

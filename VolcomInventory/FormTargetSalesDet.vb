@@ -64,18 +64,6 @@
             If id_proposal_type = "1" Then
                 SLEOptionView.Enabled = False
                 PanelControlOptionView.Visible = False
-
-                'hide band current
-                For i As Integer = 0 To GVData.Bands.VisibleBandCount - 1
-                    Try
-                        If GVData.Bands.GetVisibleBand(i).Caption.ToString = "CURRENT" Then
-                            GVData.Bands.GetVisibleBand(i).Visible = False
-                        End If
-                    Catch ex As Exception
-
-                    End Try
-
-                Next i
             End If
             If is_confirm = "1" Then
                 SLEOptionView.EditValue = "2"
@@ -98,7 +86,7 @@
             id_option_view = SLEOptionView.EditValue.ToString
         Catch ex As Exception
         End Try
-        Dim qm As String = "SELECT m.id_month, m.`month` FROM tb_lookup_month m ORDER BY m.id_month ASC "
+        Dim qm As String = "SELECT m.id_month, UPPER(m.`month`) AS `month` FROM tb_lookup_month m ORDER BY m.id_month ASC "
         Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
         Dim col_curr As String = ""
         Dim col_new As String = ""
@@ -190,8 +178,20 @@
                 End If
             Next
         Next
+        'hide column
         GVData.Columns("INFO|id_store").Visible = False
         GVData.Columns("INFO|type_view").Visible = False
+
+        'hide band current
+        For i As Integer = 0 To GVData.Bands.VisibleBandCount - 1
+            Try
+                If GVData.Bands.GetVisibleBand(i).Caption.ToString = "CURRENT" Then
+                    GVData.Bands.GetVisibleBand(i).Visible = False
+                End If
+            Catch ex As Exception
+
+            End Try
+        Next i
 
         GVData.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -455,7 +455,7 @@
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim id_store As String = GVData.GetFocusedRowCellValue("id_store").ToString
+                Dim id_store As String = GVData.GetFocusedRowCellValue("INFO|id_store").ToString
                 Dim query As String = "DELETE FROM tb_b_revenue_propose_det WHERE id_b_revenue_propose='" + id + "' AND id_store='" + id_store + "' "
                 execute_non_query(query, True, "", "", "", "")
                 viewDetail()
@@ -488,6 +488,8 @@
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And id_report_status = "1" And is_confirm = "2" And SLEOptionView.EditValue.ToString = "1" Then
             'edit link
+            FormTargetSalesSingle.id_store = GVData.GetFocusedRowCellValue("INFO|id_store").ToString
+            FormTargetSalesSingle.ShowDialog()
         End If
     End Sub
 End Class

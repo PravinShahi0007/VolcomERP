@@ -60,7 +60,11 @@
             GROUP BY bln.id_month "
         Else
             'edit
-            query = ""
+            query = "SELECT bln.id_month, bln.`month`, SUM(ptd.value_before) AS `value_bef`, SUM(ptd.value_propose) AS `value`
+            FROM tb_b_revenue_propose_det ptd
+            INNER JOIN tb_lookup_month bln ON bln.id_month = ptd.`month`
+            WHERE ptd.id_b_revenue_propose='" + id_propose + "' AND ptd.id_store='" + id_store + "'
+            GROUP BY ptd.`month` "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
