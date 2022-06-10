@@ -220,10 +220,10 @@
         separator.WidthF = 50
         descc.WidthF = 500
 
-        If opt = "sub" Then
-            desc.BackColor = Color.LightGray
-            descc.BackColor = Color.LightGray
-        End If
+        'If opt = "sub" Then
+        desc.BackColor = Color.LightGray
+        descc.BackColor = Color.LightGray
+        'End If
     End Sub
 
     Sub insert_row_manual(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
@@ -239,8 +239,8 @@
         row.BorderWidth = 1
         row.HeightF = 15
         row.Font = font_row_style
-        row.BackColor = Color.Black
-        row.ForeColor = Color.White
+        'row.BackColor = Color.Black
+        'row.ForeColor = Color.White
 
         '-------------------- vendor 1 ------------------------------------------
         'desc
