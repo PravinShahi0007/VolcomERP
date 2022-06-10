@@ -10034,6 +10034,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formname = "FormProposeVoucherPOS" Then
             FormProposeVoucherPOS.Close()
             FormProposeVoucherPOS.Dispose()
+        ElseIf formName = "FormTargetSales" Then
+            FormTargetSales.Close()
+            FormTargetSales.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11106,6 +11109,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDropChanges.viewData()
         ElseIf formName = "FormProposeVoucherPOS" Then
             FormProposeVoucherPOS.load_view()
+        ElseIf formName = "FormTargetSales" Then
+            If FormTargetSales.XTCSalesTarget.SelectedTabPageIndex = 0 Then
+                FormTargetSales.viewList()
+            Else
+                FormTargetSales.viewPropose()
+            End If
         End If
     End Sub
     'Switch
@@ -17298,6 +17307,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProposeVoucherPOS.Show()
             FormProposeVoucherPOS.WindowState = FormWindowState.Maximized
             FormProposeVoucherPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBTargetSales_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBTargetSales.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormTargetSales.MdiParent = Me
+            FormTargetSales.Show()
+            FormTargetSales.WindowState = FormWindowState.Maximized
+            FormTargetSales.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
