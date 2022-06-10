@@ -10,6 +10,7 @@ Public Class FormBankDepositDet
     Public id_payout_zalora As String = "-1"
     Public id_coa_tag As String = "1"
     Public id_coa_type As String = "1"
+    Dim gv_limit_print As Integer = 0
 
     '
     Private Sub FormBankDepositDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -576,6 +577,9 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
                 XTPDraft.PageVisible = False
             End If
             calculate_amount()
+
+            'limit print
+            gv_limit_print = get_opt_acc_field("bbm_limit_print_gv")
         End If
     End Sub
 
@@ -945,7 +949,11 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        printGV()
+        If GVList.RowCount < gv_limit_print Then
+            printNonGV()
+        Else
+            printGV()
+        End If
     End Sub
 
     Sub printNonGV()
@@ -974,6 +982,23 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
 
     Sub printGV()
         Cursor = Cursors.WaitCursor
+
+        'stream initial
+        Dim strMain As System.IO.Stream = New System.IO.MemoryStream()
+        GVList.SaveLayoutToStream(strMain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        strMain.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'ubah kolom
+        GVList.Columns("no").Caption = "NO"
+        GVList.Columns("acc_name").Caption = "COA"
+        GVList.Columns("comp_number").Caption = "CC"
+        GVList.Columns("number").Caption = "REFF"
+        GVList.Columns("note").Caption = "DESCRIPTION"
+        GVList.Columns("vendor").Caption = "SUPP/CUST"
+        GVList.Columns("dc_code").Caption = "D/K"
+        GVList.Columns("value_view").Caption = "AMOUNT"
+        GVList.Columns("value_view").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
         ReportBankDepositV2.id = id_deposit
         ReportBankDepositV2.id_report_status = id_report_status
         ReportBankDepositV2.rmt = "162"
@@ -992,7 +1017,6 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
         Report.GVList.OptionsPrint.UsePrintStyles = True
 
         Report.GVList.AppearancePrint.Lines.BackColor = Color.White
-        Report.GVList.AppearancePrint.Lines.BorderColor = Color.Beige
 
         Report.GVList.AppearancePrint.FilterPanel.BackColor = Color.Transparent
         Report.GVList.AppearancePrint.FilterPanel.ForeColor = Color.Black
@@ -1011,7 +1035,8 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
         Report.GVList.AppearancePrint.HeaderPanel.ForeColor = Color.Black
         Report.GVList.AppearancePrint.HeaderPanel.BorderColor = Color.Black
         Report.GVList.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
-        Report.GVList.AppearancePrint.HeaderPanel.BorderColor = Color.Black
+        'Report.GVList.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+
 
         Report.GVList.AppearancePrint.FooterPanel.BackColor = Color.Transparent
         Report.GVList.AppearancePrint.FooterPanel.ForeColor = Color.Black
@@ -1024,6 +1049,8 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
         Report.GVList.OptionsPrint.UsePrintStyles = True
         Report.GVList.OptionsPrint.PrintDetails = True
         Report.GVList.OptionsPrint.PrintFooter = True
+        Report.GVList.OptionsPrint.PrintHorzLines = False
+        Report.GVList.OptionsPrint.PrintVertLines = False
 
         Report.LabelUnit.Text = SLEUnit.Text
         If CEPrintPreview.EditValue = True Then
@@ -1039,6 +1066,10 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
             Report.PrintingSystem.ShowMarginsWarning = False
             Report.Print()
         End If
+
+        'kembali ke semula
+        GVList.RestoreLayoutFromStream(strMain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        strMain.Seek(0, System.IO.SeekOrigin.Begin)
         Cursor = Cursors.Default
     End Sub
 
