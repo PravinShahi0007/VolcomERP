@@ -9120,6 +9120,12 @@
     <Compile Include="ReportBankDepositNew.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBankDepositV2.Designer.vb">
+      <DependentUpon>ReportBankDepositV2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBankDepositV2.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBankWithdrawal.Designer.vb">
       <DependentUpon>ReportBankWithdrawal.vb</DependentUpon>
     </Compile>
@@ -15881,6 +15887,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBankDepositNew.resx">
       <DependentUpon>ReportBankDepositNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBankDepositV2.resx">
+      <DependentUpon>ReportBankDepositV2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBankWithdrawal.resx">
       <DependentUpon>ReportBankWithdrawal.vb</DependentUpon>
