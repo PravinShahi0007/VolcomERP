@@ -570,9 +570,9 @@ Public Class FormFGRepairReturnDet
             Dim Report As New ReportFGRepairReturnDet()
 
             If is_from_vendor = "1" Then
-                Report.LTitle.Text = "RETURN REPAIR PRODUCT DETAIL"
+                Report.LTitle.Text = "Return Repair Product Detail"
             Else
-                Report.LTitle.Text = "REPAIRED PRODUCT PACKING LIST DETAIL"
+                Report.LTitle.Text = "Repaired Product Packing List Detail"
             End If
 
             ' '... 
@@ -610,9 +610,9 @@ Public Class FormFGRepairReturnDet
             Dim Report As New ReportFGRepairReturn()
 
             If is_from_vendor = "1" Then
-                Report.LTitle.Text = "RETURN REPAIR PRODUCT SUMMARY"
+                Report.LTitle.Text = "Return Repair Product Summary"
             Else
-                Report.LTitle.Text = "REPAIRED PRODUCT PACKING LIST"
+                Report.LTitle.Text = "Repaired Product Packing List"
             End If
             ' '... 
             ' ' creating and saving the view's layout to a new memory stream 
