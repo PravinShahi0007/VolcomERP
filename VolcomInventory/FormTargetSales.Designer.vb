@@ -20,6 +20,7 @@ Partial Class FormTargetSales
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormTargetSales))
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.XTCSalesTarget = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
@@ -68,6 +69,8 @@ Partial Class FormTargetSales
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoBtnHistory = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.XTCSalesTarget, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesTarget.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -88,6 +91,7 @@ Partial Class FormTargetSales
         Me.PanelControl3.SuspendLayout()
         CType(Me.SLEYearPropose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoBtnHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSalesTarget
@@ -115,13 +119,14 @@ Partial Class FormTargetSales
         Me.GCData.Location = New System.Drawing.Point(0, 49)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoBtnHistory})
         Me.GCData.Size = New System.Drawing.Size(654, 397)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_store, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumn01, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumntotaltarget})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_store, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumn1, Me.GridColumn01, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumntotaltarget})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -140,17 +145,19 @@ Partial Class FormTargetSales
         '
         Me.GridColumncomp_number.Caption = "Store Acc."
         Me.GridColumncomp_number.FieldName = "comp_number"
+        Me.GridColumncomp_number.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumncomp_number.Name = "GridColumncomp_number"
         Me.GridColumncomp_number.Visible = True
-        Me.GridColumncomp_number.VisibleIndex = 0
+        Me.GridColumncomp_number.VisibleIndex = 1
         '
         'GridColumncomp_name
         '
         Me.GridColumncomp_name.Caption = "Store"
         Me.GridColumncomp_name.FieldName = "comp_name"
+        Me.GridColumncomp_name.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumncomp_name.Name = "GridColumncomp_name"
         Me.GridColumncomp_name.Visible = True
-        Me.GridColumncomp_name.VisibleIndex = 1
+        Me.GridColumncomp_name.VisibleIndex = 2
         '
         'GridColumn01
         '
@@ -161,7 +168,7 @@ Partial Class FormTargetSales
         Me.GridColumn01.Name = "GridColumn01"
         Me.GridColumn01.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "01", "{0:N0}")})
         Me.GridColumn01.Visible = True
-        Me.GridColumn01.VisibleIndex = 2
+        Me.GridColumn01.VisibleIndex = 3
         '
         'GridColumn2
         '
@@ -172,7 +179,7 @@ Partial Class FormTargetSales
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "02", "{0:N0}")})
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.VisibleIndex = 4
         '
         'GridColumn3
         '
@@ -183,7 +190,7 @@ Partial Class FormTargetSales
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "03", "{0:N0}")})
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.VisibleIndex = 5
         '
         'GridColumn4
         '
@@ -194,7 +201,7 @@ Partial Class FormTargetSales
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "04", "{0:N0}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
+        Me.GridColumn4.VisibleIndex = 6
         '
         'GridColumn5
         '
@@ -205,7 +212,7 @@ Partial Class FormTargetSales
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "05", "{0:N0}")})
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.VisibleIndex = 7
         '
         'GridColumn6
         '
@@ -216,7 +223,7 @@ Partial Class FormTargetSales
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "06", "{0:N0}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.VisibleIndex = 8
         '
         'GridColumn7
         '
@@ -227,7 +234,7 @@ Partial Class FormTargetSales
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "07", "{0:N0}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
+        Me.GridColumn7.VisibleIndex = 9
         '
         'GridColumn8
         '
@@ -238,7 +245,7 @@ Partial Class FormTargetSales
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "08", "{0:N0}")})
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 9
+        Me.GridColumn8.VisibleIndex = 10
         '
         'GridColumn9
         '
@@ -249,7 +256,7 @@ Partial Class FormTargetSales
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "09", "{0:N0}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 10
+        Me.GridColumn9.VisibleIndex = 11
         '
         'GridColumn10
         '
@@ -260,7 +267,7 @@ Partial Class FormTargetSales
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10", "{0:N0}")})
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 11
+        Me.GridColumn10.VisibleIndex = 12
         '
         'GridColumn11
         '
@@ -271,7 +278,7 @@ Partial Class FormTargetSales
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11", "{0:N0}")})
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 12
+        Me.GridColumn11.VisibleIndex = 13
         '
         'GridColumn12
         '
@@ -282,7 +289,7 @@ Partial Class FormTargetSales
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12", "{0:N0}")})
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 13
+        Me.GridColumn12.VisibleIndex = 14
         '
         'GridColumntotaltarget
         '
@@ -293,7 +300,7 @@ Partial Class FormTargetSales
         Me.GridColumntotaltarget.Name = "GridColumntotaltarget"
         Me.GridColumntotaltarget.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumntotaltarget.Visible = True
-        Me.GridColumntotaltarget.VisibleIndex = 14
+        Me.GridColumntotaltarget.VisibleIndex = 15
         '
         'PanelControl1
         '
@@ -547,6 +554,29 @@ Partial Class FormTargetSales
         Me.BtnPrint.TabIndex = 3
         Me.BtnPrint.Text = "Print"
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "  "
+        Me.GridColumn1.ColumnEdit = Me.RepoBtnHistory
+        Me.GridColumn1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'RepoBtnHistory
+        '
+        Me.RepoBtnHistory.AutoHeight = False
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.RepoBtnHistory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "History", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.RepoBtnHistory.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.RepoBtnHistory.Name = "RepoBtnHistory"
+        Me.RepoBtnHistory.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
         'FormTargetSales
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -579,6 +609,7 @@ Partial Class FormTargetSales
         Me.PanelControl3.PerformLayout()
         CType(Me.SLEYearPropose.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoBtnHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -631,4 +662,6 @@ Partial Class FormTargetSales
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntotaltarget As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnPrintList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoBtnHistory As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class
