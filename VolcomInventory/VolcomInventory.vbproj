@@ -4374,6 +4374,12 @@
     <Compile Include="FormProductionFinalClearDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionFinalClearMetode.Designer.vb">
+      <DependentUpon>FormProductionFinalClearMetode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionFinalClearMetode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionFinalClearSummary.Designer.vb">
       <DependentUpon>FormProductionFinalClearSummary.vb</DependentUpon>
     </Compile>
@@ -13123,6 +13129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionFinalClearDet.resx">
       <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionFinalClearMetode.resx">
+      <DependentUpon>FormProductionFinalClearMetode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionFinalClearSummary.resx">
       <DependentUpon>FormProductionFinalClearSummary.vb</DependentUpon>
