@@ -100,7 +100,7 @@
         Next
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Load data")
-        Dim query As String = "SELECT ptd.id_store AS `INFO|id_store`, MAX(c.comp_number) AS `INFO|ACC.`, MAX(c.comp_name) AS `INFO|STORE`,ptd.type_view AS `INFO|type_view`,
+        Dim query As String = "SELECT ptd.id_store AS `INFO|id_store`, MAX(c.comp_number) AS `INFO|ACC.`, MAX(c.comp_name) AS `INFO|STORE`,ptd.type_view AS `INFO|type_view`, '" + id_proposal_type + "' AS `INFO|id_proposal_type`,
         " + col_curr + ",
         SUM(ptd.value_before) AS `CURRENT|TTL`,
         " + col_new + ",
@@ -183,6 +183,7 @@
         'hide column
         GVData.Columns("INFO|id_store").Visible = False
         GVData.Columns("INFO|type_view").Visible = False
+        GVData.Columns("INFO|id_proposal_type").Visible = False
 
         'hide band current
         If id_proposal_type = "1" Then

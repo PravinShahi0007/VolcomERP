@@ -20,6 +20,8 @@ Partial Class FormTargetSalesDet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormTargetSalesDet))
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.TxtYear = New DevExpress.XtraEditors.TextEdit()
         Me.BtnChangeEffectiveDate = New DevExpress.XtraEditors.SimpleButton()
@@ -343,11 +345,11 @@ Partial Class FormTargetSalesDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(138, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(115, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
+        Me.BtnPrint.Size = New System.Drawing.Size(110, 40)
         Me.BtnPrint.TabIndex = 3
-        Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Text = "Print (Letter)"
         '
         'BtnAttachment
         '
@@ -426,6 +428,14 @@ Partial Class FormTargetSalesDet
         '
         'GVData
         '
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue1.Expression = "Iif([INFO|type_view]=1 And [INFO|id_proposal_type] = 2, True, False)"
+        GridFormatRule1.Rule = FormatConditionRuleValue1
+        Me.GVData.FormatRules.Add(GridFormatRule1)
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
