@@ -10,6 +10,7 @@ Public Class FormBankDepositDet
     Public id_payout_zalora As String = "-1"
     Public id_coa_tag As String = "1"
     Public id_coa_type As String = "1"
+    Dim gv_limit_print As Integer = 0
 
     '
     Private Sub FormBankDepositDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -576,6 +577,9 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
                 XTPDraft.PageVisible = False
             End If
             calculate_amount()
+
+            'limit print
+            gv_limit_print = get_opt_acc_field("bbm_limit_print_gv")
         End If
     End Sub
 
@@ -945,6 +949,14 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        If GVList.RowCount < gv_limit_print Then
+            printNonGV()
+        Else
+            printNonGVOptimize()
+        End If
+    End Sub
+
+    Sub printNonGV()
         Cursor = Cursors.WaitCursor
         ReportBankDepositNew.id = id_deposit
         ReportBankDepositNew.id_report_status = id_report_status
@@ -965,56 +977,125 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
             Report.PrintingSystem.ShowMarginsWarning = False
             Report.Print()
         End If
-
-
-        '        ReportBankDeposit.id_deposit = id_deposit
-        '        ReportBankDeposit.dt = GCList.DataSource
-        '        Dim Report As New ReportBankDeposit()
-        '        ' '... 
-        '        ' ' creating and saving the view's layout to a new memory stream 
-        '        Dim str As System.IO.Stream
-        '        str = New System.IO.MemoryStream()
-        '        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '        str.Seek(0, System.IO.SeekOrigin.Begin)
-        '        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '        str.Seek(0, System.IO.SeekOrigin.Begin)
-
-        '        'Grid Detail
-        '        ReportStyleGridview(Report.GVList)
-
-        '        'Parse val
-        '        Dim query As String = "SELECT rec_py.id_report_status,acc.`acc_description` AS acc_pay_rec,IFNULL(acc_pay.`acc_description`,'') AS acc_pay_to,rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, FORMAT(rec_py.val_need_pay,2,'id_ID') AS total_need_pay, rec_py.`id_rec_payment`,FORMAT(rec_py.`value`,2,'ID_id') AS total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
-        'FROM tb_rec_payment rec_py
-        'INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
-        'INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-        'INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
-        'INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-        'INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
-        'INNER JOIN tb_a_acc acc ON acc.`id_acc`=rec_py.`id_acc_pay_rec`
-        'LEFT JOIN tb_a_acc acc_pay ON acc_pay.`id_acc`=rec_py.`id_acc_pay_to`
-        'WHERE rec_py.`id_rec_payment`='" & id_deposit & "'"
-        '        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        '        '
-        '        If Not data.Rows(0)("acc_pay_to").ToString = "" Then
-        '            Report.LRecTo.Text = "[acc_pay_to]"
-        '            Report.LTotalAmount.Text = "[total_need_pay]"
-        '            '
-        '            Report.LRecToText.Text = "Pay From"
-        '            Report.LTotalAmountText.Text = "Amount"
-        '        End If
-        '        '
-        '        Report.DataSource = data
-
-        '        If Not data.Rows(0)("id_report_status").ToString = "6" Then
-        '            Report.id_pre = "2"
-        '        Else
-        '            Report.id_pre = "1"
-        '        End If
-
-        '        'Show the report's preview. 
-        '        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        '        Tool.ShowPreview()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub printNonGVOptimize()
+        Cursor = Cursors.WaitCursor
+        ReportBankDepositV2.id = id_deposit
+        ReportBankDepositV2.id_report_status = id_report_status
+        ReportBankDepositV2.rmt = "162"
+        Dim Report As New ReportBankDepositV2()
+
+        Report.LabelUnit.Text = SLEUnit.Text
+        If CEPrintPreview.EditValue = True Then
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        Else
+            Dim instance As New Printing.PrinterSettings
+            Dim DefaultPrinter As String = instance.PrinterName
+
+            ' THIS IS TO PRINT THE REPORT
+            Report.PrinterName = DefaultPrinter
+            Report.CreateDocument()
+            Report.PrintingSystem.ShowMarginsWarning = False
+            Report.Print()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub printGV()
+        'not use sementara
+        'Cursor = Cursors.WaitCursor
+
+        ''stream initial
+        'Dim strMain As System.IO.Stream = New System.IO.MemoryStream()
+        'GVList.SaveLayoutToStream(strMain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'strMain.Seek(0, System.IO.SeekOrigin.Begin)
+
+        ''ubah kolom
+        'GVList.Columns("no").Caption = "NO"
+        'GVList.Columns("acc_name").Caption = "COA"
+        'GVList.Columns("comp_number").Caption = "CC"
+        'GVList.Columns("number").Caption = "REFF"
+        'GVList.Columns("note").Caption = "DESCRIPTION"
+        'GVList.Columns("vendor").Caption = "SUPP/CUST"
+        'GVList.Columns("dc_code").Caption = "D/K"
+        'GVList.Columns("value_view").Caption = "AMOUNT"
+        'GVList.Columns("value_view").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
+        'ReportBankDepositV2.id = id_deposit
+        'ReportBankDepositV2.id_report_status = id_report_status
+        'ReportBankDepositV2.rmt = "162"
+        'ReportBankDepositV2.dt = GCList.DataSource
+        'Dim Report As New ReportBankDepositV2()
+
+        '' creating and saving the view's layout to a new memory stream 
+        'Dim str As System.IO.Stream
+        'str = New System.IO.MemoryStream()
+        'GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        ''Grid Detail
+        'Report.GVList.OptionsPrint.UsePrintStyles = True
+
+        'Report.GVList.AppearancePrint.Lines.BackColor = Color.White
+
+        'Report.GVList.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        'Report.GVList.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        'Report.GVList.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", 7, FontStyle.Regular)
+
+        'Report.GVList.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+        'Report.GVList.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        'Report.GVList.AppearancePrint.GroupFooter.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+        'Report.GVList.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        'Report.GVList.AppearancePrint.GroupRow.ForeColor = Color.Black
+        'Report.GVList.AppearancePrint.GroupRow.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+
+        'Report.GVList.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        'Report.GVList.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        'Report.GVList.AppearancePrint.HeaderPanel.BorderColor = Color.Black
+        'Report.GVList.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+        ''Report.GVList.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+
+
+        'Report.GVList.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+        'Report.GVList.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        'Report.GVList.AppearancePrint.FooterPanel.BorderColor = Color.Black
+        'Report.GVList.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+        'Report.GVList.AppearancePrint.Row.Font = New Font("Segoe UI", 7, FontStyle.Regular)
+
+        'Report.GVList.OptionsPrint.ExpandAllDetails = True
+        'Report.GVList.OptionsPrint.UsePrintStyles = True
+        'Report.GVList.OptionsPrint.PrintDetails = True
+        'Report.GVList.OptionsPrint.PrintFooter = True
+        'Report.GVList.OptionsPrint.PrintHorzLines = False
+        'Report.GVList.OptionsPrint.PrintVertLines = False
+
+        'Report.LabelUnit.Text = SLEUnit.Text
+        'If CEPrintPreview.EditValue = True Then
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+        'Else
+        '    Dim instance As New Printing.PrinterSettings
+        '    Dim DefaultPrinter As String = instance.PrinterName
+
+        '    ' THIS IS TO PRINT THE REPORT
+        '    Report.PrinterName = DefaultPrinter
+        '    Report.CreateDocument()
+        '    Report.PrintingSystem.ShowMarginsWarning = False
+        '    Report.Print()
+        'End If
+
+        ''kembali ke semula
+        'GVList.RestoreLayoutFromStream(strMain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'strMain.Seek(0, System.IO.SeekOrigin.Begin)
+        'Cursor = Cursors.Default
     End Sub
 
     Private Sub GVList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVList.CustomColumnDisplayText

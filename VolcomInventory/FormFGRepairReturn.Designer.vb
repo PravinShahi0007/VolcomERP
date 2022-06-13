@@ -342,7 +342,7 @@ Partial Class FormFGRepairReturn
         Me.MinimizeBox = False
         Me.Name = "FormFGRepairReturn"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Return Repair Product"
+        Me.Text = "Repaired Product Packing List"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()

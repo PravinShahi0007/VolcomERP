@@ -34,6 +34,9 @@ Partial Public Class ReportFGRepairReturnDet
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelRefNo = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelTo = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
@@ -51,9 +54,6 @@ Partial Public Class ReportFGRepairReturnDet
         Me.LabelNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelRefNo = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -206,6 +206,39 @@ Partial Public Class ReportFGRepairReturnDet
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(774.0001!, 74.91666!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
         Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(562.6665!, 2.000012!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(82.2916!, 13.58335!)
+        Me.XrLabel6.StylePriority.UseBorders = False
+        Me.XrLabel6.Text = "Ref. No."
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(644.9581!, 2.000014!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(11.45833!, 13.58335!)
+        Me.XrLabel5.StylePriority.UseBorders = False
+        Me.XrLabel5.Text = ":"
+        '
+        'LabelRefNo
+        '
+        Me.LabelRefNo.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelRefNo.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelRefNo.LocationFloat = New DevExpress.Utils.PointFloat(656.4165!, 2.000011!)
+        Me.LabelRefNo.Name = "LabelRefNo"
+        Me.LabelRefNo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelRefNo.SizeF = New System.Drawing.SizeF(114.5834!, 13.58335!)
+        Me.LabelRefNo.StylePriority.UseBorders = False
+        Me.LabelRefNo.StylePriority.UseFont = False
+        Me.LabelRefNo.StylePriority.UseTextAlignment = False
+        Me.LabelRefNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'LabelTo
         '
@@ -378,39 +411,6 @@ Partial Public Class ReportFGRepairReturnDet
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(11.45833!, 13.58335!)
         Me.XrLabel14.StylePriority.UseBorders = False
         Me.XrLabel14.Text = ":"
-        '
-        'LabelRefNo
-        '
-        Me.LabelRefNo.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LabelRefNo.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRefNo.LocationFloat = New DevExpress.Utils.PointFloat(656.4165!, 2.000011!)
-        Me.LabelRefNo.Name = "LabelRefNo"
-        Me.LabelRefNo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelRefNo.SizeF = New System.Drawing.SizeF(114.5834!, 13.58335!)
-        Me.LabelRefNo.StylePriority.UseBorders = False
-        Me.LabelRefNo.StylePriority.UseFont = False
-        Me.LabelRefNo.StylePriority.UseTextAlignment = False
-        Me.LabelRefNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        '
-        'XrLabel5
-        '
-        Me.XrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(644.9581!, 2.000014!)
-        Me.XrLabel5.Name = "XrLabel5"
-        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(11.45833!, 13.58335!)
-        Me.XrLabel5.StylePriority.UseBorders = False
-        Me.XrLabel5.Text = ":"
-        '
-        'XrLabel6
-        '
-        Me.XrLabel6.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(562.6665!, 2.000012!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(82.2916!, 13.58335!)
-        Me.XrLabel6.StylePriority.UseBorders = False
-        Me.XrLabel6.Text = "Ref. No."
         '
         'ReportFGRepairReturnDet
         '

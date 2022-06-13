@@ -52,11 +52,11 @@ Partial Public Class ReportBankDepositNew
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LabelSay = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,7 +98,7 @@ Partial Public Class ReportBankDepositNew
         Me.XTRow.StylePriority.UseFont = False
         Me.XTRow.StylePriority.UseTextAlignment = False
         Me.XTRow.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XTRow.Weight = 0.93538461690146524R
+        Me.XTRow.Weight = 0.935384616901465R
         '
         'XrTableCell2
         '
@@ -112,7 +112,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "NO"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell2.Weight = 0.87944138987374454R
+        Me.XrTableCell2.Weight = 0.879441389873745R
         '
         'XrTableCell8
         '
@@ -126,7 +126,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrTableCell8.StylePriority.UseTextAlignment = False
         Me.XrTableCell8.Text = "COA"
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell8.Weight = 1.8998549981671724R
+        Me.XrTableCell8.Weight = 1.89985499816717R
         '
         'XrTableCell16
         '
@@ -140,7 +140,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrTableCell16.StylePriority.UseTextAlignment = False
         Me.XrTableCell16.Text = "CC"
         Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell16.Weight = 0.75994198500424559R
+        Me.XrTableCell16.Weight = 0.759941985004246R
         '
         'XrTableCell1
         '
@@ -154,7 +154,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
         Me.XrTableCell1.Text = "REFF"
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell1.Weight = 1.8998550024996905R
+        Me.XrTableCell1.Weight = 2.0355589326381334R
         '
         'XrTableCell3
         '
@@ -168,7 +168,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrTableCell3.StylePriority.UseTextAlignment = False
         Me.XrTableCell3.Text = "DESCRIPTION"
         Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell3.Weight = 10.177793182931232R
+        Me.XrTableCell3.Weight = 10.042089252792756R
         '
         'XrTableCell6
         '
@@ -182,7 +182,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.Text = "SUPP/CUST"
         Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell6.Weight = 1.7098711348350615R
+        Me.XrTableCell6.Weight = 1.70987113483506R
         '
         'XrTableCell9
         '
@@ -196,7 +196,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrTableCell9.StylePriority.UseTextAlignment = False
         Me.XrTableCell9.Text = "D/K"
         Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell9.Weight = 0.62423806867313236R
+        Me.XrTableCell9.Weight = 0.624238068673132R
         '
         'XrTableCell5
         '
@@ -210,7 +210,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrTableCell5.StylePriority.UseTextAlignment = False
         Me.XrTableCell5.Text = "AMOUNT"
         Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell5.Weight = 3.0288318374191125R
+        Me.XrTableCell5.Weight = 3.02883183741911R
         '
         'TopMargin
         '
@@ -468,6 +468,20 @@ Partial Public Class ReportBankDepositNew
         Me.XrLabel27.Text = "Printed by : [printed_by]"
         Me.XrLabel27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrPageInfo1
+        '
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(646.9999!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(125.0001!, 15.0!)
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
         'XrTable1
         '
         Me.XrTable1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dash
@@ -511,20 +525,6 @@ Partial Public Class ReportBankDepositNew
         Me.LabelSay.StylePriority.UseTextAlignment = False
         Me.LabelSay.Text = "Say :  [say_terbilang]"
         Me.LabelSay.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrPageInfo1
-        '
-        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(646.9999!, 0!)
-        Me.XrPageInfo1.Name = "XrPageInfo1"
-        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(125.0001!, 15.0!)
-        Me.XrPageInfo1.StylePriority.UseBorders = False
-        Me.XrPageInfo1.StylePriority.UseFont = False
-        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
-        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'ReportFooter
         '

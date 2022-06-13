@@ -964,7 +964,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.KeyPreview = True
         Me.Name = "FormFGRepairReturnRecDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Receive Return Repair Product"
+        Me.Text = "Repaired Product Receiving List"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()

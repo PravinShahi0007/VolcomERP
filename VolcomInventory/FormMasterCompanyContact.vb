@@ -17,7 +17,11 @@ Public Class FormMasterCompanyContact
     End Sub
 
     Sub view_contact()
-        Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact,contact_person,contact_number,email,position,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' ORDER BY is_default AND contact_person", id_company), -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query(String.Format("SELECT a.id_annotation,a.annotation,cc.id_comp_contact,cc.contact_person,cc.contact_number,cc.email,position,cc.is_default 
+FROM tb_m_comp_contact cc
+INNER JOIN tb_lookup_annotation a ON cc.id_annotation=a.id_annotation
+WHERE cc.id_comp='{0}' 
+ORDER BY cc.is_default AND cc.contact_person", id_company), -1, True, "", "", "", "")
         GCCompanyContactList.DataSource = data
         If GVCompanyContactList.RowCount > 0 Then
 
@@ -80,13 +84,21 @@ Public Class FormMasterCompanyContact
         Dim confirm As DialogResult
         Dim query As String
 
-        Dim id_contact As String = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+        Dim id_contact As String = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
 
         confirm = XtraMessageBox.Show("Are you sure want to set this as default contact?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             query = String.Format("UPDATE tb_m_comp_contact SET is_default='0' WHERE id_comp='{1}';UPDATE tb_m_comp_contact SET is_default='1' WHERE id_comp_contact = '{0}'", id_contact, id_company)
             execute_non_query(query, True, "", "", "", "")
             view_contact()
+            Try
+                FormMasterCompanySingle.SLEAnnotation.EditValue = GVCompanyContactList.GetFocusedRowCellValue("id_annotation").ToString
+                FormMasterCompanySingle.TECPName.Text = GVCompanyContactList.GetFocusedRowCellValue("contact_name").ToString
+                FormMasterCompanySingle.TECPPosition.EditValue = GVCompanyContactList.GetFocusedRowCellValue("position").ToString
+                FormMasterCompanySingle.TECPEmail.EditValue = GVCompanyContactList.GetFocusedRowCellValue("email").ToString
+                FormMasterCompanySingle.TECPPhone.EditValue = GVCompanyContactList.GetFocusedRowCellValue("contact_number").ToString
+            Catch ex As Exception
+            End Try
         End If
     End Sub
 
