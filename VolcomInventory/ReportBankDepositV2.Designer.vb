@@ -20,11 +20,6 @@ Partial Public Class ReportBankDepositV2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
-        Me.GCList = New DevExpress.XtraGrid.GridControl()
-        Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.LabelTitleNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelTitle = New DevExpress.XtraReports.UI.XRLabel()
@@ -53,66 +48,45 @@ Partial Public Class ReportBankDepositV2
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LabelSay = New DevExpress.XtraReports.UI.XRLabel()
-        CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTable = New DevExpress.XtraReports.UI.XRTable()
+        Me.XTRow = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
-        Me.Detail.HeightF = 258.3333!
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XTable})
+        Me.Detail.HeightF = 25.33333!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'WinControlContainer1
-        '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(772.0!, 258.3333!)
-        Me.WinControlContainer1.WinControl = Me.GCList
-        '
-        'GCList
-        '
-        Me.GCList.Location = New System.Drawing.Point(0, 42)
-        Me.GCList.MainView = Me.GVList
-        Me.GCList.Name = "GCList"
-        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal})
-        Me.GCList.Size = New System.Drawing.Size(741, 248)
-        Me.GCList.TabIndex = 19
-        Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
-        '
-        'GVList
-        '
-        Me.GVList.GridControl = Me.GCList
-        Me.GVList.Name = "GVList"
-        Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVList.OptionsPrint.AllowMultilineHeaders = True
-        Me.GVList.OptionsPrint.PrintVertLines = False
-        Me.GVList.OptionsView.ShowFooter = True
-        Me.GVList.OptionsView.ShowGroupPanel = False
-        '
-        'RICECheckReceive
-        '
-        Me.RICECheckReceive.AutoHeight = False
-        Me.RICECheckReceive.Name = "RICECheckReceive"
-        Me.RICECheckReceive.ValueChecked = "yes"
-        Me.RICECheckReceive.ValueUnchecked = "no"
-        '
-        'RITEDecimal
-        '
-        Me.RITEDecimal.AutoHeight = False
-        Me.RITEDecimal.Mask.EditMask = "N2"
-        Me.RITEDecimal.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITEDecimal.Name = "RITEDecimal"
-        '
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelTitleNumber, Me.LabelTitle, Me.LabelUnit, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13, Me.XrLabel2, Me.XrLabel3, Me.XrLabel4, Me.XrLabel5, Me.XrLabel6, Me.LabelAmount, Me.XrLabel8, Me.XrLabel9, Me.XrLabel10, Me.XrLabel7, Me.XrLabel11, Me.XrLabel12})
-        Me.TopMargin.HeightF = 127.0833!
+        Me.TopMargin.HeightF = 127.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -156,7 +130,7 @@ Partial Public Class ReportBankDepositV2
         'XrLabel15
         '
         Me.XrLabel15.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(658.3334!, 74.8958!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(660.3334!, 74.8958!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel15.SizeF = New System.Drawing.SizeF(14.58331!, 12.58334!)
@@ -168,7 +142,7 @@ Partial Public Class ReportBankDepositV2
         'XrLabel14
         '
         Me.XrLabel14.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(537.5417!, 74.8958!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(539.5417!, 74.8958!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(120.7916!, 12.58333!)
@@ -180,7 +154,7 @@ Partial Public Class ReportBankDepositV2
         'XrLabel13
         '
         Me.XrLabel13.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(672.9167!, 74.89577!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(674.9167!, 74.89577!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(99.08331!, 12.58334!)
@@ -264,7 +238,7 @@ Partial Public Class ReportBankDepositV2
         'XrLabel8
         '
         Me.XrLabel8.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(537.5417!, 100.0626!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(539.5417!, 100.0626!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(120.7916!, 12.58333!)
@@ -276,7 +250,7 @@ Partial Public Class ReportBankDepositV2
         'XrLabel9
         '
         Me.XrLabel9.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(658.3334!, 100.0625!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(660.3334!, 100.0625!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(14.58331!, 12.58334!)
@@ -288,7 +262,7 @@ Partial Public Class ReportBankDepositV2
         'XrLabel10
         '
         Me.XrLabel10.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(672.9167!, 100.0625!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(674.9167!, 100.0625!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel10.SizeF = New System.Drawing.SizeF(99.08331!, 12.58334!)
@@ -300,7 +274,7 @@ Partial Public Class ReportBankDepositV2
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(537.5417!, 87.47915!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(539.5417!, 87.47915!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(120.7916!, 12.58333!)
@@ -312,7 +286,7 @@ Partial Public Class ReportBankDepositV2
         'XrLabel11
         '
         Me.XrLabel11.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(658.3334!, 87.47915!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(660.3334!, 87.47915!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel11.SizeF = New System.Drawing.SizeF(14.58331!, 12.58334!)
@@ -324,7 +298,7 @@ Partial Public Class ReportBankDepositV2
         'XrLabel12
         '
         Me.XrLabel12.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(672.9167!, 87.47915!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(674.9167!, 87.47915!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel12.SizeF = New System.Drawing.SizeF(99.08331!, 12.58334!)
@@ -336,7 +310,7 @@ Partial Public Class ReportBankDepositV2
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1, Me.XrLabel27, Me.XrLabel26})
-        Me.BottomMargin.HeightF = 49.04168!
+        Me.BottomMargin.HeightF = 49.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -430,19 +404,309 @@ Partial Public Class ReportBankDepositV2
         Me.LabelSay.Text = "Say :  [say_terbilang]"
         Me.LabelSay.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
+        'XTable
+        '
+        Me.XTable.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XTable.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XTable.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XTable.LocationFloat = New DevExpress.Utils.PointFloat(0.4999796!, 0!)
+        Me.XTable.Name = "XTable"
+        Me.XTable.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XTRow})
+        Me.XTable.SizeF = New System.Drawing.SizeF(773.0!, 25.33333!)
+        Me.XTable.StylePriority.UseBorderDashStyle = False
+        Me.XTable.StylePriority.UseBorders = False
+        Me.XTable.StylePriority.UseFont = False
+        '
+        'XTRow
+        '
+        Me.XTRow.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dash
+        Me.XTRow.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XTRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell2, Me.XrTableCell8, Me.XrTableCell16, Me.XrTableCell1, Me.XrTableCell3, Me.XrTableCell6, Me.XrTableCell9, Me.XrTableCell5})
+        Me.XTRow.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XTRow.Name = "XTRow"
+        Me.XTRow.StylePriority.UseBorderDashStyle = False
+        Me.XTRow.StylePriority.UseBorders = False
+        Me.XTRow.StylePriority.UseFont = False
+        Me.XTRow.StylePriority.UseTextAlignment = False
+        Me.XTRow.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XTRow.Weight = 0.935384616901465R
+        '
+        'XrTableCell2
+        '
+        Me.XrTableCell2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTableCell2.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell2.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell2.Name = "XrTableCell2"
+        Me.XrTableCell2.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell2.StylePriority.UseBorders = False
+        Me.XrTableCell2.StylePriority.UseFont = False
+        Me.XrTableCell2.StylePriority.UseTextAlignment = False
+        Me.XrTableCell2.Text = "NO"
+        Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell2.Weight = 0.879441389873745R
+        '
+        'XrTableCell8
+        '
+        Me.XrTableCell8.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTableCell8.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell8.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell8.Name = "XrTableCell8"
+        Me.XrTableCell8.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell8.StylePriority.UseBorders = False
+        Me.XrTableCell8.StylePriority.UseFont = False
+        Me.XrTableCell8.StylePriority.UseTextAlignment = False
+        Me.XrTableCell8.Text = "COA"
+        Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell8.Weight = 1.89985499816717R
+        '
+        'XrTableCell16
+        '
+        Me.XrTableCell16.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTableCell16.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell16.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell16.Name = "XrTableCell16"
+        Me.XrTableCell16.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell16.StylePriority.UseBorders = False
+        Me.XrTableCell16.StylePriority.UseFont = False
+        Me.XrTableCell16.StylePriority.UseTextAlignment = False
+        Me.XrTableCell16.Text = "CC"
+        Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell16.Weight = 0.759941985004246R
+        '
+        'XrTableCell1
+        '
+        Me.XrTableCell1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTableCell1.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell1.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell1.StylePriority.UseBorders = False
+        Me.XrTableCell1.StylePriority.UseFont = False
+        Me.XrTableCell1.StylePriority.UseTextAlignment = False
+        Me.XrTableCell1.Text = "REFF"
+        Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell1.Weight = 2.0355589326381334R
+        '
+        'XrTableCell3
+        '
+        Me.XrTableCell3.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTableCell3.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell3.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell3.Name = "XrTableCell3"
+        Me.XrTableCell3.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell3.StylePriority.UseBorders = False
+        Me.XrTableCell3.StylePriority.UseFont = False
+        Me.XrTableCell3.StylePriority.UseTextAlignment = False
+        Me.XrTableCell3.Text = "DESCRIPTION"
+        Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell3.Weight = 10.042089252792756R
+        '
+        'XrTableCell6
+        '
+        Me.XrTableCell6.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTableCell6.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell6.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell6.Name = "XrTableCell6"
+        Me.XrTableCell6.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell6.StylePriority.UseBorders = False
+        Me.XrTableCell6.StylePriority.UseFont = False
+        Me.XrTableCell6.StylePriority.UseTextAlignment = False
+        Me.XrTableCell6.Text = "SUPP/CUST"
+        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell6.Weight = 1.70987113483506R
+        '
+        'XrTableCell9
+        '
+        Me.XrTableCell9.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTableCell9.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell9.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell9.Name = "XrTableCell9"
+        Me.XrTableCell9.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell9.StylePriority.UseBorders = False
+        Me.XrTableCell9.StylePriority.UseFont = False
+        Me.XrTableCell9.StylePriority.UseTextAlignment = False
+        Me.XrTableCell9.Text = "D/K"
+        Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell9.Weight = 0.624238068673132R
+        '
+        'XrTableCell5
+        '
+        Me.XrTableCell5.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTableCell5.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell5.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell5.Name = "XrTableCell5"
+        Me.XrTableCell5.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell5.StylePriority.UseBorders = False
+        Me.XrTableCell5.StylePriority.UseFont = False
+        Me.XrTableCell5.StylePriority.UseTextAlignment = False
+        Me.XrTableCell5.Text = "AMOUNT"
+        Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell5.Weight = 3.02883183741911R
+        '
+        'DetailReport
+        '
+        Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
+        Me.DetailReport.Level = 0
+        Me.DetailReport.Name = "DetailReport"
+        '
+        'Detail1
+        '
+        Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2})
+        Me.Detail1.HeightF = 15.0!
+        Me.Detail1.Name = "Detail1"
+        '
+        'XrTable2
+        '
+        Me.XrTable2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTable2.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTable2.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrTable2.Name = "XrTable2"
+        Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2})
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(773.0!, 15.0!)
+        Me.XrTable2.StylePriority.UseBorderDashStyle = False
+        Me.XrTable2.StylePriority.UseBorders = False
+        Me.XrTable2.StylePriority.UseFont = False
+        '
+        'XrTableRow2
+        '
+        Me.XrTableRow2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dash
+        Me.XrTableRow2.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell7, Me.XrTableCell10, Me.XrTableCell11, Me.XrTableCell12, Me.XrTableCell13, Me.XrTableCell14, Me.XrTableCell15, Me.XrTableCell17})
+        Me.XrTableRow2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableRow2.Name = "XrTableRow2"
+        Me.XrTableRow2.StylePriority.UseBorderDashStyle = False
+        Me.XrTableRow2.StylePriority.UseBorders = False
+        Me.XrTableRow2.StylePriority.UseFont = False
+        Me.XrTableRow2.StylePriority.UseTextAlignment = False
+        Me.XrTableRow2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableRow2.Weight = 0.55384622424283036R
+        '
+        'XrTableCell7
+        '
+        Me.XrTableCell7.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrTableCell7.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell7.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell7.Name = "XrTableCell7"
+        Me.XrTableCell7.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell7.StylePriority.UseBorders = False
+        Me.XrTableCell7.StylePriority.UseFont = False
+        Me.XrTableCell7.StylePriority.UseTextAlignment = False
+        Me.XrTableCell7.Text = "[no]"
+        Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell7.Weight = 0.879441389873745R
+        '
+        'XrTableCell10
+        '
+        Me.XrTableCell10.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrTableCell10.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell10.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell10.Name = "XrTableCell10"
+        Me.XrTableCell10.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell10.StylePriority.UseBorders = False
+        Me.XrTableCell10.StylePriority.UseFont = False
+        Me.XrTableCell10.StylePriority.UseTextAlignment = False
+        Me.XrTableCell10.Text = "[coa]"
+        Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell10.Weight = 1.89985499816717R
+        '
+        'XrTableCell11
+        '
+        Me.XrTableCell11.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrTableCell11.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell11.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell11.Name = "XrTableCell11"
+        Me.XrTableCell11.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell11.StylePriority.UseBorders = False
+        Me.XrTableCell11.StylePriority.UseFont = False
+        Me.XrTableCell11.StylePriority.UseTextAlignment = False
+        Me.XrTableCell11.Text = "[cc]"
+        Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell11.Weight = 0.759941985004246R
+        '
+        'XrTableCell12
+        '
+        Me.XrTableCell12.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrTableCell12.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell12.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell12.Name = "XrTableCell12"
+        Me.XrTableCell12.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell12.StylePriority.UseBorders = False
+        Me.XrTableCell12.StylePriority.UseFont = False
+        Me.XrTableCell12.StylePriority.UseTextAlignment = False
+        Me.XrTableCell12.Text = "[reff]"
+        Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell12.Weight = 2.0355589326381334R
+        '
+        'XrTableCell13
+        '
+        Me.XrTableCell13.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrTableCell13.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell13.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell13.Name = "XrTableCell13"
+        Me.XrTableCell13.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell13.StylePriority.UseBorders = False
+        Me.XrTableCell13.StylePriority.UseFont = False
+        Me.XrTableCell13.StylePriority.UseTextAlignment = False
+        Me.XrTableCell13.Text = "[note]"
+        Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell13.Weight = 10.042089252792756R
+        '
+        'XrTableCell14
+        '
+        Me.XrTableCell14.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrTableCell14.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell14.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell14.Name = "XrTableCell14"
+        Me.XrTableCell14.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell14.StylePriority.UseBorders = False
+        Me.XrTableCell14.StylePriority.UseFont = False
+        Me.XrTableCell14.StylePriority.UseTextAlignment = False
+        Me.XrTableCell14.Text = "[vendor]"
+        Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell14.Weight = 1.70987113483506R
+        '
+        'XrTableCell15
+        '
+        Me.XrTableCell15.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrTableCell15.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell15.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell15.Name = "XrTableCell15"
+        Me.XrTableCell15.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell15.StylePriority.UseBorders = False
+        Me.XrTableCell15.StylePriority.UseFont = False
+        Me.XrTableCell15.StylePriority.UseTextAlignment = False
+        Me.XrTableCell15.Text = "[type]"
+        Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell15.Weight = 0.624238068673132R
+        '
+        'XrTableCell17
+        '
+        Me.XrTableCell17.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrTableCell17.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell17.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell17.Name = "XrTableCell17"
+        Me.XrTableCell17.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell17.StylePriority.UseBorders = False
+        Me.XrTableCell17.StylePriority.UseFont = False
+        Me.XrTableCell17.StylePriority.UseTextAlignment = False
+        Me.XrTableCell17.Text = "[amount]"
+        Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell17.Weight = 3.02883183741911R
+        '
         'ReportBankDepositV2
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(39, 39, 127, 49)
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.DetailReport})
+        Me.Margins = New System.Drawing.Printing.Margins(30, 46, 127, 49)
         Me.PageHeight = 550
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
-        CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTable, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -457,11 +721,6 @@ Partial Public Class ReportBankDepositV2
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents XrLabel27 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel26 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
-    Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents RITEDecimal As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents RICECheckReceive As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents LabelTitleNumber As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelTitle As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelUnit As DevExpress.XtraReports.UI.XRLabel
@@ -480,4 +739,26 @@ Partial Public Class ReportBankDepositV2
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XTable As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XTRow As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents XrTable2 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableCell7 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell14 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
 End Class

@@ -952,7 +952,7 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
         If GVList.RowCount < gv_limit_print Then
             printNonGV()
         Else
-            printGV()
+            printNonGVOptimize()
         End If
     End Sub
 
@@ -980,77 +980,12 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
         Cursor = Cursors.Default
     End Sub
 
-    Sub printGV()
+    Sub printNonGVOptimize()
         Cursor = Cursors.WaitCursor
-
-        'stream initial
-        Dim strMain As System.IO.Stream = New System.IO.MemoryStream()
-        GVList.SaveLayoutToStream(strMain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        strMain.Seek(0, System.IO.SeekOrigin.Begin)
-
-        'ubah kolom
-        GVList.Columns("no").Caption = "NO"
-        GVList.Columns("acc_name").Caption = "COA"
-        GVList.Columns("comp_number").Caption = "CC"
-        GVList.Columns("number").Caption = "REFF"
-        GVList.Columns("note").Caption = "DESCRIPTION"
-        GVList.Columns("vendor").Caption = "SUPP/CUST"
-        GVList.Columns("dc_code").Caption = "D/K"
-        GVList.Columns("value_view").Caption = "AMOUNT"
-        GVList.Columns("value_view").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-
         ReportBankDepositV2.id = id_deposit
         ReportBankDepositV2.id_report_status = id_report_status
         ReportBankDepositV2.rmt = "162"
-        ReportBankDepositV2.dt = GCList.DataSource
         Dim Report As New ReportBankDepositV2()
-
-        ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-
-        'Grid Detail
-        Report.GVList.OptionsPrint.UsePrintStyles = True
-
-        Report.GVList.AppearancePrint.Lines.BackColor = Color.White
-
-        Report.GVList.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-        Report.GVList.AppearancePrint.FilterPanel.ForeColor = Color.Black
-        Report.GVList.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", 7, FontStyle.Regular)
-
-        Report.GVList.AppearancePrint.GroupFooter.BackColor = Color.Transparent
-        Report.GVList.AppearancePrint.GroupFooter.ForeColor = Color.Black
-        Report.GVList.AppearancePrint.GroupFooter.Font = New Font("Segoe UI", 7, FontStyle.Bold)
-
-        Report.GVList.AppearancePrint.GroupRow.BackColor = Color.Transparent
-        Report.GVList.AppearancePrint.GroupRow.ForeColor = Color.Black
-        Report.GVList.AppearancePrint.GroupRow.Font = New Font("Segoe UI", 7, FontStyle.Bold)
-
-
-        Report.GVList.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-        Report.GVList.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-        Report.GVList.AppearancePrint.HeaderPanel.BorderColor = Color.Black
-        Report.GVList.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
-        'Report.GVList.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-
-
-        Report.GVList.AppearancePrint.FooterPanel.BackColor = Color.Transparent
-        Report.GVList.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        Report.GVList.AppearancePrint.FooterPanel.BorderColor = Color.Black
-        Report.GVList.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
-
-        Report.GVList.AppearancePrint.Row.Font = New Font("Segoe UI", 7, FontStyle.Regular)
-
-        Report.GVList.OptionsPrint.ExpandAllDetails = True
-        Report.GVList.OptionsPrint.UsePrintStyles = True
-        Report.GVList.OptionsPrint.PrintDetails = True
-        Report.GVList.OptionsPrint.PrintFooter = True
-        Report.GVList.OptionsPrint.PrintHorzLines = False
-        Report.GVList.OptionsPrint.PrintVertLines = False
 
         Report.LabelUnit.Text = SLEUnit.Text
         If CEPrintPreview.EditValue = True Then
@@ -1066,11 +1001,101 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
             Report.PrintingSystem.ShowMarginsWarning = False
             Report.Print()
         End If
-
-        'kembali ke semula
-        GVList.RestoreLayoutFromStream(strMain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        strMain.Seek(0, System.IO.SeekOrigin.Begin)
         Cursor = Cursors.Default
+    End Sub
+
+    Sub printGV()
+        'not use sementara
+        'Cursor = Cursors.WaitCursor
+
+        ''stream initial
+        'Dim strMain As System.IO.Stream = New System.IO.MemoryStream()
+        'GVList.SaveLayoutToStream(strMain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'strMain.Seek(0, System.IO.SeekOrigin.Begin)
+
+        ''ubah kolom
+        'GVList.Columns("no").Caption = "NO"
+        'GVList.Columns("acc_name").Caption = "COA"
+        'GVList.Columns("comp_number").Caption = "CC"
+        'GVList.Columns("number").Caption = "REFF"
+        'GVList.Columns("note").Caption = "DESCRIPTION"
+        'GVList.Columns("vendor").Caption = "SUPP/CUST"
+        'GVList.Columns("dc_code").Caption = "D/K"
+        'GVList.Columns("value_view").Caption = "AMOUNT"
+        'GVList.Columns("value_view").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
+        'ReportBankDepositV2.id = id_deposit
+        'ReportBankDepositV2.id_report_status = id_report_status
+        'ReportBankDepositV2.rmt = "162"
+        'ReportBankDepositV2.dt = GCList.DataSource
+        'Dim Report As New ReportBankDepositV2()
+
+        '' creating and saving the view's layout to a new memory stream 
+        'Dim str As System.IO.Stream
+        'str = New System.IO.MemoryStream()
+        'GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        ''Grid Detail
+        'Report.GVList.OptionsPrint.UsePrintStyles = True
+
+        'Report.GVList.AppearancePrint.Lines.BackColor = Color.White
+
+        'Report.GVList.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        'Report.GVList.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        'Report.GVList.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", 7, FontStyle.Regular)
+
+        'Report.GVList.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+        'Report.GVList.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        'Report.GVList.AppearancePrint.GroupFooter.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+        'Report.GVList.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        'Report.GVList.AppearancePrint.GroupRow.ForeColor = Color.Black
+        'Report.GVList.AppearancePrint.GroupRow.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+
+        'Report.GVList.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        'Report.GVList.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        'Report.GVList.AppearancePrint.HeaderPanel.BorderColor = Color.Black
+        'Report.GVList.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+        ''Report.GVList.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+
+
+        'Report.GVList.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+        'Report.GVList.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        'Report.GVList.AppearancePrint.FooterPanel.BorderColor = Color.Black
+        'Report.GVList.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+        'Report.GVList.AppearancePrint.Row.Font = New Font("Segoe UI", 7, FontStyle.Regular)
+
+        'Report.GVList.OptionsPrint.ExpandAllDetails = True
+        'Report.GVList.OptionsPrint.UsePrintStyles = True
+        'Report.GVList.OptionsPrint.PrintDetails = True
+        'Report.GVList.OptionsPrint.PrintFooter = True
+        'Report.GVList.OptionsPrint.PrintHorzLines = False
+        'Report.GVList.OptionsPrint.PrintVertLines = False
+
+        'Report.LabelUnit.Text = SLEUnit.Text
+        'If CEPrintPreview.EditValue = True Then
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+        'Else
+        '    Dim instance As New Printing.PrinterSettings
+        '    Dim DefaultPrinter As String = instance.PrinterName
+
+        '    ' THIS IS TO PRINT THE REPORT
+        '    Report.PrinterName = DefaultPrinter
+        '    Report.CreateDocument()
+        '    Report.PrintingSystem.ShowMarginsWarning = False
+        '    Report.Print()
+        'End If
+
+        ''kembali ke semula
+        'GVList.RestoreLayoutFromStream(strMain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'strMain.Seek(0, System.IO.SeekOrigin.Begin)
+        'Cursor = Cursors.Default
     End Sub
 
     Private Sub GVList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVList.CustomColumnDisplayText
