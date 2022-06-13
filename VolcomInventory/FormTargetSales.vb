@@ -147,4 +147,11 @@
         print(GCData, "SALES TARGET : " + SLEYear.Text)
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub RepoBtnHistory_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnHistory.ButtonClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            FormTargetSalesHistory.id_store = GVData.GetFocusedRowCellValue("id_store").ToString
+            FormTargetSalesHistory.ShowDialog()
+        End If
+    End Sub
 End Class
