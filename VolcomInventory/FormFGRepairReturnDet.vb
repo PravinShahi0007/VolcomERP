@@ -569,6 +569,12 @@ Public Class FormFGRepairReturnDet
             ReportFGRepairReturnDet.dt = GCScan.DataSource
             Dim Report As New ReportFGRepairReturnDet()
 
+            If is_from_vendor = "1" Then
+                Report.LTitle.Text = "RETURN REPAIR PRODUCT DETAIL"
+            Else
+                Report.LTitle.Text = "REPAIRED PRODUCT PACKING LIST DETAIL"
+            End If
+
             ' '... 
             ' ' creating and saving the view's layout to a new memory stream 
             Dim str As System.IO.Stream
@@ -603,6 +609,11 @@ Public Class FormFGRepairReturnDet
             ReportFGRepairReturn.dt = GCScanSum.DataSource
             Dim Report As New ReportFGRepairReturn()
 
+            If is_from_vendor = "1" Then
+                Report.LTitle.Text = "RETURN REPAIR PRODUCT SUMMARY"
+            Else
+                Report.LTitle.Text = "REPAIRED PRODUCT PACKING LIST"
+            End If
             ' '... 
             ' ' creating and saving the view's layout to a new memory stream 
             Dim str As System.IO.Stream

@@ -655,7 +655,10 @@ GROUP BY rec.`id_prod_order`"
                         'export to bof
                         'exportToBOF(False)
 
-                        infoCustom("Receive QC document created successfully.")
+                        'extra note import
+                        Dim extra_note As String = ""
+
+                        infoCustom("Receive QC telah disimpan.")
                     Catch ex As Exception
                         stopCustom(ex.ToString)
                     End Try

@@ -36,6 +36,7 @@ Partial Class FormFGRepairReturnRec
         Me.GridColumnCompFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWH = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -54,7 +55,6 @@ Partial Class FormFGRepairReturnRec
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCRepairRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRepairRec.SuspendLayout()
         Me.XTPTransList.SuspendLayout()
@@ -201,6 +201,17 @@ Partial Class FormFGRepairReturnRec
         Me.GridColumnWH.Name = "GridColumnWH"
         Me.GridColumnWH.Visible = True
         Me.GridColumnWH.VisibleIndex = 4
+        '
+        'GridColumntotal_qty
+        '
+        Me.GridColumntotal_qty.Caption = "Total  Qty"
+        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty.FieldName = "total_qty"
+        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        Me.GridColumntotal_qty.Visible = True
+        Me.GridColumntotal_qty.VisibleIndex = 6
         '
         'GCFilter
         '
@@ -370,17 +381,6 @@ Partial Class FormFGRepairReturnRec
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 2
         '
-        'GridColumntotal_qty
-        '
-        Me.GridColumntotal_qty.Caption = "Total  Qty"
-        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N0"
-        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumntotal_qty.FieldName = "total_qty"
-        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
-        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
-        Me.GridColumntotal_qty.Visible = True
-        Me.GridColumntotal_qty.VisibleIndex = 6
-        '
         'FormFGRepairReturnRec
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -390,7 +390,7 @@ Partial Class FormFGRepairReturnRec
         Me.MinimizeBox = False
         Me.Name = "FormFGRepairReturnRec"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Receive Return Repair Product"
+        Me.Text = "Repaired Product Receiving List"
         CType(Me.XTCRepairRec, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCRepairRec.ResumeLayout(False)
         Me.XTPTransList.ResumeLayout(False)
