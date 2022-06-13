@@ -287,7 +287,7 @@
 
             'update number
             execute_non_query("CALL gen_number('" + id + "', '" + rmt + "');", True, "", "", "", "")
-            FormTargetSales.refreshProposeList(True)
+            FormTargetSales.refreshProposeList(True, year)
             FormTargetSales.GVPropose.FocusedRowHandle = find_row(FormTargetSales.GVPropose, "id_b_revenue_propose", id)
             FormTargetSales.is_load_new = True
             Close()
@@ -348,7 +348,7 @@
                     updateTotal()
 
                     'actionLoad()
-                    FormTargetSales.refreshProposeList(False)
+                    FormTargetSales.refreshProposeList(False, "")
                     FormTargetSales.GVPropose.FocusedRowHandle = find_row(FormTargetSales.GVPropose, "id_b_revenue_propose", id)
                     dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/target-sales-det-controller/" + id + "")
                     actionLoad()
@@ -374,7 +374,7 @@
                 execute_non_query(query_upd, True, "", "", "", "")
 
                 'refresh
-                FormTargetSales.refreshProposeList(False)
+                FormTargetSales.refreshProposeList(False, "")
                 FormTargetSales.GVPropose.FocusedRowHandle = find_row(FormTargetSales.GVPropose, "id_b_revenue_propose", id)
                 dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/target-sales-det-controller/" + id + "")
                 actionLoad()
@@ -395,7 +395,7 @@
             Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id)
             execute_non_query(queryrm, True, "", "", "", "")
 
-            FormTargetSales.refreshProposeList(False)
+            FormTargetSales.refreshProposeList(False, "")
             FormTargetSales.GVPropose.FocusedRowHandle = find_row(FormTargetSales.GVPropose, "id_b_revenue_propose", id)
             dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/target-sales-det-controller/" + id + "")
             actionLoad()

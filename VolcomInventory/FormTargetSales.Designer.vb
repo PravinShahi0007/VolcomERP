@@ -71,6 +71,7 @@ Partial Class FormTargetSales
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnproposal_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesTarget, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesTarget.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -428,7 +429,7 @@ Partial Class FormTargetSales
         '
         'GVPropose
         '
-        Me.GVPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_b_revenue_propose, Me.GridColumnnumber, Me.GridColumnyear, Me.GridColumntotal, Me.GridColumncreated_date, Me.GridColumncreated_user, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnis_confirm})
+        Me.GVPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_b_revenue_propose, Me.GridColumnnumber, Me.GridColumnyear, Me.GridColumntotal, Me.GridColumncreated_date, Me.GridColumncreated_user, Me.GridColumnnote, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnis_confirm, Me.GridColumnproposal_type})
         Me.GVPropose.GridControl = Me.GCPropose
         Me.GVPropose.Name = "GVPropose"
         Me.GVPropose.OptionsBehavior.Editable = False
@@ -467,7 +468,7 @@ Partial Class FormTargetSales
         Me.GridColumntotal.Name = "GridColumntotal"
         Me.GridColumntotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumntotal.Visible = True
-        Me.GridColumntotal.VisibleIndex = 4
+        Me.GridColumntotal.VisibleIndex = 5
         '
         'GridColumncreated_date
         '
@@ -477,7 +478,7 @@ Partial Class FormTargetSales
         Me.GridColumncreated_date.FieldName = "created_date"
         Me.GridColumncreated_date.Name = "GridColumncreated_date"
         Me.GridColumncreated_date.Visible = True
-        Me.GridColumncreated_date.VisibleIndex = 2
+        Me.GridColumncreated_date.VisibleIndex = 3
         '
         'GridColumncreated_user
         '
@@ -485,7 +486,7 @@ Partial Class FormTargetSales
         Me.GridColumncreated_user.FieldName = "created_user"
         Me.GridColumncreated_user.Name = "GridColumncreated_user"
         Me.GridColumncreated_user.Visible = True
-        Me.GridColumncreated_user.VisibleIndex = 3
+        Me.GridColumncreated_user.VisibleIndex = 4
         '
         'GridColumnnote
         '
@@ -505,7 +506,7 @@ Partial Class FormTargetSales
         Me.GridColumnreport_status.FieldName = "report_status"
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
-        Me.GridColumnreport_status.VisibleIndex = 5
+        Me.GridColumnreport_status.VisibleIndex = 6
         '
         'GridColumnis_confirm
         '
@@ -591,6 +592,14 @@ Partial Class FormTargetSales
         Me.BtnPrint.Size = New System.Drawing.Size(84, 38)
         Me.BtnPrint.TabIndex = 3
         Me.BtnPrint.Text = "Print"
+        '
+        'GridColumnproposal_type
+        '
+        Me.GridColumnproposal_type.Caption = "Type"
+        Me.GridColumnproposal_type.FieldName = "proposal_type"
+        Me.GridColumnproposal_type.Name = "GridColumnproposal_type"
+        Me.GridColumnproposal_type.Visible = True
+        Me.GridColumnproposal_type.VisibleIndex = 2
         '
         'FormTargetSales
         '
@@ -679,4 +688,5 @@ Partial Class FormTargetSales
     Friend WithEvents BtnPrintList As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoBtnHistory As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents GridColumnproposal_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

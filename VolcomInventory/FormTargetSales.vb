@@ -25,10 +25,11 @@
         viewPropose()
     End Sub
 
-    Sub refreshProposeList(ByVal is_new_propose As Boolean)
+    Sub refreshProposeList(ByVal is_new_propose As Boolean, ByVal year_propose As String)
         If is_new_propose Then
             dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/target-sales-controller")
             viewYearPropose()
+            SLEYearPropose.EditValue = year_propose
         End If
         viewPropose()
     End Sub
@@ -41,12 +42,13 @@
         Catch ex As Exception
         End Try
         Dim query As String = "SELECT t.id_b_revenue_propose, t.`number`, t.`year`, t.`total`,
-        t.created_date, t.id_created_user, e.employee_name AS `created_user`, t.note, 
+        t.created_date, t.id_created_user, e.employee_name AS `created_user`, t.note, pt.proposal_type,
         t.id_report_status, stt.report_status, t.is_confirm  
         FROM tb_b_revenue_propose t
         INNER JOIN tb_m_user u ON u.id_user = t.id_created_user
         INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = t.id_report_status 
+        INNER JOIN tb_lookup_proposal_type pt ON pt.id_proposal_type = t.id_proposal_type
         WHERE t.`year`='" + tahun + "' ORDER BY t.id_b_revenue_propose DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPropose.DataSource = data
