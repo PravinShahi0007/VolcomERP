@@ -30,6 +30,7 @@ Partial Class FormProductionFinalClear
         Me.GCFinalClear = New DevExpress.XtraGrid.GridControl()
         Me.GVFinalClear = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -70,6 +71,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
@@ -97,7 +99,6 @@ Partial Class FormProductionFinalClear
         Me.DEFromSum = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -232,7 +233,7 @@ Partial Class FormProductionFinalClear
         '
         'GVFinalClear
         '
-        Me.GVFinalClear.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn13, Me.GridColumn11, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12, Me.GridColumnClaim})
+        Me.GVFinalClear.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn23, Me.GridColumn2, Me.GridColumn13, Me.GridColumn11, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12, Me.GridColumnClaim})
         Me.GVFinalClear.GridControl = Me.GCFinalClear
         Me.GVFinalClear.GroupCount = 1
         Me.GVFinalClear.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn6, "{0:N0}")})
@@ -252,13 +253,21 @@ Partial Class FormProductionFinalClear
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 106
         '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Metode"
+        Me.GridColumn23.FieldName = "metode_qc"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 1
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "FGPO#"
         Me.GridColumn2.FieldName = "prod_order_number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 2
         Me.GridColumn2.Width = 106
         '
         'GridColumn13
@@ -267,7 +276,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn13.FieldName = "code"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 3
+        Me.GridColumn13.VisibleIndex = 4
         '
         'GridColumn11
         '
@@ -275,7 +284,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn11.FieldName = "name"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.VisibleIndex = 5
         '
         'GridColumn3
         '
@@ -283,7 +292,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn3.FieldName = "vendor"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 5
+        Me.GridColumn3.VisibleIndex = 6
         Me.GridColumn3.Width = 112
         '
         'GridColumn10
@@ -292,7 +301,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn10.FieldName = "delivery"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.VisibleIndex = 3
         Me.GridColumn10.Width = 65
         '
         'GridColumn4
@@ -301,7 +310,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn4.FieldName = "name"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 6
+        Me.GridColumn4.VisibleIndex = 7
         Me.GridColumn4.Width = 112
         '
         'GridColumn5
@@ -310,7 +319,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn5.FieldName = "pl_category"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 7
+        Me.GridColumn5.VisibleIndex = 8
         Me.GridColumn5.Width = 112
         '
         'GridColumn6
@@ -322,7 +331,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 9
+        Me.GridColumn6.VisibleIndex = 10
         Me.GridColumn6.Width = 112
         '
         'GridColumn7
@@ -333,7 +342,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn7.FieldName = "prod_fc_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 10
+        Me.GridColumn7.VisibleIndex = 11
         Me.GridColumn7.Width = 112
         '
         'GridColumn8
@@ -342,7 +351,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn8.FieldName = "report_status"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 11
+        Me.GridColumn8.VisibleIndex = 12
         Me.GridColumn8.Width = 119
         '
         'GridColumn9
@@ -367,7 +376,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumnClaim.FieldName = "pl_category_sub"
         Me.GridColumnClaim.Name = "GridColumnClaim"
         Me.GridColumnClaim.Visible = True
-        Me.GridColumnClaim.VisibleIndex = 8
+        Me.GridColumnClaim.VisibleIndex = 9
         '
         'XTCQCReport
         '
@@ -616,6 +625,20 @@ Partial Class FormProductionFinalClear
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 4
         Me.GridColumn19.Width = 153
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.Caption = "Qty SNI"
+        Me.GridColumn22.DisplayFormat.FormatString = "N0"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "qty_sni"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 6
         '
         'GridColumn20
         '
@@ -873,20 +896,6 @@ Partial Class FormProductionFinalClear
         Me.LabelControl5.TabIndex = 8892
         Me.LabelControl5.Text = "From"
         '
-        'GridColumn22
-        '
-        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn22.Caption = "Qty SNI"
-        Me.GridColumn22.DisplayFormat.FormatString = "N0"
-        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn22.FieldName = "qty_sni"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 6
-        '
         'FormProductionFinalClear
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1017,4 +1026,5 @@ Partial Class FormProductionFinalClear
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
