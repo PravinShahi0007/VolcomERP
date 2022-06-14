@@ -70,7 +70,7 @@
     End Sub
 
     Sub viewPriceType()
-        Dim query As String = "SELECT * FROM tb_lookup_design_price_type a WHERE a.id_design_price_type>1 ORDER BY a.id_design_price_type "
+        Dim query As String = "SELECT * FROM tb_lookup_design_price_type a WHERE a.id_design_price_type>0 ORDER BY a.id_design_price_type "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEPriceType, query, 0, "design_price_type", "id_design_price_type")
     End Sub
