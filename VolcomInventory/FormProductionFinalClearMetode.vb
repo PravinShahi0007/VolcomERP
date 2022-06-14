@@ -15,7 +15,7 @@ SELECT 2 AS id_metode_qc,'AQL' AS metode_qc"
     End Sub
 
     Private Sub BContinue_Click(sender As Object, e As EventArgs) Handles BContinue.Click
-        'FormProductionFinalClearSummary.SLEMetode.EditValue = SLEMetode.EditValue
+        FormProductionFinalClearSummary.SLEMetode.EditValue = SLEMetode.EditValue
         Close()
     End Sub
 End Class

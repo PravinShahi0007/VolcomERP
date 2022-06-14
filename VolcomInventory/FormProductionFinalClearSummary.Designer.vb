@@ -21,18 +21,19 @@ Partial Class FormProductionFinalClearSummary
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionFinalClearSummary))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.TEUpdatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.DEUpdatedDate = New DevExpress.XtraEditors.DateEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -84,16 +85,18 @@ Partial Class FormProductionFinalClearSummary
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.SLEMetode = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,16 +112,18 @@ Partial Class FormProductionFinalClearSummary
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.Label8)
+        Me.PanelControl1.Controls.Add(Me.SLEMetode)
+        Me.PanelControl1.Controls.Add(Me.Label7)
         Me.PanelControl1.Controls.Add(Me.Label1)
         Me.PanelControl1.Controls.Add(Me.TENumber)
         Me.PanelControl1.Controls.Add(Me.Label4)
         Me.PanelControl1.Controls.Add(Me.Label5)
-        Me.PanelControl1.Controls.Add(Me.TEReportStatus)
         Me.PanelControl1.Controls.Add(Me.TEUpdatedBy)
         Me.PanelControl1.Controls.Add(Me.DEUpdatedDate)
         Me.PanelControl1.Controls.Add(Me.Label3)
@@ -131,14 +136,14 @@ Partial Class FormProductionFinalClearSummary
         Me.PanelControl1.Size = New System.Drawing.Size(1008, 71)
         Me.PanelControl1.TabIndex = 0
         '
-        'Label8
+        'Label7
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(12, 41)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(74, 13)
-        Me.Label8.TabIndex = 18
-        Me.Label8.Text = "Report Status"
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(12, 41)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(43, 13)
+        Me.Label7.TabIndex = 19
+        Me.Label7.Text = "Metode"
         '
         'Label1
         '
@@ -151,10 +156,10 @@ Partial Class FormProductionFinalClearSummary
         '
         'TENumber
         '
-        Me.TENumber.Location = New System.Drawing.Point(97, 12)
+        Me.TENumber.Location = New System.Drawing.Point(62, 12)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(200, 20)
+        Me.TENumber.Size = New System.Drawing.Size(240, 20)
         Me.TENumber.TabIndex = 16
         '
         'Label4
@@ -176,14 +181,6 @@ Partial Class FormProductionFinalClearSummary
         Me.Label5.Size = New System.Drawing.Size(63, 13)
         Me.Label5.TabIndex = 14
         Me.Label5.Text = "Updated By"
-        '
-        'TEReportStatus
-        '
-        Me.TEReportStatus.Location = New System.Drawing.Point(97, 38)
-        Me.TEReportStatus.Name = "TEReportStatus"
-        Me.TEReportStatus.Properties.ReadOnly = True
-        Me.TEReportStatus.Size = New System.Drawing.Size(200, 20)
-        Me.TEReportStatus.TabIndex = 17
         '
         'TEUpdatedBy
         '
@@ -258,6 +255,23 @@ Partial Class FormProductionFinalClearSummary
         Me.DECreatedDate.Properties.ReadOnly = True
         Me.DECreatedDate.Size = New System.Drawing.Size(200, 20)
         Me.DECreatedDate.TabIndex = 8
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(12, 20)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(74, 13)
+        Me.Label8.TabIndex = 18
+        Me.Label8.Text = "Report Status"
+        '
+        'TEReportStatus
+        '
+        Me.TEReportStatus.Location = New System.Drawing.Point(97, 17)
+        Me.TEReportStatus.Name = "TEReportStatus"
+        Me.TEReportStatus.Properties.ReadOnly = True
+        Me.TEReportStatus.Size = New System.Drawing.Size(240, 20)
+        Me.TEReportStatus.TabIndex = 17
         '
         'PanelControl3
         '
@@ -339,7 +353,7 @@ Partial Class FormProductionFinalClearSummary
         Me.XtraTabControl.Location = New System.Drawing.Point(0, 71)
         Me.XtraTabControl.Name = "XtraTabControl"
         Me.XtraTabControl.SelectedTabPage = Me.XTPList
-        Me.XtraTabControl.Size = New System.Drawing.Size(1008, 525)
+        Me.XtraTabControl.Size = New System.Drawing.Size(1008, 493)
         Me.XtraTabControl.TabIndex = 3
         Me.XtraTabControl.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPSummary})
         '
@@ -348,7 +362,7 @@ Partial Class FormProductionFinalClearSummary
         Me.XTPList.Controls.Add(Me.GCList)
         Me.XTPList.Controls.Add(Me.PanelControl2)
         Me.XTPList.Name = "XTPList"
-        Me.XTPList.Size = New System.Drawing.Size(1002, 497)
+        Me.XTPList.Size = New System.Drawing.Size(1002, 465)
         Me.XTPList.Text = "List"
         '
         'GCList
@@ -357,7 +371,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GCList.Location = New System.Drawing.Point(0, 49)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.Size = New System.Drawing.Size(1002, 448)
+        Me.GCList.Size = New System.Drawing.Size(1002, 416)
         Me.GCList.TabIndex = 1
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -526,7 +540,7 @@ Partial Class FormProductionFinalClearSummary
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1002, 497)
+        Me.XTPSummary.Size = New System.Drawing.Size(1002, 465)
         Me.XTPSummary.Text = "Summary"
         '
         'GCSummary
@@ -535,7 +549,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1002, 497)
+        Me.GCSummary.Size = New System.Drawing.Size(1002, 465)
         Me.GCSummary.TabIndex = 2
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -773,31 +787,50 @@ Partial Class FormProductionFinalClearSummary
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.Label8)
         Me.PanelControl4.Controls.Add(Me.MENote)
         Me.PanelControl4.Controls.Add(Me.Label6)
+        Me.PanelControl4.Controls.Add(Me.TEReportStatus)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 596)
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 564)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1008, 84)
+        Me.PanelControl4.Size = New System.Drawing.Size(1008, 116)
         Me.PanelControl4.TabIndex = 23
         '
         'MENote
         '
         Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MENote.Location = New System.Drawing.Point(48, 13)
+        Me.MENote.Location = New System.Drawing.Point(97, 43)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(948, 60)
+        Me.MENote.Size = New System.Drawing.Size(899, 60)
         Me.MENote.TabIndex = 19
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(12, 15)
+        Me.Label6.Location = New System.Drawing.Point(12, 45)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(30, 13)
         Me.Label6.TabIndex = 18
         Me.Label6.Text = "Note"
+        '
+        'SLEMetode
+        '
+        Me.SLEMetode.Location = New System.Drawing.Point(62, 38)
+        Me.SLEMetode.Name = "SLEMetode"
+        Me.SLEMetode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMetode.Properties.ReadOnly = True
+        Me.SLEMetode.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEMetode.Size = New System.Drawing.Size(240, 20)
+        Me.SLEMetode.TabIndex = 20
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'FormProductionFinalClearSummary
         '
@@ -817,13 +850,13 @@ Partial Class FormProductionFinalClearSummary
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUpdatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUpdatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).EndInit()
@@ -840,6 +873,8 @@ Partial Class FormProductionFinalClearSummary
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -908,4 +943,7 @@ Partial Class FormProductionFinalClearSummary
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents Label6 As Label
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label7 As Label
+    Friend WithEvents SLEMetode As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

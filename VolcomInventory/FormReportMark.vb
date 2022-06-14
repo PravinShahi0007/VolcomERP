@@ -9208,6 +9208,7 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
             'summary qc report
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+                'check
                 pushNotifFromDb(id_report, report_mark_type)
             End If
 
