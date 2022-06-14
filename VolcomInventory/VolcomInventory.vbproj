@@ -8166,6 +8166,12 @@
     <Compile Include="FormTargetSalesSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormTargetSAS.Designer.vb">
+      <DependentUpon>FormTargetSAS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTargetSAS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormTemplateCode.Designer.vb">
       <DependentUpon>FormTemplateCode.vb</DependentUpon>
     </Compile>
@@ -15373,6 +15379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTargetSalesSingle.resx">
       <DependentUpon>FormTargetSalesSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTargetSAS.resx">
+      <DependentUpon>FormTargetSAS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTemplateCode.resx">
       <DependentUpon>FormTemplateCode.vb</DependentUpon>
