@@ -1,7 +1,7 @@
 ﻿Public Class FormTargetSAS
     Private Sub BtnImportFromXLS_Click(sender As Object, e As EventArgs) Handles BtnImportFromXLS.Click
         Cursor = Cursors.WaitCursor
-        FormImportExcel.id_pop_up = "68"
+        FormImportExcel.id_pop_up = "69"
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub

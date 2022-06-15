@@ -5029,7 +5029,7 @@ WHERE d.id_lookup_status_order!=2 "
 
             'Customize column
             GVData.Columns("id_comp").Visible = False
-        ElseIf id_pop_up = "68" Then
+        ElseIf id_pop_up = "69" Then
             'season
             Dim qss As String = "SELECT sd.id_delivery, CONCAT(ss.season, ' D',sd.delivery) AS `delivery_season` 
             FROM tb_season_delivery sd
