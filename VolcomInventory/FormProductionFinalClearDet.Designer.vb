@@ -24,6 +24,11 @@ Partial Class FormProductionFinalClearDet
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.BtnInfoSrs = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLERecType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.TERec = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowsePO = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseTo = New DevExpress.XtraEditors.SimpleButton()
@@ -48,16 +53,20 @@ Partial Class FormProductionFinalClearDet
         Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEMajorExt = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEMetode = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEServiceNote = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLERecType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LECLaim = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
@@ -117,13 +126,10 @@ Partial Class FormProductionFinalClearDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEMetode = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.SLERecType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,10 +145,12 @@ Partial Class FormProductionFinalClearDet
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelHeaderLeft.SuspendLayout()
+        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEServiceNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLERecType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECLaim.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -173,8 +181,6 @@ Partial Class FormProductionFinalClearDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -211,7 +217,7 @@ Partial Class FormProductionFinalClearDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1000, 169)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1112, 169)
         Me.GroupGeneralHeader.TabIndex = 201
         '
         'BtnInfoSrs
@@ -236,6 +242,47 @@ Partial Class FormProductionFinalClearDet
         Me.LabelControl12.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl12.TabIndex = 10012
         Me.LabelControl12.Text = "Pre Rec#"
+        '
+        'SLERecType
+        '
+        Me.SLERecType.Location = New System.Drawing.Point(487, 84)
+        Me.SLERecType.Name = "SLERecType"
+        Me.SLERecType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLERecType.Properties.ReadOnly = True
+        Me.SLERecType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLERecType.Size = New System.Drawing.Size(142, 20)
+        Me.SLERecType.TabIndex = 10012
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID"
+        Me.GridColumn3.FieldName = "id_pl_category"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Category"
+        Me.GridColumn4.FieldName = "pl_category"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(396, 88)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(85, 13)
+        Me.LabelControl13.TabIndex = 10011
+        Me.LabelControl13.Text = "Pre Rec Category"
         '
         'TERec
         '
@@ -518,6 +565,7 @@ Partial Class FormProductionFinalClearDet
         'PanelHeaderLeft
         '
         Me.PanelHeaderLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelHeaderLeft.Controls.Add(Me.SLEMajorExt)
         Me.PanelHeaderLeft.Controls.Add(Me.SLEMetode)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl15)
         Me.PanelHeaderLeft.Controls.Add(Me.SLEServiceNote)
@@ -531,10 +579,82 @@ Partial Class FormProductionFinalClearDet
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl7)
         Me.PanelHeaderLeft.Controls.Add(Me.DEForm)
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelHeaderLeft.Location = New System.Drawing.Point(722, 2)
+        Me.PanelHeaderLeft.Location = New System.Drawing.Point(649, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
-        Me.PanelHeaderLeft.Size = New System.Drawing.Size(276, 165)
+        Me.PanelHeaderLeft.Size = New System.Drawing.Size(461, 165)
         Me.PanelHeaderLeft.TabIndex = 8899
+        '
+        'SLEMajorExt
+        '
+        Me.SLEMajorExt.Location = New System.Drawing.Point(265, 82)
+        Me.SLEMajorExt.Name = "SLEMajorExt"
+        Me.SLEMajorExt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMajorExt.Properties.View = Me.GridView3
+        Me.SLEMajorExt.Size = New System.Drawing.Size(186, 20)
+        Me.SLEMajorExt.TabIndex = 10018
+        Me.SLEMajorExt.Visible = False
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID"
+        Me.GridColumn9.FieldName = "id_reject_category"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Reject Category"
+        Me.GridColumn10.FieldName = "reject_category"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'SLEMetode
+        '
+        Me.SLEMetode.Location = New System.Drawing.Point(117, 57)
+        Me.SLEMetode.Name = "SLEMetode"
+        Me.SLEMetode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMetode.Properties.View = Me.GridView2
+        Me.SLEMetode.Size = New System.Drawing.Size(334, 20)
+        Me.SLEMetode.TabIndex = 10017
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ID"
+        Me.GridColumn7.FieldName = "id_metode_qc"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Metode"
+        Me.GridColumn8.FieldName = "metode_qc"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl15.Location = New System.Drawing.Point(7, 59)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl15.TabIndex = 10016
+        Me.LabelControl15.Text = "Metode"
         '
         'SLEServiceNote
         '
@@ -542,7 +662,7 @@ Partial Class FormProductionFinalClearDet
         Me.SLEServiceNote.Name = "SLEServiceNote"
         Me.SLEServiceNote.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEServiceNote.Properties.View = Me.GridView1
-        Me.SLEServiceNote.Size = New System.Drawing.Size(142, 20)
+        Me.SLEServiceNote.Size = New System.Drawing.Size(334, 20)
         Me.SLEServiceNote.TabIndex = 10015
         '
         'GridView1
@@ -576,47 +696,6 @@ Partial Class FormProductionFinalClearDet
         Me.LabelControl14.TabIndex = 10014
         Me.LabelControl14.Text = "Service Note"
         '
-        'SLERecType
-        '
-        Me.SLERecType.Location = New System.Drawing.Point(487, 84)
-        Me.SLERecType.Name = "SLERecType"
-        Me.SLERecType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLERecType.Properties.ReadOnly = True
-        Me.SLERecType.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLERecType.Size = New System.Drawing.Size(142, 20)
-        Me.SLERecType.TabIndex = 10012
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "ID"
-        Me.GridColumn3.FieldName = "id_pl_category"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Category"
-        Me.GridColumn4.FieldName = "pl_category"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        '
-        'LabelControl13
-        '
-        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(396, 88)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(85, 13)
-        Me.LabelControl13.TabIndex = 10011
-        Me.LabelControl13.Text = "Pre Rec Category"
-        '
         'LabelControl11
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -638,7 +717,7 @@ Partial Class FormProductionFinalClearDet
         Me.LECLaim.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category_sub", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category_sub", "Claim"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_comp", "id_comp", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
         Me.LECLaim.Properties.NullText = ""
         Me.LECLaim.Properties.ShowFooter = False
-        Me.LECLaim.Size = New System.Drawing.Size(142, 20)
+        Me.LECLaim.Size = New System.Drawing.Size(334, 20)
         Me.LECLaim.TabIndex = 10008
         '
         'LEPLCategory
@@ -677,13 +756,13 @@ Partial Class FormProductionFinalClearDet
         Me.TxtNumber.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtNumber.Properties.EditValueChangedDelay = 1
         Me.TxtNumber.Properties.ReadOnly = True
-        Me.TxtNumber.Size = New System.Drawing.Size(142, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(334, 20)
         Me.TxtNumber.TabIndex = 8
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(7, 34)
+        Me.LabelControl5.Location = New System.Drawing.Point(8, 34)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl5.TabIndex = 155
@@ -710,7 +789,7 @@ Partial Class FormProductionFinalClearDet
         Me.DEForm.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.DEForm.Properties.EditValueChangedDelay = 1
         Me.DEForm.Properties.ReadOnly = True
-        Me.DEForm.Size = New System.Drawing.Size(142, 20)
+        Me.DEForm.Size = New System.Drawing.Size(334, 20)
         Me.DEForm.TabIndex = 162
         '
         'LargeImageCollection
@@ -747,7 +826,7 @@ Partial Class FormProductionFinalClearDet
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1000, 40)
+        Me.PanelControl3.Size = New System.Drawing.Size(1112, 40)
         Me.PanelControl3.TabIndex = 202
         '
         'BtnXlsBOF
@@ -756,7 +835,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
         Me.BtnXlsBOF.ImageIndex = 11
         Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(464, 2)
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(576, 2)
         Me.BtnXlsBOF.Name = "BtnXlsBOF"
         Me.BtnXlsBOF.Size = New System.Drawing.Size(115, 36)
         Me.BtnXlsBOF.TabIndex = 19
@@ -768,7 +847,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(579, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(691, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(101, 36)
         Me.BtnAttachment.TabIndex = 13
@@ -779,7 +858,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(680, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(792, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 36)
         Me.BtnPrint.TabIndex = 12
@@ -801,7 +880,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnPrePrinting.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrePrinting.ImageIndex = 6
         Me.BtnPrePrinting.ImageList = Me.LargeImageCollection
-        Me.BtnPrePrinting.Location = New System.Drawing.Point(755, 2)
+        Me.BtnPrePrinting.Location = New System.Drawing.Point(867, 2)
         Me.BtnPrePrinting.Name = "BtnPrePrinting"
         Me.BtnPrePrinting.Size = New System.Drawing.Size(93, 36)
         Me.BtnPrePrinting.TabIndex = 20
@@ -812,7 +891,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(848, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(960, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 36)
         Me.BtnCancel.TabIndex = 11
@@ -823,7 +902,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(923, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(1035, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 36)
         Me.BtnSave.TabIndex = 10
@@ -838,7 +917,7 @@ Partial Class FormProductionFinalClearDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 515)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1000, 81)
+        Me.GroupControl3.Size = New System.Drawing.Size(1112, 81)
         Me.GroupControl3.TabIndex = 203
         '
         'PanelBottomRight
@@ -847,7 +926,7 @@ Partial Class FormProductionFinalClearDet
         Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
         Me.PanelBottomRight.Controls.Add(Me.LabelControl21)
         Me.PanelBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelBottomRight.Location = New System.Drawing.Point(691, 2)
+        Me.PanelBottomRight.Location = New System.Drawing.Point(803, 2)
         Me.PanelBottomRight.Name = "PanelBottomRight"
         Me.PanelBottomRight.Size = New System.Drawing.Size(307, 77)
         Me.PanelBottomRight.TabIndex = 139
@@ -901,7 +980,7 @@ Partial Class FormProductionFinalClearDet
         Me.GroupControlItemList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlItemList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlItemList.Name = "GroupControlItemList"
-        Me.GroupControlItemList.Size = New System.Drawing.Size(1000, 161)
+        Me.GroupControlItemList.Size = New System.Drawing.Size(1112, 161)
         Me.GroupControlItemList.TabIndex = 204
         '
         'GCItemList
@@ -911,7 +990,7 @@ Partial Class FormProductionFinalClearDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(978, 157)
+        Me.GCItemList.Size = New System.Drawing.Size(1090, 157)
         Me.GCItemList.TabIndex = 8906
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1053,7 +1132,7 @@ Partial Class FormProductionFinalClearDet
         Me.SCCQC.Panel1.Text = "Panel1"
         Me.SCCQC.Panel2.Controls.Add(Me.GroupControlListBarcode)
         Me.SCCQC.Panel2.Text = "Panel2"
-        Me.SCCQC.Size = New System.Drawing.Size(1000, 346)
+        Me.SCCQC.Size = New System.Drawing.Size(1112, 346)
         Me.SCCQC.SplitterPosition = 161
         Me.SCCQC.TabIndex = 205
         Me.SCCQC.Text = "SplitContainerControl1"
@@ -1067,7 +1146,7 @@ Partial Class FormProductionFinalClearDet
         Me.GroupControlListBarcode.Enabled = False
         Me.GroupControlListBarcode.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListBarcode.Name = "GroupControlListBarcode"
-        Me.GroupControlListBarcode.Size = New System.Drawing.Size(1000, 180)
+        Me.GroupControlListBarcode.Size = New System.Drawing.Size(1112, 180)
         Me.GroupControlListBarcode.TabIndex = 2
         '
         'GCBarcode
@@ -1077,7 +1156,7 @@ Partial Class FormProductionFinalClearDet
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(978, 143)
+        Me.GCBarcode.Size = New System.Drawing.Size(1090, 143)
         Me.GCBarcode.TabIndex = 4
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -1183,7 +1262,7 @@ Partial Class FormProductionFinalClearDet
         Me.PanelNavBarcode.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.PanelNavBarcode.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavBarcode.Name = "PanelNavBarcode"
-        Me.PanelNavBarcode.Size = New System.Drawing.Size(978, 33)
+        Me.PanelNavBarcode.Size = New System.Drawing.Size(1090, 33)
         Me.PanelNavBarcode.TabIndex = 0
         '
         'TxtDeleteScan
@@ -1208,7 +1287,7 @@ Partial Class FormProductionFinalClearDet
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelete.ImageIndex = 1
         Me.BDelete.ImageList = Me.LargeImageCollection
-        Me.BDelete.Location = New System.Drawing.Point(702, 0)
+        Me.BDelete.Location = New System.Drawing.Point(814, 0)
         Me.BDelete.Name = "BDelete"
         Me.BDelete.Size = New System.Drawing.Size(94, 33)
         Me.BDelete.TabIndex = 8
@@ -1220,7 +1299,7 @@ Partial Class FormProductionFinalClearDet
         Me.BStop.Enabled = False
         Me.BStop.ImageIndex = 9
         Me.BStop.ImageList = Me.LargeImageCollection
-        Me.BStop.Location = New System.Drawing.Point(796, 0)
+        Me.BStop.Location = New System.Drawing.Point(908, 0)
         Me.BStop.Name = "BStop"
         Me.BStop.Size = New System.Drawing.Size(91, 33)
         Me.BStop.TabIndex = 7
@@ -1231,57 +1310,17 @@ Partial Class FormProductionFinalClearDet
         Me.BScan.Dock = System.Windows.Forms.DockStyle.Right
         Me.BScan.ImageIndex = 8
         Me.BScan.ImageList = Me.LargeImageCollection
-        Me.BScan.Location = New System.Drawing.Point(887, 0)
+        Me.BScan.Location = New System.Drawing.Point(999, 0)
         Me.BScan.Name = "BScan"
         Me.BScan.Size = New System.Drawing.Size(91, 33)
         Me.BScan.TabIndex = 6
         Me.BScan.Text = "Start Scan"
         '
-        'LabelControl15
-        '
-        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl15.Location = New System.Drawing.Point(7, 59)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(36, 13)
-        Me.LabelControl15.TabIndex = 10016
-        Me.LabelControl15.Text = "Metode"
-        '
-        'SLEMetode
-        '
-        Me.SLEMetode.Location = New System.Drawing.Point(117, 57)
-        Me.SLEMetode.Name = "SLEMetode"
-        Me.SLEMetode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEMetode.Properties.View = Me.GridView2
-        Me.SLEMetode.Size = New System.Drawing.Size(142, 20)
-        Me.SLEMetode.TabIndex = 10017
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "ID"
-        Me.GridColumn7.FieldName = "id_metode_qc"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Metode"
-        Me.GridColumn8.FieldName = "metode_qc"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
-        '
         'FormProductionFinalClearDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1000, 636)
+        Me.ClientSize = New System.Drawing.Size(1112, 636)
         Me.Controls.Add(Me.SCCQC)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
@@ -1294,6 +1333,8 @@ Partial Class FormProductionFinalClearDet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.SLERecType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1310,10 +1351,12 @@ Partial Class FormProductionFinalClearDet
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelHeaderLeft.ResumeLayout(False)
         Me.PanelHeaderLeft.PerformLayout()
+        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEServiceNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLERecType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECLaim.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1347,8 +1390,6 @@ Partial Class FormProductionFinalClearDet
         Me.PanelNavBarcode.ResumeLayout(False)
         Me.PanelNavBarcode.PerformLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1454,4 +1495,8 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEMajorExt As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

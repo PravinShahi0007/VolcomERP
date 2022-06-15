@@ -58,6 +58,10 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.XrTable = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XLMetode = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -385,8 +389,8 @@ Partial Public Class ReportProductionFinalClearSummary
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.XLNumber, Me.XLTitle, Me.XLDepartement, Me.XLCompany})
-        Me.TopMargin.HeightF = 100.0!
+        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel7, Me.XrLabel6, Me.XLMetode, Me.XrLabel5, Me.XrLabel1, Me.XLNumber, Me.XLTitle, Me.XLDepartement, Me.XLCompany})
+        Me.TopMargin.HeightF = 115.625!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -394,14 +398,14 @@ Partial Public Class ReportProductionFinalClearSummary
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(854.0!, 60.83333!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(823.7917!, 60.83333!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(30.0!, 20.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(45.20831!, 20.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "No:"
-        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrLabel1.Text = "No "
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XLNumber
         '
@@ -496,11 +500,58 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
+        'XLMetode
+        '
+        Me.XLMetode.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XLMetode.LocationFloat = New DevExpress.Utils.PointFloat(884.0!, 80.83334!)
+        Me.XLMetode.Name = "XLMetode"
+        Me.XLMetode.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLMetode.SizeF = New System.Drawing.SizeF(135.0!, 20.0!)
+        Me.XLMetode.StylePriority.UseFont = False
+        Me.XLMetode.StylePriority.UseTextAlignment = False
+        Me.XLMetode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(823.7917!, 80.83334!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(45.20825!, 20.0!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseTextAlignment = False
+        Me.XrLabel5.Text = "Metode"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(869.0!, 60.83334!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(14.375!, 20.0!)
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UseTextAlignment = False
+        Me.XrLabel6.Text = ":"
+        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(869.6249!, 80.83334!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(14.375!, 20.0!)
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.StylePriority.UseTextAlignment = False
+        Me.XrLabel7.Text = ":"
+        Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
         'ReportProductionFinalClearSummary
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter})
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(75, 75, 100, 19)
+        Me.Margins = New System.Drawing.Printing.Margins(75, 75, 116, 19)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -552,4 +603,8 @@ Partial Public Class ReportProductionFinalClearSummary
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLMetode As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
 End Class

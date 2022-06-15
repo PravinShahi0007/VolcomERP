@@ -25,6 +25,11 @@ Public Class FormProductionFinalClearDet
         actionLoad()
     End Sub
 
+    Sub view_reject_category()
+        Dim q As String = "SELECT id_reject_category,reject_category FROM tb_reject_category WHERE id_reject_category!=1"
+        viewSearchLookupQuery(SLEMajorExt, q, "id_reject_category", "reject_category", "id_reject_category")
+    End Sub
+
     Sub view_service_type()
         Dim q As String = "SELECT id_service_type,service_type FROM tb_lookup_service_type"
         viewSearchLookupQuery(SLEServiceNote, q, "id_service_type", "service_type", "id_service_type")
@@ -194,6 +199,11 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
             id_report_status = data.Rows(0)("id_report_status").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LEPLCategory.ItemIndex = LEPLCategory.Properties.GetDataSourceRowIndex("id_pl_category", data.Rows(0)("id_pl_category").ToString)
+
+            If LEPLCategory.EditValue.ToString = "3" Then
+                SLEMajorExt.EditValue = data.Rows(0)("id_reject_category").ToString
+            End If
+
             SLEMetode.EditValue = data.Rows(0)("id_metode_qc").ToString
             If Not IsDBNull(data.Rows(0)("id_pl_category_sub")) Then
                 LECLaim.ItemIndex = LECLaim.Properties.GetDataSourceRowIndex("id_pl_category_sub", data.Rows(0)("id_pl_category_sub").ToString)
@@ -306,6 +316,7 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
         TxtStyleCode.Enabled = False
         TxtStyle.Enabled = False
         LEPLCategory.Enabled = False
+        SLEMajorExt.Enabled = False
         LECLaim.Enabled = False
         SLEServiceNote.Enabled = False
         SLEMetode.Enabled = False
@@ -645,7 +656,7 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
         Report.LSeason.Text = TxtSeason.Text + " / " + TxtDel.Text
         Report.LVendor.Text = TxtVendorCode.Text + " - " + TxtVendorName.Text
         Report.LDesign.Text = TxtStyleCode.Text + " - " + TxtStyle.Text
-        Report.Lcat.Text = LEPLCategory.Text
+        Report.Lcat.Text = LEPLCategory.Text & If(SLEMajorExt.Visible = True, " - " & SLEMajorExt.Text, "")
         Report.LServiceNote.Text = SLEServiceNote.Text
         Report.LMetode.Text = SLEMetode.Text
 
@@ -694,74 +705,132 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
         ElseIf cond_exist Then
             stopCustom("Barcode already scan in other transaction, please see detail in field 'scan status'")
         Else
-            If action = "ins" Then
-                Dim id_pl_category As String = LEPLCategory.EditValue.ToString
-                Dim id_pl_category_sub As String = LECLaim.EditValue.ToString
-                Dim prod_fc_note As String = addSlashes(MENote.Text.ToString)
-
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Cursor = Cursors.WaitCursor
-                    Dim report_mark_type As String = If(id_pl_category = "1", "224", "105")
-                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order,id_prod_order_rec, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status, id_service_type, report_mark_type, id_metode_qc) "
-                    query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1','" + SLEServiceNote.EditValue.ToString + "', '" + report_mark_type + "','" & SLEMetode.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
-                    id_prod_fc = execute_query(query, 0, True, "", "", "", "")
-                    increase_inc_prod("12")
-
-                    Dim jum_ins_j As Integer = 0
-                    Dim query_detail As String = ""
-                    If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT tb_prod_fc_det(id_prod_fc, id_prod_order_det, id_product, prod_fc_det_qty, prod_fc_det_note) VALUES "
-                    End If
-                    For j As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
-                        Try
-                            Dim id_prod_order_det As String = GVItemList.GetRowCellValue(j, "id_prod_order_det").ToString
-                            Dim id_product As String = GVItemList.GetRowCellValue(j, "id_product").ToString
-                            Dim prod_fc_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(j, "prod_fc_det_qty").ToString)
-                            Dim prod_fc_det_note As String = GVItemList.GetRowCellValue(j, "prod_fc_det_note").ToString
-
-                            If jum_ins_j > 0 Then
-                                query_detail += ", "
-                            End If
-                            query_detail += "('" + id_prod_fc + "', '" + id_prod_order_det + "', '" + id_product + "', '" + prod_fc_det_qty + "', '" + prod_fc_det_note + "') "
-                            jum_ins_j = jum_ins_j + 1
-                        Catch ex As Exception
-                        End Try
-                    Next
-                    If GVItemList.RowCount > 0 Then
-                        execute_non_query(query_detail, True, "", "", "", "")
-                    End If
-
-                    'detail unique
-                    If is_use_qc_report = "1" Then
-                        If GVBarcode.RowCount > 0 Then
-                            Dim qu As String = "INSERT INTO tb_prod_fc_counting(id_prod_fc, id_prod_order_det, id_product, full_code, note) VALUES "
-                            For u As Integer = 0 To GVBarcode.RowCount - 1
-                                Dim id_prod_order_det As String = GVBarcode.GetRowCellValue(u, "id_prod_order_det").ToString
-                                Dim id_product As String = GVBarcode.GetRowCellValue(u, "id_product").ToString
-                                Dim full_code As String = addSlashes(GVBarcode.GetRowCellValue(u, "code").ToString)
-                                If u > 0 Then
-                                    qu += ", "
-                                End If
-                                qu += "('" + id_prod_fc + "', '" + id_prod_order_det + "', '" + id_product + "', '" + full_code + "', '') "
-                            Next
-                            execute_non_query(qu, True, "", "", "", "")
+            'check international dengan AQL
+            Dim aql_ok As Boolean = True
+            Dim qc As String = "SELECT tb.*,aql.*,fc_done.qty AS fc_qty,fc_complete.qty AS fc_complete_qty
+FROM
+(
+	SELECT po.id_po_type,co.`id_country`,SUM(pod.prod_order_qty) AS qty_po
+	FROM tb_prod_order_det pod
+	INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order 
+	INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
+	INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
+	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
+	INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+	INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
+	INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+	INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+	INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` 
+	WHERE pod.id_prod_order='" & id_prod_order & "'
+)tb
+INNER JOIN tb_import_aql aql ON tb.qty_po>=aql.min_qty_order AND tb.qty_po<=aql.max_qty_order
+JOIN
+(
+	SELECT IFNULL(SUM(prod_fc_det_qty),0) AS qty FROM `tb_prod_fc_det` fcd
+	INNER JOIN tb_prod_fc fc ON fc.id_prod_fc=fcd.id_prod_fc
+	WHERE fc.id_report_status!=5 AND fc.id_prod_order='" & id_prod_order & "' AND fc.id_metode_qc=2
+)fc_done
+JOIN
+(
+	SELECT IFNULL(SUM(prod_fc_det_qty),0) AS qty FROM `tb_prod_fc_det` fcd
+	INNER JOIN tb_prod_fc fc ON fc.id_prod_fc=fcd.id_prod_fc
+	WHERE fc.id_report_status=6 AND fc.id_prod_order='" & id_prod_order & "' AND fc.id_metode_qc=2
+)fc_complete"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                If dtc.Rows(0)("id_po_type").ToString = "2" Or Not dtc.Rows(0)("id_country").ToString = "5" Then
+                    'international
+                    If SLEMetode.EditValue.ToString = "2" Then
+                        'aql cek tidak boleh lebih
+                        If (dtc.Rows(0)("fc_qty") + GVBarcode.RowCount) > dtc.Rows(0)("qty_sample") Then
+                            warningCustom("Jumlah total AQL QC report 2 (" & (dtc.Rows(0)("fc_qty") + GVBarcode.RowCount).ToString & " pcs) melebihi ketentuan sampling " & dtc.Rows(0)("qty_sample").ToString & " pcs")
+                            aql_ok = False
+                        End If
+                    ElseIf SLEMetode.EditValue.ToString = "1" Then
+                        'full qc pastiin sudah klop AQLnya
+                        If Not dtc.Rows(0)("fc_complete_qty") = dtc.Rows(0)("qty_sample") Then
+                            warningCustom("Mohon selesaikan report AQL terlebih dahulu. " & (dtc.Rows(0)("fc_complete_qty")).ToString & "/" & (dtc.Rows(0)("qty_sample")).ToString)
+                            aql_ok = False
                         End If
                     End If
+                End If
+            End If
 
-                    'submit who prepared
-                    submit_who_prepared(report_mark_type, id_prod_fc, id_user)
+            If Not aql_ok Then
+            Else
+                If action = "ins" Then
+                    Dim id_pl_category As String = LEPLCategory.EditValue.ToString
+                    Dim id_pl_category_sub As String = LECLaim.EditValue.ToString
+                    Dim prod_fc_note As String = addSlashes(MENote.Text.ToString)
 
+                    Dim id_reject_category As String = "1"
+                    If SLEMajorExt.Visible = True Then
+                        id_reject_category = SLEMajorExt.EditValue.ToString
+                    End If
 
-                    FormProductionFinalClear.GCProd.DataSource = Nothing
-                    FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 0
-                    FormProductionFinalClear.viewFinalClear()
-                    FormProductionFinalClear.GVFinalClear.FocusedRowHandle = find_row(FormProductionFinalClear.GVFinalClear, "id_prod_fc", id_prod_fc)
-                    action = "upd"
-                    actionLoad()
-                    exportToBOF(False)
-                    infoCustom("QC Result : " + TxtNumber.Text + " was created successfully.")
-                    Cursor = Cursors.Default
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Cursor = Cursors.WaitCursor
+                        Dim report_mark_type As String = If(id_pl_category = "1", "224", "105")
+                        Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order,id_prod_order_rec, id_comp_from, id_comp_to, id_pl_category, id_pl_category_sub, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status, id_service_type, report_mark_type, id_metode_qc, id_reject_category) "
+                        query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + id_pl_category_sub + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1','" + SLEServiceNote.EditValue.ToString + "', '" + report_mark_type + "','" & SLEMetode.EditValue.ToString & "','" & id_reject_category & "'); SELECT LAST_INSERT_ID(); "
+                        id_prod_fc = execute_query(query, 0, True, "", "", "", "")
+                        increase_inc_prod("12")
+
+                        Dim jum_ins_j As Integer = 0
+                        Dim query_detail As String = ""
+                        If GVItemList.RowCount > 0 Then
+                            query_detail = "INSERT tb_prod_fc_det(id_prod_fc, id_prod_order_det, id_product, prod_fc_det_qty, prod_fc_det_note) VALUES "
+                        End If
+                        For j As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                            Try
+                                Dim id_prod_order_det As String = GVItemList.GetRowCellValue(j, "id_prod_order_det").ToString
+                                Dim id_product As String = GVItemList.GetRowCellValue(j, "id_product").ToString
+                                Dim prod_fc_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(j, "prod_fc_det_qty").ToString)
+                                Dim prod_fc_det_note As String = GVItemList.GetRowCellValue(j, "prod_fc_det_note").ToString
+
+                                If jum_ins_j > 0 Then
+                                    query_detail += ", "
+                                End If
+                                query_detail += "('" + id_prod_fc + "', '" + id_prod_order_det + "', '" + id_product + "', '" + prod_fc_det_qty + "', '" + prod_fc_det_note + "') "
+                                jum_ins_j = jum_ins_j + 1
+                            Catch ex As Exception
+                            End Try
+                        Next
+                        If GVItemList.RowCount > 0 Then
+                            execute_non_query(query_detail, True, "", "", "", "")
+                        End If
+
+                        'detail unique
+                        If is_use_qc_report = "1" Then
+                            If GVBarcode.RowCount > 0 Then
+                                Dim qu As String = "INSERT INTO tb_prod_fc_counting(id_prod_fc, id_prod_order_det, id_product, full_code, note) VALUES "
+                                For u As Integer = 0 To GVBarcode.RowCount - 1
+                                    Dim id_prod_order_det As String = GVBarcode.GetRowCellValue(u, "id_prod_order_det").ToString
+                                    Dim id_product As String = GVBarcode.GetRowCellValue(u, "id_product").ToString
+                                    Dim full_code As String = addSlashes(GVBarcode.GetRowCellValue(u, "code").ToString)
+                                    If u > 0 Then
+                                        qu += ", "
+                                    End If
+                                    qu += "('" + id_prod_fc + "', '" + id_prod_order_det + "', '" + id_product + "', '" + full_code + "', '') "
+                                Next
+                                execute_non_query(qu, True, "", "", "", "")
+                            End If
+                        End If
+
+                        'submit who prepared
+                        submit_who_prepared(report_mark_type, id_prod_fc, id_user)
+
+                        FormProductionFinalClear.GCProd.DataSource = Nothing
+                        FormProductionFinalClear.XTCQCReport.SelectedTabPageIndex = 0
+                        FormProductionFinalClear.viewFinalClear()
+                        FormProductionFinalClear.GVFinalClear.FocusedRowHandle = find_row(FormProductionFinalClear.GVFinalClear, "id_prod_fc", id_prod_fc)
+                        action = "upd"
+                        actionLoad()
+                        exportToBOF(False)
+                        infoCustom("QC Result : " + TxtNumber.Text + " was created successfully.")
+                        Cursor = Cursors.Default
+                    End If
                 End If
             End If
         End If
@@ -833,22 +902,31 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
     Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
         Cursor = Cursors.WaitCursor
         viewPLCatSub()
-        Dim id_comp_cat As String = "-1"
+        Dim id_comp As String = "-1"
         Try
             Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
             Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
-            id_comp_cat = row("id_comp").ToString
+            id_comp = row("id_comp").ToString
         Catch ex As Exception
         End Try
-        getCompTo(id_comp_cat)
+        getCompTo(id_comp)
+
+        'if major
+        If LEPLCategory.EditValue.ToString = "3" Then
+            SLEMajorExt.Visible = True
+            view_reject_category()
+        Else
+            SLEMajorExt.Visible = False
+        End If
+        '
         Cursor = Cursors.Default
     End Sub
 
-    Sub getCompTo(ByVal id_comp_cat As String)
+    Sub getCompTo(ByVal id_comp As String)
         'get comp to
-        Dim query As String = "SELECT c.comp_number, c.comp_name FROM tb_m_comp c WHERE c.id_comp = '" + id_comp_cat + "' "
+        Dim query As String = "SELECT c.comp_number, c.comp_name FROM tb_m_comp c WHERE c.id_comp = '" + id_comp + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        id_comp_to = id_comp_cat
+        id_comp_to = id_comp
         TxtCodeCompTo.Text = data.Rows(0)("comp_number").ToString
         TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
     End Sub
@@ -959,6 +1037,7 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
         GVItemList.OptionsBehavior.Editable = True
         ControlBox = True
         LEPLCategory.Enabled = True
+        SLEMajorExt.Enabled = True
 
         'For i As Integer = 0 To (GVBarcode.RowCount - 1)
         '    Dim check_code As String = ""
@@ -1004,6 +1083,7 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
         GVItemList.OptionsBehavior.Editable = False
         ControlBox = False
         LEPLCategory.Enabled = False
+        SLEMajorExt.Enabled = False
         newRowsBc()
     End Sub
 
