@@ -42,6 +42,13 @@ Partial Class FormProductionPLToWH
         Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnvendorpl = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPPLInfo = New DevExpress.XtraTab.XtraTabPage()
         Me.SCCPL = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControlProd = New DevExpress.XtraEditors.GroupControl()
@@ -59,6 +66,7 @@ Partial Class FormProductionPLToWH
         Me.GridColumnIdPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPLCreated = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnvendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GroupControlListProd = New DevExpress.XtraEditors.GroupControl()
         Me.GCListProduct = New DevExpress.XtraGrid.GridControl()
@@ -76,6 +84,7 @@ Partial Class FormProductionPLToWH
         Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolTipControllerNew = New DevExpress.Utils.ToolTipController(Me.components)
+        Me.BtnLoadDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlOrder = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -84,20 +93,17 @@ Partial Class FormProductionPLToWH
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnvendor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnLoadDetail = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnvendorpl = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPL.SuspendLayout()
         Me.XTPPList.SuspendLayout()
         CType(Me.GCPL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPL, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GCFilter.SuspendLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPLInfo.SuspendLayout()
         CType(Me.SCCPL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCPL.SuspendLayout()
@@ -114,12 +120,6 @@ Partial Class FormProductionPLToWH
         Me.PanelControlOrder.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GCFilter.SuspendLayout()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPL
@@ -317,12 +317,85 @@ Partial Class FormProductionPLToWH
         Me.GridColumnTotal.VisibleIndex = 8
         Me.GridColumnTotal.Width = 56
         '
+        'GridColumnvendorpl
+        '
+        Me.GridColumnvendorpl.Caption = "Vendor"
+        Me.GridColumnvendorpl.FieldName = "vendor"
+        Me.GridColumnvendorpl.Name = "GridColumnvendorpl"
+        Me.GridColumnvendorpl.Visible = True
+        Me.GridColumnvendorpl.VisibleIndex = 2
+        '
+        'GCFilter
+        '
+        Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.BtnView)
+        Me.GCFilter.Controls.Add(Me.DEUntil)
+        Me.GCFilter.Controls.Add(Me.DEFrom)
+        Me.GCFilter.Controls.Add(Me.LabelControl2)
+        Me.GCFilter.Controls.Add(Me.LabelControl3)
+        Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GCFilter.Location = New System.Drawing.Point(0, 0)
+        Me.GCFilter.Name = "GCFilter"
+        Me.GCFilter.Size = New System.Drawing.Size(934, 39)
+        Me.GCFilter.TabIndex = 4
+        '
+        'BtnView
+        '
+        Me.BtnView.Location = New System.Drawing.Point(319, 9)
+        Me.BtnView.LookAndFeel.SkinName = "Blue"
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(63, 20)
+        Me.BtnView.TabIndex = 8896
+        Me.BtnView.Text = "View"
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntil.TabIndex = 8895
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(58, 9)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Size = New System.Drawing.Size(111, 20)
+        Me.DEFrom.TabIndex = 8894
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl2.TabIndex = 8893
+        Me.LabelControl2.Text = "Until"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl3.TabIndex = 8892
+        Me.LabelControl3.Text = "From"
+        '
         'XTPPLInfo
         '
         Me.XTPPLInfo.Controls.Add(Me.SCCPL)
         Me.XTPPLInfo.Controls.Add(Me.PanelControlOrder)
         Me.XTPPLInfo.Name = "XTPPLInfo"
-        Me.XTPPLInfo.Size = New System.Drawing.Size(852, 464)
+        Me.XTPPLInfo.Size = New System.Drawing.Size(934, 464)
         Me.XTPPLInfo.Text = "Info Packing List"
         '
         'SCCPL
@@ -335,8 +408,8 @@ Partial Class FormProductionPLToWH
         Me.SCCPL.Panel1.Text = "Panel1"
         Me.SCCPL.Panel2.Controls.Add(Me.GroupControlListProd)
         Me.SCCPL.Panel2.Text = "Panel2"
-        Me.SCCPL.Size = New System.Drawing.Size(852, 421)
-        Me.SCCPL.SplitterPosition = 265
+        Me.SCCPL.Size = New System.Drawing.Size(934, 421)
+        Me.SCCPL.SplitterPosition = 244
         Me.SCCPL.TabIndex = 1
         Me.SCCPL.Text = "SplitContainerControl1"
         '
@@ -346,7 +419,7 @@ Partial Class FormProductionPLToWH
         Me.GroupControlProd.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlProd.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlProd.Name = "GroupControlProd"
-        Me.GroupControlProd.Size = New System.Drawing.Size(852, 265)
+        Me.GroupControlProd.Size = New System.Drawing.Size(934, 244)
         Me.GroupControlProd.TabIndex = 1
         Me.GroupControlProd.Text = "Production Order"
         '
@@ -357,7 +430,7 @@ Partial Class FormProductionPLToWH
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
-        Me.GCProd.Size = New System.Drawing.Size(848, 243)
+        Me.GCProd.Size = New System.Drawing.Size(930, 222)
         Me.GCProd.TabIndex = 3
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -475,6 +548,14 @@ Partial Class FormProductionPLToWH
         Me.GridColumnPLCreated.Visible = True
         Me.GridColumnPLCreated.VisibleIndex = 10
         '
+        'GridColumnvendor
+        '
+        Me.GridColumnvendor.Caption = "Vendor"
+        Me.GridColumnvendor.FieldName = "vendor"
+        Me.GridColumnvendor.Name = "GridColumnvendor"
+        Me.GridColumnvendor.Visible = True
+        Me.GridColumnvendor.VisibleIndex = 1
+        '
         'RIPictureEdit
         '
         Me.RIPictureEdit.Name = "RIPictureEdit"
@@ -487,7 +568,7 @@ Partial Class FormProductionPLToWH
         Me.GroupControlListProd.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlListProd.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListProd.Name = "GroupControlListProd"
-        Me.GroupControlListProd.Size = New System.Drawing.Size(852, 151)
+        Me.GroupControlListProd.Size = New System.Drawing.Size(934, 172)
         Me.GroupControlListProd.TabIndex = 2
         Me.GroupControlListProd.Text = "List Production Order"
         '
@@ -498,7 +579,7 @@ Partial Class FormProductionPLToWH
         Me.GCListProduct.MainView = Me.GVListProduct
         Me.GCListProduct.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListProduct.Name = "GCListProduct"
-        Me.GCListProduct.Size = New System.Drawing.Size(848, 106)
+        Me.GCListProduct.Size = New System.Drawing.Size(930, 127)
         Me.GCListProduct.TabIndex = 1
         Me.GCListProduct.ToolTipController = Me.ToolTipControllerNew
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
@@ -655,6 +736,15 @@ Partial Class FormProductionPLToWH
         Me.ToolTipControllerNew.InitialDelay = 100
         Me.ToolTipControllerNew.ReshowDelay = 50
         '
+        'BtnLoadDetail
+        '
+        Me.BtnLoadDetail.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnLoadDetail.Location = New System.Drawing.Point(2, 20)
+        Me.BtnLoadDetail.Name = "BtnLoadDetail"
+        Me.BtnLoadDetail.Size = New System.Drawing.Size(930, 23)
+        Me.BtnLoadDetail.TabIndex = 2
+        Me.BtnLoadDetail.Text = "Load Detail"
+        '
         'PanelControlOrder
         '
         Me.PanelControlOrder.Controls.Add(Me.SLEVendor)
@@ -663,7 +753,7 @@ Partial Class FormProductionPLToWH
         Me.PanelControlOrder.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlOrder.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlOrder.Name = "PanelControlOrder"
-        Me.PanelControlOrder.Size = New System.Drawing.Size(852, 43)
+        Me.PanelControlOrder.Size = New System.Drawing.Size(934, 43)
         Me.PanelControlOrder.TabIndex = 2
         '
         'SLEVendor
@@ -726,96 +816,6 @@ Partial Class FormProductionPLToWH
         Me.LabelControl1.TabIndex = 8906
         Me.LabelControl1.Text = "Vendor"
         '
-        'GridColumnvendor
-        '
-        Me.GridColumnvendor.Caption = "Vendor"
-        Me.GridColumnvendor.FieldName = "vendor"
-        Me.GridColumnvendor.Name = "GridColumnvendor"
-        Me.GridColumnvendor.Visible = True
-        Me.GridColumnvendor.VisibleIndex = 1
-        '
-        'BtnLoadDetail
-        '
-        Me.BtnLoadDetail.Dock = System.Windows.Forms.DockStyle.Top
-        Me.BtnLoadDetail.Location = New System.Drawing.Point(2, 20)
-        Me.BtnLoadDetail.Name = "BtnLoadDetail"
-        Me.BtnLoadDetail.Size = New System.Drawing.Size(848, 23)
-        Me.BtnLoadDetail.TabIndex = 2
-        Me.BtnLoadDetail.Text = "Load Detail"
-        '
-        'GCFilter
-        '
-        Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GCFilter.Controls.Add(Me.BtnView)
-        Me.GCFilter.Controls.Add(Me.DEUntil)
-        Me.GCFilter.Controls.Add(Me.DEFrom)
-        Me.GCFilter.Controls.Add(Me.LabelControl2)
-        Me.GCFilter.Controls.Add(Me.LabelControl3)
-        Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCFilter.Location = New System.Drawing.Point(0, 0)
-        Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(934, 39)
-        Me.GCFilter.TabIndex = 4
-        '
-        'BtnView
-        '
-        Me.BtnView.Location = New System.Drawing.Point(319, 9)
-        Me.BtnView.LookAndFeel.SkinName = "Blue"
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(63, 20)
-        Me.BtnView.TabIndex = 8896
-        Me.BtnView.Text = "View"
-        '
-        'DEUntil
-        '
-        Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(202, 9)
-        Me.DEUntil.Name = "DEUntil"
-        Me.DEUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Size = New System.Drawing.Size(111, 20)
-        Me.DEUntil.TabIndex = 8895
-        '
-        'DEFrom
-        '
-        Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(58, 9)
-        Me.DEFrom.Name = "DEFrom"
-        Me.DEFrom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFrom.Size = New System.Drawing.Size(111, 20)
-        Me.DEFrom.TabIndex = 8894
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(175, 12)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl2.TabIndex = 8893
-        Me.LabelControl2.Text = "Until"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(28, 12)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl3.TabIndex = 8892
-        Me.LabelControl3.Text = "From"
-        '
-        'GridColumnvendorpl
-        '
-        Me.GridColumnvendorpl.Caption = "Vendor"
-        Me.GridColumnvendorpl.FieldName = "vendor"
-        Me.GridColumnvendorpl.Name = "GridColumnvendorpl"
-        Me.GridColumnvendorpl.Visible = True
-        Me.GridColumnvendorpl.VisibleIndex = 2
-        '
         'FormProductionPLToWH
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -834,6 +834,13 @@ Partial Class FormProductionPLToWH
         Me.XTPPList.ResumeLayout(False)
         CType(Me.GCPL, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPL, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GCFilter.ResumeLayout(False)
+        Me.GCFilter.PerformLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPLInfo.ResumeLayout(False)
         CType(Me.SCCPL, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SCCPL.ResumeLayout(False)
@@ -851,13 +858,6 @@ Partial Class FormProductionPLToWH
         Me.PanelControlOrder.PerformLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GCFilter.ResumeLayout(False)
-        Me.GCFilter.PerformLayout()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
