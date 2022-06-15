@@ -19,17 +19,18 @@ Partial Class FormProductionPLToWHRecDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionPLToWHRecDet))
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
-        Me.PUDD = New DevExpress.XtraBars.PopupMenu()
+        Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BtnPrePrinting = New DevExpress.XtraBars.BarButtonItem()
         Me.BtnPrint = New DevExpress.XtraBars.BarLargeButtonItem()
-        Me.BMDD = New DevExpress.XtraBars.BarManager()
+        Me.BMDD = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -141,6 +142,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnIdProdOrderDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCountingCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPLCounting = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -153,9 +155,9 @@ Partial Class FormProductionPLToWHRecDet
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.EPRet = New System.Windows.Forms.ErrorProvider()
-        Me.Timer = New System.Windows.Forms.Timer()
-        Me.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
+        Me.TEMajorExt = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -209,12 +211,13 @@ Partial Class FormProductionPLToWHRecDet
         Me.GroupControlListBarcode.SuspendLayout()
         CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEMajorExt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl3
@@ -1029,6 +1032,7 @@ Partial Class FormProductionPLToWHRecDet
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.TEMajorExt)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl13)
         Me.PanelControlTopRight.Controls.Add(Me.TxtSeason)
         Me.PanelControlTopRight.Controls.Add(Me.TxtPLCategory)
@@ -1476,6 +1480,11 @@ Partial Class FormProductionPLToWHRecDet
         Me.GridColumnBarcode.VisibleIndex = 1
         Me.GridColumnBarcode.Width = 816
         '
+        'RepositoryItemTextEdit
+        '
+        Me.RepositoryItemTextEdit.AutoHeight = False
+        Me.RepositoryItemTextEdit.Name = "RepositoryItemTextEdit"
+        '
         'GridColumnIdProdOrderDet
         '
         Me.GridColumnIdProdOrderDet.Caption = "Id Prod Order Det"
@@ -1605,10 +1614,17 @@ Partial Class FormProductionPLToWHRecDet
         '
         Me.EPRet.ContainerControl = Me
         '
-        'RepositoryItemTextEdit
+        'TEMajorExt
         '
-        Me.RepositoryItemTextEdit.AutoHeight = False
-        Me.RepositoryItemTextEdit.Name = "RepositoryItemTextEdit"
+        Me.TEMajorExt.EditValue = ""
+        Me.TEMajorExt.Location = New System.Drawing.Point(75, 113)
+        Me.TEMajorExt.Name = "TEMajorExt"
+        Me.TEMajorExt.Properties.EditValueChangedDelay = 1
+        Me.TEMajorExt.Properties.ReadOnly = True
+        Me.TEMajorExt.Size = New System.Drawing.Size(109, 20)
+        Me.TEMajorExt.TabIndex = 10009
+        Me.TEMajorExt.TabStop = False
+        Me.TEMajorExt.Visible = False
         '
         'FormProductionPLToWHRecDet
         '
@@ -1688,12 +1704,13 @@ Partial Class FormProductionPLToWHRecDet
         Me.GroupControlListBarcode.ResumeLayout(False)
         CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEMajorExt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1834,4 +1851,5 @@ Partial Class FormProductionPLToWHRecDet
     Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Timer As Timer
     Friend WithEvents RepositoryItemTextEdit As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents TEMajorExt As DevExpress.XtraEditors.TextEdit
 End Class
