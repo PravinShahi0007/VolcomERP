@@ -5030,6 +5030,7 @@ WHERE d.id_lookup_status_order!=2 "
             'Customize column
             GVData.Columns("id_comp").Visible = False
         ElseIf id_pop_up = "69" Then
+            'iMPOR SAS/SALTHRU
             'season
             Dim qss As String = "SELECT sd.id_delivery, CONCAT(ss.season, ' D',sd.delivery) AS `delivery_season` 
             FROM tb_season_delivery sd
@@ -5059,18 +5060,18 @@ WHERE d.id_lookup_status_order!=2 "
                                 .id_class = If(result_class Is Nothing, "0", result_class("id_class")),
                                 .class = table1("class").ToString,
                                 .year = table1("year").ToString,
-                                .jan = table1("1").ToString,
-                                .feb = table1("2").ToString,
-                                .mar = table1("3").ToString,
-                                .apr = table1("4").ToString,
-                                .may = table1("5").ToString,
-                                .jun = table1("6").ToString,
-                                .jul = table1("7").ToString,
-                                .aug = table1("8").ToString,
-                                .sep = table1("9").ToString,
-                                .oct = table1("10").ToString,
-                                .nov = table1("11").ToString,
-                                .dec = table1("12").ToString,
+                                .jan = table1("1") * 100,
+                                .feb = table1("2") * 100,
+                                .mar = table1("3") * 100,
+                                .apr = table1("4") * 100,
+                                .may = table1("5") * 100,
+                                .jun = table1("6") * 100,
+                                .jul = table1("7") * 100,
+                                .aug = table1("8") * 100,
+                                .sep = table1("9") * 100,
+                                .oct = table1("10") * 100,
+                                .nov = table1("11") * 100,
+                                .dec = table1("12") * 100,
                                 .Status = If(result_season Is Nothing Or result_class Is Nothing, If(result_season Is Nothing, "Season not found;", "") + If(result_class Is Nothing, "Class not found;", ""), "OK")
                             }
             GCData.DataSource = Nothing
@@ -5078,9 +5079,35 @@ WHERE d.id_lookup_status_order!=2 "
             GCData.RefreshDataSource()
             GVData.PopulateColumns()
 
-            'Customize column
+            'hide column
             GVData.Columns("id_delivery").Visible = False
             GVData.Columns("id_class").Visible = False
+
+            'display format
+            GVData.Columns("jan").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("jan").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("feb").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("feb").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("mar").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("mar").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("apr").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("apr").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("may").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("may").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("jun").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("jun").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("jul").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("jul").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("aug").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("aug").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("sep").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("sep").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("oct").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("oct").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("nov").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("nov").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("dec").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("dec").DisplayFormat.FormatString = "{0:n1}%"
 
             'cek ok atau tidak
             GVData.ActiveFilterString = "[Status]<>'OK'"
@@ -5161,7 +5188,7 @@ WHERE d.id_lookup_status_order!=2 "
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Or id_pop_up = "64" Or id_pop_up = "67" Or id_pop_up = "68" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Or id_pop_up = "64" Or id_pop_up = "67" Or id_pop_up = "68" Or id_pop_up = "69" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -8340,6 +8367,62 @@ WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='"
                             Dim q As String = "UPDATE tb_m_comp SET address_efaktur='" + address_efaktur + "' WHERE id_comp='" + id_comp + "' "
                             execute_non_query(q, True, "", "", "", "")
 
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+
+                        FormMasterStoreFaktur.viewData()
+
+                        'refresh
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
+                End If
+            ElseIf id_pop_up = "69" Then
+                'iMPOR SAS/SALTHRU
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status] = 'OK' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only ok data will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        'get bulan
+                        Dim qbln As String = "SELECT mth.id_month AS `bulan`, LOWER(LEFT(mth.`month`,3)) AS `nama_bulan` FROM tb_lookup_month mth "
+                        Dim dbln As DataTable = execute_query(qbln, -1, True, "", "", "", "")
+
+                        'detail data
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim type As String = GVData.GetRowCellValue(i, "type").ToString
+                            Dim id_delivery As String = GVData.GetRowCellValue(i, "id_delivery").ToString
+                            Dim id_class As String = GVData.GetRowCellValue(i, "id_class").ToString
+                            Dim year As String = GVData.GetRowCellValue(i, "year").ToString
+                            For j As Integer = 1 To 12
+                                Dim fbln As DataRow() = dbln.Select("[bulan]='" + j.ToString + "' ")
+                                Dim bulan As String = fbln(0)("nama_bulan").ToString
+
+                                If type = "salthru" Then
+                                    Dim sth_period As String = year + "-" + j.ToString + "-" + "01"
+                                    Dim sth_value As String = decimalSQL(GVData.GetRowCellValue(i, bulan).ToString)
+                                    Dim query As String = "UPDATE tb_tg_sth SET is_active=2 WHERE id_class='" + id_class + "' AND sth_period='" + sth_period + "' AND id_delivery='" + id_delivery + "';
+                                    INSERT INTO tb_tg_sth(id_class, sth_period, id_delivery, sth_value, is_active, input_date, input_by) 
+                                    VALUES('" + id_class + "', '" + sth_period + "', '" + id_delivery + "', '" + sth_value + "','1',NOW(), '" + id_user + "'); "
+                                    execute_non_query(query, True, "", "", "", "")
+                                Else
+                                    Dim sas_period As String = year + "-" + j.ToString + "-" + "01"
+                                    Dim sas_value As String = decimalSQL(GVData.GetRowCellValue(i, bulan).ToString)
+                                    Dim query As String = "UPDATE tb_tg_sas SET is_active=2 WHERE id_class='" + id_class + "' AND sas_period='" + sas_period + "' AND id_delivery='" + id_delivery + "';
+                                    INSERT INTO tb_tg_sas(id_class, sas_period, id_delivery, sas_value, is_active, input_date, input_by) 
+                                    VALUES('" + id_class + "', '" + sas_period + "', '" + id_delivery + "', '" + sas_value + "','1',NOW(), '" + id_user + "'); "
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
+                            Next
                             PBC.PerformStep()
                             PBC.Update()
                         Next
