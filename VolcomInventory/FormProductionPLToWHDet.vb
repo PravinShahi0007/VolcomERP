@@ -92,7 +92,7 @@ Public Class FormProductionPLToWHDet
             'View data
             BMark.Enabled = True
             Try
-                Dim query As String = "SELECT a.id_pl_category, (h.design_display_name) AS `design_name`, h.id_sample, h.id_season, DATE_FORMAT(a.pl_prod_order_date,'%Y-%m-%d') as pl_prod_order_datex, a.id_report_status, a.id_prod_order, a.id_pl_prod_order, a.pl_prod_order_date, "
+                Dim query As String = "SELECT a.id_pl_category,a.id_reject_category, (h.design_display_name) AS `design_name`, h.id_sample, h.id_season, DATE_FORMAT(a.pl_prod_order_date,'%Y-%m-%d') as pl_prod_order_datex, a.id_report_status, a.id_prod_order, a.id_pl_prod_order, a.pl_prod_order_date, "
                 query += "a.pl_prod_order_note, a.pl_prod_order_number,  "
                 query += "b.prod_order_number, (c.id_comp_contact) AS id_comp_contact_from, (d.comp_name) AS comp_name_contact_from, (d.comp_number) AS comp_code_contact_from, (d.address_primary) AS comp_address_contact_from, "
                 query += "g.id_design,(e.id_comp_contact) AS id_comp_contact_to, (f.comp_name) AS comp_name_contact_to, (f.comp_number) AS comp_code_contact_to,(f.address_primary) AS comp_address_contact_to, a.id_pd_alloc, ho.id_ho_type, ho.ho_type "
@@ -122,6 +122,9 @@ Public Class FormProductionPLToWHDet
                 MENote.Text = data.Rows(0)("pl_prod_order_note").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
                 LEPLCategory.ItemIndex = LEPLCategory.Properties.GetDataSourceRowIndex("id_pl_category", data.Rows(0)("id_pl_category").ToString)
+                If LEPLCategory.EditValue.ToString = "3" Then
+                    SLEMajorExt.EditValue = data.Rows(0)("id_reject_category").ToString
+                End If
                 id_report_status = data.Rows(0)("id_report_status").ToString
                 id_prod_order = data.Rows(0)("id_prod_order").ToString
                 id_design = data.Rows(0)("id_design").ToString
@@ -189,6 +192,7 @@ Public Class FormProductionPLToWHDet
             BDelete.Enabled = True
             BtnInfoSrs.Enabled = True
             LEPLCategory.Enabled = False
+            SLEMajorExt.Enabled = False
             GVRetDetail.OptionsBehavior.ReadOnly = False
         Else
             BtnBrowseContactFrom.Enabled = False
@@ -203,6 +207,7 @@ Public Class FormProductionPLToWHDet
             BDelete.Enabled = False
             BtnInfoSrs.Enabled = False
             LEPLCategory.Enabled = False
+            SLEMajorExt.Enabled = False
             GVRetDetail.OptionsBehavior.ReadOnly = True
         End If
         PanelNavBarcode.Enabled = False
@@ -433,7 +438,7 @@ Public Class FormProductionPLToWHDet
 
     'View PL Category
     Sub viewPLCat()
-        Dim query As String = "SELECT * FROM tb_lookup_pl_category a ORDER BY a.id_pl_category  "
+        Dim query As String = "SELECT * FROM tb_lookup_pl_category a WHERE a.is_only_rec=2 ORDER BY a.id_pl_category "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEPLCategory, query, 0, "pl_category", "id_pl_category")
     End Sub
@@ -523,6 +528,12 @@ Public Class FormProductionPLToWHDet
             Dim id_pl_prod_order_det As String
             Dim id_pl_category As String = LEPLCategory.EditValue.ToString
             Dim id_pd_alloc As String = LEPDAlloc.EditValue.ToString
+            Dim id_reject_cat As String = "1"
+
+            If id_pl_category = "3" Then
+                id_reject_cat = SLEMajorExt.EditValue.ToString
+            End If
+
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
@@ -531,8 +542,8 @@ Public Class FormProductionPLToWHDet
                         'Main tbale
                         BtnSave.Enabled = False
                         pl_prod_order_number = header_number_prod("7")
-                        query = "INSERT INTO tb_pl_prod_order(id_prod_order, pl_prod_order_number, id_comp_contact_to, id_comp_contact_from, pl_prod_order_date, pl_prod_order_note, id_report_status, id_pl_category, id_pd_alloc) "
-                        query += "VALUES('" + id_prod_order + "', '" + pl_prod_order_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + pl_prod_order_note + "', '" + id_report_status + "', '" + id_pl_category + "', NULL); SELECT LAST_INSERT_ID(); "
+                        query = "INSERT INTO tb_pl_prod_order(id_prod_order, pl_prod_order_number, id_comp_contact_to, id_comp_contact_from, pl_prod_order_date, pl_prod_order_note, id_report_status, id_pl_category, id_pd_alloc, id_reject_category) "
+                        query += "VALUES('" + id_prod_order + "', '" + pl_prod_order_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + pl_prod_order_note + "', '" + id_report_status + "', '" + id_pl_category + "', NULL,'" & id_reject_cat & "'); SELECT LAST_INSERT_ID(); "
                         id_pl_prod_order = execute_query(query, 0, True, "", "", "", "")
 
                         increase_inc_prod("7")
@@ -635,7 +646,7 @@ Public Class FormProductionPLToWHDet
                         pl_prod_order_number = addSlashes(TxtRetOutNumber.Text)
 
                         'edit main table
-                        query = "UPDATE tb_pl_prod_order SET id_prod_order = '" + id_prod_order + "', pl_prod_order_number = '" + pl_prod_order_number + "', id_comp_contact_to = '" + id_comp_contact_to + "', id_comp_contact_from = '" + id_comp_contact_from + "', id_report_status = '" + id_report_status + "', pl_prod_order_note = '" + pl_prod_order_note + "', id_pl_category = '" + id_pl_category + "', id_pd_alloc = NULL WHERE id_pl_prod_order = '" + id_pl_prod_order + "' "
+                        query = "UPDATE tb_pl_prod_order SET id_prod_order = '" + id_prod_order + "', pl_prod_order_number = '" + pl_prod_order_number + "', id_comp_contact_to = '" + id_comp_contact_to + "', id_comp_contact_from = '" + id_comp_contact_from + "', id_report_status = '" + id_report_status + "', pl_prod_order_note = '" + pl_prod_order_note + "', id_pl_category = '" + id_pl_category + "', id_pd_alloc = NULL, id_reject_category='" & id_reject_cat & "' WHERE id_pl_prod_order = '" + id_pl_prod_order + "' "
                         execute_non_query(query, True, "", "", "", "")
 
                         'edit detail table
@@ -832,7 +843,7 @@ Public Class FormProductionPLToWHDet
         Report.LabelTo.Text = TxtCodeCompTo.Text + "- " + TxtNameCompTo.Text
         Report.LabelDate.Text = DERet.Text
         Report.LabelNo.Text = TxtRetOutNumber.Text
-        Report.LabelSource.Text = LEPLCategory.Text
+        Report.LabelPLCat.Text = LEPLCategory.Text & If(SLEMajorExt.Visible = True, " - " & SLEMajorExt.EditValue.ToString, "")
         Report.LabelDesign.Text = TEDesign.Text
         Report.LabelNote.Text = MENote.Text
         Report.LabelVendor.Text = TxtVendorCode.Text + " - " + TxtVendor.Text
@@ -915,6 +926,7 @@ Public Class FormProductionPLToWHDet
         BtnDel.Enabled = False
         BtnInfoSrs.Enabled = False
         LEPLCategory.Enabled = False
+        SLEMajorExt.Enabled = False
         If action = "ins" Then
             LEPDAlloc.Enabled = False
         ElseIf action = "upd" Then
@@ -987,6 +999,7 @@ Public Class FormProductionPLToWHDet
         BtnDel.Enabled = True
         BtnInfoSrs.Enabled = True
         LEPLCategory.Enabled = True
+        SLEMajorExt.Enabled = True
         If action = "ins" Then
             LEPDAlloc.Enabled = True
         ElseIf action = "upd" Then
@@ -1389,8 +1402,22 @@ Public Class FormProductionPLToWHDet
         Catch ex As Exception
         End Try
         getCompFrom(id_comp_cat)
+        '
+        If LEPLCategory.EditValue.ToString = "3" Then
+            SLEMajorExt.Visible = True
+            view_reject_category()
+        Else
+            SLEMajorExt.Visible = False
+        End If
+        '
         loadQCRef()
+        '
         Cursor = Cursors.Default
+    End Sub
+
+    Sub view_reject_category()
+        Dim q As String = "SELECT id_reject_category,reject_category FROM tb_reject_category WHERE id_reject_category!=1"
+        viewSearchLookupQuery(SLEMajorExt, q, "id_reject_category", "reject_category", "id_reject_category")
     End Sub
 
     Sub getCompFrom(ByVal id_comp_cat As String)
@@ -1411,6 +1438,12 @@ Public Class FormProductionPLToWHDet
             Cursor = Cursors.WaitCursor
             'load ref
             Dim id_pl_category As String = LEPLCategory.EditValue.ToString
+            Dim qw As String = ""
+
+            If LEPLCategory.EditValue.ToString = "3" Then
+                qw = " AND f.id_reject_category='" & SLEMajorExt.EditValue.ToString & "' "
+            End If
+
             Dim query As String = "SELECT f.id_prod_fc, f.prod_fc_number, IFNULL(fd.total_qty,0) AS `total_qty`, pl.id_pl_prod_order, 'OK' AS `stt`
             FROM tb_prod_fc f 
             INNER JOIN (
@@ -1426,7 +1459,7 @@ Public Class FormProductionPLToWHDet
 	            INNER JOIN tb_pl_prod_order pl ON pl.id_pl_prod_order = r.id_pl_prod_order
 	            WHERE pl.id_report_status!=5 AND pl.id_prod_order=" + id_prod_order + "
             ) pl ON pl.id_prod_fc = f.id_prod_fc
-            WHERE f.id_prod_order=" + id_prod_order + " AND f.id_report_status=6 AND f.id_pl_category=" + id_pl_category + " AND ISNULL(pl.id_pl_prod_order) "
+            WHERE f.id_prod_order=" + id_prod_order + " AND f.id_report_status=6 AND f.id_pl_category=" + id_pl_category + " " & qw & " AND ISNULL(pl.id_pl_prod_order) "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCQC.DataSource = data
             GVQC.BestFitColumns()
@@ -1493,6 +1526,23 @@ Public Class FormProductionPLToWHDet
             End If
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub SLEMajorExt_EditValueChanged(sender As Object, e As EventArgs) Handles SLEMajorExt.EditValueChanged
+        Cursor = Cursors.WaitCursor
+        Dim id_comp_cat As String = "-1"
+        Try
+
+            Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(LEPLCategory, DevExpress.XtraEditors.LookUpEdit)
+            Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
+            id_comp_cat = row("id_comp").ToString
+        Catch ex As Exception
+        End Try
+        '
+        getCompFrom(id_comp_cat)
+        loadQCRef()
+        '
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)

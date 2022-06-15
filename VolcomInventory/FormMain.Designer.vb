@@ -4219,7 +4219,7 @@ Partial Class FormMain
         '
         'NBFinalClear
         '
-        Me.NBFinalClear.Caption = "QC Report"
+        Me.NBFinalClear.Caption = "QC Report 2"
         Me.NBFinalClear.Name = "NBFinalClear"
         Me.NBFinalClear.SmallImage = CType(resources.GetObject("NBFinalClear.SmallImage"), System.Drawing.Image)
         '

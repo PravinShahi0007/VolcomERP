@@ -24,6 +24,8 @@ Partial Class FormInvoiceFGPO
         Me.XTCInvoiceFGPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPBPL = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBPL = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DuplicateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVBPL = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -235,12 +237,13 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.DuplicateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn88 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPBPL.SuspendLayout()
         CType(Me.GCBPL, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVBPL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -301,7 +304,6 @@ Partial Class FormInvoiceFGPO
         Me.PCVendor.SuspendLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCInvoiceFGPO
@@ -333,6 +335,18 @@ Partial Class FormInvoiceFGPO
         Me.GCBPL.Size = New System.Drawing.Size(1155, 513)
         Me.GCBPL.TabIndex = 20
         Me.GCBPL.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBPL})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DuplicateToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(125, 26)
+        '
+        'DuplicateToolStripMenuItem
+        '
+        Me.DuplicateToolStripMenuItem.Name = "DuplicateToolStripMenuItem"
+        Me.DuplicateToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
+        Me.DuplicateToolStripMenuItem.Text = "Duplicate"
         '
         'GVBPL
         '
@@ -599,7 +613,7 @@ Partial Class FormInvoiceFGPO
         '
         'GVDP
         '
-        Me.GVDP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn19, Me.GridColumn21, Me.GridColumn22, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn32, Me.GridColumn31, Me.GridColumn12, Me.GridColumn13})
+        Me.GVDP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn88, Me.GridColumn7, Me.GridColumn8, Me.GridColumn19, Me.GridColumn21, Me.GridColumn22, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn32, Me.GridColumn31, Me.GridColumn12, Me.GridColumn13})
         Me.GVDP.GridControl = Me.GCDP
         Me.GVDP.Name = "GVDP"
         Me.GVDP.OptionsBehavior.Editable = False
@@ -619,7 +633,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn7.FieldName = "number"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.VisibleIndex = 3
         Me.GridColumn7.Width = 72
         '
         'GridColumn8
@@ -630,7 +644,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn8.FieldName = "created_date"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 3
+        Me.GridColumn8.VisibleIndex = 4
         Me.GridColumn8.Width = 78
         '
         'GridColumn19
@@ -641,7 +655,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn19.FieldName = "due_date"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 4
+        Me.GridColumn19.VisibleIndex = 5
         Me.GridColumn19.Width = 76
         '
         'GridColumn21
@@ -650,7 +664,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn21.FieldName = "inv_number"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 6
+        Me.GridColumn21.VisibleIndex = 7
         Me.GridColumn21.Width = 100
         '
         'GridColumn22
@@ -659,7 +673,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn22.FieldName = "report_number"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.VisibleIndex = 6
         Me.GridColumn22.Width = 94
         '
         'GridColumn9
@@ -668,7 +682,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn9.FieldName = "employee_name"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 7
+        Me.GridColumn9.VisibleIndex = 8
         Me.GridColumn9.Width = 109
         '
         'GridColumn10
@@ -677,7 +691,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn10.FieldName = "report_status"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 11
+        Me.GridColumn10.VisibleIndex = 12
         Me.GridColumn10.Width = 174
         '
         'GridColumn11
@@ -693,7 +707,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 8
+        Me.GridColumn11.VisibleIndex = 9
         Me.GridColumn11.Width = 139
         '
         'GridColumn32
@@ -709,7 +723,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn32.Name = "GridColumn32"
         Me.GridColumn32.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_vat", "{0:N2}")})
         Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 9
+        Me.GridColumn32.VisibleIndex = 10
         Me.GridColumn32.Width = 42
         '
         'GridColumn31
@@ -725,7 +739,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N2}")})
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 10
+        Me.GridColumn31.VisibleIndex = 11
         Me.GridColumn31.Width = 42
         '
         'GridColumn12
@@ -743,7 +757,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn13.FieldName = "comp_name"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 1
+        Me.GridColumn13.VisibleIndex = 2
         Me.GridColumn13.Width = 126
         '
         'XTPDPList
@@ -767,7 +781,7 @@ Partial Class FormInvoiceFGPO
         '
         'GVDPFGPO
         '
-        Me.GVDPFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GCDPListFGPONumber, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOPaymentType, Me.GridColumn18, Me.GridColumn43, Me.GridColumn44, Me.GridColumn42, Me.GridColumn41, Me.GridColumn40, Me.GCDPListFGPODPAmount, Me.GridColumnDPAmountVAT, Me.GCDPListFGPOAmount, Me.GCDPListFGPOQty, Me.GridColumn58})
+        Me.GVDPFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCDPListFGPOCheck, Me.GCDPListFGPOID, Me.GridColumn89, Me.GCDPListFGPONumber, Me.GCDPListFGPOVendorCode, Me.GCDPListFGPOVendor, Me.GCDPListFGPODesign, Me.GCDPListFGPOPaymentType, Me.GridColumn18, Me.GridColumn43, Me.GridColumn44, Me.GridColumn42, Me.GridColumn41, Me.GridColumn40, Me.GCDPListFGPODPAmount, Me.GridColumnDPAmountVAT, Me.GCDPListFGPOAmount, Me.GCDPListFGPOQty, Me.GridColumn58})
         Me.GVDPFGPO.GridControl = Me.GCDPFGPO
         Me.GVDPFGPO.Name = "GVDPFGPO"
         Me.GVDPFGPO.OptionsView.ColumnAutoWidth = False
@@ -806,7 +820,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPONumber.Name = "GCDPListFGPONumber"
         Me.GCDPListFGPONumber.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPONumber.Visible = True
-        Me.GCDPListFGPONumber.VisibleIndex = 4
+        Me.GCDPListFGPONumber.VisibleIndex = 5
         Me.GCDPListFGPONumber.Width = 113
         '
         'GCDPListFGPOVendorCode
@@ -816,7 +830,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOVendorCode.Name = "GCDPListFGPOVendorCode"
         Me.GCDPListFGPOVendorCode.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOVendorCode.Visible = True
-        Me.GCDPListFGPOVendorCode.VisibleIndex = 2
+        Me.GCDPListFGPOVendorCode.VisibleIndex = 3
         Me.GCDPListFGPOVendorCode.Width = 93
         '
         'GCDPListFGPOVendor
@@ -826,7 +840,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOVendor.Name = "GCDPListFGPOVendor"
         Me.GCDPListFGPOVendor.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOVendor.Visible = True
-        Me.GCDPListFGPOVendor.VisibleIndex = 3
+        Me.GCDPListFGPOVendor.VisibleIndex = 4
         Me.GCDPListFGPOVendor.Width = 220
         '
         'GCDPListFGPODesign
@@ -836,7 +850,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPODesign.Name = "GCDPListFGPODesign"
         Me.GCDPListFGPODesign.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPODesign.Visible = True
-        Me.GCDPListFGPODesign.VisibleIndex = 5
+        Me.GCDPListFGPODesign.VisibleIndex = 6
         Me.GCDPListFGPODesign.Width = 257
         '
         'GCDPListFGPOPaymentType
@@ -861,7 +875,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn18.FieldName = "qty"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.VisibleIndex = 7
         Me.GridColumn18.Width = 92
         '
         'GridColumn43
@@ -876,7 +890,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn44.FieldName = "currency"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 7
+        Me.GridColumn44.VisibleIndex = 8
         '
         'GridColumn42
         '
@@ -886,7 +900,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn42.FieldName = "po_amount_bef_kurs"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.Visible = True
-        Me.GridColumn42.VisibleIndex = 8
+        Me.GridColumn42.VisibleIndex = 9
         '
         'GridColumn41
         '
@@ -896,7 +910,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn41.FieldName = "dp_amount_bef_kurs"
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 9
+        Me.GridColumn41.VisibleIndex = 10
         '
         'GridColumn40
         '
@@ -906,7 +920,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn40.FieldName = "prod_order_wo_kurs"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 10
+        Me.GridColumn40.VisibleIndex = 11
         '
         'GCDPListFGPODPAmount
         '
@@ -922,7 +936,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPODPAmount.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPODPAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dp_amount", "{0:N2}")})
         Me.GCDPListFGPODPAmount.Visible = True
-        Me.GCDPListFGPODPAmount.VisibleIndex = 12
+        Me.GCDPListFGPODPAmount.VisibleIndex = 13
         Me.GCDPListFGPODPAmount.Width = 233
         '
         'GridColumnDPAmountVAT
@@ -939,7 +953,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumnDPAmountVAT.OptionsColumn.AllowEdit = False
         Me.GridColumnDPAmountVAT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dp_amount_vat", "{0:N2}")})
         Me.GridColumnDPAmountVAT.Visible = True
-        Me.GridColumnDPAmountVAT.VisibleIndex = 13
+        Me.GridColumnDPAmountVAT.VisibleIndex = 14
         Me.GridColumnDPAmountVAT.Width = 126
         '
         'GCDPListFGPOAmount
@@ -956,7 +970,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOAmount.OptionsColumn.AllowEdit = False
         Me.GCDPListFGPOAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount", "{0:N2}")})
         Me.GCDPListFGPOAmount.Visible = True
-        Me.GCDPListFGPOAmount.VisibleIndex = 11
+        Me.GCDPListFGPOAmount.VisibleIndex = 12
         Me.GCDPListFGPOAmount.Width = 279
         '
         'GCDPListFGPOQty
@@ -981,7 +995,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn58.FieldName = "val_dp"
         Me.GridColumn58.Name = "GridColumn58"
         Me.GridColumn58.Visible = True
-        Me.GridColumn58.VisibleIndex = 14
+        Me.GridColumn58.VisibleIndex = 15
         '
         'PCDPFGPO
         '
@@ -2514,17 +2528,21 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
-        'ContextMenuStrip1
+        'GridColumn88
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DuplicateToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        Me.GridColumn88.Caption = "Season"
+        Me.GridColumn88.FieldName = "season"
+        Me.GridColumn88.Name = "GridColumn88"
+        Me.GridColumn88.Visible = True
+        Me.GridColumn88.VisibleIndex = 1
         '
-        'DuplicateToolStripMenuItem
+        'GridColumn89
         '
-        Me.DuplicateToolStripMenuItem.Name = "DuplicateToolStripMenuItem"
-        Me.DuplicateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.DuplicateToolStripMenuItem.Text = "Duplicate"
+        Me.GridColumn89.Caption = "Season"
+        Me.GridColumn89.FieldName = "season"
+        Me.GridColumn89.Name = "GridColumn89"
+        Me.GridColumn89.Visible = True
+        Me.GridColumn89.VisibleIndex = 2
         '
         'FormInvoiceFGPO
         '
@@ -2547,6 +2565,7 @@ Partial Class FormInvoiceFGPO
         Me.XTCInvoiceFGPO.ResumeLayout(False)
         Me.XTPBPL.ResumeLayout(False)
         CType(Me.GCBPL, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVBPL, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -2609,7 +2628,6 @@ Partial Class FormInvoiceFGPO
         Me.PCVendor.PerformLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2831,4 +2849,6 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn87 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents DuplicateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumn88 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn89 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
