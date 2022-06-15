@@ -5029,6 +5029,67 @@ WHERE d.id_lookup_status_order!=2 "
 
             'Customize column
             GVData.Columns("id_comp").Visible = False
+        ElseIf id_pop_up = "68" Then
+            'season
+            Dim qss As String = "SELECT sd.id_delivery, CONCAT(ss.season, ' D',sd.delivery) AS `delivery_season` 
+            FROM tb_season_delivery sd
+            INNER JOIN tb_season ss ON ss.id_season = sd.id_season
+            INNER JOIN tb_range rg ON rg.id_range = ss.id_range "
+            Dim dss As DataTable = execute_query(qss, -1, True, "", "", "", "")
+            'class
+            Dim qcls As String = "SELECT cd.id_code_detail AS `id_class`, cd.display_name AS `class` 
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=30 "
+            Dim dcls As DataTable = execute_query(qcls, -1, True, "", "", "", "")
+
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb_season = dss.AsEnumerable()
+            Dim tb_class = dcls.AsEnumerable()
+
+            Dim query = From table1 In tb1
+                        Group Join tb_join_season In tb_season On table1("season").ToString.ToUpper Equals tb_join_season("delivery_season").ToString.ToUpper Into season = Group
+                        From result_season In season.DefaultIfEmpty()
+                        Group Join tb_join_class In tb_class On table1("class").ToString.ToUpper Equals tb_join_class("class").ToString.ToUpper Into cls = Group
+                        From result_class In cls.DefaultIfEmpty
+                        Select New With
+                            {
+                                .type = table1("type").ToString,
+                                .id_delivery = If(result_season Is Nothing, "0", result_season("id_delivery")),
+                                .season = table1("season").ToString,
+                                .id_class = If(result_class Is Nothing, "0", result_class("id_class")),
+                                .class = table1("class").ToString,
+                                .year = table1("year").ToString,
+                                .jan = table1("1").ToString,
+                                .feb = table1("2").ToString,
+                                .mar = table1("3").ToString,
+                                .apr = table1("4").ToString,
+                                .may = table1("5").ToString,
+                                .jun = table1("6").ToString,
+                                .jul = table1("7").ToString,
+                                .aug = table1("8").ToString,
+                                .sep = table1("9").ToString,
+                                .oct = table1("10").ToString,
+                                .nov = table1("11").ToString,
+                                .dec = table1("12").ToString,
+                                .Status = If(result_season Is Nothing Or result_class Is Nothing, If(result_season Is Nothing, "Season not found;", "") + If(result_class Is Nothing, "Class not found;", ""), "OK")
+                            }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_delivery").Visible = False
+            GVData.Columns("id_class").Visible = False
+
+            'cek ok atau tidak
+            GVData.ActiveFilterString = "[Status]<>'OK'"
+            If GVData.RowCount > 0 Then
+                BImport.Enabled = False
+            Else
+                BImport.Enabled = True
+            End If
+            GVData.ActiveFilterString = ""
         End If
         data_temp.Dispose()
         oledbconn.Close()
