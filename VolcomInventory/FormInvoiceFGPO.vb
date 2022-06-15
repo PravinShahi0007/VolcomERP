@@ -129,6 +129,7 @@ WHERE pnt.is_payment=2 AND pn.doc_type <> 4 " & query_where
 ,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * IFNULL(oldest_price.old_kurs,wo.prod_order_wo_kurs) AS dp_amount_vat
 ,IFNULL(dp_paid.val_dp,0) AS val_dp
 ,IFNULL(dp_paid.val_vat_dp,0) AS val_vat_dp
+,s.season
 FROM tb_prod_order_wo_det wod
 INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
@@ -142,6 +143,7 @@ INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
 INNER JOIN tb_prod_order po ON po.id_prod_order=wo.`id_prod_order` AND po.id_report_status='6'
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.`id_prod_demand_design` 
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
 INNER JOIN tb_lookup_payment py ON py.`id_payment`=wo.`id_payment` AND py.`dp_amount` > 0
 LEFT JOIN 
 (
