@@ -89,7 +89,7 @@
         Next
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Processing data")
-        Dim query As String = "SELECT a.id_class AS `PRODUCT INFO|id_class`, '-' AS `PRODUCT INFO|class`, a.id_delivery AS `PRODUCT INFO|id_delivery`, 
+        Dim query As String = "SELECT a.id_class AS `PRODUCT INFO|id_class`, cls.display_name AS `PRODUCT INFO|CLASS`, a.id_delivery AS `PRODUCT INFO|id_delivery`, CONCAT(ss.season,' D',sd.delivery) AS `PRODUCT INFO|SEASON`,
         " + col_sth + ",
         " + col_sas + "
         FROM (
@@ -101,7 +101,11 @@
 	        FROM tb_tg_sas sas
 	        WHERE sas.is_active=1 AND (sas.sas_period>='" + startd + "' AND sas.sas_period<='" + endd + "')
         ) a
-        GROUP BY a.id_class, a.id_delivery "
+        INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = a.id_class
+        INNER JOIN tb_season_delivery sd ON sd.id_delivery = a.id_delivery
+        INNER JOIN tb_season ss ON ss.id_season  = sd.id_season
+        GROUP BY a.id_class, a.id_delivery 
+        ORDER BY sd.delivery_date ASC, cls.display_name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         'clear column/band
