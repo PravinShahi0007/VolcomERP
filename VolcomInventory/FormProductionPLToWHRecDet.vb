@@ -102,7 +102,7 @@ Public Class FormProductionPLToWHRecDet
                 query += "a.id_wh_drawer, CONCAT(drw.wh_drawer_code, '-', drw.wh_drawer) AS wh_drawer, "
                 query += "rck.id_wh_rack, CONCAT(rck.wh_rack_code, '-', rck.wh_rack) AS wh_rack, "
                 query += "loc.id_wh_locator, CONCAT(loc.wh_locator_code, '-', loc.wh_locator) AS wh_locator, "
-                query += "alloc.id_pd_alloc, alloc.pd_alloc "
+                query += "alloc.id_pd_alloc, alloc.pd_alloc,rc.reject_category "
                 query += "FROM tb_pl_prod_order_rec a "
                 query += "INNER JOIN tb_pl_prod_order b ON a.id_pl_prod_order = b.id_pl_prod_order "
                 query += "INNER JOIN tb_prod_order b1 ON b.id_prod_order = b1.id_prod_order "
@@ -113,6 +113,7 @@ Public Class FormProductionPLToWHRecDet
                 query += "INNER JOIN tb_prod_demand_design g ON g.id_prod_demand_design = b1.id_prod_demand_design "
                 query += "INNER JOIN tb_m_design h ON g.id_design = h.id_design "
                 query += "INNER JOIN tb_lookup_pl_category i ON b.id_pl_category = i.id_pl_category "
+                query += "INNER JOIN tb_reject_category rc ON rc.id_reject_category = b.id_reject_category "
                 query += "INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = a.id_wh_drawer "
                 query += "INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack "
                 query += "INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
@@ -139,6 +140,14 @@ Public Class FormProductionPLToWHRecDet
                 MENote.Text = data.Rows(0)("pl_prod_order_rec_note").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
                 TxtPLCategory.Text = data.Rows(0)("pl_category").ToString
+                '
+                If data.Rows(0)("id_pl_category").ToString = "3" Then
+                    TEMajorExt.Text = data.Rows(0)("reject_category").ToString
+                    TEMajorExt.Visible = True
+                Else
+                    TEMajorExt.Visible = False
+                End If
+                '
                 id_report_status = data.Rows(0)("id_report_status").ToString
                 id_pl_prod_order = data.Rows(0)("id_pl_prod_order").ToString
                 id_sample = data.Rows(0)("id_sample").ToString
@@ -286,7 +295,7 @@ Public Class FormProductionPLToWHRecDet
 
     'View po
     Sub view_list_po(ByVal id_pl_prod_order As String)
-        Dim query = "CALL view_prod_order_det('" & id_pl_prod_order & "', '0')"
+        Dim query = "CALL view_prod_order_det_new('" & id_pl_prod_order & "', '0')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To (data.Rows.Count - 1)
             id_pl_prod_order_det_list.Add(data.Rows(i)("id_pl_prod_order_det").ToString)
@@ -296,7 +305,7 @@ Public Class FormProductionPLToWHRecDet
 
     Sub view_po()
         Dim query = "SELECT  "
-        query += "a1.id_prod_order, a1.prod_order_number, a.id_pl_prod_order,d.id_sample, a.pl_prod_order_number, d.design_display_name,d.design_name , d.design_code, g.pl_category, "
+        query += "a1.id_prod_order,a.id_pl_category,rc.reject_category, a1.prod_order_number, a.id_pl_prod_order,d.id_sample, a.pl_prod_order_number, d.design_display_name,d.design_name , d.design_code, g.pl_category, "
         query += "DATE_FORMAT(a.pl_prod_order_date,'%d %M %Y') AS pl_prod_order_date,a.id_report_status,c.report_status, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season, "
         query += "a.id_comp_contact_from, a.id_comp_contact_to, (i.id_comp) AS id_comp_to, (i.comp_name) AS comp_name_to, (i.comp_number) AS comp_number_to, (k.comp_name) AS comp_name_from, (k.comp_number) AS comp_number_from, d.design_cop, "
@@ -315,6 +324,7 @@ Public Class FormProductionPLToWHRecDet
         query += "INNER JOIN tb_lookup_pl_category g ON g.id_pl_category = a.id_pl_category "
         query += "LEFT JOIN tb_pl_prod_order_rec z ON a.id_pl_prod_order = z.id_pl_prod_order AND z.id_report_status!='5' "
         query += "LEFT JOIN tb_lookup_pd_alloc alloc ON alloc.id_pd_alloc = a.id_pd_alloc 
+        INNER JOIN tb_reject_category rc ON rc.id_reject_category=a.id_reject_category
         LEFT JOIN(
 		    SELECT * FROM (
 		    SELECT price.id_design, price.design_price, price_type.id_design_cat
@@ -335,6 +345,14 @@ Public Class FormProductionPLToWHRecDet
         TxtUnitCost.EditValue = data.Rows(0)("design_cop")
         TxtOrderNumber.Text = data.Rows(0)("pl_prod_order_number").ToString
         TxtPLCategory.Text = data.Rows(0)("pl_category").ToString
+        '
+        If data.Rows(0)("id_pl_category").ToString = "3" Then
+            TEMajorExt.Text = data.Rows(0)("reject_category").ToString
+            TEMajorExt.Visible = True
+        Else
+            TEMajorExt.Visible = False
+        End If
+        '
         id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
         TxtCodeCompFrom.Text = data.Rows(0)("comp_number_from").ToString
         TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
@@ -1230,7 +1248,7 @@ Public Class FormProductionPLToWHRecDet
         Report.LabelTo.Text = SLEStorage.Text
         Report.LabelDate.Text = DERet.Text
         Report.LabelNo.Text = TxtRetOutNumber.Text
-        Report.LabelSource.Text = TxtPLCategory.Text
+        Report.LabelSource.Text = TxtPLCategory.Text & If(TEMajorExt.Visible = True, " - " & TEMajorExt.Text, "")
         Report.LabelDesign.Text = TEDesign.Text
         Report.LabelPO.Text = TxtPONumber.Text
         Report.LabelVendor.Text = TxtVendorCode.Text + "-" + TxtVendor.Text
