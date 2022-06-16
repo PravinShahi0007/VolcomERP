@@ -40,7 +40,159 @@
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-        Dim query As String = "SELECT trx.id_acc_trans,trxd.id_report,trxd.report_number,trxd.report_mark_type,emp.`employee_name`,trx.`date_created`,trx.`date_reference`,bt.`bill_type`,trx.`acc_trans_number`,SUM(trxd.`debit`) AS debit,SUM(trxd.credit) AS credit,IF(SUM(trxd.`debit`)!=SUM(trxd.credit),'Not Balance',IF(SUM(trxd.`debit`)<=0,'Value zero','Ok')) AS sts 
+        Dim query As String = ""
+
+        If SLEUnit.EditValue.ToString = "1" Then
+            query = "(SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`
+,aktiva.this_month AS debit
+,pasiva.this_month-pl.ytd AS credit
+,'Aktiva dan Pasiva tidak balance' AS sts
+FROM
+(
+	SELECT IFNULL(SUM(trx.this_month),0.00) AS this_month
+	FROM tb_a_acc acc
+	LEFT JOIN
+	(
+		SELECT trxd.id_acc,acc.`acc_name`,SUM(trxd.debit) AS debit,SUM(trxd.credit) AS credit
+		,SUM(IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit)) AS saldo
+		,SUM(IF(IFNULL(trx.date_reference,trx.date_created) < DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-01') ,IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(1=2,1,IF(acc.id_dc=2,-1,1))) AS prev_month
+		,SUM(IF(DATE_FORMAT(IFNULL(trx.date_reference,trx.date_created),'%Y-%m-%d')<=DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y-%m-%d'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(1=2,1,IF(acc.id_dc=2,-1,1))) AS this_month
+		FROM `tb_a_acc_trans_det` trxd
+		INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status!=5 AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
+		INNER JOIN tb_m_comp c ON c.id_comp=trxd.id_comp 
+		INNER JOIN tb_a_acc acc ON trxd.id_acc=acc.`id_acc` AND acc.acc_name LIKE CONCAT(1,'%')
+		GROUP BY id_acc
+	) trx ON LEFT(acc.`acc_name`,4)=LEFT(trx.acc_name,4) 
+	INNER JOIN tb_a_acc acc_sub ON acc_sub.`id_acc`=acc.`id_acc_parent`
+	INNER JOIN tb_a_acc acc_head ON acc_head.`id_acc`=acc_sub.`id_acc_parent`
+	WHERE acc.acc_name LIKE CONCAT(1,'___') AND acc.id_coa_type=1
+)aktiva
+JOIN
+(
+	SELECT IFNULL(SUM(trx.this_month),0.00) AS this_month
+	FROM tb_a_acc acc
+	LEFT JOIN
+	(
+		SELECT trxd.id_acc,acc.`acc_name`,SUM(trxd.debit) AS debit,SUM(trxd.credit) AS credit
+		,SUM(IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit)) AS saldo
+		,SUM(IF(IFNULL(trx.date_reference,trx.date_created) < DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-01') ,IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(1=2,1,IF(acc.id_dc=2,-1,1))) AS prev_month
+		,SUM(IF(DATE_FORMAT(IFNULL(trx.date_reference,trx.date_created),'%Y-%m-%d')<=DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y-%m-%d'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(1=2,1,IF(acc.id_dc=2,-1,1))) AS this_month
+		FROM `tb_a_acc_trans_det` trxd
+		INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status!=5 AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
+		INNER JOIN tb_m_comp c ON c.id_comp=trxd.id_comp 
+		INNER JOIN tb_a_acc acc ON trxd.id_acc=acc.`id_acc` AND acc.acc_name LIKE CONCAT(2,'%') AND acc.acc_name NOT LIKE CONCAT(2214,'%') 
+		GROUP BY id_acc
+	) trx ON LEFT(acc.`acc_name`,4)=LEFT(trx.acc_name,4) 
+	INNER JOIN tb_a_acc acc_sub ON acc_sub.`id_acc`=acc.`id_acc_parent`
+	INNER JOIN tb_a_acc acc_head ON acc_head.`id_acc`=acc_sub.`id_acc_parent`
+	WHERE acc.acc_name LIKE CONCAT(2,'___') AND acc.id_coa_type=1 AND acc.acc_name NOT LIKE CONCAT(2214,'%') 
+)pasiva
+JOIN
+(
+	SELECT IFNULL(SUM(trx.this_year_to_date),0.00) AS ytd
+	FROM tb_a_acc acc
+	LEFT JOIN
+	(
+		SELECT trxd.id_acc,acc.`acc_name`,SUM(trxd.debit) AS debit,SUM(trxd.credit) AS credit
+		,SUM(IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit)) AS saldo
+		,SUM(IF(IFNULL(trx.date_reference,trx.date_created) < DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-01') AND IFNULL(trx.date_reference,trx.date_created) >= DATE_FORMAT(DATE_SUB('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH) ,'%Y-%m-01'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0)) * IF(acc.id_dc=1,-1,1) AS prev_month
+		,SUM(IF(DATE_FORMAT(IFNULL(trx.date_reference,trx.date_created),'%m-%Y')=DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','%m-%Y'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0)) * IF(acc.id_dc=1,-1,1) AS this_month
+		,SUM(IF(IFNULL(trx.date_reference,trx.date_created) <= DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-dd') AND IFNULL(trx.date_reference,trx.date_created) >= DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y-01-01'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0)) * IF(acc.id_dc=1,-1,1) AS this_year_to_date
+		FROM `tb_a_acc_trans_det` trxd
+		INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status=6 AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
+		INNER JOIN tb_m_comp c ON c.id_comp=trxd.id_comp 
+		INNER JOIN tb_a_acc acc ON trxd.id_acc=acc.`id_acc` AND (acc.acc_name LIKE '3%' OR acc.acc_name LIKE '4%') AND acc.id_coa_type=1
+		WHERE IFNULL(trx.date_reference,trx.date_created) <= DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-dd') 
+		GROUP BY acc.id_acc
+	) trx ON LEFT(acc.`acc_name`,4)=LEFT(trx.acc_name,4) 
+	INNER JOIN tb_a_acc acc_sub ON acc_sub.`id_acc`=acc.`id_acc_parent`
+	INNER JOIN tb_a_acc acc_head ON acc_head.`id_acc`=acc_sub.`id_acc_parent`
+	WHERE acc.acc_name LIKE '3___' OR acc.acc_name LIKE '4___' AND acc.id_coa_type=1
+)pl
+HAVING debit+credit!=0)
+UNION ALL"
+        Else
+            query = "(SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`
+,aktiva.this_month AS debit
+,pasiva.this_month-pl.ytd AS credit
+,'Aktiva dan Pasiva tidak balance' AS sts
+FROM
+(
+	SELECT IFNULL(SUM(trx.this_month),0.00) AS this_month
+	FROM tb_a_acc acc
+	LEFT JOIN
+	(
+		SELECT trxd.id_acc,acc.`acc_name`,SUM(trxd.debit) AS debit,SUM(trxd.credit) AS credit
+		,SUM(IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit)) AS saldo
+		,SUM(IF(IFNULL(trx.date_reference,trx.date_created) < DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-01') ,IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(@accnya=2,1,IF(acc.id_dc=2,-1,1))) AS prev_month
+		,SUM(IF(DATE_FORMAT(IFNULL(trx.date_reference,trx.date_created),'%Y-%m-%d')<=DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y-%m-%d'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(@accnya=2,1,IF(acc.id_dc=2,-1,1))) AS this_month
+		FROM `tb_a_acc_trans_det` trxd
+		INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status!=5 AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
+		INNER JOIN tb_m_comp c ON c.id_comp=trxd.id_comp
+		INNER JOIN tb_a_acc acc ON trxd.id_acc=acc.`id_acc` AND acc.acc_name LIKE CONCAT(1,'%') 
+		GROUP BY id_acc
+	) trx ON LEFT(acc.`acc_name`,4)=LEFT(trx.acc_name,4) 
+	INNER JOIN tb_a_acc acc_sub ON acc_sub.`id_acc`=acc.`id_acc_parent`
+	INNER JOIN tb_a_acc acc_head ON acc_head.`id_acc`=acc_sub.`id_acc_parent`
+	WHERE acc.acc_name LIKE CONCAT(1,'___') AND acc.id_coa_type=2 
+)aktiva
+JOIN
+(
+	SELECT IFNULL(SUM(trx.this_month),0.00) AS this_month
+	FROM tb_a_acc acc
+	LEFT JOIN
+	(
+		SELECT trxd.id_acc,acc.`acc_name`,SUM(trxd.debit) AS debit,SUM(trxd.credit) AS credit
+		,SUM(IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit)) AS saldo
+		,SUM(IF(IFNULL(trx.date_reference,trx.date_created) < DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-01') ,IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(@accnya=2,1,IF(acc.id_dc=2,-1,1))) AS prev_month
+		,SUM(IF(DATE_FORMAT(IFNULL(trx.date_reference,trx.date_created),'%Y-%m-%d')<=DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y-%m-%d'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0) * IF(@accnya=2,1,IF(acc.id_dc=2,-1,1))) AS this_month
+		FROM `tb_a_acc_trans_det` trxd
+		INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status!=5 AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
+		INNER JOIN tb_m_comp c ON c.id_comp=trxd.id_comp
+		INNER JOIN tb_a_acc acc ON trxd.id_acc=acc.`id_acc` AND acc.acc_name LIKE CONCAT(2,'%') AND acc.acc_name NOT LIKE CONCAT(2204,'%')
+		GROUP BY id_acc
+	) trx ON LEFT(acc.`acc_name`,4)=LEFT(trx.acc_name,4) 
+	INNER JOIN tb_a_acc acc_sub ON acc_sub.`id_acc`=acc.`id_acc_parent`
+	INNER JOIN tb_a_acc acc_head ON acc_head.`id_acc`=acc_sub.`id_acc_parent`
+	WHERE acc.acc_name LIKE CONCAT(2,'___') AND acc.id_coa_type=2 AND acc.acc_name NOT LIKE CONCAT(2204,'%')
+)pasiva
+JOIN
+(
+	SELECT IFNULL(SUM(trx.this_year_to_date),0.00) AS ytd
+	FROM tb_a_acc acc
+	LEFT JOIN
+	(
+		SELECT trxd.id_acc,acc.`acc_name`,SUM(trxd.debit) AS debit,SUM(trxd.credit) AS credit
+		,SUM(IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit)) AS saldo
+		,SUM(IF(IFNULL(trx.date_reference,trx.date_created) < DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-01') AND IFNULL(trx.date_reference,trx.date_created) >= DATE_FORMAT(DATE_SUB('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH) ,'%Y-%m-01'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0)) * IF(acc.id_dc=1,-1,1) AS prev_month
+		,SUM(IF(DATE_FORMAT(IFNULL(trx.date_reference,trx.date_created),'%m-%Y')=DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','%m-%Y'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0)) * IF(acc.id_dc=1,-1,1) AS this_month
+		,SUM(IF(IFNULL(trx.date_reference,trx.date_created) <= DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-dd') AND IFNULL(trx.date_reference,trx.date_created) >= DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','%Y-01-01'),IF(id_dc='2',trxd.credit-trxd.debit,trxd.debit-trxd.credit),0)) * IF(acc.id_dc=1,-1,1) AS this_year_to_date
+		FROM `tb_a_acc_trans_det` trxd
+		INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status=6  AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
+		INNER JOIN tb_m_comp c ON c.id_comp=trxd.id_comp 
+		INNER JOIN tb_a_acc acc ON trxd.id_acc=acc.`id_acc` AND (acc.acc_name LIKE '3%' OR acc.acc_name LIKE '4%') AND acc.id_coa_type=2
+		WHERE IFNULL(trx.date_reference,trx.date_created) <= DATE_FORMAT('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' ,'%Y-%m-dd') 
+		GROUP BY acc.id_acc
+	) trx ON LEFT(acc.`acc_name`,4)=LEFT(trx.acc_name,4) 
+	INNER JOIN tb_a_acc acc_sub ON acc_sub.`id_acc`=acc.`id_acc_parent`
+	INNER JOIN tb_a_acc acc_head ON acc_head.`id_acc`=acc_sub.`id_acc_parent`
+	WHERE acc.acc_name LIKE '3___' OR acc.acc_name LIKE '4___' AND acc.id_coa_type=2
+)pl
+HAVING debit+credit!=0)
+UNION ALL"
+        End If
+
+        query += "(SELECT trxd.id_acc_trans,trxd.id_report,trxd.report_number,trxd.report_mark_type,'' AS `employee_name`,trx.`date_created`,trx.`date_reference`,'' AS `bill_type`,trx.`acc_trans_number`
+,trxd.debit
+,trxd.credit
+,'Salah pembukuan, beda unit' AS sts
+FROM `tb_a_acc_trans_det` trxd
+INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status=6
+INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc
+WHERE DATE_FORMAT(IFNULL(trx.date_reference,trx.date_created),'%Y%M') = DATE_FORMAT('2022-04-30' ,'%Y%M') 
+AND IF(trxd.id_coa_tag=1,1,2)!=acc.id_coa_type)
+UNION ALL
+(SELECT trx.id_acc_trans,trxd.id_report,trxd.report_number,trxd.report_mark_type,emp.`employee_name`,trx.`date_created`,trx.`date_reference`,bt.`bill_type`,trx.`acc_trans_number`,SUM(trxd.`debit`) AS debit,SUM(trxd.credit) AS credit,IF(SUM(trxd.`debit`)!=SUM(trxd.credit),'Not Balance',IF(SUM(trxd.`debit`)<=0,'Value zero','Ok')) AS sts 
 FROM tb_a_acc_trans_det trxd
 INNER JOIN tb_a_acc_trans trx ON trxd.`id_acc_trans`=trx.`id_acc_trans`
 INNER JOIN `tb_lookup_bill_type` bt ON bt.`id_bill_type`=trx.`id_bill_type`
@@ -48,18 +200,18 @@ INNER JOIN tb_m_user usr ON usr.`id_user`=trx.`id_user`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 WHERE trx.`is_close`='2' AND DATE(trx.`date_reference`)<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 GROUP BY trxd.`id_acc_trans`
-HAVING NOT sts='Ok'
+HAVING NOT sts='Ok')
 UNION ALL
-SELECT trx.id_acc_trans,trxd.id_report,trxd.report_number,trxd.report_mark_type,emp.`employee_name`,trx.`date_created`,trx.`date_reference`,bt.`bill_type`,trx.`acc_trans_number`,SUM(trxd.`debit`) AS debit,SUM(trxd.credit) AS credit,'Reffrence date is below closing period' AS sts 
+(SELECT trx.id_acc_trans,trxd.id_report,trxd.report_number,trxd.report_mark_type,emp.`employee_name`,trx.`date_created`,trx.`date_reference`,bt.`bill_type`,trx.`acc_trans_number`,SUM(trxd.`debit`) AS debit,SUM(trxd.credit) AS credit,'Reffrence date is below closing period' AS sts 
 FROM tb_a_acc_trans_det trxd
 INNER JOIN tb_a_acc_trans trx ON trxd.`id_acc_trans`=trx.`id_acc_trans`
 INNER JOIN `tb_lookup_bill_type` bt ON bt.`id_bill_type`=trx.`id_bill_type`
 INNER JOIN tb_m_user usr ON usr.`id_user`=trx.`id_user`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 WHERE trx.`is_close`='2' AND DATE(trx.`date_reference`)<'" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-01") & "' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
-GROUP BY trxd.`id_acc_trans`
+GROUP BY trxd.`id_acc_trans`)
 UNION ALL
-SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,0 AS debit,0 AS credit,IF(ct.is_manual_depreciation=1,'ok',IF(COUNT(tb.id_asset_dep_pps)>0,'ok','Asset depreciation for this month not found.')) AS sts
+(SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,0 AS debit,0 AS credit,IF(ct.is_manual_depreciation=1,'ok',IF(COUNT(tb.id_asset_dep_pps)>0,'ok','Asset depreciation for this month not found.')) AS sts
 FROM
 `tb_coa_tag` ct 
 LEFT JOIN
@@ -67,9 +219,9 @@ LEFT JOIN
 	SELECT id_asset_dep_pps,id_coa_tag FROM tb_asset_dep_pps WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "' AND id_report_status='6' AND reff_date='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 )tb ON ct.id_coa_tag=tb.id_coa_tag
 WHERE ct.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
-HAVING sts!='ok'
+HAVING sts!='ok')
 UNION ALL
-SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,0 AS debit,0 AS credit,IF(ISNULL(tb.id_coa_tag),'Please do closing previous month','ok') AS sts
+(SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,0 AS debit,0 AS credit,IF(ISNULL(tb.id_coa_tag),'Please do closing previous month','ok') AS sts
 FROM `tb_coa_tag` ct 
 LEFT JOIN
 (
@@ -77,9 +229,9 @@ LEFT JOIN
 	AND DATE_FORMAT(date_until,'%Y%m')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%Y%m') AND note='Closing End'
 )tb ON ct.id_coa_tag=ct.id_coa_tag 
 WHERE ct.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
-HAVING sts!='ok'
+HAVING sts!='ok')
 UNION ALL
-SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,IF(IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0)<0,IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0),0) * -1 AS debit,IF(IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0)>0,IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0),0) AS credit,'Branch vs Kantor pusat tidak balance' AS sts 
+(SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,IF(IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0)<0,IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0),0) * -1 AS debit,IF(IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0)>0,IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0),0) AS credit,'Branch vs Kantor pusat tidak balance' AS sts 
 FROM `tb_consolidation` c
 LEFT JOIN
 (
@@ -107,7 +259,7 @@ INNER JOIN `tb_consolidation_sub_header` acc_sub ON acc_sub.`id_consolidation_su
 INNER JOIN `tb_consolidation_header` acc_head ON acc_sub.`id_consolidation_header`=acc_head.`id_consolidation_header`
 WHERE c.`id_consolidation`=10
 GROUP BY c.`id_consolidation`
-HAVING debit+credit!=0;"
+HAVING debit+credit!=0)"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCClosing.DataSource = data

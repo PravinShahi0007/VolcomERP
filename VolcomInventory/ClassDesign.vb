@@ -2031,6 +2031,7 @@
         LEFT JOIN tb_prod_order po ON po.id_prod_order = det.id_prod_order
         INNER JOIN tb_m_design d ON d.id_design = det.id_design
         INNER JOIN tb_season_orign sor ON sor.id_season_orign = d.id_season_orign
+        INNER JOIN tb_lookup_critical_product cp_new ON cp_new.id_critical_product = d.id_critical_product
         LEFT JOIN (
 	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `source_new`
 	        FROM tb_m_design_changes_det det
@@ -2079,8 +2080,17 @@
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	        WHERE det.id_changes=" + id + " AND cd.id_code=" + id_code_fg_sht + "
         ) sht_new ON sht_new.id_design = d.id_design
+        LEFT JOIN (
+            SELECT det.id_design, GROUP_CONCAT(dt.design_tag ORDER BY dt.id_design_tag ASC) AS `design_tag_new`
+            FROM tb_m_design_changes_det det
+            INNER JOIN tb_design_tag_detail dtd ON dtd.id_design = det.id_design
+            INNER JOIN tb_m_design_tag dt ON dt.id_design_tag = dtd.id_design_tag
+            WHERE det.id_changes=" + id + "
+            GROUP BY det.id_design
+        ) et_new ON et_new.id_design = d.id_design
         INNER JOIN tb_m_design dr ON dr.id_design = d.id_design_rev_from
         INNER JOIN tb_season_orign sordr ON sordr.id_season_orign = dr.id_season_orign
+        INNER JOIN tb_lookup_critical_product cp ON cp.id_critical_product = dr.id_critical_product
         LEFT JOIN (
 	        SELECT dc.id_design, cd.id_code, cd.code_detail_name AS `source`
 	        FROM tb_m_design_changes_det det
@@ -2129,6 +2139,15 @@
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	        WHERE det.id_changes=" + id + " AND cd.id_code=" + id_code_fg_sht + "
         ) sht ON sht.id_design = dr.id_design
+        LEFT JOIN (
+            SELECT dr.id_design_rev_from AS `id_design`, GROUP_CONCAT(dt.design_tag ORDER BY dt.id_design_tag ASC) AS `design_tag`
+            FROM tb_m_design_changes_det det
+            INNER JOIN tb_m_design dr ON dr.id_design = det.id_design
+            INNER JOIN tb_design_tag_detail dtd ON dtd.id_design = dr.id_design_rev_from
+            INNER JOIN tb_m_design_tag dt ON dt.id_design_tag = dtd.id_design_tag
+            WHERE det.id_changes=" + id + "
+            GROUP BY dr.id_design_rev_from
+        ) et ON et.id_design = dr.id_design
         LEFT JOIN tb_lookup_cool_storage AS cst ON d.is_cold_storage = cst.id_cool_storage
         LEFT JOIN tb_lookup_cool_storage AS cstdr ON dr.is_cold_storage = cstdr.id_cool_storage
         WHERE det.id_changes=" + id + " "
@@ -2312,6 +2331,13 @@
                     INNER JOIN tb_report_mark rm ON rm.id_report = pdr.id_prod_demand_rev AND rm.report_mark_type= pdr.report_mark_type AND rm.id_report_status=1
                     INNER JOIN tb_prod_demand_design_rev pddr ON pddr.id_prod_demand_rev = pdr.id_prod_demand_rev
                     WHERE pdr.id_prod_demand_rev=" + id_report_trans + " AND pddr.id_pd_status_rev=2 "
+                ElseIf rmt = "410" Then
+                    'proposal perubahan delivery
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note) 
+                    SELECT NOW(), '" + id_user + "', d.created_by,'" + rmt + "' AS `report_mark_type`,dd.id_drop_changes, d.`number`, d.created_date, dd.id_design, dd.reason AS note
+                    FROM tb_drop_changes_det dd
+                    INNER JOIN tb_drop_changes d ON d.id_drop_changes = dd.id_drop_changes
+                    WHERE dd.id_drop_changes=" + id_report_trans + " "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If

@@ -1326,12 +1326,15 @@
                 LEFT JOIN (SELECT * FROM tb_m_employee_position WHERE id_employee_position IN (SELECT MAX(id_employee_position) FROM tb_m_employee_position GROUP BY id_employee)) AS pos ON emp.id_employee = pos.id_employee
                 LEFT JOIN (
                     SELECT * FROM (
-                        SELECT id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date AS salary_date
-                        FROM tb_m_employee_salary AS slr
-                        WHERE slr.is_cancel = '2'
-                        ORDER BY id_employee_salary DESC
+	                    SELECT id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date AS salary_date
+	                    FROM tb_m_employee_salary
+	                    WHERE id_employee_salary IN (
+		                    SELECT MAX(id_employee_salary) AS id_employee_salary
+		                    FROM tb_m_employee_salary
+		                    WHERE is_cancel = '2'
+		                    GROUP BY id_employee
+	                    )
                     ) AS sal
-                    GROUP BY sal.id_employee
                 ) AS sal ON sal.id_employee = emp.id_employee
                 WHERE emp.id_employee = '" + id_employee + "'
             "

@@ -715,7 +715,13 @@ Public Class FormSalesDelOrderDet
             End If
         Next
 
-        Dim block_stocktake As Boolean = block_stocktake_eos(all_product)
+        Dim block_stocktake As Boolean = Nothing
+        If id_so_status = "3" Then
+            block_stocktake = True
+        Else
+            block_stocktake = block_stocktake_eos(all_product)
+        End If
+
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMiddle) Then
             errorInput()
@@ -1192,7 +1198,7 @@ Public Class FormSalesDelOrderDet
         End If
 
         'check eos
-        If data_eos.Rows.Count > 0 And code_found Then
+        If data_eos.Rows.Count > 0 And code_found And id_so_status <> "3" Then
             Dim data_eos_filter As DataRow() = data_eos.Select("[id_product]='" + id_product + "' ")
             If data_eos_filter.Length > 0 Then
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")

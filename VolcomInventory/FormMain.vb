@@ -41,6 +41,7 @@ Public Class FormMain
         Try
             DashboardToolStripMenuItem.Visible = False
             read_database_configuration()
+            volcomErpApiCreateToken()
             check_connection(True, "", "", "", "")
 
             'check_pic_location()
@@ -2035,6 +2036,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormRoyaltyRate" Then
             FormRoyaltyRate.createNew()
+        ElseIf formName = "FormDropChanges" Then
+            FormDropChanges.createNew()
+        ElseIf formName = "FormProposeVoucherPOS" Then
+            FormProposeVoucherPOSDet.id = "0"
+            FormProposeVoucherPOSDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3412,6 +3418,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormQCReport1Det.ShowDialog()
             ElseIf formName = "FormRoyaltyRate" Then
                 FormRoyaltyRate.viewDetail()
+            ElseIf formName = "FormDropChanges" Then
+                FormDropChanges.viewDetail()
+            ElseIf formName = "FormProposeVoucherPOS" Then
+                FormProposeVoucherPOSDet.id = FormProposeVoucherPOS.GVData.GetFocusedRowCellValue("id_voucher_pps").ToString
+                FormProposeVoucherPOSDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6674,36 +6685,36 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormVoucherPOS" Then
             'Voucher POS
         ElseIf formName = "FormPromoRules" Then
-            If FormPromoRules.GVRules.RowCount > 0 And FormPromoRules.GVRules.FocusedRowHandle >= 0 Then
-                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = DialogResult.Yes Then
-                    'hapus di toko
-                    Dim id As String = FormPromoRules.GVRules.GetFocusedRowCellValue("id_rules").ToString
-                    Dim qold As String = "SELECT * 
-                    FROM tb_promo_rules_det rd
-                    INNER JOIN tb_store_conn c ON c.id_outlet = rd.id_outlet
-                    WHERE rd.id_rules=" + id + " "
-                    Dim dold As DataTable = execute_query(qold, -1, True, "", "", "", "")
-                    For i As Integer = 0 To dold.Rows.Count - 1
-                        Dim id_outlet As String = dold.Rows(i)("id_outlet").ToString
-                        Dim host As String = dold.Rows(i)("host").ToString
-                        Dim username As String = dold.Rows(i)("username").ToString
-                        Dim pass As String = dold.Rows(i)("pass").ToString
-                        Dim db As String = dold.Rows(i)("db").ToString
+            'If FormPromoRules.GVRules.RowCount > 0 And FormPromoRules.GVRules.FocusedRowHandle >= 0 Then
+            '    confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            '    If confirm = DialogResult.Yes Then
+            '        'hapus di toko
+            '        Dim id As String = FormPromoRules.GVRules.GetFocusedRowCellValue("id_rules").ToString
+            '        Dim qold As String = "SELECT * 
+            '        FROM tb_promo_rules_det rd
+            '        INNER JOIN tb_store_conn c ON c.id_outlet = rd.id_outlet
+            '        WHERE rd.id_rules=" + id + " "
+            '        Dim dold As DataTable = execute_query(qold, -1, True, "", "", "", "")
+            '        For i As Integer = 0 To dold.Rows.Count - 1
+            '            Dim id_outlet As String = dold.Rows(i)("id_outlet").ToString
+            '            Dim host As String = dold.Rows(i)("host").ToString
+            '            Dim username As String = dold.Rows(i)("username").ToString
+            '            Dim pass As String = dold.Rows(i)("pass").ToString
+            '            Dim db As String = dold.Rows(i)("db").ToString
 
-                        Dim qds As String = "DELETE FROM tb_promo_rules WHERE id_rules='" + id + "' "
-                        execute_non_query_long(qds, False, host, username, pass, db)
-                    Next
-                    Dim query_del As String = "DELETE FROM tb_promo_rules WHERE id_rules='" + id + "' "
-                    Try
-                        execute_non_query(query_del, True, "", "", "", "")
-                        FormPromoRules.viewRules()
-                        FormPromoRules.viewStore()
-                    Catch ex As Exception
-                        errorDelete()
-                    End Try
-                End If
-            End If
+            '            Dim qds As String = "DELETE FROM tb_promo_rules WHERE id_rules='" + id + "' "
+            '            execute_non_query_long(qds, False, host, username, pass, db)
+            '        Next
+            '        Dim query_del As String = "DELETE FROM tb_promo_rules WHERE id_rules='" + id + "' "
+            '        Try
+            '            execute_non_query(query_del, True, "", "", "", "")
+            '            FormPromoRules.viewRules()
+            '            FormPromoRules.viewStore()
+            '        Catch ex As Exception
+            '            errorDelete()
+            '        End Try
+            '    End If
+            'End If
         ElseIf formName = "FormCompanyEmailMapping" Then
             confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
@@ -8678,7 +8689,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Voucher POS
             print_raw(FormVoucherPOS.GCData, "")
         ElseIf formName = "FormPromoRules" Then
-            print(FormPromoRules.GCStore, FormPromoRules.GVRules.GetFocusedRowCellValue("name").ToString + " (" + FormPromoRules.GVRules.GetFocusedRowCellValue("code").ToString + ")" + " - " + "Limit Value : " + FormPromoRules.GVRules.GetFocusedRowCellValue("limit_value").ToString)
+            print(FormPromoRules.GCRules, "List Propose GWP POS")
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             print(FormEmpInputAttendance.GCList, "Input Attendance")
@@ -8929,6 +8940,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormAgingProductList.GCList, "Product Age List")
         ElseIf formName = "FormRoyaltyRate" Then
             FormRoyaltyRate.printList()
+        ElseIf formName = "FormDropChanges" Then
+            FormDropChanges.printList()
+        ElseIf formname = "FormProposeVoucherPOS" Then
+            print(FormProposeVoucherPOS.GCData, "List Propose Voucher POS")
         Else
             RPSubMenu.Visible = False
         End If
@@ -10013,6 +10028,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormRoyaltyRate" Then
             FormRoyaltyRate.Close()
             FormRoyaltyRate.Dispose()
+        ElseIf formName = "FormDropChanges" Then
+            FormDropChanges.Close()
+            FormDropChanges.Dispose()
+        ElseIf formname = "FormProposeVoucherPOS" Then
+            FormProposeVoucherPOS.Close()
+            FormProposeVoucherPOS.Dispose()
+        ElseIf formName = "FormTargetSales" Then
+            FormTargetSales.Close()
+            FormTargetSales.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11081,6 +11105,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDesignOrderView.viewData()
         ElseIf formName = "FormRoyaltyRate" Then
             FormRoyaltyRate.viewData()
+        ElseIf formName = "FormDropChanges" Then
+            FormDropChanges.viewData()
+        ElseIf formName = "FormProposeVoucherPOS" Then
+            FormProposeVoucherPOS.load_view()
+        ElseIf formName = "FormTargetSales" Then
+            If FormTargetSales.XTCSalesTarget.SelectedTabPageIndex = 0 Then
+                FormTargetSales.viewList()
+            Else
+                FormTargetSales.viewPropose()
+            End If
         End If
     End Sub
     'Switch
@@ -17234,6 +17268,58 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormRoyaltyRate.Show()
             FormRoyaltyRate.WindowState = FormWindowState.Maximized
             FormRoyaltyRate.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDropChanges_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDropChanges.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDropChanges.MdiParent = Me
+            FormDropChanges.Show()
+            FormDropChanges.WindowState = FormWindowState.Maximized
+            FormDropChanges.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBMasterStoreEFaktur_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMasterStoreEFaktur.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterStoreFaktur.MdiParent = Me
+            FormMasterStoreFaktur.Show()
+            FormMasterStoreFaktur.WindowState = FormWindowState.Maximized
+            FormMasterStoreFaktur.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeVoucherPOS_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeVoucherPOS.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProposeVoucherPOS.MdiParent = Me
+            FormProposeVoucherPOS.Show()
+            FormProposeVoucherPOS.WindowState = FormWindowState.Maximized
+            FormProposeVoucherPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBTargetSales_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBTargetSales.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormTargetSales.MdiParent = Me
+            FormTargetSales.Show()
+            FormTargetSales.WindowState = FormWindowState.Maximized
+            FormTargetSales.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

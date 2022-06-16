@@ -72,9 +72,9 @@ Partial Class FormFGLineListMoveSeason
         '
         Me.LabelControl7.Location = New System.Drawing.Point(10, 19)
         Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl7.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl7.TabIndex = 8906
-        Me.LabelControl7.Text = "Move/Drop"
+        Me.LabelControl7.Text = "Status"
         '
         'PanelControl1
         '
@@ -235,7 +235,7 @@ Partial Class FormFGLineListMoveSeason
         Me.Name = "FormFGLineListMoveSeason"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Move/Drop"
+        Me.Text = "Drop Article"
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)

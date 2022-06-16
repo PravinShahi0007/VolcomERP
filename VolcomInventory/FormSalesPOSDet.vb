@@ -2323,7 +2323,7 @@ Public Class FormSalesPOSDet
             so_cat = "AND so.id_so_status!=7 AND so.id_so_status!=9 "
         End If
 
-        Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos,
+        Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp_group,comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos,
             IFNULL(comp.id_acc_sales,0) AS `id_acc_sales`, IFNULL(comp.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(comp.id_acc_ar,0) AS `id_acc_ar`, pldel.pl_sales_order_del_note
             FROM tb_pl_sales_order_del pldel 
             INNER JOIN tb_sales_order so ON so.id_sales_order = pldel.id_sales_order "
@@ -2392,6 +2392,7 @@ Public Class FormSalesPOSDet
             '
             calculate()
             '
+            setMinDueDate(data.Rows(0)("id_comp_group").ToString)
             DEDueDate.Focus()
         End If
     End Sub

@@ -107,7 +107,7 @@ WHERE pnd.`id_inv_claim_other`='" & id_invoice & "'"
     End Sub
 
     Sub load_vendor()
-        Dim query As String = "SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+        Dim query As String = "SELECT c.id_comp,c.comp_number,c.comp_name
                                 FROM tb_m_comp c
                                 WHERE (c.id_comp_cat='1' OR c.id_comp_cat='8') "
 

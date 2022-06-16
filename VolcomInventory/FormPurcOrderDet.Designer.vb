@@ -1200,7 +1200,7 @@ Partial Class FormPurcOrderDet
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MENote.Location = New System.Drawing.Point(100, 36)
         Me.MENote.Name = "MENote"
-        Me.MENote.Properties.MaxLength = 100
+        Me.MENote.Properties.MaxLength = 399
         Me.MENote.Size = New System.Drawing.Size(413, 93)
         Me.MENote.TabIndex = 6
         '

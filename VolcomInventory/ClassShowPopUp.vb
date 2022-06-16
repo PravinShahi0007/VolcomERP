@@ -572,6 +572,18 @@
         ElseIf report_mark_type = "407" Then
             'abg roylat rate
             FormRoyaltyRateDet.Close()
+        ElseIf report_mark_type = "410" Then
+            'perubahan del
+            FormDropChangesDet.Close()
+        ElseIf report_mark_type = "412" Then
+            'propose voucher pos
+            FormProposeVoucherPOSDet.Close()
+        ElseIf report_mark_type = "413" Then
+            'propose gwp pos
+            FormPromoRulesDet.Close()
+        ElseIf report_mark_type = "414" Then
+            'propose sales target
+            FormTargetSalesDet.Close()
         End If
     End Sub
     Sub show()
@@ -1818,6 +1830,27 @@ GROUP BY rec.`id_prod_order`"
             FormRoyaltyRateDet.action = "upd"
             FormRoyaltyRateDet.id = id_report
             FormRoyaltyRateDet.ShowDialog()
+        ElseIf report_mark_type = "410" Then
+            'perubahan del
+            FormDropChangesDet.is_view = "1"
+            FormDropChangesDet.action = "upd"
+            FormDropChangesDet.id = id_report
+            FormDropChangesDet.ShowDialog()
+        ElseIf report_mark_type = "412" Then
+            'propose voucher pos
+            FormProposeVoucherPOSDet.id = id_report
+            FormProposeVoucherPOSDet.ShowDialog()
+        ElseIf report_mark_type = "413" Then
+            'propose gwp pos
+            FormPromoRulesDet.id = id_report
+            FormPromoRulesDet.action = "upd"
+            FormPromoRulesDet.ShowDialog()
+        ElseIf report_mark_type = "414" Then
+            'propose sales target
+            FormTargetSalesDet.is_view = "1"
+            FormTargetSalesDet.action = "upd"
+            FormTargetSalesDet.id = id_report
+            FormTargetSalesDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3229,6 +3262,30 @@ GROUP BY rec.`id_prod_order`"
             'abg roylat rate
             table_name = "tb_royalty_rate"
             field_id = "id_royalty_rate"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "410" Then
+            'perubahan del
+            table_name = "tb_drop_changes"
+            field_id = "id_drop_changes"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "412" Then
+            'propose voucher pos
+            table_name = "tb_pos_voucher_pps"
+            field_id = "id_voucher_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "413" Then
+            'propose gwp pos
+            table_name = "tb_promo_rules"
+            field_id = "id_rules"
+            field_number = "report_number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "414" Then
+            'propose sales target
+            table_name = "tb_b_revenue_propose"
+            field_id = "id_b_revenue_propose"
             field_number = "number"
             field_date = "created_date"
         Else

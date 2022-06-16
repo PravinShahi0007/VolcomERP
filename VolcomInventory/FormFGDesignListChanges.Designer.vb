@@ -75,6 +75,10 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumncolor_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCoolStorage = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCoolStorage_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnsht = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnsht_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumncritical_product = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumncritical_product_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_prod_demand = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_prod_order = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_design = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -84,8 +88,8 @@ Partial Class FormFGDesignListChanges
         Me.XTCType = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPMDProduct = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPNonMDProduct = New DevExpress.XtraTab.XtraTabPage()
-        Me.BandedGridColumnsht = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnsht_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumndesign_tag = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumndesign_tag_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandCodeImport = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandName = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -99,6 +103,8 @@ Partial Class FormFGDesignListChanges
         Me.gridBandColor = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandCoolStorage = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandSHT = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandCriticalProduct = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandExtraTag = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -399,8 +405,8 @@ Partial Class FormFGDesignListChanges
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.AppearancePrint.Row.ForeColor = System.Drawing.Color.Black
         Me.GVData.AppearancePrint.Row.Options.UseForeColor = True
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGeneral, Me.gridBandCodeImport, Me.gridBandName, Me.gridBandSor, Me.gridBandFabrication, Me.gridBandDesignDetail, Me.gridBandSource, Me.gridBandDivision, Me.gridBandSubCat, Me.gridBandClass, Me.gridBandColor, Me.gridBandCoolStorage, Me.gridBandSHT})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnprod_demand_number, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnprod_order_number, Me.BandedGridColumnid_design, Me.BandedGridColumnid_design_new, Me.BandedGridColumncode, Me.BandedGridColumnnameview, Me.BandedGridColumncode_import, Me.BandedGridColumncode_import_new, Me.BandedGridColumnname, Me.BandedGridColumnname_new, Me.BandedGridColumnseason_orign, Me.BandedGridColumnseason_orign_new, Me.BandedGridColumndesign_fabrication, Me.BandedGridColumndesign_fabrication_new, Me.BandedGridColumndesign_detail, Me.BandedGridColumndesign_detail_new, Me.BandedGridColumnsource, Me.BandedGridColumnsource_new, Me.BandedGridColumndivision, Me.BandedGridColumndivision_new, Me.BandedGridColumnsub_category, Me.BandedGridColumnsub_category_new, Me.BandedGridColumnclass, Me.BandedGridColumnclass_new, Me.BandedGridColumncolor, Me.BandedGridColumncolor_new, Me.BandedGridColumnNo, Me.BandedGridColumnPDView, Me.BandedGridColumnCoolStorage, Me.BandedGridColumnCoolStorage_new, Me.BandedGridColumnsht, Me.BandedGridColumnsht_new})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGeneral, Me.gridBandCodeImport, Me.gridBandName, Me.gridBandSor, Me.gridBandFabrication, Me.gridBandDesignDetail, Me.gridBandSource, Me.gridBandDivision, Me.gridBandSubCat, Me.gridBandClass, Me.gridBandColor, Me.gridBandCoolStorage, Me.gridBandSHT, Me.gridBandCriticalProduct, Me.gridBandExtraTag})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnprod_demand_number, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnprod_order_number, Me.BandedGridColumnid_design, Me.BandedGridColumnid_design_new, Me.BandedGridColumncode, Me.BandedGridColumnnameview, Me.BandedGridColumncode_import, Me.BandedGridColumncode_import_new, Me.BandedGridColumnname, Me.BandedGridColumnname_new, Me.BandedGridColumnseason_orign, Me.BandedGridColumnseason_orign_new, Me.BandedGridColumndesign_fabrication, Me.BandedGridColumndesign_fabrication_new, Me.BandedGridColumndesign_detail, Me.BandedGridColumndesign_detail_new, Me.BandedGridColumnsource, Me.BandedGridColumnsource_new, Me.BandedGridColumndivision, Me.BandedGridColumndivision_new, Me.BandedGridColumnsub_category, Me.BandedGridColumnsub_category_new, Me.BandedGridColumnclass, Me.BandedGridColumnclass_new, Me.BandedGridColumncolor, Me.BandedGridColumncolor_new, Me.BandedGridColumnNo, Me.BandedGridColumnPDView, Me.BandedGridColumnCoolStorage, Me.BandedGridColumnCoolStorage_new, Me.BandedGridColumnsht, Me.BandedGridColumnsht_new, Me.BandedGridColumncritical_product, Me.BandedGridColumncritical_product_new, Me.BandedGridColumndesign_tag, Me.BandedGridColumndesign_tag_new})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Nothing, "{0:n2}", "b"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng", Nothing, "{0:n2}", "b_mng"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_sale", Nothing, "{0:n2}", "b_sale"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng_sale", Nothing, "{0:n2}", "b_mng_sale")})
         Me.GVData.LevelIndent = 0
@@ -701,6 +707,34 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumnCoolStorage_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnCoolStorage_new.Visible = True
         '
+        'BandedGridColumnsht
+        '
+        Me.BandedGridColumnsht.Caption = "From"
+        Me.BandedGridColumnsht.FieldName = "sht"
+        Me.BandedGridColumnsht.Name = "BandedGridColumnsht"
+        Me.BandedGridColumnsht.Visible = True
+        '
+        'BandedGridColumnsht_new
+        '
+        Me.BandedGridColumnsht_new.Caption = "To"
+        Me.BandedGridColumnsht_new.FieldName = "sht_new"
+        Me.BandedGridColumnsht_new.Name = "BandedGridColumnsht_new"
+        Me.BandedGridColumnsht_new.Visible = True
+        '
+        'BandedGridColumncritical_product
+        '
+        Me.BandedGridColumncritical_product.Caption = "From"
+        Me.BandedGridColumncritical_product.FieldName = "critical_product"
+        Me.BandedGridColumncritical_product.Name = "BandedGridColumncritical_product"
+        Me.BandedGridColumncritical_product.Visible = True
+        '
+        'BandedGridColumncritical_product_new
+        '
+        Me.BandedGridColumncritical_product_new.Caption = "To"
+        Me.BandedGridColumncritical_product_new.FieldName = "critical_product_new"
+        Me.BandedGridColumncritical_product_new.Name = "BandedGridColumncritical_product_new"
+        Me.BandedGridColumncritical_product_new.Visible = True
+        '
         'BandedGridColumnid_prod_demand
         '
         Me.BandedGridColumnid_prod_demand.AppearanceCell.Options.UseTextOptions = True
@@ -775,19 +809,19 @@ Partial Class FormFGDesignListChanges
         Me.XTPNonMDProduct.Size = New System.Drawing.Size(1001, 338)
         Me.XTPNonMDProduct.Text = "Non MD Product"
         '
-        'BandedGridColumnsht
+        'BandedGridColumndesign_tag
         '
-        Me.BandedGridColumnsht.Caption = "From"
-        Me.BandedGridColumnsht.FieldName = "sht"
-        Me.BandedGridColumnsht.Name = "BandedGridColumnsht"
-        Me.BandedGridColumnsht.Visible = True
+        Me.BandedGridColumndesign_tag.Caption = "From"
+        Me.BandedGridColumndesign_tag.FieldName = "design_tag"
+        Me.BandedGridColumndesign_tag.Name = "BandedGridColumndesign_tag"
+        Me.BandedGridColumndesign_tag.Visible = True
         '
-        'BandedGridColumnsht_new
+        'BandedGridColumndesign_tag_new
         '
-        Me.BandedGridColumnsht_new.Caption = "To"
-        Me.BandedGridColumnsht_new.FieldName = "sht_new"
-        Me.BandedGridColumnsht_new.Name = "BandedGridColumnsht_new"
-        Me.BandedGridColumnsht_new.Visible = True
+        Me.BandedGridColumndesign_tag_new.Caption = "To"
+        Me.BandedGridColumndesign_tag_new.FieldName = "design_tag_new"
+        Me.BandedGridColumndesign_tag_new.Name = "BandedGridColumndesign_tag_new"
+        Me.BandedGridColumndesign_tag_new.Visible = True
         '
         'gridBandGeneral
         '
@@ -933,6 +967,28 @@ Partial Class FormFGDesignListChanges
         Me.gridBandSHT.VisibleIndex = 12
         Me.gridBandSHT.Width = 150
         '
+        'gridBandCriticalProduct
+        '
+        Me.gridBandCriticalProduct.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBandCriticalProduct.AppearanceHeader.Options.UseFont = True
+        Me.gridBandCriticalProduct.Caption = "Critical Product"
+        Me.gridBandCriticalProduct.Columns.Add(Me.BandedGridColumncritical_product)
+        Me.gridBandCriticalProduct.Columns.Add(Me.BandedGridColumncritical_product_new)
+        Me.gridBandCriticalProduct.Name = "gridBandCriticalProduct"
+        Me.gridBandCriticalProduct.VisibleIndex = 13
+        Me.gridBandCriticalProduct.Width = 150
+        '
+        'gridBandExtraTag
+        '
+        Me.gridBandExtraTag.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBandExtraTag.AppearanceHeader.Options.UseFont = True
+        Me.gridBandExtraTag.Caption = "Extra Tag"
+        Me.gridBandExtraTag.Columns.Add(Me.BandedGridColumndesign_tag)
+        Me.gridBandExtraTag.Columns.Add(Me.BandedGridColumndesign_tag_new)
+        Me.gridBandExtraTag.Name = "gridBandExtraTag"
+        Me.gridBandExtraTag.VisibleIndex = 14
+        Me.gridBandExtraTag.Width = 150
+        '
         'FormFGDesignListChanges
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1042,6 +1098,10 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents BandedGridColumnCoolStorage_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnsht As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnsht_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumncritical_product As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumncritical_product_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndesign_tag As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumndesign_tag_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandCodeImport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandName As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -1055,4 +1115,6 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents gridBandColor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandCoolStorage As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandSHT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandCriticalProduct As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandExtraTag As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

@@ -376,7 +376,7 @@ Public Class FormFGRepairReturnRecDet
                 Dim id_product As String = data_temp.Rows(d)("id_product").ToString
                 Dim id_pl_prod_order_rec_det_unique As String = data_temp.Rows(d)("id_pl_prod_order_rec_det_unique").ToString
                 Dim code As String = data_temp.Rows(d)("product_code").ToString
-                Dim name As String = data_temp.Rows(d)("name").ToString
+                Dim name As String = addSlashes(data_temp.Rows(d)("name").ToString)
                 Dim size As String = data_temp.Rows(d)("size").ToString
                 If d > 0 Then
                     qry += "UNION ALL "
@@ -454,7 +454,7 @@ Public Class FormFGRepairReturnRecDet
         ElseIf id_wh_drawer_dest = "-1" Then
             stopCustom("Please select WH destination")
         Else
-            Dim fg_repair_return_rec_note As String = MENote.Text.ToString
+            Dim fg_repair_return_rec_note As String = addSlashes(MENote.Text.ToString)
             If action = "ins" Then 'insert
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then

@@ -20,6 +20,15 @@ Partial Public Class ReportFGRepairReturnRecDet
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        Me.GCScan = New DevExpress.XtraGrid.GridControl()
+        Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFullCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdFGRepairDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.LRecDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
@@ -46,18 +55,9 @@ Partial Public Class ReportFGRepairReturnRecDet
         Me.LabelNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GCScan = New DevExpress.XtraGrid.GridControl()
-        Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnFullCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdFGRepairDet = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -67,6 +67,80 @@ Partial Public Class ReportFGRepairReturnRecDet
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'WinControlContainer1
+        '
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.WinControlContainer1.Name = "WinControlContainer1"
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(771.9999!, 183.0882!)
+        Me.WinControlContainer1.WinControl = Me.GCScan
+        '
+        'GCScan
+        '
+        Me.GCScan.Location = New System.Drawing.Point(0, 33)
+        Me.GCScan.MainView = Me.GVScan
+        Me.GCScan.Name = "GCScan"
+        Me.GCScan.Size = New System.Drawing.Size(741, 176)
+        Me.GCScan.TabIndex = 3
+        Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
+        '
+        'GVScan
+        '
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize, Me.GridColumnIdFGRepairDet})
+        Me.GVScan.GridControl = Me.GCScan
+        Me.GVScan.Name = "GVScan"
+        Me.GVScan.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
+        Me.GridColumnNo.Width = 44
+        '
+        'GridColumnFullCode
+        '
+        Me.GridColumnFullCode.Caption = "Full Code"
+        Me.GridColumnFullCode.FieldName = "code"
+        Me.GridColumnFullCode.Name = "GridColumnFullCode"
+        Me.GridColumnFullCode.Visible = True
+        Me.GridColumnFullCode.VisibleIndex = 1
+        Me.GridColumnFullCode.Width = 238
+        '
+        'GridColumnCode
+        '
+        Me.GridColumnCode.Caption = "Code"
+        Me.GridColumnCode.FieldName = "product_code"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.Visible = True
+        Me.GridColumnCode.VisibleIndex = 2
+        Me.GridColumnCode.Width = 214
+        '
+        'GridColumnStyle
+        '
+        Me.GridColumnStyle.Caption = "Style"
+        Me.GridColumnStyle.FieldName = "name"
+        Me.GridColumnStyle.Name = "GridColumnStyle"
+        Me.GridColumnStyle.Visible = True
+        Me.GridColumnStyle.VisibleIndex = 3
+        Me.GridColumnStyle.Width = 516
+        '
+        'GridColumnSize
+        '
+        Me.GridColumnSize.Caption = "Size"
+        Me.GridColumnSize.FieldName = "size"
+        Me.GridColumnSize.Name = "GridColumnSize"
+        Me.GridColumnSize.Visible = True
+        Me.GridColumnSize.VisibleIndex = 4
+        Me.GridColumnSize.Width = 66
+        '
+        'GridColumnIdFGRepairDet
+        '
+        Me.GridColumnIdFGRepairDet.Caption = "Id Det Repair"
+        Me.GridColumnIdFGRepairDet.FieldName = "id_fg_repair_det"
+        Me.GridColumnIdFGRepairDet.Name = "GridColumnIdFGRepairDet"
         '
         'TopMargin
         '
@@ -136,8 +210,8 @@ Partial Public Class ReportFGRepairReturnRecDet
         Me.LTitle.SizeF = New System.Drawing.SizeF(304.4493!, 25.08335!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
-        Me.LTitle.Text = "RECEIVE REPAIR PRODUCT DETAIL"
-        Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter
+        Me.LTitle.Text = "Repaired Product Receiving List Detail"
+        Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrPanel1
         '
@@ -343,89 +417,15 @@ Partial Public Class ReportFGRepairReturnRecDet
         Me.XrLabel14.StylePriority.UseBorders = False
         Me.XrLabel14.Text = ":"
         '
-        'GCScan
-        '
-        Me.GCScan.Location = New System.Drawing.Point(0, 33)
-        Me.GCScan.MainView = Me.GVScan
-        Me.GCScan.Name = "GCScan"
-        Me.GCScan.Size = New System.Drawing.Size(741, 176)
-        Me.GCScan.TabIndex = 3
-        Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
-        '
-        'GVScan
-        '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize, Me.GridColumnIdFGRepairDet})
-        Me.GVScan.GridControl = Me.GCScan
-        Me.GVScan.Name = "GVScan"
-        Me.GVScan.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnNo
-        '
-        Me.GridColumnNo.Caption = "No"
-        Me.GridColumnNo.FieldName = "no"
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 44
-        '
-        'GridColumnFullCode
-        '
-        Me.GridColumnFullCode.Caption = "Full Code"
-        Me.GridColumnFullCode.FieldName = "code"
-        Me.GridColumnFullCode.Name = "GridColumnFullCode"
-        Me.GridColumnFullCode.Visible = True
-        Me.GridColumnFullCode.VisibleIndex = 1
-        Me.GridColumnFullCode.Width = 238
-        '
-        'GridColumnCode
-        '
-        Me.GridColumnCode.Caption = "Code"
-        Me.GridColumnCode.FieldName = "product_code"
-        Me.GridColumnCode.Name = "GridColumnCode"
-        Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 2
-        Me.GridColumnCode.Width = 214
-        '
-        'GridColumnStyle
-        '
-        Me.GridColumnStyle.Caption = "Style"
-        Me.GridColumnStyle.FieldName = "name"
-        Me.GridColumnStyle.Name = "GridColumnStyle"
-        Me.GridColumnStyle.Visible = True
-        Me.GridColumnStyle.VisibleIndex = 3
-        Me.GridColumnStyle.Width = 516
-        '
-        'GridColumnSize
-        '
-        Me.GridColumnSize.Caption = "Size"
-        Me.GridColumnSize.FieldName = "size"
-        Me.GridColumnSize.Name = "GridColumnSize"
-        Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 4
-        Me.GridColumnSize.Width = 66
-        '
-        'GridColumnIdFGRepairDet
-        '
-        Me.GridColumnIdFGRepairDet.Caption = "Id Det Repair"
-        Me.GridColumnIdFGRepairDet.FieldName = "id_fg_repair_det"
-        Me.GridColumnIdFGRepairDet.Name = "GridColumnIdFGRepairDet"
-        '
-        'WinControlContainer1
-        '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(771.9999!, 183.0882!)
-        Me.WinControlContainer1.WinControl = Me.GCScan
-        '
         'ReportFGRepairReturnRecDet
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
         Me.Margins = New System.Drawing.Printing.Margins(26, 51, 125, 25)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub

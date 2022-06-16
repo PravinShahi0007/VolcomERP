@@ -655,7 +655,32 @@ GROUP BY rec.`id_prod_order`"
                         'export to bof
                         'exportToBOF(False)
 
-                        infoCustom("Receive QC document created successfully.")
+                        'extra note import
+                        Dim extra_note As String = ""
+                        Dim qc As String = "SELECT tb.*,aql.*
+FROM
+(
+	SELECT po.id_po_type,co.`id_country`,SUM(pod.prod_order_qty) AS qty_po
+	FROM tb_prod_order_det pod
+	INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order 
+	INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
+	INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
+	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
+	INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+	INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
+	INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+	INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+	INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` 
+	WHERE pod.id_prod_order='" & id_order & "'
+)tb
+INNER JOIN tb_import_aql aql ON tb.qty_po>=aql.min_qty_order AND tb.qty_po<=aql.max_qty_order"
+                        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dtc.Rows.Count > 0 Then
+                            If dtc.Rows(0)("id_po_type").ToString = "2" Or Not dtc.Rows(0)("id_country").ToString = "5" Then
+                                extra_note = "Siapkan sample AQL sejumlah " & dtc.Rows(0)("qty_sample").ToString
+                            End If
+                        End If
+                        infoCustom("Receive QC telah disimpan." & extra_note)
                     Catch ex As Exception
                         stopCustom(ex.ToString)
                     End Try

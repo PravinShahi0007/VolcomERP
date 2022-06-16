@@ -25,6 +25,10 @@ Partial Class FormMasterCompanyContact
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GCCommand = New DevExpress.XtraEditors.GroupControl()
         Me.PDetail = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEAnnotation = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TEEmail = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPosition = New DevExpress.XtraEditors.TextEdit()
@@ -52,16 +56,15 @@ Partial Class FormMasterCompanyContact
         Me.default_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckedComboBoxEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
-        Me.SLEAnnotation = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCommand, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCCommand.SuspendLayout()
         CType(Me.PDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PDetail.SuspendLayout()
+        CType(Me.SLEAnnotation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPosition.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDefault.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,8 +78,6 @@ Partial Class FormMasterCompanyContact
         CType(Me.GVCompanyContactList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckedComboBoxEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEAnnotation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPContact
@@ -107,7 +108,7 @@ Partial Class FormMasterCompanyContact
         Me.GCCommand.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCCommand.Location = New System.Drawing.Point(0, 228)
         Me.GCCommand.Name = "GCCommand"
-        Me.GCCommand.Size = New System.Drawing.Size(605, 224)
+        Me.GCCommand.Size = New System.Drawing.Size(701, 224)
         Me.GCCommand.TabIndex = 3
         Me.GCCommand.Text = "Command"
         '
@@ -130,12 +131,45 @@ Partial Class FormMasterCompanyContact
         Me.PDetail.Enabled = False
         Me.PDetail.Location = New System.Drawing.Point(2, 20)
         Me.PDetail.Name = "PDetail"
-        Me.PDetail.Size = New System.Drawing.Size(456, 202)
+        Me.PDetail.Size = New System.Drawing.Size(552, 202)
         Me.PDetail.TabIndex = 9
+        '
+        'SLEAnnotation
+        '
+        Me.SLEAnnotation.Location = New System.Drawing.Point(10, 33)
+        Me.SLEAnnotation.Name = "SLEAnnotation"
+        Me.SLEAnnotation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEAnnotation.Properties.Appearance.Options.UseFont = True
+        Me.SLEAnnotation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAnnotation.Properties.View = Me.GridView3
+        Me.SLEAnnotation.Size = New System.Drawing.Size(59, 20)
+        Me.SLEAnnotation.TabIndex = 8911
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Id Annotation"
+        Me.GridColumn19.FieldName = "id_annotation"
+        Me.GridColumn19.Name = "GridColumn19"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Annotation"
+        Me.GridColumn20.FieldName = "annotation"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
         '
         'TEEmail
         '
-        Me.TEEmail.Location = New System.Drawing.Point(231, 85)
+        Me.TEEmail.Location = New System.Drawing.Point(323, 85)
         Me.TEEmail.Name = "TEEmail"
         Me.TEEmail.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TEEmail.Properties.Appearance.Options.UseFont = True
@@ -145,7 +179,7 @@ Partial Class FormMasterCompanyContact
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.LabelControl4.Location = New System.Drawing.Point(231, 61)
+        Me.LabelControl4.Location = New System.Drawing.Point(323, 61)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(31, 15)
         Me.LabelControl4.TabIndex = 20
@@ -153,7 +187,7 @@ Partial Class FormMasterCompanyContact
         '
         'TEPosition
         '
-        Me.TEPosition.Location = New System.Drawing.Point(231, 32)
+        Me.TEPosition.Location = New System.Drawing.Point(323, 32)
         Me.TEPosition.Name = "TEPosition"
         Me.TEPosition.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TEPosition.Properties.Appearance.Options.UseFont = True
@@ -163,7 +197,7 @@ Partial Class FormMasterCompanyContact
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.LabelControl5.Location = New System.Drawing.Point(231, 8)
+        Me.LabelControl5.Location = New System.Drawing.Point(323, 8)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(46, 15)
         Me.LabelControl5.TabIndex = 18
@@ -171,7 +205,7 @@ Partial Class FormMasterCompanyContact
         '
         'BSave
         '
-        Me.BSave.Location = New System.Drawing.Point(351, 167)
+        Me.BSave.Location = New System.Drawing.Point(443, 156)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(85, 23)
         Me.BSave.TabIndex = 17
@@ -179,7 +213,7 @@ Partial Class FormMasterCompanyContact
         '
         'BCancel
         '
-        Me.BCancel.Location = New System.Drawing.Point(266, 167)
+        Me.BCancel.Location = New System.Drawing.Point(358, 156)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(79, 23)
         Me.BCancel.TabIndex = 16
@@ -210,7 +244,7 @@ Partial Class FormMasterCompanyContact
         Me.TEContactNumber.Name = "TEContactNumber"
         Me.TEContactNumber.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TEContactNumber.Properties.Appearance.Options.UseFont = True
-        Me.TEContactNumber.Size = New System.Drawing.Size(215, 22)
+        Me.TEContactNumber.Size = New System.Drawing.Size(307, 22)
         Me.TEContactNumber.TabIndex = 12
         '
         'LabelControl2
@@ -228,7 +262,7 @@ Partial Class FormMasterCompanyContact
         Me.TECP.Name = "TECP"
         Me.TECP.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TECP.Properties.Appearance.Options.UseFont = True
-        Me.TECP.Size = New System.Drawing.Size(150, 22)
+        Me.TECP.Size = New System.Drawing.Size(242, 22)
         Me.TECP.TabIndex = 10
         '
         'LabelControl1
@@ -246,7 +280,7 @@ Partial Class FormMasterCompanyContact
         Me.PanelControl1.Controls.Add(Me.BEdit)
         Me.PanelControl1.Controls.Add(Me.BNew)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(458, 20)
+        Me.PanelControl1.Location = New System.Drawing.Point(554, 20)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(145, 202)
         Me.PanelControl1.TabIndex = 6
@@ -291,7 +325,7 @@ Partial Class FormMasterCompanyContact
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(605, 228)
+        Me.GroupControl1.Size = New System.Drawing.Size(701, 228)
         Me.GroupControl1.TabIndex = 2
         Me.GroupControl1.Text = "Contact List"
         '
@@ -302,13 +336,13 @@ Partial Class FormMasterCompanyContact
         Me.GCCompanyContactList.MainView = Me.GVCompanyContactList
         Me.GCCompanyContactList.Name = "GCCompanyContactList"
         Me.GCCompanyContactList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckedComboBoxEdit1, Me.RepositoryItemCheckEdit1})
-        Me.GCCompanyContactList.Size = New System.Drawing.Size(601, 206)
+        Me.GCCompanyContactList.Size = New System.Drawing.Size(697, 206)
         Me.GCCompanyContactList.TabIndex = 0
         Me.GCCompanyContactList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCompanyContactList})
         '
         'GVCompanyContactList
         '
-        Me.GVCompanyContactList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_contact, Me.contact_person, Me.number, Me.GridColumn2, Me.GridColumn1, Me.default_status})
+        Me.GVCompanyContactList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_contact, Me.GridColumn3, Me.contact_person, Me.number, Me.GridColumn2, Me.GridColumn1, Me.default_status})
         Me.GVCompanyContactList.GridControl = Me.GCCompanyContactList
         Me.GVCompanyContactList.Name = "GVCompanyContactList"
         Me.GVCompanyContactList.OptionsBehavior.Editable = False
@@ -330,8 +364,8 @@ Partial Class FormMasterCompanyContact
         Me.contact_person.MinWidth = 50
         Me.contact_person.Name = "contact_person"
         Me.contact_person.Visible = True
-        Me.contact_person.VisibleIndex = 0
-        Me.contact_person.Width = 521
+        Me.contact_person.VisibleIndex = 1
+        Me.contact_person.Width = 167
         '
         'number
         '
@@ -339,8 +373,8 @@ Partial Class FormMasterCompanyContact
         Me.number.FieldName = "contact_number"
         Me.number.Name = "number"
         Me.number.Visible = True
-        Me.number.VisibleIndex = 2
-        Me.number.Width = 313
+        Me.number.VisibleIndex = 3
+        Me.number.Width = 100
         '
         'GridColumn2
         '
@@ -348,8 +382,8 @@ Partial Class FormMasterCompanyContact
         Me.GridColumn2.FieldName = "position"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 168
+        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.Width = 53
         '
         'GridColumn1
         '
@@ -357,8 +391,8 @@ Partial Class FormMasterCompanyContact
         Me.GridColumn1.FieldName = "email"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 3
-        Me.GridColumn1.Width = 465
+        Me.GridColumn1.VisibleIndex = 4
+        Me.GridColumn1.Width = 150
         '
         'default_status
         '
@@ -370,8 +404,8 @@ Partial Class FormMasterCompanyContact
         Me.default_status.Name = "default_status"
         Me.default_status.Tag = True
         Me.default_status.Visible = True
-        Me.default_status.VisibleIndex = 4
-        Me.default_status.Width = 165
+        Me.default_status.VisibleIndex = 5
+        Me.default_status.Width = 60
         '
         'RepositoryItemCheckEdit1
         '
@@ -384,44 +418,19 @@ Partial Class FormMasterCompanyContact
         Me.RepositoryItemCheckedComboBoxEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemCheckedComboBoxEdit1.Name = "RepositoryItemCheckedComboBoxEdit1"
         '
-        'SLEAnnotation
+        'GridColumn3
         '
-        Me.SLEAnnotation.Location = New System.Drawing.Point(10, 33)
-        Me.SLEAnnotation.Name = "SLEAnnotation"
-        Me.SLEAnnotation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLEAnnotation.Properties.Appearance.Options.UseFont = True
-        Me.SLEAnnotation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEAnnotation.Properties.View = Me.GridView3
-        Me.SLEAnnotation.Size = New System.Drawing.Size(59, 20)
-        Me.SLEAnnotation.TabIndex = 8911
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Id Annotation"
-        Me.GridColumn19.FieldName = "id_annotation"
-        Me.GridColumn19.Name = "GridColumn19"
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Annotation"
-        Me.GridColumn20.FieldName = "annotation"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 0
+        Me.GridColumn3.Caption = "Anotation"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        Me.GridColumn3.Width = 55
         '
         'FormMasterCompanyContact
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(605, 452)
+        Me.ClientSize = New System.Drawing.Size(701, 452)
         Me.Controls.Add(Me.GCCommand)
         Me.Controls.Add(Me.GroupControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -438,6 +447,8 @@ Partial Class FormMasterCompanyContact
         CType(Me.PDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PDetail.ResumeLayout(False)
         Me.PDetail.PerformLayout()
+        CType(Me.SLEAnnotation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEEmail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPosition.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDefault.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -451,8 +462,6 @@ Partial Class FormMasterCompanyContact
         CType(Me.GVCompanyContactList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckedComboBoxEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEAnnotation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -491,4 +500,5 @@ Partial Class FormMasterCompanyContact
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -5001,6 +5001,122 @@ WHERE d.id_lookup_status_order!=2 "
             GVData.Columns("proto_sample_2").DisplayFormat.FormatString = "dd MMMM yyyy"
             GVData.Columns("copy_proto_sample_2").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             GVData.Columns("copy_proto_sample_2").DisplayFormat.FormatString = "dd MMMM yyyy"
+        ElseIf id_pop_up = "67" Then
+            Dim qry As String = "SELECT c.id_comp, c.comp_number,c.comp_name, c.address_efaktur
+            FROM tb_m_comp c 
+            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+            WHERE c.id_comp_cat = 6 AND c.is_active=1 AND c.id_comp_group!=7 "
+            Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("akun_toko").ToString Equals table_tmp("comp_number").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .id_comp = If(y1 Is Nothing, "0", y1("id_comp")),
+                            .akun_toko = table1("akun_toko").ToString,
+                            .nama_toko = If(y1 Is Nothing, "", y1("comp_name")),
+                            .current_faktur_address = If(y1 Is Nothing, "", y1("address_efaktur")),
+                            .new_faktur_address = table1("alamat_faktur").ToString,
+                            .Status = If(y1 Is Nothing, "Not found", "OK")
+                        }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_comp").Visible = False
+        ElseIf id_pop_up = "69" Then
+            'iMPOR SAS/SALTHRU
+            'season
+            Dim qss As String = "SELECT sd.id_delivery, CONCAT(ss.season, ' D',sd.delivery) AS `delivery_season` 
+            FROM tb_season_delivery sd
+            INNER JOIN tb_season ss ON ss.id_season = sd.id_season
+            INNER JOIN tb_range rg ON rg.id_range = ss.id_range "
+            Dim dss As DataTable = execute_query(qss, -1, True, "", "", "", "")
+            'class
+            Dim qcls As String = "SELECT cd.id_code_detail AS `id_class`, cd.display_name AS `class` 
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=30 "
+            Dim dcls As DataTable = execute_query(qcls, -1, True, "", "", "", "")
+
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb_season = dss.AsEnumerable()
+            Dim tb_class = dcls.AsEnumerable()
+
+            Dim query = From table1 In tb1
+                        Group Join tb_join_season In tb_season On table1("season").ToString.ToUpper Equals tb_join_season("delivery_season").ToString.ToUpper Into season = Group
+                        From result_season In season.DefaultIfEmpty()
+                        Group Join tb_join_class In tb_class On table1("class").ToString.ToUpper Equals tb_join_class("class").ToString.ToUpper Into cls = Group
+                        From result_class In cls.DefaultIfEmpty
+                        Select New With
+                            {
+                                .type = table1("type").ToString,
+                                .id_delivery = If(result_season Is Nothing, "0", result_season("id_delivery")),
+                                .season = table1("season").ToString,
+                                .id_class = If(result_class Is Nothing, "0", result_class("id_class")),
+                                .class = table1("class").ToString,
+                                .year = table1("year").ToString,
+                                .jan = table1("1") * 100,
+                                .feb = table1("2") * 100,
+                                .mar = table1("3") * 100,
+                                .apr = table1("4") * 100,
+                                .may = table1("5") * 100,
+                                .jun = table1("6") * 100,
+                                .jul = table1("7") * 100,
+                                .aug = table1("8") * 100,
+                                .sep = table1("9") * 100,
+                                .oct = table1("10") * 100,
+                                .nov = table1("11") * 100,
+                                .dec = table1("12") * 100,
+                                .Status = If(result_season Is Nothing Or result_class Is Nothing, If(result_season Is Nothing, "Season not found;", "") + If(result_class Is Nothing, "Class not found;", ""), "OK")
+                            }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'hide column
+            GVData.Columns("id_delivery").Visible = False
+            GVData.Columns("id_class").Visible = False
+
+            'display format
+            GVData.Columns("jan").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("jan").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("feb").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("feb").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("mar").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("mar").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("apr").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("apr").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("may").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("may").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("jun").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("jun").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("jul").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("jul").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("aug").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("aug").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("sep").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("sep").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("oct").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("oct").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("nov").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("nov").DisplayFormat.FormatString = "{0:n1}%"
+            GVData.Columns("dec").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("dec").DisplayFormat.FormatString = "{0:n1}%"
+
+            'cek ok atau tidak
+            GVData.ActiveFilterString = "[Status]<>'OK'"
+            If GVData.RowCount > 0 Then
+                BImport.Enabled = False
+            Else
+                BImport.Enabled = True
+            End If
+            GVData.ActiveFilterString = ""
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -5072,7 +5188,7 @@ WHERE d.id_lookup_status_order!=2 "
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Or id_pop_up = "64" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Or id_pop_up = "64" Or id_pop_up = "67" Or id_pop_up = "68" Or id_pop_up = "69" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -5452,7 +5568,7 @@ WHERE d.id_lookup_status_order!=2 "
                     End If
                     Cursor = Cursors.Default
                 End If
-            ElseIf id_pop_up = "8" Then 'import faktur keluaran
+            ElseIf id_pop_up = "8" Or id_pop_up = "68" Then 'import faktur keluaran
                 If GVData.RowCount > 0 Then
                     PBC.Properties.Minimum = 0
                     PBC.Properties.Maximum = GVData.RowCount - 1
@@ -8232,6 +8348,95 @@ WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='"
                     stopCustom("There is no data for import process, please make sure your input !")
                     makeSafeGV(GVData)
                 End If
+            ElseIf id_pop_up = "67" Then
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status] = 'OK' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only ok data will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        'detail data
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim id_comp As String = GVData.GetRowCellValue(i, "id_comp").ToString
+                            Dim address_efaktur As String = addSlashes(GVData.GetRowCellValue(i, "new_faktur_address").ToString)
+
+                            Dim q As String = "UPDATE tb_m_comp SET address_efaktur='" + address_efaktur + "' WHERE id_comp='" + id_comp + "' "
+                            execute_non_query(q, True, "", "", "", "")
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+
+                        FormMasterStoreFaktur.viewData()
+
+                        'refresh
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
+                End If
+            ElseIf id_pop_up = "69" Then
+                'iMPOR SAS/SALTHRU
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status] = 'OK' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only ok data will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        'get bulan
+                        Dim qbln As String = "SELECT mth.id_month AS `bulan`, LOWER(LEFT(mth.`month`,3)) AS `nama_bulan` FROM tb_lookup_month mth "
+                        Dim dbln As DataTable = execute_query(qbln, -1, True, "", "", "", "")
+
+                        'detail data
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim type As String = GVData.GetRowCellValue(i, "type").ToString
+                            Dim id_delivery As String = GVData.GetRowCellValue(i, "id_delivery").ToString
+                            Dim id_class As String = GVData.GetRowCellValue(i, "id_class").ToString
+                            Dim year As String = GVData.GetRowCellValue(i, "year").ToString
+                            For j As Integer = 1 To 12
+                                Dim fbln As DataRow() = dbln.Select("[bulan]='" + j.ToString + "' ")
+                                Dim bulan As String = fbln(0)("nama_bulan").ToString
+
+                                If type = "salthru" Then
+                                    Dim sth_period As String = year + "-" + j.ToString + "-" + "01"
+                                    Dim sth_value As String = decimalSQL(GVData.GetRowCellValue(i, bulan).ToString)
+                                    Dim query As String = "UPDATE tb_tg_sth SET is_active=2 WHERE id_class='" + id_class + "' AND sth_period='" + sth_period + "' AND id_delivery='" + id_delivery + "';
+                                    INSERT INTO tb_tg_sth(id_class, sth_period, id_delivery, sth_value, is_active, input_date, input_by) 
+                                    VALUES('" + id_class + "', '" + sth_period + "', '" + id_delivery + "', '" + sth_value + "','1',NOW(), '" + id_user + "'); "
+                                    execute_non_query(query, True, "", "", "", "")
+                                Else
+                                    Dim sas_period As String = year + "-" + j.ToString + "-" + "01"
+                                    Dim sas_value As String = decimalSQL(GVData.GetRowCellValue(i, bulan).ToString)
+                                    Dim query As String = "UPDATE tb_tg_sas SET is_active=2 WHERE id_class='" + id_class + "' AND sas_period='" + sas_period + "' AND id_delivery='" + id_delivery + "';
+                                    INSERT INTO tb_tg_sas(id_class, sas_period, id_delivery, sas_value, is_active, input_date, input_by) 
+                                    VALUES('" + id_class + "', '" + sas_period + "', '" + id_delivery + "', '" + sas_value + "','1',NOW(), '" + id_user + "'); "
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
+                            Next
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+
+                        FormMasterStoreFaktur.viewData()
+
+                        'refresh
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
+                End If
             End If
         End If
         Cursor = Cursors.Default
@@ -8284,6 +8489,38 @@ WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='"
         If id_pop_up = "50" Or id_pop_up = "53" Then
             GCData.ContextMenuStrip = CMSImport
             OtherActionToolStripMenuItem.Text = "Reconcile && Upload BAP"
+        End If
+
+        'faktur load
+        If id_pop_up = "68" Then
+            PanelControl1.Visible = False
+            Dim no_seri As String = FormFKNumber.Txtno1.Text + "." + FormFKNumber.Txtno2.Text + "."
+            Dim nomer As String = FormFKNumber.Txtno3.Text
+            Dim id_grp As String = ""
+            For i As Integer = 0 To FormFKNumber.GVData.RowCount - 1
+                If i > 0 Then
+                    id_grp += ","
+                End If
+                id_grp += FormFKNumber.GVData.GetRowCellValue(i, "id_comp_group").ToString
+            Next
+            Dim query As String = "CALL view_fk_fg(" + FormAccountingFakturScanSingle.id_acc_fak_scan + ", '" + no_seri + "','" + nomer + "','" + id_grp + "') "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCData.DataSource = Nothing
+            GCData.DataSource = data
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            GVData.ActiveFilterString = "[status]<>'OK' "
+            Dim cond_status As Boolean = True
+            If GVData.RowCount > 0 Then
+                cond_status = False
+            End If
+            GVData.ActiveFilterString = ""
+            If GVData.RowCount = 0 Or Not cond_status Then
+                BImport.Visible = False
+            Else
+                BImport.Text = "Load Data"
+            End If
         End If
     End Sub
 

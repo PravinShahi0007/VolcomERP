@@ -54,6 +54,8 @@ Partial Class FormFGRepairReturnDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtRefNo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -88,8 +90,6 @@ Partial Class FormFGRepairReturnDet
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.TxtRefNo = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,6 +110,7 @@ Partial Class FormFGRepairReturnDet
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelHeaderLeft.SuspendLayout()
+        CType(Me.TxtRefNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlItemList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,7 +126,6 @@ Partial Class FormFGRepairReturnDet
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtRefNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -483,6 +483,26 @@ Partial Class FormFGRepairReturnDet
         Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 93)
         Me.PanelHeaderLeft.TabIndex = 8899
         '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(21, 36)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(41, 13)
+        Me.LabelControl3.TabIndex = 164
+        Me.LabelControl3.Text = "Ref. No."
+        '
+        'TxtRefNo
+        '
+        Me.TxtRefNo.EditValue = ""
+        Me.TxtRefNo.Enabled = False
+        Me.TxtRefNo.Location = New System.Drawing.Point(73, 33)
+        Me.TxtRefNo.Name = "TxtRefNo"
+        Me.TxtRefNo.Properties.EditValueChangedDelay = 1
+        Me.TxtRefNo.Properties.ReadOnly = True
+        Me.TxtRefNo.Size = New System.Drawing.Size(172, 20)
+        Me.TxtRefNo.TabIndex = 163
+        '
         'TxtNumber
         '
         Me.TxtNumber.EditValue = ""
@@ -689,7 +709,7 @@ Partial Class FormFGRepairReturnDet
         '
         Me.XTPSummary.Controls.Add(Me.GCScanSum)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(831, 245)
+        Me.XTPSummary.Size = New System.Drawing.Size(831, 222)
         Me.XTPSummary.Text = "Summary"
         '
         'GCScanSum
@@ -698,7 +718,7 @@ Partial Class FormFGRepairReturnDet
         Me.GCScanSum.Location = New System.Drawing.Point(0, 0)
         Me.GCScanSum.MainView = Me.GVScanSum
         Me.GCScanSum.Name = "GCScanSum"
-        Me.GCScanSum.Size = New System.Drawing.Size(831, 245)
+        Me.GCScanSum.Size = New System.Drawing.Size(831, 222)
         Me.GCScanSum.TabIndex = 4
         Me.GCScanSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScanSum})
         '
@@ -816,26 +836,6 @@ Partial Class FormFGRepairReturnDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
-        'TxtRefNo
-        '
-        Me.TxtRefNo.EditValue = ""
-        Me.TxtRefNo.Enabled = False
-        Me.TxtRefNo.Location = New System.Drawing.Point(73, 33)
-        Me.TxtRefNo.Name = "TxtRefNo"
-        Me.TxtRefNo.Properties.EditValueChangedDelay = 1
-        Me.TxtRefNo.Properties.ReadOnly = True
-        Me.TxtRefNo.Size = New System.Drawing.Size(172, 20)
-        Me.TxtRefNo.TabIndex = 163
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(21, 36)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(41, 13)
-        Me.LabelControl3.TabIndex = 164
-        Me.LabelControl3.Text = "Ref. No."
-        '
         'FormFGRepairReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -852,7 +852,7 @@ Partial Class FormFGRepairReturnDet
         Me.MinimizeBox = False
         Me.Name = "FormFGRepairReturnDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Return Repair Product"
+        Me.Text = "Repaired Product Packing List"
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
@@ -877,6 +877,7 @@ Partial Class FormFGRepairReturnDet
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelHeaderLeft.ResumeLayout(False)
         Me.PanelHeaderLeft.PerformLayout()
+        CType(Me.TxtRefNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlItemList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -893,7 +894,6 @@ Partial Class FormFGRepairReturnDet
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtRefNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

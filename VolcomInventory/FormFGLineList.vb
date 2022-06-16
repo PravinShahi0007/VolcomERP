@@ -1154,6 +1154,22 @@ Public Class FormFGLineList
                         End If
                     End If
 
+                    'cek non pd
+                    Dim qnp As String = "SELECT d.design_code AS `code`,  d.design_display_name AS `name`  
+                    FROM tb_m_design_no_pd np 
+                    INNER JOIN tb_m_design d ON d.id_design = np.id_design
+                    WHERE np.id_design IN (" + id_design_in + ") "
+                    Dim dnp As DataTable = execute_query(qnp, -1, True, "", "", "", "")
+                    If dnp.Rows.Count > 0 Then
+                        warningCustom("Sesuai persetujuan manajemen beberapa artikel tidak perlu dibuatkan PD. Klik OK untuk melihat detil artikel.")
+                        FormFGLineListPDExist.dt = dnp
+                        FormFGLineListPDExist.GridColumn1.Visible = False
+                        FormFGLineListPDExist.PanelControl1.Visible = False
+                        FormFGLineListPDExist.ShowDialog()
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
+
                     Try
                         FormProdDemand.MdiParent = FormMain
                         FormProdDemand.Show()

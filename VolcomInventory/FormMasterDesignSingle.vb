@@ -245,6 +245,17 @@
         End If
     End Sub
 
+    'product type
+    Sub view_product_type()
+        Dim query As String = "SELECT lcp.id_critical_product, lcp.critical_product 
+        FROM tb_lookup_critical_product lcp 
+        ORDER BY lcp.id_critical_product DESC "
+        viewSearchLookupQuery(SLEProductType, query, "id_critical_product", "critical_product", "id_critical_product")
+        If id_design = "-1" Then
+            SLEProductType.EditValue = Nothing
+        End If
+    End Sub
+
     Sub load_isi_param(ByVal id_type As String)
         Cursor = Cursors.WaitCursor
 
@@ -408,6 +419,26 @@
         viewSearchLookupQuery(SLEActive, query, "id_status", "status", "id_status")
     End Sub
 
+    Sub load_extra_tag()
+        Try
+            CCBEExtraTag.Properties.Items.Clear()
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT dt.id_design_tag, dt.design_tag FROM tb_m_design_tag dt"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("design_tag").ToString
+            c.Value = data.Rows(i)("id_design_tag").ToString
+
+            CCBEExtraTag.Properties.Items.Add(c)
+        Next
+        CCBEExtraTag.EditValue = Nothing
+    End Sub
+
     Sub actionLoad()
         viewUOM(LEUOM)
         viewSeason(LESeason)
@@ -415,9 +446,12 @@
         viewSampleOrign(LESampleOrign)
         view_ret_code(LERetCode)
         view_cool_storage()
+        view_product_type()
         load_isi_param("1")
         load_isi_param("2")
         load_isi_param("3")
+        load_extra_tag()
+
         '
         load_comment()
 
@@ -464,6 +498,7 @@
             'TxtFabrication.Enabled = True
             SBFabricationBrowse.Enabled = True
             SLUECoolStorage.Enabled = True
+            SLEProductType.Enabled = True
             GVAdditional.OptionsBehavior.Editable = True
             TEPrimaryName.Enabled = True
             LESampleOrign.Enabled = True
@@ -566,6 +601,7 @@
 
                 'cool storage
                 SLUECoolStorage.EditValue = data.Rows(0)("is_cold_storage").ToString
+                SLEProductType.EditValue = data.Rows(0)("id_critical_product").ToString
 
                 'primary name
                 TEPrimaryName.EditValue = data.Rows(0)("primary_name").ToString
@@ -638,6 +674,16 @@
                         End If
                     End If
                 End If
+
+                'cek extra tag
+                Dim qet As String = "SELECT GROUP_CONCAT(DISTINCT dtd.id_design_tag) AS `id_design_tag` FROM tb_design_tag_detail dtd WHERE dtd.id_design=" + id_design + " "
+                Dim det As DataTable = execute_query(qet, -1, True, "", "", "", "")
+                If det.Rows.Count <= 0 Then
+                    CCBEExtraTag.EditValue = Nothing
+                Else
+                    CCBEExtraTag.SetEditValue(det.Rows(0)("id_design_tag").ToString)
+                End If
+
                 inputPermission()  'access limit
             Catch ex As Exception
                 'errorConnection()
@@ -1013,6 +1059,7 @@
             'TxtFabrication.Enabled = False
             SBFabricationBrowse.Enabled = False
             SLUECoolStorage.Enabled = False
+            SLEProductType.Enabled = False
             GVAdditional.OptionsBehavior.Editable = False
             TEPrimaryName.Enabled = False
             SLEDesign.Enabled = False
@@ -1070,6 +1117,7 @@
 
             'comment
             PanelControlComment.Visible = False
+            CCBEExtraTag.Enabled = False
 
         ElseIf id_pop_up = "2" Then 'sample dept
             XTPLineList.PageVisible = False
@@ -1094,6 +1142,7 @@
             'TxtFabrication.Enabled = True
             SBFabricationBrowse.Enabled = True
             SLUECoolStorage.Enabled = True
+            SLEProductType.Enabled = True
             GVAdditional.OptionsBehavior.Editable = True
             TEPrimaryName.Enabled = True
             BtnGetLastCount.Enabled = False
@@ -1108,11 +1157,12 @@
 
             'comment
             PanelControlComment.Visible = False
-
+            CCBEExtraTag.Enabled = False
         ElseIf id_pop_up = "3" Then 'non merch
             'TxtFabrication.Enabled = True
             SBFabricationBrowse.Enabled = True
             SLUECoolStorage.Enabled = True
+            SLEProductType.Enabled = True
             GVAdditional.OptionsBehavior.Editable = True
             TEPrimaryName.Enabled = True
             LESampleOrign.Enabled = True
@@ -1123,7 +1173,6 @@
 
             'comment
             PanelControlComment.Visible = False
-
         ElseIf id_pop_up = "4" Then 'preview design
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
@@ -1147,6 +1196,7 @@
             'TxtFabrication.Enabled = False
             SBFabricationBrowse.Enabled = False
             SLUECoolStorage.Enabled = False
+            SLEProductType.Enabled = False
             GVAdditional.OptionsBehavior.Editable = False
             TEPrimaryName.Enabled = False
             BtnGetLastCount.Enabled = False
@@ -1165,9 +1215,10 @@
             '
             LCoolStorage.Visible = False
             SLUECoolStorage.Visible = False
+            SLEProductType.Visible = False
             'comment
             PanelControlComment.Visible = False
-
+            CCBEExtraTag.Enabled = False
         ElseIf id_pop_up = "5" Then 'design dept
             If is_approved = "2" Then
                 BtnReviseStyle.Visible = False
@@ -1188,6 +1239,8 @@
                 SLESeasonOrigin.Enabled = True
                 BtnAddSeasonOrign.Enabled = True
                 SLUECoolStorage.Enabled = True
+                SLEProductType.Enabled = True
+                CCBEExtraTag.Enabled = True
             Else
                 BtnReviseStyle.Visible = True
                 TEName.Enabled = False
@@ -1207,6 +1260,8 @@
                 SLESeasonOrigin.Enabled = False
                 BtnAddSeasonOrign.Enabled = False
                 SLUECoolStorage.Enabled = False
+                SLEProductType.Enabled = False
+                CCBEExtraTag.Enabled = False
             End If
             PictureEdit1.Properties.ReadOnly = False
             XTPLineList.PageVisible = False
@@ -1255,6 +1310,7 @@
             'TxtFabrication.Enabled = False
             SBFabricationBrowse.Enabled = False
             SLUECoolStorage.Enabled = False
+            SLEProductType.Enabled = False
             GVAdditional.OptionsBehavior.Editable = False
             TEPrimaryName.Enabled = False
             BtnGetLastCount.Enabled = False
@@ -1270,6 +1326,7 @@
             LERetCode.Enabled = True
             DEEOS.Enabled = True
             SLEActive.Enabled = True
+            CCBEExtraTag.Enabled = False
         End If
 
         'cek PO & FG Line List
@@ -1290,12 +1347,14 @@
                 'TxtFabrication.Enabled = False
                 SBFabricationBrowse.Enabled = False
                 SLUECoolStorage.Enabled = False
+                SLEProductType.Enabled = False
                 'GVAdditional.OptionsBehavior.Editable = False
                 'TEPrimaryName.Enabled = False
                 SLEDesign.Enabled = False
                 GCCodeDsg.Enabled = False
                 BtnAddSeaason.Enabled = False
                 LESeason.Enabled = False
+                SLEDel.Enabled = False
                 XTPPrice.PageVisible = False
                 LEUOM.Enabled = False
                 TxtDelDate.Enabled = False
@@ -1322,6 +1381,7 @@
                 DEWHDate.Enabled = False
                 BtnAddRetCode.Enabled = False
                 SLELinePlan.Enabled = False
+                CCBEExtraTag.Enabled = False
             End If
         End If
 
@@ -1362,6 +1422,7 @@
                     'TxtFabrication.Enabled = True
                     SBFabricationBrowse.Enabled = True
                     SLUECoolStorage.Enabled = True
+                    SLEProductType.Enabled = True
                     GVAdditional.OptionsBehavior.Editable = True
                     TEPrimaryName.Enabled = True
                     SLEDesign.Enabled = True
@@ -1384,6 +1445,7 @@
                     'TxtFabrication.Enabled = True
                     SBFabricationBrowse.Enabled = True
                     SLUECoolStorage.Enabled = True
+                    SLEProductType.Enabled = True
                     GVAdditional.OptionsBehavior.Editable = True
                     TEPrimaryName.Enabled = True
                     SLEDesign.Enabled = True
@@ -1536,6 +1598,24 @@
         TECode.Text = code_full
     End Sub
 
+    Sub setExtraTag(ByVal id_design_par As String, ByVal id_design_tag_par As String)
+        If id_pop_up = "5" Then
+            Cursor = Cursors.WaitCursor
+            If id_design_tag_par = "" Then
+                id_design_tag_par = "0"
+            End If
+
+            'delete
+            Dim query As String = "DELETE FROM tb_design_tag_detail WHERE id_design = '" + id_design_par + "';
+            INSERT INTO tb_design_tag_detail(id_design_tag, id_design)
+            SELECT t.id_design_tag, '" + id_design_par + "' 
+            FROM tb_m_design_tag t
+            WHERE t.id_design_tag IN (" + id_design_tag_par + "); "
+            execute_non_query(query, True, "", "", "", "")
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         'generate code
         If id_pop_up = "-1" Then
@@ -1667,6 +1747,20 @@
         If SLUECoolStorage.EditValue = Nothing Then
             stopCustom("Please input storage type")
             Exit Sub
+        End If
+
+        'cek product type
+        If SLEProductType.EditValue = Nothing Then
+            stopCustom("Please input product type")
+            Exit Sub
+        End If
+
+        'extra tag
+        Dim id_design_tag As String = ""
+        If CCBEExtraTag.EditValue = Nothing Then
+            id_design_tag = ""
+        Else
+            id_design_tag = CCBEExtraTag.EditValue.ToString
         End If
 
         Cursor = Cursors.WaitCursor
@@ -1899,7 +1993,7 @@
                                 is_process = "2"
                             End If
 
-                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design, is_process, id_design_rev_from, is_cold_storage, primary_name) "
+                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design, is_process, id_design_rev_from, is_cold_storage, primary_name, id_critical_product) "
                             query += "VALUES('" + namex + "','" + display_name + "','" + code + "', " + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                             If design_eos = "-1" Then
                                 query += "NULL, "
@@ -1923,7 +2017,7 @@
                                 query += "'" + id_design_ref + "', "
                             End If
                             query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
-                            query += ", '" + is_old_design + "', " + is_process + ", " + id_design_rev_from + ", " + SLUECoolStorage.EditValue.ToString + ", '" + addSlashes(TEPrimaryName.EditValue.ToString) + "');SELECT LAST_INSERT_ID(); "
+                            query += ", '" + is_old_design + "', " + is_process + ", " + id_design_rev_from + ", " + SLUECoolStorage.EditValue.ToString + ", '" + addSlashes(TEPrimaryName.EditValue.ToString) + "', '" + SLEProductType.EditValue.ToString + "');SELECT LAST_INSERT_ID(); "
                             id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
                             'save detil propose change design
@@ -1980,6 +2074,9 @@
                             If id_pop_up = "3" Then
                                 setDefaultPrice(id_design_tersimpan, 0)
                             End If
+
+                            'extra tag
+                            setExtraTag(id_design_tersimpan, id_design_tag)
 
                             'new line list
                             NewLineList(id_design_tersimpan, id_season, id_delivery)
@@ -2051,7 +2148,7 @@
                             query += "id_active='" + id_active + "', "
                             query += "design_detail='" + design_detail + "', 
                             id_fg_line_plan='" + id_fg_line_plan + "', "
-                            query += "is_cold_storage = '" + SLUECoolStorage.EditValue.ToString + "',"
+                            query += "is_cold_storage = '" + SLUECoolStorage.EditValue.ToString + "', id_critical_product='" + SLEProductType.EditValue.ToString + "', "
                             query += "primary_name = '" + addSlashes(TEPrimaryName.EditValue.ToString) + "'"
                             query += "WHERE id_design='{5}' "
                             query = String.Format(query, namex, display_name, code, id_uom, id_season, id_design, id_design_type, design_ret_code)
@@ -2097,6 +2194,9 @@
 
                             'pdate product code
                             updProductCode(id_design)
+
+                            'extra tag
+                            setExtraTag(id_design, id_design_tag)
 
                             If form_name = "FormMasterProduct" Then
                                 FormMasterProduct.view_design()
@@ -2186,7 +2286,7 @@
                             approved = "1"
                         End If
 
-                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved, is_old_design, is_cold_storage, primary_name) "
+                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved, is_old_design, is_cold_storage, primary_name, id_critical_product) "
                         query += "VALUES('" + namex + "','" + display_name + "','" + code + "'," + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                         If design_eos = "-1" Then
                             query += "NULL, "
@@ -2211,7 +2311,7 @@
                         End If
                         query += "'" + id_lookup_status_order + "', '" + design_detail + "', '" + approved + "' , '" + is_old_design + "', "
                         query += SLUECoolStorage.EditValue.ToString + ","
-                        query += "'" + addSlashes(TEPrimaryName.EditValue.ToString) + "'"
+                        query += "'" + addSlashes(TEPrimaryName.EditValue.ToString) + "', '" + SLEProductType.EditValue.ToString + "' "
                         query += ");SELECT LAST_INSERT_ID(); "
                         id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
@@ -2258,6 +2358,9 @@
                         If id_pop_up = "3" Then
                             setDefaultPrice(id_design_tersimpan, 0)
                         End If
+
+                        'extra tag
+                        setExtraTag(id_design_tersimpan, id_design_tag)
 
                         'new line list
                         NewLineList(id_design_tersimpan, id_season, id_delivery)
@@ -3537,4 +3640,28 @@
             Return False
         End If
     End Function
+
+    Private Sub CCBEExtraTag_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEExtraTag.EditValueChanged
+        If CCBEExtraTag.EditValue = "" Then
+            CCBEExtraTag.EditValue = Nothing
+        End If
+    End Sub
+
+    Private Sub BtnAddExtraTag_Click(sender As Object, e As EventArgs) Handles BtnAddExtraTag.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_design_tag_old As String = ""
+        If CCBEExtraTag.EditValue = Nothing Then
+            id_design_tag_old = ""
+        Else
+            id_design_tag_old = CCBEExtraTag.EditValue.ToString
+        End If
+        FormMasterExtraTag.ShowDialog()
+        load_extra_tag()
+        If id_design_tag_old = "" Then
+            CCBEExtraTag.EditValue = Nothing
+        Else
+            CCBEExtraTag.SetEditValue(id_design_tag_old)
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class

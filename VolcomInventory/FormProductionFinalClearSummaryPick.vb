@@ -98,7 +98,7 @@
 	            WHERE rec.id_report_status = 6
 	            GROUP BY rec.id_prod_order
             ) AS qty_rec ON po.id_prod_order = qty_rec.id_prod_order
-            WHERE fc.id_report_status = 6 AND fc.id_prod_fc NOT IN (SELECT id_prod_fc FROM (" + where_id_prod_fc + ") AS not_include) " + where_vendor + " " + where_date_from + " " + where_date_to + "
+            WHERE fc.id_metode_qc='" & FormProductionFinalClearSummary.SLEMetode.EditValue.ToString & "' AND fc.id_report_status = 6 AND fc.id_prod_fc NOT IN (SELECT id_prod_fc FROM (" + where_id_prod_fc + ") AS not_include) " + where_vendor + " " + where_date_from + " " + where_date_to + "
         "
 
         Dim is_block_int As String = "2"

@@ -505,7 +505,7 @@ Partial Class FormFGLineList
         Me.BtnCreateNewPD.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCreateNewPD.ImageIndex = 10
         Me.BtnCreateNewPD.ImageList = Me.LargeImageCollection
-        Me.BtnCreateNewPD.Location = New System.Drawing.Point(527, 2)
+        Me.BtnCreateNewPD.Location = New System.Drawing.Point(553, 2)
         Me.BtnCreateNewPD.Name = "BtnCreateNewPD"
         Me.BtnCreateNewPD.Size = New System.Drawing.Size(114, 38)
         Me.BtnCreateNewPD.TabIndex = 113
@@ -515,7 +515,7 @@ Partial Class FormFGLineList
         '
         Me.BtnSetActualInStoreDate.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSetActualInStoreDate.Image = CType(resources.GetObject("BtnSetActualInStoreDate.Image"), System.Drawing.Image)
-        Me.BtnSetActualInStoreDate.Location = New System.Drawing.Point(641, 2)
+        Me.BtnSetActualInStoreDate.Location = New System.Drawing.Point(667, 2)
         Me.BtnSetActualInStoreDate.Name = "BtnSetActualInStoreDate"
         Me.BtnSetActualInStoreDate.Size = New System.Drawing.Size(171, 38)
         Me.BtnSetActualInStoreDate.TabIndex = 116
@@ -526,11 +526,11 @@ Partial Class FormFGLineList
         Me.BtnPlanStatus.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPlanStatus.ImageIndex = 3
         Me.BtnPlanStatus.ImageList = Me.LargeImageCollection
-        Me.BtnPlanStatus.Location = New System.Drawing.Point(812, 2)
+        Me.BtnPlanStatus.Location = New System.Drawing.Point(838, 2)
         Me.BtnPlanStatus.Name = "BtnPlanStatus"
-        Me.BtnPlanStatus.Size = New System.Drawing.Size(107, 38)
+        Me.BtnPlanStatus.Size = New System.Drawing.Size(81, 38)
         Me.BtnPlanStatus.TabIndex = 114
-        Me.BtnPlanStatus.Text = "Move/Drop"
+        Me.BtnPlanStatus.Text = "Drop"
         '
         'BtnGetRateCurrent
         '

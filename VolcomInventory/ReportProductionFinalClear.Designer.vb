@@ -38,6 +38,8 @@ Partial Public Class ReportProductionFinalClear
         Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.LRecDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.LMetode = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LServiceNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
@@ -264,12 +266,39 @@ Partial Public Class ReportProductionFinalClear
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LServiceNote, Me.XrLabel18, Me.XrLabel20, Me.XrLabel16, Me.XrLabel15, Me.LVendor, Me.LDesign, Me.XrLabel19, Me.XrLabel4, Me.Lcat, Me.XrLabel17, Me.XrLabel14, Me.XrLabel8, Me.XrLabel7, Me.LSeason, Me.LPONumber, Me.XrLabel5, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LFromName, Me.LToName, Me.XrLabel2, Me.XrLabel3})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LMetode, Me.XrLabel13, Me.LServiceNote, Me.XrLabel18, Me.XrLabel20, Me.XrLabel16, Me.XrLabel15, Me.LVendor, Me.LDesign, Me.XrLabel19, Me.XrLabel4, Me.Lcat, Me.XrLabel17, Me.XrLabel14, Me.XrLabel8, Me.XrLabel7, Me.LSeason, Me.LPONumber, Me.XrLabel5, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LFromName, Me.LToName, Me.XrLabel2, Me.XrLabel3})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 47.41829!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(772.9999!, 68.62337!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
         Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'LMetode
+        '
+        Me.LMetode.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LMetode.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LMetode.LocationFloat = New DevExpress.Utils.PointFloat(645.4166!, 15.58334!)
+        Me.LMetode.Name = "LMetode"
+        Me.LMetode.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LMetode.SizeF = New System.Drawing.SizeF(114.5834!, 13.58335!)
+        Me.LMetode.StylePriority.UseBorders = False
+        Me.LMetode.StylePriority.UseFont = False
+        Me.LMetode.StylePriority.UseTextAlignment = False
+        Me.LMetode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel13
+        '
+        Me.XrLabel13.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel13.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(602.7083!, 15.58336!)
+        Me.XrLabel13.Name = "XrLabel13"
+        Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(42.70825!, 13.58335!)
+        Me.XrLabel13.StylePriority.UseBorders = False
+        Me.XrLabel13.StylePriority.UseFont = False
+        Me.XrLabel13.StylePriority.UseTextAlignment = False
+        Me.XrLabel13.Text = "Metode :"
+        Me.XrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LServiceNote
         '
@@ -460,7 +489,7 @@ Partial Public Class ReportProductionFinalClear
         Me.LSeason.LocationFloat = New DevExpress.Utils.PointFloat(525.1252!, 15.58344!)
         Me.LSeason.Name = "LSeason"
         Me.LSeason.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LSeason.SizeF = New System.Drawing.SizeF(234.8749!, 13.58335!)
+        Me.LSeason.SizeF = New System.Drawing.SizeF(77.58319!, 13.58335!)
         Me.LSeason.StylePriority.UseBorders = False
         Me.LSeason.StylePriority.UseFont = False
         Me.LSeason.StylePriority.UseTextAlignment = False
@@ -470,10 +499,10 @@ Partial Public Class ReportProductionFinalClear
         '
         Me.LPONumber.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LPONumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LPONumber.LocationFloat = New DevExpress.Utils.PointFloat(525.1252!, 2.000076!)
+        Me.LPONumber.LocationFloat = New DevExpress.Utils.PointFloat(525.1252!, 2.00008!)
         Me.LPONumber.Name = "LPONumber"
         Me.LPONumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LPONumber.SizeF = New System.Drawing.SizeF(234.8749!, 13.58335!)
+        Me.LPONumber.SizeF = New System.Drawing.SizeF(234.8748!, 13.58335!)
         Me.LPONumber.StylePriority.UseBorders = False
         Me.LPONumber.StylePriority.UseFont = False
         Me.LPONumber.StylePriority.UseTextAlignment = False
@@ -723,4 +752,6 @@ Partial Public Class ReportProductionFinalClear
     Friend WithEvents LServiceNote As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LMetode As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
 End Class

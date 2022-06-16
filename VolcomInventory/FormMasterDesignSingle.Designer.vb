@@ -78,6 +78,11 @@ Partial Class FormMasterDesignSingle
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanC2 = New DevExpress.XtraEditors.PanelControl()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.SLEProductType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView18 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_critical_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncritical_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.SBFabricationBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPrimaryName = New DevExpress.XtraEditors.TextEdit()
@@ -196,6 +201,9 @@ Partial Class FormMasterDesignSingle
         Me.RILEDesgValue = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.DNCodeDesign = New DevExpress.XtraEditors.DataNavigator()
         Me.PanelDesc = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAddExtraTag = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.CCBEExtraTag = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.BGenerateDesc = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefreshCodeDsg = New DevExpress.XtraEditors.SimpleButton()
@@ -327,6 +335,8 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanC2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanC2.SuspendLayout()
         Me.XtraScrollableControl1.SuspendLayout()
+        CType(Me.SLEProductType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPrimaryName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUECoolStorage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView17, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -383,6 +393,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.RILEDesgValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelDesc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelDesc.SuspendLayout()
+        CType(Me.CCBEExtraTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LETemplateDsg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1012,6 +1023,8 @@ Partial Class FormMasterDesignSingle
         '
         'XtraScrollableControl1
         '
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEProductType)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl21)
         Me.XtraScrollableControl1.Controls.Add(Me.SBFabricationBrowse)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl22)
         Me.XtraScrollableControl1.Controls.Add(Me.TEPrimaryName)
@@ -1063,6 +1076,50 @@ Partial Class FormMasterDesignSingle
         Me.XtraScrollableControl1.Size = New System.Drawing.Size(402, 612)
         Me.XtraScrollableControl1.TabIndex = 140
         '
+        'SLEProductType
+        '
+        Me.SLEProductType.Location = New System.Drawing.Point(182, 666)
+        Me.SLEProductType.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.SLEProductType.Name = "SLEProductType"
+        Me.SLEProductType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEProductType.Properties.NullText = "- Select Product Type -"
+        Me.SLEProductType.Properties.ShowClearButton = False
+        Me.SLEProductType.Properties.ShowFooter = False
+        Me.SLEProductType.Properties.View = Me.GridView18
+        Me.SLEProductType.Size = New System.Drawing.Size(199, 20)
+        Me.SLEProductType.TabIndex = 146
+        Me.SLEProductType.TabStop = False
+        '
+        'GridView18
+        '
+        Me.GridView18.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_critical_product, Me.GridColumncritical_product})
+        Me.GridView18.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView18.Name = "GridView18"
+        Me.GridView18.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView18.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_critical_product
+        '
+        Me.GridColumnid_critical_product.FieldName = "id_critical_product"
+        Me.GridColumnid_critical_product.Name = "GridColumnid_critical_product"
+        '
+        'GridColumncritical_product
+        '
+        Me.GridColumncritical_product.Caption = "Product Type"
+        Me.GridColumncritical_product.FieldName = "critical_product"
+        Me.GridColumncritical_product.Name = "GridColumncritical_product"
+        Me.GridColumncritical_product.Visible = True
+        Me.GridColumncritical_product.VisibleIndex = 0
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(182, 651)
+        Me.LabelControl21.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl21.TabIndex = 145
+        Me.LabelControl21.Text = "Product Type"
+        '
         'SBFabricationBrowse
         '
         Me.SBFabricationBrowse.Image = CType(resources.GetObject("SBFabricationBrowse.Image"), System.Drawing.Image)
@@ -1099,7 +1156,7 @@ Partial Class FormMasterDesignSingle
         Me.SLUECoolStorage.Properties.ShowClearButton = False
         Me.SLUECoolStorage.Properties.ShowFooter = False
         Me.SLUECoolStorage.Properties.View = Me.GridView17
-        Me.SLUECoolStorage.Size = New System.Drawing.Size(373, 20)
+        Me.SLUECoolStorage.Size = New System.Drawing.Size(167, 20)
         Me.SLUECoolStorage.TabIndex = 140
         Me.SLUECoolStorage.TabStop = False
         '
@@ -1909,7 +1966,7 @@ Partial Class FormMasterDesignSingle
         Me.TEDisplayName.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TEDisplayName.Location = New System.Drawing.Point(13, 34)
+        Me.TEDisplayName.Location = New System.Drawing.Point(13, 73)
         Me.TEDisplayName.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TEDisplayName.Name = "TEDisplayName"
         Me.TEDisplayName.Properties.MaxLength = 25
@@ -1919,7 +1976,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(13, 15)
+        Me.LabelControl1.Location = New System.Drawing.Point(13, 54)
         Me.LabelControl1.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(53, 13)
@@ -2170,6 +2227,9 @@ Partial Class FormMasterDesignSingle
         'PanelDesc
         '
         Me.PanelDesc.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelDesc.Controls.Add(Me.BtnAddExtraTag)
+        Me.PanelDesc.Controls.Add(Me.LabelControl23)
+        Me.PanelDesc.Controls.Add(Me.CCBEExtraTag)
         Me.PanelDesc.Controls.Add(Me.TEDisplayName)
         Me.PanelDesc.Controls.Add(Me.BGenerateDesc)
         Me.PanelDesc.Controls.Add(Me.LabelControl1)
@@ -2180,10 +2240,43 @@ Partial Class FormMasterDesignSingle
         Me.PanelDesc.Size = New System.Drawing.Size(499, 108)
         Me.PanelDesc.TabIndex = 100
         '
+        'BtnAddExtraTag
+        '
+        Me.BtnAddExtraTag.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddExtraTag.Image = CType(resources.GetObject("BtnAddExtraTag.Image"), System.Drawing.Image)
+        Me.BtnAddExtraTag.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnAddExtraTag.Location = New System.Drawing.Point(441, 29)
+        Me.BtnAddExtraTag.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BtnAddExtraTag.Name = "BtnAddExtraTag"
+        Me.BtnAddExtraTag.Size = New System.Drawing.Size(32, 18)
+        Me.BtnAddExtraTag.TabIndex = 97
+        Me.BtnAddExtraTag.ToolTip = "Add Season"
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Location = New System.Drawing.Point(14, 9)
+        Me.LabelControl23.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl23.TabIndex = 96
+        Me.LabelControl23.Text = "Extra Tag"
+        '
+        'CCBEExtraTag
+        '
+        Me.CCBEExtraTag.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CCBEExtraTag.EditValue = ""
+        Me.CCBEExtraTag.Location = New System.Drawing.Point(13, 28)
+        Me.CCBEExtraTag.Name = "CCBEExtraTag"
+        Me.CCBEExtraTag.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEExtraTag.Properties.NullText = "None"
+        Me.CCBEExtraTag.Size = New System.Drawing.Size(423, 20)
+        Me.CCBEExtraTag.TabIndex = 95
+        '
         'BGenerateDesc
         '
         Me.BGenerateDesc.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BGenerateDesc.Location = New System.Drawing.Point(349, 34)
+        Me.BGenerateDesc.Location = New System.Drawing.Point(349, 73)
         Me.BGenerateDesc.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BGenerateDesc.Name = "BGenerateDesc"
         Me.BGenerateDesc.Size = New System.Drawing.Size(124, 20)
@@ -3221,6 +3314,8 @@ Partial Class FormMasterDesignSingle
         Me.PanC2.ResumeLayout(False)
         Me.XtraScrollableControl1.ResumeLayout(False)
         Me.XtraScrollableControl1.PerformLayout()
+        CType(Me.SLEProductType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPrimaryName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUECoolStorage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView17, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3279,6 +3374,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanelDesc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelDesc.ResumeLayout(False)
         Me.PanelDesc.PerformLayout()
+        CType(Me.CCBEExtraTag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -3612,4 +3708,12 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridColumnproduct_active_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnseason_orign_display As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncountry_display_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEProductType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView18 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_critical_product As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncritical_product As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CCBEExtraTag As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents BtnAddExtraTag As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -58,6 +58,7 @@ Partial Public Class ReportDebitNote
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LKepada = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.LSummary = New DevExpress.XtraReports.UI.XRLabel()
         Me.LTerbilang = New DevExpress.XtraReports.UI.XRLabel()
         Me.LSay = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
@@ -67,7 +68,8 @@ Partial Public Class ReportDebitNote
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.LSummary = New DevExpress.XtraReports.UI.XRLabel()
+        Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -459,6 +461,15 @@ Partial Public Class ReportDebitNote
         Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
+        'LSummary
+        '
+        Me.LSummary.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Italic)
+        Me.LSummary.LocationFloat = New DevExpress.Utils.PointFloat(0!, 14.0!)
+        Me.LSummary.Name = "LSummary"
+        Me.LSummary.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LSummary.SizeF = New System.Drawing.SizeF(1054.0!, 18.00001!)
+        Me.LSummary.StylePriority.UseFont = False
+        '
         'LTerbilang
         '
         Me.LTerbilang.LocationFloat = New DevExpress.Utils.PointFloat(0!, 56.24999!)
@@ -530,18 +541,20 @@ Partial Public Class ReportDebitNote
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
-        'LSummary
+        'DetailReport
         '
-        Me.LSummary.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Italic)
-        Me.LSummary.LocationFloat = New DevExpress.Utils.PointFloat(0!, 14.0!)
-        Me.LSummary.Name = "LSummary"
-        Me.LSummary.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LSummary.SizeF = New System.Drawing.SizeF(1054.0!, 18.00001!)
-        Me.LSummary.StylePriority.UseFont = False
+        Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail1})
+        Me.DetailReport.Level = 0
+        Me.DetailReport.Name = "DetailReport"
+        '
+        'Detail1
+        '
+        Me.Detail1.HeightF = 100.0!
+        Me.Detail1.Name = "Detail1"
         '
         'ReportDebitNote
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.DetailReport})
         Me.Landscape = True
         Me.Margins = New System.Drawing.Printing.Margins(49, 66, 26, 21)
         Me.PageHeight = 827
@@ -605,4 +618,6 @@ Partial Public Class ReportDebitNote
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents LSummary As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail1 As DevExpress.XtraReports.UI.DetailBand
 End Class
