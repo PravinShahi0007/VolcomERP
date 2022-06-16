@@ -27,7 +27,7 @@ Partial Class FormTargetSAS
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnImportFromXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportXls = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,7 +47,7 @@ Partial Class FormTargetSAS
         Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Controls.Add(Me.BtnImportFromXLS)
         Me.PanelControl1.Controls.Add(Me.BtnView)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BtnExportXls)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -122,16 +122,16 @@ Partial Class FormTargetSAS
         Me.BtnView.TabIndex = 2
         Me.BtnView.Text = "View"
         '
-        'SimpleButton1
+        'BtnExportXls
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.SimpleButton1.Location = New System.Drawing.Point(721, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(81, 59)
-        Me.SimpleButton1.TabIndex = 3
-        Me.SimpleButton1.Text = "Export to XLS"
+        Me.BtnExportXls.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportXls.Image = CType(resources.GetObject("BtnExportXls.Image"), System.Drawing.Image)
+        Me.BtnExportXls.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnExportXls.Location = New System.Drawing.Point(721, 2)
+        Me.BtnExportXls.Name = "BtnExportXls"
+        Me.BtnExportXls.Size = New System.Drawing.Size(81, 59)
+        Me.BtnExportXls.TabIndex = 3
+        Me.BtnExportXls.Text = "Export to XLS"
         '
         'GCData
         '
@@ -187,7 +187,7 @@ Partial Class FormTargetSAS
     Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportXls As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
 End Class
