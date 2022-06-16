@@ -62,6 +62,7 @@ Public Class FormSalesPOSDet
 
     Public id_st_store_bap As String = ""
 
+
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
     End Sub
@@ -2172,7 +2173,7 @@ Public Class FormSalesPOSDet
             cond_cat = "And (c.id_comp_cat='5' OR c.id_comp_cat=6) "
         End If
         Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar`,
-        IF(c.id_comp_cat=5, c.id_wh_type,IF(c.id_comp_cat=6,c.id_store_type,0)) AS `id_account_type`, c.id_comp_group "
+        IF(c.id_comp_cat=5, c.id_wh_type,IF(c.id_comp_cat=6,c.id_store_type,0)) AS `id_account_type`, c.id_comp_group, IFNULL(c.id_store_company,0) AS `id_store_company` "
         query += " From tb_m_comp_contact cc "
         query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
         query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
@@ -2274,6 +2275,16 @@ Public Class FormSalesPOSDet
 
             'min date due date
             setMinDueDate(data.Rows(0)("id_comp_group").ToString)
+
+            'cek store company
+            Dim id_store_company As String = data.Rows(0)("id_store_company").ToString
+            Dim cond_store_comp As Boolean = False
+            If id_store_company = "0" Then
+                cond_store_comp = False
+            Else
+                cond_store_comp = True
+            End If
+            checkStoreCompany(cond_store_comp)
 
             'Else
             '    stopCustom("Store not registered for auto posting journal.")
@@ -3551,6 +3562,13 @@ GROUP BY r.id_sales_pos_recon "
                 SPVat.EditValue = 0.00
             End If
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub checkStoreCompany(ByVal is_valid As Boolean)
+        If Not is_valid Then
+            stopCustom("Invoice tidak dapat dibuat karena data office toko tidak ditemukan.")
+            Close()
         End If
     End Sub
 End Class
