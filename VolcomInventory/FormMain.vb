@@ -10037,6 +10037,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormTargetSales" Then
             FormTargetSales.Close()
             FormTargetSales.Dispose()
+        ElseIf formName = "FormTargetSAS" Then
+            FormTargetSAS.Close()
+            FormTargetSAS.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -17320,6 +17323,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormTargetSales.Show()
             FormTargetSales.WindowState = FormWindowState.Maximized
             FormTargetSales.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBTargetSAS_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBTargetSAS.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormTargetSAS.MdiParent = Me
+            FormTargetSAS.Show()
+            FormTargetSAS.WindowState = FormWindowState.Maximized
+            FormTargetSAS.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

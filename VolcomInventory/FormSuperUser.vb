@@ -112,8 +112,6 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        FormTargetSales.is_test = "1"
-        FormTargetSales.ShowDialog()
         ''set ppn 11%
         'Dim ql As String = "SELECT a.id_sales_pos, a.report_mark_type, sp.sales_pos_number
         'FROM tb_temp_inv_10_to_11 a 
