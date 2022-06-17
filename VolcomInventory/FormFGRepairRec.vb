@@ -125,7 +125,24 @@
         End Try
 
         Dim query_c As New ClassFGRepairRec()
-        Dim query As String = query_c.queryMain("AND (rec.fg_repair_rec_date>='" + date_from_selected + "' AND rec.fg_repair_rec_date<='" + date_until_selected + "') ", "2")
+        'Dim query As String = query_c.queryMain("AND (rec.fg_repair_rec_date>='" + date_from_selected + "' AND rec.fg_repair_rec_date<='" + date_until_selected + "') ", "2")
+        Dim query As String = "Select rec.id_fg_repair_rec, r.id_fg_repair, "
+        query += "rec.id_wh_drawer_from, comp_frm.id_comp As `id_comp_from`, comp_frm.comp_number As `comp_number_from`, comp_frm.comp_name As `comp_name_from`, CONCAT(comp_frm.comp_number,' - ', comp_frm.comp_name) AS `comp_from`, "
+        query += "rec.id_wh_drawer_to, comp_to.id_comp As `id_comp_to`, comp_to.comp_number As `comp_number_to`, comp_to.comp_name As `comp_name_to`, CONCAT(comp_to.comp_number,' - ', comp_to.comp_name) AS `comp_to`, "
+        query += "rec.fg_repair_rec_number, r.fg_repair_number, rec.fg_repair_rec_date, DATE_FORMAT(rec.fg_repair_rec_date, '%Y-%m-%d') AS fg_repair_rec_datex, "
+        query += "rec.fg_repair_rec_note, rec.id_report_status, stt.report_status, rec.is_use_unique_code, IFNULL(COUNT(id_fg_repair_rec_det),0) AS `total_qty` "
+        query += "From tb_fg_repair_rec rec 
+        INNER JOIN tb_fg_repair_rec_det recd ON recd.id_fg_repair_rec = rec.id_fg_repair_rec "
+        query += "INNER JOIN tb_fg_repair r ON r.id_fg_repair = rec.id_fg_repair "
+        query += "INNER Join tb_m_wh_drawer drw_frm On drw_frm.id_wh_drawer = rec.id_wh_drawer_from  "
+        query += "INNER Join tb_m_comp comp_frm On comp_frm.id_drawer_def = drw_frm.id_wh_drawer  "
+        query += "INNER Join tb_m_wh_drawer drw_to On drw_to.id_wh_drawer = rec.id_wh_drawer_to "
+        query += "INNER Join tb_m_comp comp_to On comp_to.id_drawer_def = drw_to.id_wh_drawer "
+        query += "INNER Join tb_lookup_report_status stt On stt.id_report_status = rec.id_report_status "
+        query += "WHERE rec.id_fg_repair_rec>0 "
+        query += "AND (rec.fg_repair_rec_date>='" + date_from_selected + "' AND rec.fg_repair_rec_date<='" + date_until_selected + "') 
+        GROUP BY rec.id_fg_repair_rec "
+        query += "ORDER BY rec.id_fg_repair_rec DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRepairRec.DataSource = data
         check_menu()
