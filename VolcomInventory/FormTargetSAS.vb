@@ -151,7 +151,7 @@
 
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                        col.DisplayFormat.FormatString = "{0:n2}%"
+                        col.DisplayFormat.FormatString = "{0:n1}%"
                     End If
 
                     If bandName = "PRODUCT INFO" Then
