@@ -88,6 +88,7 @@ Partial Class FormMonthlySalesPerformance
         Me.XTCOption = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.CEActiveStore = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.XtraScrollableControl1.SuspendLayout()
@@ -131,6 +132,7 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.XTCOption, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOption.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
+        CType(Me.CEActiveStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -247,6 +249,7 @@ Partial Class FormMonthlySalesPerformance
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.CEActiveStore)
         Me.PanelControl3.Controls.Add(Me.CCBEGroupStore)
         Me.PanelControl3.Controls.Add(Me.CCBEProvince)
         Me.PanelControl3.Controls.Add(Me.CCBEArea)
@@ -783,6 +786,17 @@ Partial Class FormMonthlySalesPerformance
         Me.XtraTabPage2.Size = New System.Drawing.Size(385, 586)
         Me.XtraTabPage2.Text = "Hide Option"
         '
+        'CEActiveStore
+        '
+        Me.CEActiveStore.EditValue = True
+        Me.CEActiveStore.Location = New System.Drawing.Point(142, 144)
+        Me.CEActiveStore.Name = "CEActiveStore"
+        Me.CEActiveStore.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CEActiveStore.Properties.Appearance.Options.UseFont = True
+        Me.CEActiveStore.Properties.Caption = "Only Active Store"
+        Me.CEActiveStore.Size = New System.Drawing.Size(124, 20)
+        Me.CEActiveStore.TabIndex = 52
+        '
         'FormMonthlySalesPerformance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -841,6 +855,7 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.XTCOption, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCOption.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.CEActiveStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -913,4 +928,5 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents CCBEArea As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CCBEProvince As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CCBEGroupStore As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents CEActiveStore As DevExpress.XtraEditors.CheckEdit
 End Class
