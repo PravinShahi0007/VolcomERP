@@ -77,6 +77,7 @@ Partial Class FormProductPerform
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.CEActiveStore = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -114,6 +115,7 @@ Partial Class FormProductPerform
         CType(Me.XTCOption, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOption.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
+        CType(Me.CEActiveStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemCheckEdit1
@@ -428,6 +430,7 @@ Partial Class FormProductPerform
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.CEActiveStore)
         Me.PanelControl2.Controls.Add(Me.CCBEGroupStore)
         Me.PanelControl2.Controls.Add(Me.CCBEProvince)
         Me.PanelControl2.Controls.Add(Me.CCBEArea)
@@ -671,6 +674,15 @@ Partial Class FormProductPerform
         Me.SBExportExcel.TabIndex = 2
         Me.SBExportExcel.Text = "Export to XLS"
         '
+        'CEActiveStore
+        '
+        Me.CEActiveStore.EditValue = True
+        Me.CEActiveStore.Location = New System.Drawing.Point(17, 192)
+        Me.CEActiveStore.Name = "CEActiveStore"
+        Me.CEActiveStore.Properties.Caption = "Only Active Store"
+        Me.CEActiveStore.Size = New System.Drawing.Size(108, 19)
+        Me.CEActiveStore.TabIndex = 58
+        '
         'FormProductPerform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -721,6 +733,7 @@ Partial Class FormProductPerform
         CType(Me.XTCOption, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCOption.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.CEActiveStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -782,4 +795,5 @@ Partial Class FormProductPerform
     Friend WithEvents CCBEArea As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CCBEProvince As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CCBEGroupStore As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents CEActiveStore As DevExpress.XtraEditors.CheckEdit
 End Class
