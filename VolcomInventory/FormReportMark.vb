@@ -6239,8 +6239,8 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 Dim report_number As String = du.Rows(0)("report_number").ToString
 
                 'main journal
-                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
-                VALUES ('','" + report_number + "','24','" + id_user_prepared + "', NOW(),NOW(), 'Cancel Form, Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status ,date_tax_report)
+                VALUES ('','" + report_number + "','24','" + id_user_prepared + "', NOW(),NOW(), 'Cancel Form, Auto Posting', '6', (SELECT date_tax_report FROM `tb_a_acc_trans` atx INNER JOIN tb_a_acc_trans_det atxd ON atxd.id_acc_trans=atx.id_acc_trans AND atxd.report_mark_type='148' AND atxd.id_report='" & id_report & "' LIMIT 1)); SELECT LAST_INSERT_ID(); "
                 id_acc_trans = execute_query(qjm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
