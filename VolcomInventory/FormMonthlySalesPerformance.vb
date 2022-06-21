@@ -141,6 +141,10 @@
             where_store += "AND c.id_comp IN (" + id_store_in + ") "
             GVStore.ActiveFilterString = ""
         End If
+        'active
+        If CEActiveStore.Checked Then
+            where_store += "AND c.is_active = 1"
+        End If
 
         'set del account ol store
         Dim id_del_online_store = ""
@@ -1612,6 +1616,9 @@ ORDER BY area ASC"
         If id_group_store <> "" Then
             where += "AND c.id_comp_group IN(" + id_group_store + ") "
         End If
+        If CEActiveStore.Checked Then
+            where += "AND c.is_active = 1"
+        End If
 
         'view
         Dim query As String = "SELECT c.id_comp, c.comp_name, c.comp_number, c.id_commerce_type, IFNULL(olc.id_wh_ol,0) AS `id_wh_ol`, 'No' AS `is_select` 
@@ -1808,6 +1815,11 @@ ORDER BY area ASC"
 
     Private Sub CCBEGroupStore_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEGroupStore.EditValueChanged
         view_group_store()
+        view_store()
+        defaultView()
+    End Sub
+
+    Private Sub CEActiveStore_EditValueChanged(sender As Object, e As EventArgs) Handles CEActiveStore.EditValueChanged
         view_store()
         defaultView()
     End Sub
