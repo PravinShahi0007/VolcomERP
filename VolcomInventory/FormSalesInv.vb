@@ -78,11 +78,11 @@
 
     Sub loadComp()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT '0' AS `id_comp`, 'All Account' AS `comp_name`, 0 AS `id_comp_cat`
-        UNION
-        SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name, c.id_comp_cat
+        Dim query As String = "(SELECT '0' AS `id_comp`, 'All Account' AS `comp_name`, 0 AS `id_comp_cat`)
+        UNION ALL
+        (SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name, c.id_comp_cat
         FROM tb_m_comp c
-        WHERE (c.id_comp_cat='5' OR c.id_comp_cat='6') "
+        WHERE (c.id_comp_cat='5' OR c.id_comp_cat='6')) "
         viewSearchLookupQuery(SLEComp, query, "id_comp", "comp_name", "id_comp")
         viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name", "id_comp")
         Cursor = Cursors.Default
