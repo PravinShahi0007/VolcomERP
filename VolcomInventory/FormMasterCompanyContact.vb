@@ -92,14 +92,14 @@ ORDER BY cc.is_default AND cc.contact_person", id_company), -1, True, "", "", ""
             execute_non_query(query, True, "", "", "", "")
             view_contact()
             GVCompanyContactList.FocusedRowHandle = find_row(GVCompanyContactList, "id_comp_contact", id_contact)
-            Try
-                FormMasterCompanySingle.SLEAnnotation.EditValue = GVCompanyContactList.GetFocusedRowCellValue("id_annotation").ToString
-                FormMasterCompanySingle.TECPName.Text = GVCompanyContactList.GetFocusedRowCellValue("contact_name").ToString
-                FormMasterCompanySingle.TECPPosition.EditValue = GVCompanyContactList.GetFocusedRowCellValue("position").ToString
+            'Try
+            FormMasterCompanySingle.SLEAnnotation.EditValue = GVCompanyContactList.GetFocusedRowCellValue("id_annotation").ToString
+            FormMasterCompanySingle.TECPName.Text = GVCompanyContactList.GetFocusedRowCellValue("contact_person").ToString
+            FormMasterCompanySingle.TECPPosition.EditValue = GVCompanyContactList.GetFocusedRowCellValue("position").ToString
                 FormMasterCompanySingle.TECPEmail.EditValue = GVCompanyContactList.GetFocusedRowCellValue("email").ToString
                 FormMasterCompanySingle.TECPPhone.EditValue = GVCompanyContactList.GetFocusedRowCellValue("contact_number").ToString
-            Catch ex As Exception
-            End Try
+            'Catch ex As Exception
+            'End Try
 
         End If
     End Sub
