@@ -90,7 +90,7 @@ ORDER BY cc.is_default AND cc.contact_person", id_company), -1, True, "", "", ""
         If confirm = Windows.Forms.DialogResult.Yes Then
             query = String.Format("UPDATE tb_m_comp_contact SET is_default='0' WHERE id_comp='{1}';UPDATE tb_m_comp_contact SET is_default='1' WHERE id_comp_contact = '{0}'", id_contact, id_company)
             execute_non_query(query, True, "", "", "", "")
-            view_contact()
+            'view_contact()
             Try
                 FormMasterCompanySingle.SLEAnnotation.EditValue = GVCompanyContactList.GetFocusedRowCellValue("id_annotation").ToString
                 FormMasterCompanySingle.TECPName.Text = GVCompanyContactList.GetFocusedRowCellValue("contact_name").ToString
