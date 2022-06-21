@@ -17,6 +17,11 @@
         mail_comp_title_content_non_active
         FROM tb_opt "
         dt_mail = execute_query(qmail, -1, True, "", "", "", "")
+
+        If id_comp_cat = "6" Then
+            SLESetStatus.EditValue = "2"
+            SLESetStatus.Enabled = False
+        End If
     End Sub
 
     Sub load_comp_cat()
