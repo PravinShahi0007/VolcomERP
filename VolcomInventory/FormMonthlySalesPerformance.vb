@@ -1381,7 +1381,7 @@ ORDER BY area ASC"
 
     Sub view_category_store()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT 0 AS `id_cat`, 'All' AS `cat`
+        Dim query As String = "SELECT 0 AS `id_cat`, 'Normal Store' AS `cat`
         UNION ALL 
         SELECT 1 AS `id_cat`, 'Wholesale' AS `cat` 
         UNION ALL
@@ -1574,7 +1574,10 @@ ORDER BY area ASC"
             id_cat = LECat.EditValue.ToString
         Catch ex As Exception
         End Try
-        If id_cat = "1" Then
+        If id_cat = "0" Then
+            'normal store
+            where += "AND IFNULL(c.id_store_type,0)='1' "
+        ElseIf id_cat = "1" Then
             'wholesale
             where += "AND c.id_comp_group='59' AND c.id_commerce_type='1 ' "
         ElseIf id_cat = "2" Then
@@ -1744,6 +1747,23 @@ ORDER BY area ASC"
         view_group_store()
         view_store()
         defaultView()
+
+        'lock jikka normal store
+        If LECat.EditValue.ToString = "0" Then
+            CCBEArea.Enabled = False
+            SLUEIsland.Enabled = False
+            CCBEProvince.Enabled = False
+            CCBEGroupStore.Enabled = False
+            CEAllStore.Enabled = False
+            CEActiveStore.Enabled = False
+        Else
+            CCBEArea.Enabled = True
+            SLUEIsland.Enabled = True
+            CCBEProvince.Enabled = True
+            CCBEGroupStore.Enabled = True
+            CEAllStore.Enabled = True
+            CEActiveStore.Enabled = True
+        End If
     End Sub
 
     Private Sub LEArea_EditValueChanged(sender As Object, e As EventArgs)
