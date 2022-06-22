@@ -70,36 +70,45 @@
         'group
         Dim id_store_group As String = SLEStoreGroup.EditValue.ToString
         If id_store_group <> "0" Then
-            cond += "AND c.id_comp_group='" + id_store_group + "' "
+            cond += "AND c.id_comp_group=" + id_store_group + " "
         End If
         'status
         Dim is_active As String = SLEStatusInvoice.EditValue.ToString
         If is_active <> "0" Then
-            cond += "AND c.is_active='" + is_active + "' "
+            cond += "AND c.is_active=" + is_active + " "
         End If
 
-        Dim query As String = "SELECT  'No' AS `is_select`,c.id_comp,c.is_active, c.comp_number, c.comp_name, c.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`, c.address_primary,
-        aa.`area`, cty.id_city, cty.city, sta.id_state, sta.state, rep.id_employee, rep.employee_name, ls.log_date, ls.reason
-        FROM tb_m_comp c 
-        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        LEFT JOIN tb_m_area aa ON aa.id_area = c.id_area
-        LEFT JOIN tb_m_city cty ON cty.id_city = c.id_city
-        LEFT JOIN tb_m_state sta ON sta.id_state = cty.id_state
-        LEFT JOIN tb_m_employee rep ON rep.id_employee = c.id_employee_rep
-        LEFT JOIN (
-	        SELECT ls.id_comp, ls.`log_date`, ls.reason
-	        FROM tb_log_store_activation ls
-	        INNER JOIN (
-		        SELECT ls.id_comp, MAX(ls.log_date) AS `log_date` 
-		        FROM tb_log_store_activation ls
-		        GROUP BY ls.id_comp
-	        ) lm ON lm.id_comp = ls.id_comp AND lm.log_date = ls.log_date
-	        GROUP BY ls.id_comp
-        ) ls ON ls.id_comp = c.id_comp
-        WHERE 1=1 AND c.is_active IN(1,2) " + cond
-        query += "ORDER BY cg.description, c.comp_name ASC "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCData.DataSource = data
+        If id_comp_cat = "6" Then
+            Dim query As String = "CALL view_store_activation('" + cond + "')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCData.DataSource = data
+            GridColumnstock_qty.Visible = True
+            GridColumnpending_invoice.Visible = True
+        Else
+            Dim query As String = "SELECT  'No' AS `is_select`,c.id_comp,c.is_active, c.comp_number, c.comp_name, c.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`, c.address_primary,
+            aa.`area`, cty.id_city, cty.city, sta.id_state, sta.state, rep.id_employee, rep.employee_name, ls.log_date, ls.reason, 0 AS `stock_qty`,0 AS `pending_invoice`
+            FROM tb_m_comp c 
+            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+            LEFT JOIN tb_m_area aa ON aa.id_area = c.id_area
+            LEFT JOIN tb_m_city cty ON cty.id_city = c.id_city
+            LEFT JOIN tb_m_state sta ON sta.id_state = cty.id_state
+            LEFT JOIN tb_m_employee rep ON rep.id_employee = c.id_employee_rep
+            LEFT JOIN (
+	            SELECT ls.id_comp, ls.`log_date`, ls.reason
+	            FROM tb_log_store_activation ls
+	            INNER JOIN (
+		            SELECT ls.id_comp, MAX(ls.log_date) AS `log_date` 
+		            FROM tb_log_store_activation ls
+		            GROUP BY ls.id_comp
+	            ) lm ON lm.id_comp = ls.id_comp AND lm.log_date = ls.log_date
+	            GROUP BY ls.id_comp
+            ) ls ON ls.id_comp = c.id_comp
+            WHERE 1=1 AND c.is_active IN(1,2) " + cond
+            query += "ORDER BY cg.description, c.comp_name ASC "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCData.DataSource = data
+        End If
+
         GVData.BestFitColumns()
         If GVData.RowCount > 0 Then
             PanelControlActivate.Visible = True
@@ -155,6 +164,21 @@
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
         Dim is_active As String = SLESetStatus.EditValue.ToString
 
+        'cek stock & invoice
+        Dim err_close As String = ""
+        If id_comp_cat = "6" And SLESetStatus.EditValue.ToString = "2" Then
+            GVData.ActiveFilterString = ""
+            GVData.ActiveFilterString = "[is_select]='Yes' AND ([stock_qty]!=0 OR [pending_invoice]!=0) "
+            For i As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
+                If i > 0 Then
+                    err_close += ","
+                End If
+                err_close += GVData.GetRowCellValue(i, "comp_number").ToString
+            Next
+            GVData.ActiveFilterString = ""
+        End If
+
+
         'cek comp
         Dim err_comp As String = ""
         GVData.ActiveFilterString = ""
@@ -171,6 +195,8 @@
             warningCustom("These accounts already '" + SLESetStatus.Text + "' :" + System.Environment.NewLine + err_comp)
         ElseIf is_active = "2" And TxtReason.Text = "" Then
             warningCustom("Please fill reason")
+        ElseIf err_close <> "" Then
+            warningCustom("These account can't close due to still have stock or unpaid invoice :" + System.Environment.NewLine + err_close)
         Else
             'OK
             GVData.ActiveFilterString = "[is_select]='Yes' "
