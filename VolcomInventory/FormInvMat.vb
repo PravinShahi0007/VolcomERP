@@ -50,12 +50,13 @@
 
             If XTCMatInv.SelectedTabPageIndex = 0 Then
                 'list invoice
-                Dim query As String = "SELECT inv.id_inv_mat,inv.number, inv.id_comp,c.comp_number,c.comp_name,emp.employee_name,sts.report_status
+                Dim query As String = "SELECT inv.id_inv_mat,inv.number,GROUP_CONCAT(DISTINCT(po.prod_order_number) SEPARATOR ', ') AS fgpo, inv.id_comp,c.comp_number,c.comp_name,emp.employee_name,sts.report_status
 ,inv.created_date,inv.due_date,inv.ref_date
 ,SUM(invd.`value`) AS amount
 ,SUM(invd.`value`)*((inv.vat_percent)/100) AS amount_vat
 ,SUM(invd.`value`)*((100+inv.vat_percent)/100) AS total_amount
 FROM `tb_inv_mat_det` invd
+LEFT JOIN tb_prod_order po ON po.id_prod_order=invd.id_prod_order
 INNER JOIN tb_inv_mat inv ON inv.`id_inv_mat`=invd.`id_inv_mat` AND inv.is_deposit='1'
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_status
 INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp " & q_where & "
@@ -126,7 +127,7 @@ WHERE c.id_comp='" & SLEVendorPayment.EditValue.ToString & "'"
 
                 If XTCMatInv.SelectedTabPageIndex = 0 Then
                     'list invoice
-                    Dim query As String = "SELECT inv.id_inv_mat,inv.number, inv.id_comp,c.comp_number,c.comp_name,emp.employee_name,sts.report_status
+                    Dim query As String = "SELECT inv.id_inv_mat,inv.number,GROUP_CONCAT(DISTINCT(po.prod_order_number) SEPARATOR ', ') AS fgpo, inv.id_comp,c.comp_number,c.comp_name,emp.employee_name,sts.report_status
 ,inv.created_date,inv.due_date,inv.ref_date
 ,SUM(invd.`value`) AS amount
 ,SUM(invd.`value`)*((inv.vat_percent)/100) AS amount_vat

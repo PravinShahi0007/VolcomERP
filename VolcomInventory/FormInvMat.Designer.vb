@@ -41,7 +41,10 @@ Partial Class FormInvMat
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -108,7 +111,6 @@ Partial Class FormInvMat
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCMatInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMatInv.SuspendLayout()
         Me.XTPListPackingList.SuspendLayout()
@@ -119,6 +121,7 @@ Partial Class FormInvMat
         Me.XTPListInvoice.SuspendLayout()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPListRetur.SuspendLayout()
         CType(Me.GCRetur, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRetur, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -345,17 +348,19 @@ Partial Class FormInvMat
         Me.GCInvoice.Location = New System.Drawing.Point(0, 0)
         Me.GCInvoice.MainView = Me.GVInvoice
         Me.GCInvoice.Name = "GCInvoice"
+        Me.GCInvoice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
         Me.GCInvoice.Size = New System.Drawing.Size(1046, 421)
         Me.GCInvoice.TabIndex = 2
         Me.GCInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoice})
         '
         'GVInvoice
         '
-        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn45, Me.GridColumn4, Me.GridColumn5, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19})
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn46, Me.GridColumn3, Me.GridColumn45, Me.GridColumn4, Me.GridColumn5, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19})
         Me.GVInvoice.GridControl = Me.GCInvoice
         Me.GVInvoice.Name = "GVInvoice"
         Me.GVInvoice.OptionsBehavior.Editable = False
         Me.GVInvoice.OptionsBehavior.ReadOnly = True
+        Me.GVInvoice.OptionsView.RowAutoHeight = True
         Me.GVInvoice.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -371,7 +376,24 @@ Partial Class FormInvMat
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 2
-        Me.GridColumn2.Width = 99
+        Me.GridColumn2.Width = 71
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn46.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn46.Caption = "FGPO Number"
+        Me.GridColumn46.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumn46.FieldName = "fgpo"
+        Me.GridColumn46.MaxWidth = 100
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 3
+        Me.GridColumn46.Width = 100
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GridColumn3
         '
@@ -381,8 +403,19 @@ Partial Class FormInvMat
         Me.GridColumn3.FieldName = "created_date"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
-        Me.GridColumn3.Width = 106
+        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.Width = 72
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Reff Date"
+        Me.GridColumn45.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn45.FieldName = "ref_date"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 5
+        Me.GridColumn45.Width = 50
         '
         'GridColumn4
         '
@@ -390,8 +423,8 @@ Partial Class FormInvMat
         Me.GridColumn4.FieldName = "employee_name"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 183
+        Me.GridColumn4.VisibleIndex = 6
+        Me.GridColumn4.Width = 125
         '
         'GridColumn5
         '
@@ -399,8 +432,8 @@ Partial Class FormInvMat
         Me.GridColumn5.FieldName = "report_status"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 9
-        Me.GridColumn5.Width = 235
+        Me.GridColumn5.VisibleIndex = 10
+        Me.GridColumn5.Width = 176
         '
         'GridColumn14
         '
@@ -414,8 +447,8 @@ Partial Class FormInvMat
         Me.GridColumn14.FieldName = "amount"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 6
-        Me.GridColumn14.Width = 230
+        Me.GridColumn14.VisibleIndex = 7
+        Me.GridColumn14.Width = 158
         '
         'GridColumn15
         '
@@ -429,7 +462,8 @@ Partial Class FormInvMat
         Me.GridColumn15.FieldName = "amount_vat"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 7
+        Me.GridColumn15.VisibleIndex = 8
+        Me.GridColumn15.Width = 50
         '
         'GridColumn16
         '
@@ -443,7 +477,8 @@ Partial Class FormInvMat
         Me.GridColumn16.FieldName = "total_amount"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 8
+        Me.GridColumn16.VisibleIndex = 9
+        Me.GridColumn16.Width = 50
         '
         'GridColumn17
         '
@@ -452,7 +487,7 @@ Partial Class FormInvMat
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 0
-        Me.GridColumn17.Width = 107
+        Me.GridColumn17.Width = 76
         '
         'GridColumn19
         '
@@ -461,7 +496,7 @@ Partial Class FormInvMat
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 1
-        Me.GridColumn19.Width = 171
+        Me.GridColumn19.Width = 122
         '
         'XTPListRetur
         '
@@ -1065,16 +1100,6 @@ Partial Class FormInvMat
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
-        'GridColumn45
-        '
-        Me.GridColumn45.Caption = "Reff Date"
-        Me.GridColumn45.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn45.FieldName = "ref_date"
-        Me.GridColumn45.Name = "GridColumn45"
-        Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 4
-        '
         'FormInvMat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1097,6 +1122,7 @@ Partial Class FormInvMat
         Me.XTPListInvoice.ResumeLayout(False)
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPListRetur.ResumeLayout(False)
         CType(Me.GCRetur, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRetur, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1216,4 +1242,6 @@ Partial Class FormInvMat
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BTransListExportExcel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class
