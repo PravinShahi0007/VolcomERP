@@ -306,6 +306,11 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEQCWash = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView19 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -443,6 +448,8 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlComment.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
         CType(Me.EPChanges, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEQCWash.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView19, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RILEValNon
@@ -1023,6 +1030,8 @@ Partial Class FormMasterDesignSingle
         '
         'XtraScrollableControl1
         '
+        Me.XtraScrollableControl1.Controls.Add(Me.SLEQCWash)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl24)
         Me.XtraScrollableControl1.Controls.Add(Me.SLEProductType)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl21)
         Me.XtraScrollableControl1.Controls.Add(Me.SBFabricationBrowse)
@@ -1571,7 +1580,7 @@ Partial Class FormMasterDesignSingle
         Me.SLEActive.Properties.ShowClearButton = False
         Me.SLEActive.Properties.ShowFooter = False
         Me.SLEActive.Properties.View = Me.GridView9
-        Me.SLEActive.Size = New System.Drawing.Size(373, 20)
+        Me.SLEActive.Size = New System.Drawing.Size(167, 20)
         Me.SLEActive.TabIndex = 12
         Me.SLEActive.TabStop = False
         '
@@ -3268,6 +3277,50 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
         '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(182, 608)
+        Me.LabelControl24.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(85, 13)
+        Me.LabelControl24.TabIndex = 147
+        Me.LabelControl24.Text = "Require QC Wash"
+        '
+        'SLEQCWash
+        '
+        Me.SLEQCWash.Location = New System.Drawing.Point(181, 623)
+        Me.SLEQCWash.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.SLEQCWash.Name = "SLEQCWash"
+        Me.SLEQCWash.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEQCWash.Properties.NullText = "- Select -"
+        Me.SLEQCWash.Properties.ShowClearButton = False
+        Me.SLEQCWash.Properties.ShowFooter = False
+        Me.SLEQCWash.Properties.View = Me.GridView19
+        Me.SLEQCWash.Size = New System.Drawing.Size(200, 20)
+        Me.SLEQCWash.TabIndex = 148
+        Me.SLEQCWash.TabStop = False
+        '
+        'GridView19
+        '
+        Me.GridView19.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn61, Me.GridColumn62})
+        Me.GridView19.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView19.Name = "GridView19"
+        Me.GridView19.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView19.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn61
+        '
+        Me.GridColumn61.FieldName = "id_qc_wash"
+        Me.GridColumn61.Name = "GridColumn61"
+        '
+        'GridColumn62
+        '
+        Me.GridColumn62.Caption = "Product Type"
+        Me.GridColumn62.FieldName = "qc_wash"
+        Me.GridColumn62.Name = "GridColumn62"
+        Me.GridColumn62.Visible = True
+        Me.GridColumn62.VisibleIndex = 0
+        '
         'FormMasterDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3428,6 +3481,8 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlComment.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.EPChanges, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEQCWash.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView19, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3716,4 +3771,9 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CCBEExtraTag As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents BtnAddExtraTag As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEQCWash As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView19 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
 End Class

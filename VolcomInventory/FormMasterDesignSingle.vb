@@ -256,6 +256,17 @@
         End If
     End Sub
 
+    'qc wash
+    Sub view_qc_wash()
+        Dim query As String = "SELECT lcp.id_qc_wash, lcp.qc_wash 
+        FROM tb_lookup_qc_wash lcp 
+        ORDER BY lcp.id_qc_wash DESC "
+        viewSearchLookupQuery(SLEQCWash, query, "id_qc_wash", "qc_wash", "id_qc_wash")
+        If id_design = "-1" Then
+            SLEQCWash.EditValue = Nothing
+        End If
+    End Sub
+
     Sub load_isi_param(ByVal id_type As String)
         Cursor = Cursors.WaitCursor
 
@@ -447,6 +458,7 @@
         view_ret_code(LERetCode)
         view_cool_storage()
         view_product_type()
+        view_qc_wash()
         load_isi_param("1")
         load_isi_param("2")
         load_isi_param("3")
@@ -1761,6 +1773,12 @@
             id_design_tag = ""
         Else
             id_design_tag = CCBEExtraTag.EditValue.ToString
+        End If
+
+        'cek product type
+        If SLEQCWash.EditValue = Nothing Then
+            stopCustom("Please input 'Require QC Wash'")
+            Exit Sub
         End If
 
         Cursor = Cursors.WaitCursor
