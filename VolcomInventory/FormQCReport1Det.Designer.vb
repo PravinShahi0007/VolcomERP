@@ -84,6 +84,11 @@ Partial Class FormQCReport1Det
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEMetode = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,6 +128,8 @@ Partial Class FormQCReport1Det
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
+        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -133,7 +140,7 @@ Partial Class FormQCReport1Det
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(912, 97)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(912, 120)
         Me.GroupGeneralHeader.TabIndex = 177
         '
         'PanelControlTopMiddle
@@ -151,7 +158,7 @@ Partial Class FormQCReport1Det
         Me.PanelControlTopMiddle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopMiddle.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
-        Me.PanelControlTopMiddle.Size = New System.Drawing.Size(558, 93)
+        Me.PanelControlTopMiddle.Size = New System.Drawing.Size(558, 116)
         Me.PanelControlTopMiddle.TabIndex = 10003
         '
         'TERecNumber
@@ -260,6 +267,8 @@ Partial Class FormQCReport1Det
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.SLEMetode)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl15)
         Me.PanelControlTopRight.Controls.Add(Me.DECreated)
         Me.PanelControlTopRight.Controls.Add(Me.SLEQCReport)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
@@ -269,7 +278,7 @@ Partial Class FormQCReport1Det
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(578, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(332, 93)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(332, 116)
         Me.PanelControlTopRight.TabIndex = 10001
         '
         'DECreated
@@ -290,7 +299,7 @@ Partial Class FormQCReport1Det
         '
         'SLEQCReport
         '
-        Me.SLEQCReport.Location = New System.Drawing.Point(125, 60)
+        Me.SLEQCReport.Location = New System.Drawing.Point(125, 86)
         Me.SLEQCReport.Name = "SLEQCReport"
         Me.SLEQCReport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEQCReport.Properties.View = Me.SearchLookUpEdit1View
@@ -322,7 +331,7 @@ Partial Class FormQCReport1Det
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(19, 63)
+        Me.LabelControl2.Location = New System.Drawing.Point(19, 89)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(99, 13)
         Me.LabelControl2.TabIndex = 10009
@@ -524,13 +533,13 @@ Partial Class FormQCReport1Det
         '
         Me.SCCReturn.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SCCReturn.Horizontal = False
-        Me.SCCReturn.Location = New System.Drawing.Point(0, 97)
+        Me.SCCReturn.Location = New System.Drawing.Point(0, 120)
         Me.SCCReturn.Name = "SCCReturn"
         Me.SCCReturn.Panel1.Controls.Add(Me.GroupControlRet)
         Me.SCCReturn.Panel1.Text = "Panel1"
         Me.SCCReturn.Panel2.Controls.Add(Me.GroupControlListBarcode)
         Me.SCCReturn.Panel2.Text = "Panel2"
-        Me.SCCReturn.Size = New System.Drawing.Size(912, 389)
+        Me.SCCReturn.Size = New System.Drawing.Size(912, 366)
         Me.SCCReturn.SplitterPosition = 186
         Me.SCCReturn.TabIndex = 180
         Me.SCCReturn.Text = "SplitContainerControl1"
@@ -702,7 +711,7 @@ Partial Class FormQCReport1Det
         Me.GroupControlListBarcode.Enabled = False
         Me.GroupControlListBarcode.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListBarcode.Name = "GroupControlListBarcode"
-        Me.GroupControlListBarcode.Size = New System.Drawing.Size(912, 198)
+        Me.GroupControlListBarcode.Size = New System.Drawing.Size(912, 175)
         Me.GroupControlListBarcode.TabIndex = 1
         Me.GroupControlListBarcode.Text = "List Barcode"
         '
@@ -713,7 +722,7 @@ Partial Class FormQCReport1Det
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(890, 161)
+        Me.GCBarcode.Size = New System.Drawing.Size(890, 138)
         Me.GCBarcode.TabIndex = 4
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -832,6 +841,46 @@ Partial Class FormQCReport1Det
         Me.BScan.TabIndex = 5
         Me.BScan.Text = "Start Scan"
         '
+        'SLEMetode
+        '
+        Me.SLEMetode.Location = New System.Drawing.Point(124, 60)
+        Me.SLEMetode.Name = "SLEMetode"
+        Me.SLEMetode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMetode.Properties.View = Me.GridView2
+        Me.SLEMetode.Size = New System.Drawing.Size(187, 20)
+        Me.SLEMetode.TabIndex = 10019
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn8})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID"
+        Me.GridColumn4.FieldName = "id_metode_qc"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Metode"
+        Me.GridColumn8.FieldName = "metode_qc"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl15.Location = New System.Drawing.Point(19, 63)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl15.TabIndex = 10018
+        Me.LabelControl15.Text = "Metode"
+        '
         'FormQCReport1Det
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -889,6 +938,8 @@ Partial Class FormQCReport1Det
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
+        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -956,4 +1007,9 @@ Partial Class FormQCReport1Det
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents SLEMetode As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
 End Class
