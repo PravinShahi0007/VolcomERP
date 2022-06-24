@@ -93,7 +93,7 @@
         in_id = in_id.Substring(0, in_id.Length - 2)
 
         Dim query As String = "
-            SELECT d.id_pl_sales_order_del, a.pl_sales_order_del_number AS number, c_from.id_comp AS id_wh, c_to.id_comp AS id_store, a.pl_sales_order_del_date AS created_date, a.last_update AS approved_date, d.id_product, p.id_design, d_count.id_pl_prod_order_rec_det_unique, class.id_class, class.class, class.class_display, color.id_color, color.color, color.color_display, p_code.id_code_detail AS id_size, p_detail.display_name AS size, sub_category.id_sub_category, sub_category.sub_category, p.product_full_code AS item_code, p.product_full_code AS item_code_group, p.product_display_name AS item_name, d.pl_sales_order_del_det_qty AS qty, p_type.id_design_cat, d.id_design_price, d.design_price AS price, d_price.design_price_start_date AS design_price_date, pn.id_design_price AS id_normal_price, pn.design_price AS normal_price, 2 AS is_combine, 2 AS is_unique_code
+            SELECT d.id_pl_sales_order_del, a.pl_sales_order_del_number AS number, c_from.id_comp AS id_wh, c_to.id_comp AS id_store, a.pl_sales_order_del_date AS created_date, a.last_update AS approved_date, d.id_product, p.id_design, d_count.id_pl_prod_order_rec_det_unique, class.id_class, class.class, class.class_display, color.id_color, color.color, color.color_display, p_code.id_code_detail AS id_size, p_detail.display_name AS size, sub_category.id_sub_category, sub_category.sub_category, p.product_full_code AS item_code, p.product_full_code AS item_code_group, p.product_display_name AS item_name, 1 AS qty, p_type.id_design_cat, d.id_design_price, d.design_price AS price, d_price.design_price_start_date AS design_price_date, pn.id_design_price AS id_normal_price, pn.design_price AS normal_price, a.is_combine, a.id_combine, 2 AS is_unique_code
             FROM tb_pl_sales_order_del_det AS d
             LEFT JOIN tb_pl_sales_order_del AS a ON d.id_pl_sales_order_del = a.id_pl_sales_order_del
             LEFT JOIN tb_m_comp_contact AS c_from ON a.id_comp_contact_from = c_from.id_comp_contact
@@ -179,6 +179,70 @@
         End If
 
         removeAccessToken(accessToken)
+
+        syncCombineDeliverySlip(id_list)
+    End Sub
+
+    Sub syncCombineDeliverySlip(id_list As List(Of String))
+        Dim in_id As String = ""
+
+        For i = 0 To id_list.Count - 1
+            in_id += id_list(i) + ", "
+        Next
+
+        in_id = in_id.Substring(0, in_id.Length - 2)
+
+        Dim query As String = "
+            SELECT c.id_combine, c.combine_number AS number, c_from.id_comp AS id_wh, c_to.id_comp AS id_store, c.combine_date AS created_date, c.last_update AS approved_date
+            FROM tb_pl_sales_order_del_combine AS c
+            LEFT JOIN tb_m_comp_contact AS c_from ON c.id_comp_contact_from = c_from.id_comp_contact
+            LEFT JOIN tb_m_comp_contact AS c_to ON c.id_store_contact_to = c_to.id_comp_contact
+            WHERE c.id_combine IN (SELECT id_combine FROM tb_pl_sales_order_del WHERE is_combine = 1 AND id_pl_sales_order_del IN (" + in_id + "))
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        If data.Rows.Count > 0 Then
+            Dim json As String = Newtonsoft.Json.JsonConvert.SerializeObject(data)
+
+            Dim pathRoot As String = Application.StartupPath + "\download\"
+
+            If Not IO.Directory.Exists(pathRoot) Then
+                System.IO.Directory.CreateDirectory(pathRoot)
+            End If
+
+            Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+            Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+            Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+            Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(json)
+
+            fs.Write(info, 0, info.Length)
+
+            fs.Close()
+
+            Dim accessToken As String = getAccessToken()
+
+            Dim url As String = host + "/api/sync/combine-delivery-slip"
+
+            Dim wc As Net.WebClient = New Net.WebClient()
+
+            wc.Headers.Add("Accept", "application/json")
+            wc.Headers.Add("Authorization", accessToken)
+
+            Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+            Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+            Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+            If jsonRes("success") Then
+                'infoCustom("Sync combine delivery slip completed.")
+            End If
+
+            removeAccessToken(accessToken)
+        End If
     End Sub
 
     Sub syncReturnOrder(id_list As List(Of String))
