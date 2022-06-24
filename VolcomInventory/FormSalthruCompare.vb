@@ -6,4 +6,8 @@
     Private Sub FormSalthruCompare_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Sub viewData()
+
+    End Sub
 End Class
