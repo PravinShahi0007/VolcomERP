@@ -7205,31 +7205,33 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
                         query = String.Format("UPDATE tb_pn SET id_report_status='{0}' WHERE id_pn ='{1}'", id_status_reportx, id_report)
                         execute_non_query(query, True, "", "", "", "")
 
-                        Dim id_po As String = execute_query("SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + " LIMIT 1", 0, True, "", "", "", "")
+                        Dim qloop As String = "SELECT id_report FROM tb_pn_det WHERE id_pn = '" & id_report & "' AND (report_mark_type='139' OR report_mark_type='202')"
+                        Dim dtloop As DataTable = execute_query(qloop, -1, True, "", "", "", "")
+                        For i = 0 To dtloop.Rows.Count - 1
+                            Dim value_pn As String = execute_query("
+                                SELECT ROUND(SUM(pn_det.value), 2) AS VALUE
+                                FROM tb_pn_det AS pn_det
+                                LEFT JOIN tb_pn AS pn ON pn_det.id_pn = pn.id_pn AND pn.is_tolakan=2
+                                WHERE pn.report_mark_type = '" + data_payment.Rows(0)("report_mark_type").ToString + "' AND pn_det.id_report = '" + dtloop.Rows(i)("id_report").ToString + "' AND pn.id_report_status = 6
+                            ", 0, True, "", "", "", "")
 
-                        Dim value_pn As String = execute_query("
-                        SELECT ROUND(SUM(pn_det.value), 2) AS VALUE
-                        FROM tb_pn_det AS pn_det
-                        LEFT JOIN tb_pn AS pn ON pn_det.id_pn = pn.id_pn AND pn.is_tolakan=2
-                        WHERE pn.report_mark_type = '" + data_payment.Rows(0)("report_mark_type").ToString + "' AND pn_det.id_report = '" + id_po + "' AND pn.id_report_status = 6
-                    ", 0, True, "", "", "", "")
 
+                            Dim value_po As String = execute_query("
+                                SELECT ROUND((SUM(pod.qty * (pod.value - pod.discount)) - po.disc_value + po.vat_value - po.pph_total), 2) AS VALUE
+                                FROM tb_purc_order po
+                                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order = po.id_purc_order
+                                WHERE po.id_purc_order = '" + dtloop.Rows(i)("id_report").ToString + "'
+                            ", 0, True, "", "", "", "")
 
-                        Dim value_po As String = execute_query("
-                        SELECT ROUND((SUM(pod.qty * (pod.value - pod.discount)) - po.disc_value + po.vat_value - po.pph_total), 2) AS VALUE
-                        FROM tb_purc_order po
-                        INNER JOIN tb_purc_order_det pod ON pod.id_purc_order = po.id_purc_order
-                        WHERE po.id_purc_order = '" + id_po + "'
-                    ", 0, True, "", "", "", "")
-
-                        If value_pn = value_po Then
-                            'close pay in tb_purc_order
-                            Dim qc As String = "UPDATE tb_purc_order po
-                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.balance_due=pyd.`value` AND pyd.`id_pn`=" & id_report & "
+                            If value_pn = value_po Then
+                                'close pay in tb_purc_order
+                                Dim qc As String = "UPDATE tb_purc_order po
+                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=po.`id_purc_order` AND pyd.balance_due=pyd.`value` AND pyd.id_pn='" & id_report & "' AND pyd.`id_report`=" & dtloop.Rows(i)("id_report").ToString & " AND (pyd.report_mark_type='139' OR pyd.report_mark_type='202')
                                                 SET po.is_close_pay='1'"
-                            execute_non_query(qc, True, "", "", "", "")
+                                execute_non_query(qc, True, "", "", "", "")
 
-                        End If
+                            End If
+                        Next
 
                         'FormBankWithdrawal.load_po()
                     ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
@@ -9216,7 +9218,13 @@ GROUP BY dn.id_debit_note", 0, True, "", "", "", "")
             'summary qc report
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
-                'check
+
+                Dim m As New ClassSendEmail()
+                m.id_report = id_report
+                m.report_mark_type = "222"
+                m.send_email()
+
+                '
                 pushNotifFromDb(id_report, report_mark_type)
             End If
 
