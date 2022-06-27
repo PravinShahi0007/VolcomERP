@@ -12295,6 +12295,20 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
             'propose voucher pos
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+
+                Dim sync_status As String = "2"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim c As ClassApiPos = New ClassApiPos
+
+                    c.syncVoucher(id_report)
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Voucer: Propose Voucer POS (412)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_pos_voucher_pps SET id_report_status = '{0}' WHERE id_voucher_pps = '{1}'", id_status_reportx, id_report)

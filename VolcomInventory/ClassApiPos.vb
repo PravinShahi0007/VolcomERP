@@ -384,9 +384,9 @@
     Sub syncEmployeeUser()
         Dim j_tb_pos_role As String = tableToJson("tb_pos_role", "SELECT id_pos_role, role FROM tb_pos_role")
         Dim j_tb_m_employee As String = tableToJson("tb_m_employee", "
-            SELECT e.id_employee, e.id_sex, e.id_departement, e.id_blood_type, e.id_religion, e.id_country, e.id_education, e.id_employee_status, e.start_period, e.end_period, e.id_employee_active, e.employee_code, e.employee_name, e.employee_nick_name, e.employee_initial_name, e.employee_pob, e.employee_dob, e.employee_ethnic, e.employee_join_date, e.employee_last_date, e.employee_position, e.id_employee_level, e.email_lokal, e.email_lokal_pass, e.email_external, e.email_external_pass, e.email_other, e.email_other_pass, e.phone, e.phone_mobile, e.phone_ext, e.employee_ktp, e.employee_ktp_period, e.employee_passport, e.employee_passport_period, e.employee_bpjs_tk, e.employee_bpjs_tk_date, e.employee_bpjs_kesehatan, e.employee_bpjs_kesehatan_date, e.employee_npwp, e.address_primary, e.address_additional, e.id_marriage_status, e.husband, e.wife, e.child1, e.child2, e.child3, NULL AS basic_salary, NULL AS allow_job, NULL AS allow_meal, NULL AS allow_trans, NULL AS allow_house, NULL AS allow_car, d.id_outlet
+            SELECT e.id_employee, e.id_sex, e.id_departement, e.id_departement_sub, e.id_blood_type, e.id_religion, e.id_country, e.id_education, e.id_employee_status, e.start_period, e.end_period, e.id_employee_active, e.employee_code, e.employee_name, e.employee_nick_name, e.employee_initial_name, e.employee_pob, e.employee_dob, e.employee_ethnic, e.employee_join_date, e.employee_last_date, e.employee_position, e.id_employee_level, e.email_lokal, e.email_lokal_pass, e.email_external, e.email_external_pass, e.email_other, e.email_other_pass, e.phone, e.phone_mobile, e.phone_ext, e.employee_ktp, e.employee_ktp_period, e.employee_passport, e.employee_passport_period, e.employee_bpjs_tk, e.employee_bpjs_tk_date, e.employee_bpjs_kesehatan, e.employee_bpjs_kesehatan_date, e.employee_npwp, e.address_primary, e.address_additional, e.id_marriage_status, e.husband, e.wife, e.child1, e.child2, e.child3, NULL AS basic_salary, NULL AS allow_job, NULL AS allow_meal, NULL AS allow_trans, NULL AS allow_house, NULL AS allow_car, d.id_outlet
             FROM tb_m_employee AS e
-            LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement
+            LEFT JOIN tb_m_departement_sub AS d ON e.id_departement_sub = d.id_departement_sub
             WHERE (d.id_outlet <> '' OR d.id_outlet IS NOT NULL) AND e.id_employee_active = 1 OR e.id_employee IN (169, 168, 506)
 
         ")
@@ -472,5 +472,55 @@
                 execute_non_query(query_detail, True, "", "", "", "")
             Next
         Next
+    End Sub
+
+    Sub syncVoucher(id_voucher As String)
+        Dim query As String = "
+            SELECT id_voucher_pps, voucher_number, voucher_value, voucher_name, voucher_address, period_start, period_end, id_outlet AS outlet_id
+            FROM tb_pos_voucher_pps_det
+            WHERE id_voucher_pps = " + id_voucher + " AND is_active = 1
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim json As String = Newtonsoft.Json.JsonConvert.SerializeObject(data)
+
+        Dim pathRoot As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(pathRoot) Then
+            System.IO.Directory.CreateDirectory(pathRoot)
+        End If
+
+        Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+        Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+        Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+        Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(json)
+
+        fs.Write(info, 0, info.Length)
+
+        fs.Close()
+
+        Dim accessToken As String = getAccessToken()
+
+        Dim url As String = host + "/api/sync/voucher"
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+        Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        If jsonRes("success") Then
+            'infoCustom("Sync voucher completed.")
+        End If
+
+        removeAccessToken(accessToken)
     End Sub
 End Class
