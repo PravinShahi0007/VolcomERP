@@ -33,6 +33,11 @@ Partial Class FormQCReport1Det
         Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
         Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEMetode = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.SLEQCReport = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -84,11 +89,6 @@ Partial Class FormQCReport1Det
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEMetode = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,6 +99,8 @@ Partial Class FormQCReport1Det
         CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEQCReport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,8 +130,6 @@ Partial Class FormQCReport1Det
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
-        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -280,6 +280,46 @@ Partial Class FormQCReport1Det
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(332, 116)
         Me.PanelControlTopRight.TabIndex = 10001
+        '
+        'SLEMetode
+        '
+        Me.SLEMetode.Location = New System.Drawing.Point(124, 60)
+        Me.SLEMetode.Name = "SLEMetode"
+        Me.SLEMetode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMetode.Properties.View = Me.GridView2
+        Me.SLEMetode.Size = New System.Drawing.Size(187, 20)
+        Me.SLEMetode.TabIndex = 10019
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn8})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID"
+        Me.GridColumn4.FieldName = "id_metode_qc"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Metode"
+        Me.GridColumn8.FieldName = "metode_qc"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl15.Location = New System.Drawing.Point(19, 63)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl15.TabIndex = 10018
+        Me.LabelControl15.Text = "Metode"
         '
         'DECreated
         '
@@ -841,46 +881,6 @@ Partial Class FormQCReport1Det
         Me.BScan.TabIndex = 5
         Me.BScan.Text = "Start Scan"
         '
-        'SLEMetode
-        '
-        Me.SLEMetode.Location = New System.Drawing.Point(124, 60)
-        Me.SLEMetode.Name = "SLEMetode"
-        Me.SLEMetode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEMetode.Properties.View = Me.GridView2
-        Me.SLEMetode.Size = New System.Drawing.Size(187, 20)
-        Me.SLEMetode.TabIndex = 10019
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn8})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "ID"
-        Me.GridColumn4.FieldName = "id_metode_qc"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Metode"
-        Me.GridColumn8.FieldName = "metode_qc"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl15.Location = New System.Drawing.Point(19, 63)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(36, 13)
-        Me.LabelControl15.TabIndex = 10018
-        Me.LabelControl15.Text = "Metode"
-        '
         'FormQCReport1Det
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -907,6 +907,8 @@ Partial Class FormQCReport1Det
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEQCReport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -938,8 +940,6 @@ Partial Class FormQCReport1Det
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
-        CType(Me.SLEMetode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

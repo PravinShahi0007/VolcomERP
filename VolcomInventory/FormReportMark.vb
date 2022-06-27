@@ -9219,10 +9219,10 @@ GROUP BY dn.id_debit_note", 0, True, "", "", "", "")
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
 
-                Dim m As New ClassSendEmail()
-                m.id_report = id_report
-                m.report_mark_type = "222"
-                m.send_email()
+                'Dim m As New ClassSendEmail()
+                'm.id_report = id_report
+                'm.report_mark_type = "222"
+                'm.send_email()
 
                 '
                 pushNotifFromDb(id_report, report_mark_type)

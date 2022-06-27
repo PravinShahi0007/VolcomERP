@@ -34,9 +34,18 @@ GROUP BY rec.id_prod_order_rec"
 ,s.season,d.design_code
 ,prd.`product_full_code`
 ,pcd.`code_detail_name` AS size
+,co.id_country
 FROM `tb_qc_report1_det` qrd
 INNER JOIN tb_qc_report1 qr ON qr.`id_qc_report1`=qrd.`id_qc_report1` AND qr.`id_report_status`=6
 INNER JOIN tb_prod_order po ON po.id_prod_order=qr.id_prod_order
+INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.id_prod_order AND wo.is_main_vendor=1
+INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_m_city ct ON ct.`id_city`=c.`id_city`
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
 INNER JOIN tb_qc_report1_sum qrs ON qrs.id_prod_order=po.id_prod_order AND qr.created_date<=qrs.created_date AND qrs.id_qc_report1_sum='" & id & "' AND qrs.id_metode_qc=qr.id_metode_qc
 INNER JOIN tb_metode_qc mtq ON mtq.id_metode_qc=qrs.id_metode_qc
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
@@ -92,7 +101,21 @@ GROUP BY podd.`id_prod_order_det`"
             LVendorName.Text = dt.Rows(0)("vendor_name").ToString
             LabelDesign.Text = dt.Rows(0)("design_display_name").ToString
             LSeason.Text = dt.Rows(0)("season").ToString
-            LMetodeQC.Text = dt.Rows(0)("metode_qc").ToString
+
+            If dt.Rows(0)("id_country").ToString = "5" Then
+                'domestic
+                LInternal1.Visible = False
+                LInternal2.Visible = False
+            Else
+                'international
+                If dt.Rows(0)("id_metode_qc").ToString = "1" Then
+                    LInternal1.Visible = True
+                    LInternal2.Visible = True
+                Else
+                    LInternal1.Visible = False
+                    LInternal2.Visible = False
+                End If
+            End If
             '
             'get images
             Dim images As Hashtable = New Hashtable()

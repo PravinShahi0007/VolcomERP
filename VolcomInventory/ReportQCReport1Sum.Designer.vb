@@ -80,9 +80,9 @@ Partial Public Class ReportQCReport1Sum
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LMetodeQC = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LInternal1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LInternal2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTDet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -417,8 +417,8 @@ Partial Public Class ReportQCReport1Sum
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.XrLabel10, Me.LMetodeQC, Me.XrLabel5, Me.XrLabel9, Me.LVendorName, Me.XRPDesign, Me.LCreatedDate, Me.XrLabel7, Me.XrLabel8, Me.XrLabel1, Me.XrLabel4, Me.Lnumber, Me.LSeason, Me.XrLabel2, Me.XrLabel3, Me.LabelDesign, Me.XrLabel19, Me.XrLabel17, Me.LProdNumber, Me.XrLabel20, Me.XrLabel18, Me.LTitle})
-        Me.PageHeader.HeightF = 158.2032!
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel1, Me.XrLabel5, Me.XrLabel9, Me.LVendorName, Me.XRPDesign, Me.LCreatedDate, Me.XrLabel7, Me.XrLabel8, Me.XrLabel1, Me.XrLabel4, Me.Lnumber, Me.LSeason, Me.XrLabel2, Me.XrLabel3, Me.LabelDesign, Me.XrLabel19, Me.XrLabel17, Me.LProdNumber, Me.XrLabel20, Me.XrLabel18, Me.LTitle})
+        Me.PageHeader.HeightF = 177.0833!
         Me.PageHeader.Name = "PageHeader"
         '
         'XrLabel5
@@ -447,10 +447,10 @@ Partial Public Class ReportQCReport1Sum
         '
         Me.LVendorName.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LVendorName.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LVendorName.LocationFloat = New DevExpress.Utils.PointFloat(236.0768!, 79.18774!)
+        Me.LVendorName.LocationFloat = New DevExpress.Utils.PointFloat(236.0768!, 79.18772!)
         Me.LVendorName.Name = "LVendorName"
         Me.LVendorName.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LVendorName.SizeF = New System.Drawing.SizeF(262.4998!, 13.58332!)
+        Me.LVendorName.SizeF = New System.Drawing.SizeF(502.9232!, 13.58332!)
         Me.LVendorName.StylePriority.UseBorders = False
         Me.LVendorName.StylePriority.UseFont = False
         Me.LVendorName.Text = "[vendor_name]"
@@ -537,7 +537,7 @@ Partial Public Class ReportQCReport1Sum
         Me.LSeason.LocationFloat = New DevExpress.Utils.PointFloat(236.0767!, 106.3545!)
         Me.LSeason.Name = "LSeason"
         Me.LSeason.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LSeason.SizeF = New System.Drawing.SizeF(262.4997!, 13.58333!)
+        Me.LSeason.SizeF = New System.Drawing.SizeF(502.9232!, 13.58333!)
         Me.LSeason.StylePriority.UseBorders = False
         Me.LSeason.StylePriority.UseFont = False
         Me.LSeason.Text = "[season]"
@@ -556,7 +556,7 @@ Partial Public Class ReportQCReport1Sum
         '
         Me.XrLabel3.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(137.1092!, 106.3545!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(137.1092!, 106.3546!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(87.50928!, 13.58334!)
@@ -568,10 +568,10 @@ Partial Public Class ReportQCReport1Sum
         '
         Me.LabelDesign.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LabelDesign.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDesign.LocationFloat = New DevExpress.Utils.PointFloat(236.0767!, 92.77109!)
+        Me.LabelDesign.LocationFloat = New DevExpress.Utils.PointFloat(236.0767!, 92.7711!)
         Me.LabelDesign.Name = "LabelDesign"
         Me.LabelDesign.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelDesign.SizeF = New System.Drawing.SizeF(262.4997!, 13.58333!)
+        Me.LabelDesign.SizeF = New System.Drawing.SizeF(502.9232!, 13.58333!)
         Me.LabelDesign.StylePriority.UseBorders = False
         Me.LabelDesign.StylePriority.UseFont = False
         Me.LabelDesign.Text = "[design_code] - [design_display_name]"
@@ -694,39 +694,40 @@ Partial Public Class ReportQCReport1Sum
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
-        'XrLabel6
+        'LInternal1
         '
-        Me.XrLabel6.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(137.1094!, 119.9379!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(87.50928!, 13.58334!)
-        Me.XrLabel6.StylePriority.UseBorders = False
-        Me.XrLabel6.StylePriority.UseFont = False
-        Me.XrLabel6.Text = "Metode QC"
+        Me.LInternal1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LInternal1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LInternal1.LocationFloat = New DevExpress.Utils.PointFloat(1.98584!, 0!)
+        Me.LInternal1.Name = "LInternal1"
+        Me.LInternal1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LInternal1.SizeF = New System.Drawing.SizeF(218.9587!, 25.05218!)
+        Me.LInternal1.StylePriority.UseBorders = False
+        Me.LInternal1.StylePriority.UseFont = False
+        Me.LInternal1.StylePriority.UseTextAlignment = False
+        Me.LInternal1.Text = "INTERNAL REVIEW ONLY"
+        Me.LInternal1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'XrLabel10
+        'LInternal2
         '
-        Me.XrLabel10.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(224.6187!, 119.9379!)
-        Me.XrLabel10.Name = "XrLabel10"
-        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(11.45831!, 13.58334!)
-        Me.XrLabel10.StylePriority.UseBorders = False
-        Me.XrLabel10.Text = ":"
+        Me.LInternal2.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LInternal2.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LInternal2.LocationFloat = New DevExpress.Utils.PointFloat(1.985762!, 25.05217!)
+        Me.LInternal2.Name = "LInternal2"
+        Me.LInternal2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LInternal2.SizeF = New System.Drawing.SizeF(218.9586!, 20.0!)
+        Me.LInternal2.StylePriority.UseBorders = False
+        Me.LInternal2.StylePriority.UseFont = False
+        Me.LInternal2.StylePriority.UseTextAlignment = False
+        Me.LInternal2.Text = "Do not send to vendor"
+        Me.LInternal2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'LMetodeQC
+        'XrPanel1
         '
-        Me.LMetodeQC.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LMetodeQC.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LMetodeQC.LocationFloat = New DevExpress.Utils.PointFloat(236.0769!, 119.9379!)
-        Me.LMetodeQC.Name = "LMetodeQC"
-        Me.LMetodeQC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LMetodeQC.SizeF = New System.Drawing.SizeF(262.4997!, 13.58333!)
-        Me.LMetodeQC.StylePriority.UseBorders = False
-        Me.LMetodeQC.StylePriority.UseFont = False
-        Me.LMetodeQC.Text = "[metode_qc]"
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LInternal1, Me.LInternal2})
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(518.0555!, 23.99991!)
+        Me.XrPanel1.Name = "XrPanel1"
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(230.9444!, 45.05216!)
         '
         'ReportQCReport1Sum
         '
@@ -808,7 +809,7 @@ Partial Public Class ReportQCReport1Sum
     Friend WithEvents XrTableCell7 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LMetodeQC As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LInternal1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LInternal2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrPanel1 As DevExpress.XtraReports.UI.XRPanel
 End Class
