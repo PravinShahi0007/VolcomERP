@@ -698,7 +698,7 @@ Partial Public Class ReportQCReport1Sum
         '
         Me.LInternal1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LInternal1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LInternal1.LocationFloat = New DevExpress.Utils.PointFloat(1.98584!, 0!)
+        Me.LInternal1.LocationFloat = New DevExpress.Utils.PointFloat(1.98584!, 2.968794!)
         Me.LInternal1.Name = "LInternal1"
         Me.LInternal1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LInternal1.SizeF = New System.Drawing.SizeF(218.9587!, 25.05218!)
@@ -712,7 +712,7 @@ Partial Public Class ReportQCReport1Sum
         '
         Me.LInternal2.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LInternal2.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LInternal2.LocationFloat = New DevExpress.Utils.PointFloat(1.985762!, 25.05217!)
+        Me.LInternal2.LocationFloat = New DevExpress.Utils.PointFloat(1.985762!, 28.02099!)
         Me.LInternal2.Name = "LInternal2"
         Me.LInternal2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LInternal2.SizeF = New System.Drawing.SizeF(218.9586!, 20.0!)
@@ -724,10 +724,14 @@ Partial Public Class ReportQCReport1Sum
         '
         'XrPanel1
         '
+        Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LInternal1, Me.LInternal2})
-        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(518.0555!, 23.99991!)
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(518.0555!, 26.99991!)
         Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(230.9444!, 45.05216!)
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(225.0!, 50.0!)
+        Me.XrPanel1.StylePriority.UseBorders = False
         '
         'ReportQCReport1Sum
         '
