@@ -256,6 +256,17 @@
         End If
     End Sub
 
+    'qc wash
+    Sub view_qc_wash()
+        Dim query As String = "SELECT lcp.id_qc_wash, lcp.qc_wash 
+        FROM tb_lookup_qc_wash lcp 
+        ORDER BY lcp.id_qc_wash DESC "
+        viewSearchLookupQuery(SLEQCWash, query, "id_qc_wash", "qc_wash", "id_qc_wash")
+        If id_design = "-1" Then
+            SLEQCWash.EditValue = Nothing
+        End If
+    End Sub
+
     Sub load_isi_param(ByVal id_type As String)
         Cursor = Cursors.WaitCursor
 
@@ -447,6 +458,7 @@
         view_ret_code(LERetCode)
         view_cool_storage()
         view_product_type()
+        view_qc_wash()
         load_isi_param("1")
         load_isi_param("2")
         load_isi_param("3")
@@ -602,6 +614,7 @@
                 'cool storage
                 SLUECoolStorage.EditValue = data.Rows(0)("is_cold_storage").ToString
                 SLEProductType.EditValue = data.Rows(0)("id_critical_product").ToString
+                SLEQCWash.EditValue = data.Rows(0)("id_qc_wash").ToString
 
                 'primary name
                 TEPrimaryName.EditValue = data.Rows(0)("primary_name").ToString
@@ -1763,6 +1776,12 @@
             id_design_tag = CCBEExtraTag.EditValue.ToString
         End If
 
+        'cek product type
+        If SLEQCWash.EditValue = Nothing Then
+            stopCustom("Please input 'Require QC Wash'")
+            Exit Sub
+        End If
+
         Cursor = Cursors.WaitCursor
         'save
         If is_propose_changes Then
@@ -1993,7 +2012,7 @@
                                 is_process = "2"
                             End If
 
-                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design, is_process, id_design_rev_from, is_cold_storage, primary_name, id_critical_product) "
+                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design, is_process, id_design_rev_from, is_cold_storage, primary_name, id_critical_product,id_qc_wash) "
                             query += "VALUES('" + namex + "','" + display_name + "','" + code + "', " + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                             If design_eos = "-1" Then
                                 query += "NULL, "
@@ -2017,7 +2036,7 @@
                                 query += "'" + id_design_ref + "', "
                             End If
                             query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
-                            query += ", '" + is_old_design + "', " + is_process + ", " + id_design_rev_from + ", " + SLUECoolStorage.EditValue.ToString + ", '" + addSlashes(TEPrimaryName.EditValue.ToString) + "', '" + SLEProductType.EditValue.ToString + "');SELECT LAST_INSERT_ID(); "
+                            query += ", '" + is_old_design + "', " + is_process + ", " + id_design_rev_from + ", " + SLUECoolStorage.EditValue.ToString + ", '" + addSlashes(TEPrimaryName.EditValue.ToString) + "', '" + SLEProductType.EditValue.ToString + "','" + SLEQCWash.EditValue.ToString + "');SELECT LAST_INSERT_ID(); "
                             id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
                             'save detil propose change design
@@ -2148,7 +2167,7 @@
                             query += "id_active='" + id_active + "', "
                             query += "design_detail='" + design_detail + "', 
                             id_fg_line_plan='" + id_fg_line_plan + "', "
-                            query += "is_cold_storage = '" + SLUECoolStorage.EditValue.ToString + "', id_critical_product='" + SLEProductType.EditValue.ToString + "', "
+                            query += "is_cold_storage = '" + SLUECoolStorage.EditValue.ToString + "', id_critical_product='" + SLEProductType.EditValue.ToString + "',id_qc_wash='" + SLEQCWash.EditValue.ToString + "', "
                             query += "primary_name = '" + addSlashes(TEPrimaryName.EditValue.ToString) + "'"
                             query += "WHERE id_design='{5}' "
                             query = String.Format(query, namex, display_name, code, id_uom, id_season, id_design, id_design_type, design_ret_code)
@@ -2286,7 +2305,7 @@
                             approved = "1"
                         End If
 
-                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved, is_old_design, is_cold_storage, primary_name, id_critical_product) "
+                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved, is_old_design, is_cold_storage, primary_name, id_critical_product, id_qc_wash) "
                         query += "VALUES('" + namex + "','" + display_name + "','" + code + "'," + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                         If design_eos = "-1" Then
                             query += "NULL, "
@@ -2311,7 +2330,7 @@
                         End If
                         query += "'" + id_lookup_status_order + "', '" + design_detail + "', '" + approved + "' , '" + is_old_design + "', "
                         query += SLUECoolStorage.EditValue.ToString + ","
-                        query += "'" + addSlashes(TEPrimaryName.EditValue.ToString) + "', '" + SLEProductType.EditValue.ToString + "' "
+                        query += "'" + addSlashes(TEPrimaryName.EditValue.ToString) + "', '" + SLEProductType.EditValue.ToString + "','" + SLEQCWash.EditValue.ToString + "' "
                         query += ");SELECT LAST_INSERT_ID(); "
                         id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 

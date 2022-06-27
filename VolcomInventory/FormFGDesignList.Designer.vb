@@ -110,6 +110,7 @@ Partial Class FormFGDesignList
         Me.GridColumnPetunjukPerawatan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUkuran = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnModelInfo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPProposeChanges = New DevExpress.XtraTab.XtraTabPage()
@@ -120,7 +121,7 @@ Partial Class FormFGDesignList
         Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsht_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqc_wash = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -548,7 +549,7 @@ Partial Class FormFGDesignList
         Me.GVDesign.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVDesign.Appearance.Row.Options.UseTextOptions = True
         Me.GVDesign.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GCRequestChangesBy, Me.GCRequestChangesDate, Me.GridColumnpd_number, Me.GridColumnpd_created_date, Me.GridColumnpd_status, Me.GridColumntotal_receive_qc, Me.GridColumnSpesifikasi, Me.GridColumnBahan, Me.GridColumnPetunjukPerawatan, Me.GridColumnUkuran, Me.GridColumnModelInfo, Me.GridColumnsht_name})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GCRequestChangesBy, Me.GCRequestChangesDate, Me.GridColumnpd_number, Me.GridColumnpd_created_date, Me.GridColumnpd_status, Me.GridColumntotal_receive_qc, Me.GridColumnSpesifikasi, Me.GridColumnBahan, Me.GridColumnPetunjukPerawatan, Me.GridColumnUkuran, Me.GridColumnModelInfo, Me.GridColumnsht_name, Me.GridColumnqc_wash})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", Me.GridColumnTotalOrder, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_receive_qc", Me.GridColumntotal_receive_qc, "{0:N0}")})
         Me.GVDesign.Name = "GVDesign"
@@ -1020,6 +1021,14 @@ Partial Class FormFGDesignList
         Me.GridColumnModelInfo.Visible = True
         Me.GridColumnModelInfo.VisibleIndex = 31
         '
+        'GridColumnsht_name
+        '
+        Me.GridColumnsht_name.Caption = "Silhouette"
+        Me.GridColumnsht_name.FieldName = "sht_name"
+        Me.GridColumnsht_name.Name = "GridColumnsht_name"
+        Me.GridColumnsht_name.Visible = True
+        Me.GridColumnsht_name.VisibleIndex = 10
+        '
         'XTPDesign
         '
         Me.XTPDesign.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1107,13 +1116,13 @@ Partial Class FormFGDesignList
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 3
         '
-        'GridColumnsht_name
+        'GridColumnqc_wash
         '
-        Me.GridColumnsht_name.Caption = "Silhouette"
-        Me.GridColumnsht_name.FieldName = "sht_name"
-        Me.GridColumnsht_name.Name = "GridColumnsht_name"
-        Me.GridColumnsht_name.Visible = True
-        Me.GridColumnsht_name.VisibleIndex = 10
+        Me.GridColumnqc_wash.Caption = "Require QC wash"
+        Me.GridColumnqc_wash.FieldName = "qc_wash"
+        Me.GridColumnqc_wash.Name = "GridColumnqc_wash"
+        Me.GridColumnqc_wash.Visible = True
+        Me.GridColumnqc_wash.VisibleIndex = 32
         '
         'FormFGDesignList
         '
@@ -1274,4 +1283,5 @@ Partial Class FormFGDesignList
     Friend WithEvents GridColumnUkuran As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnModelInfo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsht_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqc_wash As DevExpress.XtraGrid.Columns.GridColumn
 End Class
