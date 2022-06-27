@@ -9219,10 +9219,10 @@ GROUP BY dn.id_debit_note", 0, True, "", "", "", "")
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
 
-                Dim m As New ClassSendEmail()
-                m.id_report = id_report
-                m.report_mark_type = "222"
-                m.send_email()
+                'Dim m As New ClassSendEmail()
+                'm.id_report = id_report
+                'm.report_mark_type = "222"
+                'm.send_email()
 
                 '
                 pushNotifFromDb(id_report, report_mark_type)
@@ -12295,6 +12295,20 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
             'propose voucher pos
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+
+                Dim sync_status As String = "2"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim c As ClassApiPos = New ClassApiPos
+
+                    c.syncVoucher(id_report)
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Voucer: Propose Voucer POS (412)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_pos_voucher_pps SET id_report_status = '{0}' WHERE id_voucher_pps = '{1}'", id_status_reportx, id_report)
@@ -12304,6 +12318,20 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
             'propose gwp pos
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+
+                Dim sync_status As String = "2"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim c As ClassApiPos = New ClassApiPos
+
+                    c.syncGWP(id_report)
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('GWP: Propose GWP POS (413)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_promo_rules SET id_report_status = '{0}' WHERE id_rules = '{1}'", id_status_reportx, id_report)

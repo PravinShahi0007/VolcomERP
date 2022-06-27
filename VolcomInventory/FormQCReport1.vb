@@ -11,12 +11,13 @@
     End Sub
 
     Sub load_qc_report1()
-        Dim q As String = "SELECT qr.id_qc_report1,qr.`number`,qr.id_pl_category,qr.`created_date`,qr.note
+        Dim q As String = "SELECT mtq.metode_qc,qr.id_qc_report1,qr.`number`,qr.id_pl_category,qr.`created_date`,qr.note
 ,qr.id_report_status,qr.id_prod_order,qr.`id_prod_order_rec`,pdd.`id_design`,d.`design_name`
 ,ss.`season`,cd.class,cd.color,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS design_display_name 
 ,po.prod_order_number,rec.prod_order_rec_number,pl.`pl_category`,SUM(qrd.`qc_report1_det_qty`) AS total,sts.report_status
 FROM tb_qc_report1_det qrd 
 INNER JOIN `tb_qc_report1` qr ON qrd.`id_qc_report1`=qr.`id_qc_report1`
+INNER JOIN tb_metode_qc mtq ON mtq.id_metode_qc=qr.id_metode_qc
 INNER JOIN tb_prod_order po ON qr.id_prod_order = po.id_prod_order
 INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=qr.id_prod_order_rec
 INNER JOIN tb_season_delivery del ON del.id_delivery = po.id_delivery
@@ -95,9 +96,10 @@ ORDER BY qr.id_qc_report1 DESC"
     End Sub
 
     Sub load_summary()
-        Dim q As String = "SELECT qrs.id_qc_report1_sum,po.prod_order_number,qrs.created_date,qrs.number,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name,sts.`report_status`
+        Dim q As String = "SELECT qrs.id_qc_report1_sum,mtq.metode_qc,po.prod_order_number,qrs.created_date,qrs.number,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name,sts.`report_status`
 ,s.season,d.design_code
 FROM tb_qc_report1_sum qrs
+INNER JOIN tb_metode_qc mtq ON mtq.id_metode_qc=qrs.id_metode_qc
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=qrs.`id_prod_order`
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
 INNER JOIN tb_m_design d ON d.id_design=pdd.id_design
