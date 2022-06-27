@@ -5410,10 +5410,11 @@ WHERE sop.id_sop_schedule='" & id_report & "';"
 </table>"
             client.Send(mail)
         ElseIf report_mark_type = "388" Then
-            'send email qc sumamry report 1
-            Dim query As String = "SELECT CONCAT(d.design_code, ' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name,qcs.`number`
+            'send email qc summary report 1
+            Dim query As String = "SELECT mtq.metode_qc,CONCAT(d.design_code, ' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name,qcs.`number`
 ,DATE_FORMAT(qcs.created_date,'%d %M %Y') AS `created_date`
 FROM `tb_qc_report1_sum` qcs
+INNER JOIN tb_metode_qc mtq ON mtq.id_metode_qc=qcs.id_metode_qc
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=qcs.`id_prod_order`
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
@@ -5438,7 +5439,7 @@ LEFT JOIN (
 )cd ON cd.id_design = d.id_design
 WHERE qcs.id_qc_report1_sum='" + id_report + " '"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            Dim subj As String = "QC Report Summary 1 - " & data.Rows(0)("design_display_name").ToString
+            Dim subj As String = "QC Report Summary 1 - " & data.Rows(0)("metode_qc").ToString & " - " & data.Rows(0)("design_display_name").ToString
 
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", subj)
             Dim mail As MailMessage = New MailMessage()
@@ -5533,6 +5534,12 @@ WHERE qcs.id_qc_report1_sum='" + id_report + " '"
                         <td style='width: 60pt'>Tanggal</td>
                         <td style='width: 10pt'>:</td>
                         <td>" & data.Rows(0)("created_date").ToString & "</td>
+                      </tr>
+                        <tr>
+                        <td style='width: 15pt'></td>
+                        <td style='width: 60pt'>Metode</td>
+                        <td style='width: 10pt'>:</td>
+                        <td>" & data.Rows(0)("metode_qc").ToString & "</td>
                       </tr>
                       <tr>
                         <td style='width: 15pt'></td>

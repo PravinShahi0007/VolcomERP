@@ -8,19 +8,28 @@
         load_head()
     End Sub
 
+    Sub view_metode_type()
+        Dim q As String = "SELECT `id_metode_qc`,`metode_qc` FROM `tb_metode_qc`"
+        viewSearchLookupQuery(SLEMetode, q, "id_metode_qc", "metode_qc", "id_metode_qc")
+    End Sub
+
     Sub load_head()
         view_fgpo()
+        view_metode_type()
 
         If id = "-1" Then
             BGenerate.Visible = True
             XTCImage.Enabled = False
         Else
+            SLEFGPO.ReadOnly = True
+            SLEMetode.ReadOnly = True
             Dim q As String = "SELECT * FROM tb_qc_report1_sum WHERE id_qc_report1_sum='" & id & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 DECreated.EditValue = dt.Rows(0)("created_date")
                 SLEFGPO.EditValue = dt.Rows(0)("id_prod_order").ToString
                 id_po = dt.Rows(0)("id_prod_order").ToString
+                SLEMetode.EditValue = dt.Rows(0)("id_metode_qc").ToString
                 '
                 TENumber.Text = dt.Rows(0)("number").ToString
                 '
@@ -61,7 +70,7 @@
 FROM `tb_qc_report1_det` qrd
 INNER JOIN tb_qc_report1 qr ON qr.`id_qc_report1`=qrd.`id_qc_report1` AND qr.`id_report_status`=6
 INNER JOIN tb_prod_order po ON po.id_prod_order=qr.id_prod_order
-INNER JOIN tb_qc_report1_sum qrs ON qrs.id_prod_order=po.id_prod_order AND qr.created_date<=qrs.created_date AND qrs.id_qc_report1_sum='" & id & "'
+INNER JOIN tb_qc_report1_sum qrs ON qrs.id_prod_order=po.id_prod_order AND qr.created_date<=qrs.created_date AND qrs.id_qc_report1_sum='" & id & "' AND qrs.id_metode_qc=qr.id_metode_qc
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
 INNER JOIN tb_m_design d ON d.id_design=pdd.id_design
 INNER JOIN tb_season s ON s.id_season=d.id_season
@@ -172,7 +181,7 @@ GROUP BY po.`id_prod_order`"
         Dim q As String = "SELECT img.id_qc_report1_img,img.note 
 FROM tb_qc_report1_img img
 INNER JOIN tb_qc_report1_sum qrs ON qrs.`id_qc_report1_sum`=img.`id_qc_report1_sum`
-WHERE qrs.`id_prod_order`='" & id_po & "'"
+WHERE qrs.`id_prod_order`='" & id_po & "' AND qrs.id_metode_qc='" & SLEMetode.EditValue.ToString & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCImage.DataSource = dt
     End Sub

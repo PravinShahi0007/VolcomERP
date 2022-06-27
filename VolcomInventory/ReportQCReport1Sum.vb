@@ -22,7 +22,7 @@ GROUP BY rec.id_prod_order_rec"
 
         insert_row_total(RowBM, tot)
         '
-        Dim q2 As String = "SELECT d.id_design,vendor.comp_name AS vendor_name,po.id_prod_order,po.prod_order_number,DATE_FORMAT(qrs.created_date,'%d %M %Y') AS created_date,qrs.number
+        Dim q2 As String = "SELECT mtq.metode_qc,mtq.id_metode_qc,d.id_design,vendor.comp_name AS vendor_name,po.id_prod_order,po.prod_order_number,DATE_FORMAT(qrs.created_date,'%d %M %Y') AS created_date,qrs.number
 ,FORMAT(podd.prod_order_qty,0,'id_ID') AS qty_po
 ,FORMAT(SUM(qrd.qc_report1_det_qty),0,'id_ID') AS qty_qc_report1
 ,FORMAT(SUM(IF(qr.`id_pl_category`=1,qrd.qc_report1_det_qty,0)),0,'id_ID') AS qty_normal
@@ -34,10 +34,20 @@ GROUP BY rec.id_prod_order_rec"
 ,s.season,d.design_code
 ,prd.`product_full_code`
 ,pcd.`code_detail_name` AS size
+,co.id_country
 FROM `tb_qc_report1_det` qrd
 INNER JOIN tb_qc_report1 qr ON qr.`id_qc_report1`=qrd.`id_qc_report1` AND qr.`id_report_status`=6
 INNER JOIN tb_prod_order po ON po.id_prod_order=qr.id_prod_order
-INNER JOIN tb_qc_report1_sum qrs ON qrs.id_prod_order=po.id_prod_order AND qr.created_date<=qrs.created_date AND qrs.id_qc_report1_sum='" & id & "'
+INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.id_prod_order AND wo.is_main_vendor=1
+INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_m_city ct ON ct.`id_city`=c.`id_city`
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
+INNER JOIN tb_qc_report1_sum qrs ON qrs.id_prod_order=po.id_prod_order AND qr.created_date<=qrs.created_date AND qrs.id_qc_report1_sum='" & id & "' AND qrs.id_metode_qc=qr.id_metode_qc
+INNER JOIN tb_metode_qc mtq ON mtq.id_metode_qc=qrs.id_metode_qc
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
 INNER JOIN tb_m_design d ON d.id_design=pdd.id_design
 INNER JOIN tb_season s ON s.id_season=d.id_season
@@ -91,6 +101,21 @@ GROUP BY podd.`id_prod_order_det`"
             LVendorName.Text = dt.Rows(0)("vendor_name").ToString
             LabelDesign.Text = dt.Rows(0)("design_display_name").ToString
             LSeason.Text = dt.Rows(0)("season").ToString
+
+            If dt.Rows(0)("id_country").ToString = "5" Then
+                'domestic
+                LInternal1.Visible = False
+                LInternal2.Visible = False
+            Else
+                'international
+                If dt.Rows(0)("id_metode_qc").ToString = "1" Then
+                    LInternal1.Visible = True
+                    LInternal2.Visible = True
+                Else
+                    LInternal1.Visible = False
+                    LInternal2.Visible = False
+                End If
+            End If
             '
             'get images
             Dim images As Hashtable = New Hashtable()
@@ -102,7 +127,7 @@ GROUP BY podd.`id_prod_order_det`"
                 XRPDesign.ImageUrl = filePath
             End If
 
-            load_img(dt.Rows(0)("id_prod_order").ToString)
+            load_img(dt.Rows(0)("id_prod_order").ToString, dt.Rows(0)("id_metode_qc").ToString)
 
             Dim tot_po As Decimal = 0.0
             Dim tot_rec As Decimal = 0.0
@@ -128,11 +153,11 @@ GROUP BY podd.`id_prod_order_det`"
         End If
     End Sub
 
-    Sub load_img(ByVal id_po As String)
+    Sub load_img(ByVal id_po As String, ByVal id_metode_qc As String)
         Dim q As String = "SELECT img.id_qc_report1_img,img.note 
 FROM tb_qc_report1_img img
 INNER JOIN tb_qc_report1_sum qrs ON qrs.`id_qc_report1_sum`=img.`id_qc_report1_sum`
-WHERE qrs.`id_prod_order`='" & id_po & "'"
+WHERE qrs.`id_prod_order`='" & id_po & "' AND qrs.id_metode_qc='" & id_metode_qc & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         'GCImage.DataSource = dt
         For i = 0 To dt.Rows.Count - 1

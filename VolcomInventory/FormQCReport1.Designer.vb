@@ -29,6 +29,7 @@ Partial Class FormQCReport1
         Me.GVQCReport = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,6 +57,7 @@ Partial Class FormQCReport1
         Me.DEStartSum = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -155,7 +157,7 @@ Partial Class FormQCReport1
         '
         'GVQCReport
         '
-        Me.GVQCReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn13, Me.GridColumn11, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12})
+        Me.GVQCReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn10, Me.GridColumn13, Me.GridColumn11, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12})
         Me.GVQCReport.GridControl = Me.GCQCReport
         Me.GVQCReport.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn6, "{0:N0}")})
         Me.GVQCReport.Name = "GVQCReport"
@@ -180,8 +182,16 @@ Partial Class FormQCReport1
         Me.GridColumn2.FieldName = "prod_order_number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.VisibleIndex = 3
         Me.GridColumn2.Width = 106
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Metode"
+        Me.GridColumn10.FieldName = "metode_qc"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 2
         '
         'GridColumn13
         '
@@ -189,7 +199,7 @@ Partial Class FormQCReport1
         Me.GridColumn13.FieldName = "prod_order_rec_number"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 3
+        Me.GridColumn13.VisibleIndex = 4
         '
         'GridColumn11
         '
@@ -197,7 +207,7 @@ Partial Class FormQCReport1
         Me.GridColumn11.FieldName = "design_display_name"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.VisibleIndex = 5
         '
         'GridColumn5
         '
@@ -205,7 +215,7 @@ Partial Class FormQCReport1
         Me.GridColumn5.FieldName = "pl_category"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
         Me.GridColumn5.Width = 112
         '
         'GridColumn6
@@ -217,7 +227,7 @@ Partial Class FormQCReport1
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.VisibleIndex = 7
         Me.GridColumn6.Width = 112
         '
         'GridColumn7
@@ -228,7 +238,7 @@ Partial Class FormQCReport1
         Me.GridColumn7.FieldName = "created_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 8
         Me.GridColumn7.Width = 112
         '
         'GridColumn8
@@ -237,7 +247,7 @@ Partial Class FormQCReport1
         Me.GridColumn8.FieldName = "report_status"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumn8.VisibleIndex = 9
         Me.GridColumn8.Width = 119
         '
         'GridColumn9
@@ -295,7 +305,7 @@ Partial Class FormQCReport1
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn14, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn15, Me.GridColumn4, Me.GridColumn14, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn16, "{0:N0}")})
         Me.GVSummary.Name = "GVSummary"
@@ -312,7 +322,7 @@ Partial Class FormQCReport1
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
-        Me.GridColumn3.Width = 170
+        Me.GridColumn3.Width = 255
         '
         'GridColumn4
         '
@@ -320,8 +330,8 @@ Partial Class FormQCReport1
         Me.GridColumn4.FieldName = "prod_order_number"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 142
+        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.Width = 199
         '
         'GridColumn14
         '
@@ -329,8 +339,8 @@ Partial Class FormQCReport1
         Me.GridColumn14.FieldName = "design_display_name"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
-        Me.GridColumn14.Width = 126
+        Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.Width = 177
         '
         'GridColumn16
         '
@@ -348,8 +358,8 @@ Partial Class FormQCReport1
         Me.GridColumn17.FieldName = "created_date"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 4
-        Me.GridColumn17.Width = 189
+        Me.GridColumn17.VisibleIndex = 5
+        Me.GridColumn17.Width = 265
         '
         'GridColumn18
         '
@@ -357,8 +367,8 @@ Partial Class FormQCReport1
         Me.GridColumn18.FieldName = "report_status"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 5
-        Me.GridColumn18.Width = 204
+        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.Width = 294
         '
         'GridColumn19
         '
@@ -367,8 +377,8 @@ Partial Class FormQCReport1
         Me.GridColumn19.FieldNameSortGroup = "id_season"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 1
-        Me.GridColumn19.Width = 170
+        Me.GridColumn19.VisibleIndex = 2
+        Me.GridColumn19.Width = 238
         '
         'GridColumn20
         '
@@ -440,6 +450,15 @@ Partial Class FormQCReport1
         Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl4.TabIndex = 8892
         Me.LabelControl4.Text = "From"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Metode"
+        Me.GridColumn15.FieldName = "metode_qc"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
+        Me.GridColumn15.Width = 188
         '
         'FormQCReport1
         '
@@ -516,4 +535,6 @@ Partial Class FormQCReport1
     Friend WithEvents DEStartSum As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
