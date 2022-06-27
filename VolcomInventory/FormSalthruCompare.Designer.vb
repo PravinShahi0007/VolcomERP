@@ -21,10 +21,12 @@ Partial Class FormSalthruCompare
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalthruCompare))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.CCBESeason = New DevExpress.XtraEditors.CheckedComboBoxEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnExportXls = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_design = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -46,15 +48,13 @@ Partial Class FormSalthruCompare
         Me.GridColumnsoh_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnactual_salthru = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntarget_salthru = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.CCBESeason = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -71,6 +71,49 @@ Partial Class FormSalthruCompare
         Me.PanelControl1.Size = New System.Drawing.Size(747, 73)
         Me.PanelControl1.TabIndex = 0
         '
+        'CCBESeason
+        '
+        Me.CCBESeason.EditValue = ""
+        Me.CCBESeason.Location = New System.Drawing.Point(194, 31)
+        Me.CCBESeason.Name = "CCBESeason"
+        Me.CCBESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBESeason.Size = New System.Drawing.Size(228, 20)
+        Me.CCBESeason.TabIndex = 52
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(194, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(35, 13)
+        Me.LabelControl2.TabIndex = 5
+        Me.LabelControl2.Text = "Season"
+        '
+        'BtnView
+        '
+        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
+        Me.BtnView.Location = New System.Drawing.Point(428, 30)
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(82, 21)
+        Me.BtnView.TabIndex = 6
+        Me.BtnView.Text = "View Data"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(15, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl1.TabIndex = 4
+        Me.LabelControl1.Text = "Sales until"
+        '
+        'BtnExportXls
+        '
+        Me.BtnExportXls.Image = CType(resources.GetObject("BtnExportXls.Image"), System.Drawing.Image)
+        Me.BtnExportXls.Location = New System.Drawing.Point(513, 30)
+        Me.BtnExportXls.Name = "BtnExportXls"
+        Me.BtnExportXls.Size = New System.Drawing.Size(99, 21)
+        Me.BtnExportXls.TabIndex = 7
+        Me.BtnExportXls.Text = "Export to XLS"
+        '
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
@@ -83,32 +126,6 @@ Partial Class FormSalthruCompare
         Me.DEUntil.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
         Me.DEUntil.Size = New System.Drawing.Size(176, 20)
         Me.DEUntil.TabIndex = 3
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(15, 15)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(48, 13)
-        Me.LabelControl1.TabIndex = 4
-        Me.LabelControl1.Text = "Sales until"
-        '
-        'BtnView
-        '
-        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.Location = New System.Drawing.Point(428, 30)
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(82, 21)
-        Me.BtnView.TabIndex = 6
-        Me.BtnView.Text = "View Data"
-        '
-        'BtnExportXls
-        '
-        Me.BtnExportXls.Image = CType(resources.GetObject("BtnExportXls.Image"), System.Drawing.Image)
-        Me.BtnExportXls.Location = New System.Drawing.Point(513, 30)
-        Me.BtnExportXls.Name = "BtnExportXls"
-        Me.BtnExportXls.Size = New System.Drawing.Size(99, 21)
-        Me.BtnExportXls.TabIndex = 7
-        Me.BtnExportXls.Text = "Export to XLS"
         '
         'GCData
         '
@@ -129,6 +146,7 @@ Partial Class FormSalthruCompare
         Me.GVData.OptionsBehavior.ReadOnly = True
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumnid_design
@@ -236,8 +254,8 @@ Partial Class FormSalthruCompare
         'GridColumnage_in_store
         '
         Me.GridColumnage_in_store.Caption = "Age in Store"
-        Me.GridColumnage_in_store.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnage_in_store.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnage_in_store.DisplayFormat.FormatString = "N0"
+        Me.GridColumnage_in_store.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnage_in_store.FieldName = "age_in_store"
         Me.GridColumnage_in_store.Name = "GridColumnage_in_store"
         Me.GridColumnage_in_store.Visible = True
@@ -295,23 +313,6 @@ Partial Class FormSalthruCompare
         Me.GridColumntarget_salthru.Visible = True
         Me.GridColumntarget_salthru.VisibleIndex = 15
         '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(194, 15)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(35, 13)
-        Me.LabelControl2.TabIndex = 5
-        Me.LabelControl2.Text = "Season"
-        '
-        'CCBESeason
-        '
-        Me.CCBESeason.EditValue = ""
-        Me.CCBESeason.Location = New System.Drawing.Point(194, 31)
-        Me.CCBESeason.Name = "CCBESeason"
-        Me.CCBESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBESeason.Size = New System.Drawing.Size(228, 20)
-        Me.CCBESeason.TabIndex = 52
-        '
         'FormSalthruCompare
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -326,11 +327,11 @@ Partial Class FormSalthruCompare
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
