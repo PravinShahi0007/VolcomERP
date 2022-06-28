@@ -168,7 +168,7 @@ GROUP BY po.`id_prod_order`"
     End Sub
 
     Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BGenerate.Click
-        Dim q As String = "INSERT INTO tb_qc_report1_sum(`id_prod_order`,`created_date`,`created_by`,`id_report_status`) VALUES('" & SLEFGPO.EditValue.ToString & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
+        Dim q As String = "INSERT INTO tb_qc_report1_sum(`id_prod_order`,`id_metode_qc`,`created_date`,`created_by`,`id_report_status`) VALUES('" & SLEFGPO.EditValue.ToString & "','" & SLEMetode.EditValue.ToString & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
         id = execute_query(q, 0, True, "", "", "", "")
         '
         execute_non_query("CALL gen_number('" & id & "','388')", True, "", "", "", "")

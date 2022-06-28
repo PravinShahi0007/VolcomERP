@@ -41,6 +41,7 @@
             XLWorking2.LocationF = New PointF(813.69, 202.61)
             LWorkingDays.LocationF = New PointF(845.44, 202.61)
 
+            XPIncome.SizeF = New SizeF(995, 242.61)
             XPFooter.LocationF = New PointF(0, 272.61)
         End If
 
@@ -86,6 +87,7 @@
             XLAdjustment2.LocationF = New PointF(317.5, 82.61)
             LAdjustment.LocationF = New PointF(349.25, 82.61)
 
+            XPIncome.SizeF = New SizeF(995, 122.61)
             XPFooter.LocationF = New PointF(0, 122.61)
 
             XLBasic.Text = "Total Bonus"
