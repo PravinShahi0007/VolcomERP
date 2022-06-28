@@ -93,33 +93,36 @@
         in_id = in_id.Substring(0, in_id.Length - 2)
 
         Dim query As String = "
-            SELECT d.id_pl_sales_order_del, a.pl_sales_order_del_number AS number, c_from.id_comp AS id_wh, c_to.id_comp AS id_store, a.pl_sales_order_del_date AS created_date, a.last_update AS approved_date, d.id_product, p.id_design, d_count.id_pl_prod_order_rec_det_unique, class.id_class, class.class, class.class_display, color.id_color, color.color, color.color_display, p_code.id_code_detail AS id_size, p_detail.display_name AS size, sub_category.id_sub_category, sub_category.sub_category, p.product_full_code AS item_code, p.product_full_code AS item_code_group, p.product_display_name AS item_name, 1 AS qty, p_type.id_design_cat, d.id_design_price, d.design_price AS price, d_price.design_price_start_date AS design_price_date, pn.id_design_price AS id_normal_price, pn.design_price AS normal_price, a.is_combine, a.id_combine, 2 AS is_unique_code
+            SELECT d.id_pl_sales_order_del, a.pl_sales_order_del_number AS number, c_from.id_comp AS id_wh, c_to.id_comp AS id_store, a.pl_sales_order_del_date AS created_date, a.last_update AS approved_date, d.id_product, p.id_design, d_count.id_pl_prod_order_rec_det_unique, class.id_class, class.class, class.class_display, color.id_color, color.color, color.color_display, p_code.id_code_detail AS id_size, p_detail.display_name AS size, sub_category.id_sub_category, sub_category.sub_category, p.product_full_code AS item_code, p.product_full_code AS item_code_group, CONCAT(IF(r.is_md = 2, 'PRM ', ''), class.class_display, ' ', g.design_name, ' ', color.color_display) AS item_name, 1 AS qty, p_type.id_design_cat, d.id_design_price, d.design_price AS price, d_price.design_price_start_date AS design_price_date, pn.id_design_price AS id_normal_price, pn.design_price AS normal_price, a.is_combine, a.id_combine, 2 AS is_unique_code
             FROM tb_pl_sales_order_del_det AS d
             LEFT JOIN tb_pl_sales_order_del AS a ON d.id_pl_sales_order_del = a.id_pl_sales_order_del
             LEFT JOIN tb_m_comp_contact AS c_from ON a.id_comp_contact_from = c_from.id_comp_contact
             LEFT JOIN tb_m_comp_contact AS c_to ON a.id_store_contact_to = c_to.id_comp_contact
             LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+            LEFT JOIN tb_m_design AS g ON p.id_design = g.id_design
+            LEFT JOIN tb_season AS e ON g.id_season = e.id_season
+            LEFT JOIN tb_range AS r ON e.id_range = r.id_range
             LEFT JOIN tb_pl_sales_order_del_det_counting AS d_count ON d.id_pl_sales_order_del_det = d_count.id_pl_sales_order_del_det
             LEFT JOIN (
-	            SELECT dc.id_design, dc.id_code_detail AS id_class, cd.display_name AS class_display, cd.code_detail_name AS class
-	            FROM tb_m_design_code AS dc
-	            LEFT JOIN tb_m_code_detail AS cd ON cd.id_code_detail = dc.id_code_detail 
-	            WHERE cd.id_code = 30
-	            GROUP BY dc.id_design
+                SELECT dc.id_design, dc.id_code_detail AS id_class, cd.display_name AS class_display, cd.code_detail_name AS class
+                FROM tb_m_design_code AS dc
+                LEFT JOIN tb_m_code_detail AS cd ON cd.id_code_detail = dc.id_code_detail 
+                WHERE cd.id_code = 30
+                GROUP BY dc.id_design
             ) AS class ON class.id_design = p.id_design
             LEFT JOIN (
-	            SELECT dc.id_design, dc.id_code_detail AS id_color, cd.display_name AS color_display, cd.code_detail_name AS color
-	            FROM tb_m_design_code AS dc
-	            LEFT JOIN tb_m_code_detail AS cd ON cd.id_code_detail = dc.id_code_detail 
-	            WHERE cd.id_code = 14
-	            GROUP BY dc.id_design
+                SELECT dc.id_design, dc.id_code_detail AS id_color, cd.display_name AS color_display, cd.code_detail_name AS color
+                FROM tb_m_design_code AS dc
+                LEFT JOIN tb_m_code_detail AS cd ON cd.id_code_detail = dc.id_code_detail 
+                WHERE cd.id_code = 14
+                GROUP BY dc.id_design
             ) color ON color.id_design = p.id_design
             LEFT JOIN (
-	            SELECT dc.id_design, dc.id_code_detail AS id_sub_category, cd.code AS sub_category
-	            FROM tb_m_design_code AS dc
-	            LEFT JOIN tb_m_code_detail AS cd ON cd.id_code_detail = dc.id_code_detail 
-	            WHERE cd.id_code = 31
-	            GROUP BY dc.id_design
+                SELECT dc.id_design, dc.id_code_detail AS id_sub_category, cd.code AS sub_category
+                FROM tb_m_design_code AS dc
+                LEFT JOIN tb_m_code_detail AS cd ON cd.id_code_detail = dc.id_code_detail 
+                WHERE cd.id_code = 31
+                GROUP BY dc.id_design
             ) sub_category ON sub_category.id_design = p.id_design
             LEFT JOIN (
                 SELECT id_design, id_design_price, ROUND(design_price) AS design_price
@@ -255,14 +258,17 @@
         in_id = in_id.Substring(0, in_id.Length - 2)
 
         Dim query As String = "
-            SELECT d.id_sales_return_order, s.sales_return_order_number AS `number`, t.id_comp AS id_store, s.sales_return_order_date AS created_date, s.final_date AS approve_date, d.id_product, p.id_design, l.id_class, c.id_color, o.id_code_detail AS id_size, p.product_full_code AS item_code, p.product_full_code AS item_code_group, p.product_display_name AS item_name, d.sales_return_order_det_qty AS qty, l.id_design_cat, d.id_design_price, d.design_price AS price, 2 AS is_combine, 2 AS is_unique_code
+            SELECT d.id_sales_return_order, s.sales_return_order_number AS `number`, t.id_comp AS id_store, s.sales_return_order_date AS created_date, s.final_date AS approve_date, d.id_product, p.id_design, l.id_class, c.id_color, o.id_code_detail AS id_size, p.product_full_code AS item_code, p.product_full_code AS item_code_group, CONCAT(IF(r.is_md = 2, 'PRM ', ''), s.class_display, ' ', g.design_name, ' ', c.color_display) AS item_name, d.sales_return_order_det_qty AS qty, l.id_design_cat, d.id_design_price, d.design_price AS price, 2 AS is_combine, 2 AS is_unique_code
             FROM tb_sales_return_order_det AS d
             LEFT JOIN tb_sales_return_order AS s ON d.id_sales_return_order = s.id_sales_return_order
             LEFT JOIN tb_m_comp_contact AS t ON s.id_store_contact_to = t.id_comp_contact
             LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+            LEFT JOIN tb_m_design AS g ON p.id_design = g.id_design
+            LEFT JOIN tb_season AS e ON g.id_season = e.id_season
+            LEFT JOIN tb_range AS r ON e.id_range = r.id_range
             LEFT JOIN tb_m_product_code AS o ON d.id_product = o.id_product
             LEFT JOIN (
-                SELECT d.id_design, d.id_code_detail AS id_color
+                SELECT d.id_design, d.id_code_detail AS id_color, c.display_name AS color_display
                 FROM tb_m_design_code AS d
                 LEFT JOIN tb_m_code_detail AS c ON c.id_code_detail = d.id_code_detail 
                 WHERE c.id_code = 14
@@ -275,6 +281,13 @@
                 WHERE c.id_code = 30
                 GROUP BY d.id_design
             ) l ON l.id_design = p.id_design
+            LEFT JOIN (
+                SELECT dc.id_design, dc.id_code_detail AS id_class, cd.display_name AS class_display
+                FROM tb_m_design_code AS dc
+                LEFT JOIN tb_m_code_detail AS cd ON cd.id_code_detail = dc.id_code_detail 
+                WHERE cd.id_code = 30
+                GROUP BY dc.id_design
+            ) AS s ON s.id_design = p.id_design
             LEFT JOIN tb_m_design_price AS i ON i.id_design_price = d.id_design_price
             LEFT JOIN tb_lookup_design_price_type AS l ON l.id_design_price_type = i.id_design_price_type
             WHERE d.id_sales_return_order IN (" + in_id + ")
