@@ -106,14 +106,17 @@ GROUP BY podd.`id_prod_order_det`"
                 'domestic
                 LInternal1.Visible = False
                 LInternal2.Visible = False
+                XrPanel1.Visible = False
             Else
                 'international
                 If dt.Rows(0)("id_metode_qc").ToString = "1" Then
                     LInternal1.Visible = True
                     LInternal2.Visible = True
+                    XrPanel1.Visible = True
                 Else
                     LInternal1.Visible = False
                     LInternal2.Visible = False
+                    XrPanel1.Visible = False
                 End If
             End If
             '
