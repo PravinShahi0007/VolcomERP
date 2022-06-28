@@ -129,7 +129,7 @@ GROUP BY rec.id_prod_order_rec"
     End Sub
 
     Sub view_fgpo()
-        Dim query As String = "SELECT po.`id_prod_order`,po.`prod_order_number`,dsg.`design_display_name`,dsg.`design_code`,CONCAT(po.`prod_order_number`,' - ',dsg.`design_display_name`) AS view_po
+        Dim query As String = "SELECT po.`id_prod_order`,po.`prod_order_number`,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS `design_display_name`,dsg.`design_code`,CONCAT(po.`prod_order_number`,' - ',dsg.`design_display_name`) AS view_po
 FROM tb_prod_order_rec_det recd 
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=recd.`id_prod_order_det`
@@ -144,6 +144,25 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=c.`id_city`
 INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
 INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
 INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
 LEFT JOIN
 (
     SELECT kod.* FROM 
