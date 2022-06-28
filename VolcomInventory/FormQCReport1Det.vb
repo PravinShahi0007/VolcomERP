@@ -13,6 +13,8 @@
     Public allow_sum As Decimal
     Public id_design As String = "-1"
 
+    Public is_qc_wash As String = "2"
+
     Dim is_first_load As Boolean = False
 
     Private Sub FormQCReport1Det_Load(sender As Object, e As EventArgs) Handles MyBase.Load
