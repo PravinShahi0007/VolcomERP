@@ -8,19 +8,28 @@
         load_head()
     End Sub
 
+    Sub view_metode_type()
+        Dim q As String = "SELECT `id_metode_qc`,`metode_qc` FROM `tb_metode_qc`"
+        viewSearchLookupQuery(SLEMetode, q, "id_metode_qc", "metode_qc", "id_metode_qc")
+    End Sub
+
     Sub load_head()
         view_fgpo()
+        view_metode_type()
 
         If id = "-1" Then
             BGenerate.Visible = True
             XTCImage.Enabled = False
         Else
+            SLEFGPO.ReadOnly = True
+            SLEMetode.ReadOnly = True
             Dim q As String = "SELECT * FROM tb_qc_report1_sum WHERE id_qc_report1_sum='" & id & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 DECreated.EditValue = dt.Rows(0)("created_date")
                 SLEFGPO.EditValue = dt.Rows(0)("id_prod_order").ToString
                 id_po = dt.Rows(0)("id_prod_order").ToString
+                SLEMetode.EditValue = dt.Rows(0)("id_metode_qc").ToString
                 '
                 TENumber.Text = dt.Rows(0)("number").ToString
                 '
@@ -61,7 +70,7 @@
 FROM `tb_qc_report1_det` qrd
 INNER JOIN tb_qc_report1 qr ON qr.`id_qc_report1`=qrd.`id_qc_report1` AND qr.`id_report_status`=6
 INNER JOIN tb_prod_order po ON po.id_prod_order=qr.id_prod_order
-INNER JOIN tb_qc_report1_sum qrs ON qrs.id_prod_order=po.id_prod_order AND qr.created_date<=qrs.created_date AND qrs.id_qc_report1_sum='" & id & "'
+INNER JOIN tb_qc_report1_sum qrs ON qrs.id_prod_order=po.id_prod_order AND qr.created_date<=qrs.created_date AND qrs.id_qc_report1_sum='" & id & "' AND qrs.id_metode_qc=qr.id_metode_qc
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
 INNER JOIN tb_m_design d ON d.id_design=pdd.id_design
 INNER JOIN tb_season s ON s.id_season=d.id_season
@@ -120,7 +129,7 @@ GROUP BY rec.id_prod_order_rec"
     End Sub
 
     Sub view_fgpo()
-        Dim query As String = "SELECT po.`id_prod_order`,po.`prod_order_number`,dsg.`design_display_name`,dsg.`design_code`,CONCAT(po.`prod_order_number`,' - ',dsg.`design_display_name`) AS view_po
+        Dim query As String = "SELECT po.`id_prod_order`,po.`prod_order_number`,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS `design_display_name`,dsg.`design_code`,CONCAT(po.`prod_order_number`,' - ',dsg.`design_display_name`) AS view_po
 FROM tb_prod_order_rec_det recd 
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=recd.`id_prod_order_det`
@@ -135,6 +144,25 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=c.`id_city`
 INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
 INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
 INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
 LEFT JOIN
 (
     SELECT kod.* FROM 
@@ -159,7 +187,7 @@ GROUP BY po.`id_prod_order`"
     End Sub
 
     Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BGenerate.Click
-        Dim q As String = "INSERT INTO tb_qc_report1_sum(`id_prod_order`,`created_date`,`created_by`,`id_report_status`) VALUES('" & SLEFGPO.EditValue.ToString & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
+        Dim q As String = "INSERT INTO tb_qc_report1_sum(`id_prod_order`,`id_metode_qc`,`created_date`,`created_by`,`id_report_status`) VALUES('" & SLEFGPO.EditValue.ToString & "','" & SLEMetode.EditValue.ToString & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
         id = execute_query(q, 0, True, "", "", "", "")
         '
         execute_non_query("CALL gen_number('" & id & "','388')", True, "", "", "", "")
@@ -172,7 +200,7 @@ GROUP BY po.`id_prod_order`"
         Dim q As String = "SELECT img.id_qc_report1_img,img.note 
 FROM tb_qc_report1_img img
 INNER JOIN tb_qc_report1_sum qrs ON qrs.`id_qc_report1_sum`=img.`id_qc_report1_sum`
-WHERE qrs.`id_prod_order`='" & id_po & "'"
+WHERE qrs.`id_prod_order`='" & id_po & "' AND qrs.id_metode_qc='" & SLEMetode.EditValue.ToString & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCImage.DataSource = dt
     End Sub
