@@ -604,29 +604,32 @@ WHERE qr.id_qc_report1='" + id + "' "
                         SLEQCReport.EditValue = Nothing
                     Else
                         view_barcode_list()
-                        'generate all remaining
+                        If SLEMetode.EditValue.ToString = "2" Then
+                            'jika AQL harus scan manual
+                        Else
+                            'generate all remaining
+                            For i = 0 To GVRetDetail.RowCount - 1
+                                Dim q_check As String = "CALL view_limit_qc_report1('" + id_prod_order_rec + "','" + id_prod_order + "', '" + GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString + "', '" + id + "')"
+                                Dim data As DataTable = execute_query(q_check, -1, True, "", "", "", "")
+                                allow_sum = Decimal.Parse(data.Rows(0)("qty"))
 
-                        For i = 0 To GVRetDetail.RowCount - 1
-                            Dim q_check As String = "CALL view_limit_qc_report1('" + id_prod_order_rec + "','" + id_prod_order + "', '" + GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString + "', '" + id + "')"
-                            Dim data As DataTable = execute_query(q_check, -1, True, "", "", "", "")
-                            allow_sum = Decimal.Parse(data.Rows(0)("qty"))
-
-                            For j As Integer = 0 To allow_sum - 1
-                                GVBarcode.AddNewRow()
-                                GVBarcode.SetFocusedRowCellValue("ean_code", GVRetDetail.GetRowCellValue(i, "ean_code").ToString)
-                                GVBarcode.SetFocusedRowCellValue("id_prod_order_det", GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString)
-                                GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                                For j As Integer = 0 To allow_sum - 1
+                                    GVBarcode.AddNewRow()
+                                    GVBarcode.SetFocusedRowCellValue("ean_code", GVRetDetail.GetRowCellValue(i, "ean_code").ToString)
+                                    GVBarcode.SetFocusedRowCellValue("id_prod_order_det", GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString)
+                                    GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                                Next
                             Next
-                        Next
 
-                        GVBarcode.RefreshData()
+                            GVBarcode.RefreshData()
 
-                        For i = 0 To GVRetDetail.RowCount - 1
-                            countQty(GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString)
-                        Next
+                            For i = 0 To GVRetDetail.RowCount - 1
+                                countQty(GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString)
+                            Next
 
-                        GVBarcode.OptionsBehavior.Editable = False
-                        PanelNavBarcode.Visible = False
+                            GVBarcode.OptionsBehavior.Editable = False
+                            PanelNavBarcode.Visible = False
+                        End If
                     End If
                 Else
                     view_barcode_list()
