@@ -153,6 +153,8 @@
                         submit_who_prepared("412", id, id_user)
 
                         form_load()
+
+                        FormProposeVoucherPOS.load_view()
                     End If
                 Else
                     stopCustom("Voucher number already used.")
