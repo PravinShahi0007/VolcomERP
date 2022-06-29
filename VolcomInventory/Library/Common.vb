@@ -5892,14 +5892,24 @@ WHERE dsg.id_design='" & id_design & "'"
                 PE.LoadAsync(dir & id_goods & ".jpg")
             Else
                 My.Computer.Network.DownloadFile(dir & id_goods & ".jpg", Application.StartupPath & "\imagestemp\" & id_goods & ".jpg", "", "", True, 100, True)
-                Process.Start(Application.StartupPath & "\imagestemp\" & id_goods & ".jpg")
+
+                Dim P As New Process
+                P.StartInfo.FileName = Application.StartupPath & "\imagestemp\" & id_goods & ".jpg"
+                P.StartInfo.Verb = ""
+                P.StartInfo.Arguments = "-silent"
+                P.Start()
             End If
         Else
             If Not is_open Then
                 PE.LoadAsync(dir & "default" & ".jpg")
             Else
                 My.Computer.Network.DownloadFile(dir & "default" & ".jpg", Application.StartupPath & "\imagestemp\" & "default" & ".jpg", "", "", True, 100, True)
-                Process.Start(Application.StartupPath & "\imagestemp\" & "default" & ".jpg")
+
+                Dim P As New Process
+                P.StartInfo.FileName = Application.StartupPath & "\imagestemp\" & "default" & ".jpg"
+                P.StartInfo.Verb = ""
+                P.StartInfo.Arguments = "-silent"
+                P.Start()
             End If
         End If
     End Sub
