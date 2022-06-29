@@ -308,10 +308,10 @@ Partial Class FormSalthruCompare
         '
         'GridColumnage_in_store
         '
-        Me.GridColumnage_in_store.Caption = "Age in Store"
+        Me.GridColumnage_in_store.Caption = "Age"
         Me.GridColumnage_in_store.DisplayFormat.FormatString = "N0"
         Me.GridColumnage_in_store.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnage_in_store.FieldName = "age_in_store"
+        Me.GridColumnage_in_store.FieldName = "age"
         Me.GridColumnage_in_store.Name = "GridColumnage_in_store"
         Me.GridColumnage_in_store.Visible = True
         Me.GridColumnage_in_store.VisibleIndex = 11
