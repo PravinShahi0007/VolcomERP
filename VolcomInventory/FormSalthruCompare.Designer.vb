@@ -55,6 +55,9 @@ Partial Class FormSalthruCompare
         Me.GridColumntarget_salthru = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnproduct_description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndiff_salthru = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPByAccountProduct = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPByProduct = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,6 +67,9 @@ Partial Class FormSalthruCompare
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCData.SuspendLayout()
+        Me.XTPByAccountProduct.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -182,10 +188,10 @@ Partial Class FormSalthruCompare
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 142)
+        Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(747, 331)
+        Me.GCData.Size = New System.Drawing.Size(741, 303)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -385,12 +391,36 @@ Partial Class FormSalthruCompare
         Me.GridColumndiff_salthru.Visible = True
         Me.GridColumndiff_salthru.VisibleIndex = 16
         '
+        'XTCData
+        '
+        Me.XTCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCData.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCData.Location = New System.Drawing.Point(0, 142)
+        Me.XTCData.Name = "XTCData"
+        Me.XTCData.SelectedTabPage = Me.XTPByAccountProduct
+        Me.XTCData.Size = New System.Drawing.Size(747, 331)
+        Me.XTCData.TabIndex = 2
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPByAccountProduct, Me.XTPByProduct})
+        '
+        'XTPByAccountProduct
+        '
+        Me.XTPByAccountProduct.Controls.Add(Me.GCData)
+        Me.XTPByAccountProduct.Name = "XTPByAccountProduct"
+        Me.XTPByAccountProduct.Size = New System.Drawing.Size(741, 303)
+        Me.XTPByAccountProduct.Text = "By Product && Account"
+        '
+        'XTPByProduct
+        '
+        Me.XTPByProduct.Name = "XTPByProduct"
+        Me.XTPByProduct.Size = New System.Drawing.Size(741, 303)
+        Me.XTPByProduct.Text = "By Product"
+        '
         'FormSalthruCompare
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(747, 473)
-        Me.Controls.Add(Me.GCData)
+        Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormSalthruCompare"
@@ -406,6 +436,9 @@ Partial Class FormSalthruCompare
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCData.ResumeLayout(False)
+        Me.XTPByAccountProduct.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -445,4 +478,7 @@ Partial Class FormSalthruCompare
     Friend WithEvents GridColumnsalthru_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnproduct_description As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndiff_salthru As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPByAccountProduct As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPByProduct As DevExpress.XtraTab.XtraTabPage
 End Class
