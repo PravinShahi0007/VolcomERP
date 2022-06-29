@@ -348,11 +348,20 @@ FROM
         INNER JOIN tb_prod_fc_det fcd ON fcd.`id_prod_fc`=fc.`id_prod_fc`
         INNER JOIN
         (
-	        SELECT rec.`id_prod_order`,SUM(recd.`prod_order_rec_det_qty`) AS qty 
+	        SELECT rec.`id_prod_order`,po.id_po_type,co.id_country,SUM(recd.`prod_order_rec_det_qty`) AS qty 
 	        FROM tb_prod_order_rec_det recd 
 	        INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
+		INNER JOIN tb_prod_order po ON rec.id_prod_order=po.id_prod_order
+	        INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
+		INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
+		INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
+		INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+		INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
+		INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+		INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+		INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` 
 	        GROUP BY rec.`id_prod_order`
-        )rec ON rec.id_prod_order=fc.`id_prod_order`
+        )rec ON rec.id_prod_order=fc.`id_prod_order` AND IF(rec.id_po_type=2 OR rec.id_country!=5,fcs.id_metode_qc=2,TRUE)
         GROUP BY fc.`id_prod_order`
     )tot_rej ON tot_rej.id_prod_order=po.id_prod_order
     INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
@@ -438,14 +447,15 @@ FROM
     ) dn ON dn.id_reff=fc.id_prod_fc
     WHERE IF(ko.po_type='International',fcs.id_metode_qc=2 OR fcs.is_before_aql=1,TRUE) AND fc.id_report_status = '6' AND fc.is_not_claim=2 AND ISNULL(dn.id_reff) " & q_where & "
     GROUP BY fc.`id_prod_fc`
-    HAVING (amo_claim_minor + amo_claim_major + amo_claim_afkir) >= 0
+    HAVING (amo_claim_minor + amo_claim_major + amo_claim_afkir) > 0
 )dn
 LEFT JOIN
 (
 	SELECT r.`id_aql`,r.`max_qty_order`,r.`min_qty_order`,r.`max_major`,r.`max_minor`,r.claim_minor,r.claim_major
 	,CONCAT('AQL, Minor ',r.`claim_minor`,'% Major ',r.`claim_major`,'%, Order Qty(',r.`min_qty_order`,'-',IF(r.`max_qty_order`=100000,' ',r.`max_qty_order`),'),Max Minor ',r.`max_minor`,' pcs,Max Major ',r.`max_major`,' pcs') AS special_note
 	FROM `tb_import_aql` r
-)rv ON dn.`po_type`='International' AND dn.qty_order>=rv.min_qty_order AND dn.qty_order<=rv.max_qty_order"
+)rv ON dn.`po_type`='International' AND dn.qty_order>=rv.min_qty_order AND dn.qty_order<=rv.max_qty_order
+HAVING (amo_claim_minor + amo_claim_major + amo_claim_afkir) > 0"
             'old before AQL 14 June 2022
             '            query = "
             'SELECT dn.is_check,dn.id_prod_fc_sum,dn.report_mark_type,dn.prod_fc_number,dn.id_prod_order,dn.design_code,dn.design_name,dn.prod_order_number,dn.pl_category_sub,dn.id_prod_fc_det,dn.id_prod_fc,dn.id_prod_order_det,dn.id_product,dn.prod_fc_det_qty,dn.prod_fc_det_note
