@@ -125,7 +125,7 @@ Partial Public Class ReportOutboundLabel
         Me.XrTableRow.StylePriority.UseFont = False
         Me.XrTableRow.StylePriority.UseTextAlignment = False
         Me.XrTableRow.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableRow.Weight = 1.0833331298828126R
+        Me.XrTableRow.Weight = 1.08333312988281R
         '
         'XrTableCell1
         '
@@ -138,7 +138,7 @@ Partial Public Class ReportOutboundLabel
         Me.XrTableCell1.StylePriority.UseFont = False
         Me.XrTableCell1.StylePriority.UsePadding = False
         Me.XrTableCell1.Text = "NO"
-        Me.XrTableCell1.Weight = 0.43832982920834263R
+        Me.XrTableCell1.Weight = 0.438329829208343R
         '
         'XrTableCell5
         '
@@ -151,7 +151,7 @@ Partial Public Class ReportOutboundLabel
         Me.XrTableCell5.StylePriority.UseFont = False
         Me.XrTableCell5.StylePriority.UsePadding = False
         Me.XrTableCell5.Text = "DO#"
-        Me.XrTableCell5.Weight = 1.9176929613878717R
+        Me.XrTableCell5.Weight = 1.91769296138787R
         '
         'XrTableCell2
         '
@@ -164,7 +164,7 @@ Partial Public Class ReportOutboundLabel
         Me.XrTableCell2.StylePriority.UseFont = False
         Me.XrTableCell2.StylePriority.UsePadding = False
         Me.XrTableCell2.Text = "STORE"
-        Me.XrTableCell2.Weight = 1.3149894777888327R
+        Me.XrTableCell2.Weight = 1.31498947778883R
         '
         'XrTableCell6
         '
@@ -178,14 +178,14 @@ Partial Public Class ReportOutboundLabel
         Me.XrTableCell6.StylePriority.UseFont = False
         Me.XrTableCell6.StylePriority.UsePadding = False
         Me.XrTableCell6.Text = "QTY"
-        Me.XrTableCell6.Weight = 1.0958244436899776R
+        Me.XrTableCell6.Weight = 1.09582444368998R
         '
         'XrTableRowTotal
         '
         Me.XrTableRowTotal.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell38, Me.XRTotal})
         Me.XrTableRowTotal.Dpi = 254.0!
         Me.XrTableRowTotal.Name = "XrTableRowTotal"
-        Me.XrTableRowTotal.Weight = 1.2000000748505417R
+        Me.XrTableRowTotal.Weight = 1.20000007485054R
         '
         'XrTableCell38
         '
@@ -196,7 +196,7 @@ Partial Public Class ReportOutboundLabel
         Me.XrTableCell38.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrTableCell38.StylePriority.UseBorders = False
         Me.XrTableCell38.StylePriority.UsePadding = False
-        Me.XrTableCell38.Weight = 2.9735837654153165R
+        Me.XrTableCell38.Weight = 2.97358376541532R
         '
         'XRTotal
         '
@@ -208,7 +208,7 @@ Partial Public Class ReportOutboundLabel
         Me.XRTotal.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XRTotal.StylePriority.UseBorders = False
         Me.XRTotal.StylePriority.UsePadding = False
-        Me.XRTotal.Weight = 0.88763703435543373R
+        Me.XRTotal.Weight = 0.887637034355434R
         '
         'TopMargin
         '
