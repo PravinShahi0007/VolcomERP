@@ -21,11 +21,16 @@ Partial Class FormSalthruCompare
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalthruCompare))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_salthru_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsalthru_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportXls = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.CCBESeason = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnExportXls = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -50,6 +55,8 @@ Partial Class FormSalthruCompare
         Me.GridColumntarget_salthru = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,81 +66,124 @@ Partial Class FormSalthruCompare
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLEType)
+        Me.PanelControl1.Controls.Add(Me.BtnView)
+        Me.PanelControl1.Controls.Add(Me.BtnExportXls)
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.CCBESeason)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
-        Me.PanelControl1.Controls.Add(Me.BtnView)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Controls.Add(Me.BtnExportXls)
         Me.PanelControl1.Controls.Add(Me.DEUntil)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(747, 73)
+        Me.PanelControl1.Size = New System.Drawing.Size(747, 142)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SLEType
+        '
+        Me.SLEType.Location = New System.Drawing.Point(80, 17)
+        Me.SLEType.Name = "SLEType"
+        Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEType.Size = New System.Drawing.Size(255, 20)
+        Me.SLEType.TabIndex = 55
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_salthru_type, Me.GridColumnsalthru_type})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_salthru_type
+        '
+        Me.GridColumnid_salthru_type.Caption = "id_salthru_type"
+        Me.GridColumnid_salthru_type.FieldName = "id_salthru_type"
+        Me.GridColumnid_salthru_type.Name = "GridColumnid_salthru_type"
+        '
+        'GridColumnsalthru_type
+        '
+        Me.GridColumnsalthru_type.Caption = "Type"
+        Me.GridColumnsalthru_type.FieldName = "salthru_type"
+        Me.GridColumnsalthru_type.Name = "GridColumnsalthru_type"
+        Me.GridColumnsalthru_type.Visible = True
+        Me.GridColumnsalthru_type.VisibleIndex = 0
+        '
+        'BtnView
+        '
+        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
+        Me.BtnView.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnView.Location = New System.Drawing.Point(244, 95)
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(91, 28)
+        Me.BtnView.TabIndex = 6
+        Me.BtnView.Text = "View Data"
+        '
+        'BtnExportXls
+        '
+        Me.BtnExportXls.Image = CType(resources.GetObject("BtnExportXls.Image"), System.Drawing.Image)
+        Me.BtnExportXls.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnExportXls.Location = New System.Drawing.Point(141, 95)
+        Me.BtnExportXls.Name = "BtnExportXls"
+        Me.BtnExportXls.Size = New System.Drawing.Size(99, 28)
+        Me.BtnExportXls.TabIndex = 7
+        Me.BtnExportXls.Text = "Export to XLS"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 20)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl3.TabIndex = 54
+        Me.LabelControl3.Text = "Type"
         '
         'CCBESeason
         '
         Me.CCBESeason.EditValue = ""
-        Me.CCBESeason.Location = New System.Drawing.Point(194, 31)
+        Me.CCBESeason.Location = New System.Drawing.Point(80, 69)
         Me.CCBESeason.Name = "CCBESeason"
         Me.CCBESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBESeason.Size = New System.Drawing.Size(228, 20)
+        Me.CCBESeason.Size = New System.Drawing.Size(255, 20)
         Me.CCBESeason.TabIndex = 52
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(194, 15)
+        Me.LabelControl2.Location = New System.Drawing.Point(14, 72)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl2.TabIndex = 5
         Me.LabelControl2.Text = "Season"
         '
-        'BtnView
-        '
-        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.Location = New System.Drawing.Point(428, 30)
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(82, 21)
-        Me.BtnView.TabIndex = 6
-        Me.BtnView.Text = "View Data"
-        '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(15, 15)
+        Me.LabelControl1.Location = New System.Drawing.Point(14, 46)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl1.TabIndex = 4
         Me.LabelControl1.Text = "Sales until"
         '
-        'BtnExportXls
-        '
-        Me.BtnExportXls.Image = CType(resources.GetObject("BtnExportXls.Image"), System.Drawing.Image)
-        Me.BtnExportXls.Location = New System.Drawing.Point(513, 30)
-        Me.BtnExportXls.Name = "BtnExportXls"
-        Me.BtnExportXls.Size = New System.Drawing.Size(99, 21)
-        Me.BtnExportXls.TabIndex = 7
-        Me.BtnExportXls.Text = "Export to XLS"
-        '
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(15, 31)
+        Me.DEUntil.Location = New System.Drawing.Point(80, 43)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.Mask.EditMask = "Y"
         Me.DEUntil.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.DEUntil.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
-        Me.DEUntil.Size = New System.Drawing.Size(176, 20)
+        Me.DEUntil.Size = New System.Drawing.Size(255, 20)
         Me.DEUntil.TabIndex = 3
         '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 73)
+        Me.GCData.Location = New System.Drawing.Point(0, 142)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(747, 400)
+        Me.GCData.Size = New System.Drawing.Size(747, 331)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -141,13 +191,17 @@ Partial Class FormSalthruCompare
         '
         Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_design, Me.GridColumnseason, Me.GridColumndel, Me.GridColumndelivery_date, Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndescription, Me.GridColumncolor, Me.GridColumncolor_desc, Me.GridColumnsilhouette, Me.GridColumnfit, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnage_in_store, Me.GridColumnfirst_del, Me.GridColumnsal_qty, Me.GridColumnsoh_qty, Me.GridColumnactual_salthru, Me.GridColumntarget_salthru})
         Me.GVData.GridControl = Me.GCData
-        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumnsal_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumnsoh_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "actual_salthru", Me.GridColumnactual_salthru, "", "act_salthru_groupsum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "target_salthru", Me.GridColumntarget_salthru, "{0:N2}")})
+        Me.GVData.GroupCount = 1
+        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumnsal_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumnsoh_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "actual_salthru", Me.GridColumnactual_salthru, "{0:N2}", "act_salthru_groupsum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "target_salthru", Me.GridColumntarget_salthru, "{0:N2}")})
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.ReadOnly = True
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
+        Me.GVData.OptionsView.ShowGroupedColumns = True
         Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndesign_code, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnid_design
         '
@@ -298,7 +352,7 @@ Partial Class FormSalthruCompare
         Me.GridColumnactual_salthru.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnactual_salthru.FieldName = "actual_salthru"
         Me.GridColumnactual_salthru.Name = "GridColumnactual_salthru"
-        Me.GridColumnactual_salthru.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "actual_salthru", "", "act_salthru_sum")})
+        Me.GridColumnactual_salthru.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "actual_salthru", "{0:N2}", "act_salthru_sum")})
         Me.GridColumnactual_salthru.Visible = True
         Me.GridColumnactual_salthru.VisibleIndex = 14
         '
@@ -327,6 +381,8 @@ Partial Class FormSalthruCompare
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -364,4 +420,9 @@ Partial Class FormSalthruCompare
     Friend WithEvents BtnExportXls As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CCBESeason As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_salthru_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsalthru_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class
