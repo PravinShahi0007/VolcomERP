@@ -9052,7 +9052,7 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
 FROM tb_debit_note dn 
 INNER JOIN tb_debit_note_det dnd ON dnd.id_debit_note=dn.id_debit_note
 WHERE dn.id_debit_note='" & id_report & "'
-GROUP BY dn.id_debit_note", 0, True, "", "", "", "")
+GROUP BY dn.id_debit_note", -1, True, "", "", "", "")
 
             Dim id_report_now As String = dt_report(0)("id_report_status").ToString
             Dim amo As Decimal = dt_report(0)("val")
@@ -9224,7 +9224,6 @@ GROUP BY dn.id_debit_note", 0, True, "", "", "", "")
                 'm.report_mark_type = "222"
                 'm.send_email()
 
-                '
                 pushNotifFromDb(id_report, report_mark_type)
             End If
 
