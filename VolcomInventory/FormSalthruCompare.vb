@@ -71,6 +71,15 @@
     Dim tot_soh As Decimal
     Dim tot_sal_grp As Decimal
     Dim tot_soh_grp As Decimal
+
+    Dim tot_sal2 As Decimal
+    Dim tot_soh2 As Decimal
+    Dim tot_sal_grp2 As Decimal
+    Dim tot_soh_grp2 As Decimal
+
+    Dim tot_st_target As Decimal
+    Dim tot_st_target_grp As Decimal
+
     Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
         Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
@@ -81,12 +90,23 @@
             tot_soh = 0.0
             tot_sal_grp = 0.0
             tot_soh_grp = 0.0
+
+            tot_sal2 = 0.0
+            tot_soh2 = 0.0
+            tot_sal_grp2 = 0.0
+            tot_soh_grp2 = 0.0
+
+            tot_st_target = 0.00
+            tot_st_target_grp = 0.0
         End If
 
         ' Calculation 
         If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
             Dim sal As Decimal = myCoalesce(View.GetRowCellValue(e.RowHandle, "sal_qty"), 0.00)
             Dim soh As Decimal = myCoalesce(View.GetRowCellValue(e.RowHandle, "soh_qty"), 0.00)
+            Dim st_actual As Decimal = myCoalesce(View.GetRowCellValue(e.RowHandle, "actual_salthru"), 0.00)
+            Dim st_target As Decimal = myCoalesce(View.GetRowCellValue(e.RowHandle, "target_salthru"), 0.00)
+
             Select Case summaryID
                 Case "act_salthru_sum"
                     tot_sal += sal
@@ -94,6 +114,14 @@
                 Case "act_salthru_groupsum"
                     tot_sal_grp += sal
                     tot_soh_grp += soh
+                Case "sum_diff_salthru"
+                    tot_sal2 += sal
+                    tot_soh2 += soh
+                    tot_st_target = st_target
+                Case "group_sum_diff_salthru"
+                    tot_sal_grp2 += sal
+                    tot_soh_grp2 += soh
+                    tot_st_target_grp = st_target
             End Select
         End If
 
@@ -111,6 +139,20 @@
                     Dim sum_res As Decimal = 0.0
                     Try
                         sum_res = (tot_sal_grp / (tot_sal_grp + tot_soh_grp)) * 100
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "sum_diff_salthru"
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = ((tot_sal2 / (tot_sal2 + tot_soh2)) * 100) - tot_st_target
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "group_sum_diff_salthru"
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = ((tot_sal_grp2 / (tot_sal_grp2 + tot_soh_grp2)) * 100) - tot_st_target_grp
                     Catch ex As Exception
                     End Try
                     e.TotalValue = sum_res

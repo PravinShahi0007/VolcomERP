@@ -54,6 +54,7 @@ Partial Class FormSalthruCompare
         Me.GridColumnactual_salthru = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntarget_salthru = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnproduct_description = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiff_salthru = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -190,10 +191,10 @@ Partial Class FormSalthruCompare
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_design, Me.GridColumnseason, Me.GridColumndel, Me.GridColumndelivery_date, Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndescription, Me.GridColumncolor, Me.GridColumncolor_desc, Me.GridColumnsilhouette, Me.GridColumnfit, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnage_in_store, Me.GridColumnfirst_del, Me.GridColumnsal_qty, Me.GridColumnsoh_qty, Me.GridColumnactual_salthru, Me.GridColumntarget_salthru, Me.GridColumnproduct_description})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_design, Me.GridColumnseason, Me.GridColumndel, Me.GridColumndelivery_date, Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndescription, Me.GridColumncolor, Me.GridColumncolor_desc, Me.GridColumnsilhouette, Me.GridColumnfit, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnage_in_store, Me.GridColumnfirst_del, Me.GridColumnsal_qty, Me.GridColumnsoh_qty, Me.GridColumnactual_salthru, Me.GridColumntarget_salthru, Me.GridColumnproduct_description, Me.GridColumndiff_salthru})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupCount = 1
-        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumnsal_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumnsoh_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "actual_salthru", Me.GridColumnactual_salthru, "{0:N2}", "act_salthru_groupsum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "target_salthru", Me.GridColumntarget_salthru, "{0:N2}")})
+        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumnsal_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumnsoh_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "actual_salthru", Me.GridColumnactual_salthru, "{0:N2}%", "act_salthru_groupsum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "target_salthru", Me.GridColumntarget_salthru, "{0:N2}%"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "diff_salthru", Me.GridColumndiff_salthru, "{0:N2} %", "group_sum_diff_salthru")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -349,22 +350,20 @@ Partial Class FormSalthruCompare
         'GridColumnactual_salthru
         '
         Me.GridColumnactual_salthru.Caption = "Actual Salthru"
-        Me.GridColumnactual_salthru.DisplayFormat.FormatString = "N2"
+        Me.GridColumnactual_salthru.DisplayFormat.FormatString = "{0:N2}%"
         Me.GridColumnactual_salthru.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnactual_salthru.FieldName = "actual_salthru"
         Me.GridColumnactual_salthru.Name = "GridColumnactual_salthru"
-        Me.GridColumnactual_salthru.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "actual_salthru", "{0:N2}", "act_salthru_sum")})
         Me.GridColumnactual_salthru.Visible = True
         Me.GridColumnactual_salthru.VisibleIndex = 14
         '
         'GridColumntarget_salthru
         '
         Me.GridColumntarget_salthru.Caption = "Target Salthru"
-        Me.GridColumntarget_salthru.DisplayFormat.FormatString = "N2"
+        Me.GridColumntarget_salthru.DisplayFormat.FormatString = "{0:N2}%"
         Me.GridColumntarget_salthru.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumntarget_salthru.FieldName = "target_salthru"
         Me.GridColumntarget_salthru.Name = "GridColumntarget_salthru"
-        Me.GridColumntarget_salthru.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "target_salthru", "{0:N2}")})
         Me.GridColumntarget_salthru.Visible = True
         Me.GridColumntarget_salthru.VisibleIndex = 15
         '
@@ -375,6 +374,16 @@ Partial Class FormSalthruCompare
         Me.GridColumnproduct_description.Name = "GridColumnproduct_description"
         Me.GridColumnproduct_description.Visible = True
         Me.GridColumnproduct_description.VisibleIndex = 16
+        '
+        'GridColumndiff_salthru
+        '
+        Me.GridColumndiff_salthru.Caption = "Diff"
+        Me.GridColumndiff_salthru.DisplayFormat.FormatString = "{0:N2} %"
+        Me.GridColumndiff_salthru.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiff_salthru.FieldName = "diff_salthru"
+        Me.GridColumndiff_salthru.Name = "GridColumndiff_salthru"
+        Me.GridColumndiff_salthru.Visible = True
+        Me.GridColumndiff_salthru.VisibleIndex = 16
         '
         'FormSalthruCompare
         '
@@ -435,4 +444,5 @@ Partial Class FormSalthruCompare
     Friend WithEvents GridColumnid_salthru_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsalthru_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnproduct_description As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndiff_salthru As DevExpress.XtraGrid.Columns.GridColumn
 End Class
