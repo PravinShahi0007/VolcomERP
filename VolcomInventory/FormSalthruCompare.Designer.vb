@@ -76,8 +76,8 @@ Partial Class FormSalthruCompare
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnproduct_description = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -220,8 +220,9 @@ Partial Class FormSalthruCompare
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_design, Me.GridColumnseason, Me.GridColumndel, Me.GridColumndelivery_date, Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndescription, Me.GridColumncolor, Me.GridColumncolor_desc, Me.GridColumnsilhouette, Me.GridColumnfit, Me.GridColumnage_in_store, Me.GridColumnfirst_del, Me.GridColumnsal_qty, Me.GridColumnsoh_qty, Me.GridColumnactual_salthru, Me.GridColumntarget_salthru, Me.GridColumndiff_salthru})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_design, Me.GridColumnseason, Me.GridColumndel, Me.GridColumndelivery_date, Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndescription, Me.GridColumncolor, Me.GridColumncolor_desc, Me.GridColumnsilhouette, Me.GridColumnfit, Me.GridColumnage_in_store, Me.GridColumnfirst_del, Me.GridColumnsal_qty, Me.GridColumnsoh_qty, Me.GridColumnactual_salthru, Me.GridColumntarget_salthru, Me.GridColumndiff_salthru, Me.GridColumnproduct_description})
         Me.GVData.GridControl = Me.GCData
+        Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumnsal_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumnsoh_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "actual_salthru", Me.GridColumnactual_salthru, "{0:N2}%", "act_salthru_groupsum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "target_salthru", Me.GridColumntarget_salthru, "{0:N2}%"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "diff_salthru", Me.GridColumndiff_salthru, "{0:N2} %", "group_sum_diff_salthru")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -231,6 +232,7 @@ Partial Class FormSalthruCompare
         Me.GVData.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnproduct_description, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnid_design
         '
@@ -425,10 +427,9 @@ Partial Class FormSalthruCompare
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn21})
         Me.GVProduct.GridControl = Me.GCProduct
-        Me.GVProduct.GroupCount = 1
-        Me.GVProduct.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumn16, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumn17, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "actual_salthru", Me.GridColumn18, "{0:N2}%", "act_salthru_groupsum"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "target_salthru", Me.GridColumn19, "{0:N2}%"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "diff_salthru", Me.GridColumn21, "{0:N2} %", "group_sum_diff_salthru")})
+        Me.GVProduct.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumn16, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumn17, "{0:N0}")})
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVProduct.OptionsBehavior.ReadOnly = True
@@ -437,7 +438,6 @@ Partial Class FormSalthruCompare
         Me.GVProduct.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVProduct.OptionsView.ShowFooter = True
         Me.GVProduct.OptionsView.ShowGroupPanel = False
-        Me.GVProduct.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn20, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn1
         '
@@ -601,14 +601,6 @@ Partial Class FormSalthruCompare
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 15
         '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Product"
-        Me.GridColumn20.FieldName = "product_description"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 16
-        '
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Diff"
@@ -618,6 +610,14 @@ Partial Class FormSalthruCompare
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 16
+        '
+        'GridColumnproduct_description
+        '
+        Me.GridColumnproduct_description.Caption = "Product"
+        Me.GridColumnproduct_description.FieldName = "product_description"
+        Me.GridColumnproduct_description.Name = "GridColumnproduct_description"
+        Me.GridColumnproduct_description.Visible = True
+        Me.GridColumnproduct_description.VisibleIndex = 15
         '
         'FormSalthruCompare
         '
@@ -706,6 +706,6 @@ Partial Class FormSalthruCompare
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnproduct_description As DevExpress.XtraGrid.Columns.GridColumn
 End Class
