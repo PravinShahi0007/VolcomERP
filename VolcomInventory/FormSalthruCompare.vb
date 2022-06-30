@@ -56,9 +56,17 @@
         'type
         Dim id_salthru_type As String = SLEType.EditValue.ToString
 
-        Dim query As String = "CALL view_compare_sal_thru('" + date_until_selected + "','" + id_salthru_type + "', '" + where_string + "')"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCData.DataSource = data
+
+        If XTCData.SelectedTabPageIndex = 0 Then
+            Dim query As String = "CALL view_compare_sal_thru('" + date_until_selected + "','" + id_salthru_type + "', '" + where_string + "')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCData.DataSource = data
+        Else
+            Dim query As String = "CALL view_compare_sal_thru_product('" + date_until_selected + "','" + id_salthru_type + "', '" + where_string + "')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCProduct.DataSource = data
+        End If
+
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
@@ -197,4 +205,23 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub SLEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEType.EditValueChanged
+        resetView()
+    End Sub
+
+    Sub resetView()
+        GCData.DataSource = Nothing
+        GCProduct.DataSource = Nothing
+    End Sub
+
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+        resetView()
+    End Sub
+
+    Private Sub CCBESeason_EditValueChanged(sender As Object, e As EventArgs) Handles CCBESeason.EditValueChanged
+        resetView()
+    End Sub
+
+
 End Class
