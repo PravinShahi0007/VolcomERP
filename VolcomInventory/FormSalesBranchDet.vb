@@ -1037,7 +1037,7 @@ Public Class FormSalesBranchDet
 
     Sub loadFromPOS()
         Dim query_head As String = "
-            SELECT c.id_store_type, SUM(d.qty * d.price) AS amount
+            SELECT c.id_store_type, SUM(d.qty * IF(d.is_free_promo = 2, d.price, 0)) AS amount
             FROM tb_pos_sale_det AS d
             LEFT JOIN tb_pos_sale AS s ON d.id_pos_sale = s.id_pos_sale
             LEFT JOIN tb_m_comp AS c ON d.id_comp_sup = c.id_comp
@@ -1066,7 +1066,7 @@ Public Class FormSalesBranchDet
 
         Dim query_detail As String = "
             -- CARD FULL
-            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, t.id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT(t.card_name, ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, (s.card - (s.card * (IFNULL(t.discount, 0) / 100))) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
+            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, t.id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT(t.card_name, ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, SUM(s.card - (s.card * (IFNULL(t.discount, 0) / 100))) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
             FROM tb_pos_sale AS s
             LEFT JOIN tb_pos_card_type AS t ON s.id_card_type = t.id_card
             LEFT JOIN tb_a_acc AS a ON t.id_acc = a.id_acc
@@ -1079,7 +1079,7 @@ Public Class FormSalesBranchDet
             UNION ALL
 
             -- CARD DISCOUNT
-            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, t.discount_acc AS id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT('DISCOUNT ', t.card_name, ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, (s.card * (IFNULL(t.discount, 0) / 100)) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
+            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, t.discount_acc AS id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT('DISCOUNT ', t.card_name, ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, SUM(s.card * (IFNULL(t.discount, 0) / 100)) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
             FROM tb_pos_sale AS s
             LEFT JOIN tb_pos_card_type AS t ON s.id_card_type = t.id_card
             LEFT JOIN tb_a_acc AS a ON t.discount_acc = a.id_acc
@@ -1092,7 +1092,7 @@ Public Class FormSalesBranchDet
             UNION ALL
 
             -- CASH
-            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, 3541 AS id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT('PENJUALAN TUNAI', ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, SUM(s.cash - s.change) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
+            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, 3541 AS id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT('PENJUALAN TUNAI', ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, SUM(s.cash - s.change + s.voucher) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
             FROM tb_pos_sale AS s
             LEFT JOIN tb_a_acc AS a ON a.id_acc = 3541
             LEFT JOIN tb_m_departement AS d ON s.id_outlet = d.id_outlet
