@@ -416,6 +416,7 @@ Public Class FormProductionPLToWHRecDet
         If action = "ins" Then
             Dim query As String = "CALL view_pl_prod('" + id_pl_prod_order + "', '1', '" + id_pd_alloc + "') "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            'bisa dihapus seharusnya nanti cek lagi
             For i As Integer = 0 To (data.Rows.Count - 1)
                 Dim id_pl_prod_order_det As String = data.Rows(i)("id_pl_prod_order_det").ToString
                 Dim queryx As String = "SELECT ('') AS no, a.id_product, c.product_full_code,CONCAT(c.product_full_code, a.pl_prod_order_det_counting) AS code, "
@@ -434,27 +435,27 @@ Public Class FormProductionPLToWHRecDet
             Next
             GCRetDetail.DataSource = data
         ElseIf action = "upd" Then
-            dt.Clear()
+            'dt.Clear()
             Dim query As String = "CALL view_pl_prod_rec('" + id_pl_prod_order_rec + "', '1')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            For i As Integer = 0 To (data.Rows.Count - 1)
-                id_pl_prod_order_det_list.Add(data.Rows(i)("id_pl_prod_order_det").ToString)
-                id_pl_prod_order_rec_det_list.Add(data.Rows(i)("id_pl_prod_order_rec_det").ToString)
-                Dim id_pl_prod_order_det As String = data.Rows(i)("id_pl_prod_order_det").ToString
-                Dim queryx As String = "SELECT ('') AS no, a.id_product, c.product_full_code,CONCAT(c.product_full_code, a.pl_prod_order_det_counting) AS code, "
-                queryx += "b.id_pl_prod_order_det, (a.pl_prod_order_det_counting) AS counting_code, a.id_pl_prod_order_det_unique, ('2') AS is_fix, b.id_pl_prod_order_det, dsg.is_old_design "
-                queryx += "FROM tb_pl_prod_order_det_counting a "
-                queryx += "INNER JOIN tb_pl_prod_order_det b ON a.id_pl_prod_order_det = b.id_pl_prod_order_det "
-                queryx += "INNER JOIN tb_m_product c ON a.id_product = c.id_product "
-                queryx += "INNER JOIN tb_m_design dsg ON dsg.id_design = c.id_design "
-                queryx += "WHERE a.id_pl_prod_order_det = '" + id_pl_prod_order_det + "' "
-                Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
-                If dt.Rows.Count = 0 Then
-                    dt = datax
-                Else
-                    dt.Merge(datax)
-                End If
-            Next
+            'For i As Integer = 0 To (data.Rows.Count - 1)
+            '    id_pl_prod_order_det_list.Add(data.Rows(i)("id_pl_prod_order_det").ToString)
+            '    id_pl_prod_order_rec_det_list.Add(data.Rows(i)("id_pl_prod_order_rec_det").ToString)
+            '    Dim id_pl_prod_order_det As String = data.Rows(i)("id_pl_prod_order_det").ToString
+            '    Dim queryx As String = "SELECT ('') AS no, a.id_product, c.product_full_code,CONCAT(c.product_full_code, a.pl_prod_order_det_counting) AS code, "
+            '    queryx += "b.id_pl_prod_order_det, (a.pl_prod_order_det_counting) AS counting_code, a.id_pl_prod_order_det_unique, ('2') AS is_fix, b.id_pl_prod_order_det, dsg.is_old_design "
+            '    queryx += "FROM tb_pl_prod_order_det_counting a "
+            '    queryx += "INNER JOIN tb_pl_prod_order_det b ON a.id_pl_prod_order_det = b.id_pl_prod_order_det "
+            '    queryx += "INNER JOIN tb_m_product c ON a.id_product = c.id_product "
+            '    queryx += "INNER JOIN tb_m_design dsg ON dsg.id_design = c.id_design "
+            '    queryx += "WHERE a.id_pl_prod_order_det = '" + id_pl_prod_order_det + "' "
+            '    Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            '    If dt.Rows.Count = 0 Then
+            '        dt = datax
+            '    Else
+            '        dt.Merge(datax)
+            '    End If
+            'Next
             GCRetDetail.DataSource = data
         End If
         check_but()
@@ -502,7 +503,7 @@ Public Class FormProductionPLToWHRecDet
             Dim pl_prod_order_rec_note As String = addSlashes(MENote.Text)
             Dim id_report_status As String = LEReportStatus.EditValue
             Dim id_pl_prod_order_det, pl_prod_order_rec_det_qty, pl_prod_order_rec_det_note As String
-            Dim id_pl_prod_order_rec_det As String
+            'Dim id_pl_prod_order_rec_det As String
             Dim bom_unit_price As String = decimalSQL(TxtUnitCost.EditValue.ToString)
             Dim id_wh_drawer As String = SLEDrawer.EditValue.ToString
             id_comp_contact_to = get_company_x(SLEStorage.EditValue.ToString, "6")
@@ -595,116 +596,116 @@ Public Class FormProductionPLToWHRecDet
                     Cursor = Cursors.Default
                 End If
             ElseIf action = "upd" Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Cursor = Cursors.WaitCursor
-                    Try
-                        'edit main table
-                        pl_prod_order_rec_number = addSlashes(TxtRetOutNumber.Text)
-                        query = "UPDATE tb_pl_prod_order_rec SET id_pl_prod_order = '" + id_pl_prod_order + "', pl_prod_order_rec_number = '" + pl_prod_order_rec_number + "', id_comp_contact_to = '" + id_comp_contact_to + "', id_comp_contact_from = '" + id_comp_contact_from + "', id_report_status = '" + id_report_status + "', pl_prod_order_rec_note = '" + pl_prod_order_rec_note + "', id_wh_drawer='" + id_wh_drawer + "',last_update = NOW(), last_update_by = " + id_user + " WHERE id_pl_prod_order_rec = '" + id_pl_prod_order_rec + "' "
-                        execute_non_query(query, True, "", "", "", "")
+                'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                'If confirm = Windows.Forms.DialogResult.Yes Then
+                '    Cursor = Cursors.WaitCursor
+                '    Try
+                '        'edit main table
+                '        pl_prod_order_rec_number = addSlashes(TxtRetOutNumber.Text)
+                '        query = "UPDATE tb_pl_prod_order_rec SET id_pl_prod_order = '" + id_pl_prod_order + "', pl_prod_order_rec_number = '" + pl_prod_order_rec_number + "', id_comp_contact_to = '" + id_comp_contact_to + "', id_comp_contact_from = '" + id_comp_contact_from + "', id_report_status = '" + id_report_status + "', pl_prod_order_rec_note = '" + pl_prod_order_rec_note + "', id_wh_drawer='" + id_wh_drawer + "',last_update = NOW(), last_update_by = " + id_user + " WHERE id_pl_prod_order_rec = '" + id_pl_prod_order_rec + "' "
+                '        execute_non_query(query, True, "", "", "", "")
 
-                        'edit detail table
-                        Dim jum_ins_j As Integer = 0
-                        Dim query_detail As String = ""
-                        If GVRetDetail.RowCount > 0 Then
-                            query_detail = "INSERT tb_pl_prod_order_rec_det(id_pl_prod_order_rec, id_pl_prod_order_det, pl_prod_order_rec_det_qty, pl_prod_order_rec_det_note) VALUES "
-                        End If
-                        For j As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
-                            Try
-                                id_pl_prod_order_rec_det = GVRetDetail.GetRowCellValue(j, "id_pl_prod_order_rec_det").ToString
-                                id_pl_prod_order_det = GVRetDetail.GetRowCellValue(j, "id_pl_prod_order_det").ToString
-                                pl_prod_order_rec_det_qty = decimalSQL(GVRetDetail.GetRowCellValue(j, "pl_prod_order_rec_det_qty").ToString)
-                                pl_prod_order_rec_det_note = GVRetDetail.GetRowCellValue(j, "pl_prod_order_rec_det_note").ToString
-                                If id_pl_prod_order_rec_det = "0" Then
-                                    If jum_ins_j > 0 Then
-                                        query_detail += ", "
-                                    End If
-                                    query_detail += "('" + id_pl_prod_order_rec + "', '" + id_pl_prod_order_det + "', '" + pl_prod_order_rec_det_qty + "', '" + pl_prod_order_rec_det_note + "') "
-                                    jum_ins_j = jum_ins_j + 1
-                                Else
-                                    query = "UPDATE tb_pl_prod_order_rec_det SET id_pl_prod_order_det = '" + id_pl_prod_order_det + "', pl_prod_order_rec_det_qty = '" + pl_prod_order_rec_det_qty + "', pl_prod_order_rec_det_note = '" + pl_prod_order_rec_det_note + "' WHERE id_pl_prod_order_rec_det = '" + id_pl_prod_order_rec_det + "'"
-                                    execute_non_query(query, True, "", "", "", "")
-                                    id_pl_prod_order_rec_det_list.Remove(id_pl_prod_order_rec_det)
-                                End If
-                            Catch ex As Exception
-                                ex.ToString()
-                            End Try
-                        Next
-                        If jum_ins_j > 0 Then
-                            execute_non_query(query_detail, True, "", "", "", "")
-                        End If
+                '        'edit detail table
+                '        Dim jum_ins_j As Integer = 0
+                '        Dim query_detail As String = ""
+                '        If GVRetDetail.RowCount > 0 Then
+                '            query_detail = "INSERT tb_pl_prod_order_rec_det(id_pl_prod_order_rec, id_pl_prod_order_det, pl_prod_order_rec_det_qty, pl_prod_order_rec_det_note) VALUES "
+                '        End If
+                '        For j As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
+                '            Try
+                '                id_pl_prod_order_rec_det = GVRetDetail.GetRowCellValue(j, "id_pl_prod_order_rec_det").ToString
+                '                id_pl_prod_order_det = GVRetDetail.GetRowCellValue(j, "id_pl_prod_order_det").ToString
+                '                pl_prod_order_rec_det_qty = decimalSQL(GVRetDetail.GetRowCellValue(j, "pl_prod_order_rec_det_qty").ToString)
+                '                pl_prod_order_rec_det_note = GVRetDetail.GetRowCellValue(j, "pl_prod_order_rec_det_note").ToString
+                '                If id_pl_prod_order_rec_det = "0" Then
+                '                    If jum_ins_j > 0 Then
+                '                        query_detail += ", "
+                '                    End If
+                '                    query_detail += "('" + id_pl_prod_order_rec + "', '" + id_pl_prod_order_det + "', '" + pl_prod_order_rec_det_qty + "', '" + pl_prod_order_rec_det_note + "') "
+                '                    jum_ins_j = jum_ins_j + 1
+                '                Else
+                '                    query = "UPDATE tb_pl_prod_order_rec_det SET id_pl_prod_order_det = '" + id_pl_prod_order_det + "', pl_prod_order_rec_det_qty = '" + pl_prod_order_rec_det_qty + "', pl_prod_order_rec_det_note = '" + pl_prod_order_rec_det_note + "' WHERE id_pl_prod_order_rec_det = '" + id_pl_prod_order_rec_det + "'"
+                '                    execute_non_query(query, True, "", "", "", "")
+                '                    id_pl_prod_order_rec_det_list.Remove(id_pl_prod_order_rec_det)
+                '                End If
+                '            Catch ex As Exception
+                '                ex.ToString()
+                '            End Try
+                '        Next
+                '        If jum_ins_j > 0 Then
+                '            execute_non_query(query_detail, True, "", "", "", "")
+                '        End If
 
-                        'delete sisa
-                        For k As Integer = 0 To (id_pl_prod_order_rec_det_list.Count - 1)
-                            Try
-                                query = "DELETE FROM tb_pl_prod_order_rec_det WHERE id_pl_prod_order_rec_det = '" + id_pl_prod_order_rec_det_list(k) + "' "
-                                execute_non_query(query, True, "", "", "", "")
-                            Catch ex As Exception
-                                ex.ToString()
-                            End Try
-                        Next
+                '        'delete sisa
+                '        For k As Integer = 0 To (id_pl_prod_order_rec_det_list.Count - 1)
+                '            Try
+                '                query = "DELETE FROM tb_pl_prod_order_rec_det WHERE id_pl_prod_order_rec_det = '" + id_pl_prod_order_rec_det_list(k) + "' "
+                '                execute_non_query(query, True, "", "", "", "")
+                '            Catch ex As Exception
+                '                ex.ToString()
+                '            End Try
+                '        Next
 
-                        'get all detail
-                        Dim query_get_detail As String = "SELECT a.id_pl_prod_order_rec_det, a.id_pl_prod_order_det, c.id_product FROM tb_pl_prod_order_rec_det a "
-                        query_get_detail += "INNER JOIN tb_pl_prod_order_det b ON a.id_pl_prod_order_det = b.id_pl_prod_order_det "
-                        query_get_detail += "INNER JOIN tb_prod_order_det b1 ON b.id_prod_order_det = b1.id_prod_order_det "
-                        query_get_detail += "INNER JOIN tb_prod_demand_product c ON b1.id_prod_demand_product = c.id_prod_demand_product "
-                        query_get_detail += "WHERE a.id_pl_prod_order_rec = '" + id_pl_prod_order_rec + "' "
-                        Dim data_get_detail As DataTable = execute_query(query_get_detail, True, -1, "", "", "", "")
+                '        'get all detail
+                '        Dim query_get_detail As String = "SELECT a.id_pl_prod_order_rec_det, a.id_pl_prod_order_det, c.id_product FROM tb_pl_prod_order_rec_det a "
+                '        query_get_detail += "INNER JOIN tb_pl_prod_order_det b ON a.id_pl_prod_order_det = b.id_pl_prod_order_det "
+                '        query_get_detail += "INNER JOIN tb_prod_order_det b1 ON b.id_prod_order_det = b1.id_prod_order_det "
+                '        query_get_detail += "INNER JOIN tb_prod_demand_product c ON b1.id_prod_demand_product = c.id_prod_demand_product "
+                '        query_get_detail += "WHERE a.id_pl_prod_order_rec = '" + id_pl_prod_order_rec + "' "
+                '        Dim data_get_detail As DataTable = execute_query(query_get_detail, True, -1, "", "", "", "")
 
-                        'counting
-                        Dim query_counting As String = ""
-                        If GVBarcode.RowCount > 0 Then
-                            query_counting = "INSERT INTO tb_pl_prod_order_rec_det_counting(id_pl_prod_order_rec_det, pl_prod_order_rec_det_counting, id_product, bom_unit_price) VALUES "
-                        End If
-                        Dim jum_ins As Integer = 0
-                        For k As Integer = 0 To (GVBarcode.RowCount - 1)
-                            Dim id_pl_prod_order_det_counting As String = GVBarcode.GetRowCellValue(k, "id_pl_prod_order_det").ToString
-                            Dim pl_prod_order_rec_det_counting As String = GVBarcode.GetRowCellValue(k, "counting_code").ToString
-                            Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetRowCellValue(k, "id_pl_prod_order_rec_det_unique").ToString
-                            If id_pl_prod_order_rec_det_unique = "0" Then
-                                For kx As Integer = 0 To (data_get_detail.Rows.Count - 1)
-                                    If id_pl_prod_order_det_counting = data_get_detail.Rows(kx)("id_pl_prod_order_det").ToString Then
-                                        If jum_ins > 0 Then
-                                            query_counting += ", "
-                                        End If
-                                        query_counting += "('" + data_get_detail.Rows(kx)("id_pl_prod_order_rec_det").ToString + "', '" + pl_prod_order_rec_det_counting + "', '" + data_get_detail.Rows(kx)("id_product").ToString + "', '" + bom_unit_price + "') "
-                                        jum_ins = jum_ins + 1
-                                        Exit For
-                                    End If
-                                Next
-                            Else
-                                id_pl_prod_order_rec_det_unique_list.Remove(id_pl_prod_order_rec_det_unique)
-                            End If
-                        Next
-                        If jum_ins > 0 Then
-                            execute_non_query(query_counting, True, "", "", "", "")
-                        End If
+                '        'counting
+                '        Dim query_counting As String = ""
+                '        If GVBarcode.RowCount > 0 Then
+                '            query_counting = "INSERT INTO tb_pl_prod_order_rec_det_counting(id_pl_prod_order_rec_det, pl_prod_order_rec_det_counting, id_product, bom_unit_price) VALUES "
+                '        End If
+                '        Dim jum_ins As Integer = 0
+                '        For k As Integer = 0 To (GVBarcode.RowCount - 1)
+                '            Dim id_pl_prod_order_det_counting As String = GVBarcode.GetRowCellValue(k, "id_pl_prod_order_det").ToString
+                '            Dim pl_prod_order_rec_det_counting As String = GVBarcode.GetRowCellValue(k, "counting_code").ToString
+                '            Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetRowCellValue(k, "id_pl_prod_order_rec_det_unique").ToString
+                '            If id_pl_prod_order_rec_det_unique = "0" Then
+                '                For kx As Integer = 0 To (data_get_detail.Rows.Count - 1)
+                '                    If id_pl_prod_order_det_counting = data_get_detail.Rows(kx)("id_pl_prod_order_det").ToString Then
+                '                        If jum_ins > 0 Then
+                '                            query_counting += ", "
+                '                        End If
+                '                        query_counting += "('" + data_get_detail.Rows(kx)("id_pl_prod_order_rec_det").ToString + "', '" + pl_prod_order_rec_det_counting + "', '" + data_get_detail.Rows(kx)("id_product").ToString + "', '" + bom_unit_price + "') "
+                '                        jum_ins = jum_ins + 1
+                '                        Exit For
+                '                    End If
+                '                Next
+                '            Else
+                '                id_pl_prod_order_rec_det_unique_list.Remove(id_pl_prod_order_rec_det_unique)
+                '            End If
+                '        Next
+                '        If jum_ins > 0 Then
+                '            execute_non_query(query_counting, True, "", "", "", "")
+                '        End If
 
-                        'delete sisa unique
-                        For k As Integer = 0 To (id_pl_prod_order_rec_det_unique_list.Count - 1)
-                            Try
-                                query = "DELETE FROM tb_pl_prod_order_rec_det_counting WHERE id_pl_prod_order_rec_det_unique = '" + id_pl_prod_order_rec_det_unique_list(k) + "' "
-                                execute_non_query(query, True, "", "", "", "")
-                            Catch ex As Exception
-                                ex.ToString()
-                            End Try
-                        Next
+                '        'delete sisa unique
+                '        For k As Integer = 0 To (id_pl_prod_order_rec_det_unique_list.Count - 1)
+                '            Try
+                '                query = "DELETE FROM tb_pl_prod_order_rec_det_counting WHERE id_pl_prod_order_rec_det_unique = '" + id_pl_prod_order_rec_det_unique_list(k) + "' "
+                '                execute_non_query(query, True, "", "", "", "")
+                '            Catch ex As Exception
+                '                ex.ToString()
+                '            End Try
+                '        Next
 
-                        'View
-                        FormProductionPLToWHRec.viewPL()
-                        FormProductionPLToWHRec.GVPL.FocusedRowHandle = find_row(FormProductionPLToWHRec.GVPL, "id_pl_prod_order_rec", id_pl_prod_order_rec)
-                        FormProductionPLToWHRec.view_sample_purc()
-                        action = "upd"
-                        actionLoad()
-                        exportToBOF(False)
-                        infoCustom("Document #" + pl_prod_order_rec_number + " was edited successfully")
-                    Catch ex As Exception
-                        errorConnection()
-                    End Try
-                    Cursor = Cursors.Default
-                End If
+                '        'View
+                '        FormProductionPLToWHRec.viewPL()
+                '        FormProductionPLToWHRec.GVPL.FocusedRowHandle = find_row(FormProductionPLToWHRec.GVPL, "id_pl_prod_order_rec", id_pl_prod_order_rec)
+                '        FormProductionPLToWHRec.view_sample_purc()
+                '        action = "upd"
+                '        actionLoad()
+                '        exportToBOF(False)
+                '        infoCustom("Document #" + pl_prod_order_rec_number + " was edited successfully")
+                '    Catch ex As Exception
+                '        errorConnection()
+                '    End Try
+                '    Cursor = Cursors.Default
+                'End If
             End If
         End If
         Cursor = Cursors.Default
