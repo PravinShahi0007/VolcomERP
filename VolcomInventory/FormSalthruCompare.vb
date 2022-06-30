@@ -193,16 +193,30 @@
     End Sub
 
     Private Sub BtnExportXls_Click(sender As Object, e As EventArgs) Handles BtnExportXls.Click
-        If GVData.RowCount > 0 Then
-            Cursor = Cursors.WaitCursor
-            Dim path As String = Application.StartupPath & "\download\"
-            'create directory if not exist
-            If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
+        If XTCData.SelectedTabPageIndex = 0 Then
+            If GVData.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "sth_acc_product.xlsx"
+                exportToXLS(path, "list", GCData)
+                Cursor = Cursors.Default
             End If
-            path = path + "report.xlsx"
-            exportToXLS(path, "list", GCData)
-            Cursor = Cursors.Default
+        Else
+            If GVProduct.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "sth_product.xlsx"
+                exportToXLS(path, "list", GCProduct)
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
