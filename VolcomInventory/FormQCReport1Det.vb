@@ -13,7 +13,7 @@
     Public allow_sum As Decimal
     Public id_design As String = "-1"
 
-    Public is_qc_wash As String = "2"
+    Public design_need_wash As String = "2"
 
     Dim is_first_load As Boolean = False
 
@@ -23,8 +23,14 @@
         viewReportStatus() 'get report status
         view_pl_category()
         view_metode_type()
+        view_qc_wash()
         actionLoad()
         is_first_load = False
+    End Sub
+
+    Sub view_qc_wash()
+        Dim q As String = "SELECT `id_qc_wash`,`qc_wash` FROM `tb_lookup_qc_wash`"
+        viewSearchLookupQuery(SLEWash, q, "id_qc_wash", "qc_wash", "id_qc_wash")
     End Sub
 
     Sub view_metode_type()
@@ -65,6 +71,10 @@
     End Sub
 
     Sub actionLoad()
+        SLEWash.EditValue = "2"
+        SLEWash.Visible = False
+        LWash.Visible = False
+
         If id = "-1" Then
             BtnPrint.Enabled = False
             BMark.Enabled = False
@@ -89,7 +99,7 @@
             BtnInfoSrs.Enabled = True
 
             'View data
-            Dim query As String = "SELECT qr.`number`,qr.id_metode_qc,qr.id_pl_category,qr.`created_date`,qr.note
+            Dim query As String = "SELECT d.id_qc_wash AS need_wash,qr.id_qc_wash,qr.`number`,qr.id_metode_qc,qr.id_pl_category,qr.`created_date`,qr.note
 ,qr.id_report_status,qr.id_prod_order,qr.`id_prod_order_rec`,pdd.`id_design`,d.`design_name`
 ,ss.`season`,cd.class,cd.color,CONCAT(cd.class,' ',d.`design_name`,' ',cd.color) AS design_display_name 
 ,po.prod_order_number,rec.prod_order_rec_number,mtq.metode_qc
@@ -125,6 +135,7 @@ WHERE qr.id_qc_report1='" + id + "' "
             TERecNumber.Text = data.Rows(0)("prod_order_rec_number").ToString
             TENumber.Text = data.Rows(0)("number").ToString
             '
+            design_need_wash = data.Rows(0)("need_wash").ToString
             SLEMetode.EditValue = data.Rows(0)("id_metode_qc")
             DECreated.EditValue = data.Rows(0)("created_date")
             MENote.Text = data.Rows(0)("note").ToString
@@ -137,6 +148,7 @@ WHERE qr.id_qc_report1='" + id + "' "
             TxtSeason.Text = data.Rows(0)("season").ToString
             '
             SLEQCReport.EditValue = data.Rows(0)("id_pl_category").ToString
+            SLEWash.EditValue = data.Rows(0)("id_qc_wash").ToString
             '
             view_barcode_list()
             viewDetailReturn()
@@ -380,6 +392,8 @@ WHERE qr.id_qc_report1='" + id + "' "
         ElseIf Not cond_check Then
             errorCustom("Product : '" + sample_check + "' cannot exceed " + allow_sum.ToString("F2") + ", please check in Info Qty ! ")
             infoQty()
+        ElseIf SLEWash.EditValue = Nothing Or SLEWash.Text = "" Then
+            warningCustom("Please choose qc report for wash or non wash.")
         Else
             'check international dengan AQL
             Dim aql_ok As Boolean = True
@@ -449,8 +463,8 @@ WHERE qr.id_qc_report1='" + id + "' "
                             BtnSave.Enabled = False
 
                             'Main tbale
-                            query = "INSERT INTO tb_qc_report1(id_prod_order,id_metode_qc,id_prod_order_rec,id_pl_category, created_date, created_by, id_report_status) "
-                            query += "VALUES('" + id_prod_order + "','" & SLEMetode.EditValue.ToString & "','" + id_prod_order_rec + "','" + SLEQCReport.EditValue.ToString + "', NOW(),  '" + id_user + "', '" + id_report_status + "') ; SELECT LAST_INSERT_ID(); "
+                            query = "INSERT INTO tb_qc_report1(id_prod_order,id_metode_qc,id_prod_order_rec,id_pl_category, created_date, created_by, id_report_status, id_qc_wash) "
+                            query += "VALUES('" + id_prod_order + "','" & SLEMetode.EditValue.ToString & "','" + id_prod_order_rec + "','" + SLEQCReport.EditValue.ToString + "', NOW(),  '" + id_user + "', '" + id_report_status + "','" & SLEWash.EditValue.ToString & "') ; SELECT LAST_INSERT_ID(); "
                             id = execute_query(query, 0, True, "", "", "", "")
 
                             execute_non_query("CALL gen_number('" & id & "','385')", True, "", "", "", "")
@@ -489,7 +503,7 @@ WHERE qr.id_qc_report1='" + id + "' "
                         Try
 
                             'edit main table
-                            query = "UPDATE tb_qc_report1_det SET id_prod_order = '" + id_prod_order + "',id_prod_order_rec = '" + id_prod_order_rec + "',id_pl_category='" + SLEQCReport.EditValue.ToString + "',id_metode_qc='" & SLEMetode.EditValue.ToString & "' WHERE id_qc_report1 = '" + id + "' "
+                            query = "UPDATE tb_qc_report1_det SET id_prod_order = '" + id_prod_order + "',id_prod_order_rec = '" + id_prod_order_rec + "',id_pl_category='" + SLEQCReport.EditValue.ToString + "',id_metode_qc='" & SLEMetode.EditValue.ToString & "',id_qc_wash='" & SLEWash.EditValue.ToString & "' WHERE id_qc_report1 = '" + id + "' "
                             execute_non_query(query, True, "", "", "", "")
 
                             'edit detail table
@@ -559,6 +573,17 @@ WHERE qr.id_qc_report1='" + id + "' "
         ReportStyleGridview(Report.GVRetDetail)
 
         'Parse val
+        If design_need_wash = "1" Then
+            Report.LQCWash.Text = SLEWash.Text
+            Report.LQCWash.Visible = True
+            Report.LQcwashDesc.Visible = True
+            Report.LQcwashQuote.Visible = True
+        Else
+            Report.LQCWash.Visible = False
+            Report.LQcwashDesc.Visible = False
+            Report.LQcwashQuote.Visible = False
+        End If
+        '
         Report.LRecNo.Text = TERecNumber.Text
         Report.LQCType.Text = SLEQCReport.Text
         Report.LabelPO.Text = TxtOrderNumber.Text
@@ -631,8 +656,26 @@ WHERE qr.id_qc_report1='" + id + "' "
                             PanelNavBarcode.Visible = False
                         End If
                     End If
+
+                    SLEWash.EditValue = "2"
+                    SLEWash.Visible = False
+                    LWash.Visible = False
                 Else
                     view_barcode_list()
+
+                    'qc wash
+                    If design_need_wash = "2" Then
+                        'non qc wash
+                        SLEWash.EditValue = "2"
+                        SLEWash.Visible = False
+                        LWash.Visible = False
+                    Else
+                        'qc wash
+                        SLEWash.EditValue = Nothing
+                        SLEWash.Visible = True
+                        LWash.Visible = True
+                    End If
+
                     For i = 0 To GVRetDetail.RowCount - 1
                         countQty(GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString)
                     Next

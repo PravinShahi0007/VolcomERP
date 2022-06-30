@@ -11998,6 +11998,11 @@ WHERE id_item_pps='" & id_report & "'"
 
             If id_status_reportx = "6" Then
                 'complete
+                execute_non_query("UPDATE tb_prod_order po
+INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order=po.id_prod_order
+INNER JOIN tb_qc_report1 qr ON qr.id_prod_order_rec=rec.id_prod_order_rec AND qr.id_qc_wash=1 AND qr.id_pl_category=3 AND qr.id_qc_report1='" & id_report & "' 
+SET is_block_qc_in=1", True, "", "", "", "")
+
 
                 'log perubahan line list
                 Dim cd As New ClassDesign()

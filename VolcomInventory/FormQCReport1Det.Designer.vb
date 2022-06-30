@@ -23,6 +23,11 @@ Partial Class FormQCReport1Det
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormQCReport1Det))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopMiddle = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEWash = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LWash = New DevExpress.XtraEditors.LabelControl()
         Me.TERecNumber = New DevExpress.XtraEditors.TextEdit()
         Me.BtnInfoSrs = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
@@ -89,15 +94,12 @@ Partial Class FormQCReport1Det
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEWash = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMiddle.SuspendLayout()
+        CType(Me.SLEWash.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,8 +137,6 @@ Partial Class FormQCReport1Det
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
-        CType(Me.SLEWash.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -154,7 +154,7 @@ Partial Class FormQCReport1Det
         '
         Me.PanelControlTopMiddle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlTopMiddle.Controls.Add(Me.SLEWash)
-        Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl1)
+        Me.PanelControlTopMiddle.Controls.Add(Me.LWash)
         Me.PanelControlTopMiddle.Controls.Add(Me.TERecNumber)
         Me.PanelControlTopMiddle.Controls.Add(Me.BtnInfoSrs)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl9)
@@ -169,6 +169,46 @@ Partial Class FormQCReport1Det
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(558, 116)
         Me.PanelControlTopMiddle.TabIndex = 10003
+        '
+        'SLEWash
+        '
+        Me.SLEWash.Location = New System.Drawing.Point(79, 86)
+        Me.SLEWash.Name = "SLEWash"
+        Me.SLEWash.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEWash.Properties.View = Me.GridView1
+        Me.SLEWash.Size = New System.Drawing.Size(187, 20)
+        Me.SLEWash.TabIndex = 10021
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn9})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "ID"
+        Me.GridColumn5.FieldName = "id_qc_wash"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Wash"
+        Me.GridColumn9.FieldName = "qc_wash"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        '
+        'LWash
+        '
+        Me.LWash.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LWash.Location = New System.Drawing.Point(10, 89)
+        Me.LWash.Name = "LWash"
+        Me.LWash.Size = New System.Drawing.Size(45, 13)
+        Me.LWash.TabIndex = 10020
+        Me.LWash.Text = "QC Wash"
         '
         'TERecNumber
         '
@@ -890,46 +930,6 @@ Partial Class FormQCReport1Det
         Me.BScan.TabIndex = 5
         Me.BScan.Text = "Start Scan"
         '
-        'SLEWash
-        '
-        Me.SLEWash.Location = New System.Drawing.Point(79, 86)
-        Me.SLEWash.Name = "SLEWash"
-        Me.SLEWash.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEWash.Properties.View = Me.GridView1
-        Me.SLEWash.Size = New System.Drawing.Size(187, 20)
-        Me.SLEWash.TabIndex = 10021
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn9})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "ID"
-        Me.GridColumn5.FieldName = "id_qc_wash"
-        Me.GridColumn5.Name = "GridColumn5"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Wash"
-        Me.GridColumn9.FieldName = "qc_wash"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 0
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(10, 89)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl1.TabIndex = 10020
-        Me.LabelControl1.Text = "Type"
-        '
         'FormQCReport1Det
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -949,6 +949,8 @@ Partial Class FormQCReport1Det
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMiddle.ResumeLayout(False)
         Me.PanelControlTopMiddle.PerformLayout()
+        CType(Me.SLEWash.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -989,8 +991,6 @@ Partial Class FormQCReport1Det
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
-        CType(Me.SLEWash.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1067,5 +1067,5 @@ Partial Class FormQCReport1Det
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LWash As DevExpress.XtraEditors.LabelControl
 End Class

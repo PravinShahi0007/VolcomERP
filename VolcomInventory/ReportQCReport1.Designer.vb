@@ -45,6 +45,12 @@ Partial Public Class ReportQCReport1
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelNo = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.LQCWash = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LQcwashQuote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LQcwashDesc = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LMetodeQC = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LQCType = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
@@ -70,9 +76,6 @@ Partial Public Class ReportQCReport1
         Me.LabelNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LMetodeQC = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -341,12 +344,80 @@ Partial Public Class ReportQCReport1
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.LMetodeQC, Me.XrLabel7, Me.XrLabel4, Me.LQCType, Me.XrLabel6, Me.LRecNo, Me.XrLabel2, Me.XrLabel3, Me.XrLabel23, Me.LabelSeason, Me.XrLabel21, Me.LabelDesign, Me.XrLabel19, Me.XrLabel17, Me.LabelPO, Me.XrLabel20, Me.XrLabel18})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LQCWash, Me.LQcwashQuote, Me.LQcwashDesc, Me.XrLabel1, Me.LMetodeQC, Me.XrLabel7, Me.XrLabel4, Me.LQCType, Me.XrLabel6, Me.LRecNo, Me.XrLabel2, Me.XrLabel3, Me.XrLabel23, Me.LabelSeason, Me.XrLabel21, Me.LabelDesign, Me.XrLabel19, Me.XrLabel17, Me.LabelPO, Me.XrLabel20, Me.XrLabel18})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 29.12497!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(786.0!, 87.3334!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
         Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'LQCWash
+        '
+        Me.LQCWash.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LQCWash.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LQCWash.LocationFloat = New DevExpress.Utils.PointFloat(609.0864!, 54.29153!)
+        Me.LQCWash.Name = "LQCWash"
+        Me.LQCWash.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LQCWash.SizeF = New System.Drawing.SizeF(166.9135!, 13.58334!)
+        Me.LQCWash.StylePriority.UseBorders = False
+        Me.LQCWash.StylePriority.UseFont = False
+        Me.LQCWash.Text = "-"
+        '
+        'LQcwashQuote
+        '
+        Me.LQcwashQuote.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LQcwashQuote.LocationFloat = New DevExpress.Utils.PointFloat(597.6281!, 54.29153!)
+        Me.LQcwashQuote.Name = "LQcwashQuote"
+        Me.LQcwashQuote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LQcwashQuote.SizeF = New System.Drawing.SizeF(11.45831!, 13.58334!)
+        Me.LQcwashQuote.StylePriority.UseBorders = False
+        Me.LQcwashQuote.Text = ":"
+        '
+        'LQcwashDesc
+        '
+        Me.LQcwashDesc.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LQcwashDesc.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LQcwashDesc.LocationFloat = New DevExpress.Utils.PointFloat(495.4051!, 54.29159!)
+        Me.LQcwashDesc.Name = "LQcwashDesc"
+        Me.LQcwashDesc.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LQcwashDesc.SizeF = New System.Drawing.SizeF(102.2231!, 13.58333!)
+        Me.LQcwashDesc.StylePriority.UseBorders = False
+        Me.LQcwashDesc.StylePriority.UseFont = False
+        Me.LQcwashDesc.Text = "QC Wash"
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(597.6282!, 40.70816!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(11.45833!, 13.58335!)
+        Me.XrLabel1.StylePriority.UseBorders = False
+        Me.XrLabel1.Text = ":"
+        '
+        'LMetodeQC
+        '
+        Me.LMetodeQC.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LMetodeQC.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LMetodeQC.LocationFloat = New DevExpress.Utils.PointFloat(609.0865!, 40.70829!)
+        Me.LMetodeQC.Name = "LMetodeQC"
+        Me.LMetodeQC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LMetodeQC.SizeF = New System.Drawing.SizeF(166.9135!, 13.58334!)
+        Me.LMetodeQC.StylePriority.UseBorders = False
+        Me.LMetodeQC.StylePriority.UseFont = False
+        Me.LMetodeQC.Text = "-"
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(495.4051!, 40.70827!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(102.223!, 13.58333!)
+        Me.XrLabel7.StylePriority.UseBorders = False
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.Text = "Metode QC"
         '
         'XrLabel4
         '
@@ -613,40 +684,6 @@ Partial Public Class ReportQCReport1
         Me.XrLabel14.StylePriority.UseBorders = False
         Me.XrLabel14.Text = ":"
         '
-        'XrLabel1
-        '
-        Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(597.6282!, 40.70816!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(11.45833!, 13.58335!)
-        Me.XrLabel1.StylePriority.UseBorders = False
-        Me.XrLabel1.Text = ":"
-        '
-        'LMetodeQC
-        '
-        Me.LMetodeQC.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LMetodeQC.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LMetodeQC.LocationFloat = New DevExpress.Utils.PointFloat(609.0865!, 40.70829!)
-        Me.LMetodeQC.Name = "LMetodeQC"
-        Me.LMetodeQC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LMetodeQC.SizeF = New System.Drawing.SizeF(166.9135!, 13.58334!)
-        Me.LMetodeQC.StylePriority.UseBorders = False
-        Me.LMetodeQC.StylePriority.UseFont = False
-        Me.LMetodeQC.Text = "-"
-        '
-        'XrLabel7
-        '
-        Me.XrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(495.4051!, 40.70827!)
-        Me.XrLabel7.Name = "XrLabel7"
-        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(102.223!, 13.58333!)
-        Me.XrLabel7.StylePriority.UseBorders = False
-        Me.XrLabel7.StylePriority.UseFont = False
-        Me.XrLabel7.Text = "Metode QC"
-        '
         'ReportQCReport1
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.PageFooter, Me.ReportFooter})
@@ -716,4 +753,7 @@ Partial Public Class ReportQCReport1
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LMetodeQC As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LQCWash As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LQcwashQuote As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LQcwashDesc As DevExpress.XtraReports.UI.XRLabel
 End Class
