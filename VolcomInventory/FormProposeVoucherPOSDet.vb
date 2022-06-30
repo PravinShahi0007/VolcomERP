@@ -28,8 +28,10 @@
             data.Columns.Add("voucher_address", GetType(String))
             data.Columns.Add("period_start", GetType(Date))
             data.Columns.Add("period_end", GetType(Date))
-            data.Columns.Add("id_outlet", GetType(Integer))
             data.Columns.Add("outlet_name", GetType(String))
+
+            GridColumn5.Visible = True
+            GridColumn6.Visible = False
 
             GCData.DataSource = data
         Else
@@ -50,13 +52,17 @@
             MENote.EditValue = head.Rows(0)("note").ToString
 
             Dim query_detail As String = "
-                SELECT d.voucher_number, d.voucher_value, d.voucher_name, d.voucher_address, d.period_start, d.period_end, d.id_outlet, o.outlet_name
+                SELECT d.voucher_number, d.voucher_value, d.voucher_name, d.voucher_address, d.period_start, d.period_end, GROUP_CONCAT(o.outlet_name SEPARATOR '\n') AS outlet_name_line
                 FROM tb_pos_voucher_pps_det AS d
                 LEFT JOIN tb_outlet AS o ON d.id_outlet = o.id_outlet
                 WHERE d.id_voucher_pps = " + id + "
+                GROUP BY d.voucher_number
             "
 
             Dim detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
+
+            GridColumn5.Visible = False
+            GridColumn6.Visible = True
 
             GCData.DataSource = detail
 
@@ -82,7 +88,18 @@
     End Sub
 
     Sub viewOutlet()
-        viewSearchLookupRepositoryQuery(RISLUEOutlet, "SELECT id_outlet, outlet_name FROM tb_outlet", 0, "outlet_name", "id_outlet")
+        Dim query As String = "SELECT id_outlet, outlet_name FROM tb_outlet"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim el As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            el.Description = data.Rows(i)("outlet_name").ToString
+            el.Tag = data.Rows(i)("id_outlet").ToString
+
+            RICCBEOutlet.Items.Add(el, False)
+        Next
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
@@ -103,7 +120,7 @@
 
                 number_list += "'" + GVData.GetRowCellValue(i, "voucher_number").ToString + "', "
 
-                If GVData.GetRowCellValue(i, "voucher_number").ToString = "" Or GVData.GetRowCellValue(i, "voucher_value").ToString = "" Or GVData.GetRowCellValue(i, "period_start").ToString = "" Or GVData.GetRowCellValue(i, "period_end").ToString = "" Or GVData.GetRowCellValue(i, "id_outlet").ToString = "" Then
+                If GVData.GetRowCellValue(i, "voucher_number").ToString = "" Or GVData.GetRowCellValue(i, "voucher_value").ToString = "" Or GVData.GetRowCellValue(i, "period_start").ToString = "" Or GVData.GetRowCellValue(i, "period_end").ToString = "" Or GVData.GetRowCellValue(i, "outlet_name").ToString = "" Then
                     is_empty = True
                 End If
             End If
@@ -135,15 +152,21 @@
                         Dim query_detail As String = "INSERT INTO tb_pos_voucher_pps_det (id_voucher_pps, voucher_number, voucher_value, voucher_name, voucher_address, period_start, period_end, id_outlet, is_active) VALUES "
 
                         For i = 0 To GVData.RowCount - 1
-                            Dim voucher_number As String = GVData.GetRowCellValue(i, "voucher_number").ToString
-                            Dim voucher_value As String = GVData.GetRowCellValue(i, "voucher_value").ToString
-                            Dim voucher_name As String = GVData.GetRowCellValue(i, "voucher_name").ToString
-                            Dim voucher_address As String = GVData.GetRowCellValue(i, "voucher_address").ToString
-                            Dim period_start As String = Date.Parse(GVData.GetRowCellValue(i, "period_start").ToString).ToString("yyyy-MM-dd")
-                            Dim period_end As String = Date.Parse(GVData.GetRowCellValue(i, "period_end").ToString).ToString("yyyy-MM-dd")
-                            Dim id_outlet As String = GVData.GetRowCellValue(i, "id_outlet").ToString
+                            Dim outlet_names As String() = GVData.GetRowCellValue(i, "outlet_name").ToString.Split(",")
 
-                            query_detail += "(" + id + ", '" + voucher_number + "', " + voucher_value + ", '" + voucher_name + "', '" + voucher_address + "', '" + period_start + "', '" + period_end + "', " + id_outlet + ", 1), "
+                            For j = 0 To outlet_names.Count - 1
+                                Dim outlet_name As String = trimSpace(outlet_names(j))
+
+                                Dim id_outlet As String = execute_query("SELECT id_outlet FROM tb_outlet WHERE outlet_name = '" + outlet_name + "'", 0, True, "", "", "", "")
+                                Dim voucher_number As String = GVData.GetRowCellValue(i, "voucher_number").ToString
+                                Dim voucher_value As String = GVData.GetRowCellValue(i, "voucher_value").ToString
+                                Dim voucher_name As String = GVData.GetRowCellValue(i, "voucher_name").ToString
+                                Dim voucher_address As String = GVData.GetRowCellValue(i, "voucher_address").ToString
+                                Dim period_start As String = Date.Parse(GVData.GetRowCellValue(i, "period_start").ToString).ToString("yyyy-MM-dd")
+                                Dim period_end As String = Date.Parse(GVData.GetRowCellValue(i, "period_end").ToString).ToString("yyyy-MM-dd")
+
+                                query_detail += "(" + id + ", '" + voucher_number + "', " + voucher_value + ", '" + voucher_name + "', '" + voucher_address + "', '" + period_start + "', '" + period_end + "', " + id_outlet + ", 1), "
+                            Next
                         Next
 
                         query_detail = query_detail.Substring(0, query_detail.Length - 2)
@@ -153,6 +176,8 @@
                         submit_who_prepared("412", id, id_user)
 
                         form_load()
+
+                        FormProposeVoucherPOS.load_view()
                     End If
                 Else
                     stopCustom("Voucher number already used.")
@@ -160,7 +185,6 @@
             Else
                 stopCustom("Cannot duplicate voucher number.")
             End If
-
         Else
             stopCustom("Please check your input.")
         End If

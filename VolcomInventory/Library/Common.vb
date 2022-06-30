@@ -5892,14 +5892,24 @@ WHERE dsg.id_design='" & id_design & "'"
                 PE.LoadAsync(dir & id_goods & ".jpg")
             Else
                 My.Computer.Network.DownloadFile(dir & id_goods & ".jpg", Application.StartupPath & "\imagestemp\" & id_goods & ".jpg", "", "", True, 100, True)
-                Process.Start(Application.StartupPath & "\imagestemp\" & id_goods & ".jpg")
+
+                Dim P As New Process
+                P.StartInfo.FileName = Application.StartupPath & "\imagestemp\" & id_goods & ".jpg"
+                P.StartInfo.Verb = ""
+                P.StartInfo.Arguments = "-silent"
+                P.Start()
             End If
         Else
             If Not is_open Then
                 PE.LoadAsync(dir & "default" & ".jpg")
             Else
                 My.Computer.Network.DownloadFile(dir & "default" & ".jpg", Application.StartupPath & "\imagestemp\" & "default" & ".jpg", "", "", True, 100, True)
-                Process.Start(Application.StartupPath & "\imagestemp\" & "default" & ".jpg")
+
+                Dim P As New Process
+                P.StartInfo.FileName = Application.StartupPath & "\imagestemp\" & "default" & ".jpg"
+                P.StartInfo.Verb = ""
+                P.StartInfo.Arguments = "-silent"
+                P.Start()
             End If
         End If
     End Sub
@@ -6248,7 +6258,7 @@ SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
         Dim q As String = ""
 
         If rmt = "222" Then 'debit note
-            q = "SELECT 'Need Debit Note, QC Report Completed' AS title,'FormDebitNote' AS form_name,CONCAT('Need Debit Note, QC Report ',fcs.`number`,' Completed') AS description, nu.id_user , fcs.`number` AS report_number
+            q = "SELECT 'QC Report SUmmary Completed' AS title,'FormDebitNote' AS form_name,CONCAT('QC Report Summary ',fcs.`number`,' Completed') AS description, nu.id_user , fcs.`number` AS report_number
 FROM tb_notif_user nu
 INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`='" & id_report & "' AND nu.`report_mark_type`='222'"
         ElseIf rmt = "201" Then 'PR Fixed Asset
@@ -7532,7 +7542,10 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
             'Debit Note
             Try
                 FormDebitNote.MdiParent = FormMain
+                FormDebitNote.XtraTabControl1.SelectedTabPageIndex = 1
                 FormDebitNote.Show()
+                FormDebitNote.load_claim_reject()
+                FormDebitNote.GVSumClaimReject.ActiveFilterString = "[prod_fc_number]='" & report_number_par & "'"
                 FormDebitNote.WindowState = FormWindowState.Maximized
                 FormDebitNote.Focus()
             Catch ex As Exception

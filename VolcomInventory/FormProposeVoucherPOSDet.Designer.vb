@@ -39,6 +39,9 @@ Partial Class FormProposeVoucherPOSDet
         Me.RIDEDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICCBEOutlet = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIMEOutlet = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -48,10 +51,6 @@ Partial Class FormProposeVoucherPOSDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.RISLUEOutlet = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,13 +61,13 @@ Partial Class FormProposeVoucherPOSDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIDEDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIDEDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICCBEOutlet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMEOutlet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLUEOutlet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -177,16 +176,17 @@ Partial Class FormProposeVoucherPOSDet
         Me.GCData.Location = New System.Drawing.Point(0, 123)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIDEDate, Me.RISLUEOutlet})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIDEDate, Me.RICCBEOutlet, Me.RIMEOutlet})
         Me.GCData.Size = New System.Drawing.Size(784, 310)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsView.RowAutoHeight = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -245,13 +245,32 @@ Partial Class FormProposeVoucherPOSDet
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Outlet"
-        Me.GridColumn5.ColumnEdit = Me.RISLUEOutlet
+        Me.GridColumn5.ColumnEdit = Me.RICCBEOutlet
         Me.GridColumn5.DisplayFormat.FormatString = "N0"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "id_outlet"
+        Me.GridColumn5.FieldName = "outlet_name"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
+        '
+        'RICCBEOutlet
+        '
+        Me.RICCBEOutlet.AutoHeight = False
+        Me.RICCBEOutlet.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RICCBEOutlet.Name = "RICCBEOutlet"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Outlet"
+        Me.GridColumn6.ColumnEdit = Me.RIMEOutlet
+        Me.GridColumn6.FieldName = "outlet_name_line"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'RIMEOutlet
+        '
+        Me.RIMEOutlet.Name = "RIMEOutlet"
         '
         'PanelControl2
         '
@@ -341,34 +360,6 @@ Partial Class FormProposeVoucherPOSDet
         Me.LabelControl5.TabIndex = 11
         Me.LabelControl5.Text = "Note"
         '
-        'RISLUEOutlet
-        '
-        Me.RISLUEOutlet.AutoHeight = False
-        Me.RISLUEOutlet.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RISLUEOutlet.Name = "RISLUEOutlet"
-        Me.RISLUEOutlet.View = Me.RepositoryItemSearchLookUpEdit1View
-        '
-        'RepositoryItemSearchLookUpEdit1View
-        '
-        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7})
-        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
-        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.FieldName = "id_outlet"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Outlet"
-        Me.GridColumn7.FieldName = "outlet_name"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
-        '
         'FormProposeVoucherPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -392,14 +383,14 @@ Partial Class FormProposeVoucherPOSDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIDEDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIDEDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICCBEOutlet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMEOutlet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLUEOutlet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -432,8 +423,7 @@ Partial Class FormProposeVoucherPOSDet
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents RIDEDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents RISLUEOutlet As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
-    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RICCBEOutlet As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RIMEOutlet As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

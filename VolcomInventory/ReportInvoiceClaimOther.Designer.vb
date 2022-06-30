@@ -760,10 +760,10 @@ Partial Public Class ReportInvoiceClaimOther
         Me.XrLabel26.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel26.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(941.0001!, 86.75822!)
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(941.0005!, 86.7582!)
         Me.XrLabel26.Name = "XrLabel26"
         Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
-        Me.XrLabel26.SizeF = New System.Drawing.SizeF(151.0!, 23.00002!)
+        Me.XrLabel26.SizeF = New System.Drawing.SizeF(150.9996!, 23.00003!)
         Me.XrLabel26.StylePriority.UseBorders = False
         Me.XrLabel26.StylePriority.UseFont = False
         Me.XrLabel26.StylePriority.UsePadding = False

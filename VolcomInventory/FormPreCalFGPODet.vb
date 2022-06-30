@@ -917,7 +917,7 @@ INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgp
     End Sub
 
     Private Sub BPrintBudget2_Click(sender As Object, e As EventArgs) Handles BPrintBudget2.Click
-        Dim qc As String = "SELECT number,f.reason,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),4,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
+        Dim qc As String = "SELECT number,f.reason,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),4,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,2,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
 FROM `tb_pre_cal_fgpo` f
 INNER JOIN tb_m_comp cv ON cv.`id_comp`=f.`id_comp`
 INNER JOIN tb_pre_cal_fgpo_list l ON l.`id_pre_cal_fgpo`=f.`id_pre_cal_fgpo`
