@@ -6912,6 +6912,12 @@
     <Compile Include="FormSalesWeekly.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalthruCompare.Designer.vb">
+      <DependentUpon>FormSalthruCompare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalthruCompare.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleBudget.Designer.vb">
       <DependentUpon>FormSampleBudget.vb</DependentUpon>
     </Compile>
@@ -14645,6 +14651,9 @@
     <EmbeddedResource Include="FormSalesWeekly.resx">
       <DependentUpon>FormSalesWeekly.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalthruCompare.resx">
+      <DependentUpon>FormSalthruCompare.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleBudget.resx">
       <DependentUpon>FormSampleBudget.vb</DependentUpon>
