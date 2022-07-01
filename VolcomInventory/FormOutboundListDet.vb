@@ -43,6 +43,16 @@ WHERE awb.id_awbill='" & id_awb & "'"
             '
             If dt.Rows(0)("is_marketplace").ToString = "1" Then
                 view_del_type("marketplace")
+                '
+                TEPanjang.EditValue = 0
+                TELebar.EditValue = 0
+                TETinggi.EditValue = 0
+                TEActWeight.EditValue = 0
+                '
+                TEPanjang.Enabled = False
+                TELebar.Enabled = False
+                TETinggi.Enabled = False
+                TEActWeight.Enabled = False
             Else
                 view_del_type("not_marketplace")
             End If
