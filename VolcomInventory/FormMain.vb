@@ -2041,6 +2041,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormProposeVoucherPOS" Then
             FormProposeVoucherPOSDet.id = "0"
             FormProposeVoucherPOSDet.ShowDialog()
+        ElseIf formName = "FormProposePaymentCardPOS" Then
+            FormProposePaymentCardPOSDet.id_propose_card_pos = "-1"
+            FormProposePaymentCardPOSDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3423,6 +3426,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormProposeVoucherPOS" Then
                 FormProposeVoucherPOSDet.id = FormProposeVoucherPOS.GVData.GetFocusedRowCellValue("id_voucher_pps").ToString
                 FormProposeVoucherPOSDet.ShowDialog()
+            ElseIf formName = "FormProposePaymentCardPOS" Then
+                FormProposePaymentCardPOSDet.id_propose_card_pos = FormProposePaymentCardPOS.GVData.GetFocusedRowCellValue("id_propose_card_pos").ToString
+                FormProposePaymentCardPOSDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8950,6 +8956,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             Else
                 print(FormSalthruCompare.GCProduct, "Sell Thru by Product")
             End If
+        ElseIf formname = "FormProposePaymentCardPOS" Then
+            print(FormProposePaymentCardPOS.GCData, "List Propose Payment Card POS")
         Else
             RPSubMenu.Visible = False
         End If
@@ -10049,6 +10057,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormSalthruCompare" Then
             FormSalthruCompare.Close()
             FormSalthruCompare.Dispose()
+        ElseIf formName = "FormProposePaymentCardPOS" Then
+            FormProposePaymentCardPOS.Close()
+            FormProposePaymentCardPOS.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11129,6 +11140,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormSalthruCompare" Then
             FormSalthruCompare.viewData()
+        ElseIf formName = "FormProposePaymentCardPOS" Then
+            FormProposePaymentCardPOS.load_form()
         End If
     End Sub
     'Switch
@@ -17360,6 +17373,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSalthruCompare.Show()
             FormSalthruCompare.WindowState = FormWindowState.Maximized
             FormSalthruCompare.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposePaymentCardPOS_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposePaymentCardPOS.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProposePaymentCardPOS.MdiParent = Me
+            FormProposePaymentCardPOS.Show()
+            FormProposePaymentCardPOS.WindowState = FormWindowState.Maximized
+            FormProposePaymentCardPOS.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

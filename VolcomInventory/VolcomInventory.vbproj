@@ -4584,6 +4584,24 @@
     <Compile Include="FormProposeEmpSalaryPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProposePaymentCardPOS.Designer.vb">
+      <DependentUpon>FormProposePaymentCardPOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOSDet.Designer.vb">
+      <DependentUpon>FormProposePaymentCardPOSDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOSDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOSRevise.Designer.vb">
+      <DependentUpon>FormProposePaymentCardPOSRevise.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOSRevise.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProposePriceChangeEffective.Designer.vb">
       <DependentUpon>FormProposePriceChangeEffective.vb</DependentUpon>
     </Compile>
@@ -10413,6 +10431,12 @@
     <Compile Include="ReportProposeEmpSalaryCompare.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProposePaymentCardPOS.Designer.vb">
+      <DependentUpon>ReportProposePaymentCardPOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProposePaymentCardPOS.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProposePriceMKD.Designer.vb">
       <DependentUpon>ReportProposePriceMKD.vb</DependentUpon>
     </Compile>
@@ -13252,6 +13276,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposeEmpSalaryPick.resx">
       <DependentUpon>FormProposeEmpSalaryPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePaymentCardPOS.resx">
+      <DependentUpon>FormProposePaymentCardPOS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePaymentCardPOSDet.resx">
+      <DependentUpon>FormProposePaymentCardPOSDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePaymentCardPOSRevise.resx">
+      <DependentUpon>FormProposePaymentCardPOSRevise.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposePriceChangeEffective.resx">
       <DependentUpon>FormProposePriceChangeEffective.vb</DependentUpon>
@@ -16631,6 +16664,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProposeEmpSalaryCompare.resx">
       <DependentUpon>ReportProposeEmpSalaryCompare.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProposePaymentCardPOS.resx">
+      <DependentUpon>ReportProposePaymentCardPOS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProposePriceMKD.resx">
       <DependentUpon>ReportProposePriceMKD.vb</DependentUpon>

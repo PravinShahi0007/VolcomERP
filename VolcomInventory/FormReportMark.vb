@@ -812,6 +812,9 @@
             query = String.Format("SELECT id_report_status, report_number FROM tb_promo_rules WHERE id_rules = '{0}'", id_report)
         ElseIf report_mark_type = "414" Then
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_b_revenue_propose WHERE id_b_revenue_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "415" Then
+            'propose card
+            query = String.Format("SELECT id_report_status, report_number FROM tb_propose_card_pos WHERE id_propose_card_pos = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -12365,6 +12368,31 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
             End If
 
             query = String.Format("UPDATE tb_b_revenue_propose SET id_report_status = '{0}' WHERE id_b_revenue_propose = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "415" Then
+            'propose card
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+
+                FormProposePaymentCardPOSDet.updateChanges(id_report)
+
+                Dim sync_status As String = "2"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim c As ClassApiPos = New ClassApiPos
+
+                    c.syncCard()
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Card: Propose Card Payment POS (415)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_propose_card_pos SET id_report_status = '{0}' WHERE id_propose_card_pos = '{1}'", id_status_reportx, id_report)
+
             execute_non_query(query, True, "", "", "", "")
         End If
 

@@ -584,6 +584,9 @@
         ElseIf report_mark_type = "414" Then
             'propose sales target
             FormTargetSalesDet.Close()
+        ElseIf report_mark_type = "415" Then
+            'propose card
+            FormProposePaymentCardPOSDet.Close()
         End If
     End Sub
     Sub show()
@@ -1851,6 +1854,10 @@ GROUP BY rec.`id_prod_order`"
             FormTargetSalesDet.action = "upd"
             FormTargetSalesDet.id = id_report
             FormTargetSalesDet.ShowDialog()
+        ElseIf report_mark_type = "415" Then
+            'propose card
+            FormProposePaymentCardPOSDet.id_propose_card_pos = id_report
+            FormProposePaymentCardPOSDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3287,6 +3294,12 @@ GROUP BY rec.`id_prod_order`"
             table_name = "tb_b_revenue_propose"
             field_id = "id_b_revenue_propose"
             field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "415" Then
+            'propose card
+            table_name = "tb_propose_card_pos"
+            field_id = "id_propose_card_pos"
+            field_number = "report_number"
             field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
