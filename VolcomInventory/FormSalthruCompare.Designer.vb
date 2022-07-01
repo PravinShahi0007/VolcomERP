@@ -647,7 +647,7 @@ Partial Class FormSalthruCompare
         Me.MinimizeBox = False
         Me.Name = "FormSalthruCompare"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Compare Sales Thru  "
+        Me.Text = "Product Sell Thru"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
