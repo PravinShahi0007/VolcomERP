@@ -656,6 +656,9 @@ ORDER BY area ASC"
         If id_group_store <> "" Then
             where += "AND c.id_comp_group IN(" + id_group_store + ") "
         End If
+        If CEActiveStore.Checked Then
+            where += "AND c.is_active = 1"
+        End If
 
         'view
         Dim query As String = "SELECT c.id_comp, c.comp_name, c.comp_number, c.id_commerce_type, IFNULL(olc.id_wh_ol,0) AS `id_wh_ol`, 'No' AS `is_select` 
@@ -873,6 +876,10 @@ ORDER BY area ASC"
 
     Private Sub CCBEGroupStore_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEGroupStore.EditValueChanged
         view_group_store()
+        viewStore()
+    End Sub
+
+    Private Sub CEActiveStore_EditValueChanged(sender As Object, e As EventArgs) Handles CEActiveStore.EditValueChanged
         viewStore()
     End Sub
 End Class

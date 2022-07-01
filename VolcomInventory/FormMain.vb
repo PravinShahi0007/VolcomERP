@@ -8944,6 +8944,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDropChanges.printList()
         ElseIf formname = "FormProposeVoucherPOS" Then
             print(FormProposeVoucherPOS.GCData, "List Propose Voucher POS")
+        ElseIf formname = "FormSalthruCompare" Then
+            If FormSalthruCompare.XTCData.SelectedTabPageIndex = 0 Then
+                print(FormSalthruCompare.GCData, "Sell Thru by Product & Account")
+            Else
+                print(FormSalthruCompare.GCProduct, "Sell Thru by Product")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -10037,6 +10043,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormTargetSales" Then
             FormTargetSales.Close()
             FormTargetSales.Dispose()
+        ElseIf formName = "FormTargetSAS" Then
+            FormTargetSAS.Close()
+            FormTargetSAS.Dispose()
+        ElseIf formName = "FormSalthruCompare" Then
+            FormSalthruCompare.Close()
+            FormSalthruCompare.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11115,6 +11127,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             Else
                 FormTargetSales.viewPropose()
             End If
+        ElseIf formName = "FormSalthruCompare" Then
+            FormSalthruCompare.viewData()
         End If
     End Sub
     'Switch
@@ -17320,6 +17334,32 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormTargetSales.Show()
             FormTargetSales.WindowState = FormWindowState.Maximized
             FormTargetSales.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBTargetSAS_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBTargetSAS.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormTargetSAS.MdiParent = Me
+            FormTargetSAS.Show()
+            FormTargetSAS.WindowState = FormWindowState.Maximized
+            FormTargetSAS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSalthruCompare_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalthruCompare.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalthruCompare.MdiParent = Me
+            FormSalthruCompare.Show()
+            FormSalthruCompare.WindowState = FormWindowState.Maximized
+            FormSalthruCompare.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

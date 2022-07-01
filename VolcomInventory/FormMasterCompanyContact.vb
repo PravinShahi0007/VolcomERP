@@ -91,14 +91,16 @@ ORDER BY cc.is_default AND cc.contact_person", id_company), -1, True, "", "", ""
             query = String.Format("UPDATE tb_m_comp_contact SET is_default='0' WHERE id_comp='{1}';UPDATE tb_m_comp_contact SET is_default='1' WHERE id_comp_contact = '{0}'", id_contact, id_company)
             execute_non_query(query, True, "", "", "", "")
             view_contact()
-            Try
-                FormMasterCompanySingle.SLEAnnotation.EditValue = GVCompanyContactList.GetFocusedRowCellValue("id_annotation").ToString
-                FormMasterCompanySingle.TECPName.Text = GVCompanyContactList.GetFocusedRowCellValue("contact_name").ToString
-                FormMasterCompanySingle.TECPPosition.EditValue = GVCompanyContactList.GetFocusedRowCellValue("position").ToString
+            GVCompanyContactList.FocusedRowHandle = find_row(GVCompanyContactList, "id_comp_contact", id_contact)
+            'Try
+            FormMasterCompanySingle.SLEAnnotation.EditValue = GVCompanyContactList.GetFocusedRowCellValue("id_annotation").ToString
+            FormMasterCompanySingle.TECPName.Text = GVCompanyContactList.GetFocusedRowCellValue("contact_person").ToString
+            FormMasterCompanySingle.TECPPosition.EditValue = GVCompanyContactList.GetFocusedRowCellValue("position").ToString
                 FormMasterCompanySingle.TECPEmail.EditValue = GVCompanyContactList.GetFocusedRowCellValue("email").ToString
                 FormMasterCompanySingle.TECPPhone.EditValue = GVCompanyContactList.GetFocusedRowCellValue("contact_number").ToString
-            Catch ex As Exception
-            End Try
+            'Catch ex As Exception
+            'End Try
+
         End If
     End Sub
 

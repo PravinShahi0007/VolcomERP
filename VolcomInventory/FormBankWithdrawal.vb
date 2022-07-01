@@ -301,12 +301,12 @@ GROUP BY ds.`id_comp`"
         If SLEPayType.EditValue.ToString = "2" Then 'payment
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
             q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=IF(po.id_coa_tag=1,c.id_acc_ap,c.id_acc_cabang_ap) "
-            where_string += " AND po.is_close_rec='1' AND po.id_report_status=6 AND po.is_cash_purchase=2 "
+            where_string += " AND DATEDIFF(DATE(po.due_date),DATE(NOW()))<=7 AND po.is_close_rec='1' AND po.id_report_status=6 AND po.is_cash_purchase=2 "
             q_dp = "-IFNULL(payment.value,0)"
         ElseIf SLEPayType.EditValue.ToString = "1" Then 'DP
             q_acc = ",acc.id_acc,acc.acc_name,acc.acc_description "
             q_join_acc = " INNER JOIN tb_a_acc acc ON acc.id_acc=IF(po.id_coa_tag=1,c.id_acc_dp,c.id_acc_cabang_dp) "
-            where_string += " AND po.is_close_rec!='1' AND po.id_report_status=6 AND po.is_cash_purchase=2 "
+            where_string += " AND DATEDIFF(DATE(po.pay_due_date),DATE(NOW()))<=7 AND po.is_close_rec!='1' AND po.id_report_status=6 AND po.is_cash_purchase=2 "
             q_dp = "*(payment_purc.dp_percent/100)"
         End If
 
@@ -570,7 +570,7 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
         Dim e As New ClassItemExpense()
         e.q_acc = q_acc
         e.q_join = q_join_acc
-        Dim query As String = e.queryMain(where_string & " AND e.id_report_status=6 ", "1", True)
+        Dim query As String = e.queryMain(where_string & " AND DATEDIFF(DATE(e.due_date),DATE(NOW()))<=7 AND e.id_report_status=6 ", "1", True)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCExpense.DataSource = data
         GVExpense.BestFitColumns()
@@ -1732,7 +1732,7 @@ LEFT JOIN (
 ) payment_pending ON payment_pending.id_report = e.id_prepaid_expense 
 LEFT JOIN tb_m_comp c ON c.id_comp = e.id_comp 
 LEFT JOIN tb_a_acc acc ON acc.id_acc=IF(e.id_coa_tag=1,c.id_acc_ap,c.id_acc_cabang_ap) 
-WHERE e.id_prepaid_expense>0 AND e.id_report_status!=5 AND e.id_report_status=6 " & where_string & "
+WHERE e.id_prepaid_expense>0 AND DATEDIFF(DATE(e.due_date),DATE(NOW()))<=7 AND e.is_open=1 AND e.id_report_status!=5 AND e.id_report_status=6 " & where_string & "
 GROUP BY ed.id_prepaid_expense ORDER BY e.id_prepaid_expense DESC "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

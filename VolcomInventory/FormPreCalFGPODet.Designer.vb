@@ -50,6 +50,8 @@ Partial Class FormPreCalFGPODet
         Me.XTC = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPFGPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListFGPO = New DevExpress.XtraGrid.GridControl()
+        Me.CMChangeQty = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVListFGPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -242,8 +244,6 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TECTN = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.CMChangeQty = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -265,6 +265,7 @@ Partial Class FormPreCalFGPODet
         Me.XTC.SuspendLayout()
         Me.XTPFGPO.SuspendLayout()
         CType(Me.GCListFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMChangeQty.SuspendLayout()
         CType(Me.GVListFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCUFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCUFGPO.SuspendLayout()
@@ -351,7 +352,6 @@ Partial Class FormPreCalFGPODet
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        Me.CMChangeQty.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -633,6 +633,18 @@ Partial Class FormPreCalFGPODet
         Me.GCListFGPO.Size = New System.Drawing.Size(1016, 303)
         Me.GCListFGPO.TabIndex = 0
         Me.GCListFGPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListFGPO})
+        '
+        'CMChangeQty
+        '
+        Me.CMChangeQty.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.CMChangeQty.Name = "ContextMenuStripYM"
+        Me.CMChangeQty.Size = New System.Drawing.Size(138, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(137, 22)
+        Me.ToolStripMenuItem1.Text = "Change Qty"
         '
         'GVListFGPO
         '
@@ -3039,18 +3051,6 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl6.TabIndex = 157
         '
-        'CMChangeQty
-        '
-        Me.CMChangeQty.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
-        Me.CMChangeQty.Name = "ContextMenuStripYM"
-        Me.CMChangeQty.Size = New System.Drawing.Size(138, 26)
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.ToolStripMenuItem1.Text = "Change Qty"
-        '
         'FormPreCalFGPODet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3089,6 +3089,7 @@ Partial Class FormPreCalFGPODet
         Me.XTC.ResumeLayout(False)
         Me.XTPFGPO.ResumeLayout(False)
         CType(Me.GCListFGPO, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMChangeQty.ResumeLayout(False)
         CType(Me.GVListFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCUFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCUFGPO.ResumeLayout(False)
@@ -3183,7 +3184,6 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
-        Me.CMChangeQty.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

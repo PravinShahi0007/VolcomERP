@@ -56,6 +56,11 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TxtMaterialTypeCode = New DevExpress.XtraEditors.TextEdit()
         Me.PanC2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEActive = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.SEGramation = New DevExpress.XtraEditors.SpinEdit()
         Me.CEAllowDesign = New System.Windows.Forms.CheckBox()
@@ -106,11 +111,6 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.EPMaterial = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEActive = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,6 +132,8 @@ Partial Class FormMasterRawMaterialDetSingle
         CType(Me.TxtMaterialTypeCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanC2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanC2.SuspendLayout()
+        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.SEGramation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEFabType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,8 +158,6 @@ Partial Class FormMasterRawMaterialDetSingle
         CType(Me.GVMovement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemSearchLookUpEdit1
@@ -521,6 +521,46 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.PanC2.Size = New System.Drawing.Size(416, 386)
         Me.PanC2.TabIndex = 3
         '
+        'SLEActive
+        '
+        Me.SLEActive.Location = New System.Drawing.Point(12, 178)
+        Me.SLEActive.Name = "SLEActive"
+        Me.SLEActive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEActive.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEActive.Size = New System.Drawing.Size(190, 20)
+        Me.SLEActive.TabIndex = 106
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID"
+        Me.GridColumn13.FieldName = "is_active"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "GridColumn14"
+        Me.GridColumn14.FieldName = "active"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(12, 157)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(34, 15)
+        Me.LabelControl10.TabIndex = 105
+        Me.LabelControl10.Text = "Status"
+        '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.SEGramation)
@@ -658,10 +698,10 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.TxtDisplayName.Name = "TxtDisplayName"
         Me.TxtDisplayName.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDisplayName.Properties.Appearance.Options.UseFont = True
-        Me.TxtDisplayName.Properties.MaxLength = 50
+        Me.TxtDisplayName.Properties.MaxLength = 99
         Me.TxtDisplayName.Size = New System.Drawing.Size(191, 22)
         Me.TxtDisplayName.TabIndex = 1
-        Me.TxtDisplayName.ToolTip = "Max : 30 character."
+        Me.TxtDisplayName.ToolTip = "Max : 100 character."
         Me.TxtDisplayName.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
         Me.TxtDisplayName.ToolTipTitle = "Info"
         '
@@ -680,10 +720,10 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.TxtName.Name = "TxtName"
         Me.TxtName.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtName.Properties.Appearance.Options.UseFont = True
-        Me.TxtName.Properties.MaxLength = 50
+        Me.TxtName.Properties.MaxLength = 100
         Me.TxtName.Size = New System.Drawing.Size(191, 22)
         Me.TxtName.TabIndex = 0
-        Me.TxtName.ToolTip = "Max : 50 character."
+        Me.TxtName.ToolTip = "Max : 100 character."
         Me.TxtName.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
         Me.TxtName.ToolTipTitle = "Info"
         '
@@ -707,7 +747,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.XTPPrice.ImageIndex = 1
         Me.XTPPrice.Name = "XTPPrice"
         Me.XTPPrice.PageVisible = False
-        Me.XTPPrice.Size = New System.Drawing.Size(874, 373)
+        Me.XTPPrice.Size = New System.Drawing.Size(874, 386)
         Me.XTPPrice.Text = "Price"
         '
         'BSetPrice
@@ -904,7 +944,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.XTPMovement.ImageIndex = 2
         Me.XTPMovement.Name = "XTPMovement"
         Me.XTPMovement.PageVisible = False
-        Me.XTPMovement.Size = New System.Drawing.Size(874, 373)
+        Me.XTPMovement.Size = New System.Drawing.Size(874, 386)
         Me.XTPMovement.Text = "Movement"
         '
         'XtraTabControl2
@@ -996,46 +1036,6 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.EPMaterial.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPMaterial.ContainerControl = Me
         '
-        'LabelControl10
-        '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(12, 157)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(34, 15)
-        Me.LabelControl10.TabIndex = 105
-        Me.LabelControl10.Text = "Status"
-        '
-        'SLEActive
-        '
-        Me.SLEActive.Location = New System.Drawing.Point(12, 178)
-        Me.SLEActive.Name = "SLEActive"
-        Me.SLEActive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEActive.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEActive.Size = New System.Drawing.Size(190, 20)
-        Me.SLEActive.TabIndex = 106
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "ID"
-        Me.GridColumn13.FieldName = "is_active"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "GridColumn14"
-        Me.GridColumn14.FieldName = "active"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
-        '
         'FormMasterRawMaterialDetSingle
         '
         Me.AcceptButton = Me.BSave
@@ -1076,6 +1076,8 @@ Partial Class FormMasterRawMaterialDetSingle
         CType(Me.PanC2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanC2.ResumeLayout(False)
         Me.PanC2.PerformLayout()
+        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.SEGramation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1101,8 +1103,6 @@ Partial Class FormMasterRawMaterialDetSingle
         CType(Me.GVMovement, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPMaterial, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

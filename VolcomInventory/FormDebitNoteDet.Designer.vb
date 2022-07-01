@@ -62,10 +62,13 @@ Partial Class FormDebitNoteDet
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.CMViewQCReport = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewQCReportSummaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -83,9 +86,6 @@ Partial Class FormDebitNoteDet
         Me.GCClaimPcs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAmo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.CMViewQCReport = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ViewQCReportSummaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,10 +119,10 @@ Partial Class FormDebitNoteDet
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlList.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMViewQCReport.SuspendLayout()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.CMViewQCReport.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -594,6 +594,18 @@ Partial Class FormDebitNoteDet
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
+        'CMViewQCReport
+        '
+        Me.CMViewQCReport.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewQCReportSummaryToolStripMenuItem})
+        Me.CMViewQCReport.Name = "CMViewQCReport"
+        Me.CMViewQCReport.Size = New System.Drawing.Size(212, 26)
+        '
+        'ViewQCReportSummaryToolStripMenuItem
+        '
+        Me.ViewQCReportSummaryToolStripMenuItem.Name = "ViewQCReportSummaryToolStripMenuItem"
+        Me.ViewQCReportSummaryToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.ViewQCReportSummaryToolStripMenuItem.Text = "View QC Report Summary"
+        '
         'GVItemList
         '
         Me.GVItemList.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
@@ -631,6 +643,12 @@ Partial Class FormDebitNoteDet
         Me.GridColumn12.Caption = "Report Mark Type"
         Me.GridColumn12.FieldName = "report_mark_type"
         Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "reff"
+        Me.GridColumn2.FieldName = "id_reff"
+        Me.GridColumn2.Name = "GridColumn2"
         '
         'GridColumn3
         '
@@ -843,24 +861,6 @@ Partial Class FormDebitNoteDet
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
-        'CMViewQCReport
-        '
-        Me.CMViewQCReport.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewQCReportSummaryToolStripMenuItem})
-        Me.CMViewQCReport.Name = "CMViewQCReport"
-        Me.CMViewQCReport.Size = New System.Drawing.Size(212, 26)
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "reff"
-        Me.GridColumn2.FieldName = "id_reff"
-        Me.GridColumn2.Name = "GridColumn2"
-        '
-        'ViewQCReportSummaryToolStripMenuItem
-        '
-        Me.ViewQCReportSummaryToolStripMenuItem.Name = "ViewQCReportSummaryToolStripMenuItem"
-        Me.ViewQCReportSummaryToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
-        Me.ViewQCReportSummaryToolStripMenuItem.Text = "View QC Report Summary"
-        '
         'FormDebitNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -912,10 +912,10 @@ Partial Class FormDebitNoteDet
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlList.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMViewQCReport.ResumeLayout(False)
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.CMViewQCReport.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

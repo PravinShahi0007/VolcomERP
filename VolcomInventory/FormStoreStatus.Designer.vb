@@ -20,7 +20,12 @@ Partial Class FormStoreStatus
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStoreStatus))
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLECategory = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLSTrf = New DevExpress.XtraEditors.SimpleButton()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
@@ -65,11 +70,12 @@ Partial Class FormStoreStatus
         Me.GridColumnstate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnemployee_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnlog_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLECategory = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnstock_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpending_invoice = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStatusInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,8 +93,6 @@ Partial Class FormStoreStatus
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -107,6 +111,31 @@ Partial Class FormStoreStatus
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(806, 62)
         Me.PanelControl1.TabIndex = 0
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl4.TabIndex = 8931
+        Me.LabelControl4.Text = "Category"
+        '
+        'SLECategory
+        '
+        Me.SLECategory.Location = New System.Drawing.Point(10, 28)
+        Me.SLECategory.Name = "SLECategory"
+        Me.SLECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECategory.Properties.ShowClearButton = False
+        Me.SLECategory.Properties.View = Me.GridView2
+        Me.SLECategory.Size = New System.Drawing.Size(105, 20)
+        Me.SLECategory.TabIndex = 8930
+        '
+        'GridView2
+        '
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
         '
         'BtnHistory
         '
@@ -351,12 +380,21 @@ Partial Class FormStoreStatus
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnis_select, Me.GridColumnid_comp, Me.GridColumnis_active, Me.GridColumnis_active_view, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_comp_groupx, Me.GridColumncomp_groupX, Me.GridColumncomp_group_desc, Me.GridColumnaddress_primary, Me.GridColumnarea, Me.GridColumncity, Me.GridColumnstate, Me.GridColumnemployee_name, Me.GridColumnlog_date})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnis_select, Me.GridColumnid_comp, Me.GridColumnis_active, Me.GridColumnis_active_view, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_comp_groupx, Me.GridColumncomp_groupX, Me.GridColumncomp_group_desc, Me.GridColumnaddress_primary, Me.GridColumnarea, Me.GridColumncity, Me.GridColumnstate, Me.GridColumnemployee_name, Me.GridColumnlog_date, Me.GridColumnstock_qty, Me.GridColumnpending_invoice})
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue1.Expression = "Iif([stock_qty] <> 0 Or [pending_invoice] <> 0, True, False)"
+        GridFormatRule1.Rule = FormatConditionRuleValue1
+        Me.GVData.FormatRules.Add(GridFormatRule1)
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumnis_select
@@ -501,30 +539,23 @@ Partial Class FormStoreStatus
         Me.GridColumnlog_date.Visible = True
         Me.GridColumnlog_date.VisibleIndex = 4
         '
-        'SLECategory
+        'GridColumnstock_qty
         '
-        Me.SLECategory.Location = New System.Drawing.Point(10, 28)
-        Me.SLECategory.Name = "SLECategory"
-        Me.SLECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLECategory.Properties.ShowClearButton = False
-        Me.SLECategory.Properties.View = Me.GridView2
-        Me.SLECategory.Size = New System.Drawing.Size(105, 20)
-        Me.SLECategory.TabIndex = 8930
+        Me.GridColumnstock_qty.Caption = "Stock Qty"
+        Me.GridColumnstock_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnstock_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnstock_qty.FieldName = "stock_qty"
+        Me.GridColumnstock_qty.Name = "GridColumnstock_qty"
+        Me.GridColumnstock_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "stock_qty", "{0:N0}")})
         '
-        'GridView2
+        'GridColumnpending_invoice
         '
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 12)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(45, 13)
-        Me.LabelControl4.TabIndex = 8931
-        Me.LabelControl4.Text = "Category"
+        Me.GridColumnpending_invoice.Caption = "Unpaid Invoice"
+        Me.GridColumnpending_invoice.DisplayFormat.FormatString = "N2"
+        Me.GridColumnpending_invoice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnpending_invoice.FieldName = "pending_invoice"
+        Me.GridColumnpending_invoice.Name = "GridColumnpending_invoice"
+        Me.GridColumnpending_invoice.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pending_invoice", "{0:N2}")})
         '
         'FormStoreStatus
         '
@@ -541,6 +572,8 @@ Partial Class FormStoreStatus
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStatusInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -560,8 +593,6 @@ Partial Class FormStoreStatus
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -614,4 +645,6 @@ Partial Class FormStoreStatus
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLECategory As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnstock_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpending_invoice As DevExpress.XtraGrid.Columns.GridColumn
 End Class

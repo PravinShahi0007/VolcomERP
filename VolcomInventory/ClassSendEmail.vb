@@ -5410,10 +5410,11 @@ WHERE sop.id_sop_schedule='" & id_report & "';"
 </table>"
             client.Send(mail)
         ElseIf report_mark_type = "388" Then
-            'send email qc sumamry report 1
-            Dim query As String = "SELECT CONCAT(d.design_code, ' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name,qcs.`number`
+            'send email qc summary report 1
+            Dim query As String = "SELECT mtq.metode_qc,CONCAT(d.design_code, ' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name,qcs.`number`
 ,DATE_FORMAT(qcs.created_date,'%d %M %Y') AS `created_date`
 FROM `tb_qc_report1_sum` qcs
+INNER JOIN tb_metode_qc mtq ON mtq.id_metode_qc=qcs.id_metode_qc
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=qcs.`id_prod_order`
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
@@ -5438,7 +5439,7 @@ LEFT JOIN (
 )cd ON cd.id_design = d.id_design
 WHERE qcs.id_qc_report1_sum='" + id_report + " '"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            Dim subj As String = "QC Report Summary 1 - " & data.Rows(0)("design_display_name").ToString
+            Dim subj As String = "QC Report Summary 1 - " & data.Rows(0)("metode_qc").ToString & " - " & data.Rows(0)("design_display_name").ToString
 
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", subj)
             Dim mail As MailMessage = New MailMessage()
@@ -5534,6 +5535,12 @@ WHERE qcs.id_qc_report1_sum='" + id_report + " '"
                         <td style='width: 10pt'>:</td>
                         <td>" & data.Rows(0)("created_date").ToString & "</td>
                       </tr>
+                        <tr>
+                        <td style='width: 15pt'></td>
+                        <td style='width: 60pt'>Metode</td>
+                        <td style='width: 10pt'>:</td>
+                        <td>" & data.Rows(0)("metode_qc").ToString & "</td>
+                      </tr>
                       <tr>
                         <td style='width: 15pt'></td>
                         <td style='width: 60pt'>Artikel</td>
@@ -5583,6 +5590,259 @@ WHERE qcs.id_qc_report1_sum='" + id_report + " '"
      </tr>
     </tbody>
 </table> "
+            client.Send(mail)
+        ElseIf report_mark_type = "222" Then
+            'send email qc summary report 2
+            Dim query As String = "SELECT qcs.number,mq.metode_qc,qcs.note,
+GROUP_CONCAT(DISTINCT(CONCAT(d.design_code, ' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color)) SEPARATOR '<br>') AS dsg
+FROM `tb_prod_fc_sum_det` qcsd
+INNER JOIN tb_prod_fc fc ON fc.id_prod_fc=qcsd.id_prod_fc
+INNER JOIN tb_prod_order po ON po.id_prod_order=fc.id_prod_order
+INNER JOIN tb_prod_fc_sum qcs ON qcs.id_prod_fc_sum=qcsd.id_prod_fc_sum
+INNER JOIN tb_metode_qc mq ON mq.id_metode_qc=qcs.id_metode_qc
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
+INNER JOIN tb_season s ON s.id_season=d.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14,43,34)
+	GROUP BY dc.id_design
+)cd ON cd.id_design = d.id_design
+WHERE qcs.id_prod_fc_sum='" & id_report & "'
+GROUP BY qcs.id_prod_fc_sum"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            Dim subj As String = "QC Report Summary 2 - " & data.Rows(0)("metode_qc").ToString & " - " & data.Rows(0)("number").ToString
+
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", subj)
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+            'attach
+            Dim Report As New ReportProductionFinalClearSummary()
+
+            'Report.XLDepartement.Text = execute_query("SELECT departement FROM tb_m_departement WHERE id_departement = 4", 0, True, "", "", "", "")
+            Report.XLNumber.Text = data.Rows(0)("number").ToString
+            Report.XLMetode.Text = data.Rows(0)("metode_qc").ToString
+
+            Report.id = id_report
+            '
+            Dim dts As DataTable = execute_query("SELECT 0 AS NO, fc.prod_fc_number, po.prod_order_number, comp.comp_name AS vendor, CONCAT(IF(rg.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS NAME, rg.range, color.color, qc_report.normal, qc_report.minor, qc_report.major, qc_report.afkir, qty_po.qty_po, qty_rec.qty_rec, fc.prod_fc_date
+FROM tb_prod_order AS po
+LEFT JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+LEFT JOIN tb_m_design d ON d.id_design = pdd.id_design
+LEFT JOIN (
+SELECT dc_col.id_design, col.display_name AS color
+FROM tb_m_design_code AS dc_col
+LEFT JOIN tb_m_code_detail AS col ON dc_col.id_code_detail = col.id_code_detail
+WHERE col.id_code = 14
+) color ON d.id_design = color.id_design
+LEFT JOIN (
+    SELECT dc.id_design, 
+    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+    MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+    FROM tb_m_design_code dc
+    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+    AND cd.id_code IN (32,30,14, 43, 34)
+    GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
+LEFT JOIN tb_season_delivery del ON del.id_delivery = po.id_delivery
+LEFT JOIN tb_season ss ON ss.id_season = del.id_season
+LEFT JOIN tb_range rg ON rg.id_range = ss.id_range
+LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor=1
+LEFT JOIN tb_m_ovh_price ovh ON ovh.id_ovh_price = wo.id_ovh_price
+LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovh.id_comp_contact 
+LEFT JOIN tb_m_comp comp ON comp.id_comp = cc.id_comp
+LEFT JOIN (
+	SELECT fc.id_prod_order, SUM(IF(fc.id_pl_category = 1, fc_det.prod_fc_det_qty, 0)) AS normal, SUM(IF(fc.id_pl_category = 2, fc_det.prod_fc_det_qty, 0)) AS minor, SUM(IF(fc.id_pl_category = 3, fc_det.prod_fc_det_qty, 0)) AS major, SUM(IF(fc.id_pl_category = 4, fc_det.prod_fc_det_qty, 0)) AS afkir
+	FROM tb_prod_fc_det AS fc_det
+	LEFT JOIN tb_prod_fc AS fc ON fc_det.id_prod_fc = fc.id_prod_fc
+	WHERE fc.id_prod_fc IN (SELECT id_prod_fc FROM tb_prod_fc_sum_det WHERE id_prod_fc_sum='" & id_report & "')
+	GROUP BY fc.id_prod_order
+) AS qc_report ON po.id_prod_order = qc_report.id_prod_order
+LEFT JOIN (
+	SELECT po_det.id_prod_order, SUM(po_det.prod_order_qty) AS qty_po
+	FROM tb_prod_order_det AS po_det
+	LEFT JOIN tb_prod_order AS po ON po_det.id_prod_order = po.id_prod_order
+	WHERE po_det.id_prod_order IN (SELECT id_prod_order FROM tb_prod_fc WHERE id_prod_fc IN (SELECT id_prod_fc FROM tb_prod_fc_sum_det WHERE id_prod_fc_sum='" & id_report & "'))
+	GROUP BY po_det.id_prod_order
+) AS qty_po ON po.id_prod_order = qty_po.id_prod_order
+LEFT JOIN (
+	SELECT rec.id_prod_order, SUM(rec_det.prod_order_rec_det_qty) AS qty_rec
+	FROM tb_prod_order_rec_det AS rec_det
+	LEFT JOIN tb_prod_order_rec AS rec ON rec_det.id_prod_order_rec = rec.id_prod_order_rec AND rec.id_report_status=6
+	WHERE rec.id_prod_order IN (SELECT id_prod_order FROM tb_prod_fc WHERE id_prod_fc IN (SELECT id_prod_fc FROM tb_prod_fc_sum_det WHERE id_prod_fc_sum='" & id_report & "'))
+	GROUP BY rec.id_prod_order
+) AS qty_rec ON po.id_prod_order = qty_rec.id_prod_order
+LEFT JOIN (
+	SELECT fc.id_prod_order, GROUP_CONCAT(DISTINCT fc.prod_fc_number ORDER BY fc.prod_fc_number ASC SEPARATOR ', ') AS prod_fc_number, IF(fc.is_cancel_form=1,CONCAT('Cancelled-',rc.number),GROUP_CONCAT(DISTINCT DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') ORDER BY fc.prod_fc_date ASC SEPARATOR ', ')) AS prod_fc_date
+	FROM tb_prod_fc fc
+	LEFT JOIN tb_report_mark_cancel rc ON fc.id_cancel_form=rc.id_report_mark_cancel
+	WHERE fc.id_prod_fc IN (SELECT id_prod_fc FROM tb_prod_fc_sum_det WHERE id_prod_fc_sum='" & id_report & "')
+	GROUP BY fc.id_prod_order,rc.id_report_mark_cancel
+) AS fc ON po.id_prod_order = fc.id_prod_order
+WHERE po.id_prod_order IN (SELECT id_prod_order FROM tb_prod_fc WHERE id_prod_fc IN (SELECT id_prod_fc FROM tb_prod_fc_sum_det WHERE id_prod_fc_sum='" & id_report & "'))
+GROUP BY po.id_prod_order", -1, True, "", "", "", "")
+            Report.data = dts
+            Report.id_pre = "1"
+
+            Report.XLNote.Text = data.Rows(0)("note").ToString
+
+            Dim Mem As New MemoryStream()
+            Report.ExportToPdf(Mem)
+            ' Create a new attachment and put the PDF report into it.
+            Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            Dim Att = New Attachment(Mem, subj, "application/pdf")
+            mail.Attachments.Add(Att)
+
+            'Send to
+            Dim query_send_mail As String = "SELECT IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',-1),emp.`email_external`) AS email_external, IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',1),emp.`employee_name`) AS employee_name
+            FROM tb_mail_to md
+            LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE md.report_mark_type='" + report_mark_type + "' AND is_to='1' AND IF(ISNULL(md.id_user),TRUE,IF(IFNULL(emp.id_employee_active,1)=1,TRUE,FALSE))"
+            Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_mail.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+                mail.To.Add(to_mail)
+            Next
+
+            'Send CC
+            Dim query_send_cc As String = "SELECT IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',-1),emp.`email_external`) AS email_external, IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',1),emp.`employee_name`) AS employee_name
+            FROM tb_mail_to md
+            LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE md.report_mark_type='" + report_mark_type + "' AND is_to='2' AND IF(ISNULL(md.id_user),TRUE,IF(IFNULL(emp.id_employee_active,1)=1,TRUE,FALSE)) "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(to_mail)
+            Next
+
+            mail.Subject = subj
+            mail.IsBodyHtml = True
+            mail.Body = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+  <tbody><tr>
+    <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+    <div align='center'>
+
+    <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+     <tbody><tr>
+      <td style='padding:0in 0in 0in 0in'></td>
+     </tr>
+     <tr>
+      <td style='padding:0in 0in 0in 0in'>
+      <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://d3k81ch9hvuctc.cloudfront.net/company/VFgA3P/images/de2b6f13-9275-426d-ae31-640f3dcfc744.jpeg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:0in 0in 0in 0in'></td>
+     </tr>
+     <tr>
+      <td style='padding:0in 0in 0in 0in'>
+      <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+       <tbody><tr>
+        <td style='padding:0in 0in 0in 0in'>
+
+        </td>
+       </tr>
+      </tbody></table>
+
+
+      <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+      <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+  
+
+      <!-- start body -->
+      <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+       <tbody>
+
+       <tr>
+          <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+              <p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Dear Team,</p>
+              <p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Bersama ini terlampir Summary QC Report 1 : 
+              <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='3' style='background:white; font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                    <tr>
+                      <td style='width: 15pt'></td>
+                      <td style='width: 60pt'>No#</td>
+                      <td style='width: 10pt'>:</td>
+                      <td>" & data.Rows(0)("number").ToString & "</td>
+                    </tr>
+                     <tr>
+                      <td style='width: 15pt'></td>
+                      <td style='width: 60pt'>Metode</td>
+                      <td style='width: 10pt'>:</td>
+                      <td>" & data.Rows(0)("metode_qc").ToString & "</td>
+                    </tr>
+                    <tr>
+                      <td style='width: 15pt'></td>
+                      <td style='width: 60pt'>Artikel</td>
+                      <td style='width: 10pt'>:</td>
+                      <td>" & data.Rows(0)("dsg").ToString & "</td>
+                    </tr>
+                  </table>
+
+              Untuk lebih jelasnya silahkan cek attachment.
+              <br><br>
+              Terima kasih atas perhatian dan kerjasamanya. 
+</p>
+          
+           </td>
+       </tr>
+
+<tr>
+        <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+        <div>
+        <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Terima kasih, <br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+        </div>
+        </td>
+       </tr>
+      </tbody>
+    </table>
+    <!-- end body -->
+
+
+      <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+      <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+      <div align='center'>
+      <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+       <tbody><tr>
+        <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+          <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+        <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><br></p>
+        </td>
+       </tr>
+      </tbody></table>
+      </div>
+      </td>
+     </tr>
+    </tbody></table>  
+    </div>
+    </td>
+   </tr>
+  </tbody>
+</table>"
             client.Send(mail)
         ElseIf report_mark_type = "391" Then
             'send email notif Wholesale

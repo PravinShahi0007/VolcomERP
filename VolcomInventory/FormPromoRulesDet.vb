@@ -107,11 +107,23 @@
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
             Dim code As String = addSlashes(TxtCode.Text)
-            Dim query As String = "SELECT p.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size` 
+            Dim query As String = "SELECT p.id_product, p.product_full_code AS `code`, CONCAT(class.code, ' ', d.design_name, ' ', color.display_name) AS `name`, cd.code_detail_name AS `size` 
             FROM tb_m_product p
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            LEFT JOIN (
+                SELECT c.id_design, d.code
+                FROM tb_m_design_code AS c
+                LEFT JOIN tb_m_code_detail AS d ON d.id_code_detail = c.id_code_detail
+                WHERE d.id_code = 30
+            ) AS class ON d.id_design = class.id_design
+            LEFT JOIN (
+                SELECT c.id_design, d.display_name
+                FROM tb_m_design_code AS c
+                LEFT JOIN tb_m_code_detail AS d ON d.id_code_detail = c.id_code_detail
+                WHERE d.id_code = 14
+            ) AS color ON d.id_design = color.id_design
             WHERE d.id_lookup_status_order!=2 AND d.id_active=1 AND p.product_full_code='" + code + "' "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
@@ -177,6 +189,26 @@
         If id_product = "-1" Then
             stopCustom("Product not found")
         Else
+            Dim in_outlet As String = ""
+
+            GVStore.ActiveFilterString = "[is_select]='yes'"
+
+            If GVStore.RowCount = 0 Then
+                stopCustom("Please select store.")
+
+                GVStore.ActiveFilterString = ""
+
+                Exit Sub
+            End If
+
+            For i As Integer = 0 To GVStore.RowCount - 1
+                in_outlet += GVStore.GetRowCellValue(i, "id_outlet").ToString + ", "
+            Next
+
+            GVStore.ActiveFilterString = ""
+
+            in_outlet = in_outlet.Substring(0, in_outlet.Length - 2)
+
             Dim id_design_cat As String = LEProductStatus.EditValue.ToString
             Dim limit_value As String = decimalSQL(TxtLimitValue.EditValue.ToString)
             Dim product_code As String = addSlashes(TxtCode.Text)
@@ -184,78 +216,89 @@
             Dim period_start As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim period_end As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
 
-            If action = "ins" Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this rule ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Cursor = Cursors.WaitCursor
-                    'main
-                    Dim query As String = "INSERT INTO tb_promo_rules(id_design_cat, limit_value, id_product, product_code, product_name,period_start, period_end, id_report_status, created_date, created_by) VALUES (" + id_design_cat + ", " + limit_value + ", " + id_product + ", '" + product_code + "', '" + product_name + "', '" + period_start + "', '" + period_end + "', 1, NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID(); "
-                    id = execute_query(query, 0, True, "", "", "", "")
+            Dim totalP As String = execute_query("
+                SELECT COUNT(*) AS total
+                FROM tb_promo_rules_det AS d
+                LEFT JOIN tb_promo_rules AS p ON d.id_rules = p.id_rules
+                WHERE d.id_outlet IN (" + in_outlet + ") AND ((p.period_start BETWEEN '" + period_start + "' AND '" + period_end + "') OR (p.period_end BETWEEN '" + period_start + "' AND '" + period_end + "') OR ('" + period_start + "' BETWEEN p.period_start AND p.period_end) OR ('" + period_end + "' BETWEEN p.period_start AND p.period_end)) AND p.id_report_status <> 5
+            ", 0, True, "", "", "", "")
 
-                    'detail
-                    insertDetail()
+            If totalP = "0" Then
+                If action = "ins" Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this rule ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Cursor = Cursors.WaitCursor
+                        'main
+                        Dim query As String = "INSERT INTO tb_promo_rules(id_design_cat, limit_value, id_product, product_code, product_name,period_start, period_end, id_report_status, created_date, created_by) VALUES (" + id_design_cat + ", " + limit_value + ", " + id_product + ", '" + product_code + "', '" + product_name + "', '" + period_start + "', '" + period_end + "', 1, NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID(); "
+                        id = execute_query(query, 0, True, "", "", "", "")
 
-                    'sync to store
-                    'syncStore()
+                        'detail
+                        insertDetail()
 
-                    execute_non_query("CALL gen_number(" + id + ", '413')", True, "", "", "", "")
+                        'sync to store
+                        'syncStore()
 
-                    submit_who_prepared("413", id, id_user)
+                        execute_non_query("CALL gen_number(" + id + ", '413')", True, "", "", "", "")
 
-                    'refresh
-                    FormPromoRules.viewRules()
-                    'FormPromoRules.viewStore()
-                    FormPromoRules.GVRules.FocusedRowHandle = find_row(FormPromoRules.GVRules, "id_rules", id)
-                    'Close()
+                        submit_who_prepared("413", id, id_user)
 
-                    action = "upd"
+                        'refresh
+                        FormPromoRules.viewRules()
+                        'FormPromoRules.viewStore()
+                        FormPromoRules.GVRules.FocusedRowHandle = find_row(FormPromoRules.GVRules, "id_rules", id)
+                        'Close()
 
-                    actionLoad()
-                    Cursor = Cursors.Default
-                End If
-            ElseIf action = "upd" Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes this rule ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Cursor = Cursors.WaitCursor
+                        action = "upd"
 
-                    'hapus di toko
-                    Dim qold As String = "SELECT * 
+                        actionLoad()
+                        Cursor = Cursors.Default
+                    End If
+                ElseIf action = "upd" Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes this rule ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Cursor = Cursors.WaitCursor
+
+                        'hapus di toko
+                        Dim qold As String = "SELECT * 
                     FROM tb_promo_rules_det rd
                     INNER JOIN tb_store_conn c ON c.id_outlet = rd.id_outlet
                     WHERE rd.id_rules=" + id + " "
-                    Dim dold As DataTable = execute_query(qold, -1, True, "", "", "", "")
-                    For i As Integer = 0 To dold.Rows.Count - 1
-                        Dim id_outlet As String = dold.Rows(i)("id_outlet").ToString
-                        Dim host As String = dold.Rows(i)("host").ToString
-                        Dim username As String = dold.Rows(i)("username").ToString
-                        Dim pass As String = dold.Rows(i)("pass").ToString
-                        Dim db As String = dold.Rows(i)("db").ToString
+                        Dim dold As DataTable = execute_query(qold, -1, True, "", "", "", "")
+                        For i As Integer = 0 To dold.Rows.Count - 1
+                            Dim id_outlet As String = dold.Rows(i)("id_outlet").ToString
+                            Dim host As String = dold.Rows(i)("host").ToString
+                            Dim username As String = dold.Rows(i)("username").ToString
+                            Dim pass As String = dold.Rows(i)("pass").ToString
+                            Dim db As String = dold.Rows(i)("db").ToString
 
-                        Dim qds As String = "DELETE FROM tb_promo_rules WHERE id_rules='" + id + "' "
-                        execute_non_query_long(qds, False, host, username, pass, db)
-                    Next
+                            Dim qds As String = "DELETE FROM tb_promo_rules WHERE id_rules='" + id + "' "
+                            execute_non_query_long(qds, False, host, username, pass, db)
+                        Next
 
-                    'main 
-                    Dim query As String = "UPDATE tb_promo_rules Set id_design_cat='" + id_design_cat + "', limit_value='" + limit_value + "', id_product='" + id_product + "', product_code='" + product_code + "', product_name='" + product_name + "',period_start='" + period_start + "', period_end='" + period_end + "' WHERE id_rules='" + id + "' "
-                    execute_non_query(query, True, "", "", "", "")
+                        'main 
+                        Dim query As String = "UPDATE tb_promo_rules Set id_design_cat='" + id_design_cat + "', limit_value='" + limit_value + "', id_product='" + id_product + "', product_code='" + product_code + "', product_name='" + product_name + "',period_start='" + period_start + "', period_end='" + period_end + "' WHERE id_rules='" + id + "' "
+                        execute_non_query(query, True, "", "", "", "")
 
-                    'detail
-                    Dim query_det As String = "DELETE FROM tb_promo_rules_det WHERE id_rules='" + id + "' "
-                    execute_non_query(query_det, True, "", "", "", "")
-                    insertDetail()
+                        'detail
+                        Dim query_det As String = "DELETE FROM tb_promo_rules_det WHERE id_rules='" + id + "' "
+                        execute_non_query(query_det, True, "", "", "", "")
+                        insertDetail()
 
-                    'synv
-                    'syncStore()
+                        'synv
+                        'syncStore()
 
-                    'refresh
-                    FormPromoRules.viewRules()
-                    'FormPromoRules.viewStore()
-                    FormPromoRules.GVRules.FocusedRowHandle = find_row(FormPromoRules.GVRules, "id_rules", id)
-                    actionLoad()
-                    'Close()
+                        'refresh
+                        FormPromoRules.viewRules()
+                        'FormPromoRules.viewStore()
+                        FormPromoRules.GVRules.FocusedRowHandle = find_row(FormPromoRules.GVRules, "id_rules", id)
+                        actionLoad()
+                        'Close()
 
-                    Cursor = Cursors.Default
+                        Cursor = Cursors.Default
+                    End If
                 End If
+            Else
+                stopCustom("There are several active GWPs for the selected period.")
             End If
         End If
     End Sub

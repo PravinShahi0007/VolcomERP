@@ -33,6 +33,7 @@ Partial Class FormMonthlySalesPerformance
         Me.GridColumnid_wh_ol = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_commerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEActiveStore = New DevExpress.XtraEditors.CheckEdit()
         Me.CCBEGroupStore = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.CCBEProvince = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.CCBEArea = New DevExpress.XtraEditors.CheckedComboBoxEdit()
@@ -98,6 +99,7 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.CEActiveStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCBEGroupStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCBEProvince.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCBEArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,13 +173,13 @@ Partial Class FormMonthlySalesPerformance
         '
         Me.GCStore.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCStore.Enabled = False
-        Me.GCStore.Location = New System.Drawing.Point(2, 189)
+        Me.GCStore.Location = New System.Drawing.Point(2, 168)
         Me.GCStore.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GCStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
         Me.GCStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCStore.Size = New System.Drawing.Size(360, 4809)
+        Me.GCStore.Size = New System.Drawing.Size(360, 4830)
         Me.GCStore.TabIndex = 41
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
@@ -247,6 +249,7 @@ Partial Class FormMonthlySalesPerformance
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.CEActiveStore)
         Me.PanelControl3.Controls.Add(Me.CCBEGroupStore)
         Me.PanelControl3.Controls.Add(Me.CCBEProvince)
         Me.PanelControl3.Controls.Add(Me.CCBEArea)
@@ -263,13 +266,24 @@ Partial Class FormMonthlySalesPerformance
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(2, 21)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(360, 168)
+        Me.PanelControl3.Size = New System.Drawing.Size(360, 147)
         Me.PanelControl3.TabIndex = 0
+        '
+        'CEActiveStore
+        '
+        Me.CEActiveStore.EditValue = True
+        Me.CEActiveStore.Location = New System.Drawing.Point(143, 118)
+        Me.CEActiveStore.Name = "CEActiveStore"
+        Me.CEActiveStore.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CEActiveStore.Properties.Appearance.Options.UseFont = True
+        Me.CEActiveStore.Properties.Caption = "Only Active Store"
+        Me.CEActiveStore.Size = New System.Drawing.Size(124, 20)
+        Me.CEActiveStore.TabIndex = 52
         '
         'CCBEGroupStore
         '
         Me.CCBEGroupStore.EditValue = ""
-        Me.CCBEGroupStore.Location = New System.Drawing.Point(81, 118)
+        Me.CCBEGroupStore.Location = New System.Drawing.Point(82, 92)
         Me.CCBEGroupStore.Name = "CCBEGroupStore"
         Me.CCBEGroupStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CCBEGroupStore.Size = New System.Drawing.Size(266, 20)
@@ -278,7 +292,7 @@ Partial Class FormMonthlySalesPerformance
         'CCBEProvince
         '
         Me.CCBEProvince.EditValue = ""
-        Me.CCBEProvince.Location = New System.Drawing.Point(80, 92)
+        Me.CCBEProvince.Location = New System.Drawing.Point(81, 66)
         Me.CCBEProvince.Name = "CCBEProvince"
         Me.CCBEProvince.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CCBEProvince.Size = New System.Drawing.Size(266, 20)
@@ -290,7 +304,7 @@ Partial Class FormMonthlySalesPerformance
         Me.CCBEArea.Location = New System.Drawing.Point(81, 40)
         Me.CCBEArea.Name = "CCBEArea"
         Me.CCBEArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBEArea.Size = New System.Drawing.Size(266, 20)
+        Me.CCBEArea.Size = New System.Drawing.Size(123, 20)
         Me.CCBEArea.TabIndex = 49
         '
         'LabelControl4
@@ -320,7 +334,7 @@ Partial Class FormMonthlySalesPerformance
         'CEAllStore
         '
         Me.CEAllStore.EditValue = True
-        Me.CEAllStore.Location = New System.Drawing.Point(12, 144)
+        Me.CEAllStore.Location = New System.Drawing.Point(13, 118)
         Me.CEAllStore.Name = "CEAllStore"
         Me.CEAllStore.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CEAllStore.Properties.Appearance.Options.UseFont = True
@@ -330,7 +344,7 @@ Partial Class FormMonthlySalesPerformance
         '
         'SLUENational
         '
-        Me.SLUENational.Location = New System.Drawing.Point(80, 66)
+        Me.SLUENational.Location = New System.Drawing.Point(80, 215)
         Me.SLUENational.Name = "SLUENational"
         Me.SLUENational.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUENational.Properties.View = Me.GridView7
@@ -362,7 +376,7 @@ Partial Class FormMonthlySalesPerformance
         'SLUEIsland
         '
         Me.SLUEIsland.Enabled = False
-        Me.SLUEIsland.Location = New System.Drawing.Point(249, 66)
+        Me.SLUEIsland.Location = New System.Drawing.Point(250, 40)
         Me.SLUEIsland.Name = "SLUEIsland"
         Me.SLUEIsland.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEIsland.Properties.View = Me.GridView9
@@ -388,7 +402,7 @@ Partial Class FormMonthlySalesPerformance
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(8, 95)
+        Me.Label10.Location = New System.Drawing.Point(9, 69)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(48, 13)
         Me.Label10.TabIndex = 33
@@ -397,7 +411,7 @@ Partial Class FormMonthlySalesPerformance
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(207, 69)
+        Me.Label9.Location = New System.Drawing.Point(208, 43)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(36, 13)
         Me.Label9.TabIndex = 31
@@ -406,7 +420,7 @@ Partial Class FormMonthlySalesPerformance
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(8, 69)
+        Me.Label6.Location = New System.Drawing.Point(8, 218)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(46, 13)
         Me.Label6.TabIndex = 22
@@ -415,7 +429,7 @@ Partial Class FormMonthlySalesPerformance
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(7, 121)
+        Me.Label11.Location = New System.Drawing.Point(8, 95)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(65, 13)
         Me.Label11.TabIndex = 35
@@ -806,6 +820,7 @@ Partial Class FormMonthlySalesPerformance
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.CEActiveStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCBEGroupStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCBEProvince.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCBEArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -913,4 +928,5 @@ Partial Class FormMonthlySalesPerformance
     Friend WithEvents CCBEArea As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CCBEProvince As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents CCBEGroupStore As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents CEActiveStore As DevExpress.XtraEditors.CheckEdit
 End Class

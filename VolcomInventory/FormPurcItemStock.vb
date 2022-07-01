@@ -288,14 +288,14 @@ LEFT JOIN
 	-- begining
 	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_begs,MIN(storage_item_datetime) as min_date
 	-- ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_begs
-    ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty))*getAvgCostDateUnit(`id_item`,DATE_SUB(@start_date, INTERVAL 1 DAY),'" & SLEUnit.EditValue.ToString & "')+IFNULL(get_amount_selisih_beg(id_item,@start_date),0) AS amount_begs
+    ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty))*getAvgCostDateUnit(`id_item`,DATE_SUB(@start_date, INTERVAL 1 DAY),'" & SLEUnit.EditValue.ToString & "')+IFNULL(get_amount_selisih_beg_unit(id_item,@start_date,'" & SLEUnit.EditValue.ToString & "'),0) AS amount_begs
 	-- ,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`)/SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS harga_satuan_begs
 	,getAvgCostDateUnit(`id_item`,DATE_SUB(@start_date, INTERVAL 1 DAY),'" & SLEUnit.EditValue.ToString & "') AS harga_satuan_begs
     FROM `tb_storage_item` 
      " & q_unit & "
 	WHERE DATE(storage_item_datetime)<@start_date AND NOT report_mark_type='154' AND NOT report_mark_type='163' " & q_where_unit & "
 	GROUP BY `id_item`
-	HAVING qty_begs!=0 OR IFNULL(get_amount_selisih_beg(id_item,@start_date),0)!=0
+	HAVING qty_begs!=0 OR IFNULL(get_amount_selisih_beg_unit(id_item,@start_date,'" & SLEUnit.EditValue.ToString & "'),0)!=0
 )beg ON beg.id_item=i.`id_item`
 LEFT JOIN (
 	SELECT id_item,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)) AS qty_rec,MIN(storage_item_datetime) AS min_date
