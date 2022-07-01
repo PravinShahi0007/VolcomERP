@@ -181,11 +181,12 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to propose this document?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim note As String = addSlashes(MENote.Text)
+                Dim plan_end_date As String = DateTime.Parse(DEPlanEndDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim pps_date As String = DateTime.Parse(DENewEndDate.EditValue.ToString).ToString("yyyy-MM-dd")
 
                 'head
-                Dim query As String = "INSERT INTO tb_eos_change(number, created_date, id_report_status, note, id_pp_change, pps_date)
-                VALUES('', NOW(), 1, '" + note + "', '" + id_pp + "', '" + pps_date + "');SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_eos_change(number, created_date, id_report_status, note, id_pp_change, pps_date, plan_end_date)
+                VALUES('', NOW(), 1, '" + note + "', '" + id_pp + "', '" + pps_date + "', '" + plan_end_date + "');SELECT LAST_INSERT_ID(); "
                 id = execute_query(query, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + ", " + rmt + "); ", True, "", "", "", "")
 
