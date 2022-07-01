@@ -41,4 +41,8 @@
         FormReportMark.report_mark_type = "405"
         FormReportMark.ShowDialog()
     End Sub
+
+    Private Sub FormProductionKOApp_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 End Class

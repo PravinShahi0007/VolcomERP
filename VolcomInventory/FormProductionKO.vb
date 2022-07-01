@@ -328,7 +328,7 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
                     qqc = "INSERT INTO `tb_prod_order_ko_app`(`id_prod_order_ko`,`created_date`,`created_by`,`id_report_status`) VALUES('" & id_ko & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID(); "
                     Dim id_pps As String = execute_query(qqc, 0, True, "", "", "", "")
                     submit_who_prepared("405", id_pps, id_user)
-                    infoCustom("Proposal revisi diajukan, menunggu persetujuan")
+                    infoCustom("Proposal revisi SKO diajukan, menunggu persetujuan QC.")
                 End If
 
                 'Dim query As String = "INSERT INTO tb_prod_order_ko(`id_prod_order_ko_reff`,`number`,`revision`,`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`id_emp_vice_director`,`is_purc_mat`)
