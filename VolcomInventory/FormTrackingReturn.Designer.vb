@@ -48,6 +48,7 @@ Partial Class FormTrackingReturn
         Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.BandedGridColumn2label_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -62,6 +63,7 @@ Partial Class FormTrackingReturn
         Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -73,8 +75,8 @@ Partial Class FormTrackingReturn
         Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn2label_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnsales_return_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnsales_return_qc_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -297,7 +299,7 @@ Partial Class FormTrackingReturn
         'GVList
         '
         Me.GVList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.GBSelect})
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn19, Me.BandedGridColumn17, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn24, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn27, Me.BandedGridColumn26, Me.BandedGridColumn28, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn23, Me.BandedGridColumn22, Me.BandedGridColumn21, Me.BandedGridColumn20, Me.BandedGridColumn25, Me.BandedGridColumn18, Me.BandedGridColumn2label_number})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn19, Me.BandedGridColumn17, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn24, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn27, Me.BandedGridColumn26, Me.BandedGridColumn28, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn23, Me.BandedGridColumn22, Me.BandedGridColumn21, Me.BandedGridColumn20, Me.BandedGridColumn25, Me.BandedGridColumn18, Me.BandedGridColumn2label_number, Me.BandedGridColumnsales_return_number, Me.BandedGridColumnsales_return_qc_number})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.BandedGridColumn4, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "act_qty", Me.BandedGridColumn5, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", Me.BandedGridColumn6, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", Me.BandedGridColumn7, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_problem_qty", Me.BandedGridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty_ret", Me.BandedGridColumn9, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_g78", Me.BandedGridColumn10, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_s78", Me.BandedGridColumn11, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_rm2", Me.BandedGridColumn12, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_gc1", Me.BandedGridColumn13, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_trf", Me.BandedGridColumn14, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_return", Me.BandedGridColumn15, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_sj_fisik", Me.BandedGridColumn16, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_gm1", Me.BandedGridColumn28, "{0:N0}")})
         Me.GVList.Name = "GVList"
@@ -347,6 +349,14 @@ Partial Class FormTrackingReturn
         'RepositoryItemMemoEdit3
         '
         Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
+        '
+        'BandedGridColumn2label_number
+        '
+        Me.BandedGridColumn2label_number.Caption = "Inbound Label"
+        Me.BandedGridColumn2label_number.FieldName = "label_number"
+        Me.BandedGridColumn2label_number.Name = "BandedGridColumn2label_number"
+        Me.BandedGridColumn2label_number.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumn2label_number.Visible = True
         '
         'BandedGridColumn3
         '
@@ -501,6 +511,16 @@ Partial Class FormTrackingReturn
         Me.BandedGridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_gos", "{0:N0}")})
         Me.BandedGridColumn26.Visible = True
         '
+        'BandedGridColumn28
+        '
+        Me.BandedGridColumn28.Caption = "GM1"
+        Me.BandedGridColumn28.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn28.FieldName = "sales_return_qc_det_qty_gm1"
+        Me.BandedGridColumn28.Name = "BandedGridColumn28"
+        Me.BandedGridColumn28.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_gm1", "{0:N0}")})
+        Me.BandedGridColumn28.Visible = True
+        '
         'BandedGridColumn14
         '
         Me.BandedGridColumn14.Caption = "Total Trf"
@@ -604,23 +624,19 @@ Partial Class FormTrackingReturn
         Me.BandedGridColumn23.Name = "BandedGridColumn23"
         Me.BandedGridColumn23.OptionsColumn.ReadOnly = True
         '
-        'BandedGridColumn2label_number
+        'BandedGridColumnsales_return_number
         '
-        Me.BandedGridColumn2label_number.Caption = "Inbound Label"
-        Me.BandedGridColumn2label_number.FieldName = "label_number"
-        Me.BandedGridColumn2label_number.Name = "BandedGridColumn2label_number"
-        Me.BandedGridColumn2label_number.OptionsColumn.ReadOnly = True
-        Me.BandedGridColumn2label_number.Visible = True
+        Me.BandedGridColumnsales_return_number.Caption = "Number"
+        Me.BandedGridColumnsales_return_number.FieldName = "sales_return_number"
+        Me.BandedGridColumnsales_return_number.Name = "BandedGridColumnsales_return_number"
+        Me.BandedGridColumnsales_return_number.Visible = True
         '
-        'BandedGridColumn28
+        'BandedGridColumnsales_return_qc_number
         '
-        Me.BandedGridColumn28.Caption = "GM1"
-        Me.BandedGridColumn28.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn28.FieldName = "sales_return_qc_det_qty_gm1"
-        Me.BandedGridColumn28.Name = "BandedGridColumn28"
-        Me.BandedGridColumn28.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_gm1", "{0:N0}")})
-        Me.BandedGridColumn28.Visible = True
+        Me.BandedGridColumnsales_return_qc_number.Caption = "Number"
+        Me.BandedGridColumnsales_return_qc_number.FieldName = "sales_return_qc_number"
+        Me.BandedGridColumnsales_return_qc_number.Name = "BandedGridColumnsales_return_qc_number"
+        Me.BandedGridColumnsales_return_qc_number.Visible = True
         '
         'GridBand1
         '
@@ -641,16 +657,18 @@ Partial Class FormTrackingReturn
         'gridBand2
         '
         Me.gridBand2.Caption = "Return"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnsales_return_number)
         Me.gridBand2.Columns.Add(Me.BandedGridColumn7)
         Me.gridBand2.Columns.Add(Me.BandedGridColumn8)
         Me.gridBand2.Columns.Add(Me.BandedGridColumn9)
         Me.gridBand2.Name = "gridBand2"
         Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 225
+        Me.gridBand2.Width = 300
         '
         'gridBand3
         '
         Me.gridBand3.Caption = "Return Transfer"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnsales_return_qc_number)
         Me.gridBand3.Columns.Add(Me.BandedGridColumn10)
         Me.gridBand3.Columns.Add(Me.BandedGridColumn11)
         Me.gridBand3.Columns.Add(Me.BandedGridColumn12)
@@ -663,7 +681,7 @@ Partial Class FormTrackingReturn
         Me.gridBand3.Columns.Add(Me.BandedGridColumn16)
         Me.gridBand3.Name = "gridBand3"
         Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 750
+        Me.gridBand3.Width = 825
         '
         'gridBand4
         '
@@ -769,9 +787,11 @@ Partial Class FormTrackingReturn
     Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn2label_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn28 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnsales_return_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnsales_return_qc_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBSelect As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
