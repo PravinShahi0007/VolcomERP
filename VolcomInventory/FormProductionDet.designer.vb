@@ -49,6 +49,9 @@ Partial Class FormProductionDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEBOMName = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.TESiluet = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPBOM = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBOM = New DevExpress.XtraGrid.GridControl()
         Me.GVBOM = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -244,6 +247,9 @@ Partial Class FormProductionDet
         CType(Me.BEBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEBOMName, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl9.SuspendLayout()
+        CType(Me.TESiluet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPBOM.SuspendLayout()
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -376,6 +382,7 @@ Partial Class FormProductionDet
         'XTPListItem
         '
         Me.XTPListItem.Controls.Add(Me.GCListProduct)
+        Me.XTPListItem.Controls.Add(Me.PanelControl9)
         Me.XTPListItem.Name = "XTPListItem"
         Me.XTPListItem.Size = New System.Drawing.Size(943, 261)
         Me.XTPListItem.Text = "List Item"
@@ -388,7 +395,7 @@ Partial Class FormProductionDet
         Me.GCListProduct.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListProduct.Name = "GCListProduct"
         Me.GCListProduct.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.SLEBOMName, Me.BEBOM})
-        Me.GCListProduct.Size = New System.Drawing.Size(943, 261)
+        Me.GCListProduct.Size = New System.Drawing.Size(943, 227)
         Me.GCListProduct.TabIndex = 0
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
         '
@@ -591,6 +598,37 @@ Partial Class FormProductionDet
         Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
         Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl9
+        '
+        Me.PanelControl9.Controls.Add(Me.TESiluet)
+        Me.PanelControl9.Controls.Add(Me.LabelControl17)
+        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl9.Location = New System.Drawing.Point(0, 227)
+        Me.PanelControl9.Name = "PanelControl9"
+        Me.PanelControl9.Size = New System.Drawing.Size(943, 34)
+        Me.PanelControl9.TabIndex = 1
+        '
+        'TESiluet
+        '
+        Me.TESiluet.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TESiluet.EditValue = ""
+        Me.TESiluet.Location = New System.Drawing.Point(51, 8)
+        Me.TESiluet.Name = "TESiluet"
+        Me.TESiluet.Properties.EditValueChangedDelay = 1
+        Me.TESiluet.Properties.ReadOnly = True
+        Me.TESiluet.Size = New System.Drawing.Size(887, 20)
+        Me.TESiluet.TabIndex = 160
+        Me.TESiluet.TabStop = False
+        '
+        'LabelControl17
+        '
+        Me.LabelControl17.Location = New System.Drawing.Point(13, 11)
+        Me.LabelControl17.Name = "LabelControl17"
+        Me.LabelControl17.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl17.TabIndex = 141
+        Me.LabelControl17.Text = "Siluet"
         '
         'XTPBOM
         '
@@ -2438,6 +2476,10 @@ Partial Class FormProductionDet
         CType(Me.BEBOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEBOMName, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl9.ResumeLayout(False)
+        Me.PanelControl9.PerformLayout()
+        CType(Me.TESiluet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPBOM.ResumeLayout(False)
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2728,4 +2770,7 @@ Partial Class FormProductionDet
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BCancelFGPO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl9 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TESiluet As DevExpress.XtraEditors.TextEdit
 End Class

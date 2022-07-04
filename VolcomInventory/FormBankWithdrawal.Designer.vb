@@ -6088,7 +6088,7 @@ Partial Class FormBankWithdrawal
         Me.XTPDeviden.Controls.Add(Me.PanelControl12)
         Me.XTPDeviden.Name = "XTPDeviden"
         Me.XTPDeviden.Size = New System.Drawing.Size(1352, 513)
-        Me.XTPDeviden.Text = "Deviden"
+        Me.XTPDeviden.Text = "Dividen"
         '
         'GCShareHolder
         '

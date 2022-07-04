@@ -77,7 +77,7 @@ LEFT JOIN
 	GROUP BY d.`id_deviden`,c.`id_comp`
 )pn ON pn.id_deviden=ds.`id_deviden` AND pn.`id_comp`=ds.`id_comp`
 UNION ALL
-SELECT tb.profit_year,0 AS id_comp,'' AS comp_number,'' AS `pph_account`,'' AS pph_desc,'TOTAL' AS `comp_name`,0 AS `pph_percent`,0 AS deviden_percent,SUM(tb.deviden_amount) AS deviden_amount,SUM(tb.pph_amount) AS pph_amount
+SELECT tb.profit_year,0 AS id_comp,'' AS comp_number,'' AS `pph_account`,'' AS pph_desc,'TOTAL' AS `comp_name`,NULL AS `pph_percent`,100 AS deviden_percent,SUM(tb.deviden_amount) AS deviden_amount,SUM(tb.pph_amount) AS pph_amount
 ,IFNULL(pn.paid_amount,0) AS paid_amount
 FROM
 (
