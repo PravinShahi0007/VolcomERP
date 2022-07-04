@@ -308,6 +308,8 @@
         DEManifestUntil.EditValue = data_dt.Rows(0)("dt")
         DEStartInputAWBM.EditValue = data_dt.Rows(0)("dt")
         DEUntilInputAWBM.EditValue = data_dt.Rows(0)("dt")
+        DEFromRepair.EditValue = data_dt.Rows(0)("dt")
+        DEUntilRepair.EditValue = data_dt.Rows(0)("dt")
 
         'load expire
         Dim qex As String = "SELECT expired_close_too FROM tb_opt"
