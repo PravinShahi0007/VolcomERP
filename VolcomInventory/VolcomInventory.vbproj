@@ -3258,6 +3258,12 @@
     <Compile Include="FormMasterComputer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterComputerMtc.designer.vb">
+      <DependentUpon>FormMasterComputerMtc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterComputerMtc.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterDesignComment.Designer.vb">
       <DependentUpon>FormMasterDesignComment.vb</DependentUpon>
     </Compile>
@@ -12615,6 +12621,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterComputer.resx">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterComputerMtc.resx">
+      <DependentUpon>FormMasterComputerMtc.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterDesignComment.resx">
       <DependentUpon>FormMasterDesignComment.vb</DependentUpon>
