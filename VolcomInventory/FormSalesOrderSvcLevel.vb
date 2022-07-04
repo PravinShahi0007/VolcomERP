@@ -1669,4 +1669,28 @@ HAVING sts='Paid'"
         End If
         GVList.ActiveFilterString = ""
     End Sub
+
+    Private Sub BtnRepair_Click(sender As Object, e As EventArgs) Handles BtnRepair.Click
+        Cursor = Cursors.WaitCursor
+        viewRepair()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewRepair()
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query_c As New ClassFGRepair()
+        Dim query As String = query_c.queryMain("AND comp_frm.id_departement=6 AND (r.fg_repair_date>='" + date_from_selected + "' AND r.fg_repair_date<='" + date_until_selected + "') ", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRepair.DataSource = data
+    End Sub
 End Class

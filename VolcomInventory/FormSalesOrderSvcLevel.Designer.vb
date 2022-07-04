@@ -270,6 +270,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumncombine_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnprepared_daterts = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnlabel_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateReturn = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusReturn = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -433,7 +434,26 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEStartInputAWBM = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnlabel_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPRepairProduct = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRepair = New DevExpress.XtraGrid.GridControl()
+        Me.GVRepair = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn94 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFGRepairNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn95 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn96 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl8 = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnRepair = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton18 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton19 = New DevExpress.XtraEditors.SimpleButton()
+        Me.DateUntilRepair = New DevExpress.XtraEditors.DateEdit()
+        Me.DateFromRepair = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl33 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl34 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPRepairedProductRec = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LETypeRestockTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -585,6 +605,15 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilInputAWBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartInputAWBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartInputAWBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPRepairProduct.SuspendLayout()
+        CType(Me.GCRepair, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRepair, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl8.SuspendLayout()
+        CType(Me.DateUntilRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateUntilRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateFromRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateFromRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -1156,7 +1185,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTCSvcLevel.SelectedTabPage = Me.XTPPrepareOrder
         Me.XTCSvcLevel.Size = New System.Drawing.Size(940, 339)
         Me.XTCSvcLevel.TabIndex = 4
-        Me.XTCSvcLevel.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepareOrder, Me.XTPReturnOrder, Me.XTPRec, Me.XTPDelOrder, Me.XTPReturn, Me.XTPReturnQC, Me.XTPTrf, Me.XTPNonStockInv, Me.XTPClosingSuratJalan, Me.XTPCompleteManifest, Me.XTPAWBManifest})
+        Me.XTCSvcLevel.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepareOrder, Me.XTPReturnOrder, Me.XTPRec, Me.XTPDelOrder, Me.XTPReturn, Me.XTPReturnQC, Me.XTPTrf, Me.XTPNonStockInv, Me.XTPClosingSuratJalan, Me.XTPCompleteManifest, Me.XTPAWBManifest, Me.XTPRepairProduct, Me.XTPRepairedProductRec})
         '
         'XTPPrepareOrder
         '
@@ -2919,6 +2948,15 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn73.VisibleIndex = 18
         Me.GridColumn73.Width = 70
         '
+        'GridColumnlabel_number
+        '
+        Me.GridColumnlabel_number.Caption = "Return Label"
+        Me.GridColumnlabel_number.FieldName = "label_number"
+        Me.GridColumnlabel_number.Name = "GridColumnlabel_number"
+        Me.GridColumnlabel_number.Visible = True
+        Me.GridColumnlabel_number.VisibleIndex = 8
+        Me.GridColumnlabel_number.Width = 95
+        '
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -4492,14 +4530,194 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl32.TabIndex = 8892
         Me.LabelControl32.Text = "From"
         '
-        'GridColumnlabel_number
+        'XTPRepairProduct
         '
-        Me.GridColumnlabel_number.Caption = "Return Label"
-        Me.GridColumnlabel_number.FieldName = "label_number"
-        Me.GridColumnlabel_number.Name = "GridColumnlabel_number"
-        Me.GridColumnlabel_number.Visible = True
-        Me.GridColumnlabel_number.VisibleIndex = 8
-        Me.GridColumnlabel_number.Width = 95
+        Me.XTPRepairProduct.Controls.Add(Me.GCRepair)
+        Me.XTPRepairProduct.Controls.Add(Me.GroupControl8)
+        Me.XTPRepairProduct.Name = "XTPRepairProduct"
+        Me.XTPRepairProduct.Size = New System.Drawing.Size(934, 311)
+        Me.XTPRepairProduct.Text = "Repair Product"
+        '
+        'GCRepair
+        '
+        Me.GCRepair.ContextMenuStrip = Me.ViewMenu
+        Me.GCRepair.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRepair.Location = New System.Drawing.Point(0, 39)
+        Me.GCRepair.MainView = Me.GVRepair
+        Me.GCRepair.Name = "GCRepair"
+        Me.GCRepair.Size = New System.Drawing.Size(934, 272)
+        Me.GCRepair.TabIndex = 7
+        Me.GCRepair.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRepair})
+        '
+        'GVRepair
+        '
+        Me.GVRepair.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnNumber, Me.GridColumn94, Me.GridColumnFGRepairNote, Me.GridColumn95, Me.GridColumnCompFrom, Me.GridColumn96, Me.GridColumntotal_qty})
+        Me.GVRepair.GridControl = Me.GCRepair
+        Me.GVRepair.Name = "GVRepair"
+        Me.GVRepair.OptionsBehavior.Editable = False
+        Me.GVRepair.OptionsView.ShowFooter = True
+        Me.GVRepair.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnID
+        '
+        Me.GridColumnID.Caption = "Id"
+        Me.GridColumnID.FieldName = "id_fg_repair"
+        Me.GridColumnID.Name = "GridColumnID"
+        '
+        'GridColumnNumber
+        '
+        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.FieldName = "fg_repair_number"
+        Me.GridColumnNumber.Name = "GridColumnNumber"
+        Me.GridColumnNumber.Visible = True
+        Me.GridColumnNumber.VisibleIndex = 0
+        '
+        'GridColumn94
+        '
+        Me.GridColumn94.Caption = "Created Date"
+        Me.GridColumn94.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn94.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn94.FieldName = "fg_repair_date"
+        Me.GridColumn94.Name = "GridColumn94"
+        Me.GridColumn94.Visible = True
+        Me.GridColumn94.VisibleIndex = 3
+        '
+        'GridColumnFGRepairNote
+        '
+        Me.GridColumnFGRepairNote.Caption = "Note"
+        Me.GridColumnFGRepairNote.FieldName = "fg_repair_note"
+        Me.GridColumnFGRepairNote.Name = "GridColumnFGRepairNote"
+        Me.GridColumnFGRepairNote.Visible = True
+        Me.GridColumnFGRepairNote.VisibleIndex = 5
+        '
+        'GridColumn95
+        '
+        Me.GridColumn95.Caption = "Status"
+        Me.GridColumn95.FieldName = "report_status"
+        Me.GridColumn95.Name = "GridColumn95"
+        Me.GridColumn95.Visible = True
+        Me.GridColumn95.VisibleIndex = 6
+        '
+        'GridColumnCompFrom
+        '
+        Me.GridColumnCompFrom.Caption = "From"
+        Me.GridColumnCompFrom.FieldName = "comp_from"
+        Me.GridColumnCompFrom.Name = "GridColumnCompFrom"
+        Me.GridColumnCompFrom.Visible = True
+        Me.GridColumnCompFrom.VisibleIndex = 1
+        '
+        'GridColumn96
+        '
+        Me.GridColumn96.Caption = "To"
+        Me.GridColumn96.FieldName = "comp_to"
+        Me.GridColumn96.Name = "GridColumn96"
+        Me.GridColumn96.Visible = True
+        Me.GridColumn96.VisibleIndex = 2
+        '
+        'GridColumntotal_qty
+        '
+        Me.GridColumntotal_qty.Caption = "Total Qty"
+        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty.FieldName = "total_qty"
+        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        Me.GridColumntotal_qty.Visible = True
+        Me.GridColumntotal_qty.VisibleIndex = 4
+        '
+        'GroupControl8
+        '
+        Me.GroupControl8.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl8.Controls.Add(Me.BtnRepair)
+        Me.GroupControl8.Controls.Add(Me.SimpleButton18)
+        Me.GroupControl8.Controls.Add(Me.SimpleButton19)
+        Me.GroupControl8.Controls.Add(Me.DateUntilRepair)
+        Me.GroupControl8.Controls.Add(Me.DateFromRepair)
+        Me.GroupControl8.Controls.Add(Me.LabelControl33)
+        Me.GroupControl8.Controls.Add(Me.LabelControl34)
+        Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl8.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl8.Name = "GroupControl8"
+        Me.GroupControl8.Size = New System.Drawing.Size(934, 39)
+        Me.GroupControl8.TabIndex = 6
+        '
+        'BtnRepair
+        '
+        Me.BtnRepair.Location = New System.Drawing.Point(317, 9)
+        Me.BtnRepair.LookAndFeel.SkinName = "Blue"
+        Me.BtnRepair.Name = "BtnRepair"
+        Me.BtnRepair.Size = New System.Drawing.Size(75, 20)
+        Me.BtnRepair.TabIndex = 8896
+        Me.BtnRepair.Text = "View"
+        '
+        'SimpleButton18
+        '
+        Me.SimpleButton18.ImageIndex = 9
+        Me.SimpleButton18.Location = New System.Drawing.Point(938, 14)
+        Me.SimpleButton18.Name = "SimpleButton18"
+        Me.SimpleButton18.Size = New System.Drawing.Size(104, 20)
+        Me.SimpleButton18.TabIndex = 8898
+        Me.SimpleButton18.Text = "Hide All Detail"
+        Me.SimpleButton18.Visible = False
+        '
+        'SimpleButton19
+        '
+        Me.SimpleButton19.ImageIndex = 8
+        Me.SimpleButton19.Location = New System.Drawing.Point(835, 14)
+        Me.SimpleButton19.Name = "SimpleButton19"
+        Me.SimpleButton19.Size = New System.Drawing.Size(99, 20)
+        Me.SimpleButton19.TabIndex = 8897
+        Me.SimpleButton19.Text = "Expand All Detail"
+        Me.SimpleButton19.Visible = False
+        '
+        'DateUntilRepair
+        '
+        Me.DateUntilRepair.EditValue = Nothing
+        Me.DateUntilRepair.Location = New System.Drawing.Point(202, 9)
+        Me.DateUntilRepair.Name = "DateUntilRepair"
+        Me.DateUntilRepair.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateUntilRepair.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DateUntilRepair.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DateUntilRepair.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateUntilRepair.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DateUntilRepair.Size = New System.Drawing.Size(111, 20)
+        Me.DateUntilRepair.TabIndex = 8895
+        '
+        'DateFromRepair
+        '
+        Me.DateFromRepair.EditValue = Nothing
+        Me.DateFromRepair.Location = New System.Drawing.Point(58, 9)
+        Me.DateFromRepair.Name = "DateFromRepair"
+        Me.DateFromRepair.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateFromRepair.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DateFromRepair.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DateFromRepair.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateFromRepair.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DateFromRepair.Size = New System.Drawing.Size(111, 20)
+        Me.DateFromRepair.TabIndex = 8894
+        '
+        'LabelControl33
+        '
+        Me.LabelControl33.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl33.Name = "LabelControl33"
+        Me.LabelControl33.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl33.TabIndex = 8893
+        Me.LabelControl33.Text = "Until"
+        '
+        'LabelControl34
+        '
+        Me.LabelControl34.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl34.Name = "LabelControl34"
+        Me.LabelControl34.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl34.TabIndex = 8892
+        Me.LabelControl34.Text = "From"
+        '
+        'XTPRepairedProductRec
+        '
+        Me.XTPRepairedProductRec.Name = "XTPRepairedProductRec"
+        Me.XTPRepairedProductRec.Size = New System.Drawing.Size(934, 311)
+        Me.XTPRepairedProductRec.Text = "Repaired Product Receiving"
+        Me.XTPRepairedProductRec.UseWaitCursor = True
         '
         'FormSalesOrderSvcLevel
         '
@@ -4676,6 +4894,16 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilInputAWBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartInputAWBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartInputAWBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPRepairProduct.ResumeLayout(False)
+        CType(Me.GCRepair, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRepair, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl8.ResumeLayout(False)
+        Me.GroupControl8.PerformLayout()
+        CType(Me.DateUntilRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateUntilRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateFromRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateFromRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -5094,4 +5322,24 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents BCompleteWholesaleSDO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn93 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnlabel_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPRepairProduct As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPRepairedProductRec As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl8 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BtnRepair As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton18 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton19 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DateUntilRepair As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DateFromRepair As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl33 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl34 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCRepair As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRepair As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn94 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFGRepairNote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn95 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCompFrom As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn96 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_qty As DevExpress.XtraGrid.Columns.GridColumn
 End Class
