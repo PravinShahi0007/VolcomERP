@@ -418,7 +418,7 @@ WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY po.id_p
     End Sub
 
     Sub buttonView_click()
-        If SLEFGPOVendor.EditValue.ToString = "0" Then
+        If SLEVendor.EditValue.ToString = "0" Then
             load_po()
         Else
             Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap FROM tb_m_comp c

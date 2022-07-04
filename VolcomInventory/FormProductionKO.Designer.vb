@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormProductionKO
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,10 +17,13 @@ Partial Class FormProductionKO
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionKO))
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Me.GCEditable = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.TEFax = New DevExpress.XtraEditors.TextEdit()
@@ -96,6 +99,7 @@ Partial Class FormProductionKO
         Me.GridColumnPOKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAttachment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBefore = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
@@ -150,6 +154,14 @@ Partial Class FormProductionKO
         Me.PCDel.SuspendLayout()
         Me.SuspendLayout()
         '
+        'GCEditable
+        '
+        Me.GCEditable.Caption = "Editable"
+        Me.GCEditable.FieldName = "ok_edit"
+        Me.GCEditable.Name = "GCEditable"
+        Me.GCEditable.OptionsColumn.AllowEdit = False
+        Me.GCEditable.OptionsColumn.AllowFocus = False
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.PanelControl4)
@@ -157,7 +169,7 @@ Partial Class FormProductionKO
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(875, 172)
+        Me.PanelControl1.Size = New System.Drawing.Size(1031, 172)
         Me.PanelControl1.TabIndex = 0
         '
         'PanelControl4
@@ -321,20 +333,20 @@ Partial Class FormProductionKO
         Me.PanelControl3.Controls.Add(Me.SLERevision)
         Me.PanelControl3.Controls.Add(Me.LabelControl4)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(417, 2)
+        Me.PanelControl3.Location = New System.Drawing.Point(573, 2)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(456, 168)
         Me.PanelControl3.TabIndex = 4
         '
         'SLEContractTemplate
         '
-        Me.SLEContractTemplate.Location = New System.Drawing.Point(109, 59)
+        Me.SLEContractTemplate.Location = New System.Drawing.Point(109, 61)
         Me.SLEContractTemplate.Name = "SLEContractTemplate"
         Me.SLEContractTemplate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEContractTemplate.Properties.Appearance.Options.UseFont = True
         Me.SLEContractTemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEContractTemplate.Properties.View = Me.GridView2
-        Me.SLEContractTemplate.Size = New System.Drawing.Size(194, 20)
+        Me.SLEContractTemplate.Size = New System.Drawing.Size(189, 20)
         Me.SLEContractTemplate.TabIndex = 8915
         '
         'GridView2
@@ -374,7 +386,7 @@ Partial Class FormProductionKO
         Me.BRevise.Appearance.Options.UseFont = True
         Me.BRevise.Location = New System.Drawing.Point(372, 6)
         Me.BRevise.Name = "BRevise"
-        Me.BRevise.Size = New System.Drawing.Size(67, 22)
+        Me.BRevise.Size = New System.Drawing.Size(62, 22)
         Me.BRevise.TabIndex = 8914
         Me.BRevise.TabStop = False
         Me.BRevise.Text = "Revise"
@@ -382,17 +394,17 @@ Partial Class FormProductionKO
         'TETermOrder
         '
         Me.TETermOrder.EditValue = ""
-        Me.TETermOrder.Location = New System.Drawing.Point(109, 84)
+        Me.TETermOrder.Location = New System.Drawing.Point(109, 86)
         Me.TETermOrder.Name = "TETermOrder"
         Me.TETermOrder.Properties.EditValueChangedDelay = 1
         Me.TETermOrder.Properties.ReadOnly = True
-        Me.TETermOrder.Size = New System.Drawing.Size(330, 20)
+        Me.TETermOrder.Size = New System.Drawing.Size(325, 20)
         Me.TETermOrder.TabIndex = 8913
         Me.TETermOrder.TabStop = False
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(14, 87)
+        Me.LabelControl7.Location = New System.Drawing.Point(9, 89)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl7.TabIndex = 8912
@@ -403,7 +415,7 @@ Partial Class FormProductionKO
         Me.BrefreshTemplateContract.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BrefreshTemplateContract.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BrefreshTemplateContract.Appearance.Options.UseFont = True
-        Me.BrefreshTemplateContract.Location = New System.Drawing.Point(309, 57)
+        Me.BrefreshTemplateContract.Location = New System.Drawing.Point(304, 59)
         Me.BrefreshTemplateContract.Name = "BrefreshTemplateContract"
         Me.BrefreshTemplateContract.Size = New System.Drawing.Size(57, 22)
         Me.BrefreshTemplateContract.TabIndex = 8911
@@ -415,7 +427,7 @@ Partial Class FormProductionKO
         Me.BManageContractVendor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BManageContractVendor.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BManageContractVendor.Appearance.Options.UseFont = True
-        Me.BManageContractVendor.Location = New System.Drawing.Point(372, 57)
+        Me.BManageContractVendor.Location = New System.Drawing.Point(367, 59)
         Me.BManageContractVendor.Name = "BManageContractVendor"
         Me.BManageContractVendor.Size = New System.Drawing.Size(67, 22)
         Me.BManageContractVendor.TabIndex = 8910
@@ -425,7 +437,7 @@ Partial Class FormProductionKO
         'LabelControl37
         '
         Me.LabelControl37.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl37.Location = New System.Drawing.Point(14, 62)
+        Me.LabelControl37.Location = New System.Drawing.Point(9, 64)
         Me.LabelControl37.Name = "LabelControl37"
         Me.LabelControl37.Size = New System.Drawing.Size(89, 13)
         Me.LabelControl37.TabIndex = 8908
@@ -441,7 +453,7 @@ Partial Class FormProductionKO
         Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDateCreated.Size = New System.Drawing.Size(330, 20)
+        Me.DEDateCreated.Size = New System.Drawing.Size(325, 20)
         Me.DEDateCreated.TabIndex = 8907
         '
         'LabelControl5
@@ -509,7 +521,7 @@ Partial Class FormProductionKO
         Me.PCControl.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCControl.Location = New System.Drawing.Point(0, 514)
         Me.PCControl.Name = "PCControl"
-        Me.PCControl.Size = New System.Drawing.Size(875, 41)
+        Me.PCControl.Size = New System.Drawing.Size(1031, 41)
         Me.PCControl.TabIndex = 1
         '
         'BMark
@@ -551,7 +563,7 @@ Partial Class FormProductionKO
         Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAttachment.ImageIndex = 16
         Me.BAttachment.ImageList = Me.ImageCollection
-        Me.BAttachment.Location = New System.Drawing.Point(475, 2)
+        Me.BAttachment.Location = New System.Drawing.Point(631, 2)
         Me.BAttachment.Name = "BAttachment"
         Me.BAttachment.Size = New System.Drawing.Size(96, 37)
         Me.BAttachment.TabIndex = 8912
@@ -562,7 +574,7 @@ Partial Class FormProductionKO
         Me.BPrintKO.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrintKO.ImageIndex = 6
         Me.BPrintKO.ImageList = Me.ImageCollection
-        Me.BPrintKO.Location = New System.Drawing.Point(571, 2)
+        Me.BPrintKO.Location = New System.Drawing.Point(727, 2)
         Me.BPrintKO.Name = "BPrintKO"
         Me.BPrintKO.Size = New System.Drawing.Size(96, 37)
         Me.BPrintKO.TabIndex = 8910
@@ -573,7 +585,7 @@ Partial Class FormProductionKO
         Me.BUpdate.Dock = System.Windows.Forms.DockStyle.Right
         Me.BUpdate.ImageIndex = 7
         Me.BUpdate.ImageList = Me.ImageCollection
-        Me.BUpdate.Location = New System.Drawing.Point(667, 2)
+        Me.BUpdate.Location = New System.Drawing.Point(823, 2)
         Me.BUpdate.Name = "BUpdate"
         Me.BUpdate.Size = New System.Drawing.Size(99, 37)
         Me.BUpdate.TabIndex = 8911
@@ -584,7 +596,7 @@ Partial Class FormProductionKO
         Me.BLock.Dock = System.Windows.Forms.DockStyle.Right
         Me.BLock.ImageIndex = 4
         Me.BLock.ImageList = Me.ImageCollection
-        Me.BLock.Location = New System.Drawing.Point(766, 2)
+        Me.BLock.Location = New System.Drawing.Point(922, 2)
         Me.BLock.Name = "BLock"
         Me.BLock.Size = New System.Drawing.Size(107, 37)
         Me.BLock.TabIndex = 8909
@@ -597,7 +609,7 @@ Partial Class FormProductionKO
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
-        Me.GCProd.Size = New System.Drawing.Size(875, 234)
+        Me.GCProd.Size = New System.Drawing.Size(1031, 234)
         Me.GCProd.TabIndex = 4
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -610,7 +622,16 @@ Partial Class FormProductionKO
         Me.GVProd.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVProd.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVProd.ColumnPanelRowHeight = 50
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumnNo, Me.GridColumnPOType, Me.GridColumnCompName, Me.GridColumn1, Me.GridColumnProdNo, Me.GridColumnTerm, Me.GridColumn10, Me.GridColumn9, Me.GridColumnDesign, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnRange, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn17, Me.GridColumnLeadTime, Me.GridColumn2, Me.GridColumn11, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn12, Me.GridColumnPOCurr, Me.GridColumnPOAmount, Me.GridColumnPOKurs, Me.GridColumn13, Me.GCAttachment})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumnNo, Me.GridColumnPOType, Me.GridColumnCompName, Me.GridColumn1, Me.GridColumnProdNo, Me.GridColumnTerm, Me.GridColumn10, Me.GridColumn9, Me.GridColumnDesign, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnRange, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn17, Me.GridColumnLeadTime, Me.GridColumn2, Me.GridColumn11, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn12, Me.GridColumnPOCurr, Me.GridColumnPOAmount, Me.GridColumnPOKurs, Me.GridColumn13, Me.GCAttachment, Me.GridColumnBefore, Me.GCEditable})
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Column = Me.GCEditable
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal
+        FormatConditionRuleValue1.Value1 = False
+        GridFormatRule1.Rule = FormatConditionRuleValue1
+        Me.GVProd.FormatRules.Add(GridFormatRule1)
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.Name = "GVProd"
         Me.GVProd.OptionsSelection.EnableAppearanceFocusedRow = False
@@ -668,7 +689,7 @@ Partial Class FormProductionKO
         Me.GridColumnProdNo.OptionsColumn.AllowEdit = False
         Me.GridColumnProdNo.Visible = True
         Me.GridColumnProdNo.VisibleIndex = 0
-        Me.GridColumnProdNo.Width = 142
+        Me.GridColumnProdNo.Width = 84
         '
         'GridColumnTerm
         '
@@ -708,7 +729,7 @@ Partial Class FormProductionKO
         Me.GridColumnDescription.OptionsColumn.AllowEdit = False
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 1
-        Me.GridColumnDescription.Width = 384
+        Me.GridColumnDescription.Width = 227
         '
         'GridColumnColor
         '
@@ -722,7 +743,7 @@ Partial Class FormProductionKO
         Me.GridColumnColor.OptionsColumn.AllowEdit = False
         Me.GridColumnColor.Visible = True
         Me.GridColumnColor.VisibleIndex = 2
-        Me.GridColumnColor.Width = 89
+        Me.GridColumnColor.Width = 52
         '
         'GridColumnOrderQty
         '
@@ -739,7 +760,7 @@ Partial Class FormProductionKO
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
         Me.GridColumnOrderQty.Visible = True
         Me.GridColumnOrderQty.VisibleIndex = 3
-        Me.GridColumnOrderQty.Width = 135
+        Me.GridColumnOrderQty.Width = 80
         '
         'GridColumnRecQty
         '
@@ -794,7 +815,7 @@ Partial Class FormProductionKO
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 6
-        Me.GridColumn17.Width = 109
+        Me.GridColumn17.Width = 64
         '
         'GridColumnLeadTime
         '
@@ -804,8 +825,8 @@ Partial Class FormProductionKO
         Me.GridColumnLeadTime.FieldName = "lead_time"
         Me.GridColumnLeadTime.Name = "GridColumnLeadTime"
         Me.GridColumnLeadTime.Visible = True
-        Me.GridColumnLeadTime.VisibleIndex = 7
-        Me.GridColumnLeadTime.Width = 109
+        Me.GridColumnLeadTime.VisibleIndex = 8
+        Me.GridColumnLeadTime.Width = 57
         '
         'GridColumn2
         '
@@ -818,8 +839,8 @@ Partial Class FormProductionKO
         Me.GridColumn2.UnboundExpression = "AddDays([prod_order_wo_del_date], [lead_time])"
         Me.GridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 8
-        Me.GridColumn2.Width = 87
+        Me.GridColumn2.VisibleIndex = 9
+        Me.GridColumn2.Width = 45
         '
         'GridColumn11
         '
@@ -862,7 +883,7 @@ Partial Class FormProductionKO
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 4
-        Me.GridColumn7.Width = 199
+        Me.GridColumn7.Width = 118
         '
         'GridColumn12
         '
@@ -915,7 +936,7 @@ Partial Class FormProductionKO
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount_rp", "{0:N2}")})
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 5
-        Me.GridColumn13.Width = 252
+        Me.GridColumn13.Width = 149
         '
         'GCAttachment
         '
@@ -927,8 +948,21 @@ Partial Class FormProductionKO
         Me.GCAttachment.FieldName = "att_sts"
         Me.GCAttachment.Name = "GCAttachment"
         Me.GCAttachment.Visible = True
-        Me.GCAttachment.VisibleIndex = 9
-        Me.GCAttachment.Width = 126
+        Me.GCAttachment.VisibleIndex = 10
+        Me.GCAttachment.Width = 73
+        '
+        'GridColumnBefore
+        '
+        Me.GridColumnBefore.Caption = "Delivery Date Est Before"
+        Me.GridColumnBefore.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnBefore.FieldName = "esti_del_date_before"
+        Me.GridColumnBefore.Name = "GridColumnBefore"
+        Me.GridColumnBefore.OptionsColumn.AllowEdit = False
+        Me.GridColumnBefore.OptionsColumn.AllowFocus = False
+        Me.GridColumnBefore.Visible = True
+        Me.GridColumnBefore.VisibleIndex = 7
+        Me.GridColumnBefore.Width = 64
         '
         'RIPictureEdit
         '
@@ -942,7 +976,7 @@ Partial Class FormProductionKO
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl5.Location = New System.Drawing.Point(0, 444)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(875, 70)
+        Me.PanelControl5.Size = New System.Drawing.Size(1031, 70)
         Me.PanelControl5.TabIndex = 5
         '
         'PanelControl7
@@ -955,7 +989,7 @@ Partial Class FormProductionKO
         Me.PanelControl7.Controls.Add(Me.TEVat)
         Me.PanelControl7.Controls.Add(Me.LabelControl15)
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl7.Location = New System.Drawing.Point(586, 2)
+        Me.PanelControl7.Location = New System.Drawing.Point(742, 2)
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(287, 66)
         Me.PanelControl7.TabIndex = 154
@@ -1068,7 +1102,7 @@ Partial Class FormProductionKO
         Me.PCDel.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCDel.Location = New System.Drawing.Point(0, 172)
         Me.PCDel.Name = "PCDel"
-        Me.PCDel.Size = New System.Drawing.Size(875, 38)
+        Me.PCDel.Size = New System.Drawing.Size(1031, 38)
         Me.PCDel.TabIndex = 19
         '
         'Bdel
@@ -1077,7 +1111,7 @@ Partial Class FormProductionKO
         Me.Bdel.Enabled = False
         Me.Bdel.ImageIndex = 1
         Me.Bdel.ImageList = Me.ImageCollection
-        Me.Bdel.Location = New System.Drawing.Point(784, 0)
+        Me.Bdel.Location = New System.Drawing.Point(940, 0)
         Me.Bdel.Name = "Bdel"
         Me.Bdel.Size = New System.Drawing.Size(91, 38)
         Me.Bdel.TabIndex = 17
@@ -1087,7 +1121,7 @@ Partial Class FormProductionKO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(875, 555)
+        Me.ClientSize = New System.Drawing.Size(1031, 555)
         Me.Controls.Add(Me.GCProd)
         Me.Controls.Add(Me.PCDel)
         Me.Controls.Add(Me.PanelControl5)
@@ -1233,4 +1267,6 @@ Partial Class FormProductionKO
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCAttachment As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBefore As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEditable As DevExpress.XtraGrid.Columns.GridColumn
 End Class
