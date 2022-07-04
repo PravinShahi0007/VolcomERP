@@ -41,15 +41,51 @@
             BtnAttachment.Visible = False
             BMark.Visible = False
             If is_pd_base = "1" Then
-                id_prod_demand = get_prod_demand_design_x(id_prod_demand_design, "1")
-                id_delivery = get_prod_demand_design_x(id_prod_demand_design, "2")
-                TEPDNo.Text = get_prod_demand_x(id_prod_demand, "1")
-                TEDesign.Text = get_design_x(get_prod_demand_design_x(id_prod_demand_design, "3"), "1")
-                TEDesignCode.Text = get_design_x(get_prod_demand_design_x(id_prod_demand_design, "3"), "2")
-                TESeason.Text = get_season_x(get_id_season(id_delivery), "1")
-                TERange.Text = get_range_x(get_id_range(get_id_season(id_delivery)), "1")
-                TEDelivery.Text = get_delivery_x(id_delivery, "1")
-                TEUSCOde.Text = get_design_x(get_prod_demand_design_x(id_prod_demand_design, "3"), "3")
+                Dim query As String = String.Format("SELECT pd.prod_demand_number
+,dsg.design_code,dsg.design_code_import
+,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
+,pdd.id_prod_demand,pdd.id_delivery,po_s.season,po_sd.delivery,po_r.range
+,cd.sht
+FROM tb_prod_demand_design pdd
+INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
+INNER JOIN tb_prod_demand pd ON pd.id_prod_demand=pdd.id_prod_demand
+INNER JOIN tb_season_delivery po_sd ON po_sd.id_delivery=pdd.id_delivery
+INNER JOIN tb_season po_s ON po_s.id_season=po_sd.id_season
+INNER JOIN tb_range po_r ON po_r.id_range=po_s.id_range
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+    MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43,34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+WHERE pdd.id_prod_demand_design = '{0}'", id_prod_demand_design)
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                id_prod_demand = data.Rows(0)("id_prod_demand").ToString
+                id_delivery = data.Rows(0)("id_delivery").ToString
+
+                TEPDNo.Text = data.Rows(0)("prod_demand_number").ToString
+                TEDesign.Text = data.Rows(0)("design_display_name").ToString
+                TEDesignCode.Text = data.Rows(0)("design_code").ToString
+                TESeason.Text = data.Rows(0)("season").ToString
+                TERange.Text = data.Rows(0)("range").ToString
+                TEDelivery.Text = data.Rows(0)("delivery").ToString
+                TEUSCOde.Text = data.Rows(0)("design_code_import").ToString
+                TESiluet.Text = data.Rows(0)("sht").ToString
+
                 view_prod_demand_product()
                 view_bom()
                 BPickDesign.Enabled = True
@@ -60,7 +96,38 @@
             BCancelFGPO.Visible = False
         Else
             'edit
-            Dim query As String = String.Format("SELECT po.*,DATE_FORMAT(po.prod_order_date,'%Y-%m-%d') AS prod_order_datex,comp.`comp_name`,comp.`comp_number`,po.reff_number FROM tb_prod_order po
+            Dim query As String = String.Format("SELECT po.*,DATE_FORMAT(po.prod_order_date,'%Y-%m-%d') AS prod_order_datex,comp.`comp_name`,comp.`comp_number`,po.reff_number 
+,pd.prod_demand_number
+,dsg.design_code,dsg.design_code_import
+,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
+,pdd.id_prod_demand,pdd.id_delivery,po_s.season,po_sd.delivery,po_r.range
+,cd.sht
+FROM tb_prod_order po
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
+INNER JOIN tb_prod_demand pd ON pd.id_prod_demand=pdd.id_prod_demand
+INNER JOIN tb_season_delivery po_sd ON po_sd.id_delivery=pdd.id_delivery
+INNER JOIN tb_season po_s ON po_s.id_season=po_sd.id_season
+INNER JOIN tb_range po_r ON po_r.id_range=po_s.id_range
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+    MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43,34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
 LEFT JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`='1'
 LEFT JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
 LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
@@ -85,16 +152,17 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             DERecDate.EditValue = date_created.AddDays(data.Rows(0)("prod_order_lead_time"))
             '
             id_prod_demand_design = data.Rows(0)("id_prod_demand_design").ToString()
-            id_prod_demand = get_prod_demand_design_x(id_prod_demand_design, "1")
-            id_delivery = get_prod_demand_design_x(id_prod_demand_design, "2")
+            id_prod_demand = data.Rows(0)("id_prod_demand").ToString
+            id_delivery = data.Rows(0)("id_delivery").ToString
             '
-            TEPDNo.Text = get_prod_demand_x(id_prod_demand, "1")
-            TEDesign.Text = get_design_x(get_prod_demand_design_x(id_prod_demand_design, "3"), "1")
-            TEDesignCode.Text = get_design_x(get_prod_demand_design_x(id_prod_demand_design, "3"), "2")
-            TESeason.Text = get_season_x(get_id_season(id_delivery), "1")
-            TERange.Text = get_range_x(get_id_range(get_id_season(id_delivery)), "1")
-            TEDelivery.Text = get_delivery_x(id_delivery, "1")
-            TEUSCOde.Text = get_design_x(get_prod_demand_design_x(id_prod_demand_design, "3"), "3")
+            TEPDNo.Text = data.Rows(0)("prod_demand_number").ToString
+            TEDesign.Text = data.Rows(0)("design_display_name").ToString
+            TEDesignCode.Text = data.Rows(0)("design_code").ToString
+            TESeason.Text = data.Rows(0)("season").ToString
+            TERange.Text = data.Rows(0)("range").ToString
+            TEDelivery.Text = data.Rows(0)("delivery").ToString
+            TEUSCOde.Text = data.Rows(0)("design_code_import").ToString
+            TESiluet.Text = data.Rows(0)("sht").ToString
             '
             BPickPD.Enabled = False
             BPickDesign.Enabled = False
