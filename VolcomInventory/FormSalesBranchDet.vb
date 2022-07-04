@@ -1092,9 +1092,20 @@ Public Class FormSalesBranchDet
             UNION ALL
 
             -- CASH
-            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, 3541 AS id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT('PENJUALAN TUNAI', ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, SUM(s.cash - s.change + s.voucher) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
+            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, 3541 AS id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT('PENJUALAN TUNAI', ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, SUM(s.cash - s.change) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
             FROM tb_pos_sale AS s
             LEFT JOIN tb_a_acc AS a ON a.id_acc = 3541
+            LEFT JOIN tb_m_departement AS d ON s.id_outlet = d.id_outlet
+            LEFT JOIN tb_coa_tag AS g ON d.id_departement = g.id_departement
+            LEFT JOIN tb_m_comp AS c ON g.id_comp = c.id_comp
+            WHERE DATE(s.pos_date) = '" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "' AND s.id_outlet = " + outlet_id + "
+
+            UNION ALL
+
+            -- VOUCHER
+            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, 3541 AS id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT('VOUCHER', ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, SUM(s.voucher) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
+            FROM tb_pos_sale AS s
+            LEFT JOIN tb_a_acc AS a ON a.id_acc = 3571
             LEFT JOIN tb_m_departement AS d ON s.id_outlet = d.id_outlet
             LEFT JOIN tb_coa_tag AS g ON d.id_departement = g.id_departement
             LEFT JOIN tb_m_comp AS c ON g.id_comp = c.id_comp
