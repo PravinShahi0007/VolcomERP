@@ -1680,11 +1680,11 @@ HAVING sts='Paid'"
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
         Try
-            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+            date_from_selected = DateTime.Parse(DEFromRepair.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
         Try
-            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+            date_until_selected = DateTime.Parse(DEUntilRepair.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
 
@@ -1692,5 +1692,14 @@ HAVING sts='Paid'"
         Dim query As String = query_c.queryMain("AND comp_frm.id_departement=6 AND (r.fg_repair_date>='" + date_from_selected + "' AND r.fg_repair_date<='" + date_until_selected + "') ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRepair.DataSource = data
+    End Sub
+
+    Private Sub GVRepair_DoubleClick(sender As Object, e As EventArgs) Handles GVRepair.DoubleClick
+        If GVRepair.RowCount > 0 And GVRepair.FocusedRowHandle >= 0 Then
+            'Repair
+            FormFGRepairDet.action = "upd"
+            FormFGRepairDet.id_fg_repair = GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString
+            FormFGRepairDet.ShowDialog()
+        End If
     End Sub
 End Class

@@ -449,8 +449,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.BtnRepair = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton18 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton19 = New DevExpress.XtraEditors.SimpleButton()
-        Me.DateUntilRepair = New DevExpress.XtraEditors.DateEdit()
-        Me.DateFromRepair = New DevExpress.XtraEditors.DateEdit()
+        Me.DEUntilRepair = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromRepair = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl33 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl34 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPRepairedProductRec = New DevExpress.XtraTab.XtraTabPage()
@@ -610,10 +610,10 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.GVRepair, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl8.SuspendLayout()
-        CType(Me.DateUntilRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateUntilRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateFromRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateFromRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -4631,8 +4631,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GroupControl8.Controls.Add(Me.BtnRepair)
         Me.GroupControl8.Controls.Add(Me.SimpleButton18)
         Me.GroupControl8.Controls.Add(Me.SimpleButton19)
-        Me.GroupControl8.Controls.Add(Me.DateUntilRepair)
-        Me.GroupControl8.Controls.Add(Me.DateFromRepair)
+        Me.GroupControl8.Controls.Add(Me.DEUntilRepair)
+        Me.GroupControl8.Controls.Add(Me.DEFromRepair)
         Me.GroupControl8.Controls.Add(Me.LabelControl33)
         Me.GroupControl8.Controls.Add(Me.LabelControl34)
         Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Top
@@ -4670,31 +4670,31 @@ Partial Class FormSalesOrderSvcLevel
         Me.SimpleButton19.Text = "Expand All Detail"
         Me.SimpleButton19.Visible = False
         '
-        'DateUntilRepair
+        'DEUntilRepair
         '
-        Me.DateUntilRepair.EditValue = Nothing
-        Me.DateUntilRepair.Location = New System.Drawing.Point(202, 9)
-        Me.DateUntilRepair.Name = "DateUntilRepair"
-        Me.DateUntilRepair.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateUntilRepair.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DateUntilRepair.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateUntilRepair.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateUntilRepair.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DateUntilRepair.Size = New System.Drawing.Size(111, 20)
-        Me.DateUntilRepair.TabIndex = 8895
+        Me.DEUntilRepair.EditValue = Nothing
+        Me.DEUntilRepair.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilRepair.Name = "DEUntilRepair"
+        Me.DEUntilRepair.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilRepair.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilRepair.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilRepair.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilRepair.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilRepair.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilRepair.TabIndex = 8895
         '
-        'DateFromRepair
+        'DEFromRepair
         '
-        Me.DateFromRepair.EditValue = Nothing
-        Me.DateFromRepair.Location = New System.Drawing.Point(58, 9)
-        Me.DateFromRepair.Name = "DateFromRepair"
-        Me.DateFromRepair.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateFromRepair.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DateFromRepair.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateFromRepair.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateFromRepair.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DateFromRepair.Size = New System.Drawing.Size(111, 20)
-        Me.DateFromRepair.TabIndex = 8894
+        Me.DEFromRepair.EditValue = Nothing
+        Me.DEFromRepair.Location = New System.Drawing.Point(58, 9)
+        Me.DEFromRepair.Name = "DEFromRepair"
+        Me.DEFromRepair.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromRepair.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromRepair.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromRepair.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromRepair.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromRepair.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromRepair.TabIndex = 8894
         '
         'LabelControl33
         '
@@ -4900,10 +4900,10 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl8.ResumeLayout(False)
         Me.GroupControl8.PerformLayout()
-        CType(Me.DateUntilRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateUntilRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateFromRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateFromRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -5328,8 +5328,8 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents BtnRepair As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton18 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton19 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents DateUntilRepair As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents DateFromRepair As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEUntilRepair As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEFromRepair As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl33 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl34 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCRepair As DevExpress.XtraGrid.GridControl
