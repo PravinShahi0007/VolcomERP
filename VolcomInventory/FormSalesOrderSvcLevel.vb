@@ -310,6 +310,8 @@
         DEUntilInputAWBM.EditValue = data_dt.Rows(0)("dt")
         DEFromRepair.EditValue = data_dt.Rows(0)("dt")
         DEUntilRepair.EditValue = data_dt.Rows(0)("dt")
+        DEFromRepairedRec.EditValue = data_dt.Rows(0)("dt")
+        DEUntilRepairedRec.EditValue = data_dt.Rows(0)("dt")
 
         'load expire
         Dim qex As String = "SELECT expired_close_too FROM tb_opt"
@@ -1702,6 +1704,42 @@ HAVING sts='Paid'"
             FormFGRepairDet.action = "upd"
             FormFGRepairDet.id_fg_repair = GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString
             FormFGRepairDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BtnRepairedRec_Click(sender As Object, e As EventArgs) Handles BtnRepairedRec.Click
+        Cursor = Cursors.WaitCursor
+        viewRepairedRec()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewRepairedRec()
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromRepairedRec.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilRepairedRec.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query_c As New ClassFGRepairReturnRec()
+        Dim query As String = query_c.queryMain("AND (rec.fg_repair_return_rec_date>='" + date_from_selected + "' AND rec.fg_repair_return_rec_date<='" + date_until_selected + "') ", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRepairRec.DataSource = data
+    End Sub
+
+    Private Sub GVRepairRec_DoubleClick(sender As Object, e As EventArgs) Handles GVRepairRec.DoubleClick
+        If GVRepairRec.RowCount > 0 And GVRepairRec.FocusedRowHandle >= 0 Then
+            If GVRepairRec.FocusedRowHandle >= 0 And GVRepairRec.RowCount > 0 Then
+                'Repair return rec
+                FormFGRepairReturnRecDet.action = "upd"
+                FormFGRepairReturnRecDet.id_fg_repair_return_rec = GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
+                FormFGRepairReturnRecDet.is_view = "1"
+                FormFGRepairReturnRecDet.ShowDialog()
+            End If
         End If
     End Sub
 End Class
