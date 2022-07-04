@@ -13,12 +13,15 @@
         End If
 
         Dim query As String = ""
-        query += "Select r.id_fg_repair_return, "
+        query += "Select r.id_fg_repair_return,IFNULL(r.id_pl_category,'0') AS id_pl_category,r.id_reject_category, "
         query += "r.id_wh_drawer_from, comp_frm.id_comp As `id_comp_from`, comp_frm.comp_number As `comp_number_from`, comp_frm.comp_name As `comp_name_from`, CONCAT(comp_frm.comp_number,' - ', comp_frm.comp_name) AS `comp_from`, "
         query += "r.id_wh_drawer_to, comp_to.id_comp As `id_comp_to`, comp_to.comp_number As `comp_number_to`, comp_to.comp_name As `comp_name_to`, CONCAT(comp_to.comp_number,' - ', comp_to.comp_name) AS `comp_to`, "
         query += "r.fg_repair_return_number, r.fg_repair_return_date, DATE_FORMAT(r.fg_repair_return_date, '%Y-%m-%d') AS fg_repair_return_datex, "
         query += "r.fg_repair_return_note, r.id_report_status, stt.report_status, r.is_from_vendor,r.is_use_unique_code, rep.id_fg_repair, rep.fg_repair_number "
-        query += "From tb_fg_repair_return r "
+        query += ",IF(ISNULL(r.id_pl_category),'',IF(r.id_pl_category=3,CONCAT(pl.pl_category,' - ',rc.reject_category),pl.pl_category)) AS pl_category,IFNULL(r.id_pl_category,0) AS id_pl_category,r.id_reject_category "
+        query += " From tb_fg_repair_return r "
+        query += " LEFT JOIN tb_lookup_pl_category pl ON pl.id_pl_category=r.id_pl_category
+LEFT JOIN tb_reject_category rc ON rc.id_reject_category=r.id_reject_category "
         query += "INNER Join tb_m_wh_drawer drw_frm On drw_frm.id_wh_drawer = r.id_wh_drawer_from  "
         query += "INNER Join tb_m_comp comp_frm On comp_frm.id_drawer_def = drw_frm.id_wh_drawer  "
         query += "INNER Join tb_m_wh_drawer drw_to On drw_to.id_wh_drawer = r.id_wh_drawer_to "

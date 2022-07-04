@@ -29,6 +29,12 @@ Partial Class FormViewFGRepairReturn
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEMajorExt = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LPLType = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
@@ -36,6 +42,8 @@ Partial Class FormViewFGRepairReturn
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtRefNo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -63,8 +71,6 @@ Partial Class FormViewFGRepairReturn
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TxtRefNo = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,12 +81,16 @@ Partial Class FormViewFGRepairReturn
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelHeaderLeft.SuspendLayout()
+        CType(Me.TxtRefNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlItemList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,7 +103,6 @@ Partial Class FormViewFGRepairReturn
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtRefNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -189,6 +198,9 @@ Partial Class FormViewFGRepairReturn
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.SLEMajorExt)
+        Me.GroupGeneralHeader.Controls.Add(Me.LEPLCategory)
+        Me.GroupGeneralHeader.Controls.Add(Me.LPLType)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtNameCompTo)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtCodeCompTo)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtNameCompFrom)
@@ -201,6 +213,59 @@ Partial Class FormViewFGRepairReturn
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 96)
         Me.GroupGeneralHeader.TabIndex = 305
+        '
+        'SLEMajorExt
+        '
+        Me.SLEMajorExt.Location = New System.Drawing.Point(296, 61)
+        Me.SLEMajorExt.Name = "SLEMajorExt"
+        Me.SLEMajorExt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMajorExt.Properties.View = Me.GridView3
+        Me.SLEMajorExt.Size = New System.Drawing.Size(196, 20)
+        Me.SLEMajorExt.TabIndex = 10023
+        Me.SLEMajorExt.Visible = False
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID"
+        Me.GridColumn9.FieldName = "id_reject_category"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Reject Category"
+        Me.GridColumn10.FieldName = "reject_category"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'LEPLCategory
+        '
+        Me.LEPLCategory.Location = New System.Drawing.Point(73, 61)
+        Me.LEPLCategory.Name = "LEPLCategory"
+        Me.LEPLCategory.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPLCategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPLCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPLCategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category", "PL Category"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_comp", "id_comp", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.LEPLCategory.Properties.NullText = ""
+        Me.LEPLCategory.Properties.ShowFooter = False
+        Me.LEPLCategory.Size = New System.Drawing.Size(217, 20)
+        Me.LEPLCategory.TabIndex = 10022
+        '
+        'LPLType
+        '
+        Me.LPLType.Location = New System.Drawing.Point(28, 64)
+        Me.LPLType.Name = "LPLType"
+        Me.LPLType.Size = New System.Drawing.Size(38, 13)
+        Me.LPLType.TabIndex = 10021
+        Me.LPLType.Text = "PL Type"
         '
         'TxtNameCompTo
         '
@@ -288,6 +353,26 @@ Partial Class FormViewFGRepairReturn
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
         Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 92)
         Me.PanelHeaderLeft.TabIndex = 8899
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(21, 36)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(41, 13)
+        Me.LabelControl3.TabIndex = 164
+        Me.LabelControl3.Text = "Ref. No."
+        '
+        'TxtRefNo
+        '
+        Me.TxtRefNo.EditValue = ""
+        Me.TxtRefNo.Enabled = False
+        Me.TxtRefNo.Location = New System.Drawing.Point(73, 33)
+        Me.TxtRefNo.Name = "TxtRefNo"
+        Me.TxtRefNo.Properties.EditValueChangedDelay = 1
+        Me.TxtRefNo.Properties.ReadOnly = True
+        Me.TxtRefNo.Size = New System.Drawing.Size(172, 20)
+        Me.TxtRefNo.TabIndex = 163
         '
         'TxtNumber
         '
@@ -422,7 +507,7 @@ Partial Class FormViewFGRepairReturn
         '
         Me.XTPSummary.Controls.Add(Me.GCScanSum)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(831, 226)
+        Me.XTPSummary.Size = New System.Drawing.Size(831, 204)
         Me.XTPSummary.Text = "Summary"
         '
         'GCScanSum
@@ -431,7 +516,7 @@ Partial Class FormViewFGRepairReturn
         Me.GCScanSum.Location = New System.Drawing.Point(0, 0)
         Me.GCScanSum.MainView = Me.GVScanSum
         Me.GCScanSum.Name = "GCScanSum"
-        Me.GCScanSum.Size = New System.Drawing.Size(831, 226)
+        Me.GCScanSum.Size = New System.Drawing.Size(831, 204)
         Me.GCScanSum.TabIndex = 4
         Me.GCScanSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScanSum})
         '
@@ -545,26 +630,6 @@ Partial Class FormViewFGRepairReturn
         Me.GridColumnStatus.VisibleIndex = 8
         Me.GridColumnStatus.Width = 126
         '
-        'TxtRefNo
-        '
-        Me.TxtRefNo.EditValue = ""
-        Me.TxtRefNo.Enabled = False
-        Me.TxtRefNo.Location = New System.Drawing.Point(73, 33)
-        Me.TxtRefNo.Name = "TxtRefNo"
-        Me.TxtRefNo.Properties.EditValueChangedDelay = 1
-        Me.TxtRefNo.Properties.ReadOnly = True
-        Me.TxtRefNo.Size = New System.Drawing.Size(172, 20)
-        Me.TxtRefNo.TabIndex = 163
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(21, 36)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(41, 13)
-        Me.LabelControl3.TabIndex = 164
-        Me.LabelControl3.Text = "Ref. No."
-        '
         'FormViewFGRepairReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -591,6 +656,9 @@ Partial Class FormViewFGRepairReturn
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -598,6 +666,7 @@ Partial Class FormViewFGRepairReturn
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelHeaderLeft.ResumeLayout(False)
         Me.PanelHeaderLeft.PerformLayout()
+        CType(Me.TxtRefNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlItemList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -610,7 +679,6 @@ Partial Class FormViewFGRepairReturn
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtRefNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -661,4 +729,10 @@ Partial Class FormViewFGRepairReturn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtRefNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLEMajorExt As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LEPLCategory As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LPLType As DevExpress.XtraEditors.LabelControl
 End Class

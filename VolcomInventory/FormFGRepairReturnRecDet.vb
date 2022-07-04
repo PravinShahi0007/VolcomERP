@@ -31,6 +31,12 @@ Public Class FormFGRepairReturnRecDet
     Public speed_barcode_read As Integer = get_setup_field("speed_barcode_read")
     Public speed_barcode_read_timer As Integer = get_setup_field("speed_barcode_read_timer")
 
+    Sub viewPLCat()
+        Dim query As String = "SELECT * FROM tb_lookup_pl_category a WHERE a.is_only_rec=2 ORDER BY a.id_pl_category "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEPLCategory, query, 0, "pl_category", "id_pl_category")
+    End Sub
+
     Private Sub FormFGRepairRecDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         actionLoad()
@@ -38,6 +44,8 @@ Public Class FormFGRepairReturnRecDet
     End Sub
 
     Sub actionLoad()
+        viewPLCat()
+
         If action = "ins" Then
             viewRepair()
             viewDetail()
@@ -77,6 +85,16 @@ Public Class FormFGRepairReturnRecDet
             TxtNameWH.Text = data.Rows(0)("wh_name").ToString
             is_use_unique_code_wh = data.Rows(0)("is_use_unique_code").ToString
 
+            If data.Rows(0)("id_pl_category").ToString = "0" Then
+                LEPLCategory.Visible = False
+                LPLType.Visible = False
+            Else
+                LEPLCategory.Visible = True
+                LPLType.Visible = True
+                LEPLCategory.ItemIndex = LEPLCategory.Properties.GetDataSourceRowIndex("id_pl_category", data.Rows(0)("id_pl_category").ToString)
+                SLEMajorExt.EditValue = data.Rows(0)("id_reject_category").ToString
+            End If
+
             setDefaultDrawerFrom()
             setDefaultDrawerTo()
 
@@ -107,6 +125,17 @@ Public Class FormFGRepairReturnRecDet
         TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
         TxtCodeCompTo.Text = data.Rows(0)("comp_number_to").ToString
         TxtNameCompTo.Text = data.Rows(0)("comp_name_to").ToString
+        '
+        If data.Rows(0)("id_pl_category").ToString = "0" Then
+            LEPLCategory.Visible = False
+            LPLType.Visible = False
+        Else
+            LEPLCategory.Visible = True
+            LPLType.Visible = True
+            LEPLCategory.ItemIndex = LEPLCategory.Properties.GetDataSourceRowIndex("id_pl_category", data.Rows(0)("id_pl_category").ToString)
+            SLEMajorExt.EditValue = data.Rows(0)("id_reject_category").ToString
+        End If
+        '
         setDefaultDrawerFrom()
         setDefaultDrawerTo()
         codeAvailableIns()
@@ -283,6 +312,21 @@ Public Class FormFGRepairReturnRecDet
                 Report.XrPanel2.Visible = False
             End If
 
+            If LEPLCategory.Visible = False Then
+                Report.LPL.Visible = False
+                Report.LPLColon.Visible = False
+                Report.LPLType.Visible = False
+            Else
+                Report.LPL.Visible = True
+                Report.LPLColon.Visible = True
+                Report.LPLType.Visible = True
+                If SLEMajorExt.Visible = True Then
+                    Report.LPLType.Text = LEPLCategory.Text & " - " & SLEMajorExt.Text
+                Else
+                    Report.LPLType.Text = LEPLCategory.Text
+                End If
+            End If
+
             ' Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreview()
@@ -314,6 +358,21 @@ Public Class FormFGRepairReturnRecDet
             Report.LabelNote.Text = MENote.Text
             If id_type = "1" Then
                 Report.XrPanel2.Visible = False
+            End If
+
+            If LEPLCategory.Visible = False Then
+                Report.LPL.Visible = False
+                Report.LPLColon.Visible = False
+                Report.LPLType.Visible = False
+            Else
+                Report.LPL.Visible = True
+                Report.LPLColon.Visible = True
+                Report.LPLType.Visible = True
+                If SLEMajorExt.Visible = True Then
+                    Report.LPLType.Text = LEPLCategory.Text & " - " & SLEMajorExt.Text
+                Else
+                    Report.LPLType.Text = LEPLCategory.Text
+                End If
             End If
 
             ' Show the report's preview. 
@@ -871,5 +930,23 @@ Public Class FormFGRepairReturnRecDet
         End If
 
         _lastKeystroke = DateTime.Now
+    End Sub
+
+    Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
+        Cursor = Cursors.WaitCursor
+        '
+        If LEPLCategory.EditValue.ToString = "3" Then
+            SLEMajorExt.Visible = True
+            view_reject_category()
+        Else
+            SLEMajorExt.Visible = False
+        End If
+        '
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub view_reject_category()
+        Dim q As String = "SELECT id_reject_category,reject_category FROM tb_reject_category WHERE id_reject_category!=1"
+        viewSearchLookupQuery(SLEMajorExt, q, "id_reject_category", "reject_category", "id_reject_category")
     End Sub
 End Class
