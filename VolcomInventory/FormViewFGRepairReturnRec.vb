@@ -17,6 +17,12 @@
     Dim is_delete_scan As Boolean = False
     Public id_type As String = "-1"
 
+    Sub viewPLCat()
+        Dim query As String = "SELECT * FROM tb_lookup_pl_category a WHERE a.is_only_rec=2 ORDER BY a.id_pl_category "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEPLCategory, query, 0, "pl_category", "id_pl_category")
+    End Sub
+
     Private Sub FormFGRepairRecDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         actionLoad()
@@ -24,6 +30,8 @@
     End Sub
 
     Sub actionLoad()
+        viewPLCat()
+
         XTPSummary.PageVisible = True
         XtraTabControl1.SelectedTabPageIndex = 1
         GVScan.OptionsBehavior.AutoExpandAllGroups = True
@@ -47,6 +55,17 @@
         TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
         TxtCodeCompTo.Text = data.Rows(0)("comp_number_to").ToString
         TxtNameCompTo.Text = data.Rows(0)("comp_name_to").ToString
+
+        If data.Rows(0)("id_pl_category").ToString = "0" Then
+            LEPLCategory.Visible = False
+            LPLType.Visible = False
+        Else
+            LEPLCategory.Visible = True
+            LPLType.Visible = True
+            LEPLCategory.ItemIndex = LEPLCategory.Properties.GetDataSourceRowIndex("id_pl_category", data.Rows(0)("id_pl_category").ToString)
+            SLEMajorExt.EditValue = data.Rows(0)("id_reject_category").ToString
+        End If
+
         setDefaultDrawerFrom()
         setDefaultDrawerTo()
 
@@ -333,5 +352,23 @@
         Cursor = Cursors.WaitCursor
         prePrinting()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
+        Cursor = Cursors.WaitCursor
+        '
+        If LEPLCategory.EditValue.ToString = "3" Then
+            SLEMajorExt.Visible = True
+            view_reject_category()
+        Else
+            SLEMajorExt.Visible = False
+        End If
+        '
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub view_reject_category()
+        Dim q As String = "SELECT id_reject_category,reject_category FROM tb_reject_category WHERE id_reject_category!=1"
+        viewSearchLookupQuery(SLEMajorExt, q, "id_reject_category", "reject_category", "id_reject_category")
     End Sub
 End Class

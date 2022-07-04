@@ -20,6 +20,7 @@ Partial Class FormViewFGRepairReturnRec
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
@@ -67,7 +68,12 @@ Partial Class FormViewFGRepairReturnRec
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_first_rec_wh_year = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEMajorExt = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LPLType = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,6 +103,9 @@ Partial Class FormViewFGRepairReturnRec
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -106,10 +115,19 @@ Partial Class FormViewFGRepairReturnRec
         Me.GroupControl3.Controls.Add(Me.BtnAttachment)
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 387)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 426)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(859, 82)
         Me.GroupControl3.TabIndex = 204
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnPrint.Location = New System.Drawing.Point(20, 54)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(837, 26)
+        Me.BtnPrint.TabIndex = 6
+        Me.BtnPrint.Text = "Print"
         '
         'BtnAttachment
         '
@@ -144,7 +162,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 93)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 112)
         Me.GroupGeneralHeader.TabIndex = 205
         '
         'LabelControl3
@@ -246,6 +264,9 @@ Partial Class FormViewFGRepairReturnRec
         'PanelHeaderLeft
         '
         Me.PanelHeaderLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelHeaderLeft.Controls.Add(Me.SLEMajorExt)
+        Me.PanelHeaderLeft.Controls.Add(Me.LEPLCategory)
+        Me.PanelHeaderLeft.Controls.Add(Me.LPLType)
         Me.PanelHeaderLeft.Controls.Add(Me.TxtNumber)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl5)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl7)
@@ -253,7 +274,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelHeaderLeft.Location = New System.Drawing.Point(606, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
-        Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 89)
+        Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 108)
         Me.PanelHeaderLeft.TabIndex = 8899
         '
         'TxtNumber
@@ -303,7 +324,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.GroupControl1.Controls.Add(Me.MENote)
         Me.GroupControl1.Controls.Add(Me.LabelControl18)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 306)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 345)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(859, 81)
         Me.GroupControl1.TabIndex = 209
@@ -362,9 +383,9 @@ Partial Class FormViewFGRepairReturnRec
         Me.GroupControlItemList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlItemList.Controls.Add(Me.XtraTabControl1)
         Me.GroupControlItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 93)
+        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 112)
         Me.GroupControlItemList.Name = "GroupControlItemList"
-        Me.GroupControlItemList.Size = New System.Drawing.Size(859, 213)
+        Me.GroupControlItemList.Size = New System.Drawing.Size(859, 233)
         Me.GroupControlItemList.TabIndex = 210
         '
         'XtraTabControl1
@@ -373,7 +394,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.XtraTabControl1.Location = New System.Drawing.Point(20, 2)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPScan
-        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 209)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 229)
         Me.XtraTabControl1.TabIndex = 3
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary})
         '
@@ -381,7 +402,7 @@ Partial Class FormViewFGRepairReturnRec
         '
         Me.XTPScan.Controls.Add(Me.GCScan)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(831, 207)
+        Me.XTPScan.Size = New System.Drawing.Size(831, 201)
         Me.XTPScan.Text = "Scan Product"
         '
         'GCScan
@@ -390,7 +411,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.GCScan.Location = New System.Drawing.Point(0, 0)
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
-        Me.GCScan.Size = New System.Drawing.Size(831, 207)
+        Me.GCScan.Size = New System.Drawing.Size(831, 201)
         Me.GCScan.TabIndex = 3
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -587,20 +608,66 @@ Partial Class FormViewFGRepairReturnRec
         Me.GridColumndesign_first_rec_wh_year.Visible = True
         Me.GridColumndesign_first_rec_wh_year.VisibleIndex = 4
         '
-        'BtnPrint
+        'SLEMajorExt
         '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Top
-        Me.BtnPrint.Location = New System.Drawing.Point(20, 54)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(837, 26)
-        Me.BtnPrint.TabIndex = 6
-        Me.BtnPrint.Text = "Print"
+        Me.SLEMajorExt.Enabled = False
+        Me.SLEMajorExt.Location = New System.Drawing.Point(73, 82)
+        Me.SLEMajorExt.Name = "SLEMajorExt"
+        Me.SLEMajorExt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMajorExt.Properties.View = Me.GridView3
+        Me.SLEMajorExt.Size = New System.Drawing.Size(172, 20)
+        Me.SLEMajorExt.TabIndex = 10024
+        Me.SLEMajorExt.Visible = False
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID"
+        Me.GridColumn9.FieldName = "id_reject_category"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Reject Category"
+        Me.GridColumn10.FieldName = "reject_category"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'LEPLCategory
+        '
+        Me.LEPLCategory.Enabled = False
+        Me.LEPLCategory.Location = New System.Drawing.Point(73, 56)
+        Me.LEPLCategory.Name = "LEPLCategory"
+        Me.LEPLCategory.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPLCategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPLCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPLCategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category", "PL Category"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_comp", "id_comp", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.LEPLCategory.Properties.NullText = ""
+        Me.LEPLCategory.Properties.ShowFooter = False
+        Me.LEPLCategory.Size = New System.Drawing.Size(172, 20)
+        Me.LEPLCategory.TabIndex = 10023
+        '
+        'LPLType
+        '
+        Me.LPLType.Location = New System.Drawing.Point(20, 59)
+        Me.LPLType.Name = "LPLType"
+        Me.LPLType.Size = New System.Drawing.Size(38, 13)
+        Me.LPLType.TabIndex = 10022
+        Me.LPLType.Text = "PL Type"
         '
         'FormViewFGRepairReturnRec
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(859, 469)
+        Me.ClientSize = New System.Drawing.Size(859, 508)
         Me.Controls.Add(Me.GroupControlItemList)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupGeneralHeader)
@@ -641,6 +708,9 @@ Partial Class FormViewFGRepairReturnRec
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -694,4 +764,10 @@ Partial Class FormViewFGRepairReturnRec
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumndesign_first_rec_wh_year As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEMajorExt As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LEPLCategory As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LPLType As DevExpress.XtraEditors.LabelControl
 End Class

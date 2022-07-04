@@ -19,6 +19,7 @@
         query += "rec.id_wh_drawer_dest, wh.id_comp As `id_wh`, wh.comp_number As `wh_number`, wh.comp_name As `wh_name`, CONCAT(wh.comp_number,' - ', wh.comp_name) AS `wh`, "
         query += "rec.fg_repair_return_rec_number, r.fg_repair_return_number, rec.fg_repair_return_rec_date, DATE_FORMAT(rec.fg_repair_return_rec_date, '%Y-%m-%d') AS fg_repair_return_rec_datex, "
         query += "rec.fg_repair_return_rec_note, rec.id_report_status, stt.report_status,rec.is_use_unique_code, COUNT(id_fg_repair_return_rec_det) AS `total_qty` "
+        query += ",IF(ISNULL(r.id_pl_category),'',IF(r.id_pl_category=3,CONCAT(pl.pl_category,' - ',rc.reject_category),pl.pl_category)) AS pl_category,IFNULL(r.id_pl_category,0) AS id_pl_category,r.id_reject_category "
         query += "From tb_fg_repair_return_rec rec "
         query += "INNER JOIN tb_fg_repair_return r ON r.id_fg_repair_return = rec.id_fg_repair_return "
         query += "INNER Join tb_m_wh_drawer drw_frm On drw_frm.id_wh_drawer = rec.id_wh_drawer_from  "
@@ -28,9 +29,10 @@
         query += "LEFT JOIN tb_m_comp wh ON wh.id_drawer_def = rec.id_wh_drawer_dest "
         query += "INNER Join tb_lookup_report_status stt On stt.id_report_status = rec.id_report_status 
         INNER JOIN tb_fg_repair_return_rec_det rd ON rd.id_fg_repair_return_rec = rec.id_fg_repair_return_rec "
+        query += " LEFT JOIN tb_lookup_pl_category pl ON pl.id_pl_category=r.id_pl_category
+LEFT JOIN tb_reject_category rc ON rc.id_reject_category=r.id_reject_category "
         query += "WHERE rec.id_fg_repair_return_rec>0 "
-        query += condition + " 
-        GROUP BY rec.id_fg_repair_return_rec "
+        query += condition + " GROUP BY rec.id_fg_repair_return_rec "
         query += "ORDER BY rec.id_fg_repair_return_rec " + order_type
         Return query
     End Function
@@ -54,12 +56,15 @@
         query += "r.id_wh_drawer_to, comp_to.id_comp As `id_comp_to`, comp_to.comp_number As `comp_number_to`, comp_to.comp_name As `comp_name_to`, CONCAT(comp_to.comp_number,' - ', comp_to.comp_name) AS `comp_to`, "
         query += "r.fg_repair_return_number, r.fg_repair_return_date, DATE_FORMAT(r.fg_repair_return_date, '%Y-%m-%d') AS fg_repair_return_datex, "
         query += "r.fg_repair_return_note, r.id_report_status, stt.report_status "
+        query += ",IF(ISNULL(r.id_pl_category),'',IF(r.id_pl_category=3,CONCAT(pl.pl_category,' - ',rc.reject_category),pl.pl_category)) AS pl_category "
         query += "From tb_fg_repair_return r "
         query += "INNER Join tb_m_wh_drawer drw_frm On drw_frm.id_wh_drawer = r.id_wh_drawer_from  "
         query += "INNER Join tb_m_comp comp_frm On comp_frm.id_drawer_def = drw_frm.id_wh_drawer  "
         query += "INNER Join tb_m_wh_drawer drw_to On drw_to.id_wh_drawer = r.id_wh_drawer_to "
         query += "INNER Join tb_m_comp comp_to On comp_to.id_drawer_def = drw_to.id_wh_drawer "
         query += "INNER Join tb_lookup_report_status stt On stt.id_report_status = r.id_report_status "
+        query += " LEFT JOIN tb_lookup_pl_category pl ON pl.id_pl_category=r.id_pl_category
+LEFT JOIN tb_reject_category rc ON rc.id_reject_category=r.id_reject_category "
         query += "LEFT JOIN tb_fg_repair_return_rec rec ON rec.id_fg_repair_return = r.id_fg_repair_return AND rec.id_report_status!='5' "
         query += "WHERE r.id_fg_repair_return>0 AND ISNULL(rec.id_fg_repair_return_rec) AND r.id_report_status='6' "
         query += condition + " "

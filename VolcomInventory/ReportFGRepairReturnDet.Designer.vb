@@ -34,6 +34,9 @@ Partial Public Class ReportFGRepairReturnDet
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.LPLType = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LPLColon = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LPL = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelRefNo = New DevExpress.XtraReports.UI.XRLabel()
@@ -200,12 +203,46 @@ Partial Public Class ReportFGRepairReturnDet
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.XrLabel5, Me.LabelRefNo, Me.LabelTo, Me.XrLabel11, Me.XrLabel10, Me.LabelFrom, Me.XrLabel2, Me.XrLabel3})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LPLType, Me.LPLColon, Me.LPL, Me.XrLabel6, Me.XrLabel5, Me.LabelRefNo, Me.LabelTo, Me.XrLabel11, Me.XrLabel10, Me.LabelFrom, Me.XrLabel2, Me.XrLabel3})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(2.000008!, 63.62502!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(774.0001!, 74.91666!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
         Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'LPLType
+        '
+        Me.LPLType.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LPLType.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LPLType.LocationFloat = New DevExpress.Utils.PointFloat(95.74995!, 29.16671!)
+        Me.LPLType.Name = "LPLType"
+        Me.LPLType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LPLType.SizeF = New System.Drawing.SizeF(451.0417!, 13.58335!)
+        Me.LPLType.StylePriority.UseBorders = False
+        Me.LPLType.StylePriority.UseFont = False
+        Me.LPLType.Visible = False
+        '
+        'LPLColon
+        '
+        Me.LPLColon.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LPLColon.LocationFloat = New DevExpress.Utils.PointFloat(84.29162!, 29.16671!)
+        Me.LPLColon.Name = "LPLColon"
+        Me.LPLColon.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LPLColon.SizeF = New System.Drawing.SizeF(11.45834!, 13.58335!)
+        Me.LPLColon.StylePriority.UseBorders = False
+        Me.LPLColon.Text = ":"
+        Me.LPLColon.Visible = False
+        '
+        'LPL
+        '
+        Me.LPL.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LPL.LocationFloat = New DevExpress.Utils.PointFloat(2.000077!, 29.16664!)
+        Me.LPL.Name = "LPL"
+        Me.LPL.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LPL.SizeF = New System.Drawing.SizeF(82.2916!, 13.58335!)
+        Me.LPL.StylePriority.UseBorders = False
+        Me.LPL.Text = "PL Type"
+        Me.LPL.Visible = False
         '
         'XrLabel6
         '
@@ -459,4 +496,7 @@ Partial Public Class ReportFGRepairReturnDet
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelRefNo As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LPLType As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LPLColon As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LPL As DevExpress.XtraReports.UI.XRLabel
 End Class

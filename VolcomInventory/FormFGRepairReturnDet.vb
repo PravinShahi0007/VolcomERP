@@ -25,6 +25,12 @@ Public Class FormFGRepairReturnDet
 
     Dim is_use_unique_code_wh As String = get_setup_field("is_use_unique_code_all")
 
+    Sub viewPLCat()
+        Dim query As String = "SELECT * FROM tb_lookup_pl_category a WHERE a.is_only_rec=2 ORDER BY a.id_pl_category "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEPLCategory, query, 0, "pl_category", "id_pl_category")
+    End Sub
+
     Private Sub FormFGRepairReturnDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If FormFGRepairReturn.is_from_vendor = True Then
             Text = "Receive Repair from Vendor"
@@ -42,6 +48,7 @@ Public Class FormFGRepairReturnDet
     End Sub
 
     Sub actionLoad()
+        viewPLCat()
         If action = "ins" Then
             BtnPrint.Enabled = False
             BtnAttachment.Enabled = False
@@ -76,6 +83,8 @@ Public Class FormFGRepairReturnDet
             GVScan.OptionsBehavior.AutoExpandAllGroups = True
             BMark.Enabled = True
             DDBPrint.Enabled = True
+            SLEMajorExt.Enabled = False
+            LEPLCategory.Enabled = False
 
             'query view based on edit id's
             Dim query_c As ClassFGRepairReturn = New ClassFGRepairReturn()
@@ -96,7 +105,17 @@ Public Class FormFGRepairReturnDet
             is_from_vendor = data.Rows(0)("is_from_vendor").ToString
             is_use_unique_code_wh = data.Rows(0)("is_use_unique_code").ToString
             TxtRefNo.Text = data.Rows(0)("fg_repair_number").ToString
-
+            '
+            If data.Rows(0)("id_pl_category").ToString = "0" Then
+                LEPLCategory.Visible = False
+                LPLType.Visible = False
+            Else
+                LEPLCategory.Visible = True
+                LPLType.Visible = True
+                LEPLCategory.ItemIndex = LEPLCategory.Properties.GetDataSourceRowIndex("id_pl_category", data.Rows(0)("id_pl_category").ToString)
+                SLEMajorExt.EditValue = data.Rows(0)("id_reject_category").ToString
+            End If
+            '
             If is_from_vendor = "1" Then
                 rmt = "141"
             Else
@@ -568,7 +587,22 @@ Public Class FormFGRepairReturnDet
             ReportFGRepairReturnDet.id_type = id_type
             ReportFGRepairReturnDet.dt = GCScan.DataSource
             Dim Report As New ReportFGRepairReturnDet()
-
+            '
+            If LEPLCategory.Visible = False Then
+                Report.LPL.Visible = False
+                Report.LPLColon.Visible = False
+                Report.LPLType.Visible = False
+            Else
+                Report.LPL.Visible = True
+                Report.LPLColon.Visible = True
+                Report.LPLType.Visible = True
+                If SLEMajorExt.Visible = True Then
+                    Report.LPLType.Text = LEPLCategory.Text & " - " & SLEMajorExt.Text
+                Else
+                    Report.LPLType.Text = LEPLCategory.Text
+                End If
+            End If
+            '
             If is_from_vendor = "1" Then
                 Report.LTitle.Text = "Return Repair Product Detail"
             Else
@@ -608,7 +642,22 @@ Public Class FormFGRepairReturnDet
             ReportFGRepairReturn.id_type = id_type
             ReportFGRepairReturn.dt = GCScanSum.DataSource
             Dim Report As New ReportFGRepairReturn()
-
+            '
+            If LEPLCategory.Visible = False Then
+                Report.LPL.Visible = False
+                Report.LPLColon.Visible = False
+                Report.LPLType.Visible = False
+            Else
+                Report.LPL.Visible = True
+                Report.LPLColon.Visible = True
+                Report.LPLType.Visible = True
+                If SLEMajorExt.Visible = True Then
+                    Report.LPLType.Text = LEPLCategory.Text & " - " & SLEMajorExt.Text
+                Else
+                    Report.LPLType.Text = LEPLCategory.Text
+                End If
+            End If
+            '
             If is_from_vendor = "1" Then
                 Report.LTitle.Text = "Return Repair Product Summary"
             Else
@@ -797,6 +846,13 @@ Public Class FormFGRepairReturnDet
         ElseIf Not cond_stc Then
             stopCustom("Some item can't exceed qty limit, please see error in column status!")
         Else
+            Dim id_pl_category As String = LEPLCategory.EditValue.ToString
+            Dim id_reject_cat As String = "1"
+
+            If id_pl_category = "3" Then
+                id_reject_cat = SLEMajorExt.EditValue.ToString
+            End If
+            '
             Dim fg_repair_return_note As String = MENote.Text.ToString
             If action = "ins" Then 'insert
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Stock qty will be updated after this process. Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -807,8 +863,8 @@ Public Class FormFGRepairReturnDet
                         id_fg_repair = "NULL"
                     End If
                     'main query
-                    Dim query As String = "INSERT INTO tb_fg_repair_return(id_wh_drawer_from, id_wh_drawer_to, fg_repair_return_number, fg_repair_return_date, fg_repair_return_note, id_report_status, is_from_vendor, is_use_unique_code, id_fg_repair) 
-                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("29") + "', NOW(), '" + fg_repair_return_note + "', '1', " + is_from_vendor + ", '" + is_use_unique_code_wh + "'," + id_fg_repair + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_fg_repair_return(id_wh_drawer_from, id_wh_drawer_to, fg_repair_return_number, fg_repair_return_date, fg_repair_return_note, id_report_status, is_from_vendor, is_use_unique_code, id_fg_repair,id_pl_category,id_reject_category) 
+                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("29") + "', NOW(), '" + fg_repair_return_note + "', '1', " + is_from_vendor + ", '" + is_use_unique_code_wh + "'," + id_fg_repair + ",'" & id_pl_category & "','" & id_reject_cat & "'); SELECT LAST_INSERT_ID(); "
                     id_fg_repair_return = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_sales("29")
 
@@ -1036,5 +1092,23 @@ Public Class FormFGRepairReturnDet
         Finally
             o = Nothing
         End Try
+    End Sub
+
+    Private Sub LEPLCategory_EditValueChanged(sender As Object, e As EventArgs) Handles LEPLCategory.EditValueChanged
+        Cursor = Cursors.WaitCursor
+        '
+        If LEPLCategory.EditValue.ToString = "3" Then
+            SLEMajorExt.Visible = True
+            view_reject_category()
+        Else
+            SLEMajorExt.Visible = False
+        End If
+        '
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub view_reject_category()
+        Dim q As String = "SELECT id_reject_category,reject_category FROM tb_reject_category WHERE id_reject_category!=1"
+        viewSearchLookupQuery(SLEMajorExt, q, "id_reject_category", "reject_category", "id_reject_category")
     End Sub
 End Class
