@@ -11946,7 +11946,7 @@ WHERE id_item_pps='" & id_report & "'"
                 End If
 
                 'jurnal
-                Dim qu As String = "SELECT created_by,profit_year,date_reff FROM tb_deviden WHERE id_report='" & id_report & "'"
+                Dim qu As String = "SELECT created_by,profit_year,date_reff FROM tb_deviden WHERE id_deviden='" & id_report & "'"
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
                 Dim id_user_prepared As String = du.Rows(0)("created_by").ToString
                 Dim report_number As String = du.Rows(0)("profit_year").ToString

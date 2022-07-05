@@ -30,6 +30,7 @@ Public Class FormFGRepairReturnRecDet
     Private _lastKeystroke As DateTime = DateTime.Now
     Public speed_barcode_read As Integer = get_setup_field("speed_barcode_read")
     Public speed_barcode_read_timer As Integer = get_setup_field("speed_barcode_read_timer")
+    Public is_view As String = "-1"
 
     Sub viewPLCat()
         Dim query As String = "SELECT * FROM tb_lookup_pl_category a WHERE a.is_only_rec=2 ORDER BY a.id_pl_category "
@@ -248,6 +249,12 @@ Public Class FormFGRepairReturnRecDet
             BtnXlsBOF.Visible = True
         Else
             BtnXlsBOF.Visible = False
+        End If
+
+        If is_view = "1" Then
+            BMark.Enabled = True
+        Else
+            BMark.Enabled = False
         End If
         TxtNumber.Focus()
     End Sub
