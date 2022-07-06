@@ -58,6 +58,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BLoadMaterial = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubmitMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BDelMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BEditMat = New DevExpress.XtraEditors.SimpleButton()
@@ -536,6 +537,7 @@ Partial Class FormBOMDesignSingle
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BLoadMaterial)
         Me.PanelControl1.Controls.Add(Me.BSubmitMat)
         Me.PanelControl1.Controls.Add(Me.BDelMat)
         Me.PanelControl1.Controls.Add(Me.BEditMat)
@@ -545,6 +547,18 @@ Partial Class FormBOMDesignSingle
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(859, 42)
         Me.PanelControl1.TabIndex = 18
+        '
+        'BLoadMaterial
+        '
+        Me.BLoadMaterial.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BLoadMaterial.ImageIndex = 3
+        Me.BLoadMaterial.ImageList = Me.LargeImageCollection
+        Me.BLoadMaterial.Location = New System.Drawing.Point(469, 2)
+        Me.BLoadMaterial.Name = "BLoadMaterial"
+        Me.BLoadMaterial.Size = New System.Drawing.Size(115, 38)
+        Me.BLoadMaterial.TabIndex = 23
+        Me.BLoadMaterial.Text = "Load Material"
+        Me.BLoadMaterial.Visible = False
         '
         'BSubmitMat
         '
@@ -1231,4 +1245,5 @@ Partial Class FormBOMDesignSingle
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LPOApproved As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BLoadMaterial As DevExpress.XtraEditors.SimpleButton
 End Class
