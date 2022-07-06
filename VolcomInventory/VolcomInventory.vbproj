@@ -651,6 +651,12 @@
     <Compile Include="FormBiayaSewaPPS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBOMPickAdd.Designer.vb">
+      <DependentUpon>FormBOMPickAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBOMPickAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBSP.Designer.vb">
       <DependentUpon>FormBSP.vb</DependentUpon>
     </Compile>
@@ -11267,6 +11273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBiayaSewaPPS.resx">
       <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBOMPickAdd.resx">
+      <DependentUpon>FormBOMPickAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBSP.resx">
       <DependentUpon>FormBSP.vb</DependentUpon>
