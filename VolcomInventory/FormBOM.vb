@@ -6,7 +6,7 @@
 
     Private Sub FormBOM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         show_design()
-        view_product()
+        'view_product()
         '
         viewSeason()
     End Sub

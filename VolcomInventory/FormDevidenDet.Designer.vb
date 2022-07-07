@@ -87,8 +87,8 @@ Partial Class FormDevidenDet
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPThisYear = New DevExpress.XtraTab.XtraTabPage()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPThisYear = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -701,7 +701,7 @@ Partial Class FormDevidenDet
         Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn24, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn25, Me.GridColumn27})
         GridFormatRule1.ApplyToRow = True
         GridFormatRule1.Name = "Format0"
-        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.LightGray
         FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
         FormatConditionRuleExpression1.Expression = "Iif([profit_year] = [div_year], True, False)"
         GridFormatRule1.Rule = FormatConditionRuleExpression1
@@ -795,7 +795,7 @@ Partial Class FormDevidenDet
         Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn22.Caption = "PPH (%)"
+        Me.GridColumn22.Caption = "PPh (%)"
         Me.GridColumn22.DisplayFormat.FormatString = "{0:N0} %"
         Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn22.FieldName = "pph_percent"
@@ -834,6 +834,12 @@ Partial Class FormDevidenDet
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 2
         '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "CurrentYear"
+        Me.GridColumn27.FieldName = "div_year"
+        Me.GridColumn27.Name = "GridColumn27"
+        '
         'XTPThisYear
         '
         Me.XTPThisYear.Controls.Add(Me.XTPDraftJournal)
@@ -841,12 +847,6 @@ Partial Class FormDevidenDet
         Me.XTPThisYear.Name = "XTPThisYear"
         Me.XTPThisYear.Size = New System.Drawing.Size(947, 370)
         Me.XTPThisYear.Text = "This Year"
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.Caption = "CurrentYear"
-        Me.GridColumn27.FieldName = "div_year"
-        Me.GridColumn27.Name = "GridColumn27"
         '
         'FormDevidenDet
         '

@@ -28,6 +28,7 @@ Partial Class FormViewProduction
         Me.ColIdMat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -144,7 +145,9 @@ Partial Class FormViewProduction
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdPOType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPOType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.TESiluet = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GConListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GConListPurchase.SuspendLayout()
         CType(Me.XTCDetailPO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -207,6 +210,9 @@ Partial Class FormViewProduction
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPOType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl9.SuspendLayout()
+        CType(Me.TESiluet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GConListPurchase
@@ -233,6 +239,7 @@ Partial Class FormViewProduction
         'XTPListItem
         '
         Me.XTPListItem.Controls.Add(Me.GCListProduct)
+        Me.XTPListItem.Controls.Add(Me.PanelControl9)
         Me.XTPListItem.Name = "XTPListItem"
         Me.XTPListItem.Size = New System.Drawing.Size(949, 245)
         Me.XTPListItem.Text = "List Item"
@@ -244,7 +251,7 @@ Partial Class FormViewProduction
         Me.GCListProduct.MainView = Me.GVListProduct
         Me.GCListProduct.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListProduct.Name = "GCListProduct"
-        Me.GCListProduct.Size = New System.Drawing.Size(949, 245)
+        Me.GCListProduct.Size = New System.Drawing.Size(949, 211)
         Me.GCListProduct.TabIndex = 0
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
         '
@@ -292,6 +299,19 @@ Partial Class FormViewProduction
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
         Me.ColCode.Width = 295
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.Caption = "Class"
+        Me.GridColumn4.FieldName = "class"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 129
         '
         'ColName
         '
@@ -1564,18 +1584,36 @@ Partial Class FormViewProduction
         Me.ColPOType.Visible = True
         Me.ColPOType.VisibleIndex = 0
         '
-        'GridColumn4
+        'PanelControl9
         '
-        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn4.Caption = "Class"
-        Me.GridColumn4.FieldName = "class"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 129
+        Me.PanelControl9.Controls.Add(Me.TESiluet)
+        Me.PanelControl9.Controls.Add(Me.LabelControl17)
+        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl9.Location = New System.Drawing.Point(0, 211)
+        Me.PanelControl9.Name = "PanelControl9"
+        Me.PanelControl9.Size = New System.Drawing.Size(949, 34)
+        Me.PanelControl9.TabIndex = 2
+        '
+        'TESiluet
+        '
+        Me.TESiluet.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TESiluet.EditValue = ""
+        Me.TESiluet.Location = New System.Drawing.Point(51, 8)
+        Me.TESiluet.Name = "TESiluet"
+        Me.TESiluet.Properties.EditValueChangedDelay = 1
+        Me.TESiluet.Properties.ReadOnly = True
+        Me.TESiluet.Size = New System.Drawing.Size(893, 20)
+        Me.TESiluet.TabIndex = 160
+        Me.TESiluet.TabStop = False
+        '
+        'LabelControl17
+        '
+        Me.LabelControl17.Location = New System.Drawing.Point(13, 11)
+        Me.LabelControl17.Name = "LabelControl17"
+        Me.LabelControl17.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl17.TabIndex = 141
+        Me.LabelControl17.Text = "Siluet"
         '
         'FormViewProduction
         '
@@ -1662,6 +1700,10 @@ Partial Class FormViewProduction
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPOType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl9.ResumeLayout(False)
+        Me.PanelControl9.PerformLayout()
+        CType(Me.TESiluet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1791,4 +1833,7 @@ Partial Class FormViewProduction
     Friend WithEvents TEVendorName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl9 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TESiluet As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
 End Class

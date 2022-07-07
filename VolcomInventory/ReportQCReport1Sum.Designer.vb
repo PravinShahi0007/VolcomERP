@@ -54,6 +54,9 @@ Partial Public Class ReportQCReport1Sum
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.LInternal1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LInternal2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LVendorName = New DevExpress.XtraReports.UI.XRLabel()
@@ -80,9 +83,6 @@ Partial Public Class ReportQCReport1Sum
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.LInternal1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LInternal2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTDet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -421,6 +421,45 @@ Partial Public Class ReportQCReport1Sum
         Me.PageHeader.HeightF = 177.0833!
         Me.PageHeader.Name = "PageHeader"
         '
+        'XrPanel1
+        '
+        Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LInternal1, Me.LInternal2})
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(518.0555!, 26.99991!)
+        Me.XrPanel1.Name = "XrPanel1"
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(225.0!, 50.0!)
+        Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'LInternal1
+        '
+        Me.LInternal1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LInternal1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LInternal1.LocationFloat = New DevExpress.Utils.PointFloat(1.98584!, 2.968794!)
+        Me.LInternal1.Name = "LInternal1"
+        Me.LInternal1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LInternal1.SizeF = New System.Drawing.SizeF(218.9587!, 25.05218!)
+        Me.LInternal1.StylePriority.UseBorders = False
+        Me.LInternal1.StylePriority.UseFont = False
+        Me.LInternal1.StylePriority.UseTextAlignment = False
+        Me.LInternal1.Text = "INTERNAL REVIEW ONLY"
+        Me.LInternal1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LInternal2
+        '
+        Me.LInternal2.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LInternal2.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LInternal2.LocationFloat = New DevExpress.Utils.PointFloat(1.985762!, 28.02099!)
+        Me.LInternal2.Name = "LInternal2"
+        Me.LInternal2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LInternal2.SizeF = New System.Drawing.SizeF(218.9586!, 20.0!)
+        Me.LInternal2.StylePriority.UseBorders = False
+        Me.LInternal2.StylePriority.UseFont = False
+        Me.LInternal2.StylePriority.UseTextAlignment = False
+        Me.LInternal2.Text = "Do not send to vendor"
+        Me.LInternal2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
         'XrLabel5
         '
         Me.XrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.None
@@ -693,45 +732,6 @@ Partial Public Class ReportQCReport1Sum
         Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
-        '
-        'LInternal1
-        '
-        Me.LInternal1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LInternal1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LInternal1.LocationFloat = New DevExpress.Utils.PointFloat(1.98584!, 2.968794!)
-        Me.LInternal1.Name = "LInternal1"
-        Me.LInternal1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LInternal1.SizeF = New System.Drawing.SizeF(218.9587!, 25.05218!)
-        Me.LInternal1.StylePriority.UseBorders = False
-        Me.LInternal1.StylePriority.UseFont = False
-        Me.LInternal1.StylePriority.UseTextAlignment = False
-        Me.LInternal1.Text = "INTERNAL REVIEW ONLY"
-        Me.LInternal1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'LInternal2
-        '
-        Me.LInternal2.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LInternal2.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LInternal2.LocationFloat = New DevExpress.Utils.PointFloat(1.985762!, 28.02099!)
-        Me.LInternal2.Name = "LInternal2"
-        Me.LInternal2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LInternal2.SizeF = New System.Drawing.SizeF(218.9586!, 20.0!)
-        Me.LInternal2.StylePriority.UseBorders = False
-        Me.LInternal2.StylePriority.UseFont = False
-        Me.LInternal2.StylePriority.UseTextAlignment = False
-        Me.LInternal2.Text = "Do not send to vendor"
-        Me.LInternal2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrPanel1
-        '
-        Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LInternal1, Me.LInternal2})
-        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(518.0555!, 26.99991!)
-        Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(225.0!, 50.0!)
-        Me.XrPanel1.StylePriority.UseBorders = False
         '
         'ReportQCReport1Sum
         '

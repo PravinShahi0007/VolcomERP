@@ -21,15 +21,6 @@ Partial Public Class ReportProposeVoucherPOS
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportProposeVoucherPOS))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
-        Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RIDEDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
@@ -48,11 +39,24 @@ Partial Public Class ReportProposeVoucherPOS
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIDEDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICCBEOutlet = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIMEOutlet = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIDEDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIDEDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICCBEOutlet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMEOutlet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -62,103 +66,6 @@ Partial Public Class ReportProposeVoucherPOS
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'WinControlContainer1
-        '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(733.0001!, 124.0!)
-        Me.WinControlContainer1.WinControl = Me.GCData
-        '
-        'GCData
-        '
-        Me.GCData.Location = New System.Drawing.Point(0, 123)
-        Me.GCData.MainView = Me.GVData
-        Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIDEDate})
-        Me.GCData.Size = New System.Drawing.Size(704, 119)
-        Me.GCData.TabIndex = 1
-        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
-        '
-        'GVData
-        '
-        Me.GVData.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
-        Me.GVData.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVData.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GVData.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.GVData.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
-        Me.GVData.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVData.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
-        Me.GVData.AppearancePrint.Lines.Options.UseBackColor = True
-        Me.GVData.AppearancePrint.Row.BackColor = System.Drawing.Color.White
-        Me.GVData.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
-        Me.GVData.AppearancePrint.Row.Options.UseBackColor = True
-        Me.GVData.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
-        Me.GVData.GridControl = Me.GCData
-        Me.GVData.Name = "GVData"
-        Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Voucher Number"
-        Me.GridColumn1.FieldName = "voucher_number"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Voucher Value"
-        Me.GridColumn2.DisplayFormat.FormatString = "N0"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "voucher_value"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Period Start"
-        Me.GridColumn3.ColumnEdit = Me.RIDEDate
-        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn3.FieldName = "period_start"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        '
-        'RIDEDate
-        '
-        Me.RIDEDate.AutoHeight = False
-        Me.RIDEDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RIDEDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RIDEDate.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.RIDEDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.RIDEDate.EditFormat.FormatString = "dd MMMM yyyy"
-        Me.RIDEDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.RIDEDate.Mask.EditMask = "dd MMMM yyyy"
-        Me.RIDEDate.Mask.UseMaskAsDisplayFormat = True
-        Me.RIDEDate.Name = "RIDEDate"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Period End"
-        Me.GridColumn4.ColumnEdit = Me.RIDEDate
-        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn4.FieldName = "period_end"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Outlet"
-        Me.GridColumn5.FieldName = "outlet_name"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
         '
         'TopMargin
         '
@@ -329,6 +236,115 @@ Partial Public Class ReportProposeVoucherPOS
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
+        'GCData
+        '
+        Me.GCData.Location = New System.Drawing.Point(0, 123)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIDEDate, Me.RICCBEOutlet, Me.RIMEOutlet})
+        Me.GCData.Size = New System.Drawing.Size(704, 119)
+        Me.GCData.TabIndex = 1
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.GVData.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVData.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVData.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVData.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVData.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVData.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.GVData.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.GVData.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.GVData.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.GVData.AppearancePrint.Row.Options.UseBackColor = True
+        Me.GVData.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsView.RowAutoHeight = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Voucher Number"
+        Me.GridColumn1.FieldName = "voucher_number"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Voucher Value"
+        Me.GridColumn2.DisplayFormat.FormatString = "N0"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn2.FieldName = "voucher_value"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Period Start"
+        Me.GridColumn3.ColumnEdit = Me.RIDEDate
+        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.FieldName = "period_start"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'RIDEDate
+        '
+        Me.RIDEDate.AutoHeight = False
+        Me.RIDEDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIDEDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIDEDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.RIDEDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RIDEDate.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.RIDEDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RIDEDate.Mask.EditMask = "dd MMMM yyyy"
+        Me.RIDEDate.Mask.UseMaskAsDisplayFormat = True
+        Me.RIDEDate.Name = "RIDEDate"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Period End"
+        Me.GridColumn4.ColumnEdit = Me.RIDEDate
+        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn4.FieldName = "period_end"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'RICCBEOutlet
+        '
+        Me.RICCBEOutlet.AutoHeight = False
+        Me.RICCBEOutlet.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RICCBEOutlet.Name = "RICCBEOutlet"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Outlet"
+        Me.GridColumn6.ColumnEdit = Me.RIMEOutlet
+        Me.GridColumn6.FieldName = "outlet_name_line"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
+        '
+        'RIMEOutlet
+        '
+        Me.RIMEOutlet.Name = "RIMEOutlet"
+        '
+        'WinControlContainer1
+        '
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001589457!, 0!)
+        Me.WinControlContainer1.Name = "WinControlContainer1"
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(732.9998!, 124.0!)
+        Me.WinControlContainer1.WinControl = Me.GCData
+        '
         'ReportProposeVoucherPOS
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
@@ -338,11 +354,13 @@ Partial Public Class ReportProposeVoucherPOS
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIDEDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIDEDate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICCBEOutlet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMEOutlet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -373,5 +391,7 @@ Partial Public Class ReportProposeVoucherPOS
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIDEDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RIMEOutlet As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents RICCBEOutlet As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
 End Class

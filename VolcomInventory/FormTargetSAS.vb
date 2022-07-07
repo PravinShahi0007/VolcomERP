@@ -95,7 +95,7 @@
         FROM (
 	        SELECT sth.id_class, sth.id_delivery, sth.sth_period AS `period`, sth.sth_value AS `val`, '1' AS `typ`
 	        FROM tb_tg_sth sth
-	        WHERE sth.is_active=1 AND (sth.sth_period>='2023-01-01 00:00:00' AND sth.sth_period<='2023-12-01 00:00:00')
+	        WHERE sth.is_active=1 AND (sth.sth_period>='" + startd + "' AND sth.sth_period<='" + endd + "')
 	        UNION ALL 
 	        SELECT sas.id_class, sas.id_delivery, sas.sas_period AS `period`, sas.sas_value AS `val`, '2' AS `typ`
 	        FROM tb_tg_sas sas

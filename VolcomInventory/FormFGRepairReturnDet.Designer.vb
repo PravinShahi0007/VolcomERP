@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormFGRepairReturnDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormFGRepairReturnDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGRepairReturnDet))
@@ -45,6 +45,12 @@ Partial Class FormFGRepairReturnDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEMajorExt = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LPLType = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowseTo = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseFrom = New DevExpress.XtraEditors.SimpleButton()
@@ -104,6 +110,9 @@ Partial Class FormFGRepairReturnDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -357,6 +366,9 @@ Partial Class FormFGRepairReturnDet
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.SLEMajorExt)
+        Me.GroupGeneralHeader.Controls.Add(Me.LEPLCategory)
+        Me.GroupGeneralHeader.Controls.Add(Me.LPLType)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtNameCompTo)
         Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowseTo)
         Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowseFrom)
@@ -371,6 +383,59 @@ Partial Class FormFGRepairReturnDet
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 97)
         Me.GroupGeneralHeader.TabIndex = 301
+        '
+        'SLEMajorExt
+        '
+        Me.SLEMajorExt.Location = New System.Drawing.Point(296, 61)
+        Me.SLEMajorExt.Name = "SLEMajorExt"
+        Me.SLEMajorExt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMajorExt.Properties.View = Me.GridView3
+        Me.SLEMajorExt.Size = New System.Drawing.Size(196, 20)
+        Me.SLEMajorExt.TabIndex = 10020
+        Me.SLEMajorExt.Visible = False
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID"
+        Me.GridColumn9.FieldName = "id_reject_category"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Reject Category"
+        Me.GridColumn10.FieldName = "reject_category"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'LEPLCategory
+        '
+        Me.LEPLCategory.Location = New System.Drawing.Point(73, 61)
+        Me.LEPLCategory.Name = "LEPLCategory"
+        Me.LEPLCategory.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPLCategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPLCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPLCategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category", "PL Category"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_comp", "id_comp", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.LEPLCategory.Properties.NullText = ""
+        Me.LEPLCategory.Properties.ShowFooter = False
+        Me.LEPLCategory.Size = New System.Drawing.Size(217, 20)
+        Me.LEPLCategory.TabIndex = 8910
+        '
+        'LPLType
+        '
+        Me.LPLType.Location = New System.Drawing.Point(29, 64)
+        Me.LPLType.Name = "LPLType"
+        Me.LPLType.Size = New System.Drawing.Size(38, 13)
+        Me.LPLType.TabIndex = 8909
+        Me.LPLType.Text = "PL Type"
         '
         'TxtNameCompTo
         '
@@ -805,8 +870,7 @@ Partial Class FormFGRepairReturnDet
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "design_price_retail"
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn6.Width = 112
         '
         'GridColumnAmount
@@ -816,11 +880,10 @@ Partial Class FormFGRepairReturnDet
         Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAmount.FieldName = "amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
+        Me.GridColumnAmount.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
         Me.GridColumnAmount.UnboundExpression = "[qty] * [design_price_retail]"
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 7
         Me.GridColumnAmount.Width = 112
         '
         'GridColumnStatus
@@ -829,7 +892,7 @@ Partial Class FormFGRepairReturnDet
         Me.GridColumnStatus.FieldName = "status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 8
+        Me.GridColumnStatus.VisibleIndex = 6
         Me.GridColumnStatus.Width = 126
         '
         'SplashScreenManager1
@@ -870,6 +933,9 @@ Partial Class FormFGRepairReturnDet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -968,4 +1034,10 @@ Partial Class FormFGRepairReturnDet
     Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtRefNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LPLType As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEPLCategory As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents SLEMajorExt As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

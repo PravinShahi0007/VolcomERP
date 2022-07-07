@@ -248,7 +248,7 @@ Public Class FormProductionPLToWHDet
     End Sub
     'View po
     Sub view_list_po(ByVal id_prod_order As String)
-        Dim query = "CALL view_prod_order_det('" & id_prod_order & "', '0')"
+        Dim query = "CALL view_prod_order_det_new('" & id_prod_order & "', '0')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To (data.Rows.Count - 1)
             id_prod_order_det_list.Add(data.Rows(i)("id_prod_order_det").ToString)

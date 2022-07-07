@@ -651,6 +651,12 @@
     <Compile Include="FormBiayaSewaPPS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBOMPickAdd.Designer.vb">
+      <DependentUpon>FormBOMPickAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBOMPickAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBSP.Designer.vb">
       <DependentUpon>FormBSP.vb</DependentUpon>
     </Compile>
@@ -3258,6 +3264,12 @@
     <Compile Include="FormMasterComputer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterComputerMtc.designer.vb">
+      <DependentUpon>FormMasterComputerMtc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterComputerMtc.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterDesignComment.Designer.vb">
       <DependentUpon>FormMasterDesignComment.vb</DependentUpon>
     </Compile>
@@ -4582,6 +4594,24 @@
       <DependentUpon>FormProposeEmpSalaryPick.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProposeEmpSalaryPick.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOS.Designer.vb">
+      <DependentUpon>FormProposePaymentCardPOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOSDet.Designer.vb">
+      <DependentUpon>FormProposePaymentCardPOSDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOSDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOSRevise.Designer.vb">
+      <DependentUpon>FormProposePaymentCardPOSRevise.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePaymentCardPOSRevise.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProposePriceChangeEffective.Designer.vb">
@@ -6910,6 +6940,12 @@
       <DependentUpon>FormSalesWeekly.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesWeekly.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalthruCompare.Designer.vb">
+      <DependentUpon>FormSalthruCompare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalthruCompare.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSampleBudget.Designer.vb">
@@ -10407,6 +10443,12 @@
     <Compile Include="ReportProposeEmpSalaryCompare.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProposePaymentCardPOS.Designer.vb">
+      <DependentUpon>ReportProposePaymentCardPOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProposePaymentCardPOS.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProposePriceMKD.Designer.vb">
       <DependentUpon>ReportProposePriceMKD.vb</DependentUpon>
     </Compile>
@@ -11231,6 +11273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBiayaSewaPPS.resx">
       <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBOMPickAdd.resx">
+      <DependentUpon>FormBOMPickAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBSP.resx">
       <DependentUpon>FormBSP.vb</DependentUpon>
@@ -12586,6 +12631,9 @@
     <EmbeddedResource Include="FormMasterComputer.resx">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterComputerMtc.resx">
+      <DependentUpon>FormMasterComputerMtc.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMasterDesignComment.resx">
       <DependentUpon>FormMasterDesignComment.vb</DependentUpon>
     </EmbeddedResource>
@@ -13246,6 +13294,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposeEmpSalaryPick.resx">
       <DependentUpon>FormProposeEmpSalaryPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePaymentCardPOS.resx">
+      <DependentUpon>FormProposePaymentCardPOS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePaymentCardPOSDet.resx">
+      <DependentUpon>FormProposePaymentCardPOSDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePaymentCardPOSRevise.resx">
+      <DependentUpon>FormProposePaymentCardPOSRevise.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposePriceChangeEffective.resx">
       <DependentUpon>FormProposePriceChangeEffective.vb</DependentUpon>
@@ -14645,6 +14702,9 @@
     <EmbeddedResource Include="FormSalesWeekly.resx">
       <DependentUpon>FormSalesWeekly.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalthruCompare.resx">
+      <DependentUpon>FormSalthruCompare.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleBudget.resx">
       <DependentUpon>FormSampleBudget.vb</DependentUpon>
@@ -16622,6 +16682,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProposeEmpSalaryCompare.resx">
       <DependentUpon>ReportProposeEmpSalaryCompare.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProposePaymentCardPOS.resx">
+      <DependentUpon>ReportProposePaymentCardPOS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProposePriceMKD.resx">
       <DependentUpon>ReportProposePriceMKD.vb</DependentUpon>

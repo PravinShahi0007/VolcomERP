@@ -45,6 +45,10 @@ Partial Class FormProductionPLToWHDet
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEMajorExt = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -126,10 +130,6 @@ Partial Class FormProductionPLToWHDet
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.SLEMajorExt = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,6 +146,8 @@ Partial Class FormProductionPLToWHDet
         CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRetOutNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -184,8 +186,6 @@ Partial Class FormProductionPLToWHDet
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -498,6 +498,38 @@ Partial Class FormProductionPLToWHDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(276, 143)
         Me.PanelControlTopRight.TabIndex = 10006
+        '
+        'SLEMajorExt
+        '
+        Me.SLEMajorExt.Location = New System.Drawing.Point(123, 84)
+        Me.SLEMajorExt.Name = "SLEMajorExt"
+        Me.SLEMajorExt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMajorExt.Properties.View = Me.GridView3
+        Me.SLEMajorExt.Size = New System.Drawing.Size(144, 20)
+        Me.SLEMajorExt.TabIndex = 10019
+        Me.SLEMajorExt.Visible = False
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID"
+        Me.GridColumn9.FieldName = "id_reject_category"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Reject Category"
+        Me.GridColumn10.FieldName = "reject_category"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
         '
         'LEPLCategory
         '
@@ -916,7 +948,7 @@ Partial Class FormProductionPLToWHDet
         Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn3.Caption = "Color"
-        Me.GridColumn3.FieldName = "Color"
+        Me.GridColumn3.FieldName = "color"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 5
@@ -1341,38 +1373,6 @@ Partial Class FormProductionPLToWHDet
         '
         Me.EPRet.ContainerControl = Me
         '
-        'SLEMajorExt
-        '
-        Me.SLEMajorExt.Location = New System.Drawing.Point(123, 84)
-        Me.SLEMajorExt.Name = "SLEMajorExt"
-        Me.SLEMajorExt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEMajorExt.Properties.View = Me.GridView3
-        Me.SLEMajorExt.Size = New System.Drawing.Size(144, 20)
-        Me.SLEMajorExt.TabIndex = 10019
-        Me.SLEMajorExt.Visible = False
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "ID"
-        Me.GridColumn9.FieldName = "id_reject_category"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Reject Category"
-        Me.GridColumn10.FieldName = "reject_category"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
-        '
         'FormProductionPLToWHDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1407,6 +1407,8 @@ Partial Class FormProductionPLToWHDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRetOutNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1447,8 +1449,6 @@ Partial Class FormProductionPLToWHDet
         Me.PanelNavBarcode.PerformLayout()
         CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEMajorExt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

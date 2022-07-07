@@ -13,7 +13,7 @@
         End If
 
         Dim query As String = "SELECT s.id_eos_change, s.id_pp_change, s.`number`, s.created_date, 
-        s.pps_date, p.effective_date, p.plan_end_date, p.number AS `mkd_number`,
+        s.pps_date, p.effective_date, s.plan_end_date, p.number AS `mkd_number`,
         s.id_report_status, stt.report_status, s.note 
         FROM tb_eos_change s
         INNER JOIN tb_pp_change p ON p.id_pp_change = s.id_pp_change

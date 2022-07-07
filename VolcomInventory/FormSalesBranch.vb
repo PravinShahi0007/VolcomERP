@@ -180,6 +180,8 @@
     End Sub
 
     Private Sub SBSync_Click(sender As Object, e As EventArgs) Handles SBSync.Click
+        GCSync.DataSource = Nothing
+
         Dim is_sync As String = execute_query("SELECT IFNULL((SELECT COUNT(*) FROM tb_pos_sale WHERE DATE(pos_date) = '" + Date.Parse(DESync.EditValue.ToString).ToString("yyyy-MM-dd") + "'), 0) AS is_sync", 0, True, "", "", "", "")
 
         If is_sync = "0" Then

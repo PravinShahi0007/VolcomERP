@@ -812,6 +812,9 @@
             query = String.Format("SELECT id_report_status, report_number FROM tb_promo_rules WHERE id_rules = '{0}'", id_report)
         ElseIf report_mark_type = "414" Then
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_b_revenue_propose WHERE id_b_revenue_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "415" Then
+            'propose card
+            query = String.Format("SELECT id_report_status, report_number FROM tb_propose_card_pos WHERE id_propose_card_pos = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -11943,7 +11946,7 @@ WHERE id_item_pps='" & id_report & "'"
                 End If
 
                 'jurnal
-                Dim qu As String = "SELECT created_by,profit_year,date_reff FROM tb_deviden WHERE id_report='" & id_report & "'"
+                Dim qu As String = "SELECT created_by,profit_year,date_reff FROM tb_deviden WHERE id_deviden='" & id_report & "'"
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
                 Dim id_user_prepared As String = du.Rows(0)("created_by").ToString
                 Dim report_number As String = du.Rows(0)("profit_year").ToString
@@ -12230,8 +12233,8 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
                 SELECT `id_prod_order_ko_reff`,`number`,(SELECT COUNT(id_prod_order_ko) FROM tb_prod_order_ko WHERE id_prod_order_ko_reff=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_prod_order_ko & "')),`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`id_emp_vice_director`,`is_purc_mat` FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_prod_order_ko & "'; SELECT LAST_INSERT_ID(); "
                     Dim new_id_ko As String = execute_query(q, 0, True, "", "", "", "")
                     'det
-                    q = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment`)
-                SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment` FROM tb_prod_order_ko_det WHERE id_prod_order_ko='" & id_prod_order_ko & "'"
+                    q = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_prod_before`,`lead_time_payment`)
+                SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_prod_before`,`lead_time_payment` FROM tb_prod_order_ko_det WHERE id_prod_order_ko='" & id_prod_order_ko & "'"
                     execute_non_query(q, True, "", "", "", "")
                 End If
             End If
@@ -12370,6 +12373,31 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
             End If
 
             query = String.Format("UPDATE tb_b_revenue_propose SET id_report_status = '{0}' WHERE id_b_revenue_propose = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "415" Then
+            'propose card
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+
+                FormProposePaymentCardPOSDet.updateChanges(id_report)
+
+                Dim sync_status As String = "2"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim c As ClassApiPos = New ClassApiPos
+
+                    c.syncCard()
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Card: Propose Card Payment POS (415)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_propose_card_pos SET id_report_status = '{0}' WHERE id_propose_card_pos = '{1}'", id_status_reportx, id_report)
+
             execute_non_query(query, True, "", "", "", "")
         End If
 

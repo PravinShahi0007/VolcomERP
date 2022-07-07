@@ -124,23 +124,26 @@
 
         Dim query_c As New ClassFGRepairReturn()
         'Dim query As String = query_c.queryMain("AND r.is_from_vendor=" + is_vendor + " AND (r.fg_repair_return_date>='" + date_from_selected + "' AND r.fg_repair_return_date<='" + date_until_selected + "') ", "2")
-        Dim query As String = "Select r.id_fg_repair_return, "
-        query += "r.id_wh_drawer_from, comp_frm.id_comp As `id_comp_from`, comp_frm.comp_number As `comp_number_from`, comp_frm.comp_name As `comp_name_from`, CONCAT(comp_frm.comp_number,' - ', comp_frm.comp_name) AS `comp_from`, "
-        query += "r.id_wh_drawer_to, comp_to.id_comp As `id_comp_to`, comp_to.comp_number As `comp_number_to`, comp_to.comp_name As `comp_name_to`, CONCAT(comp_to.comp_number,' - ', comp_to.comp_name) AS `comp_to`, "
-        query += "r.fg_repair_return_number, r.fg_repair_return_date, DATE_FORMAT(r.fg_repair_return_date, '%Y-%m-%d') AS fg_repair_return_datex, "
-        query += "r.fg_repair_return_note, r.id_report_status, stt.report_status, r.is_from_vendor,r.is_use_unique_code, rep.id_fg_repair, rep.fg_repair_number, COUNT(r.id_fg_repair_return) AS `total_qty` "
-        query += "From tb_fg_repair_return r 
-        INNER JOIN tb_fg_repair_return_det rd ON rd.id_fg_repair_return = r.id_fg_repair_return "
-        query += "INNER Join tb_m_wh_drawer drw_frm On drw_frm.id_wh_drawer = r.id_wh_drawer_from  "
-        query += "INNER Join tb_m_comp comp_frm On comp_frm.id_drawer_def = drw_frm.id_wh_drawer  "
-        query += "INNER Join tb_m_wh_drawer drw_to On drw_to.id_wh_drawer = r.id_wh_drawer_to "
-        query += "INNER Join tb_m_comp comp_to On comp_to.id_drawer_def = drw_to.id_wh_drawer "
-        query += "INNER Join tb_lookup_report_status stt On stt.id_report_status = r.id_report_status "
-        query += "LEFT JOIN tb_fg_repair rep ON rep.id_fg_repair = r.id_fg_repair "
-        query += "WHERE r.id_fg_repair_return>0 "
-        query += "AND r.is_from_vendor=" + is_vendor + " AND (r.fg_repair_return_date>='" + date_from_selected + "' AND r.fg_repair_return_date<='" + date_until_selected + "') 
-        GROUP BY r.id_fg_repair_return "
-        query += "ORDER BY r.id_fg_repair_return DESC "
+        Dim query As String = "SELECT r.id_fg_repair_return, 
+r.id_wh_drawer_from, comp_frm.id_comp AS `id_comp_from`, comp_frm.comp_number AS `comp_number_from`, comp_frm.comp_name AS `comp_name_from`, CONCAT(comp_frm.comp_number,' - ', comp_frm.comp_name) AS `comp_from`, 
+r.id_wh_drawer_to, comp_to.id_comp AS `id_comp_to`, comp_to.comp_number AS `comp_number_to`, comp_to.comp_name AS `comp_name_to`, CONCAT(comp_to.comp_number,' - ', comp_to.comp_name) AS `comp_to`, 
+r.fg_repair_return_number, r.fg_repair_return_date, DATE_FORMAT(r.fg_repair_return_date, '%Y-%m-%d') AS fg_repair_return_datex, 
+r.fg_repair_return_note, r.id_report_status, stt.report_status, r.is_from_vendor,r.is_use_unique_code, rep.id_fg_repair, rep.fg_repair_number, COUNT(r.id_fg_repair_return) AS `total_qty` 
+,IF(ISNULL(r.id_pl_category),'',IF(r.id_pl_category=3,CONCAT(pl.pl_category,' - ',rc.reject_category),pl.pl_category)) AS pl_category
+FROM tb_fg_repair_return r 
+INNER JOIN tb_fg_repair_return_det rd ON rd.id_fg_repair_return = r.id_fg_repair_return 
+INNER JOIN tb_m_wh_drawer drw_frm ON drw_frm.id_wh_drawer = r.id_wh_drawer_from  
+INNER JOIN tb_m_comp comp_frm ON comp_frm.id_drawer_def = drw_frm.id_wh_drawer  
+INNER JOIN tb_m_wh_drawer drw_to ON drw_to.id_wh_drawer = r.id_wh_drawer_to 
+INNER JOIN tb_m_comp comp_to ON comp_to.id_drawer_def = drw_to.id_wh_drawer 
+INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status 
+LEFT JOIN tb_fg_repair rep ON rep.id_fg_repair = r.id_fg_repair 
+LEFT JOIN tb_lookup_pl_category pl ON pl.id_pl_category=r.id_pl_category
+LEFT JOIN tb_reject_category rc ON rc.id_reject_category=r.id_reject_category
+WHERE r.id_fg_repair_return>0 
+AND r.is_from_vendor=" + is_vendor + " AND (r.fg_repair_return_date>='" + date_from_selected + "' AND r.fg_repair_return_date<='" + date_until_selected + "') 
+GROUP BY r.id_fg_repair_return 
+ORDER BY r.id_fg_repair_return DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRepairReturn.DataSource = data
         check_menu()

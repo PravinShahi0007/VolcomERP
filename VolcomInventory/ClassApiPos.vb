@@ -93,7 +93,7 @@
         in_id = in_id.Substring(0, in_id.Length - 2)
 
         Dim query As String = "
-            SELECT d.id_pl_sales_order_del, a.pl_sales_order_del_number AS number, c_from.id_comp AS id_wh, c_to.id_comp AS id_store, a.pl_sales_order_del_date AS created_date, a.last_update AS approved_date, d.id_product, p.id_design, d_count.id_pl_prod_order_rec_det_unique, class.id_class, class.class, class.class_display, color.id_color, color.color, color.color_display, p_code.id_code_detail AS id_size, p_detail.display_name AS size, sub_category.id_sub_category, sub_category.sub_category, p.product_full_code AS item_code, p.product_full_code AS item_code_group, CONCAT(IF(r.is_md = 2, 'PRM ', ''), class.class_display, ' ', g.design_name, ' ', color.color_display) AS item_name, 1 AS qty, p_type.id_design_cat, d.id_design_price, d.design_price AS price, d_price.design_price_start_date AS design_price_date, pn.id_design_price AS id_normal_price, pn.design_price AS normal_price, a.is_combine, a.id_combine, 2 AS is_unique_code
+            SELECT d.id_pl_sales_order_del, a.pl_sales_order_del_number AS number, c_from.id_comp AS id_wh, c_to.id_comp AS id_store, a.pl_sales_order_del_date AS created_date, a.last_update AS approved_date, d.id_product, p.id_design, d_count.id_pl_prod_order_rec_det_unique, class.id_class, class.class, class.class_display, color.id_color, color.color, color.color_display, p_code.id_code_detail AS id_size, p_detail.display_name AS size, sub_category.id_sub_category, sub_category.sub_category, p.product_full_code AS item_code, p.product_full_code AS item_code_group, CONCAT(IF(r.is_md = 2, 'PRM ', ''), class.class_display, ' ', g.design_name, ' ', color.color_display) AS item_name, 1 AS qty, p_type.id_design_cat, d.id_design_price, d.design_price AS price, d_price.design_price_start_date AS design_price_date, pn.id_design_price AS id_normal_price, pn.design_price AS normal_price, a.is_combine, a.id_combine, 2 AS is_unique_code, IF(r.is_md = 2, 1, 2) AS is_free_promo
             FROM tb_pl_sales_order_del_det AS d
             LEFT JOIN tb_pl_sales_order_del AS a ON d.id_pl_sales_order_del = a.id_pl_sales_order_del
             LEFT JOIN tb_m_comp_contact AS c_from ON a.id_comp_contact_from = c_from.id_comp_contact
@@ -583,6 +583,55 @@
 
         If jsonRes("success") Then
             'infoCustom("Sync gwp completed.")
+        End If
+
+        removeAccessToken(accessToken)
+    End Sub
+
+    Sub syncCard()
+        Dim query As String = "
+            SELECT id_card, card_name, discount
+            FROM tb_pos_card_type
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim json As String = Newtonsoft.Json.JsonConvert.SerializeObject(data)
+
+        Dim pathRoot As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(pathRoot) Then
+            System.IO.Directory.CreateDirectory(pathRoot)
+        End If
+
+        Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+        Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+        Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+        Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(json)
+
+        fs.Write(info, 0, info.Length)
+
+        fs.Close()
+
+        Dim accessToken As String = getAccessToken()
+
+        Dim url As String = host + "/api/sync/card"
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+        Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        If jsonRes("success") Then
+            'infoCustom("Sync card completed.")
         End If
 
         removeAccessToken(accessToken)

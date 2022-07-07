@@ -56,6 +56,7 @@
                     BAddMat.Enabled = True
                     BEditMat.Enabled = True
                     BDelMat.Enabled = True
+                    BLoadMaterial.Enabled = True
                 Else
                     user_mat_approve = data.Rows(0)("user_mat_submit").ToString
                     BSubmitMat.Enabled = False
@@ -63,6 +64,7 @@
                     BAddMat.Enabled = False
                     BEditMat.Enabled = False
                     BDelMat.Enabled = False
+                    BLoadMaterial.Enabled = False
                 End If
 
                 If data.Rows(0)("user_ovh_submit").ToString = "" Then
@@ -121,6 +123,7 @@
             BEditOVH.Visible = False
             BDelOVH.Visible = False
             '
+            BLoadMaterial.Visible = False
             BAddMat.Visible = False
             BEditMat.Visible = False
             BDelMat.Visible = False
@@ -133,6 +136,7 @@
             BEditOVH.Visible = True
             BDelOVH.Visible = True
             '
+            BLoadMaterial.Visible = True
             BAddMat.Visible = True
             BEditMat.Visible = True
             BDelMat.Visible = True
@@ -650,6 +654,7 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
     Sub act_dupe()
         Dim query As String = ""
         Dim id_bom_approve_new As String = ""
@@ -687,5 +692,9 @@
 
     Private Sub BDupDesign_Click(sender As Object, e As EventArgs) Handles BDupDesign.Click
         FormBOMDuplicateDesign.ShowDialog()
+    End Sub
+
+    Private Sub BLoadMaterial_Click(sender As Object, e As EventArgs) Handles BLoadMaterial.Click
+        FormBOMPickAdd.ShowDialog()
     End Sub
 End Class
