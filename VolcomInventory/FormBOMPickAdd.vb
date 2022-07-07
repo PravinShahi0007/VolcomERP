@@ -17,7 +17,7 @@
             FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("name", GVBomDetMat.GetRowCellValue(i, "name").ToString)
             FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("size", GVBomDetMat.GetRowCellValue(i, "size").ToString)
             FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("color", GVBomDetMat.GetRowCellValue(i, "color").ToString)
-            FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("qty", GVBomDetMat.GetRowCellValue(i, "qty") * FormBOMDesignSingle.TEQtyPD.EditValue)
+            FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("qty", GVBomDetMat.GetRowCellValue(i, "component_qty") * FormBOMDesignSingle.TEQtyPD.EditValue)
             FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("kurs", GVBomDetMat.GetRowCellValue(i, "kurs"))
             FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("uom", GVBomDetMat.GetRowCellValue(i, "uom").ToString)
             FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("price", GVBomDetMat.GetRowCellValue(i, "price"))
