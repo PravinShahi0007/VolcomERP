@@ -5,7 +5,7 @@
 
     Private Sub BAddMat_Click(sender As Object, e As EventArgs) Handles BAddMat.Click
         'insert
-        For i = 0 To FormBOMDesignSingle.GVBomDetMat.RowCount - 1
+        For i = (FormBOMDesignSingle.GVBomDetMat.RowCount - 1) To 0 Step -1
             FormBOMDesignSingle.GVBomDetMat.DeleteRow(i)
         Next
 
@@ -83,7 +83,7 @@
 
     Private Sub BAddOVH_Click(sender As Object, e As EventArgs) Handles BAddOVH.Click
         'insert
-        For i = 0 To FormBOMDesignSingle.GVBomDetOvh.RowCount - 1
+        For i = (FormBOMDesignSingle.GVBomDetOvh.RowCount - 1) To 0 Step -1
             FormBOMDesignSingle.GVBomDetOvh.DeleteRow(i)
         Next
 
@@ -124,7 +124,7 @@
 
     Private Sub BAddBoth_Click(sender As Object, e As EventArgs) Handles BAddBoth.Click
         'insert mat
-        For i = 0 To FormBOMDesignSingle.GVBomDetMat.RowCount - 1
+        For i = (FormBOMDesignSingle.GVBomDetMat.RowCount - 1) To 0 Step -1
             FormBOMDesignSingle.GVBomDetMat.DeleteRow(i)
         Next
 
@@ -151,7 +151,7 @@
         FormBOMDesignSingle.show_but_mat()
 
         'insert OVH
-        For i = 0 To FormBOMDesignSingle.GVBomDetOvh.RowCount - 1
+        For i = (FormBOMDesignSingle.GVBomDetOvh.RowCount - 1) To 0 Step -1
             FormBOMDesignSingle.GVBomDetOvh.DeleteRow(i)
         Next
 
