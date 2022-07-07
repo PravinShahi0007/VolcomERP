@@ -22,6 +22,8 @@ Partial Class FormBOMPickAdd
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBOMPickAdd))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BEditMat = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddBoth = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddOVH = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
         Me.SplitContainerControl3 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
@@ -40,6 +42,8 @@ Partial Class FormBOMPickAdd
         Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBomDetMat = New DevExpress.XtraGrid.GridControl()
         Me.GVBomDetMat = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,6 +62,26 @@ Partial Class FormBOMPickAdd
         Me.GridColumnKursMat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCBomDetOvh = New DevExpress.XtraGrid.GridControl()
+        Me.GVBomDetOvh = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVendPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnKursOVH = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOVHCenter = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RCOVHMain = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SplitContainerControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,20 +91,30 @@ Partial Class FormBOMPickAdd
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl6.SuspendLayout()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
         CType(Me.GCBomDetMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBomDetMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECOP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage2.SuspendLayout()
+        CType(Me.GCBomDetOvh, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBomDetOvh, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RCOVHMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BEditMat)
+        Me.PanelControl1.Controls.Add(Me.BAddBoth)
+        Me.PanelControl1.Controls.Add(Me.BAddOVH)
         Me.PanelControl1.Controls.Add(Me.BAddMat)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 516)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 565)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(949, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(968, 42)
         Me.PanelControl1.TabIndex = 19
         '
         'BEditMat
@@ -88,22 +122,44 @@ Partial Class FormBOMPickAdd
         Me.BEditMat.Dock = System.Windows.Forms.DockStyle.Right
         Me.BEditMat.Image = CType(resources.GetObject("BEditMat.Image"), System.Drawing.Image)
         Me.BEditMat.ImageIndex = 2
-        Me.BEditMat.Location = New System.Drawing.Point(755, 2)
+        Me.BEditMat.Location = New System.Drawing.Point(375, 2)
         Me.BEditMat.Name = "BEditMat"
         Me.BEditMat.Size = New System.Drawing.Size(91, 38)
         Me.BEditMat.TabIndex = 16
         Me.BEditMat.Text = "Close"
+        '
+        'BAddBoth
+        '
+        Me.BAddBoth.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddBoth.Image = CType(resources.GetObject("BAddBoth.Image"), System.Drawing.Image)
+        Me.BAddBoth.ImageIndex = 0
+        Me.BAddBoth.Location = New System.Drawing.Point(466, 2)
+        Me.BAddBoth.Name = "BAddBoth"
+        Me.BAddBoth.Size = New System.Drawing.Size(190, 38)
+        Me.BAddBoth.TabIndex = 18
+        Me.BAddBoth.Text = "Copy Material and Overhead"
+        '
+        'BAddOVH
+        '
+        Me.BAddOVH.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddOVH.Image = CType(resources.GetObject("BAddOVH.Image"), System.Drawing.Image)
+        Me.BAddOVH.ImageIndex = 0
+        Me.BAddOVH.Location = New System.Drawing.Point(656, 2)
+        Me.BAddOVH.Name = "BAddOVH"
+        Me.BAddOVH.Size = New System.Drawing.Size(155, 38)
+        Me.BAddOVH.TabIndex = 17
+        Me.BAddOVH.Text = "Copy Overhead Only"
         '
         'BAddMat
         '
         Me.BAddMat.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddMat.Image = CType(resources.GetObject("BAddMat.Image"), System.Drawing.Image)
         Me.BAddMat.ImageIndex = 0
-        Me.BAddMat.Location = New System.Drawing.Point(846, 2)
+        Me.BAddMat.Location = New System.Drawing.Point(811, 2)
         Me.BAddMat.Name = "BAddMat"
-        Me.BAddMat.Size = New System.Drawing.Size(101, 38)
+        Me.BAddMat.Size = New System.Drawing.Size(155, 38)
         Me.BAddMat.TabIndex = 15
-        Me.BAddMat.Text = "Add"
+        Me.BAddMat.Text = "Copy Material Only"
         '
         'SplitContainerControl3
         '
@@ -116,8 +172,8 @@ Partial Class FormBOMPickAdd
         Me.SplitContainerControl3.Panel1.Text = "Panel1"
         Me.SplitContainerControl3.Panel2.Controls.Add(Me.GroupControl6)
         Me.SplitContainerControl3.Panel2.Text = "Panel2"
-        Me.SplitContainerControl3.Size = New System.Drawing.Size(949, 516)
-        Me.SplitContainerControl3.SplitterPosition = 297
+        Me.SplitContainerControl3.Size = New System.Drawing.Size(968, 565)
+        Me.SplitContainerControl3.SplitterPosition = 280
         Me.SplitContainerControl3.TabIndex = 20
         Me.SplitContainerControl3.Text = "SplitContainerControl3"
         '
@@ -127,7 +183,7 @@ Partial Class FormBOMPickAdd
         Me.GCDesign.Location = New System.Drawing.Point(0, 0)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.Size = New System.Drawing.Size(949, 297)
+        Me.GCDesign.Size = New System.Drawing.Size(968, 280)
         Me.GCDesign.TabIndex = 4
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign, Me.GridView2})
         '
@@ -258,22 +314,39 @@ Partial Class FormBOMPickAdd
         '
         'GroupControl6
         '
-        Me.GroupControl6.Controls.Add(Me.GCBomDetMat)
+        Me.GroupControl6.Controls.Add(Me.XtraTabControl1)
         Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(949, 214)
+        Me.GroupControl6.Size = New System.Drawing.Size(968, 280)
         Me.GroupControl6.TabIndex = 1
         Me.GroupControl6.Text = "BOM"
+        '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.Location = New System.Drawing.Point(2, 20)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
+        Me.XtraTabControl1.Size = New System.Drawing.Size(964, 258)
+        Me.XtraTabControl1.TabIndex = 19
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCBomDetMat)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(958, 230)
+        Me.XtraTabPage1.Text = "Material"
         '
         'GCBomDetMat
         '
         Me.GCBomDetMat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBomDetMat.Location = New System.Drawing.Point(2, 20)
+        Me.GCBomDetMat.Location = New System.Drawing.Point(0, 0)
         Me.GCBomDetMat.MainView = Me.GVBomDetMat
         Me.GCBomDetMat.Name = "GCBomDetMat"
         Me.GCBomDetMat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECOP})
-        Me.GCBomDetMat.Size = New System.Drawing.Size(945, 192)
+        Me.GCBomDetMat.Size = New System.Drawing.Size(958, 230)
         Me.GCBomDetMat.TabIndex = 18
         Me.GCBomDetMat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBomDetMat, Me.GridView3})
         '
@@ -470,11 +543,226 @@ Partial Class FormBOMPickAdd
         Me.GridView3.GridControl = Me.GCBomDetMat
         Me.GridView3.Name = "GridView3"
         '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Controls.Add(Me.GCBomDetOvh)
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(958, 230)
+        Me.XtraTabPage2.Text = "Overhead"
+        '
+        'GCBomDetOvh
+        '
+        Me.GCBomDetOvh.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBomDetOvh.Location = New System.Drawing.Point(0, 0)
+        Me.GCBomDetOvh.MainView = Me.GVBomDetOvh
+        Me.GCBomDetOvh.Name = "GCBomDetOvh"
+        Me.GCBomDetOvh.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RCOVHMain})
+        Me.GCBomDetOvh.Size = New System.Drawing.Size(958, 230)
+        Me.GCBomDetOvh.TabIndex = 22
+        Me.GCBomDetOvh.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBomDetOvh, Me.GridView5})
+        '
+        'GVBomDetOvh
+        '
+        Me.GVBomDetOvh.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn10, Me.GridColumn14, Me.GridColumn22, Me.GridColumnCat, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn13, Me.GridColumnVendPrice, Me.GridColumnKursOVH, Me.GridColumn20, Me.GridColumn21, Me.GridColumn23, Me.GridColumnOVHCenter})
+        Me.GVBomDetOvh.CustomizationFormBounds = New System.Drawing.Rectangle(885, 289, 216, 178)
+        Me.GVBomDetOvh.GridControl = Me.GCBomDetOvh
+        Me.GVBomDetOvh.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn21, "{0:N2}")})
+        Me.GVBomDetOvh.Name = "GVBomDetOvh"
+        Me.GVBomDetOvh.OptionsBehavior.Editable = False
+        Me.GVBomDetOvh.OptionsFind.AllowFindPanel = False
+        Me.GVBomDetOvh.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
+        Me.GVBomDetOvh.OptionsView.ShowFooter = True
+        Me.GVBomDetOvh.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Id Mat"
+        Me.GridColumn15.FieldName = "id_component"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Id Component Price"
+        Me.GridColumn10.FieldName = "id_component_price"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Id BOM Det"
+        Me.GridColumn14.FieldName = "id_bom_det"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Vendor"
+        Me.GridColumn22.FieldName = "vendor"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 4
+        Me.GridColumn22.Width = 90
+        '
+        'GridColumnCat
+        '
+        Me.GridColumnCat.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCat.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCat.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCat.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCat.Caption = "Category"
+        Me.GridColumnCat.FieldName = "ovh_cat"
+        Me.GridColumnCat.Name = "GridColumnCat"
+        Me.GridColumnCat.Visible = True
+        Me.GridColumnCat.VisibleIndex = 2
+        Me.GridColumnCat.Width = 74
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Code"
+        Me.GridColumn16.FieldName = "code"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 1
+        Me.GridColumn16.Width = 61
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Overhead"
+        Me.GridColumn17.FieldName = "name"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 3
+        Me.GridColumn17.Width = 115
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.Caption = "Qty"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "component_qty"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 5
+        Me.GridColumn19.Width = 34
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.Caption = "Currency"
+        Me.GridColumn13.FieldName = "currency"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 7
+        Me.GridColumn13.Width = 57
+        '
+        'GridColumnVendPrice
+        '
+        Me.GridColumnVendPrice.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnVendPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnVendPrice.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnVendPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnVendPrice.Caption = "Price"
+        Me.GridColumnVendPrice.DisplayFormat.FormatString = "N4"
+        Me.GridColumnVendPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnVendPrice.FieldName = "price"
+        Me.GridColumnVendPrice.Name = "GridColumnVendPrice"
+        Me.GridColumnVendPrice.Visible = True
+        Me.GridColumnVendPrice.VisibleIndex = 8
+        Me.GridColumnVendPrice.Width = 57
+        '
+        'GridColumnKursOVH
+        '
+        Me.GridColumnKursOVH.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKursOVH.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursOVH.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKursOVH.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursOVH.Caption = "Kurs"
+        Me.GridColumnKursOVH.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKursOVH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnKursOVH.FieldName = "kurs"
+        Me.GridColumnKursOVH.Name = "GridColumnKursOVH"
+        Me.GridColumnKursOVH.Visible = True
+        Me.GridColumnKursOVH.VisibleIndex = 9
+        Me.GridColumnKursOVH.Width = 57
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "Price After Kurs"
+        Me.GridColumn20.DisplayFormat.FormatString = "N4"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "unit_price"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 10
+        Me.GridColumn20.Width = 81
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.Caption = "Total"
+        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "total"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.GridColumn21.Width = 120
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn23.Caption = "UOM"
+        Me.GridColumn23.FieldName = "uom"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 6
+        Me.GridColumn23.Width = 31
+        '
+        'GridColumnOVHCenter
+        '
+        Me.GridColumnOVHCenter.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnOVHCenter.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnOVHCenter.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnOVHCenter.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnOVHCenter.Caption = "Main Vendor"
+        Me.GridColumnOVHCenter.ColumnEdit = Me.RCOVHMain
+        Me.GridColumnOVHCenter.FieldName = "is_ovh_main2"
+        Me.GridColumnOVHCenter.Name = "GridColumnOVHCenter"
+        Me.GridColumnOVHCenter.Visible = True
+        Me.GridColumnOVHCenter.VisibleIndex = 0
+        Me.GridColumnOVHCenter.Width = 64
+        '
+        'RCOVHMain
+        '
+        Me.RCOVHMain.AutoHeight = False
+        Me.RCOVHMain.Name = "RCOVHMain"
+        Me.RCOVHMain.ValueChecked = "yes"
+        Me.RCOVHMain.ValueUnchecked = "no"
+        '
+        'GridView5
+        '
+        Me.GridView5.GridControl = Me.GCBomDetOvh
+        Me.GridView5.Name = "GridView5"
+        '
         'FormBOMPickAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(949, 558)
+        Me.ClientSize = New System.Drawing.Size(968, 607)
         Me.Controls.Add(Me.SplitContainerControl3)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -492,10 +780,18 @@ Partial Class FormBOMPickAdd
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl6.ResumeLayout(False)
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.GCBomDetMat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBomDetMat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECOP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage2.ResumeLayout(False)
+        CType(Me.GCBomDetOvh, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBomDetOvh, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RCOVHMain, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -538,4 +834,28 @@ Partial Class FormBOMPickAdd
     Friend WithEvents GridColumnKursMat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCBomDetOvh As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVBomDetOvh As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVendPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnKursOVH As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOVHCenter As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RCOVHMain As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BAddBoth As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddOVH As DevExpress.XtraEditors.SimpleButton
 End Class
