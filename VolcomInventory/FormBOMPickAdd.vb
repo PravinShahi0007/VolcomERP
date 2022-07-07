@@ -90,7 +90,7 @@
         For i = 0 To GVBomDetOvh.RowCount - 1
             FormBOMDesignSingle.GVBomDetOvh.AddNewRow()
             FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component", GVBomDetOvh.GetRowCellValue(i, "id_component").ToString)
-            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component_price", GVBomDetOvh.GetRowCellValue(i, "id_component").ToString)
+            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component_price", GVBomDetOvh.GetRowCellValue(i, "id_component_price").ToString)
             FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("code", GVBomDetOvh.GetRowCellValue(i, "code").ToString)
             FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("name", GVBomDetOvh.GetRowCellValue(i, "name").ToString)
             FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("size", "-")
@@ -158,7 +158,7 @@
         For i = 0 To GVBomDetOvh.RowCount - 1
             FormBOMDesignSingle.GVBomDetOvh.AddNewRow()
             FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component", GVBomDetOvh.GetRowCellValue(i, "id_component").ToString)
-            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component_price", GVBomDetOvh.GetRowCellValue(i, "id_component").ToString)
+            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component_price", GVBomDetOvh.GetRowCellValue(i, "id_component_price").ToString)
             FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("code", GVBomDetOvh.GetRowCellValue(i, "code").ToString)
             FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("name", GVBomDetOvh.GetRowCellValue(i, "name").ToString)
             FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("size", "-")
