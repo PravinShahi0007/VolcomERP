@@ -21,7 +21,7 @@
     End Sub
     Sub view_sample_purc()
         Dim query = "SELECT "
-        query += "a.is_need_cps2_verify,a.cps2_verify,a.id_prod_order,d.id_sample, d.id_season, a.prod_order_number, (d.design_display_name) AS `design_name` , d.design_code, h.term_production, g.po_type, "
+        query += "a.is_block_qc_in,a.is_need_cps2_verify,a.cps2_verify,a.id_prod_order,d.id_sample, d.id_season, a.prod_order_number, (d.design_display_name) AS `design_name` , d.design_code, h.term_production, g.po_type, "
         query += "DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date,a.id_report_status,c.report_status, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season, "
         query += "DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date, "
@@ -121,59 +121,64 @@ INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         Cursor = Cursors.WaitCursor
         If id_pop_up = "1" Then
-            'If GVProd.GetFocusedRowCellValue("is_need_cps2_verify").ToString = "1" And GVProd.GetFocusedRowCellValue("cps2_verify").ToString = "2" Then
-            '    warningCustom("Copy Prototype Sample 2 still not verified. Please contact sample.")
-            'Else
-            'End If
+            If GVProd.GetFocusedRowCellValue("is_block_qc_in").ToString = "1" Then
+                'tidak boleh masuk QC
+                stopCustom("FGPO dalam status tidak boleh menerima barang ke dalam QC")
+            Else
+                'If GVProd.GetFocusedRowCellValue("is_need_cps2_verify").ToString = "1" And GVProd.GetFocusedRowCellValue("cps2_verify").ToString = "2" Then
+                '    warningCustom("Copy Prototype Sample 2 still not verified. Please contact sample.")
+                'Else
+                'End If
 
-            'cek KP
-            Dim is_ok_kp As Boolean = True
+                'cek KP
+                Dim is_ok_kp As Boolean = True
 
-            If GVProd.GetFocusedRowCellValue("id_country").ToString = "5" Then
-                Dim qc As String = "SELECT kd.* FROM tb_prod_order_kp_det kd
+                If GVProd.GetFocusedRowCellValue("id_country").ToString = "5" Then
+                    Dim qc As String = "SELECT kd.* FROM tb_prod_order_kp_det kd
 INNER JOIN tb_prod_order_kp k ON k.id_prod_order_kp=kd.id_prod_order_kp AND k.is_locked=1 AND k.is_void=2
 WHERE kd.id_prod_order='" & GVProd.GetFocusedRowCellValue("id_prod_order").ToString & "'"
-                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-                If dtc.Rows.Count > 0 Then
-                    is_ok_kp = True
-                Else
-                    is_ok_kp = False
-                    warningCustom("SKP belum diapprove, mohon hubungi purchasing.")
+                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If dtc.Rows.Count > 0 Then
+                        is_ok_kp = True
+                    Else
+                        is_ok_kp = False
+                        warningCustom("SKP belum diapprove, mohon hubungi purchasing.")
+                    End If
                 End If
-            End If
 
-            If is_ok_kp Then
-                Dim query As String = String.Format("SELECT id_report_status,id_delivery,prod_order_number,id_po_type,DATE_FORMAT(prod_order_date,'%Y-%m-%d') as prod_order_datex,prod_order_lead_time,prod_order_note FROM tb_prod_order WHERE id_prod_order = '{0}'", GVProd.GetFocusedRowCellValue("id_prod_order").ToString)
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                Dim date_created As String = ""
+                If is_ok_kp Then
+                    Dim query As String = String.Format("SELECT id_report_status,id_delivery,prod_order_number,id_po_type,DATE_FORMAT(prod_order_date,'%Y-%m-%d') as prod_order_datex,prod_order_lead_time,prod_order_note FROM tb_prod_order WHERE id_prod_order = '{0}'", GVProd.GetFocusedRowCellValue("id_prod_order").ToString)
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    Dim date_created As String = ""
 
-                If data.Rows.Count > 0 Then
-                    FormProductionRecDet.id_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
-                    FormProductionRecDet.TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
+                    If data.Rows.Count > 0 Then
+                        FormProductionRecDet.id_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                        FormProductionRecDet.TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
 
-                    date_created = data.Rows(0)("prod_order_datex").ToString
-                    FormProductionRecDet.TEOrderDate.Text = view_date_from(date_created, 0)
-                    FormProductionRecDet.TEEstRecDate.Text = view_date_from(date_created, Integer.Parse(data.Rows(0)("prod_order_lead_time").ToString))
+                        date_created = data.Rows(0)("prod_order_datex").ToString
+                        FormProductionRecDet.TEOrderDate.Text = view_date_from(date_created, 0)
+                        FormProductionRecDet.TEEstRecDate.Text = view_date_from(date_created, Integer.Parse(data.Rows(0)("prod_order_lead_time").ToString))
 
-                    FormProductionRecDet.GConListPurchase.Enabled = True
-                    FormProductionRecDet.GroupControlListBarcode.Enabled = True
-                    FormProductionRecDet.view_list_purchase()
-                    FormProductionRecDet.view_barcode_list()
+                        FormProductionRecDet.GConListPurchase.Enabled = True
+                        FormProductionRecDet.GroupControlListBarcode.Enabled = True
+                        FormProductionRecDet.view_list_purchase()
+                        FormProductionRecDet.view_barcode_list()
 
 
-                    FormProductionRecDet.id_design = GVProd.GetFocusedRowCellValue("id_design").ToString
-                    FormProductionRecDet.TEDesign.Text = GVProd.GetFocusedRowCellValue("design_name").ToString
-                    FormProductionRecDet.TxtPOType.Text = GVProd.GetFocusedRowCellValue("po_type").ToString
-                    FormProductionRecDet.id_comp_from = "-1"
-                    FormProductionRecDet.TECompName.Text = ""
-                    pre_viewImages("2", FormProductionRecDet.PEView, GVProd.GetFocusedRowCellValue("id_design").ToString, False)
-                    FormProductionRecDet.PEView.Enabled = True
-                    FormProductionRecDet.BtnInfoSrs.Enabled = True
-                    FormProductionRecDet.mainVendor()
-                    FormProductionRecDet.SLERecType.ReadOnly = True
-                    Close()
-                Else
-                    stopCustom("Data is empty.")
+                        FormProductionRecDet.id_design = GVProd.GetFocusedRowCellValue("id_design").ToString
+                        FormProductionRecDet.TEDesign.Text = GVProd.GetFocusedRowCellValue("design_name").ToString
+                        FormProductionRecDet.TxtPOType.Text = GVProd.GetFocusedRowCellValue("po_type").ToString
+                        FormProductionRecDet.id_comp_from = "-1"
+                        FormProductionRecDet.TECompName.Text = ""
+                        pre_viewImages("2", FormProductionRecDet.PEView, GVProd.GetFocusedRowCellValue("id_design").ToString, False)
+                        FormProductionRecDet.PEView.Enabled = True
+                        FormProductionRecDet.BtnInfoSrs.Enabled = True
+                        FormProductionRecDet.mainVendor()
+                        FormProductionRecDet.SLERecType.ReadOnly = True
+                        Close()
+                    Else
+                        stopCustom("Data is empty.")
+                    End If
                 End If
             End If
         ElseIf id_pop_up = "2" Then
