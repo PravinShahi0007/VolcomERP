@@ -527,4 +527,15 @@ WHERE tb_m_ovh_price.id_ovh = '" & id_ovhx & "' ORDER BY tb_m_ovh_price.id_ovh_p
             TEKurs.EditValue = data_kurs.Rows(0)("kurs_trans")
         End If
     End Sub
+
+    Private Sub BManageOVH_Click(sender As Object, e As EventArgs) Handles BManageOVH.Click
+        If GVOVH.RowCount > 0 Then
+            FormMasterOVHSingle.id_ovh = GVOVH.GetFocusedRowCellValue("id_ovh").ToString
+            FormMasterOVHSingle.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BRefreshPrice.Click
+        view_ovh_price(GVOVH.GetFocusedRowCellValue("id_ovh"))
+    End Sub
 End Class

@@ -19,6 +19,7 @@ Partial Class FormBOMSingleOvh
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBOMSingleOvh))
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupGeneral = New DevExpress.XtraEditors.GroupControl()
         Me.GCOVH = New DevExpress.XtraGrid.GridControl()
@@ -33,6 +34,7 @@ Partial Class FormBOMSingleOvh
         Me.GCOVHPrice = New DevExpress.XtraGrid.GridControl()
         Me.GVOVHPrice = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColMatPirce = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPriceName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCompany = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -40,6 +42,9 @@ Partial Class FormBOMSingleOvh
         Me.ColCurrenct = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIDCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefreshPrice = New DevExpress.XtraEditors.SimpleButton()
+        Me.BManageOVH = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.BGetKurs = New DevExpress.XtraEditors.SimpleButton()
         Me.CEOVHMain = New DevExpress.XtraEditors.CheckEdit()
@@ -62,7 +67,6 @@ Partial Class FormBOMSingleOvh
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,6 +79,8 @@ Partial Class FormBOMSingleOvh
         CType(Me.GCOVHPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOVHPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.CEOVHMain.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -187,6 +193,7 @@ Partial Class FormBOMSingleOvh
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Top
         Me.GroupControl1.Controls.Add(Me.GCOVHPrice)
+        Me.GroupControl1.Controls.Add(Me.PanelControl1)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
@@ -197,10 +204,10 @@ Partial Class FormBOMSingleOvh
         'GCOVHPrice
         '
         Me.GCOVHPrice.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCOVHPrice.Location = New System.Drawing.Point(2, 20)
+        Me.GCOVHPrice.Location = New System.Drawing.Point(2, 59)
         Me.GCOVHPrice.MainView = Me.GVOVHPrice
         Me.GCOVHPrice.Name = "GCOVHPrice"
-        Me.GCOVHPrice.Size = New System.Drawing.Size(820, 173)
+        Me.GCOVHPrice.Size = New System.Drawing.Size(820, 134)
         Me.GCOVHPrice.TabIndex = 3
         Me.GCOVHPrice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOVHPrice, Me.GridView1})
         '
@@ -217,6 +224,15 @@ Partial Class FormBOMSingleOvh
         Me.ColMatPirce.Caption = "Id Price"
         Me.ColMatPirce.FieldName = "id_ovh_price"
         Me.ColMatPirce.Name = "ColMatPirce"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Contact Person"
+        Me.GridColumn2.FieldName = "cp"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 219
         '
         'ColPriceName
         '
@@ -286,6 +302,36 @@ Partial Class FormBOMSingleOvh
         '
         Me.GridView1.GridControl = Me.GCOVHPrice
         Me.GridView1.Name = "GridView1"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BRefreshPrice)
+        Me.PanelControl1.Controls.Add(Me.BManageOVH)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(2, 20)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(820, 39)
+        Me.PanelControl1.TabIndex = 4
+        '
+        'BRefreshPrice
+        '
+        Me.BRefreshPrice.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshPrice.Image = CType(resources.GetObject("BRefreshPrice.Image"), System.Drawing.Image)
+        Me.BRefreshPrice.Location = New System.Drawing.Point(718, 2)
+        Me.BRefreshPrice.Name = "BRefreshPrice"
+        Me.BRefreshPrice.Size = New System.Drawing.Size(100, 35)
+        Me.BRefreshPrice.TabIndex = 1
+        Me.BRefreshPrice.Text = "Refresh"
+        '
+        'BManageOVH
+        '
+        Me.BManageOVH.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BManageOVH.Image = CType(resources.GetObject("BManageOVH.Image"), System.Drawing.Image)
+        Me.BManageOVH.Location = New System.Drawing.Point(2, 2)
+        Me.BManageOVH.Name = "BManageOVH"
+        Me.BManageOVH.Size = New System.Drawing.Size(100, 35)
+        Me.BManageOVH.TabIndex = 0
+        Me.BManageOVH.Text = "Manage"
         '
         'GroupControl2
         '
@@ -537,15 +583,6 @@ Partial Class FormBOMSingleOvh
         Me.BSave.TabIndex = 1
         Me.BSave.Text = " Save"
         '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Contact Person"
-        Me.GridColumn2.FieldName = "cp"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 219
-        '
         'FormBOMSingleOvh
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -573,6 +610,8 @@ Partial Class FormBOMSingleOvh
         CType(Me.GCOVHPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVOVHPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
@@ -635,4 +674,7 @@ Partial Class FormBOMSingleOvh
     Friend WithEvents GridColumnIDCurrency As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGetKurs As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BRefreshPrice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BManageOVH As DevExpress.XtraEditors.SimpleButton
 End Class
