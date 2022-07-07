@@ -57,6 +57,7 @@
                     BEditMat.Enabled = True
                     BDelMat.Enabled = True
                     BLoadMaterial.Enabled = True
+                    BLoadOverhead.Enabled = True
                 Else
                     user_mat_approve = data.Rows(0)("user_mat_submit").ToString
                     BSubmitMat.Enabled = False
@@ -65,6 +66,7 @@
                     BEditMat.Enabled = False
                     BDelMat.Enabled = False
                     BLoadMaterial.Enabled = False
+                    BLoadOverhead.Enabled = False
                 End If
 
                 If data.Rows(0)("user_ovh_submit").ToString = "" Then
@@ -124,6 +126,7 @@
             BDelOVH.Visible = False
             '
             BLoadMaterial.Visible = False
+            BLoadOverhead.Visible = False
             BAddMat.Visible = False
             BEditMat.Visible = False
             BDelMat.Visible = False
@@ -137,6 +140,7 @@
             BDelOVH.Visible = True
             '
             BLoadMaterial.Visible = True
+            BLoadOverhead.Visible = True
             BAddMat.Visible = True
             BEditMat.Visible = True
             BDelMat.Visible = True
@@ -695,6 +699,10 @@
     End Sub
 
     Private Sub BLoadMaterial_Click(sender As Object, e As EventArgs) Handles BLoadMaterial.Click
+        FormBOMPickAdd.ShowDialog()
+    End Sub
+
+    Private Sub BLoadOverhead_Click(sender As Object, e As EventArgs) Handles BLoadOverhead.Click
         FormBOMPickAdd.ShowDialog()
     End Sub
 End Class
