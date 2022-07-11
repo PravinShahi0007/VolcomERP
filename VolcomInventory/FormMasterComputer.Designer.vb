@@ -509,6 +509,7 @@ Partial Class FormMasterComputer
         Me.GVdakomp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVdakomp.GridControl = Me.GCdakomp
         Me.GVdakomp.Name = "GVdakomp"
+        Me.GVdakomp.OptionsFind.AlwaysVisible = True
         Me.GVdakomp.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
