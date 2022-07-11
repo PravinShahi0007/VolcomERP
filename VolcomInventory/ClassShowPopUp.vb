@@ -1824,9 +1824,9 @@ GROUP BY rec.`id_prod_order`"
             FormStoreDisplayDet.ShowDialog()
         ElseIf report_mark_type = "405" Then
             'ko revisi approval
-            FormSampleDevTargetPps.is_view = "1"
-            FormSampleDevTargetPps.id_pps = id_report
-            FormSampleDevTargetPps.ShowDialog()
+            FormProductionKOApp.is_view = "1"
+            FormProductionKOApp.id_pps = id_report
+            FormProductionKOApp.ShowDialog()
         ElseIf report_mark_type = "407" Then
             'abg roylat rate
             FormRoyaltyRateDet.is_view = "1"
