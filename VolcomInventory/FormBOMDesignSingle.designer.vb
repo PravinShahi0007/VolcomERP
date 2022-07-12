@@ -84,6 +84,7 @@ Partial Class FormBOMDesignSingle
         Me.RCOVHMain = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BLoadOverhead = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubmitOVH = New DevExpress.XtraEditors.SimpleButton()
         Me.BDelOVH = New DevExpress.XtraEditors.SimpleButton()
         Me.BEditOVH = New DevExpress.XtraEditors.SimpleButton()
@@ -553,11 +554,11 @@ Partial Class FormBOMDesignSingle
         Me.BLoadMaterial.Dock = System.Windows.Forms.DockStyle.Right
         Me.BLoadMaterial.ImageIndex = 3
         Me.BLoadMaterial.ImageList = Me.LargeImageCollection
-        Me.BLoadMaterial.Location = New System.Drawing.Point(469, 2)
+        Me.BLoadMaterial.Location = New System.Drawing.Point(442, 2)
         Me.BLoadMaterial.Name = "BLoadMaterial"
-        Me.BLoadMaterial.Size = New System.Drawing.Size(115, 38)
+        Me.BLoadMaterial.Size = New System.Drawing.Size(142, 38)
         Me.BLoadMaterial.TabIndex = 23
-        Me.BLoadMaterial.Text = "Load Material"
+        Me.BLoadMaterial.Text = "Load Component"
         Me.BLoadMaterial.Visible = False
         '
         'BSubmitMat
@@ -662,7 +663,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 4
-        Me.GridColumn22.Width = 92
+        Me.GridColumn22.Width = 90
         '
         'GridColumnCat
         '
@@ -675,7 +676,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnCat.Name = "GridColumnCat"
         Me.GridColumnCat.Visible = True
         Me.GridColumnCat.VisibleIndex = 2
-        Me.GridColumnCat.Width = 76
+        Me.GridColumnCat.Width = 74
         '
         'GridColumn16
         '
@@ -684,7 +685,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 1
-        Me.GridColumn16.Width = 63
+        Me.GridColumn16.Width = 61
         '
         'GridColumn17
         '
@@ -693,7 +694,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 3
-        Me.GridColumn17.Width = 118
+        Me.GridColumn17.Width = 115
         '
         'GridColumn19
         '
@@ -708,7 +709,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 5
-        Me.GridColumn19.Width = 35
+        Me.GridColumn19.Width = 34
         '
         'GridColumn13
         '
@@ -721,7 +722,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 7
-        Me.GridColumn13.Width = 59
+        Me.GridColumn13.Width = 57
         '
         'GridColumnVendPrice
         '
@@ -736,7 +737,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnVendPrice.Name = "GridColumnVendPrice"
         Me.GridColumnVendPrice.Visible = True
         Me.GridColumnVendPrice.VisibleIndex = 8
-        Me.GridColumnVendPrice.Width = 59
+        Me.GridColumnVendPrice.Width = 57
         '
         'GridColumnKursOVH
         '
@@ -751,7 +752,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnKursOVH.Name = "GridColumnKursOVH"
         Me.GridColumnKursOVH.Visible = True
         Me.GridColumnKursOVH.VisibleIndex = 9
-        Me.GridColumnKursOVH.Width = 59
+        Me.GridColumnKursOVH.Width = 57
         '
         'GridColumn20
         '
@@ -766,7 +767,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 10
-        Me.GridColumn20.Width = 83
+        Me.GridColumn20.Width = 81
         '
         'GridColumn21
         '
@@ -782,7 +783,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 11
-        Me.GridColumn21.Width = 116
+        Me.GridColumn21.Width = 120
         '
         'GridColumn10
         '
@@ -795,7 +796,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 6
-        Me.GridColumn10.Width = 32
+        Me.GridColumn10.Width = 31
         '
         'GridColumnOVHCenter
         '
@@ -809,7 +810,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnOVHCenter.Name = "GridColumnOVHCenter"
         Me.GridColumnOVHCenter.Visible = True
         Me.GridColumnOVHCenter.VisibleIndex = 0
-        Me.GridColumnOVHCenter.Width = 49
+        Me.GridColumnOVHCenter.Width = 64
         '
         'RCOVHMain
         '
@@ -825,6 +826,7 @@ Partial Class FormBOMDesignSingle
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BLoadOverhead)
         Me.PanelControl3.Controls.Add(Me.BSubmitOVH)
         Me.PanelControl3.Controls.Add(Me.BDelOVH)
         Me.PanelControl3.Controls.Add(Me.BEditOVH)
@@ -834,6 +836,18 @@ Partial Class FormBOMDesignSingle
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(859, 42)
         Me.PanelControl3.TabIndex = 22
+        '
+        'BLoadOverhead
+        '
+        Me.BLoadOverhead.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BLoadOverhead.ImageIndex = 3
+        Me.BLoadOverhead.ImageList = Me.LargeImageCollection
+        Me.BLoadOverhead.Location = New System.Drawing.Point(460, 2)
+        Me.BLoadOverhead.Name = "BLoadOverhead"
+        Me.BLoadOverhead.Size = New System.Drawing.Size(124, 38)
+        Me.BLoadOverhead.TabIndex = 24
+        Me.BLoadOverhead.Text = "Load Component"
+        Me.BLoadOverhead.Visible = False
         '
         'BSubmitOVH
         '
@@ -1246,4 +1260,5 @@ Partial Class FormBOMDesignSingle
     Friend WithEvents LPOApproved As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BLoadMaterial As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BLoadOverhead As DevExpress.XtraEditors.SimpleButton
 End Class
