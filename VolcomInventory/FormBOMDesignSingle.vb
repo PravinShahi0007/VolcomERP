@@ -96,6 +96,7 @@
             BDuplicate.Visible = True
             BDupDesign.Visible = True
         Else
+            TEName.Text = "-"
             DEBOM.EditValue = getTimeDB()
             BDuplicate.Visible = False
             BDupDesign.Visible = False

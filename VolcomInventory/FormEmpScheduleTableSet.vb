@@ -23,6 +23,8 @@
         DEUntil.EditValue = endOfWeek
         '
         load_emp()
+
+        GVEmployee.ActiveFilterString = "[employee_active] = 'Active'"
     End Sub
     Sub load_emp()
         Dim query As String = "SELECT 'no' as is_select,lvl.employee_level,emp.id_employee,emp.employee_code,emp.employee_name,dep.departement,dep_sub.departement_sub,emp.employee_position,active.employee_active

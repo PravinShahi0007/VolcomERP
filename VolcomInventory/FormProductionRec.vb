@@ -127,12 +127,16 @@ DATE_FORMAT(DATE_ADD(a.prod_order_date,INTERVAL a.prod_order_lead_time DAY),'%d 
 FROM tb_prod_order a 
 LEFT JOIN 
 (
-	SELECT wo.`id_prod_order`,SUM(wod.prod_order_wo_det_qty) AS qty_po,c.`comp_name`,c.`comp_number`,c.`id_comp`
+	SELECT wo.`id_prod_order`,co.id_country,SUM(wod.prod_order_wo_det_qty) AS qty_po,c.`comp_name`,c.`comp_number`,c.`id_comp`
 	FROM tb_prod_order_wo_det wod
     INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=wod.id_prod_order_wo
 	INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
 	INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
 	INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+    INNER JOIN tb_m_city ct ON ct.`id_city`=c.`id_city`
+    INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+    INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+    INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
 	WHERE wo.id_report_status=6 AND wo.`is_main_vendor`=1
 	GROUP BY wo.`id_prod_order`
 )wo ON wo.id_prod_order=a.`id_prod_order`
@@ -165,11 +169,29 @@ LEFT JOIN (
 	AND cd.id_code IN (32,30,14, 43, 34)
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = d.id_design
+LEFT JOIN
+(
+    SELECT kod.* FROM 
+    tb_prod_order_ko_det kod
+    INNER JOIN(
+        SELECT id_prod_order,MAX(id_prod_order_ko_det) AS id_prod_order_ko_det
+        FROM tb_prod_order_ko_det kod
+        INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+        GROUP BY id_prod_order
+    )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
+)ko ON ko.id_prod_order=a.id_prod_order
+LEFT JOIN
+(
+    SELECT id_prod_order
+    FROM `tb_prod_order_attach`
+    WHERE id_report_status=6
+    GROUP BY id_prod_order
+)att ON att.id_prod_order=a.id_prod_order
 INNER JOIN tb_season_delivery e ON b.id_delivery=e.id_delivery 
 INNER JOIN tb_season f ON f.id_season=e.id_season 
 INNER JOIN tb_lookup_po_type g ON g.id_po_type=a.id_po_type 
 INNER JOIN tb_lookup_term_production h ON h.id_term_production=a.id_term_production 
-WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a.id_prod_order ASC "
+WHERE (a.id_report_status = '6') AND IF(wo.id_country=5,NOT ISNULL(ko.id_prod_order_ko),IF(a.prod_order_date>='2021-12-31',NOT ISNULL(att.id_prod_order),TRUE)) AND is_closing_rec=2 " & q_where & " ORDER BY a.id_prod_order ASC "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProd.DataSource = data
