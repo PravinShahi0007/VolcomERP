@@ -2316,7 +2316,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     If FormBOM.GVDesign.FocusedRowHandle < 0 Then
                         stopCustom("Please select proper design first!")
                     Else
-                        If FormBOM.GVBOMPerDesign.RowCount > 0 Then
+                        If FormBOM.GVBOMDesign.RowCount > 0 Then
                             FormBOMDesignSingle.id_pop_up = "1"
                             FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
                             FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
