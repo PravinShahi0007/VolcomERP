@@ -193,7 +193,7 @@ WHERE ppsd.id_polis_reg='" & id_reg & "' AND ppsd.premi<=0"
 
             If dtc.Rows.Count > 0 Then
                 warningCustom("Please put all premi per store")
-            ElseIf Not TEPremi.EditValue < TEPremiTot.EditValue Then
+            ElseIf Not TEPremi.EditValue <= TEPremiTot.EditValue Then
                 warningCustom("Total premi per store is higher than total premi proposed")
             Else
                 Dim q As String = "UPDATE tb_polis_reg SET is_submit=1 WHERE id_polis_reg='" & id_reg & "'"
