@@ -12229,7 +12229,7 @@ WHERE u.tahapan = 'Copy Proto Sample 2'"
                     Dim new_id_ko As String = execute_query(q, 0, True, "", "", "", "")
                     'det
                     q = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_prod_before`,`lead_time_payment`)
-                SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_prod_before`,`lead_time_payment` FROM tb_prod_order_ko_det WHERE id_prod_order_ko='" & id_prod_order_ko & "'"
+                SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_prod`,`lead_time_payment` FROM tb_prod_order_ko_det WHERE id_prod_order_ko='" & id_prod_order_ko & "'"
                     execute_non_query(q, True, "", "", "", "")
                 End If
             End If

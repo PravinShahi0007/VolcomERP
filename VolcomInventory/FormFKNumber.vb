@@ -44,4 +44,27 @@
             End If
         Next
     End Sub
+
+    Private Sub CESetPeriod_EditValueChanged(sender As Object, e As EventArgs) Handles CESetPeriod.EditValueChanged
+        If CESetPeriod.EditValue = False Then
+            DEFrom.Enabled = False
+            DEUntil.Enabled = False
+            DEFrom.EditValue = Nothing
+            DEUntil.EditValue = Nothing
+        Else
+            DEFrom.Enabled = True
+            DEUntil.Enabled = True
+            Dim month As String = FormAccountingFakturScanSingle.TxtPeriod.Text
+            Dim year As String = FormAccountingFakturScanSingle.TxtYear.Text
+            Dim tgl_awal As String = year + "-0" + month + "-" + "01 00:00:00"
+            Dim dt As DateTime = DateTime.ParseExact(tgl_awal, "yyyy-MM-dd HH:mm:ss", Globalization.CultureInfo.InvariantCulture)
+            Dim dt_end As DateTime = DateTime.ParseExact(year + "-0" + month + "-" + System.DateTime.DaysInMonth(dt.Year, dt.Month).ToString + " 00:00:00", "yyyy-MM-dd HH:mm:ss", Globalization.CultureInfo.InvariantCulture)
+            DEFrom.Properties.MinValue = dt
+            DEUntil.Properties.MinValue = dt
+            DEFrom.Properties.MaxValue = dt_end
+            DEUntil.Properties.MaxValue = dt_end
+            DEFrom.EditValue = dt
+            DEUntil.EditValue = dt_end
+        End If
+    End Sub
 End Class

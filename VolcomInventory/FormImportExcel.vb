@@ -8503,7 +8503,17 @@ WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='"
                 End If
                 id_grp += FormFKNumber.GVData.GetRowCellValue(i, "id_comp_group").ToString
             Next
-            Dim query As String = "CALL view_fk_fg(" + FormAccountingFakturScanSingle.id_acc_fak_scan + ", '" + no_seri + "','" + nomer + "','" + id_grp + "') "
+
+            'condition
+            Dim cond As String = ""
+            If FormFKNumber.DEFrom.EditValue <> Nothing Then
+                cond += "AND sp.sales_pos_end_period>=''" + DateTime.Parse(FormFKNumber.DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "'' "
+            End If
+            If FormFKNumber.DEUntil.EditValue <> Nothing Then
+                cond += "AND sp.sales_pos_end_period<=''" + DateTime.Parse(FormFKNumber.DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "'' "
+            End If
+
+            Dim query As String = "CALL view_fk_fg_cond(" + FormAccountingFakturScanSingle.id_acc_fak_scan + ", '" + no_seri + "','" + nomer + "','" + id_grp + "','" + cond + "') "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCData.DataSource = Nothing
             GCData.DataSource = data
