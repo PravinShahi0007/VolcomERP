@@ -5,6 +5,7 @@
     Public is_view As String = "-1"
     Public rmt As String = "282"
     Dim id_report_status As String = "-1"
+    Dim id_payout_zalora_comm_rule As String = "-1"
 
     Private Sub FormPayoutZaloraDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -47,6 +48,7 @@ FROM tb_payout_zalora_cat c"
         is_confirm = data.Rows(0)("is_confirm").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         id_report_status = data.Rows(0)("id_report_status").ToString
+        id_payout_zalora_comm_rule = data.Rows(0)("id_payout_zalora_comm_rule").ToString
         If is_load_all Then
             viewSummary()
             viewERPPayout()
@@ -293,23 +295,44 @@ FROM tb_payout_zalora_cat c"
             execute_non_query_long(query, True, "", "", "", "")
         ElseIf typ_par = "3" Then
             'Dropshipping Item Delivery Fee
-            Dim query As String = "UPDATE tb_payout_zalora_det d 
-            LEFT JOIN (
-                SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`
-                FROM tb_payout_zalora_det_addition d
-                INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
-                WHERE pd.id_payout_zalora=" + id + "
-                GROUP BY d.id_payout_zalora_det
-            ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
-            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
-            INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
-            JOIN tb_opt_sales os
-            SET d.erp_amount = (os.default_shipping_zalora * -1), d.id_acc = os.id_acc_default_fee_zalora
-            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND (!ISNULL(d.id_sales_pos_det) OR !ISNULL(d.id_ol_store_order))  "
-            If Not is_update_all Then
-                query += "AND d.amount!=(d.erp_amount+IFNULL(a.erp_amount_add,0.00)) "
+            If id_payout_zalora_comm_rule = "1" Then
+                Dim query As String = "UPDATE tb_payout_zalora_det d 
+                LEFT JOIN (
+                    SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`
+                    FROM tb_payout_zalora_det_addition d
+                    INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
+                    WHERE pd.id_payout_zalora=" + id + "
+                    GROUP BY d.id_payout_zalora_det
+                ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
+                INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+                INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+                JOIN tb_opt_sales os
+                SET d.erp_amount = (os.default_shipping_zalora * -1), d.id_acc = os.id_acc_default_fee_zalora
+                WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND (!ISNULL(d.id_sales_pos_det) OR !ISNULL(d.id_ol_store_order))  "
+                If Not is_update_all Then
+                    query += "AND d.amount!=(d.erp_amount+IFNULL(a.erp_amount_add,0.00)) "
+                End If
+                execute_non_query_long(query, True, "", "", "", "")
+            ElseIf id_payout_zalora_comm_rule = "2" Then
+                Dim query As String = "UPDATE tb_payout_zalora_det d 
+                LEFT JOIN (
+                    SELECT d.id_payout_zalora_det, SUM(d.erp_amount) AS `erp_amount_add`
+                    FROM tb_payout_zalora_det_addition d
+                    INNER JOIN tb_payout_zalora_det pd ON pd.id_payout_zalora_det = d.id_payout_zalora_det
+                    WHERE pd.id_payout_zalora=" + id + "
+                    GROUP BY d.id_payout_zalora_det
+                ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
+                INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+                INNER JOIN tb_payout_zalora m ON m.id_payout_zalora = d.id_payout_zalora
+                INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = d.id_sales_pos_det
+                JOIN tb_opt_sales os
+                SET d.erp_amount = IF(spd.design_price_retail*0.03>=10000,10000,spd.design_price_retail*0.03)*-1, d.id_acc = os.id_acc_default_fee_zalora
+                WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND (!ISNULL(d.id_sales_pos_det) OR !ISNULL(d.id_ol_store_order))  "
+                If Not is_update_all Then
+                    query += "AND d.amount!=(d.erp_amount+IFNULL(a.erp_amount_add,0.00)) "
+                End If
+                execute_non_query_long(query, True, "", "", "", "")
             End If
-            execute_non_query_long(query, True, "", "", "", "")
         ElseIf typ_par = "4" Then
             'Down Payment : manual
         ElseIf typ_par = "5" Then

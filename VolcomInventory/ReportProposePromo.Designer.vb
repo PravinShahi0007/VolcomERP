@@ -40,6 +40,7 @@ Partial Public Class ReportProposePromo
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLCreatedAt = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
@@ -66,7 +67,8 @@ Partial Public Class ReportProposePromo
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,9 +84,9 @@ Partial Public Class ReportProposePromo
         '
         'WinControlContainer1
         '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001509984!, 0!)
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(732.9998!, 156.0!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1061.0!, 156.0!)
         Me.WinControlContainer1.WinControl = Me.GCProduct
         '
         'GCProduct
@@ -92,7 +94,7 @@ Partial Public Class ReportProposePromo
         Me.GCProduct.Location = New System.Drawing.Point(0, 215)
         Me.GCProduct.MainView = Me.GVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(704, 150)
+        Me.GCProduct.Size = New System.Drawing.Size(1019, 150)
         Me.GCProduct.TabIndex = 3
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct})
         '
@@ -116,7 +118,7 @@ Partial Public Class ReportProposePromo
         Me.GVProduct.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
         Me.GVProduct.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVProduct.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumnclass, Me.GridColumncolor})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.ReadOnly = True
@@ -149,7 +151,7 @@ Partial Public Class ReportProposePromo
         Me.GridColumn5.FieldName = "name"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 1
+        Me.GridColumn5.VisibleIndex = 3
         Me.GridColumn5.Width = 145
         '
         'GridColumn6
@@ -158,7 +160,7 @@ Partial Public Class ReportProposePromo
         Me.GridColumn6.FieldName = "code"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 2
+        Me.GridColumn6.VisibleIndex = 1
         Me.GridColumn6.Width = 111
         '
         'GridColumn7
@@ -167,7 +169,7 @@ Partial Public Class ReportProposePromo
         Me.GridColumn7.FieldName = "size"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 3
+        Me.GridColumn7.VisibleIndex = 5
         Me.GridColumn7.Width = 71
         '
         'GridColumn8
@@ -184,7 +186,7 @@ Partial Public Class ReportProposePromo
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 4
+        Me.GridColumn13.VisibleIndex = 6
         Me.GridColumn13.Width = 36
         '
         'GridColumn9
@@ -196,7 +198,7 @@ Partial Public Class ReportProposePromo
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_cop", "{0:N2}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.VisibleIndex = 7
         Me.GridColumn9.Width = 74
         '
         'GridColumn10
@@ -208,7 +210,7 @@ Partial Public Class ReportProposePromo
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_cop_amount", "{0:N2}")})
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 6
+        Me.GridColumn10.VisibleIndex = 8
         Me.GridColumn10.Width = 79
         '
         'GridColumn11
@@ -251,7 +253,7 @@ Partial Public Class ReportProposePromo
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 7.25!)
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(925.0001!, 0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(911.0!, 0!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
@@ -266,10 +268,23 @@ Partial Public Class ReportProposePromo
         Me.ReportHeader.HeightF = 150.0!
         Me.ReportHeader.Name = "ReportHeader"
         '
+        'XLTitle
+        '
+        Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(359.8751!, 0!)
+        Me.XLTitle.Multiline = True
+        Me.XLTitle.Name = "XLTitle"
+        Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLTitle.SizeF = New System.Drawing.SizeF(292.9999!, 41.15001!)
+        Me.XLTitle.StylePriority.UseFont = False
+        Me.XLTitle.StylePriority.UseTextAlignment = False
+        Me.XLTitle.Text = "Propose Promo"
+        Me.XLTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
         'XLCreatedAt
         '
         Me.XLCreatedAt.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XLCreatedAt.LocationFloat = New DevExpress.Utils.PointFloat(533.0!, 63.89583!)
+        Me.XLCreatedAt.LocationFloat = New DevExpress.Utils.PointFloat(861.0001!, 63.8958!)
         Me.XLCreatedAt.Multiline = True
         Me.XLCreatedAt.Name = "XLCreatedAt"
         Me.XLCreatedAt.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -279,7 +294,7 @@ Partial Public Class ReportProposePromo
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(513.0!, 63.89583!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(841.0!, 63.8958!)
         Me.XrLabel4.Multiline = True
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -290,7 +305,7 @@ Partial Public Class ReportProposePromo
         'XrLabel5
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(413.0001!, 63.89583!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(741.0001!, 63.8958!)
         Me.XrLabel5.Multiline = True
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -301,7 +316,7 @@ Partial Public Class ReportProposePromo
         'XrLabel15
         '
         Me.XrLabel15.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(413.0001!, 80.89584!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(741.0001!, 80.89581!)
         Me.XrLabel15.Multiline = True
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -312,7 +327,7 @@ Partial Public Class ReportProposePromo
         'XrLabel16
         '
         Me.XrLabel16.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(513.0!, 80.89584!)
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(841.0!, 80.89581!)
         Me.XrLabel16.Multiline = True
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -323,7 +338,7 @@ Partial Public Class ReportProposePromo
         'XLCreatedBy
         '
         Me.XLCreatedBy.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XLCreatedBy.LocationFloat = New DevExpress.Utils.PointFloat(533.0!, 80.89584!)
+        Me.XLCreatedBy.LocationFloat = New DevExpress.Utils.PointFloat(861.0001!, 80.89581!)
         Me.XLCreatedBy.Multiline = True
         Me.XLCreatedBy.Name = "XLCreatedBy"
         Me.XLCreatedBy.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -333,7 +348,7 @@ Partial Public Class ReportProposePromo
         'XrLabel18
         '
         Me.XrLabel18.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(413.0001!, 97.89584!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(741.0001!, 97.89581!)
         Me.XrLabel18.Multiline = True
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -344,7 +359,7 @@ Partial Public Class ReportProposePromo
         'XrLabel19
         '
         Me.XrLabel19.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(513.0!, 97.89584!)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(841.0!, 97.89581!)
         Me.XrLabel19.Multiline = True
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -355,7 +370,7 @@ Partial Public Class ReportProposePromo
         'XLAlamat
         '
         Me.XLAlamat.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XLAlamat.LocationFloat = New DevExpress.Utils.PointFloat(533.0!, 97.89584!)
+        Me.XLAlamat.LocationFloat = New DevExpress.Utils.PointFloat(861.0001!, 97.89581!)
         Me.XLAlamat.Multiline = True
         Me.XLAlamat.Name = "XLAlamat"
         Me.XLAlamat.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -365,7 +380,7 @@ Partial Public Class ReportProposePromo
         'XLNPWP
         '
         Me.XLNPWP.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XLNPWP.LocationFloat = New DevExpress.Utils.PointFloat(120.0!, 114.8959!)
+        Me.XLNPWP.LocationFloat = New DevExpress.Utils.PointFloat(119.9998!, 114.8959!)
         Me.XLNPWP.Multiline = True
         Me.XLNPWP.Name = "XLNPWP"
         Me.XLNPWP.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -375,7 +390,7 @@ Partial Public Class ReportProposePromo
         'XrLabel13
         '
         Me.XrLabel13.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 114.8959!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(99.99987!, 114.8959!)
         Me.XrLabel13.Multiline = True
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -386,7 +401,7 @@ Partial Public Class ReportProposePromo
         'XrLabel14
         '
         Me.XrLabel14.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0.0001509984!, 114.8959!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0!, 114.8959!)
         Me.XrLabel14.Multiline = True
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -397,7 +412,7 @@ Partial Public Class ReportProposePromo
         'XLKTP
         '
         Me.XLKTP.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XLKTP.LocationFloat = New DevExpress.Utils.PointFloat(120.0!, 97.89584!)
+        Me.XLKTP.LocationFloat = New DevExpress.Utils.PointFloat(119.9998!, 97.89581!)
         Me.XLKTP.Multiline = True
         Me.XLKTP.Name = "XLKTP"
         Me.XLKTP.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -407,7 +422,7 @@ Partial Public Class ReportProposePromo
         'XrLabel10
         '
         Me.XrLabel10.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 97.89584!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(99.99987!, 97.89581!)
         Me.XrLabel10.Multiline = True
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -418,7 +433,7 @@ Partial Public Class ReportProposePromo
         'XrLabel11
         '
         Me.XrLabel11.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(0.0001509984!, 97.89584!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(0!, 97.89581!)
         Me.XrLabel11.Multiline = True
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -429,7 +444,7 @@ Partial Public Class ReportProposePromo
         'XLNama
         '
         Me.XLNama.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XLNama.LocationFloat = New DevExpress.Utils.PointFloat(120.0!, 80.89584!)
+        Me.XLNama.LocationFloat = New DevExpress.Utils.PointFloat(119.9998!, 80.89581!)
         Me.XLNama.Multiline = True
         Me.XLNama.Name = "XLNama"
         Me.XLNama.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -439,7 +454,7 @@ Partial Public Class ReportProposePromo
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 80.89584!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(99.99987!, 80.89581!)
         Me.XrLabel7.Multiline = True
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -450,7 +465,7 @@ Partial Public Class ReportProposePromo
         'XrLabel8
         '
         Me.XrLabel8.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0.0001509984!, 80.89584!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 80.89581!)
         Me.XrLabel8.Multiline = True
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -461,7 +476,7 @@ Partial Public Class ReportProposePromo
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.0001525879!, 63.89584!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 63.89583!)
         Me.XrLabel2.Multiline = True
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -472,7 +487,7 @@ Partial Public Class ReportProposePromo
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 63.89584!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(99.99987!, 63.89583!)
         Me.XrLabel3.Multiline = True
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -483,7 +498,7 @@ Partial Public Class ReportProposePromo
         'XLNumber
         '
         Me.XLNumber.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(120.0!, 63.89583!)
+        Me.XLNumber.LocationFloat = New DevExpress.Utils.PointFloat(119.9998!, 63.8958!)
         Me.XLNumber.Multiline = True
         Me.XLNumber.Name = "XLNumber"
         Me.XLNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -511,7 +526,7 @@ Partial Public Class ReportProposePromo
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(732.9999!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(1061.0!, 25.0!)
         Me.XrTable1.StylePriority.UseFont = False
         '
         'XrTableRow1
@@ -530,25 +545,29 @@ Partial Public Class ReportProposePromo
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
-        'XLTitle
+        'GridColumnclass
         '
-        Me.XLTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XLTitle.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 0!)
-        Me.XLTitle.Multiline = True
-        Me.XLTitle.Name = "XLTitle"
-        Me.XLTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLTitle.SizeF = New System.Drawing.SizeF(292.9999!, 41.15001!)
-        Me.XLTitle.StylePriority.UseFont = False
-        Me.XLTitle.StylePriority.UseTextAlignment = False
-        Me.XLTitle.Text = "Propose Promo"
-        Me.XLTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 4
         '
         'ReportProposePromo
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(25, 69, 30, 50)
-        Me.PageHeight = 1169
-        Me.PageWidth = 827
+        Me.Landscape = True
+        Me.Margins = New System.Drawing.Printing.Margins(50, 58, 30, 50)
+        Me.PageHeight = 827
+        Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
@@ -605,4 +624,6 @@ Partial Public Class ReportProposePromo
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XLTitle As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
 End Class

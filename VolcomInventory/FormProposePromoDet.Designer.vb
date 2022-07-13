@@ -60,6 +60,9 @@ Partial Class FormProposePromoDet
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENPWP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,30 +79,27 @@ Partial Class FormProposePromoDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.PanelControl4)
         Me.PanelControl1.Controls.Add(Me.TENPWP)
         Me.PanelControl1.Controls.Add(Me.LabelControl8)
-        Me.PanelControl1.Controls.Add(Me.LabelControl7)
-        Me.PanelControl1.Controls.Add(Me.MEAlamat)
         Me.PanelControl1.Controls.Add(Me.TEKTP)
         Me.PanelControl1.Controls.Add(Me.LabelControl6)
         Me.PanelControl1.Controls.Add(Me.TENama)
         Me.PanelControl1.Controls.Add(Me.LabelControl5)
         Me.PanelControl1.Controls.Add(Me.TEReportStatus)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
-        Me.PanelControl1.Controls.Add(Me.TECreatedBy)
-        Me.PanelControl1.Controls.Add(Me.LabelControl3)
-        Me.PanelControl1.Controls.Add(Me.TECreatedAt)
-        Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.TENumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 165)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 163)
         Me.PanelControl1.TabIndex = 0
         '
         'TENPWP
@@ -120,7 +120,7 @@ Partial Class FormProposePromoDet
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(451, 78)
+        Me.LabelControl7.Location = New System.Drawing.Point(11, 76)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(101, 13)
         Me.LabelControl7.TabIndex = 13
@@ -129,7 +129,7 @@ Partial Class FormProposePromoDet
         'MEAlamat
         '
         Me.MEAlamat.EditValue = ""
-        Me.MEAlamat.Location = New System.Drawing.Point(566, 71)
+        Me.MEAlamat.Location = New System.Drawing.Point(126, 69)
         Me.MEAlamat.Name = "MEAlamat"
         Me.MEAlamat.Size = New System.Drawing.Size(200, 76)
         Me.MEAlamat.TabIndex = 4
@@ -184,7 +184,7 @@ Partial Class FormProposePromoDet
         '
         'TECreatedBy
         '
-        Me.TECreatedBy.Location = New System.Drawing.Point(566, 45)
+        Me.TECreatedBy.Location = New System.Drawing.Point(126, 43)
         Me.TECreatedBy.Name = "TECreatedBy"
         Me.TECreatedBy.Properties.ReadOnly = True
         Me.TECreatedBy.Size = New System.Drawing.Size(200, 20)
@@ -192,7 +192,7 @@ Partial Class FormProposePromoDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(451, 48)
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 46)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl3.TabIndex = 4
@@ -200,7 +200,7 @@ Partial Class FormProposePromoDet
         '
         'TECreatedAt
         '
-        Me.TECreatedAt.Location = New System.Drawing.Point(566, 19)
+        Me.TECreatedAt.Location = New System.Drawing.Point(126, 17)
         Me.TECreatedAt.Name = "TECreatedAt"
         Me.TECreatedAt.Properties.ReadOnly = True
         Me.TECreatedAt.Size = New System.Drawing.Size(200, 20)
@@ -208,7 +208,7 @@ Partial Class FormProposePromoDet
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(451, 22)
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 20)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl2.TabIndex = 2
@@ -235,7 +235,7 @@ Partial Class FormProposePromoDet
         Me.PanelControl2.Controls.Add(Me.SBRemove)
         Me.PanelControl2.Controls.Add(Me.SBAdd)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 165)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 163)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(784, 50)
         Me.PanelControl2.TabIndex = 1
@@ -326,19 +326,20 @@ Partial Class FormProposePromoDet
         'GCProduct
         '
         Me.GCProduct.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProduct.Location = New System.Drawing.Point(0, 215)
+        Me.GCProduct.Location = New System.Drawing.Point(0, 213)
         Me.GCProduct.MainView = Me.GVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(784, 296)
+        Me.GCProduct.Size = New System.Drawing.Size(784, 298)
         Me.GCProduct.TabIndex = 3
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct})
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumnclass, Me.GridColumncolor})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsBehavior.ReadOnly = True
+        Me.GVProduct.OptionsView.ColumnAutoWidth = False
         Me.GVProduct.OptionsView.ShowFooter = True
         Me.GVProduct.OptionsView.ShowGroupPanel = False
         '
@@ -367,7 +368,7 @@ Partial Class FormProposePromoDet
         Me.GridColumn5.FieldName = "name"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 1
+        Me.GridColumn5.VisibleIndex = 3
         '
         'GridColumn6
         '
@@ -375,7 +376,7 @@ Partial Class FormProposePromoDet
         Me.GridColumn6.FieldName = "code"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 2
+        Me.GridColumn6.VisibleIndex = 1
         '
         'GridColumn7
         '
@@ -383,7 +384,7 @@ Partial Class FormProposePromoDet
         Me.GridColumn7.FieldName = "size"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 3
+        Me.GridColumn7.VisibleIndex = 5
         '
         'GridColumn8
         '
@@ -399,7 +400,7 @@ Partial Class FormProposePromoDet
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 4
+        Me.GridColumn13.VisibleIndex = 6
         '
         'GridColumn9
         '
@@ -410,7 +411,7 @@ Partial Class FormProposePromoDet
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_cop", "{0:N2}")})
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.VisibleIndex = 7
         '
         'GridColumn10
         '
@@ -421,7 +422,7 @@ Partial Class FormProposePromoDet
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_cop_amount", "{0:N2}")})
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 6
+        Me.GridColumn10.VisibleIndex = 8
         '
         'GridColumn11
         '
@@ -432,7 +433,7 @@ Partial Class FormProposePromoDet
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_price", "{0:N2}")})
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 7
+        Me.GridColumn11.VisibleIndex = 9
         '
         'GridColumn12
         '
@@ -443,7 +444,38 @@ Partial Class FormProposePromoDet
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_price_amount", "{0:N2}")})
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 8
+        Me.GridColumn12.VisibleIndex = 10
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.TECreatedAt)
+        Me.PanelControl4.Controls.Add(Me.LabelControl2)
+        Me.PanelControl4.Controls.Add(Me.LabelControl3)
+        Me.PanelControl4.Controls.Add(Me.LabelControl7)
+        Me.PanelControl4.Controls.Add(Me.TECreatedBy)
+        Me.PanelControl4.Controls.Add(Me.MEAlamat)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl4.Location = New System.Drawing.Point(442, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(340, 159)
+        Me.PanelControl4.TabIndex = 15
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 4
         '
         'FormProposePromoDet
         '
@@ -457,6 +489,7 @@ Partial Class FormProposePromoDet
         Me.Name = "FormProposePromoDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Propose Promo Detail"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -474,6 +507,9 @@ Partial Class FormProposePromoDet
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -518,4 +554,7 @@ Partial Class FormProposePromoDet
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
 End Class

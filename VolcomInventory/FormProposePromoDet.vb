@@ -160,11 +160,27 @@
         End If
 
         Dim query_detail As String = "
-            SELECT d.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, d.id_product, p.product_display_name AS name, p.product_full_code AS code, z.code_detail_name AS size, d.id_design_price, d.qty, e.design_cop, (d.qty * e.design_cop) AS design_cop_amount, d.design_price, (d.qty * d.design_price) AS design_price_amount
+            SELECT d.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, d.id_product, p.product_display_name AS name, p.product_full_code AS code, z.code_detail_name AS size, d.id_design_price, d.qty, e.design_cop, (d.qty * e.design_cop) AS design_cop_amount, d.design_price, (d.qty * d.design_price) AS design_price_amount, cd.class, cd.color
             FROM tb_propose_promo_det AS d
             LEFT JOIN tb_m_comp AS c ON d.id_comp = c.id_comp
             LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
             LEFT JOIN tb_m_design AS e ON p.id_design = e.id_design
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = e.id_design
             LEFT JOIN (
                 SELECT c.id_product, d.code_detail_name
                 FROM tb_m_product_code AS c

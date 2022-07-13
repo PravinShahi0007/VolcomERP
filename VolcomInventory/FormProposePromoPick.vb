@@ -33,7 +33,7 @@
         Dim fg_year As String = execute_query("SELECT YEAR((STR_TO_DATE(DATE_SUB(CONCAT(YEAR(NOW()), '-', MONTH(NOW()),'-', '01'), INTERVAL 1 DAY), '%Y-%m-%d')))", 0, True, "", "", "", "")
 
         Dim query As String = "
-            SELECT 'no' AS is_checked, s.id_product, p.product_display_name AS `name`, z.code_detail_name AS `size`, p.product_full_code AS code, s.qty_avl AS qty, l.id_comp, c.id_design_price, d.design_cop, (d.design_cop * s.qty_avl) AS design_cop_amount, c.design_price, (c.design_price * s.qty_avl) AS design_price_amount, s.qty_avl AS qty_fixed
+            SELECT 'no' AS is_checked, s.id_product, p.product_display_name AS `name`, z.code_detail_name AS `size`, p.product_full_code AS code, s.qty_avl AS qty, l.id_comp, c.id_design_price, d.design_cop, (d.design_cop * s.qty_avl) AS design_cop_amount, c.design_price, (c.design_price * s.qty_avl) AS design_price_amount, s.qty_avl AS qty_fixed,  cd.class, cd.color
             FROM (
                 SELECT f.id_wh_drawer, f.id_product, SUM(f.qty_avl) AS qty_avl
                 FROM (
@@ -51,6 +51,22 @@
             ) AS s
             LEFT JOIN tb_m_product AS p ON s.id_product = p.id_product
             LEFT JOIN tb_m_design AS d ON p.id_design = d.id_design
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = d.id_design
             LEFT JOIN tb_m_wh_drawer AS w ON s.id_wh_drawer = w.id_wh_drawer
             LEFT JOIN tb_m_wh_rack AS r ON w.id_wh_rack = r.id_wh_rack
             LEFT JOIN tb_m_wh_locator AS l ON r.id_wh_locator = l.id_wh_locator
@@ -94,6 +110,8 @@
                     FormProposePromoDet.GVProduct.SetFocusedRowCellValue("comp_name", SLUEFromAccount.Text)
                     FormProposePromoDet.GVProduct.SetFocusedRowCellValue("id_product", GVProduct.GetRowCellValue(i, "id_product"))
                     FormProposePromoDet.GVProduct.SetFocusedRowCellValue("name", GVProduct.GetRowCellValue(i, "name"))
+                    FormProposePromoDet.GVProduct.SetFocusedRowCellValue("class", GVProduct.GetRowCellValue(i, "class"))
+                    FormProposePromoDet.GVProduct.SetFocusedRowCellValue("color", GVProduct.GetRowCellValue(i, "color"))
                     FormProposePromoDet.GVProduct.SetFocusedRowCellValue("code", GVProduct.GetRowCellValue(i, "code"))
                     FormProposePromoDet.GVProduct.SetFocusedRowCellValue("size", GVProduct.GetRowCellValue(i, "size"))
                     FormProposePromoDet.GVProduct.SetFocusedRowCellValue("id_design_price", GVProduct.GetRowCellValue(i, "id_design_price"))
