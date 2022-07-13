@@ -6,7 +6,7 @@
 
     Private Sub FormMasterComputerMtc_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Dim query As String = "SELECT id_employee, employee_name FROM tb_m_employee WHERE id_employee_active = '1'"
+        Dim query As String = "SELECT 0 AS id_employee, '' AS employee_name UNION ALL SELECT id_employee, employee_name FROM tb_m_employee WHERE id_employee_active = '1'"
         viewSearchLookupQuery(LEusernow, query, "id_employee", "employee_name", "id_employee")
 
         Dim query2 As String = "SELECT * FROM tb_status_mtc_it"
@@ -60,15 +60,28 @@
                     asset = "'" + asset + "'"
                 End If
 
+                If usernow = 0 Then
+                    usernow = "NULL"
+                Else
+                    usernow = "'" + usernow + "'"
+                End If
+
                 Dim query As String = "INSERT INTO tb_det_mtc_it (id_purc_rec_asset,date_mtc,now_user,problem,dtl_problem,id_status_mtc,pic,hw_name) 
-VALUES (" & asset & ",'" & tglmtc & "','" & usernow & "','" & prblm & "','" & dtlmtc & "','" & stts & "','" & picmtc & "','" & hwname & "')"
+VALUES (" & asset & ",'" & tglmtc & "'," & usernow & ",'" & prblm & "','" & dtlmtc & "','" & stts & "','" & picmtc & "','" & hwname & "')"
                 execute_non_query(query, True, "", "", "", "")
                 FormMasterComputer.loadmtc()
                 FormMasterComputer.loadlist()
                 MessageBox.Show("Data telah disimpan!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Close()
+
             Else
-                Dim query As String = "UPDATE tb_det_mtc_it SET date_mtc = '" & tglmtc & "', now_user = '" & usernow & "', problem = '" & prblm & "', dtl_problem = '" & dtlmtc & "', id_status_mtc = '" & stts & "', pic = '" & picmtc & "', hw_name = '" & hwname & "'
+                If usernow = 0 Then
+                    usernow = "NULL"
+                Else
+                    usernow = "'" + usernow + "'"
+                End If
+
+                Dim query As String = "UPDATE tb_det_mtc_it SET date_mtc = '" & tglmtc & "', now_user = " & usernow & ", problem = '" & prblm & "', dtl_problem = '" & dtlmtc & "', id_status_mtc = '" & stts & "', pic = '" & picmtc & "', hw_name = '" & hwname & "'
 WHERE id_det_mtc = '" & id_det_mtc & "'"
                 execute_non_query(query, True, "", "", "", "")
                 FormMasterComputer.loadmtc()

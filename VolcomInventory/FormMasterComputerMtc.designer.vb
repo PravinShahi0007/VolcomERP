@@ -60,7 +60,7 @@ Partial Class FormMasterComputerMtc
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(7, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(8, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(40, 13)
         Me.LabelControl1.TabIndex = 0
@@ -149,7 +149,7 @@ Partial Class FormMasterComputerMtc
         Me.LEstatus.Name = "LEstatus"
         Me.LEstatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEstatus.Properties.View = Me.SearchLookUpEdit1View
-        Me.LEstatus.Size = New System.Drawing.Size(170, 20)
+        Me.LEstatus.Size = New System.Drawing.Size(240, 20)
         Me.LEstatus.TabIndex = 12
         '
         'SearchLookUpEdit1View
@@ -173,7 +173,7 @@ Partial Class FormMasterComputerMtc
         Me.LEusernow.Name = "LEusernow"
         Me.LEusernow.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEusernow.Properties.View = Me.GridView1
-        Me.LEusernow.Size = New System.Drawing.Size(168, 20)
+        Me.LEusernow.Size = New System.Drawing.Size(240, 20)
         Me.LEusernow.TabIndex = 14
         '
         'GridView1
@@ -189,7 +189,7 @@ Partial Class FormMasterComputerMtc
         Me.LEpic.Name = "LEpic"
         Me.LEpic.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEpic.Properties.View = Me.GridView2
-        Me.LEpic.Size = New System.Drawing.Size(170, 20)
+        Me.LEpic.Size = New System.Drawing.Size(240, 20)
         Me.LEpic.TabIndex = 15
         '
         'GridView2
@@ -232,7 +232,7 @@ Partial Class FormMasterComputerMtc
         Me.TEhwname.EditValue = ""
         Me.TEhwname.Location = New System.Drawing.Point(109, 46)
         Me.TEhwname.Name = "TEhwname"
-        Me.TEhwname.Size = New System.Drawing.Size(168, 20)
+        Me.TEhwname.Size = New System.Drawing.Size(240, 20)
         Me.TEhwname.TabIndex = 18
         '
         'LabelControl8
