@@ -129,6 +129,7 @@ Partial Class FormMasterComputer
         Me.GVlistmtc.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn18, Me.GridColumn17, Me.GridColumn25, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
         Me.GVlistmtc.GridControl = Me.GClistmtc
         Me.GVlistmtc.Name = "GVlistmtc"
+        Me.GVlistmtc.OptionsFind.AlwaysVisible = True
         Me.GVlistmtc.OptionsView.ShowGroupPanel = False
         '
         'GridColumn9

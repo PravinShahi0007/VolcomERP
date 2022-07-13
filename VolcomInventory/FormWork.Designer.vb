@@ -19,7 +19,6 @@ Partial Class FormWork
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormWork))
         Me.RepositoryItemSpinEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemSpinEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
@@ -46,8 +45,9 @@ Partial Class FormWork
         Me.GridColumn894 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn895 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEAutoRefresh = New DevExpress.XtraEditors.CheckEdit()
         Me.BViewApproval = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.XTPMarkHistory = New DevExpress.XtraTab.XtraTabPage()
         Me.GCMarkHistory = New DevExpress.XtraGrid.GridControl()
         Me.GVMarkHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -103,7 +103,6 @@ Partial Class FormWork
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.CEAutoRefresh = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.RepositoryItemSpinEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +115,7 @@ Partial Class FormWork
         CType(Me.GVMarkNeed, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl10.SuspendLayout()
+        CType(Me.CEAutoRefresh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPMarkHistory.SuspendLayout()
         CType(Me.GCMarkHistory, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,7 +143,6 @@ Partial Class FormWork
         CType(Me.DEEndCancel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCancel.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCancel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEAutoRefresh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemSpinEdit6
@@ -354,6 +353,15 @@ Partial Class FormWork
         Me.PanelControl10.Name = "PanelControl10"
         Me.PanelControl10.Size = New System.Drawing.Size(939, 36)
         Me.PanelControl10.TabIndex = 3
+        '
+        'CEAutoRefresh
+        '
+        Me.CEAutoRefresh.EditValue = True
+        Me.CEAutoRefresh.Location = New System.Drawing.Point(10, 8)
+        Me.CEAutoRefresh.Name = "CEAutoRefresh"
+        Me.CEAutoRefresh.Properties.Caption = "Auto Refresh List After Approval"
+        Me.CEAutoRefresh.Size = New System.Drawing.Size(230, 19)
+        Me.CEAutoRefresh.TabIndex = 1
         '
         'BViewApproval
         '
@@ -570,6 +578,7 @@ Partial Class FormWork
         Me.DEUntil.EditValue = Nothing
         Me.DEUntil.Location = New System.Drawing.Point(184, 8)
         Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -591,6 +600,7 @@ Partial Class FormWork
         Me.DEStart.EditValue = Nothing
         Me.DEStart.Location = New System.Drawing.Point(45, 8)
         Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
@@ -885,15 +895,6 @@ Partial Class FormWork
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = -1
         '
-        'CEAutoRefresh
-        '
-        Me.CEAutoRefresh.EditValue = True
-        Me.CEAutoRefresh.Location = New System.Drawing.Point(10, 8)
-        Me.CEAutoRefresh.Name = "CEAutoRefresh"
-        Me.CEAutoRefresh.Properties.Caption = "Auto Refresh List After Approval"
-        Me.CEAutoRefresh.Size = New System.Drawing.Size(230, 19)
-        Me.CEAutoRefresh.TabIndex = 1
-        '
         'FormWork
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -920,6 +921,7 @@ Partial Class FormWork
         CType(Me.GVMarkNeed, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl10.ResumeLayout(False)
+        CType(Me.CEAutoRefresh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPMarkHistory.ResumeLayout(False)
         CType(Me.GCMarkHistory, System.ComponentModel.ISupportInitialize).EndInit()
@@ -949,7 +951,6 @@ Partial Class FormWork
         CType(Me.DEEndCancel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCancel.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCancel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEAutoRefresh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
