@@ -33,8 +33,8 @@
         Cursor = Cursors.WaitCursor
 
         'cek closing
-        Dim y As String = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy")
-        Dim m As String = DateTime.Parse(DEUntil.EditValue.ToString).ToString("MM")
+        Dim y As String = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy") + "," + DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy")
+        Dim m As String = DateTime.Parse(DEFrom.EditValue.ToString).ToString("MM") + "," + DateTime.Parse(DEUntil.EditValue.ToString).ToString("MM")
         checkClosingSOHSalPeriod(m, y)
 
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
