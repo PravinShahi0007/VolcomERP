@@ -347,6 +347,7 @@ Partial Class FormProposeVoucherPOSDet
         '
         'MENote
         '
+        Me.MENote.EditValue = ""
         Me.MENote.Location = New System.Drawing.Point(56, 15)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(716, 47)
