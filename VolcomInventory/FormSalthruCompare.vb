@@ -3,6 +3,7 @@
 
     Private Sub FormSalthruCompare_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dt_json = volcomErpApiGetJson(volcom_erp_api_host & "api/salthru-compare")
+        DEFrom.EditValue = volcomErpApiGetDT(dt_json, 0).Rows(0)("current_date")
         DEUntil.EditValue = volcomErpApiGetDT(dt_json, 0).Rows(0)("current_date")
         viewSeason()
         viewType()
@@ -40,28 +41,66 @@
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Check condition")
         'cek date
+        Dim date_from_selected As String = "0000-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
         Dim date_until_selected As String = "0000-01-01"
         Try
             date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-
         'season
         Dim where_string As String = ""
         If Not CCBESeason.EditValue.ToString = "" Then
             where_string += "AND d.id_season IN(" + CCBESeason.EditValue.ToString + ") "
         End If
-
         'type
         Dim id_salthru_type As String = SLEType.EditValue.ToString
 
-
         If XTCData.SelectedTabPageIndex = 0 Then
-            Dim query As String = "CALL view_compare_sal_thru('" + date_until_selected + "','" + id_salthru_type + "', '" + where_string + "')"
+            'setup column
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Restore column")
+            'hapus
+            For c As Integer = GVData.Columns.Count - 1 To 0 Step -1
+                If GVData.Columns(c).FieldName.Contains(" ") Then
+                    GVData.Columns(c).Dispose()
+                End If
+            Next
+
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Fetching data")
+            Dim query As String = "CALL view_compare_sal_thru_v2('" + date_from_selected + "','" + date_until_selected + "','" + id_salthru_type + "', '" + where_string + "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            'tambah kolom
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Generate column")
+            Dim indeks_start As Integer = GridColumnage_in_store.VisibleIndex + 1
+            For c As Integer = 0 To data.Columns.Count - 1
+                If data.Columns(c).ColumnName.Contains(" ") Then
+                    GVData.Columns.AddVisible(data.Columns(c).ColumnName.ToString)
+                    GVData.Columns(data.Columns(c).ColumnName.ToString).VisibleIndex = indeks_start
+                    GVData.Columns(data.Columns(c).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GVData.Columns(data.Columns(c).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
+                    GVData.Columns(data.Columns(c).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                    GVData.Columns(data.Columns(c).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n0}"
+                    'group summary
+                    Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                    summary.DisplayFormat = "{0:n0}"
+                    summary.FieldName = data.Columns(c).ColumnName.ToString
+                    summary.ShowInGroupColumnFooter = GVData.Columns(data.Columns(c).ColumnName.ToString)
+                    summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                    GVData.GroupSummary.Add(summary)
+                    indeks_start += 1
+                End If
+            Next
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
             GCData.DataSource = data
         Else
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
             Dim query As String = "CALL view_compare_sal_thru_product('" + date_until_selected + "','" + id_salthru_type + "', '" + where_string + "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCProduct.DataSource = data
@@ -72,6 +111,7 @@
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        resetView()
         viewData()
     End Sub
 
@@ -244,5 +284,9 @@
 
     Private Sub FormSalthruCompare_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Private Sub DEFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEFrom.EditValueChanged
+        resetView()
     End Sub
 End Class
