@@ -71,6 +71,7 @@
                     GVData.Columns(c).Dispose()
                 End If
             Next
+            GCData.DataSource = Nothing
 
             FormMain.SplashScreenManager1.SetWaitFormDescription("Fetching data")
             Dim query As String = "CALL view_compare_sal_thru_v2('" + date_from_selected + "','" + date_until_selected + "','" + id_salthru_type + "', '" + where_string + "')"
@@ -100,9 +101,42 @@
             FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
             GCData.DataSource = data
         Else
-            FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
-            Dim query As String = "CALL view_compare_sal_thru_product('" + date_until_selected + "','" + id_salthru_type + "', '" + where_string + "')"
+            'setup column
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Restore column")
+            'hapus
+            For c As Integer = GVProduct.Columns.Count - 1 To 0 Step -1
+                If GVProduct.Columns(c).FieldName.Contains(" ") Then
+                    GVProduct.Columns(c).Dispose()
+                End If
+            Next
+            GCProduct.DataSource = Nothing
+
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Fetching data")
+            Dim query As String = "CALL view_compare_sal_thru_product_v2('" + date_from_selected + "','" + date_until_selected + "','" + id_salthru_type + "', '" + where_string + "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            'tambah kolom
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Generate column")
+            Dim indeks_start As Integer = GridColumn14.VisibleIndex + 1
+            For c As Integer = 0 To data.Columns.Count - 1
+                If data.Columns(c).ColumnName.Contains(" ") Then
+                    GVProduct.Columns.AddVisible(data.Columns(c).ColumnName.ToString)
+                    GVProduct.Columns(data.Columns(c).ColumnName.ToString).VisibleIndex = indeks_start
+                    GVProduct.Columns(data.Columns(c).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GVProduct.Columns(data.Columns(c).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
+                    GVProduct.Columns(data.Columns(c).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                    GVProduct.Columns(data.Columns(c).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n0}"
+                    'group summary
+                    Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                    summary.DisplayFormat = "{0:n0}"
+                    summary.FieldName = data.Columns(c).ColumnName.ToString
+                    summary.ShowInGroupColumnFooter = GVProduct.Columns(data.Columns(c).ColumnName.ToString)
+                    summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                    GVData.GroupSummary.Add(summary)
+                    indeks_start += 1
+                End If
+            Next
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
             GCProduct.DataSource = data
         End If
 
@@ -111,7 +145,6 @@
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
-        resetView()
         viewData()
     End Sub
 
