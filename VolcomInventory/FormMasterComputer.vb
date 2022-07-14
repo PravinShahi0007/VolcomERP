@@ -69,7 +69,8 @@
         Dim query As String = "SELECT pra.id_purc_rec_asset,pra.asset_number,pra.asset_name,pra.acq_date,pra.location_current,me.employee_name
 FROM tb_purc_rec_asset pra
 LEFT JOIN tb_m_employee me ON pra.id_employee_current=me.id_employee
-WHERE pra.id_acc_fa='799'"
+ORDER BY pra.acq_date DESC"
+        'WHERE pra.id_acc_fa='799'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCdakomp.DataSource = data
 
