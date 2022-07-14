@@ -38,9 +38,8 @@
     End Sub
 
     Sub viewTypeDate()
-        Dim query As String = "SELECT 1 AS `id_type_date`, 'Daily' AS `type_date`
-        UNION ALL
-        SELECT 2 AS `id_type_date`, 'Monthly' AS `type_date` "
+        'SELECT 1 AS `id_type_date`, 'Daily' AS `type_date` UNION ALL
+        Dim query As String = "SELECT 2 AS `id_type_date`, 'Monthly' AS `type_date` "
         viewSearchLookupQuery(SLETypeDate, query, "id_type_date", "type_date", "id_type_date")
     End Sub
 

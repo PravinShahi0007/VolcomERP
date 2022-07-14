@@ -157,7 +157,7 @@ Public Class FormSalesBranchDet
                 'load main
                 Dim qref As String = "SELECT sb.rev_normal_ppn_pros, sb.rev_sale_ppn_pros 
                 FROM tb_sales_branch sb 
-                WHERE sb.id_sales_branch=2 "
+                WHERE sb.id_sales_branch=" + id_sales_branch_ref + " "
                 Dim dref As DataTable = execute_query(qref, -1, True, "", "", "", "")
                 TxtProsPPNNormal.EditValue = dref.Rows(0)("rev_normal_ppn_pros")
                 TxtProsPPNSale.EditValue = dref.Rows(0)("rev_sale_ppn_pros")

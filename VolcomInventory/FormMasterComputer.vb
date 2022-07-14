@@ -96,11 +96,6 @@ WHERE dmi.id_purc_rec_asset = '" & id_purc_rec_asset & "' AND dmi.status_delete 
         GCdtlkomp.DataSource = data
 
     End Sub
-
-    Private Sub GCdakomp_DoubleClick(sender As Object, e As EventArgs) Handles GCdakomp.DoubleClick
-        loadmtc()
-    End Sub
-
     Private Sub BTadd_Click(sender As Object, e As EventArgs) Handles BTadd.Click
 
         FormMasterComputerMtc.id_purc_rec_asset = GVdakomp.GetFocusedRowCellValue("id_purc_rec_asset").ToString
@@ -181,13 +176,29 @@ WHERE dmi.status_delete IS NULL ORDER BY dmi.date_mtc DESC"
     End Sub
 
     Private Sub BTaddnonaset_Click(sender As Object, e As EventArgs) Handles BTaddnonaset.Click
-        'FormMasterComputerMtc.id_purc_rec_asset = GVdakomp.GetFocusedRowCellValue("id_purc_rec_asset").ToString
-        'FormMasterComputerMtc.hw_name = GVdakomp.GetFocusedRowCellValue("asset_name").ToString
         FormMasterComputerMtc.Action = "ins"
         FormMasterComputerMtc.ShowDialog()
     End Sub
 
     Private Sub BTprintmtc_Click(sender As Object, e As EventArgs) Handles BTprintmtc.Click
         print(Me.GClistmtc, "List Maintenance Hardware IT")
+    End Sub
+
+    Private Sub GClistmtc_DoubleClick(sender As Object, e As EventArgs) Handles GClistmtc.DoubleClick
+
+        Dim asset_number As String = GVlistmtc.GetFocusedRowCellValue("asset_number").ToString
+
+        Dim query As String = "SELECT pra.id_purc_rec_asset,pra.asset_number,pra.asset_name,pra.acq_date,pra.location_current,me.employee_name
+FROM tb_purc_rec_asset pra
+LEFT JOIN tb_m_employee me ON pra.id_employee_current=me.id_employee
+WHERE pra.id_acc_fa='799' AND pra.asset_number = '" & asset_number & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCdakomp.DataSource = data
+        loadmtc()
+        XtraTabControl1.SelectedTabPage = XtraTabPage2
+    End Sub
+
+    Private Sub GCdakomp_Click(sender As Object, e As EventArgs) Handles GCdakomp.Click
+        loadmtc()
     End Sub
 End Class

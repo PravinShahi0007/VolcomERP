@@ -2322,11 +2322,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     If FormBOM.GVDesign.FocusedRowHandle < 0 Then
                         stopCustom("Please select proper design first!")
                     Else
-                        FormBOMDesignSingle.id_pop_up = "1"
-                        FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
-                        FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
-                        FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-                        FormBOMDesignSingle.ShowDialog()
+                        If FormBOM.GVBOMDesign.RowCount > 0 Then
+                            FormBOMDesignSingle.id_pop_up = "1"
+                            FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                            FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
+                            FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                            FormBOMDesignSingle.ShowDialog()
+                        Else
+                            warningCustom("Please use new to create new BOM")
+                        End If
                     End If
                     'Catch ex As Exception
                     'stopCustom("Please select proper design first!")

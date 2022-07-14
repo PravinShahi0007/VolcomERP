@@ -44,13 +44,13 @@
 
     Private Sub DownloadTemplateToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles DownloadTemplateToolStripMenuItem.Click
         SplashScreenManager1.ShowWaitForm()
-        Try
-            FormEmpFPFinger.ip = GVFP.GetFocusedRowCellValue("ip").ToString
+        'Try
+        FormEmpFPFinger.ip = GVFP.GetFocusedRowCellValue("ip").ToString
             FormEmpFPFinger.port = GVFP.GetFocusedRowCellValue("port").ToString
             FormEmpFPFinger.ShowDialog()
-        Catch ex As Exception
-            errorProcess()
-        End Try
+        'Catch ex As Exception
+        'errorProcess()
+        'End Try
         SplashScreenManager1.CloseWaitForm()
     End Sub
 
