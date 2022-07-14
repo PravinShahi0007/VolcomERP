@@ -246,6 +246,7 @@ Partial Class FormProductionRet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(732, 44)
         Me.PanelControl1.TabIndex = 4
+        Me.PanelControl1.Visible = False
         '
         'BView
         '

@@ -41,7 +41,7 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
     Sub view_prod_order_rec()
-        Dim query = "SELECT pl.pl_category,a.id_report_status,h.report_status,g.season,a.id_prod_order_rec,b.id_prod_order ,a.prod_order_rec_number,a.prod_order_rec_note,
+        Dim query = "SELECT dsg.id_qc_wash,pl.pl_category,a.id_report_status,h.report_status,g.season,a.id_prod_order_rec,b.id_prod_order ,a.prod_order_rec_number,a.prod_order_rec_note,
                     DATE_ADD(wo.prod_order_wo_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date, i.delivery,
                     delivery_order_date,a.arrive_date,a.delivery_order_number,b.prod_order_number, rec_qty.sum_qty,wo.price_pc,dsg.id_design,
                     prod_order_rec_date, f.comp_name AS comp_from,f.comp_number AS comp_from_code,d.comp_name AS comp_to,dsg.design_code,CONCAT(LEFT(dsg.design_display_name,3),' ',dsg.design_name) AS design_display_name, RIGHT(dsg.design_display_name,3) AS color 
@@ -321,6 +321,8 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                     FormQCReport1Det.id_prod_order = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
                     FormQCReport1Det.TxtDesign.Text = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
                     FormQCReport1Det.TxtSeason.Text = GVProdRec.GetFocusedRowCellValue("season").ToString
+
+                    FormQCReport1Det.design_need_wash = GVProdRec.GetFocusedRowCellValue("id_qc_wash").ToString
 
                     'FormProductionRetOutSingle
                     FormQCReport1Det.viewDetailReturn()
