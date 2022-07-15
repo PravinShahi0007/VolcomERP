@@ -17,6 +17,8 @@ Public Class FormProductionRetOutSingle
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls As String = get_setup_field("bof_xls_retout")
 
+    Public is_reject_wash As Boolean = False
+
     Private Sub FormProductionRetOutSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         BtnBrowsePO.Focus()
         viewReportStatus() 'get report status
@@ -77,7 +79,7 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`"
 
 
             'View data
-            Dim query As String = "SELECT id_return_qc_type,id_ovh_price,DATE_FORMAT(a.prod_order_ret_out_date,'%Y-%m-%d') as prod_order_ret_out_datex, a.id_report_status, a.id_prod_order, a.id_prod_order_ret_out, a.prod_order_ret_out_date, "
+            Dim query As String = "SELECT a.is_ret_wash,id_return_qc_type,id_ovh_price,DATE_FORMAT(a.prod_order_ret_out_date,'%Y-%m-%d') as prod_order_ret_out_datex, a.id_report_status, a.id_prod_order, a.id_prod_order_ret_out, a.prod_order_ret_out_date, "
             query += "a.prod_order_ret_out_due_date, a.prod_order_ret_out_note, a.prod_order_ret_out_number, a.id_prod_order_rec,rec.prod_order_rec_number,  "
             query += "dsg.id_design, CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,b.prod_order_number, (c.id_comp_contact) AS id_comp_contact_from, (d.comp_name) AS comp_name_contact_from, (d.comp_number) AS comp_code_contact_from, (d.address_primary) AS comp_address_contact_from, "
             query += "(e.id_comp_contact) AS id_comp_contact_to, (f.comp_name) AS comp_name_contact_to, (f.comp_number) AS comp_code_contact_to,(f.address_primary) AS comp_address_contact_to, dsg.id_sample, ss.season "
@@ -113,6 +115,7 @@ LEFT JOIN (
 ) cd ON cd.id_design = dsg.id_design "
             query += "WHERE a.id_prod_order_ret_out='" + id_prod_order_ret_out + "' "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            is_reject_wash = If(data.Rows(0)("is_ret_wash").ToString = "1", True, False)
             TxtOrderNumber.Text = data.Rows(0)("prod_order_number").ToString
             id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
             TxtCodeCompFrom.Text = data.Rows(0)("comp_code_contact_from").ToString
@@ -292,22 +295,47 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
             End If
             '
             If get_opt_prod_field("is_enable_qc_report1") = "1" Then
-                'auto qty yang reject
-                view_barcode_list()
-                For i As Integer = 0 To GVRetDetail.RowCount - 1
-                    Dim qc As String = "CALL view_limit_ret_out_from_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString + "', '" + id_prod_order_ret_out + "')"
-                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-                    If dtc.Rows.Count > 0 Then
-                        GVRetDetail.SetRowCellValue(i, "prod_order_ret_out_det_qty", dtc.Rows(0)("qty"))
-                        GVRetDetail.RefreshData()
-                        For j As Integer = 0 To dtc.Rows(0)("qty") - 1
+                'check wash from qcr1
+                Dim q As String = "SELECT qrd.id_prod_order_det,SUM(qrd.qc_report1_det_qty) AS qty,p.product_ean_code AS ean_code
+FROM `tb_qc_report1` qr 
+INNER JOIN tb_qc_report1_det qrd ON qrd.id_qc_report1=qr.id_qc_report1 AND qr.id_report_status=6 AND qr.id_prod_order_rec='" & id_prod_order_rec & "'
+INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=qrd.id_prod_order_det
+INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product=pod.id_prod_demand_product
+INNER JOIN tb_m_product p ON p.id_product=pdp.id_product
+INNER JOIN tb_qc_report1 qrwash ON qrwash.id_prod_order_rec=qr.id_prod_order_rec AND qrwash.id_report_status=6 AND qrwash.id_prod_order_rec='" & id_prod_order_rec & "' AND qrwash.id_qc_wash='1'
+GROUP BY qrd.id_prod_order_det"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    'reject wash
+                    is_reject_wash = True
+                    view_barcode_list()
+                    For i As Integer = 0 To GVRetDetail.RowCount - 1
+                        GVRetDetail.SetRowCellValue(find_row(GVRetDetail, "id_prod_order_det", dt.Rows(i)("id_prod_order_det").ToString), "prod_order_ret_out_det_qty", dt.Rows(i)("qty"))
+                        For j As Integer = 0 To dt.Rows(i)("qty") - 1
                             GVBarcode.AddNewRow()
-                            GVBarcode.SetFocusedRowCellValue("ean_code", dtc.Rows(0)("ean_code"))
-                            GVBarcode.SetFocusedRowCellValue("id_prod_order_det", dtc.Rows(0)("id_prod_order_det"))
+                            GVBarcode.SetFocusedRowCellValue("ean_code", dt.Rows(i)("ean_code"))
+                            GVBarcode.SetFocusedRowCellValue("id_prod_order_det", dt.Rows(i)("id_prod_order_det"))
                             GVBarcode.SetFocusedRowCellValue("is_fix", "2")
                         Next
-                    End If
-                Next
+                    Next
+                Else
+                    'auto qty yang reject
+                    view_barcode_list()
+                    For i As Integer = 0 To GVRetDetail.RowCount - 1
+                        Dim qc As String = "CALL view_limit_ret_out_from_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString + "', '" + id_prod_order_ret_out + "')"
+                        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dtc.Rows.Count > 0 Then
+                            GVRetDetail.SetRowCellValue(i, "prod_order_ret_out_det_qty", dtc.Rows(0)("qty"))
+                            GVRetDetail.RefreshData()
+                            For j As Integer = 0 To dtc.Rows(0)("qty") - 1
+                                GVBarcode.AddNewRow()
+                                GVBarcode.SetFocusedRowCellValue("ean_code", dtc.Rows(0)("ean_code"))
+                                GVBarcode.SetFocusedRowCellValue("id_prod_order_det", dtc.Rows(0)("id_prod_order_det"))
+                                GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                            Next
+                        End If
+                    Next
+                End If
             End If
         ElseIf action = "upd" Then
             Dim query As String = "CALL view_return_out_prod('" + id_prod_order_ret_out + "', '1')"
@@ -407,8 +435,8 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
                         prod_order_ret_out_number = header_number_prod("4")
 
                         'Main tbale
-                        query = "INSERT INTO tb_prod_order_ret_out(id_prod_order,id_prod_order_rec, prod_order_ret_out_number, id_comp_contact_to, id_comp_contact_from, prod_order_ret_out_date, prod_order_ret_out_due_date, prod_order_ret_out_note, id_report_status,id_ovh_price,id_return_qc_type) "
-                        query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "', '" + prod_order_ret_out_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + prod_order_ret_out_due_date + "', '" + prod_order_ret_out_note + "', '" + id_report_status + "'," & id_ovh_price & ",'" & id_return_qc_type & "') ; SELECT LAST_INSERT_ID(); "
+                        query = "INSERT INTO tb_prod_order_ret_out(id_prod_order,id_prod_order_rec, prod_order_ret_out_number, id_comp_contact_to, id_comp_contact_from, prod_order_ret_out_date, prod_order_ret_out_due_date, prod_order_ret_out_note, id_report_status,id_ovh_price,id_return_qc_type,is_ret_wash) "
+                        query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "', '" + prod_order_ret_out_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + prod_order_ret_out_due_date + "', '" + prod_order_ret_out_note + "', '" + id_report_status + "'," & id_ovh_price & ",'" & id_return_qc_type & "','" & If(is_reject_wash, "1", "2") & "') ; SELECT LAST_INSERT_ID(); "
                         id_prod_order_ret_out = execute_query(query, 0, True, "", "", "", "")
 
                         'insert who prepared
@@ -855,10 +883,15 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
 
         Dim q_check As String = ""
 
-        If get_opt_prod_field("is_enable_qc_report1") = "1" Then
-            q_check = "CALL view_limit_ret_out_from_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "')"
-        Else
+        If is_reject_wash Then
+            'jika ditemukan reject wash return semuanya
             q_check = "CALL view_limit_prod_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "', '0','0', '0', '0')"
+        Else
+            If get_opt_prod_field("is_enable_qc_report1") = "1" Then
+                q_check = "CALL view_limit_ret_out_from_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "')"
+            Else
+                q_check = "CALL view_limit_prod_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "', '0','0', '0', '0')"
+            End If
         End If
 
         Dim data As DataTable = execute_query(q_check, -1, True, "", "", "", "")

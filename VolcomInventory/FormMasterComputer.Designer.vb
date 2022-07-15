@@ -101,7 +101,7 @@ Partial Class FormMasterComputer
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage3
+        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage2
         Me.XtraTabControl1.Size = New System.Drawing.Size(825, 525)
         Me.XtraTabControl1.TabIndex = 0
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XtraTabPage3})
@@ -361,7 +361,7 @@ Partial Class FormMasterComputer
         Me.XtraTabPage2.Controls.Add(Me.PanelControl1)
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.Size = New System.Drawing.Size(819, 497)
-        Me.XtraTabPage2.Text = "Data Maintenance Komputer"
+        Me.XtraTabPage2.Text = "Data Asset Komputer"
         '
         'GCdtlkomp
         '

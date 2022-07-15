@@ -1099,20 +1099,26 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormMatPRWODet.ShowDialog()
             End If
         ElseIf formName = "FormProductionRec" Then
-            'Material Purchase Receive
+            'FGPO Purchase Receive
             If FormProductionRec.XTCTabReceive.SelectedTabPageIndex = 0 Then 'based on Rec
                 FormProductionRecDet.id_order = "-1"
                 FormProductionRecDet.ShowDialog()
             Else 'based on PO
+
                 If FormProductionRec.GVProd.RowCount > 0 And FormProductionRec.GVProd.FocusedRowHandle >= 0 Then
-                    'If FormProductionRec.GVProd.GetFocusedRowCellValue("is_need_cps2_verify").ToString = "1" And FormProductionRec.GVProd.GetFocusedRowCellValue("cps2_verify").ToString = "2" Then
-                    '    warningCustom("Copy Prototype Sample 2 still not verified. Please contact Sample Departement.")
-                    'Else
-                    '    FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
-                    '    FormProductionRecDet.ShowDialog()
-                    'End If
-                    FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
-                    FormProductionRecDet.ShowDialog()
+                    If FormProductionRec.GVProd.GetFocusedRowCellValue("is_block_qc_in").ToString = "1" Then
+                        'tidak boleh masuk QC
+                        stopCustom("FGPO dalam status tidak boleh menerima barang ke dalam QC")
+                    Else
+                        'If FormProductionRec.GVProd.GetFocusedRowCellValue("is_need_cps2_verify").ToString = "1" And FormProductionRec.GVProd.GetFocusedRowCellValue("cps2_verify").ToString = "2" Then
+                        '    warningCustom("Copy Prototype Sample 2 still not verified. Please contact Sample Departement.")
+                        'Else
+                        '    FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                        '    FormProductionRecDet.ShowDialog()
+                        'End If
+                        FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                        FormProductionRecDet.ShowDialog()
+                    End If
                 End If
             End If
         ElseIf formName = "FormProductionRet" Then

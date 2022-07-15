@@ -51,9 +51,41 @@
         lvDownload.EndUpdate()
         AxCZKEM1.EnableDevice(iMachineNumber, True)
         fp.disconnect()
+        '
+        Dim dt As New DataTable
+        For it = 0 To lvDownload.Items(0).SubItems.Count - 1
+            Dim DCOL As New DataColumn(lvDownload.Columns(it).Text)
+            dt.Columns.Add(DCOL)
+        Next
+        For it = 0 To lvDownload.Items.Count - 1
+            Dim DROW As DataRow = dt.NewRow
+            For j As Integer = 0 To lvDownload.Items(it).SubItems.Count - 1
+                DROW(lvDownload.Columns(j).Text) = lvDownload.Items(it).SubItems(j).Text
+            Next
+            dt.Rows.Add(DROW)
+        Next
+        GCList.DataSource = dt
     End Sub
 
     Private Sub FormEmpFPFinger_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        print(GCList, "List Finger")
+    End Sub
+
+    Private Sub BDownload_Click(sender As Object, e As EventArgs) Handles BDownload.Click
+        If GVList.RowCount > 0 Then
+            Dim dt As DataTable = GCList.DataSource
+            Dim q As String = "INSERT INTO tb_fp_download(`user_id`,`name`,`finger_index`,`tmp_data`,`privilege`) VALUES"
+            For i = 0 To dt.Rows.Count - 1
+                If Not i = 0 Then
+                    q += ","
+                End If
+                q += "('" & dt.Rows(i)("UserID").ToString & "','" & dt.Rows(i)("Name").ToString & "','" & dt.Rows(i)("FingerIndex").ToString & "','" & dt.Rows(i)("tmpData").ToString & "','" & dt.Rows(i)("Privilege").ToString & "')"
+            Next
+            execute_non_query(q, True, "", "", "", "")
+        End If
     End Sub
 End Class

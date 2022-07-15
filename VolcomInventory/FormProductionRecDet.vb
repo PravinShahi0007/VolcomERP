@@ -526,6 +526,19 @@ GROUP BY rec.`id_prod_order`"
         makeSafeGV(GVListPurchase)
         makeSafeGV(GVBarcode)
 
+        Dim is_ok_weight As Boolean = True
+        Dim qcc As String = "SELECT rec.id_prod_order,rec.prod_order_rec_number,rec.prod_order_rec_date FROM tb_prod_order_rec_det recd
+INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=recd.id_prod_order_rec
+INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=recd.id_prod_order_det
+INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product=pod.id_prod_demand_product
+INNER JOIN tb_m_product p ON p.id_product=pdp.id_product
+WHERE p.qc_weight=0 AND rec.id_prod_order='" & id_order & "'
+GROUP BY rec.id_prod_order"
+        Dim dtcc As DataTable = execute_query(qcc, -1, True, "", "", "", "")
+        If dtcc.Rows.Count > 0 Then
+            is_ok_weight = False
+        End If
+
         'validasi
         Try
             do_date = DateTime.Parse(TEDODate.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -598,6 +611,8 @@ GROUP BY rec.`id_prod_order`"
 
             If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Or id_order = "-1" Then
                 errorInput()
+            ElseIf Not is_ok_weight Then
+                warningCustom("Timbangan belum diinput.")
             ElseIf do_date = "0001-01-01" Or arrive_date = "0001-01-01"
                 warningCustom("Please put proper date on arrive and delivery date")
             ElseIf Not cond_memo Then
@@ -660,9 +675,11 @@ GROUP BY rec.`id_prod_order`"
                         Dim qc As String = "SELECT tb.*,aql.*
 FROM
 (
-	SELECT po.id_po_type,co.`id_country`,SUM(pod.prod_order_qty) AS qty_po
+	SELECT po.id_po_type,co.`id_country`,SUM(pod.prod_order_qty) AS qty_po,dsg.id_qc_wash
 	FROM tb_prod_order_det pod
 	INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order 
+    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+    INNER JOIN tb_m_design dsg On dsg.id_design=pdd.id_design
 	INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
 	INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
 	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
@@ -677,7 +694,10 @@ INNER JOIN tb_import_aql aql ON tb.qty_po>=aql.min_qty_order AND tb.qty_po<=aql.
                         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
                         If dtc.Rows.Count > 0 Then
                             If dtc.Rows(0)("id_po_type").ToString = "2" Or Not dtc.Rows(0)("id_country").ToString = "5" Then
-                                extra_note = "Siapkan sample AQL sejumlah " & dtc.Rows(0)("qty_sample").ToString
+                                extra_note = "Siapkan sample AQL sejumlah " & dtc.Rows(0)("qty_sample").ToString & ". "
+                            End If
+                            If dtc.Rows(0)("id_qc_wash").ToString = "1" Then
+                                extra_note += "Barang termasuk kategori untuk lakukan tes pengujian cuci. "
                             End If
                         End If
                         infoCustom("Receive QC telah disimpan." & extra_note)

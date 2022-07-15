@@ -28,6 +28,19 @@ Partial Class FormEmpFPFinger
         Me.ch6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ch7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ch8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GC = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCList = New DevExpress.XtraGrid.GridControl()
+        Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BDownload = New DevExpress.XtraEditors.SimpleButton()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
+        Me.GC.SuspendLayout()
+        CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lvDownload
@@ -37,7 +50,7 @@ Partial Class FormEmpFPFinger
         Me.lvDownload.GridLines = True
         Me.lvDownload.Location = New System.Drawing.Point(0, 0)
         Me.lvDownload.Name = "lvDownload"
-        Me.lvDownload.Size = New System.Drawing.Size(542, 289)
+        Me.lvDownload.Size = New System.Drawing.Size(536, 261)
         Me.lvDownload.TabIndex = 1
         Me.lvDownload.UseCompatibleStateImageBehavior = False
         Me.lvDownload.View = System.Windows.Forms.View.Details
@@ -81,15 +94,80 @@ Partial Class FormEmpFPFinger
         '
         Me.ch8.Text = "Flag"
         '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
+        Me.XtraTabControl1.Size = New System.Drawing.Size(542, 350)
+        Me.XtraTabControl1.TabIndex = 2
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.GC})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.lvDownload)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(536, 261)
+        Me.XtraTabPage1.Text = "ListView"
+        '
+        'GC
+        '
+        Me.GC.Controls.Add(Me.GCList)
+        Me.GC.Controls.Add(Me.BDownload)
+        Me.GC.Controls.Add(Me.BPrint)
+        Me.GC.Name = "GC"
+        Me.GC.Size = New System.Drawing.Size(536, 322)
+        Me.GC.Text = "Datatable"
+        '
+        'GCList
+        '
+        Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCList.Location = New System.Drawing.Point(0, 30)
+        Me.GCList.MainView = Me.GVList
+        Me.GCList.Name = "GCList"
+        Me.GCList.Size = New System.Drawing.Size(536, 262)
+        Me.GCList.TabIndex = 0
+        Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
+        '
+        'GVList
+        '
+        Me.GVList.GridControl = Me.GCList
+        Me.GVList.Name = "GVList"
+        '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BPrint.Location = New System.Drawing.Point(0, 0)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(536, 30)
+        Me.BPrint.TabIndex = 1
+        Me.BPrint.Text = "Print"
+        '
+        'BDownload
+        '
+        Me.BDownload.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BDownload.Location = New System.Drawing.Point(0, 292)
+        Me.BDownload.Name = "BDownload"
+        Me.BDownload.Size = New System.Drawing.Size(536, 30)
+        Me.BDownload.TabIndex = 2
+        Me.BDownload.Text = "Download"
+        '
         'FormEmpFPFinger
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(542, 289)
-        Me.Controls.Add(Me.lvDownload)
+        Me.ClientSize = New System.Drawing.Size(542, 350)
+        Me.Controls.Add(Me.XtraTabControl1)
         Me.Name = "FormEmpFPFinger"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormEmpFPFinger"
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
+        Me.GC.ResumeLayout(False)
+        CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -103,4 +181,11 @@ Partial Class FormEmpFPFinger
     Private WithEvents ch6 As ColumnHeader
     Private WithEvents ch7 As ColumnHeader
     Friend WithEvents ch8 As ColumnHeader
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GC As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BDownload As DevExpress.XtraEditors.SimpleButton
 End Class

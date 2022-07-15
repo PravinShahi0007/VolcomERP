@@ -69,7 +69,8 @@
         Dim query As String = "SELECT pra.id_purc_rec_asset,pra.asset_number,pra.asset_name,pra.acq_date,pra.location_current,me.employee_name
 FROM tb_purc_rec_asset pra
 LEFT JOIN tb_m_employee me ON pra.id_employee_current=me.id_employee
-WHERE pra.id_acc_fa='799'"
+ORDER BY pra.acq_date DESC"
+        'WHERE pra.id_acc_fa='799'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCdakomp.DataSource = data
 
@@ -188,14 +189,19 @@ WHERE dmi.status_delete IS NULL ORDER BY dmi.date_mtc DESC"
 
         Dim asset_number As String = GVlistmtc.GetFocusedRowCellValue("asset_number").ToString
 
-        Dim query As String = "SELECT pra.id_purc_rec_asset,pra.asset_number,pra.asset_name,pra.acq_date,pra.location_current,me.employee_name
+        If asset_number = "" Then
+            stopCustom("Item tidak terdaftar dalam Asset !")
+        Else
+            Dim query As String = "SELECT pra.id_purc_rec_asset,pra.asset_number,pra.asset_name,pra.acq_date,pra.location_current,me.employee_name
 FROM tb_purc_rec_asset pra
 LEFT JOIN tb_m_employee me ON pra.id_employee_current=me.id_employee
-WHERE pra.id_acc_fa='799' AND pra.asset_number = '" & asset_number & "'"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCdakomp.DataSource = data
-        loadmtc()
-        XtraTabControl1.SelectedTabPage = XtraTabPage2
+WHERE pra.asset_number = '" & asset_number & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCdakomp.DataSource = data
+            loadmtc()
+            XtraTabControl1.SelectedTabPage = XtraTabPage2
+        End If
+
     End Sub
 
     Private Sub GCdakomp_Click(sender As Object, e As EventArgs) Handles GCdakomp.Click

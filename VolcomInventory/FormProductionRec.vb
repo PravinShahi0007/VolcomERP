@@ -110,7 +110,7 @@
         If Not SLEVendor.EditValue.ToString = "0" Then
             q_where = " AND wo.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
-        Dim query = "SELECT a.is_need_cps2_verify,a.cps2_verify,wo.comp_number,wo.comp_name,wo.id_comp,IFNULL(cd.color,'-') AS color,IFNULL(cd.class,'-') AS class,
+        Dim query = "SELECT a.is_block_qc_in,a.is_need_cps2_verify,a.cps2_verify,wo.comp_number,wo.comp_name,wo.id_comp,IFNULL(cd.color,'-') AS color,IFNULL(cd.class,'-') AS class,
 NOW() AS date_now,b.id_design,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name,d.design_name , d.design_code, h.term_production, g.po_type, 
 DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date,a.id_report_status,c.report_status, 
 b.id_delivery, e.delivery, f.season, e.id_season, 

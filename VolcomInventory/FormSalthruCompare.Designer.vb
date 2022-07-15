@@ -21,6 +21,8 @@ Partial Class FormSalthruCompare
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalthruCompare))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_salthru_type = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -82,6 +84,8 @@ Partial Class FormSalthruCompare
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,6 +103,8 @@ Partial Class FormSalthruCompare
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LabelControl4)
+        Me.PanelControl1.Controls.Add(Me.DEFrom)
         Me.PanelControl1.Controls.Add(Me.SLEType)
         Me.PanelControl1.Controls.Add(Me.BtnView)
         Me.PanelControl1.Controls.Add(Me.BtnExportXls)
@@ -113,13 +119,34 @@ Partial Class FormSalthruCompare
         Me.PanelControl1.Size = New System.Drawing.Size(747, 142)
         Me.PanelControl1.TabIndex = 0
         '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(217, 46)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl4.TabIndex = 57
+        Me.LabelControl4.Text = "-"
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(83, 43)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.Mask.EditMask = "Y"
+        Me.DEFrom.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEFrom.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
+        Me.DEFrom.Size = New System.Drawing.Size(128, 20)
+        Me.DEFrom.TabIndex = 56
+        '
         'SLEType
         '
-        Me.SLEType.Location = New System.Drawing.Point(80, 17)
+        Me.SLEType.Location = New System.Drawing.Point(83, 17)
         Me.SLEType.Name = "SLEType"
         Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEType.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEType.Size = New System.Drawing.Size(255, 20)
+        Me.SLEType.Size = New System.Drawing.Size(272, 20)
         Me.SLEType.TabIndex = 55
         '
         'SearchLookUpEdit1View
@@ -148,7 +175,7 @@ Partial Class FormSalthruCompare
         '
         Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
         Me.BtnView.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.BtnView.Location = New System.Drawing.Point(244, 95)
+        Me.BtnView.Location = New System.Drawing.Point(264, 95)
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(91, 28)
         Me.BtnView.TabIndex = 6
@@ -158,7 +185,7 @@ Partial Class FormSalthruCompare
         '
         Me.BtnExportXls.Image = CType(resources.GetObject("BtnExportXls.Image"), System.Drawing.Image)
         Me.BtnExportXls.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.BtnExportXls.Location = New System.Drawing.Point(141, 95)
+        Me.BtnExportXls.Location = New System.Drawing.Point(161, 95)
         Me.BtnExportXls.Name = "BtnExportXls"
         Me.BtnExportXls.Size = New System.Drawing.Size(99, 28)
         Me.BtnExportXls.TabIndex = 7
@@ -175,10 +202,10 @@ Partial Class FormSalthruCompare
         'CCBESeason
         '
         Me.CCBESeason.EditValue = ""
-        Me.CCBESeason.Location = New System.Drawing.Point(80, 69)
+        Me.CCBESeason.Location = New System.Drawing.Point(83, 69)
         Me.CCBESeason.Name = "CCBESeason"
         Me.CCBESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBESeason.Size = New System.Drawing.Size(255, 20)
+        Me.CCBESeason.Size = New System.Drawing.Size(272, 20)
         Me.CCBESeason.TabIndex = 52
         '
         'LabelControl2
@@ -193,21 +220,21 @@ Partial Class FormSalthruCompare
         '
         Me.LabelControl1.Location = New System.Drawing.Point(14, 46)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(58, 13)
         Me.LabelControl1.TabIndex = 4
-        Me.LabelControl1.Text = "Sales until"
+        Me.LabelControl1.Text = "Sales period"
         '
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(80, 43)
+        Me.DEUntil.Location = New System.Drawing.Point(227, 43)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.Mask.EditMask = "Y"
         Me.DEUntil.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.DEUntil.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
-        Me.DEUntil.Size = New System.Drawing.Size(255, 20)
+        Me.DEUntil.Size = New System.Drawing.Size(128, 20)
         Me.DEUntil.TabIndex = 3
         '
         'GCData
@@ -651,6 +678,8 @@ Partial Class FormSalthruCompare
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -728,4 +757,6 @@ Partial Class FormSalthruCompare
     Friend WithEvents GridColumnproduct_description As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
 End Class
