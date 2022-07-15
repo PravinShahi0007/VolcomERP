@@ -526,6 +526,19 @@ GROUP BY rec.`id_prod_order`"
         makeSafeGV(GVListPurchase)
         makeSafeGV(GVBarcode)
 
+        Dim is_ok_weight As Boolean = True
+        Dim qcc As String = "SELECT rec.id_prod_order,rec.prod_order_rec_number,rec.prod_order_rec_date FROM tb_prod_order_rec_det recd
+INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=recd.id_prod_order_rec
+INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=recd.id_prod_order_det
+INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product=pod.id_prod_demand_product
+INNER JOIN tb_m_product p ON p.id_product=pdp.id_product
+WHERE p.qc_weight=0 AND rec.id_prod_order='" & id_order & "'
+GROUP BY rec.id_prod_order"
+        Dim dtcc As DataTable = execute_query(qcc, -1, True, "", "", "", "")
+        If dtcc.Rows.Count > 0 Then
+            is_ok_weight = False
+        End If
+
         'validasi
         Try
             do_date = DateTime.Parse(TEDODate.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -598,6 +611,8 @@ GROUP BY rec.`id_prod_order`"
 
             If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Or id_order = "-1" Then
                 errorInput()
+            ElseIf Not is_ok_weight Then
+                warningCustom("Timbangan belum diinput.")
             ElseIf do_date = "0001-01-01" Or arrive_date = "0001-01-01"
                 warningCustom("Please put proper date on arrive and delivery date")
             ElseIf Not cond_memo Then
