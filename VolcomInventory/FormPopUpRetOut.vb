@@ -52,7 +52,7 @@ WHERE reto.id_report_status=6"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If id_pop_up = "1" Then 'return In prod
             'check if PO locked
-            If GVRetOut.GetFocusedRowCellValue("id_prod_order").ToString Then
+            If GVRetOut.GetFocusedRowCellValue("is_block_qc_in").ToString = "1" Then
                 'tidak boleh masuk QC
                 stopCustom("FGPO dalam status tidak boleh menerima barang ke dalam QC")
             Else
