@@ -141,23 +141,29 @@
             ignore_holiday = "2"
         End If
         '
-        If id_shift = "-1" Then 'new
-            Dim query As String = ""
-            query = "INSERT INTO tb_emp_shift(shift_name,shift_code,start_work,late_start_tolerance,end_work,start_break,end_break,minutes_work,monday,tuesday,wednesday,thursday,friday,saturday,sunday,is_start_daybefore,is_start_tol_daybefore,is_end_dayafter,is_ignore_holiday,out_tolerance)"
-            query += "VALUES('" + shift_name + "','" + shift_code + "','" + start_work + "','" + start_tolerance + "','" + end_work + "','" + start_break + "','" + end_break + "','" + minutes_work + "','" + mon + "','" + tues + "','" + wed + "','" + thurs + "','" + fri + "','" + sat + "','" + sun + "','" & is_start_daybefore & "','" & is_start_tol_daybefore & "','" & is_end_dayafter & "','" & ignore_holiday & "','" & end_tolerance & "')"
-            execute_non_query(query, True, "", "", "", "")
+        Dim curr_shift As String = execute_query("SELECT COUNT(shift_code) FROM tb_emp_shift WHERE shift_code = '" + shift_code + "' AND id_shift <> '" + id_shift + "'", 0, True, "", "", "", "")
 
-            FormEmpShift.load_schedule()
+        If curr_shift = "0" Then
+            If id_shift = "-1" Then 'new
+                Dim query As String = ""
+                query = "INSERT INTO tb_emp_shift(shift_name,shift_code,start_work,late_start_tolerance,end_work,start_break,end_break,minutes_work,monday,tuesday,wednesday,thursday,friday,saturday,sunday,is_start_daybefore,is_start_tol_daybefore,is_end_dayafter,is_ignore_holiday,out_tolerance)"
+                query += "VALUES('" + shift_name + "','" + shift_code + "','" + start_work + "','" + start_tolerance + "','" + end_work + "','" + start_break + "','" + end_break + "','" + minutes_work + "','" + mon + "','" + tues + "','" + wed + "','" + thurs + "','" + fri + "','" + sat + "','" + sun + "','" & is_start_daybefore & "','" & is_start_tol_daybefore & "','" & is_end_dayafter & "','" & ignore_holiday & "','" & end_tolerance & "')"
+                execute_non_query(query, True, "", "", "", "")
 
-            Close()
+                FormEmpShift.load_schedule()
+
+                Close()
+            Else
+                Dim query As String = ""
+                query = "UPDATE tb_emp_shift SET shift_name='" + shift_name + "',shift_code='" + shift_code + "',start_work='" + start_work + "',late_start_tolerance='" + start_tolerance + "',end_work='" + end_work + "',start_break='" + start_break + "',end_break='" + end_break + "',minutes_work='" + minutes_work + "',monday='" + mon + "',tuesday='" + tues + "',wednesday='" + wed + "',thursday='" + thurs + "',friday='" + fri + "',saturday='" + sat + "',sunday='" + sun + "',is_start_daybefore='" & is_start_daybefore & "',is_start_tol_daybefore='" & is_start_tol_daybefore & "',is_end_dayafter='" & is_end_dayafter & "',is_ignore_holiday='" & ignore_holiday & "',out_tolerance='" & end_tolerance & "' WHERE id_shift='" + id_shift + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                FormEmpShift.load_schedule()
+
+                Close()
+            End If
         Else
-            Dim query As String = ""
-            query = "UPDATE tb_emp_shift SET shift_name='" + shift_name + "',shift_code='" + shift_code + "',start_work='" + start_work + "',late_start_tolerance='" + start_tolerance + "',end_work='" + end_work + "',start_break='" + start_break + "',end_break='" + end_break + "',minutes_work='" + minutes_work + "',monday='" + mon + "',tuesday='" + tues + "',wednesday='" + wed + "',thursday='" + thurs + "',friday='" + fri + "',saturday='" + sat + "',sunday='" + sun + "',is_start_daybefore='" & is_start_daybefore & "',is_start_tol_daybefore='" & is_start_tol_daybefore & "',is_end_dayafter='" & is_end_dayafter & "',is_ignore_holiday='" & ignore_holiday & "',out_tolerance='" & end_tolerance & "' WHERE id_shift='" + id_shift + "'"
-            execute_non_query(query, True, "", "", "", "")
-
-            FormEmpShift.load_schedule()
-
-            Close()
+            stopCustom("Duplicate code.")
         End If
     End Sub
 
