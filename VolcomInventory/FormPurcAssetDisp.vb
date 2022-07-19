@@ -378,7 +378,7 @@ VALUES('" & id_user & "',NOW(),'" & Date.Parse(DEReff.EditValue.ToString).ToStri
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        Dim q As String = "SELECT pps.*,emp.employee_name,ta.tag_description 
+        Dim q As String = "SELECT pps.*,DATE_FORMAT(pps.date_reff,'%d %M %Y') AS date_reffx,emp.employee_name,ta.tag_description 
 FROM `tb_purc_rec_asset_disp` pps
 INNER JOIN tb_coa_tag ta ON ta.id_coa_tag=pps.id_coa_tag
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
