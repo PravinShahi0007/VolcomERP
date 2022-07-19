@@ -502,7 +502,7 @@ Partial Public Class ReportPurcAssetDisp
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(211.4583!, 23.0!)
         Me.XrLabel14.StylePriority.UseTextAlignment = False
-        Me.XrLabel14.Text = "[date_reff]"
+        Me.XrLabel14.Text = "[date_reffx]"
         Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel15
