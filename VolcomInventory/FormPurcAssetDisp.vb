@@ -32,7 +32,7 @@
         Else
             'edit
             BMark.Visible = True
-            BtnPrint.Visible = True
+            BtnPrint.Visible = False
             SLEUnit.Properties.ReadOnly = True
             PCAddDel.Visible = False
             SLECOAKerugian.Properties.ReadOnly = True

@@ -10473,6 +10473,12 @@
     <Compile Include="ReportPurcAssetDep.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPurcAssetDisp.Designer.vb">
+      <DependentUpon>ReportPurcAssetDisp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPurcAssetDisp.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPurcOrder.Designer.vb">
       <DependentUpon>ReportPurcOrder.vb</DependentUpon>
     </Compile>
@@ -16697,6 +16703,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcAssetDep.resx">
       <DependentUpon>ReportPurcAssetDep.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPurcAssetDisp.resx">
+      <DependentUpon>ReportPurcAssetDisp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcOrder.resx">
       <DependentUpon>ReportPurcOrder.vb</DependentUpon>

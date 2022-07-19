@@ -445,7 +445,7 @@ ORDER BY id_purc_rec_asset_disp DESC"
 
     Private Sub GVDisp_DoubleClick(sender As Object, e As EventArgs) Handles GVDisp.DoubleClick
         If GVDisp.RowCount > 0 Then
-            FormPurcAssetDisp.id_trans = GVDisp.GetFocusedRowCellValue("is_sell").ToString()
+            FormPurcAssetDisp.id_trans = GVDisp.GetFocusedRowCellValue("id_purc_rec_asset_disp").ToString()
             FormPurcAssetDisp.ShowDialog()
         End If
     End Sub
