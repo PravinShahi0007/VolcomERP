@@ -102,7 +102,7 @@ WHERE dep.id_departement=4", 0, True, "", "", "", "")
                 If Not i = 0 Then
                     query_kod += ","
                 End If
-                query_kod += "('" & id_ko & "','0','" & GVProd.GetRowCellValue(i, "id_mat_purc").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time_before").ToString & "','" & GVProd.GetRowCellValue(i, "top").ToString & "')"
+                query_kod += "('" & id_ko & "','0','" & GVProd.GetRowCellValue(i, "id_mat_purc").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time").ToString & "','" & GVProd.GetRowCellValue(i, "top").ToString & "')"
             Next
             execute_non_query(query_kod, True, "", "", "", "")
             'generate KO number
