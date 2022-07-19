@@ -32,7 +32,7 @@
         Else
             'edit
             BMark.Visible = True
-            BtnPrint.Visible = False
+            BtnPrint.Visible = True
             SLEUnit.Properties.ReadOnly = True
             PCAddDel.Visible = False
             SLECOAKerugian.Properties.ReadOnly = True
@@ -388,6 +388,13 @@ WHERE id_purc_rec_asset_disp='" & id_trans & "'"
         Cursor = Cursors.WaitCursor
 
         Dim Report As New ReportPurcAssetDisp()
+
+        If is_sell Then
+            Report.LTitle.Text = "FIXED ASSET SOLD"
+        Else
+            Report.LTitle.Text = "FIXED ASSET DISPOSAL"
+        End If
+
         Report.DataSource = dt
         Report.id_trans = id_trans
         Report.dt = GCItem.DataSource
