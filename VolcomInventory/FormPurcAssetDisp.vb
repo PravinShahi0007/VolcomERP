@@ -38,8 +38,9 @@
             SLECOAKerugian.Properties.ReadOnly = True
             SLECOAPendPenjualan.Properties.ReadOnly = True
 
-            Dim q As String = "SELECT pps.*,emp.employee_name 
+            Dim q As String = "SELECT pps.*,emp.employee_name,ta.tag_description 
 FROM `tb_purc_rec_asset_disp` pps
+INNER JOIN tb_coa_tag ta ON ta.id_coa_tag=pps.id_coa_tag
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 WHERE id_purc_rec_asset_disp='" & id_trans & "'"
@@ -376,6 +377,44 @@ VALUES('" & id_user & "',NOW(),'" & Date.Parse(DEReff.EditValue.ToString).ToStri
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim q As String = "SELECT pps.*,emp.employee_name,ta.tag_description 
+FROM `tb_purc_rec_asset_disp` pps
+INNER JOIN tb_coa_tag ta ON ta.id_coa_tag=pps.id_coa_tag
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE id_purc_rec_asset_disp='" & id_trans & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
+        Cursor = Cursors.WaitCursor
+
+        Dim Report As New ReportPurcAssetDisp()
+
+        If is_sell Then
+            Report.LTitle.Text = "FIXED ASSET SOLD"
+        Else
+            Report.LTitle.Text = "FIXED ASSET DISPOSAL"
+        End If
+
+        Report.DataSource = dt
+        Report.id_trans = id_trans
+        Report.dt = GCItem.DataSource
+        ' ...
+        ' creating and saving the view's layout to a new memory stream 
+        '
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVItem.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVItem.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVItem)
+        Report.GVItem.BestFitColumns()
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 End Class

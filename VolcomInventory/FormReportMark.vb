@@ -5107,7 +5107,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                     Dim id_shift, id_empployee_varx, date_var As String
                     id_shift = data_after(j)("id_shift").ToString
                     id_empployee_varx = data_after(j)("id_employee").ToString
-                    date_var = Date.Parse(data_after(j)("date").ToString).ToString("yyy-MM-dd")
+                    date_var = Date.Parse(data_after(j)("date").ToString).ToString("yyyy-MM-dd")
 
                     If Not id_shift = "" Then
                         If id_shift = "0" Then
