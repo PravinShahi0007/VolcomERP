@@ -60,7 +60,7 @@ Partial Class FormPurcAssetDisp
         Me.GCItem = New DevExpress.XtraGrid.GridControl()
         Me.GVItem = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAsset = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLEAsset = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -115,6 +115,7 @@ Partial Class FormPurcAssetDisp
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLECOAPendPenjualan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -528,7 +529,7 @@ Partial Class FormPurcAssetDisp
         Me.GVItem.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVItem.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVItem.ColumnPanelRowHeight = 50
-        Me.GVItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn4, Me.GridColumn11, Me.GridColumn6, Me.GridColumn3, Me.GridColumn5, Me.GridColumn9, Me.GridColumn2, Me.GridColumnHargaJual, Me.GridColumn31, Me.GridColumn32})
+        Me.GVItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnAsset, Me.GridColumn39, Me.GridColumn4, Me.GridColumn11, Me.GridColumn6, Me.GridColumn3, Me.GridColumn5, Me.GridColumn9, Me.GridColumn2, Me.GridColumnHargaJual, Me.GridColumn31, Me.GridColumn32})
         Me.GVItem.GridControl = Me.GCItem
         Me.GVItem.Name = "GVItem"
         Me.GVItem.OptionsPrint.AllowMultilineHeaders = True
@@ -541,15 +542,15 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn1.FieldName = "id_purc_rec_asset_disp_det"
         Me.GridColumn1.Name = "GridColumn1"
         '
-        'GridColumn8
+        'GridColumnAsset
         '
-        Me.GridColumn8.Caption = "Asset"
-        Me.GridColumn8.ColumnEdit = Me.RISLEAsset
-        Me.GridColumn8.FieldName = "id_purc_rec_asset"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
-        Me.GridColumn8.Width = 263
+        Me.GridColumnAsset.Caption = "Asset"
+        Me.GridColumnAsset.ColumnEdit = Me.RISLEAsset
+        Me.GridColumnAsset.FieldName = "id_purc_rec_asset"
+        Me.GridColumnAsset.Name = "GridColumnAsset"
+        Me.GridColumnAsset.Visible = True
+        Me.GridColumnAsset.VisibleIndex = 0
+        Me.GridColumnAsset.Width = 155
         '
         'RISLEAsset
         '
@@ -654,8 +655,8 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn4.FieldName = "asset_note"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 450
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 249
         '
         'GridColumn11
         '
@@ -669,9 +670,10 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "total_value"
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_value", "{0:N2}")})
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
-        Me.GridColumn11.Width = 199
+        Me.GridColumn11.VisibleIndex = 5
+        Me.GridColumn11.Width = 109
         '
         'RepositoryItemTextEdit2
         '
@@ -692,9 +694,10 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "rem_value"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rem_value", "{0:N2}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
-        Me.GridColumn6.Width = 249
+        Me.GridColumn6.VisibleIndex = 8
+        Me.GridColumn6.Width = 150
         '
         'GridColumn3
         '
@@ -702,8 +705,8 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn3.FieldName = "acc_fa_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 68
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 36
         '
         'GridColumn5
         '
@@ -711,8 +714,8 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn5.FieldName = "acc_fa"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
-        Me.GridColumn5.Width = 201
+        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.Width = 110
         '
         'GridColumn9
         '
@@ -720,8 +723,8 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn9.FieldName = "acc_dep_accum_name"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
-        Me.GridColumn9.Width = 65
+        Me.GridColumn9.VisibleIndex = 6
+        Me.GridColumn9.Width = 34
         '
         'GridColumn2
         '
@@ -729,8 +732,8 @@ Partial Class FormPurcAssetDisp
         Me.GridColumn2.FieldName = "acc_dep_accum"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 6
-        Me.GridColumn2.Width = 121
+        Me.GridColumn2.VisibleIndex = 7
+        Me.GridColumn2.Width = 65
         '
         'GridColumnHargaJual
         '
@@ -1013,6 +1016,15 @@ Partial Class FormPurcAssetDisp
         Me.LabelControl7.TabIndex = 0
         Me.LabelControl7.Text = "Note"
         '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Asset Number"
+        Me.GridColumn39.FieldName = "asset_number"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 1
+        Me.GridColumn39.Width = 89
+        '
         'FormPurcAssetDisp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1098,7 +1110,7 @@ Partial Class FormPurcAssetDisp
     Friend WithEvents GCItem As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVItem As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAsset As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RISLEAsset As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1169,4 +1181,5 @@ Partial Class FormPurcAssetDisp
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

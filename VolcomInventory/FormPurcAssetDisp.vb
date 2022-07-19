@@ -100,7 +100,7 @@ GROUP BY ass.id_purc_rec_asset"
         Dim q As String = "SELECT dd.`id_purc_rec_asset_disp_det`,dd.`id_purc_rec_asset`,dd.`id_acc_fa`,dd.`id_acc_dep_accum`,dd.total_value,dd.`rem_value`,dd.`harga_jual`
 ,accacum.acc_name AS acc_dep_accum_name,accacum.acc_description AS acc_dep_accum
 ,accfa.acc_name AS acc_fa_name,accfa.acc_description AS acc_fa
-,ass.asset_note
+,ass.asset_note,ass.asset_number
 FROM tb_purc_rec_asset_disp_det dd
 INNER JOIN tb_purc_rec_asset ass ON ass.id_purc_rec_asset=dd.id_purc_rec_asset
 INNER JOIN tb_a_acc accfa ON accfa.id_acc=dd.id_acc_fa
@@ -123,6 +123,7 @@ WHERE dd.id_purc_rec_asset_disp='" & id_trans & "'"
             GVItem.SetFocusedRowCellValue("acc_fa", sle.Properties.View.GetFocusedRowCellValue("acc_fa").ToString())
             GVItem.SetFocusedRowCellValue("id_acc_fa", sle.Properties.View.GetFocusedRowCellValue("id_acc_fa").ToString())
             GVItem.SetFocusedRowCellValue("asset_note", sle.Properties.View.GetFocusedRowCellValue("asset_note").ToString())
+            GVItem.SetFocusedRowCellValue("asset_number", sle.Properties.View.GetFocusedRowCellValue("asset_number").ToString())
 
             GVItem.SetFocusedRowCellValue("total_value", sle.Properties.View.GetFocusedRowCellValue("total_value"))
             GVItem.SetFocusedRowCellValue("rem_value", sle.Properties.View.GetFocusedRowCellValue("rem_value"))
@@ -394,19 +395,24 @@ WHERE id_purc_rec_asset_disp='" & id_trans & "'"
         Else
             Report.LTitle.Text = "FIXED ASSET DISPOSAL"
         End If
+        '
 
+        '
         Report.DataSource = dt
         Report.id_trans = id_trans
         Report.dt = GCItem.DataSource
         ' ...
         ' creating and saving the view's layout to a new memory stream 
         '
+
+        GridColumnAsset.VisibleIndex = "-1"
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVItem.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
         Report.GVItem.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
+        GridColumnAsset.VisibleIndex = "0"
 
         'Grid Detail
         ReportStyleGridview(Report.GVItem)
