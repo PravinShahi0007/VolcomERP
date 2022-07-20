@@ -350,9 +350,31 @@
                                 shipping_price = decimalSQL(row_ship("price").ToString)
                             Next
 
+                            'payment_id
+                            Dim payment_id As String = ""
+                            Try
+                                Dim url_trans As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/orders/" + id + "/transactions.json"
+                                Dim request_trans As Net.WebRequest = Net.WebRequest.Create(url_trans)
+                                request_trans.Method = "GET"
+                                request_trans.Credentials = New Net.NetworkCredential(username, password)
+                                Dim response_trans As Net.WebResponse = request_trans.GetResponse()
+                                Using dataStreamTrans As IO.Stream = response_trans.GetResponseStream()
+                                    Dim readerTrans As IO.StreamReader = New IO.StreamReader(dataStreamTrans)
+                                    Dim responseFromServerTrans As String = readerTrans.ReadToEnd()
+                                    Dim json_trans As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServerTrans)
+                                    For Each row_trans In json_trans("transactions").ToList
+                                        If row_trans("status").ToString = "success" Then
+                                            payment_id = row_trans("receipt")("payment_id").ToString
+                                        End If
+                                    Next
+                                End Using
+                            Catch ex As Exception
+                                payment_id = ""
+                            End Try
+
                             'detail line item
                             Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address,shipping_address1,shipping_address2, shipping_phone, 
-                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, sku, design_price, ol_order_qty, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, id_comp_group) VALUES "
+                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, sku, design_price, ol_order_qty, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, id_comp_group, payment_id) VALUES "
                             Dim ol_store_sku As String = ""
                             Dim ol_store_id As String = ""
                             Dim sku As String = ""
@@ -385,7 +407,7 @@
                                     qins += ","
                                 End If
                                 qins += "('" + id + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + addSlashes(customer_name) + "', '" + addSlashes(shipping_name) + "', '" + addSlashes(shipping_address) + "','" + addSlashes(shipping_address1) + "','" + addSlashes(shipping_address2) + "', '" + addSlashes(shipping_phone) + "', 
-                        '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + sku + "', '" + design_price + "', '" + ol_order_qty + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_comp_group + "') "
+                        '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + sku + "', '" + design_price + "', '" + ol_order_qty + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_comp_group + "', '" + payment_id + "') "
                                 i += 1
                             Next
 
@@ -519,9 +541,31 @@
                         shipping_price = decimalSQL(row_ship("price").ToString)
                     Next
 
+                    'payment_id
+                    Dim payment_id As String = ""
+                    Try
+                        Dim url_trans As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/orders/" + id + "/transactions.json"
+                        Dim request_trans As Net.WebRequest = Net.WebRequest.Create(url_trans)
+                        request_trans.Method = "GET"
+                        request_trans.Credentials = New Net.NetworkCredential(username, password)
+                        Dim response_trans As Net.WebResponse = request_trans.GetResponse()
+                        Using dataStreamTrans As IO.Stream = response_trans.GetResponseStream()
+                            Dim readerTrans As IO.StreamReader = New IO.StreamReader(dataStreamTrans)
+                            Dim responseFromServerTrans As String = readerTrans.ReadToEnd()
+                            Dim json_trans As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServerTrans)
+                            For Each row_trans In json_trans("transactions").ToList
+                                If row_trans("status").ToString = "success" Then
+                                    payment_id = row_trans("receipt")("payment_id").ToString
+                                End If
+                            Next
+                        End Using
+                    Catch ex As Exception
+                        payment_id = ""
+                    End Try
+
                     'detail line item
                     Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address,shipping_address1,shipping_address2, shipping_phone, 
-                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, sku, design_price, sales_order_det_qty, grams, financial_status, shipping_price, discount_code, id_comp_group) VALUES "
+                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, ol_store_sku, ol_store_id, sku, design_price, sales_order_det_qty, grams, financial_status, shipping_price, discount_code, id_comp_group, payment_id) VALUES "
                     Dim ol_store_sku As String = ""
                     Dim ol_store_id As String = ""
                     Dim sku As String = ""
@@ -541,7 +585,7 @@
                             qins += ","
                         End If
                         qins += "('" + id + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + addSlashes(customer_name) + "', '" + addSlashes(shipping_name) + "', '" + addSlashes(shipping_address) + "','" + addSlashes(shipping_address1) + "','" + addSlashes(shipping_address2) + "', '" + shipping_phone + "', 
-                        '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_comp_group + "') "
+                        '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + sku + "', '" + design_price + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_comp_group + "', '" + payment_id + "') "
                         i += 1
                     Next
 
