@@ -3219,11 +3219,11 @@ WHERE awbill_no != '' AND awbill_type='2' AND is_lock='2' AND is_old_ways=1
             GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`, IFNULL(v.id_list_payout_ver,0) AS `id_list_payout_ver`
             FROM
             (
-	            SELECT ol.*,lp.`payment`,lp.`trans_fee`,lp.pay_type, lp.id_list_payout, SUM(ol.other_price * ol.sales_order_det_qty) AS `other_price_sum`
+	            SELECT ol.payment_id AS `checkout_id`, ol.sales_order_ol_shop_number, ol.id, lp.`payment`,lp.`trans_fee`,lp.pay_type, lp.id_list_payout, SUM(ol.other_price * ol.sales_order_det_qty) AS `other_price_sum`
 	            FROM tb_ol_store_order ol
 	            LEFT JOIN tb_list_payout lp ON lp.id=ol.`id`
                 LEFT JOIN tb_list_payout_trans tr ON tr.id_list_payout_trans = lp.id_list_payout_trans AND tr.id_report_status!=5
-	            WHERE NOT ISNULL(ol.`checkout_id`) AND ol.id_comp_group=" + id_vios + "
+	            WHERE NOT ISNULL(ol.`payment_id`) AND ol.id_comp_group=" + id_vios + "
 	            GROUP BY ol.`id`
             ) ol
             INNER JOIN tb_sales_order so ON so.`id_sales_order_ol_shop`=ol.`id`
@@ -3249,7 +3249,7 @@ WHERE awbill_no != '' AND awbill_type='2' AND is_lock='2' AND is_old_ways=1
             '' AS inv_number, '' AS `ship_inv_number`, ol.number AS `ver_number`,
             0 AS id_sales_pos, 0 AS `id_invoice_ship`, IFNULL(ol.id_list_payout_ver,0) AS `id_list_payout_ver`
             FROM (
-	            SELECT v.*,lp.`payment`,
+	            SELECT v.id_list_payout_ver,v.`number`,v.checkout_id, v.order_number,lp.`payment`,
 	            lp.`trans_fee`,lp.pay_type, lp.id_list_payout, SUM(IF(d.id_dc=1,(d.value * -1),d.value)) AS `value`
 	            FROM tb_list_payout_ver v 
 	            INNER JOIN tb_list_payout_ver_det d ON d.id_list_payout_ver = v.id_list_payout_ver
