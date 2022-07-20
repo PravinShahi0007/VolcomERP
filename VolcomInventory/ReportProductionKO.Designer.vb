@@ -610,10 +610,10 @@ Partial Public Class ReportProductionKO
         '
         'XrTable1
         '
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 12.00002!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0000529819!, 0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(688.9999!, 13.28125!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(688.9999!, 25.28127!)
         Me.XrTable1.StylePriority.UseTextAlignment = False
         Me.XrTable1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -625,7 +625,7 @@ Partial Public Class ReportProductionKO
         '
         'XrTableCell3
         '
-        Me.XrTableCell3.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell3.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell3.Name = "XrTableCell3"
         Me.XrTableCell3.StylePriority.UseFont = False
         Me.XrTableCell3.Text = "KONFIRMASI ORDER"
