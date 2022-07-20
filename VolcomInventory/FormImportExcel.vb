@@ -3517,7 +3517,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`,v.number AS `ver_number`,
             GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`,  IFNULL(v.id_list_payout_ver,0) AS `id_list_payout_ver`
             FROM (
-	            SELECT ol.id, ol.checkout_id,ol.sales_order_ol_shop_number,
+	            SELECT ol.id, ol.payment_id AS `checkout_id`,ol.sales_order_ol_shop_number,
 	            IFNULL(lp.id_virtual_acc_trans,0) AS `id_virtual_acc_trans`, SUM(ol.other_price * ol.sales_order_det_qty) AS `other_price_sum`
 	            FROM tb_ol_store_order ol
 	            LEFT JOIN tb_virtual_acc_trans_det lp ON lp.id =ol.`id`
