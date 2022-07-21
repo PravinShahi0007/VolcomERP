@@ -695,7 +695,8 @@ GROUP BY p.sku"
   }
 }")
         'Console.WriteLine(tracking_url + tracking_number)
-        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/" + api_new_version + "/orders/" & id_order & "/fulfillments.json", data, "application/json", "POST", username, password)
+        'versi support terakhir 2021-07
+        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/2021-07/orders/" & id_order & "/fulfillments.json", data, "application/json", "POST", username, password)
     End Sub
 
     Function get_tag(ByVal product_id As String) As String
