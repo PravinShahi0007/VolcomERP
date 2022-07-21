@@ -836,7 +836,7 @@ Partial Class FormPreCalFGPODet
         Me.XTPVendor.Controls.Add(Me.PCVendor)
         Me.XTPVendor.Name = "XTPVendor"
         Me.XTPVendor.Size = New System.Drawing.Size(1016, 388)
-        Me.XTPVendor.Text = "Choose Vendor"
+        Me.XTPVendor.Text = "Vendor Option"
         '
         'GCVendor
         '
@@ -1730,7 +1730,7 @@ Partial Class FormPreCalFGPODet
         Me.XTPChoosen.Controls.Add(Me.PCPickVendor)
         Me.XTPChoosen.Name = "XTPChoosen"
         Me.XTPChoosen.Size = New System.Drawing.Size(1016, 388)
-        Me.XTPChoosen.Text = "Pick Vendor"
+        Me.XTPChoosen.Text = "Selected Vendor"
         '
         'GCPickVendor
         '

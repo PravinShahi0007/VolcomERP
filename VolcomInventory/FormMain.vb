@@ -8968,6 +8968,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formname = "FormProposePaymentCardPOS" Then
             print(FormProposePaymentCardPOS.GCData, "List Propose Payment Card POS")
+        ElseIf formname = "FormPackaging" Then
+            print(FormPackaging.GCClass, "List Packaging Weight " & FormPackaging.LOlShop.Text)
         Else
             RPSubMenu.Visible = False
         End If
@@ -10070,6 +10072,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormProposePaymentCardPOS" Then
             FormProposePaymentCardPOS.Close()
             FormProposePaymentCardPOS.Dispose()
+        ElseIf formName = "FormPackaging" Then
+            FormPackaging.Close()
+            FormPackaging.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -17396,6 +17401,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProposePaymentCardPOS.Show()
             FormProposePaymentCardPOS.WindowState = FormWindowState.Maximized
             FormProposePaymentCardPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPackagingWeight_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPackagingWeight.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPackaging.MdiParent = Me
+            FormPackaging.Show()
+            FormPackaging.WindowState = FormWindowState.Maximized
+            FormPackaging.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
