@@ -11978,15 +11978,14 @@ WHERE id_item_pps='" & id_report & "'"
                                         WHERE ds.id_deviden='" & id_report & "'  AND ds.pph_amount >0 
                                         UNION ALL
                                         /* lawan laba ditahan debit */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,c.id_acc_ap AS `id_acc`,1  AS id_vendor,1 AS id_comp,  1 AS `qty`,SUM(ds.deviden_amount+ds.pph_amount) AS `debit`,0 AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,CONCAT('Pembagian Deviden ',d.profit_year) AS `note`,384 AS report_mark_type,ds.id_deviden AS id_report, d.profit_year AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor,1 AS id_coa_tag
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,acc.id_acc AS `id_acc`,1  AS id_vendor,1 AS id_comp,  1 AS `qty`,SUM(ds.deviden_amount+ds.pph_amount) AS `debit`,0 AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,CONCAT('Pembagian Deviden ',d.profit_year) AS `note`,384 AS report_mark_type,ds.id_deviden AS id_report, d.profit_year AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor,1 AS id_coa_tag
                                         FROM `tb_deviden_share` ds
                                         INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
-                                        INNER JOIN tb_m_comp c ON ds.id_comp=c.id_comp
+                                        INNER JOIN tb_a_acc acc ON acc.acc_name=CONCAT('22121110',RIGHT(d.profit_year,2))
                                         WHERE ds.id_deviden='" & id_report & "'               
                                     )trx WHERE trx.debit != 0 OR trx.credit != 0"
                 execute_non_query(qjd, True, "", "", "", "")
                 '
-
                 FormMain.SplashScreenManager1.CloseWaitForm()
 
             End If
