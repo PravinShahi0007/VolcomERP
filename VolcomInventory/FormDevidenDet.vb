@@ -187,7 +187,7 @@ WHERE a.`id_report_status`=6 AND YEAR(a.`date_reference`)<='" & SLEYear.EditValu
                 'search prev year percentage
                 Dim qs As String = "SELECT profit_percent
 FROM `tb_deviden`
-WHERE profit_year=(SELECT MAX(profit_year) FROM tb_deviden WHERE profit_year<'2021' AND id_report_status=6) "
+WHERE profit_year=(SELECT MAX(profit_year) FROM tb_deviden WHERE profit_year<'" & SLEYear.EditValue.ToString & "' AND id_report_status=6) "
                 Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
 
                 TEDevidenPercent.EditValue = 0
