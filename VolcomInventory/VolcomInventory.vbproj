@@ -3834,6 +3834,12 @@
     <Compile Include="FormOutlet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPackaging.Designer.vb">
+      <DependentUpon>FormPackaging.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPackaging.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPaymentMissing.Designer.vb">
       <DependentUpon>FormPaymentMissing.vb</DependentUpon>
     </Compile>
@@ -12918,6 +12924,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutlet.resx">
       <DependentUpon>FormOutlet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPackaging.resx">
+      <DependentUpon>FormPackaging.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPaymentMissing.resx">
       <DependentUpon>FormPaymentMissing.vb</DependentUpon>
