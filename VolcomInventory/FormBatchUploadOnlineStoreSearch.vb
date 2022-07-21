@@ -51,6 +51,8 @@
     End Sub
 
     Private Sub SBSelect_Click(sender As Object, e As EventArgs) Handles SBSelect.Click
+        GVProduct.FindFilterText = ""
+
         GVProduct.ActiveFilterString = "is_checked = 'yes'"
 
         FormBatchUploadOnlineStore.TEProductCode.EditValue = ""
