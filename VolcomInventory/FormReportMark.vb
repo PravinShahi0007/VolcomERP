@@ -11385,8 +11385,8 @@ SELECT cal.`id_pre_cal_fgpo`,l.`id_pre_cal_fgpo_list`,l.`id_prod_order`,d.`id_de
 ,SUM(ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * ROUND(l.`qty`*(cal.`sales_percent`/100)),2)) AS tot_royalty
 ,l.qty
 FROM `tb_pre_cal_fgpo_list` l
-INNER JOIN tb_pre_cal_fgpo cal ON cal.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo` AND cal.id_report_status=6
-INNER JOIN tb_prod_order po ON po.`id_prod_order`=l.`id_prod_order`
+INNER JOIN tb_pre_cal_fgpo cal ON cal.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=l.`id_prod_order` AND po.id_po_type!=3
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
 INNER JOIN 
