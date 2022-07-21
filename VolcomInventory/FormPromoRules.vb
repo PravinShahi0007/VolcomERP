@@ -5,9 +5,19 @@
 
     Sub viewRules()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT r.id_rules, r.report_number, r.id_design_cat, dc.design_cat, r.limit_value, r.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`, e.employee_name AS created_by, DATE_FORMAT(r.created_date, '%d %M %Y %H:%i:%s') AS created_date, st.report_status
-        FROM tb_promo_rules r 
-        INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = r.id_design_cat
+        Dim query As String = "SELECT r.id_rules, r.report_number, r.limit_value, r.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`, e.employee_name AS created_by, DATE_FORMAT(r.created_date, '%d %M %Y %H:%i:%s') AS created_date, st.report_status, (SELECT GROUP_CONCAT(design_price_type) FROM tb_lookup_design_price_type WHERE id_design_price_type IN (
+            SUBSTRING_INDEX(SUBSTRING_INDEX(r.id_design_price_type, ',', 1), ',', -1), 
+            SUBSTRING_INDEX(SUBSTRING_INDEX(r.id_design_price_type, ',', 2), ',', -1), 
+            SUBSTRING_INDEX(SUBSTRING_INDEX(r.id_design_price_type, ',', 3), ',', -1),
+            SUBSTRING_INDEX(SUBSTRING_INDEX(r.id_design_price_type, ',', 4), ',', -1),
+            SUBSTRING_INDEX(SUBSTRING_INDEX(r.id_design_price_type, ',', 5), ',', -1),
+            SUBSTRING_INDEX(SUBSTRING_INDEX(r.id_design_price_type, ',', 6), ',', -1),
+            SUBSTRING_INDEX(SUBSTRING_INDEX(r.id_design_price_type, ',', 7), ',', -1),
+            SUBSTRING_INDEX(SUBSTRING_INDEX(r.id_design_price_type, ',', 8), ',', -1),
+            SUBSTRING_INDEX(SUBSTRING_INDEX(r.id_design_price_type, ',', 9), ',', -1),
+            SUBSTRING_INDEX(SUBSTRING_INDEX(r.id_design_price_type, ',', 10), ',', -1)
+        )) AS design_cat
+        FROM tb_promo_rules r
         INNER JOIN tb_m_product p ON p.id_product = r.id_product 
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
