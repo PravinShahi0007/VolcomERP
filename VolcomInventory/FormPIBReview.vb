@@ -28,7 +28,7 @@
 ,pir.notif_qty_sales_percent
 FROM tb_pib_review pir
 INNER JOIN tb_pre_cal_fgpo prec ON prec.`id_pre_cal_fgpo`=pir.`id_pre_cal_fgpo`
-INNER JOIN tb_prod_order po ON pir.`id_prod_order`=po.`id_prod_order`
+INNER JOIN tb_prod_order po ON pir.`id_prod_order`=po.`id_prod_order` AND po.id_po_type!=3
 INNER JOIN tb_m_design d ON d.`id_design`=pir.`id_design`
 LEFT JOIN (
 	SELECT dc.id_design, 

@@ -11385,10 +11385,29 @@ SELECT cal.`id_pre_cal_fgpo`,l.`id_pre_cal_fgpo_list`,l.`id_prod_order`,d.`id_de
 ,SUM(ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * ROUND(l.`qty`*(cal.`sales_percent`/100)),2)) AS tot_royalty
 ,l.qty
 FROM `tb_pre_cal_fgpo_list` l
-INNER JOIN tb_pre_cal_fgpo cal ON cal.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo` AND cal.id_report_status=6
-INNER JOIN tb_prod_order po ON po.`id_prod_order`=l.`id_prod_order`
+INNER JOIN tb_pre_cal_fgpo cal ON cal.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=l.`id_prod_order` AND po.id_po_type!=3
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
+INNER JOIN tb_season s ON s.id_season=d.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range AND r.is_md=1
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
 INNER JOIN 
 (
 	SELECT det.`id_pre_cal_fgpo`,SUM(det.`total_in_rp`) AS tot_freight
@@ -11978,15 +11997,14 @@ WHERE id_item_pps='" & id_report & "'"
                                         WHERE ds.id_deviden='" & id_report & "'  AND ds.pph_amount >0 
                                         UNION ALL
                                         /* lawan laba ditahan debit */
-                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,c.id_acc_ap AS `id_acc`,1  AS id_vendor,1 AS id_comp,  1 AS `qty`,SUM(ds.deviden_amount+ds.pph_amount) AS `debit`,0 AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,CONCAT('Pembagian Deviden ',d.profit_year) AS `note`,384 AS report_mark_type,ds.id_deviden AS id_report, d.profit_year AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor,1 AS id_coa_tag
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,acc.id_acc AS `id_acc`,1  AS id_vendor,1 AS id_comp,  1 AS `qty`,SUM(ds.deviden_amount+ds.pph_amount) AS `debit`,0 AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,CONCAT('Pembagian Deviden ',d.profit_year) AS `note`,384 AS report_mark_type,ds.id_deviden AS id_report, d.profit_year AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor,1 AS id_coa_tag
                                         FROM `tb_deviden_share` ds
                                         INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
-                                        INNER JOIN tb_m_comp c ON ds.id_comp=c.id_comp
+                                        INNER JOIN tb_a_acc acc ON acc.acc_name=CONCAT('22121110',RIGHT(d.profit_year,2))
                                         WHERE ds.id_deviden='" & id_report & "'               
                                     )trx WHERE trx.debit != 0 OR trx.credit != 0"
                 execute_non_query(qjd, True, "", "", "", "")
                 '
-
                 FormMain.SplashScreenManager1.CloseWaitForm()
 
             End If
