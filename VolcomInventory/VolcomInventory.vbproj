@@ -4560,6 +4560,12 @@
     <Compile Include="FormPromoRules.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPromoRulesClose.Designer.vb">
+      <DependentUpon>FormPromoRulesClose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoRulesClose.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPromoRulesDet.Designer.vb">
       <DependentUpon>FormPromoRulesDet.vb</DependentUpon>
     </Compile>
@@ -13288,6 +13294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoRules.resx">
       <DependentUpon>FormPromoRules.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoRulesClose.resx">
+      <DependentUpon>FormPromoRulesClose.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoRulesDet.resx">
       <DependentUpon>FormPromoRulesDet.vb</DependentUpon>

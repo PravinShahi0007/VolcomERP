@@ -636,4 +636,55 @@
 
         removeAccessToken(accessToken)
     End Sub
+
+    Sub syncCloseGWP(id_close_promo_rules As String)
+        Dim query As String = "
+            SELECT r.id_rules, d.id_outlet AS outlet_id
+            FROM tb_close_promo_rules_det AS d
+            LEFT JOIN tb_close_promo_rules AS r ON d.id_close_promo_rules = r.id_close_promo_rules
+            WHERE d.id_close_promo_rules = " + id_close_promo_rules + "
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim json As String = Newtonsoft.Json.JsonConvert.SerializeObject(data)
+
+        Dim pathRoot As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(pathRoot) Then
+            System.IO.Directory.CreateDirectory(pathRoot)
+        End If
+
+        Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+        Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+        Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+        Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(json)
+
+        fs.Write(info, 0, info.Length)
+
+        fs.Close()
+
+        Dim accessToken As String = getAccessToken()
+
+        Dim url As String = host + "/api/sync/close-rule"
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+        Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        If jsonRes("success") Then
+            'infoCustom("Sync close gwp completed.")
+        End If
+
+        removeAccessToken(accessToken)
+    End Sub
 End Class

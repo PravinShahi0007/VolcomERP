@@ -1824,8 +1824,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormVoucherPOSDet.ShowDialog()
         ElseIf formName = "FormPromoRules" Then
             'Promo Rulese
-            FormPromoRulesDet.action = "ins"
-            FormPromoRulesDet.ShowDialog()
+            If FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                FormPromoRulesDet.action = "ins"
+                FormPromoRulesDet.ShowDialog()
+            ElseIf FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                FormPromoRulesClose.id = "0"
+                FormPromoRulesClose.ShowDialog()
+            End If
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             FormEmpInputAttendanceDet.id = "0"
@@ -3161,9 +3166,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormVoucherPOSDet.ShowDialog()
             ElseIf formName = "FormPromoRules" Then
                 'Promo Rulese
-                FormPromoRulesDet.action = "upd"
-                FormPromoRulesDet.id = FormPromoRules.GVRules.GetFocusedRowCellValue("id_rules").ToString
-                FormPromoRulesDet.ShowDialog()
+                If FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                    FormPromoRulesDet.action = "upd"
+                    FormPromoRulesDet.id = FormPromoRules.GVRules.GetFocusedRowCellValue("id_rules").ToString
+                    FormPromoRulesDet.ShowDialog()
+                ElseIf FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                    FormPromoRulesClose.id = FormPromoRules.GVClosed.GetFocusedRowCellValue("id_close_promo_rules").ToString
+                    FormPromoRulesClose.ShowDialog()
+                End If
             ElseIf formName = "FormEmpInputAttendance" Then
                 'input attendance
                 FormEmpInputAttendanceDet.id = FormEmpInputAttendance.GVList.GetFocusedRowCellValue("id_emp_attn_input").ToString
@@ -8705,7 +8715,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Voucher POS
             print_raw(FormVoucherPOS.GCData, "")
         ElseIf formName = "FormPromoRules" Then
-            print(FormPromoRules.GCRules, "List Propose GWP POS")
+            If FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                print(FormPromoRules.GCRules, "List Propose GWP POS")
+            ElseIf FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                print(FormPromoRules.GCClosed, "List Closed GWP POS")
+            End If
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             print(FormEmpInputAttendance.GCList, "Input Attendance")
@@ -10961,6 +10975,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormVoucherPOS.viewVoucher()
         ElseIf formName = "FormPromoRules" Then
             FormPromoRules.viewRules()
+            FormPromoRules.viewClosed()
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             FormEmpInputAttendance.view_attendance()
