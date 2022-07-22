@@ -6,8 +6,23 @@
 
     Sub viewDesignCat()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT * FROM tb_lookup_design_cat c"
-        viewLookupQuery(LEProductStatus, query, 0, "design_cat", "id_design_cat")
+
+        Dim query As String = "
+            SELECT id_design_price_type, design_price_type 
+            FROM tb_lookup_design_price_type AS c
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim t As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            t.Value = data.Rows(i)("design_price_type")
+            t.Tag = data.Rows(i)("id_design_price_type")
+
+            CCBEProductStatus.Properties.Items.Add(t)
+        Next
+
         Cursor = Cursors.Default
     End Sub
 
@@ -26,14 +41,14 @@
             GVStore.BestFitColumns()
 
             TxtLimitValue.EditValue = 0
-            LEProductStatus.Focus()
-            ActiveControl = LEProductStatus
+            CCBEProductStatus.Focus()
+            ActiveControl = CCBEProductStatus
 
             Dim curr_date As DateTime = getTimeDB()
             DEStart.EditValue = curr_date
             DEEnd.EditValue = curr_date
 
-            LEProductStatus.ReadOnly = False
+            CCBEProductStatus.ReadOnly = False
             TxtCode.ReadOnly = False
             DEStart.ReadOnly = False
             DEEnd.ReadOnly = False
@@ -48,10 +63,9 @@
             TxtCreatedDate.EditValue = DateTime.Now().ToString("dd MMMM yyyy HH:mm:ss")
             TxtCreatedBy.EditValue = get_emp(id_employee_user, "2")
         ElseIf action = "upd" Then
-            Dim query As String = "SELECT r.id_rules, r.report_number, r.id_design_cat, dc.design_cat, r.limit_value, r.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
-            r.period_start, r.period_end, e.employee_name AS created_by, DATE_FORMAT(r.created_date, '%d %M %Y %H:%i:%s') AS created_date, st.report_status
+            Dim query As String = "SELECT r.id_rules, r.report_number, r.id_design_price_type, r.limit_value, r.id_product, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+            r.period_start, r.period_end, e.employee_name AS created_by, DATE_FORMAT(r.created_date, '%d %M %Y %H:%i:%s') AS created_date, st.report_status, r.id_design_price_type
             FROM tb_promo_rules r 
-            INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = r.id_design_cat
             INNER JOIN tb_m_product p ON p.id_product = r.id_product 
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
@@ -59,7 +73,19 @@
             INNER JOIN tb_lookup_report_status st ON r.id_report_status = st.id_report_status
             WHERE r.id_rules='" + id + "' "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            LEProductStatus.ItemIndex = LEProductStatus.Properties.GetDataSourceRowIndex("id_design_cat", data.Rows(0)("id_design_cat").ToString)
+
+            Dim lStatus As String() = data.Rows(0)("id_design_price_type").ToString.Split(",")
+
+            For i = 0 To lStatus.Count - 1
+                For j = 0 To CCBEProductStatus.Properties.Items.Count - 1
+                    Dim t As DevExpress.XtraEditors.Controls.CheckedListBoxItem = CCBEProductStatus.Properties.Items.Item(j)
+
+                    If t.Tag = lStatus(i) Then
+                        t.CheckState = CheckState.Checked
+                    End If
+                Next
+            Next
+
             TxtLimitValue.EditValue = data.Rows(0)("limit_value")
             id_product = data.Rows(0)("id_product").ToString
             TxtCode.Text = data.Rows(0)("code").ToString
@@ -81,7 +107,7 @@
             GCStore.DataSource = dd
             GVStore.BestFitColumns()
 
-            LEProductStatus.ReadOnly = True
+            CCBEProductStatus.ReadOnly = True
             TxtCode.ReadOnly = True
             DEStart.ReadOnly = True
             DEEnd.ReadOnly = True
@@ -164,31 +190,16 @@
         GVStore.ActiveFilterString = ""
     End Sub
 
-    Sub syncStore()
-        Cursor = Cursors.WaitCursor
-        makeSafeGV(GVStore)
-        GVStore.ActiveFilterString = "[is_select]='yes'"
-        For i As Integer = 0 To GVStore.RowCount - 1
-            Dim id_outlet As String = GVStore.GetRowCellValue(i, "id_outlet").ToString
-            Dim host As String = GVStore.GetRowCellValue(i, "host").ToString
-            Dim username As String = GVStore.GetRowCellValue(i, "username").ToString
-            Dim pass As String = GVStore.GetRowCellValue(i, "pass").ToString
-            Dim db As String = GVStore.GetRowCellValue(i, "db").ToString
-            Dim period_start As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
-            Dim period_end As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
-
-            Dim query As String = "INSERT INTO tb_promo_rules(id_rules, id_design_cat, limit_value, id_product, product_code, product_name, period_start, period_end) VALUES
-            ('" + id + "', '" + LEProductStatus.EditValue.ToString + "', '" + decimalSQL(TxtLimitValue.EditValue.ToString) + "', '" + id_product + "', '" + addSlashes(TxtCode.Text) + "', '" + addSlashes(TxtName.Text) + "', '" + period_start + "', '" + period_end + "'); "
-            execute_non_query_long(query, False, host, username, pass, db)
-        Next
-        GVStore.ActiveFilterString = ""
-        Cursor = Cursors.Default
-    End Sub
-
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If id_product = "-1" Then
             stopCustom("Product not found")
         Else
+            If CCBEProductStatus.Text = "" Then
+                stopCustom("Please select product status")
+
+                Exit Sub
+            End If
+
             Dim in_outlet As String = ""
 
             GVStore.ActiveFilterString = "[is_select]='yes'"
@@ -209,7 +220,7 @@
 
             in_outlet = in_outlet.Substring(0, in_outlet.Length - 2)
 
-            Dim id_design_cat As String = LEProductStatus.EditValue.ToString
+            Dim id_design_price_type As String = getProductStatusValue()
             Dim limit_value As String = decimalSQL(TxtLimitValue.EditValue.ToString)
             Dim product_code As String = addSlashes(TxtCode.Text)
             Dim product_name As String = addSlashes(TxtName.Text)
@@ -228,15 +239,13 @@
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this rule ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         Cursor = Cursors.WaitCursor
+
                         'main
-                        Dim query As String = "INSERT INTO tb_promo_rules(id_design_cat, limit_value, id_product, product_code, product_name,period_start, period_end, id_report_status, created_date, created_by) VALUES (" + id_design_cat + ", " + limit_value + ", " + id_product + ", '" + product_code + "', '" + product_name + "', '" + period_start + "', '" + period_end + "', 1, NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID(); "
+                        Dim query As String = "INSERT INTO tb_promo_rules(id_design_price_type, limit_value, id_product, product_code, product_name,period_start, period_end, id_report_status, created_date, created_by) VALUES ('" + id_design_price_type + "', " + limit_value + ", " + id_product + ", '" + product_code + "', '" + product_name + "', '" + period_start + "', '" + period_end + "', 1, NOW(), " + id_employee_user + "); SELECT LAST_INSERT_ID(); "
                         id = execute_query(query, 0, True, "", "", "", "")
 
                         'detail
                         insertDetail()
-
-                        'sync to store
-                        'syncStore()
 
                         execute_non_query("CALL gen_number(" + id + ", '413')", True, "", "", "", "")
 
@@ -244,13 +253,12 @@
 
                         'refresh
                         FormPromoRules.viewRules()
-                        'FormPromoRules.viewStore()
                         FormPromoRules.GVRules.FocusedRowHandle = find_row(FormPromoRules.GVRules, "id_rules", id)
-                        'Close()
 
                         action = "upd"
 
                         actionLoad()
+
                         Cursor = Cursors.Default
                     End If
                 ElseIf action = "upd" Then
@@ -276,7 +284,7 @@
                         Next
 
                         'main 
-                        Dim query As String = "UPDATE tb_promo_rules Set id_design_cat='" + id_design_cat + "', limit_value='" + limit_value + "', id_product='" + id_product + "', product_code='" + product_code + "', product_name='" + product_name + "',period_start='" + period_start + "', period_end='" + period_end + "' WHERE id_rules='" + id + "' "
+                        Dim query As String = "UPDATE tb_promo_rules SET id_design_price_type='" + id_design_price_type + "', limit_value='" + limit_value + "', id_product='" + id_product + "', product_code='" + product_code + "', product_name='" + product_name + "',period_start='" + period_start + "', period_end='" + period_end + "' WHERE id_rules='" + id + "' "
                         execute_non_query(query, True, "", "", "", "")
 
                         'detail
@@ -284,15 +292,11 @@
                         execute_non_query(query_det, True, "", "", "", "")
                         insertDetail()
 
-                        'synv
-                        'syncStore()
-
                         'refresh
                         FormPromoRules.viewRules()
-                        'FormPromoRules.viewStore()
                         FormPromoRules.GVRules.FocusedRowHandle = find_row(FormPromoRules.GVRules, "id_rules", id)
+
                         actionLoad()
-                        'Close()
 
                         Cursor = Cursors.Default
                     End If
@@ -330,7 +334,7 @@
         report.XLNumber.Text = TxtNumber.EditValue.ToString
         report.XLCreatedAt.Text = TxtCreatedDate.EditValue.ToString
         report.XLCreatedBy.Text = TxtCreatedBy.EditValue.ToString
-        report.XLProductStatus.Text = LEProductStatus.Text
+        report.XLProductStatus.Text = CCBEProductStatus.Text
         report.XLProductCode.Text = TxtCode.EditValue.ToString
         report.XLDescription.Text = TxtName.EditValue.ToString
         report.XLActiveDate.Text = DEStart.Text.ToString + " - " + DEEnd.Text.ToString
@@ -355,4 +359,22 @@
 
         tool.ShowPreviewDialog()
     End Sub
+
+    Function getProductStatusValue() As String
+        Dim out As String = ""
+
+        For i = 0 To CCBEProductStatus.Properties.Items.Count - 1
+            Dim t As DevExpress.XtraEditors.Controls.CheckedListBoxItem = CCBEProductStatus.Properties.Items.Item(i)
+
+            If (t.CheckState) Then
+                out += t.Tag.ToString + ","
+            End If
+        Next
+
+        If Not out = "" Then
+            out = out.Substring(0, out.Length - 1)
+        End If
+
+        Return out
+    End Function
 End Class

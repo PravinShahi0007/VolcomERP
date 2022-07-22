@@ -539,7 +539,7 @@
 
     Sub syncGWP(id_rules As String)
         Dim query As String = "
-            SELECT r.id_rules, r.id_design_cat, r.report_number, r.limit_value, r.id_product, r.product_code, r.product_name, r.period_start, r.period_end, d.id_outlet AS outlet_id
+            SELECT r.id_rules, r.id_design_price_type, r.report_number, r.limit_value, r.id_product, r.product_code, r.product_name, r.period_start, r.period_end, d.id_outlet AS outlet_id
             FROM tb_promo_rules_det AS d
             LEFT JOIN tb_promo_rules AS r ON d.id_rules = r.id_rules
             WHERE d.id_rules = " + id_rules + "

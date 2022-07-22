@@ -40,7 +40,6 @@ Partial Class FormPromoRulesDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEProductStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCStore = New DevExpress.XtraGrid.GridControl()
         Me.GVStore = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -57,6 +56,7 @@ Partial Class FormPromoRulesDet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.CCBEProductStatus = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +69,6 @@ Partial Class FormPromoRulesDet
         CType(Me.TxtLimitValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEProductStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,6 +80,7 @@ Partial Class FormPromoRulesDet
         CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBEProductStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -148,6 +148,7 @@ Partial Class FormPromoRulesDet
         '
         'GroupControl1
         '
+        Me.GroupControl1.Controls.Add(Me.CCBEProductStatus)
         Me.GroupControl1.Controls.Add(Me.LabelControl7)
         Me.GroupControl1.Controls.Add(Me.DEEnd)
         Me.GroupControl1.Controls.Add(Me.DEStart)
@@ -161,7 +162,6 @@ Partial Class FormPromoRulesDet
         Me.GroupControl1.Controls.Add(Me.LabelControl1)
         Me.GroupControl1.Controls.Add(Me.TxtCode)
         Me.GroupControl1.Controls.Add(Me.LabelControl2)
-        Me.GroupControl1.Controls.Add(Me.LEProductStatus)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 95)
         Me.GroupControl1.Name = "GroupControl1"
@@ -292,14 +292,6 @@ Partial Class FormPromoRulesDet
         Me.LabelControl2.Size = New System.Drawing.Size(71, 13)
         Me.LabelControl2.TabIndex = 3
         Me.LabelControl2.Text = "Product Status"
-        '
-        'LEProductStatus
-        '
-        Me.LEProductStatus.Location = New System.Drawing.Point(98, 32)
-        Me.LEProductStatus.Name = "LEProductStatus"
-        Me.LEProductStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEProductStatus.Size = New System.Drawing.Size(300, 20)
-        Me.LEProductStatus.TabIndex = 1
         '
         'GroupControl2
         '
@@ -448,6 +440,15 @@ Partial Class FormPromoRulesDet
         Me.TxtNumber.Size = New System.Drawing.Size(300, 20)
         Me.TxtNumber.TabIndex = 7
         '
+        'CCBEProductStatus
+        '
+        Me.CCBEProductStatus.EditValue = ""
+        Me.CCBEProductStatus.Location = New System.Drawing.Point(98, 32)
+        Me.CCBEProductStatus.Name = "CCBEProductStatus"
+        Me.CCBEProductStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEProductStatus.Size = New System.Drawing.Size(300, 20)
+        Me.CCBEProductStatus.TabIndex = 15
+        '
         'FormPromoRulesDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -476,7 +477,6 @@ Partial Class FormPromoRulesDet
         CType(Me.TxtLimitValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEProductStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).EndInit()
@@ -489,6 +489,7 @@ Partial Class FormPromoRulesDet
         CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBEProductStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -501,7 +502,6 @@ Partial Class FormPromoRulesDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LEProductStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents TxtName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
@@ -530,4 +530,5 @@ Partial Class FormPromoRulesDet
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtReportStatus As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CCBEProductStatus As DevExpress.XtraEditors.CheckedComboBoxEdit
 End Class
