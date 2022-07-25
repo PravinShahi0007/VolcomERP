@@ -134,7 +134,7 @@
         " + col_est_sal_rec_price_select + "
         " + col_sal2 + "
         " + col_sal_value + "
-        99 AS `Flag|End Column`
+        '' AS `*|*`
         FROM tb_m_design d
         INNER JOIN tb_season ss ON ss.id_season = d.id_season
         INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
@@ -318,6 +318,10 @@
                 End If
             Next
         Next
+
+        'hide
+        GVData.Columns("Product Info|id_design").Visible = False
+
         GCData.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
@@ -325,6 +329,18 @@
 
     Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
         Cursor = Cursors.WaitCursor
+        ''column option creating and saving the view's layout to a new memory stream 
+        'Dim str As System.IO.Stream
+        'str = New System.IO.MemoryStream()
+        'GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        'For i As Integer = 0 To GVData.Columns.Count - 1
+        '    Try
+        '        GVData.Columns(i).Caption = GVData.Columns(i).OwnerBand.ToString + "|" + GVData.Columns(i).Caption.ToString
+        '    Catch ex As Exception
+        '    End Try
+        'Next
+
         Dim path As String = path_par
 
         ' Customize export options 
@@ -335,7 +351,7 @@
         advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
         advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
         advOptions.SheetName = sheet_name_par
-        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+        advOptions.ExportType = DevExpress.Export.ExportType.WYSIWYG
 
         Try
             gc_par.ExportToXlsx(path, advOptions)
@@ -344,6 +360,10 @@
         Catch ex As Exception
             stopCustom(ex.ToString)
         End Try
+
+        ''restore column opt
+        'GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
         Cursor = Cursors.Default
     End Sub
 
