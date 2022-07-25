@@ -204,6 +204,9 @@
 		    INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
 		    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
 	    ) normal_prc ON normal_prc.id_design = d.id_design
+        LEFT JOIN (
+
+        )
         ORDER BY cd.class ASC, d.design_display_name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
