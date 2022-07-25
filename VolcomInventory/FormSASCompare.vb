@@ -71,12 +71,18 @@
         Dim col_est_sal_order_qty_select As String = ""
         Dim sum_est_sal_order_qty As String = "0"
         Dim col_est_sal_order_price_select As String = ""
+
+        Dim col_est_sal_rec_qty As String = ""
+        Dim col_est_sal_rec_qty_select As String = ""
+        Dim sum_est_sal_rec_qty As String = "0"
+        Dim col_est_sal_rec_price_select As String = ""
         Dim l As Integer = 0
         While date_loop <= date_end
             Dim date_db As String = Date.Parse(date_loop).ToString("yyyy") + "-" + Date.Parse(date_loop).ToString("MM") + "-" + Date.Parse(date_loop).ToString("dd")
 
             If l > 0 Then
                 sum_est_sal_order_qty += "+" + col_est_sal_order_qty
+                sum_est_sal_rec_qty += "+" + col_est_sal_rec_qty
             End If
 
             'col sas
@@ -87,6 +93,11 @@
             col_est_sal_order_qty = "ROUND(((pd.`total_qty_core`-(" + sum_est_sal_order_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
             col_est_sal_order_qty_select += col_est_sal_order_qty + " AS `Est Sal. Qty (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
             col_est_sal_order_price_select += col_est_sal_order_qty + "*pd.pd_price AS `Est Sal. Value (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+
+            'est sale (rec)
+            col_est_sal_rec_qty = "ROUND(((IFNULL(rec.qty_rec,0)-(" + sum_est_sal_rec_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
+            col_est_sal_rec_qty_select += col_est_sal_rec_qty + " AS `Est Sal. Qty (Receiving)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_est_sal_rec_price_select += col_est_sal_rec_qty + "*IFNULL(normal_prc.design_price,0) AS `Est Sal. Value (Receiving)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
 
             'loop
             date_loop = DateAdd(DateInterval.Month, 1, date_loop)
@@ -102,32 +113,16 @@
         pd.`total_qty_dev` AS `Prod. Demand|DEV`,
         pd.`total_qty_core` AS `Prod. Demand|CORE`,
         pd.`total_qty_act_order_sales` AS `Prod. Demand|ACT. ORDER SAL.`,
-        pd.`total_qty` AS `Prod. Demand|Total Qty`, pd.pd_price AS `Prod. Demand|Normal Price`, (pd.`total_qty_core`*pd.pd_price) AS  `Prod. Demand|TTL Amount Core`,
+        pd.`total_qty` AS `Prod. Demand|Total Qty`, pd.pd_price AS `Prod. Demand|Est. Price`, (pd.`total_qty_core`*pd.pd_price) AS  `Prod. Demand|TTL Amount Core`,
+        IFNULL(normal_prc.design_price,0) AS `PP|NORMAL PRICE`,
+        IFNULL(rec.qty_rec,0) AS `RECEIVED IN WH|QTY REC.`,
         " + col_sas_target2 + "
         " + col_est_sal_order_qty_select + "
         " + col_est_sal_order_price_select + "
+        " + col_est_sal_rec_qty_select + "
+        " + col_est_sal_rec_price_select + "
         99 AS `Flag|End Column`
         FROM tb_m_design d
-        INNER JOIN (
-	        SELECT d.id_design, MAX(pd.prod_demand_number) AS `prod_demand_number`,
-	        IFNULL(SUM(CASE WHEN pda.id_pd_alloc=1 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_mkt`,
-	        IFNULL(SUM(CASE WHEN pda.id_pd_alloc=4 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_buff`,
-	        IFNULL(SUM(CASE WHEN pda.id_pd_alloc=8 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_dev`,
-	        IFNULL(SUM(CASE WHEN pda.id_pd_alloc=7 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_core`,
-	        IFNULL(SUM(CASE WHEN alloc.is_include_so=1 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_act_order_sales`,
-	        SUM(pda.prod_demand_alloc_qty) AS `total_qty`,
-	        MAX(pdd.prod_demand_design_propose_price) AS `pd_price`
-	        FROM tb_prod_demand pd
-	        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand = pd.id_prod_demand AND pdd.is_void=2
-	        INNER JOIN tb_m_design d ON d.id_design = pdd.id_design 
-	        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
-	        INNER JOIN tb_prod_demand_alloc pda ON pda.id_prod_demand_product = pdp.id_prod_demand_product
-	        INNER JOIN tb_lookup_pd_alloc alloc ON alloc.id_pd_alloc = pda.id_pd_alloc
-	        INNER JOIN tb_season ss ON ss.id_season = d.id_season
-	        INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
-	        WHERE pd.id_report_status=6 AND pd.is_pd=1 AND (d.id_season IN(" + CCBESeason.EditValue.ToString + ") OR pd.id_season IN (" + CCBESeason.EditValue.ToString + "))
-	        GROUP BY d.id_design
-        ) pd ON pd.id_design = d.id_design
         INNER JOIN tb_season ss ON ss.id_season = d.id_season
         INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
         LEFT JOIN (
@@ -154,6 +149,56 @@
 	        WHERE sas.is_active=1 AND sas.sas_period>='" + date_from_selected + "' AND sas.sas_period<='" + date_until_selected + "'
 	        GROUP BY sas.id_class, sas.id_delivery
         ) tg_sas ON tg_sas.id_class = cd.id_class AND tg_sas.id_delivery = d.id_delivery
+        INNER JOIN (
+	        SELECT d.id_design, MAX(pd.prod_demand_number) AS `prod_demand_number`,
+	        IFNULL(SUM(CASE WHEN pda.id_pd_alloc=1 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_mkt`,
+	        IFNULL(SUM(CASE WHEN pda.id_pd_alloc=4 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_buff`,
+	        IFNULL(SUM(CASE WHEN pda.id_pd_alloc=8 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_dev`,
+	        IFNULL(SUM(CASE WHEN pda.id_pd_alloc=7 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_core`,
+	        IFNULL(SUM(CASE WHEN alloc.is_include_so=1 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_act_order_sales`,
+	        SUM(pda.prod_demand_alloc_qty) AS `total_qty`,
+	        MAX(pdd.prod_demand_design_propose_price) AS `pd_price`
+	        FROM tb_prod_demand pd
+	        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand = pd.id_prod_demand AND pdd.is_void=2
+	        INNER JOIN tb_m_design d ON d.id_design = pdd.id_design 
+	        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
+	        INNER JOIN tb_prod_demand_alloc pda ON pda.id_prod_demand_product = pdp.id_prod_demand_product
+	        INNER JOIN tb_lookup_pd_alloc alloc ON alloc.id_pd_alloc = pda.id_pd_alloc
+	        INNER JOIN tb_season ss ON ss.id_season = d.id_season
+	        INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
+	        WHERE pd.id_report_status=6 AND pd.is_pd=1 AND (d.id_season IN(" + CCBESeason.EditValue.ToString + ") OR pd.id_season IN (" + CCBESeason.EditValue.ToString + "))
+	        GROUP BY d.id_design
+        ) pd ON pd.id_design = d.id_design
+        LEFT JOIN (
+            SELECT d.id_design, SUM(rd.pl_prod_order_rec_det_qty) AS `qty_rec`
+            FROM tb_pl_prod_order_rec r
+            INNER JOIN tb_pl_prod_order_rec_det rd ON rd.id_pl_prod_order_rec = r.id_pl_prod_order_rec
+            INNER JOIN tb_pl_prod_order pl ON pl.id_pl_prod_order = r.id_pl_prod_order
+            INNER JOIN tb_prod_order po ON po.id_prod_order = pl.id_prod_order
+            INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+            INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand AND pd.id_report_status=6 AND pd.is_pd=1
+            INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+            WHERE r.id_report_status=6 AND pl.id_pl_category=1 AND (d.id_season IN(" + CCBESeason.EditValue.ToString + ") OR pd.id_season IN (" + CCBESeason.EditValue.ToString + "))
+            GROUP BY d.id_design
+        ) rec ON rec.id_design = d.id_design
+        LEFT JOIN (
+		    SELECT price.id_design, price.id_design_price, price.design_price, cat.id_design_cat,cat.design_cat, price_type.design_price_type
+		    FROM tb_m_design_price price 
+		    INNER JOIN (
+			    SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+			    FROM tb_m_design_price price
+			    INNER JOIN (
+				    Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+				    From tb_m_design_price price 
+				    WHERE price.is_active_wh=1 AND price.design_price_start_date <= NOW() AND price.id_design_price_type=1
+				    GROUP BY price.id_design
+			    ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+			    WHERE price.is_active_wh=1 AND price.design_price_start_date <= NOW() AND price.id_design_price_type=1
+			    GROUP BY price.id_design
+		    ) pricemax ON pricemax.id_design_price = price.id_design_price
+		    INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+		    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
+	    ) normal_prc ON normal_prc.id_design = d.id_design
         ORDER BY cd.class ASC, d.design_display_name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -212,7 +257,37 @@
                         GVData.GroupSummary.Add(summary)
                     End If
 
-                    If bandName.Contains("Est Sal. Qty (Order)") Or bandName.Contains("Est Sal. Value (Order)") Then
+                    If bandName.Contains("Est Sal. Qty (Order)") Or bandName.Contains("Est Sal. Value (Order)") Or bandName.Contains("Est Sal. Qty (Receiving)") Or bandName.Contains("Est Sal. Value (Receiving)") Then
+                        col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n0}"
+
+                        'summary
+                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        col.SummaryItem.DisplayFormat = "{0:n0}"
+
+                        'group summary
+                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                        summary.DisplayFormat = "{0:N0}"
+                        summary.FieldName = data.Columns(j).Caption
+                        summary.ShowInGroupColumnFooter = col
+                        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        GVData.GroupSummary.Add(summary)
+                    End If
+
+                    If bandName.Contains("PP") Then
+                        'RECEIVED IN WH
+                        col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n0}"
+                    End If
+
+                    If bandName.Contains("RECEIVED IN WH") Then
+                        'RECEIVED IN WH
                         col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
 
                         'display format
