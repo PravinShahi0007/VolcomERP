@@ -46,6 +46,11 @@
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
 
+        'get rmt sal
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Check report type sales")
+        Dim rmt_sal As String = execute_query("SELECT GROUP_CONCAT(DISTINCT sp.report_mark_type) FROM tb_sales_pos sp WHERE sp.id_report_status=6", 0, True, "", "", "", "")
+
+
         FormMain.SplashScreenManager1.SetWaitFormDescription("Check condition")
         'cek date
         Dim date_from_selected As String = "0000-01-01"
