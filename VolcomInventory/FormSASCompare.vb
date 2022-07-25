@@ -76,11 +76,13 @@
         Dim col_est_sal_order_qty_select As String = ""
         Dim sum_est_sal_order_qty As String = "0"
         Dim col_est_sal_order_price_select As String = ""
-
         Dim col_est_sal_rec_qty As String = ""
         Dim col_est_sal_rec_qty_select As String = ""
         Dim sum_est_sal_rec_qty As String = "0"
         Dim col_est_sal_rec_price_select As String = ""
+        Dim col_sal1 As String = ""
+        Dim col_sal2 As String = ""
+        Dim col_sal_value As String = ""
         Dim l As Integer = 0
         While date_loop <= date_end
             Dim date_db As String = Date.Parse(date_loop).ToString("yyyy") + "-" + Date.Parse(date_loop).ToString("MM") + "-" + Date.Parse(date_loop).ToString("dd")
@@ -104,6 +106,10 @@
             col_est_sal_rec_qty_select += col_est_sal_rec_qty + " AS `Est Sal. Qty (Receiving)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
             col_est_sal_rec_price_select += col_est_sal_rec_qty + "*IFNULL(normal_prc.design_price,0) AS `Est Sal. Value (Receiving)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
 
+            'sale
+            col_sal1 += "(SUM(CASE WHEN s.soh_date='" + date_db + "' THEN s.qty END)*-1) AS `Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_sal2 += "IFNULL(sal.`Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) AS `Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_sal_value += "IFNULL(sal.`Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) * IFNULL(normal_prc.design_price,0) AS `Actual Sales Value|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
             'loop
             date_loop = DateAdd(DateInterval.Month, 1, date_loop)
             l += 1
@@ -126,6 +132,8 @@
         " + col_est_sal_order_price_select + "
         " + col_est_sal_rec_qty_select + "
         " + col_est_sal_rec_price_select + "
+        " + col_sal2 + "
+        " + col_sal_value + "
         99 AS `Flag|End Column`
         FROM tb_m_design d
         INNER JOIN tb_season ss ON ss.id_season = d.id_season
@@ -205,8 +213,14 @@
 		    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
 	    ) normal_prc ON normal_prc.id_design = d.id_design
         LEFT JOIN (
-
-        )
+            SELECT s.id_design, 
+            " + col_sal1 + "
+            1 AS `flag`
+            FROM tb_soh_sal_period s
+            INNER JOIN tb_m_comp c ON c.id_comp = s.id_comp AND c.id_store_type=1
+            WHERE (s.soh_date>='2022-01-01' AND s.soh_date<='2022-12-01') AND s.report_mark_type IN (48,66,54,67,118,117,183,116,292,344,399)
+            GROUP BY s.id_design
+        ) sal ON sal.id_design = d.id_design
         ORDER BY cd.class ASC, d.design_display_name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -265,7 +279,7 @@
                         GVData.GroupSummary.Add(summary)
                     End If
 
-                    If bandName.Contains("Est Sal. Qty (Order)") Or bandName.Contains("Est Sal. Value (Order)") Or bandName.Contains("Est Sal. Qty (Receiving)") Or bandName.Contains("Est Sal. Value (Receiving)") Then
+                    If bandName.Contains("Est Sal. Qty (Order)") Or bandName.Contains("Est Sal. Value (Order)") Or bandName.Contains("Est Sal. Qty (Receiving)") Or bandName.Contains("Est Sal. Value (Receiving)") Or bandName.Contains("RECEIVED IN WH") Or bandName.Contains("Actual Sales Qty") Or bandName.Contains("Actual Sales Value") Then
                         col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
 
                         'display format
@@ -292,27 +306,6 @@
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                         col.DisplayFormat.FormatString = "{0:n0}"
-                    End If
-
-                    If bandName.Contains("RECEIVED IN WH") Then
-                        'RECEIVED IN WH
-                        col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-
-                        'display format
-                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                        col.DisplayFormat.FormatString = "{0:n0}"
-
-                        'summary
-                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                        col.SummaryItem.DisplayFormat = "{0:n0}"
-
-                        'group summary
-                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
-                        summary.DisplayFormat = "{0:N0}"
-                        summary.FieldName = data.Columns(j).Caption
-                        summary.ShowInGroupColumnFooter = col
-                        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                        GVData.GroupSummary.Add(summary)
                     End If
 
                     If bandName.Contains("Target SAS") Then
