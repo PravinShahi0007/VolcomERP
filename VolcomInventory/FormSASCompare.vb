@@ -67,12 +67,30 @@
         Dim date_end As Date = DEUntil.EditValue
         Dim col_sas_target1 As String = ""
         Dim col_sas_target2 As String = ""
+        Dim col_est_sal_order_qty As String = ""
+        Dim col_est_sal_order_qty_select As String = ""
+        Dim sum_est_sal_order_qty As String = "0"
+        Dim col_est_sal_order_price_select As String = ""
+        Dim l As Integer = 0
         While date_loop <= date_end
-            Console.WriteLine(Date.Parse(date_loop).ToString("dd MMMM yyyy"))
             Dim date_db As String = Date.Parse(date_loop).ToString("yyyy") + "-" + Date.Parse(date_loop).ToString("MM") + "-" + Date.Parse(date_loop).ToString("dd")
+
+            If l > 0 Then
+                sum_est_sal_order_qty += "+" + col_est_sal_order_qty
+            End If
+
+            'col sas
             col_sas_target1 += "MAX(CASE WHEN sas.sas_period='" + date_db + "' THEN sas.sas_value END) AS `" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,"
             col_sas_target2 += "IFNULL(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) AS `Target SAS|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+
+            'est sale (order)
+            col_est_sal_order_qty = "ROUND(((pd.`total_qty_core`-(" + sum_est_sal_order_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
+            col_est_sal_order_qty_select += col_est_sal_order_qty + " AS `Est Sal. Qty (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_est_sal_order_price_select += col_est_sal_order_qty + "*pd.pd_price AS `Est Sal. Value (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+
+            'loop
             date_loop = DateAdd(DateInterval.Month, 1, date_loop)
+            l += 1
         End While
 
         'eksekusi 
@@ -86,6 +104,8 @@
         pd.`total_qty_act_order_sales` AS `Prod. Demand|ACT. ORDER SAL.`,
         pd.`total_qty` AS `Prod. Demand|Total Qty`, pd.pd_price AS `Prod. Demand|Normal Price`, (pd.`total_qty_core`*pd.pd_price) AS  `Prod. Demand|TTL Amount Core`,
         " + col_sas_target2 + "
+        " + col_est_sal_order_qty_select + "
+        " + col_est_sal_order_price_select + "
         99 AS `Flag|End Column`
         FROM tb_m_design d
         INNER JOIN (
@@ -192,12 +212,32 @@
                         GVData.GroupSummary.Add(summary)
                     End If
 
+                    If bandName.Contains("Est Sal. Qty (Order)") Or bandName.Contains("Est Sal. Value (Order)") Then
+                        col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n0}"
+
+                        'summary
+                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        col.SummaryItem.DisplayFormat = "{0:n0}"
+
+                        'group summary
+                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                        summary.DisplayFormat = "{0:N0}"
+                        summary.FieldName = data.Columns(j).Caption
+                        summary.ShowInGroupColumnFooter = col
+                        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        GVData.GroupSummary.Add(summary)
+                    End If
+
                     If bandName.Contains("Target SAS") Then
                         col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
 
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                        col.DisplayFormat.FormatString = "{0:n2}%"
+                        col.DisplayFormat.FormatString = "{0:n0}%"
                     End If
                 End If
             Next
