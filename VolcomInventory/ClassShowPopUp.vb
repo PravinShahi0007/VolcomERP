@@ -587,6 +587,9 @@
         ElseIf report_mark_type = "415" Then
             'propose card
             FormProposePaymentCardPOSDet.Close()
+        ElseIf report_mark_type = "416" Then
+            'close gwp pos
+            FormPromoRulesClose.Close()
         End If
     End Sub
     Sub show()
@@ -1858,6 +1861,10 @@ GROUP BY rec.`id_prod_order`"
             'propose card
             FormProposePaymentCardPOSDet.id_propose_card_pos = id_report
             FormProposePaymentCardPOSDet.ShowDialog()
+        ElseIf report_mark_type = "416" Then
+            'close gwp pos
+            FormPromoRulesClose.id = id_report
+            FormPromoRulesClose.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3299,6 +3306,12 @@ GROUP BY rec.`id_prod_order`"
             'propose card
             table_name = "tb_propose_card_pos"
             field_id = "id_propose_card_pos"
+            field_number = "report_number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "416" Then
+            'close gwp pos
+            table_name = "tb_close_promo_rules"
+            field_id = "id_close_promo_rules"
             field_number = "report_number"
             field_date = "created_date"
         Else
