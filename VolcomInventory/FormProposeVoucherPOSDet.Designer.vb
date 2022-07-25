@@ -51,6 +51,7 @@ Partial Class FormProposeVoucherPOSDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.SBVoucher = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -277,6 +278,7 @@ Partial Class FormProposeVoucherPOSDet
         Me.PanelControl2.Controls.Add(Me.SBClose)
         Me.PanelControl2.Controls.Add(Me.SBAttachment)
         Me.PanelControl2.Controls.Add(Me.SBPrint)
+        Me.PanelControl2.Controls.Add(Me.SBVoucher)
         Me.PanelControl2.Controls.Add(Me.SBMark)
         Me.PanelControl2.Controls.Add(Me.SBSubmit)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -289,7 +291,7 @@ Partial Class FormProposeVoucherPOSDet
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(362, 2)
+        Me.SBClose.Location = New System.Drawing.Point(262, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(100, 46)
         Me.SBClose.TabIndex = 1
@@ -299,7 +301,7 @@ Partial Class FormProposeVoucherPOSDet
         '
         Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
-        Me.SBAttachment.Location = New System.Drawing.Point(462, 2)
+        Me.SBAttachment.Location = New System.Drawing.Point(362, 2)
         Me.SBAttachment.Name = "SBAttachment"
         Me.SBAttachment.Size = New System.Drawing.Size(120, 46)
         Me.SBAttachment.TabIndex = 3
@@ -309,7 +311,7 @@ Partial Class FormProposeVoucherPOSDet
         '
         Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(582, 2)
+        Me.SBPrint.Location = New System.Drawing.Point(482, 2)
         Me.SBPrint.Name = "SBPrint"
         Me.SBPrint.Size = New System.Drawing.Size(100, 46)
         Me.SBPrint.TabIndex = 4
@@ -360,6 +362,16 @@ Partial Class FormProposeVoucherPOSDet
         Me.LabelControl5.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl5.TabIndex = 11
         Me.LabelControl5.Text = "Note"
+        '
+        'SBVoucher
+        '
+        Me.SBVoucher.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBVoucher.Image = CType(resources.GetObject("SBVoucher.Image"), System.Drawing.Image)
+        Me.SBVoucher.Location = New System.Drawing.Point(582, 2)
+        Me.SBVoucher.Name = "SBVoucher"
+        Me.SBVoucher.Size = New System.Drawing.Size(100, 46)
+        Me.SBVoucher.TabIndex = 5
+        Me.SBVoucher.Text = "Voucher"
         '
         'FormProposeVoucherPOSDet
         '
@@ -427,4 +439,5 @@ Partial Class FormProposeVoucherPOSDet
     Friend WithEvents RICCBEOutlet As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIMEOutlet As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents SBVoucher As DevExpress.XtraEditors.SimpleButton
 End Class
