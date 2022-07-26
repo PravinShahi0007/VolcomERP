@@ -74,14 +74,18 @@
         Dim col_sas_target2 As String = ""
         Dim col_est_sal_order_qty As String = ""
         Dim col_est_sal_order_qty_select As String = ""
+        Dim col_est_sal_order_qty_total As String = ""
         Dim sum_est_sal_order_qty As String = "0"
         Dim col_est_sal_order_price_select As String = ""
         Dim col_est_sal_rec_qty As String = ""
         Dim col_est_sal_rec_qty_select As String = ""
+        Dim col_est_sal_rec_qty_total As String = ""
         Dim sum_est_sal_rec_qty As String = "0"
         Dim col_est_sal_rec_price_select As String = ""
         Dim col_sal1 As String = ""
         Dim col_sal2 As String = ""
+        Dim col_sal2_raw As String = ""
+        Dim col_sal2_total As String = ""
         Dim col_sal_value As String = ""
         Dim l As Integer = 0
         While date_loop <= date_end
@@ -90,6 +94,9 @@
             If l > 0 Then
                 sum_est_sal_order_qty += "+" + col_est_sal_order_qty
                 sum_est_sal_rec_qty += "+" + col_est_sal_rec_qty
+                col_est_sal_order_qty_total += "+"
+                col_est_sal_rec_qty_total += "+"
+                col_sal2_total += "+"
             End If
 
             'col sas
@@ -100,16 +107,21 @@
             col_est_sal_order_qty = "ROUND(((pd.`total_qty_core`-(" + sum_est_sal_order_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
             col_est_sal_order_qty_select += col_est_sal_order_qty + " AS `Est Sal. Qty (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
             col_est_sal_order_price_select += col_est_sal_order_qty + "*pd.pd_price AS `Est Sal. Value (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_est_sal_order_qty_total += col_est_sal_order_qty
 
             'est sale (rec)
             col_est_sal_rec_qty = "ROUND(((IFNULL(rec.qty_rec,0)-(" + sum_est_sal_rec_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
             col_est_sal_rec_qty_select += col_est_sal_rec_qty + " AS `Est Sal. Qty (Receiving)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
             col_est_sal_rec_price_select += col_est_sal_rec_qty + "*IFNULL(normal_prc.design_price,0) AS `Est Sal. Value (Receiving)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_est_sal_rec_qty_total += col_est_sal_rec_qty
 
             'sale
             col_sal1 += "(SUM(CASE WHEN s.soh_date='" + date_db + "' THEN s.qty END)*-1) AS `Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
-            col_sal2 += "IFNULL(sal.`Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) AS `Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_sal2_raw = "IFNULL(sal.`Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) "
+            col_sal2 += col_sal2_raw + " AS `Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_sal2_total += col_sal2_raw
             col_sal_value += "IFNULL(sal.`Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) * IFNULL(normal_prc.design_price,0) AS `Actual Sales Value|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            
             'loop
             date_loop = DateAdd(DateInterval.Month, 1, date_loop)
             l += 1
@@ -129,8 +141,11 @@
         IFNULL(rec.qty_rec,0) AS `RECEIVED IN WH|QTY REC.`,
         " + col_sas_target2 + "
         " + col_est_sal_order_qty_select + "
+        (" + col_est_sal_order_qty_total + ") AS `Est Sal. Qty (Order)|Total`,
          " + col_est_sal_rec_qty_select + "
+        (" + col_est_sal_rec_qty_total + ") AS `Est Sal. Qty (Receiving)|Total`,
         " + col_sal2 + "
+        (" + col_sal2_total + ") AS `Actual Sales Qty|Total`,
         " + col_est_sal_order_price_select + "
         " + col_est_sal_rec_price_select + "
         " + col_sal_value + "
