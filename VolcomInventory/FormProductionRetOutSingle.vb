@@ -302,7 +302,14 @@ INNER JOIN tb_qc_report1_det qrd ON qrd.id_qc_report1=qr.id_qc_report1 AND qr.id
 INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det=qrd.id_prod_order_det
 INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product=pod.id_prod_demand_product
 INNER JOIN tb_m_product p ON p.id_product=pdp.id_product
-INNER JOIN tb_qc_report1 qrwash ON qrwash.id_prod_order_rec=qr.id_prod_order_rec AND qrwash.id_report_status=6 AND qrwash.id_prod_order_rec='" & id_prod_order_rec & "' AND qrwash.id_qc_wash='1'
+INNER JOIN
+(
+	SELECT rec.id_prod_order 
+	FROM tb_qc_report1 qrwash 
+	INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=qrwash.id_prod_order_rec
+	WHERE qrwash.id_report_status=6 AND qrwash.id_prod_order='" & id_prod_order & "' AND qrwash.id_qc_wash='1'
+	GROUP BY rec.id_prod_order
+)qrwash ON qrwash.id_prod_order=pod.id_prod_order
 GROUP BY qrd.id_prod_order_det"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                 If dt.Rows.Count > 0 Then

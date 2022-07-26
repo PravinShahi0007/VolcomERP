@@ -4560,6 +4560,12 @@
     <Compile Include="FormPromoRules.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPromoRulesClose.Designer.vb">
+      <DependentUpon>FormPromoRulesClose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoRulesClose.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPromoRulesDet.Designer.vb">
       <DependentUpon>FormPromoRulesDet.vb</DependentUpon>
     </Compile>
@@ -7630,6 +7636,12 @@
       <DependentUpon>FormSampleTrf.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSampleTrf.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSASCompare.Designer.vb">
+      <DependentUpon>FormSASCompare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSASCompare.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormScanReturn.Designer.vb">
@@ -13289,6 +13301,9 @@
     <EmbeddedResource Include="FormPromoRules.resx">
       <DependentUpon>FormPromoRules.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoRulesClose.resx">
+      <DependentUpon>FormPromoRulesClose.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPromoRulesDet.resx">
       <DependentUpon>FormPromoRulesDet.vb</DependentUpon>
     </EmbeddedResource>
@@ -15150,6 +15165,9 @@
     <EmbeddedResource Include="FormSampleTrf.resx">
       <DependentUpon>FormSampleTrf.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSASCompare.resx">
+      <DependentUpon>FormSASCompare.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormScanReturn.resx">
       <DependentUpon>FormScanReturn.vb</DependentUpon>

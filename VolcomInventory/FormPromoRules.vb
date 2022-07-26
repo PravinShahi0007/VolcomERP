@@ -1,6 +1,7 @@
 ﻿Public Class FormPromoRules
     Private Sub FormPromoRules_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewRules()
+        viewClosed()
     End Sub
 
     Sub viewRules()
@@ -28,6 +29,29 @@
         GCRules.DataSource = data
         GVRules.BestFitColumns()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub viewClosed()
+        Dim query As String = "
+            SELECT r.id_close_promo_rules, r.report_number, p.report_number AS proposed_number, s.store, DATE_FORMAT(r.created_date, '%d %M %Y %H:%i:%s') AS created_date, e.employee_name AS created_by, t.report_status
+            FROM tb_close_promo_rules AS r
+            LEFT JOIN tb_promo_rules AS p ON p.id_rules = r.id_rules
+            LEFT JOIN (
+                SELECT d.id_close_promo_rules, GROUP_CONCAT(o.outlet_name) AS store
+                FROM tb_close_promo_rules_det AS d
+                LEFT JOIN tb_outlet AS o ON d.id_outlet = o.id_outlet
+                GROUP BY d.id_close_promo_rules
+            ) AS s ON r.id_close_promo_rules = s.id_close_promo_rules
+            LEFT JOIN tb_m_employee AS e ON r.created_by = e.id_employee
+            LEFT JOIN tb_lookup_report_status t ON r.id_report_status = t.id_report_status
+            ORDER BY r.id_close_promo_rules DESC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCClosed.DataSource = data
+
+        GVClosed.BestFitColumns()
     End Sub
 
     'Sub viewStore()
@@ -65,6 +89,12 @@
     'End Sub
 
     Private Sub GVRules_DoubleClick(sender As Object, e As EventArgs) Handles GVRules.DoubleClick
+        If GVRules.RowCount > 0 And GVRules.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
+
+    Private Sub GVClosed_DoubleClick(sender As Object, e As EventArgs) Handles GVClosed.DoubleClick
         If GVRules.RowCount > 0 And GVRules.FocusedRowHandle >= 0 Then
             FormMain.but_edit()
         End If

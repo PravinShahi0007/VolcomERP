@@ -87,7 +87,7 @@
                                     GROUP BY id_emp
                                     HAVING -(SUM(adv.qty)) < 0   
                                 ) adv ON adv.id_employee = emp.id_employee
-                                WHERE 1=1
+                                WHERE emp.id_employee_active=1
                                 " & dep_search & "
                                 " & emp_search & "
                                 GROUP BY emp.id_employee"
@@ -112,7 +112,7 @@
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                 INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
-                                WHERE 1=1
+                                WHERE emp.id_employe_active=1
                                 " & dep_search & "
                                 " & emp_search & "
                                 GROUP BY emp_sl.id_emp,emp_sl.type,emp_sl.date_expired
@@ -126,7 +126,7 @@
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                 INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
-                                WHERE 1=1
+                                WHERE emp.id_employe_active=1
                                 " & dep_search & "
                                 " & emp_search & "
                                 GROUP BY id_emp

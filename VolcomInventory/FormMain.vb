@@ -315,7 +315,7 @@ HAVING NOT ISNULL(id_user)"
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormListStore" Or formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Or formName = "FormInvMat" Or formName = "FormWork" Or formName = "FormSOHSum" Or formName = "FormPurcAsset" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Or formName = "FormAREvaluation" Or formName = "FormARCollectionAvg" Or formName = "FormDocTracking" Or formName = "FormSalesInv" Or formName = "FormLineList" Or formName = "FormPriceChecker" Or formName = "FormBulanImport" Then
+        If formName = "FormListStore" Or formName = "FormBarcodeProduct" Or formName = "FormReportBudget" Or formName = "FormInvMat" Or formName = "FormWork" Or formName = "FormSOHSum" Or formName = "FormPurcAsset" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Or formName = "FormAREvaluation" Or formName = "FormARCollectionAvg" Or formName = "FormDocTracking" Or formName = "FormSalesInv" Or formName = "FormLineList" Or formName = "FormPriceChecker" Or formName = "FormBulanImport" Or formName = "FormSASCompare" Then
             RGAreaManage.Visible = False
         End If
 
@@ -394,7 +394,7 @@ HAVING NOT ISNULL(id_user)"
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormListStore" Or formName = "FormWork" Or formName = "FormDebitNote" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Or formName = "FormAREvaluation" Or formName = "FormARCollectionAvg" Or formName = "FormDocTracking" Or formName = "FormSalesInv" Or formName = "FormLineList" Or formName = "FormPriceChecker" Or formName = "FormBulanImport" Then
+        If formName = "FormListStore" Or formName = "FormWork" Or formName = "FormDebitNote" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Or formName = "FormSalesOrderReport" Or formName = "FormSalesRecord" Or formName = "FormARAging" Or formName = "FormInvoiceTracking" Or formName = "FormAREvaluation" Or formName = "FormARCollectionAvg" Or formName = "FormDocTracking" Or formName = "FormSalesInv" Or formName = "FormLineList" Or formName = "FormPriceChecker" Or formName = "FormBulanImport" Or formName = "FormSASCompare" Then
             RGAreaManage.Visible = True
         End If
 
@@ -1824,8 +1824,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormVoucherPOSDet.ShowDialog()
         ElseIf formName = "FormPromoRules" Then
             'Promo Rulese
-            FormPromoRulesDet.action = "ins"
-            FormPromoRulesDet.ShowDialog()
+            If FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                FormPromoRulesDet.action = "ins"
+                FormPromoRulesDet.ShowDialog()
+            ElseIf FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                FormPromoRulesClose.id = "0"
+                FormPromoRulesClose.ShowDialog()
+            End If
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             FormEmpInputAttendanceDet.id = "0"
@@ -3161,9 +3166,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormVoucherPOSDet.ShowDialog()
             ElseIf formName = "FormPromoRules" Then
                 'Promo Rulese
-                FormPromoRulesDet.action = "upd"
-                FormPromoRulesDet.id = FormPromoRules.GVRules.GetFocusedRowCellValue("id_rules").ToString
-                FormPromoRulesDet.ShowDialog()
+                If FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                    FormPromoRulesDet.action = "upd"
+                    FormPromoRulesDet.id = FormPromoRules.GVRules.GetFocusedRowCellValue("id_rules").ToString
+                    FormPromoRulesDet.ShowDialog()
+                ElseIf FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                    FormPromoRulesClose.id = FormPromoRules.GVClosed.GetFocusedRowCellValue("id_close_promo_rules").ToString
+                    FormPromoRulesClose.ShowDialog()
+                End If
             ElseIf formName = "FormEmpInputAttendance" Then
                 'input attendance
                 FormEmpInputAttendanceDet.id = FormEmpInputAttendance.GVList.GetFocusedRowCellValue("id_emp_attn_input").ToString
@@ -8705,7 +8715,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             'Voucher POS
             print_raw(FormVoucherPOS.GCData, "")
         ElseIf formName = "FormPromoRules" Then
-            print(FormPromoRules.GCRules, "List Propose GWP POS")
+            If FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                print(FormPromoRules.GCRules, "List Propose GWP POS")
+            ElseIf FormPromoRules.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                print(FormPromoRules.GCClosed, "List Closed GWP POS")
+            End If
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             print(FormEmpInputAttendance.GCList, "Input Attendance")
@@ -8970,6 +8984,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormProposePaymentCardPOS.GCData, "List Propose Payment Card POS")
         ElseIf formname = "FormPackaging" Then
             print(FormPackaging.GCClass, "List Packaging Weight " & FormPackaging.LOlShop.Text)
+        ElseIf formName = "FormSASCompare" Then
+            print(FormSASCompare.GCData, "Estimate & Actual Sales")
         Else
             RPSubMenu.Visible = False
         End If
@@ -10075,6 +10091,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPackaging" Then
             FormPackaging.Close()
             FormPackaging.Dispose()
+        ElseIf formName = "FormSASCompare" Then
+            FormSASCompare.Close()
+            FormSASCompare.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10961,6 +10980,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormVoucherPOS.viewVoucher()
         ElseIf formName = "FormPromoRules" Then
             FormPromoRules.viewRules()
+            FormPromoRules.viewClosed()
         ElseIf formName = "FormEmpInputAttendance" Then
             'input attendance
             FormEmpInputAttendance.view_attendance()
@@ -17414,6 +17434,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPackaging.Show()
             FormPackaging.WindowState = FormWindowState.Maximized
             FormPackaging.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSASCompare_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSASCompare.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSASCompare.MdiParent = Me
+            FormSASCompare.Show()
+            FormSASCompare.WindowState = FormWindowState.Maximized
+            FormSASCompare.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

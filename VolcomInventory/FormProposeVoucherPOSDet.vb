@@ -1,7 +1,11 @@
 ﻿Public Class FormProposeVoucherPOSDet
     Public id As String = "0"
 
+    Private attachment_id As String = "0"
+
     Private Sub FormProposeVoucherPOSDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        attachment_id = execute_query("UPDATE tb_opt_sales SET voucher_pos_attachment_id = (voucher_pos_attachment_id + 1); SELECT voucher_pos_attachment_id FROM tb_opt_sales", 0, True, "", "", "", "")
+
         viewOutlet()
 
         RIDEDate.MinValue = Date.Parse(getTimeDB())
@@ -18,6 +22,7 @@
         MENote.ReadOnly = False
         SBMark.Enabled = False
         GVData.OptionsBehavior.ReadOnly = False
+        SBVoucher.Enabled = True
 
         If id = "0" Then
             Dim data As DataTable = New DataTable
@@ -36,7 +41,7 @@
             GCData.DataSource = data
         Else
             Dim query_head As String = "
-                SELECT h.number, DATE_FORMAT(h.created_date, '%d %M %Y %H:%i:%s') AS created_date, e.employee_name AS created_by, h.note, r.report_status AS report_status
+                SELECT h.number, DATE_FORMAT(h.created_date, '%d %M %Y %H:%i:%s') AS created_date, e.employee_name AS created_by, h.note, h.attachment_id, r.report_status AS report_status
                 FROM tb_pos_voucher_pps AS h
                 LEFT JOIN tb_lookup_report_status AS r ON h.id_report_status = r.id_report_status
                 LEFT JOIN tb_m_employee AS e ON h.created_by = e.id_employee
@@ -50,6 +55,7 @@
             TECreatedDate.EditValue = head.Rows(0)("created_date").ToString
             TECreatedBy.EditValue = head.Rows(0)("created_by").ToString
             MENote.EditValue = head.Rows(0)("note").ToString
+            attachment_id = head.Rows(0)("attachment_id").ToString
 
             Dim query_detail As String = "
                 SELECT d.voucher_number, d.voucher_value, d.voucher_name, d.voucher_address, d.period_start, d.period_end, GROUP_CONCAT(o.outlet_name SEPARATOR '\n') AS outlet_name_line
@@ -76,6 +82,7 @@
             MENote.ReadOnly = True
             SBMark.Enabled = True
             GVData.OptionsBehavior.ReadOnly = True
+            SBVoucher.Enabled = True
         End If
     End Sub
 
@@ -142,7 +149,7 @@
 
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         Dim query As String = "
-                            INSERT INTO tb_pos_voucher_pps (created_date, created_by, note, id_report_status) VALUES (NOW(), " + id_employee_user + ", '" + addSlashes(MENote.EditValue.ToString) + "', 1); SELECT LAST_INSERT_ID();
+                            INSERT INTO tb_pos_voucher_pps (created_date, created_by, note, id_report_status, attachment_id) VALUES (NOW(), " + id_employee_user + ", '" + addSlashes(MENote.EditValue.ToString) + "', 1, " + attachment_id + "); SELECT LAST_INSERT_ID();
                         "
 
                         id = execute_query(query, 0, True, "", "", "", "")
@@ -230,6 +237,16 @@
 
         FormDocumentUpload.is_no_delete = "1"
         FormDocumentUpload.id_report = id
+        FormDocumentUpload.report_mark_type = report_mark_type
+
+        FormDocumentUpload.ShowDialog()
+    End Sub
+
+    Private Sub SBVoucher_Click(sender As Object, e As EventArgs) Handles SBVoucher.Click
+        Dim report_mark_type As String = "417"
+
+        FormDocumentUpload.is_view = If(id = "0", "-1", "1")
+        FormDocumentUpload.id_report = attachment_id
         FormDocumentUpload.report_mark_type = report_mark_type
 
         FormDocumentUpload.ShowDialog()

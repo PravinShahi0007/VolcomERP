@@ -148,6 +148,13 @@ WHERE qr.id_qc_report1='" + id + "' "
             TxtSeason.Text = data.Rows(0)("season").ToString
             '
             SLEQCReport.EditValue = data.Rows(0)("id_pl_category").ToString
+
+            If data.Rows(0)("need_wash").ToString = "1" Then
+                SLEWash.Visible = True
+            Else
+                SLEWash.Visible = False
+            End If
+
             SLEWash.EditValue = data.Rows(0)("id_qc_wash").ToString
             '
             view_barcode_list()
