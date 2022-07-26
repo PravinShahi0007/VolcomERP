@@ -17434,4 +17434,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBSASCompare_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSASCompare.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSASCompare.MdiParent = Me
+            FormSASCompare.Show()
+            FormSASCompare.WindowState = FormWindowState.Maximized
+            FormSASCompare.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
