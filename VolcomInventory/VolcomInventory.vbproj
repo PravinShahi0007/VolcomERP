@@ -5052,6 +5052,12 @@
     <Compile Include="FormReportPaymentFGPO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormReportProductWeight.Designer.vb">
+      <DependentUpon>FormReportProductWeight.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportProductWeight.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRequestRetOLStore.Designer.vb">
       <DependentUpon>FormRequestRetOLStore.vb</DependentUpon>
     </Compile>
@@ -13543,6 +13549,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportPaymentFGPO.resx">
       <DependentUpon>FormReportPaymentFGPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportProductWeight.resx">
+      <DependentUpon>FormReportProductWeight.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRequestRetOLStore.resx">
       <DependentUpon>FormRequestRetOLStore.vb</DependentUpon>
