@@ -8984,6 +8984,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormProposePaymentCardPOS.GCData, "List Propose Payment Card POS")
         ElseIf formname = "FormPackaging" Then
             print(FormPackaging.GCClass, "List Packaging Weight " & FormPackaging.LOlShop.Text)
+        ElseIf formName = "FormSASCompare" Then
+            print(FormSASCompare.GCData, "Estimate & Actual Sales")
         Else
             RPSubMenu.Visible = False
         End If
@@ -10089,6 +10091,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPackaging" Then
             FormPackaging.Close()
             FormPackaging.Dispose()
+        ElseIf formName = "FormSASCompare" Then
+            FormSASCompare.Close()
+            FormSASCompare.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
