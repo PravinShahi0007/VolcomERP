@@ -94,7 +94,7 @@
 
             'col sas
             col_sas_target1 += "MAX(CASE WHEN sas.sas_period='" + date_db + "' THEN sas.sas_value END) AS `" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,"
-            col_sas_target2 += "IFNULL(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) AS `Target SAS|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_sas_target2 += "IFNULL(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) AS `Target SAS (%)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
 
             'est sale (order)
             col_est_sal_order_qty = "ROUND(((pd.`total_qty_core`-(" + sum_est_sal_order_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
@@ -116,7 +116,7 @@
         End While
 
         'eksekusi 
-        Dim query As String = "SELECT d.id_design AS `Product Info|id_design`, d.design_code AS `Product Info|Code`, ss.season AS `Product Info|Season`, sd.delivery AS `Product Info|Del`,
+        Dim query As String = "SELECT d.id_design AS `Product Info|id_design`, d.design_code AS `Product Info|Code`,lso.lookup_status_order AS `Product Info|Move Status`, ss.season AS `Product Info|Season`, sd.delivery AS `Product Info|Del`,
         cd.class AS `Product Info|Class`, d.design_display_name AS `Product Info|Description`, cd.sht AS `Product Info|Silhouette`, cd.color AS `Product Info|Color`, cd.color_desc AS `Product Info|Color Descr.`,
         pd.`prod_demand_number` AS `Prod. Demand|Number`,
         pd.`total_qty_mkt` AS `Prod. Demand|MKT`,
@@ -137,6 +137,7 @@
         '' AS `*|*`
         FROM tb_m_design d
         INNER JOIN tb_season ss ON ss.id_season = d.id_season
+        INNER JOIN tb_lookup_status_order lso ON lso.id_lookup_status_order = d.id_lookup_status_order
         INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
         LEFT JOIN (
 	        SELECT dc.id_design, 
@@ -265,18 +266,20 @@
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                         col.DisplayFormat.FormatString = "{0:n0}"
 
-                        'summary
-                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                        col.SummaryItem.DisplayFormat = "{0:n0}"
+                        If coluName <> "Est. Price" Then
+                            'summary
+                            col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                            col.SummaryItem.DisplayFormat = "{0:n0}"
 
 
-                        'group summary
-                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
-                        summary.DisplayFormat = "{0:N0}"
-                        summary.FieldName = data.Columns(j).Caption
-                        summary.ShowInGroupColumnFooter = col
-                        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                        GVData.GroupSummary.Add(summary)
+                            'group summary
+                            Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                            summary.DisplayFormat = "{0:N0}"
+                            summary.FieldName = data.Columns(j).Caption
+                            summary.ShowInGroupColumnFooter = col
+                            summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                            GVData.GroupSummary.Add(summary)
+                        End If
                     End If
 
                     If bandName.Contains("Est Sal. Qty (Order)") Or bandName.Contains("Est Sal. Value (Order)") Or bandName.Contains("Est Sal. Qty (Receiving)") Or bandName.Contains("Est Sal. Value (Receiving)") Or bandName.Contains("RECEIVED IN WH") Or bandName.Contains("Actual Sales Qty") Or bandName.Contains("Actual Sales Value") Then
@@ -308,7 +311,7 @@
                         col.DisplayFormat.FormatString = "{0:n0}"
                     End If
 
-                    If bandName.Contains("Target SAS") Then
+                    If bandName.Contains("Target SAS (%)") Then
                         col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
 
                         'display format
