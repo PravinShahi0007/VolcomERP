@@ -46,6 +46,8 @@ Partial Class FormPackaging
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BUpdateData = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,7 +165,7 @@ Partial Class FormPackaging
         '
         'GVClass
         '
-        Me.GVClass.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8})
+        Me.GVClass.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn11, Me.GridColumn12, Me.GridColumn8})
         Me.GVClass.GridControl = Me.GCClass
         Me.GVClass.Name = "GVClass"
         Me.GVClass.OptionsView.ShowGroupPanel = False
@@ -173,6 +175,8 @@ Partial Class FormPackaging
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_code_detail"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.AllowFocus = False
         '
         'GridColumn2
         '
@@ -214,7 +218,7 @@ Partial Class FormPackaging
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 148
+        Me.GridColumn3.Width = 110
         '
         'RepositoryItemTextEdit1
         '
@@ -238,7 +242,7 @@ Partial Class FormPackaging
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 148
+        Me.GridColumn4.Width = 111
         '
         'RepositoryItemTextEdit2
         '
@@ -262,7 +266,7 @@ Partial Class FormPackaging
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 148
+        Me.GridColumn5.Width = 103
         '
         'RepositoryItemTextEdit3
         '
@@ -286,7 +290,7 @@ Partial Class FormPackaging
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 165
+        Me.GridColumn6.Width = 113
         '
         'RepositoryItemTextEdit4
         '
@@ -301,6 +305,8 @@ Partial Class FormPackaging
         Me.GridColumn8.Caption = "is_change"
         Me.GridColumn8.FieldName = "is_change"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.AllowFocus = False
         '
         'PanelControl2
         '
@@ -339,6 +345,42 @@ Partial Class FormPackaging
         Me.BUpdateData.Size = New System.Drawing.Size(1000, 40)
         Me.BUpdateData.TabIndex = 15
         Me.BUpdateData.Text = "Update"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.Caption = "Berat Volume (gram)"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "berat_volume"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.AllowFocus = False
+        Me.GridColumn11.UnboundExpression = "[panjang] * [lebar] * [tinggi] / 6"
+        Me.GridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 6
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn12.Caption = "Berat Dipakai (gram)"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "berat_dipakai"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.OptionsColumn.AllowFocus = False
+        Me.GridColumn12.UnboundExpression = "Round(Iif([berat_volume] > [berat], [berat_volume], [berat]), 2)"
+        Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 7
         '
         'FormPackaging
         '
@@ -401,4 +443,6 @@ Partial Class FormPackaging
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -35,7 +35,7 @@ WHERE cd.id_code='30'"
     Private Sub BCreatePenawaran_Click(sender As Object, e As EventArgs) Handles BUpdateData.Click
         If GVClass.RowCount > 0 Then
             makeSafeGV(GVClass)
-            GVClass.ActiveFilterString = "[is_change]=1"
+            GVClass.ActiveFilterString = "[is_change]=1 AND [berat]!=0 AND [panjang]!=0 AND [lebar]!=0 AND [tinggi]!=0"
             If GVClass.RowCount > 0 Then
                 Dim qi As String = "INSERT INTO tb_packaging_w(`id_comp_group`,`id_code_detail`,`berat`,`panjang`,`lebar`,`tinggi`,`update_by`,`update_date`) VALUES"
                 Dim qu As String = ""
@@ -56,7 +56,7 @@ WHERE cd.id_code='30'"
                 '
                 load_weight()
             Else
-                warningCustom("Tidak ada data yang berubah")
+                warningCustom("Tidak ada data yang berubah. Pastikan isian tidak kosong.")
             End If
             GVClass.ActiveFilterString = ""
         End If

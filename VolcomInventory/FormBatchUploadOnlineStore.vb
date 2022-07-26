@@ -188,6 +188,8 @@
             q_select = q_select.Replace("custom_" + list_custom(i), q_custom)
         Next
 
+        Dim warning_weight As String = "2"
+
         If Not q_select = "" Then
             'query
             Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + TEProductCode.EditValue.ToString + """)"
@@ -196,6 +198,10 @@
 
             'title, handle, tags
             For i = 0 To data_tmp.Rows.Count - 1
+                If data_tmp.Rows(i)("qc_weight") = 0 Or data_tmp.Rows(i)("packaging_weight") = 0 Then
+                    warning_weight = "1"
+                End If
+
                 data_tmp.Rows(i)("Title") = data_tmp.Rows(i)("Title").ToString.Replace("[silhouette]", data_tmp.Rows(i)("Silhouette"))
 
                 data_tmp.Rows(i)("Handle") = data_tmp.Rows(i)("Handle").ToString.Replace("[silhouette]", data_tmp.Rows(i)("Silhouette"))
@@ -326,6 +332,8 @@
 
                 data.Columns.Remove(data.Columns("id_design"))
                 data.Columns.Remove(data.Columns("id_product"))
+                data.Columns.Remove(data.Columns("qc_weight"))
+                data.Columns.Remove(data.Columns("packaging_weight"))
                 data.Columns.Remove(data.Columns("Tag 1"))
                 data.Columns.Remove(data.Columns("Tag 2"))
                 data.Columns.Remove(data.Columns("Tag 3"))
@@ -339,6 +347,10 @@
         End If
 
         GCBatchUpload.DataSource = data
+
+        If warning_weight = "1" And get_opt_sales_field("is_active_warning_berat_kosong") = "1" Then
+            warningCustom("Some product weights haven't been inputted yet.")
+        End If
 
         'add memo edit
         For i = 0 To GVBatchUpload.Columns.Count - 1
@@ -465,11 +477,21 @@
             q_select = q_select.Replace("custom_" + list_custom(i), q_custom)
         Next
 
+        Dim warning_weight As String = "2"
+
         If Not q_select = "" Then
             'query
             Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + TEProductCode.EditValue.ToString + """)"
 
             Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            For i = 0 To data_tmp.Rows.Count - 1
+                If data_tmp.Rows(i)("qc_weight") = 0 Or data_tmp.Rows(i)("packaging_weight") = 0 Then
+                    warning_weight = "1"
+
+                    Exit For
+                End If
+            Next
 
             data.Merge(data_tmp)
 
@@ -485,10 +507,16 @@
 
                 data.Columns.Remove(data.Columns("id_design"))
                 data.Columns.Remove(data.Columns("id_product"))
+                data.Columns.Remove(data.Columns("qc_weight"))
+                data.Columns.Remove(data.Columns("packaging_weight"))
             End If
         End If
 
         GCBatchUpload.DataSource = data
+
+        If warning_weight = "1" And get_opt_sales_field("is_active_warning_berat_kosong") = "1" Then
+            warningCustom("Some product weights haven't been inputted yet.")
+        End If
 
         'add memo edit
         For i = 0 To GVBatchUpload.Columns.Count - 1
@@ -615,11 +643,21 @@
             q_select = q_select.Replace("custom_" + list_custom(i), q_custom)
         Next
 
+        Dim warning_weight As String = "2"
+
         If Not q_select = "" Then
             'query
             Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + TEProductCode.EditValue.ToString + """)"
 
             Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            For i = 0 To data_tmp.Rows.Count - 1
+                If data_tmp.Rows(i)("qc_weight") = 0 Or data_tmp.Rows(i)("packaging_weight") = 0 Then
+                    warning_weight = "1"
+
+                    Exit For
+                End If
+            Next
 
             data.Merge(data_tmp)
 
@@ -635,10 +673,16 @@
 
                 data.Columns.Remove(data.Columns("id_design"))
                 data.Columns.Remove(data.Columns("id_product"))
+                data.Columns.Remove(data.Columns("qc_weight"))
+                data.Columns.Remove(data.Columns("packaging_weight"))
             End If
         End If
 
         GCBatchUpload.DataSource = data
+
+        If warning_weight = "1" And get_opt_sales_field("is_active_warning_berat_kosong") = "1" Then
+            warningCustom("Some product weights haven't been inputted yet.")
+        End If
 
         'add memo edit
         For i = 0 To GVBatchUpload.Columns.Count - 1
@@ -765,11 +809,21 @@
             q_select = q_select.Replace("custom_" + list_custom(i), q_custom)
         Next
 
+        Dim warning_weight As String = "2"
+
         If Not q_select = "" Then
             'query
             Dim query As String = "CALL view_all_design_mapping(" + SLUEOnlineStore.EditValue.ToString + ", """ + q_select.Substring(0, q_select.Length - 2) + """, " + SLUESeason.EditValue.ToString + ", " + SLUEDivision.EditValue.ToString + ", """ + TEProductCode.EditValue.ToString + """)"
 
             Dim data_tmp As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            For i = 0 To data_tmp.Rows.Count - 1
+                If data_tmp.Rows(i)("qc_weight") = 0 Or data_tmp.Rows(i)("packaging_weight") = 0 Then
+                    warning_weight = "1"
+
+                    Exit For
+                End If
+            Next
 
             data.Merge(data_tmp)
 
@@ -785,10 +839,16 @@
 
                 data.Columns.Remove(data.Columns("id_design"))
                 data.Columns.Remove(data.Columns("id_product"))
+                data.Columns.Remove(data.Columns("qc_weight"))
+                data.Columns.Remove(data.Columns("packaging_weight"))
             End If
         End If
 
         GCBatchUpload.DataSource = data
+
+        If warning_weight = "1" And get_opt_sales_field("is_active_warning_berat_kosong") = "1" Then
+            warningCustom("Some product weights haven't been inputted yet.")
+        End If
 
         'add memo edit
         For i = 0 To GVBatchUpload.Columns.Count - 1
