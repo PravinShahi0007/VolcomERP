@@ -94,7 +94,7 @@
 
             'col sas
             col_sas_target1 += "MAX(CASE WHEN sas.sas_period='" + date_db + "' THEN sas.sas_value END) AS `" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,"
-            col_sas_target2 += "IFNULL(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) AS `Target SAS (%)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_sas_target2 += "CONCAT(ROUND(IFNULL(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0),0),'%') AS `Target SAS (%)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
 
             'est sale (order)
             col_est_sal_order_qty = "ROUND(((pd.`total_qty_core`-(" + sum_est_sal_order_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
@@ -116,7 +116,7 @@
         End While
 
         'eksekusi 
-        Dim query As String = "SELECT d.id_design AS `Product Info|id_design`, d.design_code AS `Product Info|Code`,lso.lookup_status_order AS `Product Info|Move Status`, ss.season AS `Product Info|Season`, sd.delivery AS `Product Info|Del`,
+        Dim query As String = "SELECT d.id_design AS `Product Info|id_design`, d.design_code AS `Product Info|Code`,lso.lookup_status_order AS `Product Info|Move Status`, sspd.season AS `Product Info|Season Order`, dpd.delivery AS `Product Info|Del. Order`, ss.season AS `Product Info|Indo Season`, sd.delivery AS `Product Info|Del`,
         cd.class AS `Product Info|Class`, d.design_display_name AS `Product Info|Description`, cd.sht AS `Product Info|Silhouette`, cd.color AS `Product Info|Color`, cd.color_desc AS `Product Info|Color Descr.`,
         pd.`prod_demand_number` AS `Prod. Demand|Number`,
         pd.`total_qty_mkt` AS `Prod. Demand|MKT`,
@@ -129,10 +129,10 @@
         IFNULL(rec.qty_rec,0) AS `RECEIVED IN WH|QTY REC.`,
         " + col_sas_target2 + "
         " + col_est_sal_order_qty_select + "
-        " + col_est_sal_order_price_select + "
-        " + col_est_sal_rec_qty_select + "
-        " + col_est_sal_rec_price_select + "
+         " + col_est_sal_rec_qty_select + "
         " + col_sal2 + "
+        " + col_est_sal_order_price_select + "
+        " + col_est_sal_rec_price_select + "
         " + col_sal_value + "
         '' AS `*|*`
         FROM tb_m_design d
@@ -171,18 +171,19 @@
 	        IFNULL(SUM(CASE WHEN pda.id_pd_alloc=7 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_core`,
 	        IFNULL(SUM(CASE WHEN alloc.is_include_so=1 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_act_order_sales`,
 	        SUM(pda.prod_demand_alloc_qty) AS `total_qty`,
-	        MAX(pdd.prod_demand_design_propose_price) AS `pd_price`
+	        MAX(pdd.prod_demand_design_propose_price) AS `pd_price`,
+            MAX(pd.id_season) AS `id_season_pd`, MAX(pdd.id_delivery) AS `id_delivery_pd`
 	        FROM tb_prod_demand pd
 	        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand = pd.id_prod_demand AND pdd.is_void=2
 	        INNER JOIN tb_m_design d ON d.id_design = pdd.id_design 
 	        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
 	        INNER JOIN tb_prod_demand_alloc pda ON pda.id_prod_demand_product = pdp.id_prod_demand_product
 	        INNER JOIN tb_lookup_pd_alloc alloc ON alloc.id_pd_alloc = pda.id_pd_alloc
-	        INNER JOIN tb_season ss ON ss.id_season = d.id_season
-	        INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
 	        WHERE pd.id_report_status=6 AND pd.is_pd=1 AND (d.id_season IN(" + CCBESeason.EditValue.ToString + ") OR pd.id_season IN (" + CCBESeason.EditValue.ToString + "))
 	        GROUP BY d.id_design
         ) pd ON pd.id_design = d.id_design
+        INNER JOIN tb_season sspd ON sspd.id_season = pd.id_season_pd
+        INNER JOIN tb_season_delivery dpd ON dpd.id_delivery = pd.id_delivery_pd
         LEFT JOIN (
             SELECT d.id_design, SUM(rd.pl_prod_order_rec_det_qty) AS `qty_rec`
             FROM tb_pl_prod_order_rec r
@@ -313,10 +314,6 @@
 
                     If bandName.Contains("Target SAS (%)") Then
                         col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-
-                        'display format
-                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                        col.DisplayFormat.FormatString = "{0:n0}%"
                     End If
                 End If
             Next
@@ -324,6 +321,9 @@
 
         'hide
         GVData.Columns("Product Info|id_design").Visible = False
+        GVData.Columns("Prod. Demand|Number").Visible = False
+        GVData.Columns("Product Info|Color Descr.").Visible = False
+        GVData.Columns("Product Info|Silhouette").Visible = False
 
         GCData.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
