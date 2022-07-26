@@ -76,7 +76,9 @@
         Dim col_est_sal_order_qty_select As String = ""
         Dim col_est_sal_order_qty_total As String = ""
         Dim sum_est_sal_order_qty As String = "0"
+        Dim col_est_sal_order_price_raw As String = ""
         Dim col_est_sal_order_price_select As String = ""
+        Dim col_est_sal_order_price_total As String = ""
         Dim col_est_sal_rec_qty As String = ""
         Dim col_est_sal_rec_qty_select As String = ""
         Dim col_est_sal_rec_qty_total As String = ""
@@ -97,6 +99,7 @@
                 col_est_sal_order_qty_total += "+"
                 col_est_sal_rec_qty_total += "+"
                 col_sal2_total += "+"
+                col_est_sal_order_price_total += "+"
             End If
 
             'col sas
@@ -106,8 +109,12 @@
             'est sale (order)
             col_est_sal_order_qty = "ROUND(((pd.`total_qty_core`-(" + sum_est_sal_order_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
             col_est_sal_order_qty_select += col_est_sal_order_qty + " AS `Est Sal. Qty (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
-            col_est_sal_order_price_select += col_est_sal_order_qty + "*pd.pd_price AS `Est Sal. Value (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
             col_est_sal_order_qty_total += col_est_sal_order_qty
+            col_est_sal_order_price_raw = "(" + col_est_sal_order_qty + " * pd.pd_price) "
+            col_est_sal_order_price_select += col_est_sal_order_price_raw + " AS `Est Sal. Value (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_est_sal_order_price_total += col_est_sal_order_price_raw
+
+
 
             'est sale (rec)
             col_est_sal_rec_qty = "ROUND(((IFNULL(rec.qty_rec,0)-(" + sum_est_sal_rec_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
@@ -147,6 +154,7 @@
         " + col_sal2 + "
         (" + col_sal2_total + ") AS `Actual Sales Qty|Total`,
         " + col_est_sal_order_price_select + "
+        (" + col_est_sal_order_price_total + ") AS `Est Sal. Value (Order)|Total`,
         " + col_est_sal_rec_price_select + "
         " + col_sal_value + "
         '' AS `*|*`
