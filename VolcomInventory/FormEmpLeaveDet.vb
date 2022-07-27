@@ -462,6 +462,25 @@
         Dim check_input As Boolean = True
         Dim leave_type As String = LELeaveType.EditValue.ToString
 
+        'check duplicate
+        For i = 0 To GVLeaveDet.RowCount - 1
+            Dim datetime_start As String = Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_start").ToString).ToString("yyyy-MM-dd H:mm:ss")
+            Dim datetime_until As String = Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_until").ToString).ToString("yyyy-MM-dd H:mm:ss")
+
+            Dim already_leave As String = execute_query("
+                SELECT IF(COUNT(*) = 0, 1, 2) AS total
+                FROM tb_emp_leave_det AS d
+                LEFT JOIN tb_emp_leave AS e ON d.id_emp_leave = e.id_emp_leave
+                WHERE e.id_report_status <> 5 AND e.id_emp = " + id_employee + " AND ((d.datetime_start BETWEEN '" + datetime_start + "' AND '" + datetime_until + "') OR (d.datetime_until BETWEEN '" + datetime_start + "' AND '" + datetime_until + "') OR ('" + datetime_start + "' <= d.datetime_start AND '" + datetime_until + "' >= d.datetime_until))
+            ", 0, True, "", "", "", "")
+
+            If already_leave = "2" Then
+                stopCustom("Sudah diajukan cuti pada tanggal tersebut.")
+
+                Exit Sub
+            End If
+        Next
+
         'propose max
         Dim max_propose As Integer = 99
         Try
