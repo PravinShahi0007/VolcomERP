@@ -17465,4 +17465,21 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBStoreTransfer_ItemChanged(sender As Object, e As EventArgs) Handles NBStoreTransfer.ItemChanged
+
+    End Sub
+
+    Private Sub NBStoreTransfer_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStoreTransfer.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStoreTransfer.MdiParent = Me
+            FormStoreTransfer.Show()
+            FormStoreTransfer.WindowState = FormWindowState.Maximized
+            FormStoreTransfer.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

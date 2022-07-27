@@ -8160,6 +8160,12 @@
     <Compile Include="FormStoreStatusHistory.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStoreTransfer.Designer.vb">
+      <DependentUpon>FormStoreTransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreTransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSUMockMark.Designer.vb">
       <DependentUpon>FormSUMockMark.vb</DependentUpon>
     </Compile>
