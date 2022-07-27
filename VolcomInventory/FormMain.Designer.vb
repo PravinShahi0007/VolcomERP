@@ -489,8 +489,8 @@ Partial Class FormMain
         Me.NBTargetSales = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBTargetSAS = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPackagingWeight = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalthruCompare = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProductWeight = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalthruCompare = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSASCompare = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBBankWithdrawal = New DevExpress.XtraNavBar.NavBarItem()
@@ -3820,21 +3820,21 @@ Partial Class FormMain
         '
         'NBPackagingWeight
         '
-        Me.NBPackagingWeight.Caption = "Weight Packaging"
+        Me.NBPackagingWeight.Caption = "Packaging Weight"
         Me.NBPackagingWeight.Name = "NBPackagingWeight"
         Me.NBPackagingWeight.SmallImage = CType(resources.GetObject("NBPackagingWeight.SmallImage"), System.Drawing.Image)
-        '
-        'NBSalthruCompare
-        '
-        Me.NBSalthruCompare.Caption = "Product Sell Thru"
-        Me.NBSalthruCompare.Name = "NBSalthruCompare"
-        Me.NBSalthruCompare.SmallImage = CType(resources.GetObject("NBSalthruCompare.SmallImage"), System.Drawing.Image)
         '
         'NBProductWeight
         '
         Me.NBProductWeight.Caption = "Product Weight"
         Me.NBProductWeight.Name = "NBProductWeight"
         Me.NBProductWeight.SmallImage = CType(resources.GetObject("NBProductWeight.SmallImage"), System.Drawing.Image)
+        '
+        'NBSalthruCompare
+        '
+        Me.NBSalthruCompare.Caption = "Product Sell Thru"
+        Me.NBSalthruCompare.Name = "NBSalthruCompare"
+        Me.NBSalthruCompare.SmallImage = CType(resources.GetObject("NBSalthruCompare.SmallImage"), System.Drawing.Image)
         '
         'NBSASCompare
         '
