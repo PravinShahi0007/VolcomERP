@@ -416,7 +416,7 @@
             If Not IO.Directory.Exists(path) Then
                 System.IO.Directory.CreateDirectory(path)
             End If
-            path = path + "estimate_actual_sales.xlsx"
+            path = path + "salinv_by_sas.xlsx"
             exportToXLS(path, "list", GCData)
             Cursor = Cursors.Default
         End If
