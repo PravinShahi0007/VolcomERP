@@ -4089,7 +4089,7 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn113.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn113.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumn113.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumn113.Caption = "BRUTO (net + vat 10%)"
+        Me.BandedGridColumn113.Caption = "BRUTO (net + vat)"
         Me.BandedGridColumn113.DisplayFormat.FormatString = "{0:N2} %"
         Me.BandedGridColumn113.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn113.FieldName = "bruto_percent_py"
@@ -4178,7 +4178,7 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn109.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn109.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumn109.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumn109.Caption = "BRUTO (net + vat 10%)"
+        Me.BandedGridColumn109.Caption = "BRUTO (net + vat )"
         Me.BandedGridColumn109.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumn109.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn109.FieldName = "bruto_py"
@@ -4267,7 +4267,7 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn105.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn105.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumn105.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumn105.Caption = "BRUTO (net + vat 10%)"
+        Me.BandedGridColumn105.Caption = "BRUTO (net + vat)"
         Me.BandedGridColumn105.DisplayFormat.FormatString = "{0:N2} %"
         Me.BandedGridColumn105.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn105.FieldName = "bruto_percent_target"
@@ -4356,7 +4356,7 @@ Partial Class FormReportBalanceSheet
         Me.BandedGridColumn101.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn101.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumn101.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumn101.Caption = "BRUTO (net + vat 10%)"
+        Me.BandedGridColumn101.Caption = "BRUTO (net + vat)"
         Me.BandedGridColumn101.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumn101.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn101.FieldName = "bruto_ty"
@@ -4445,7 +4445,7 @@ Partial Class FormReportBalanceSheet
         Me.GridColumn88.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn88.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn88.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn88.Caption = "BRUTO (net + vat 10%)"
+        Me.GridColumn88.Caption = "BRUTO (net + vat)"
         Me.GridColumn88.DisplayFormat.FormatString = "N2"
         Me.GridColumn88.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn88.FieldName = "bruto_target"
