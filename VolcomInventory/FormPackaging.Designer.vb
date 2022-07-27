@@ -42,12 +42,12 @@ Partial Class FormPackaging
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BUpdateData = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -191,7 +191,7 @@ Partial Class FormPackaging
         Me.GridColumn2.OptionsColumn.AllowFocus = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 76
+        Me.GridColumn2.Width = 77
         '
         'GridColumn7
         '
@@ -202,7 +202,7 @@ Partial Class FormPackaging
         Me.GridColumn7.OptionsColumn.AllowFocus = False
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
-        Me.GridColumn7.Width = 301
+        Me.GridColumn7.Width = 307
         '
         'GridColumn3
         '
@@ -218,7 +218,7 @@ Partial Class FormPackaging
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 110
+        Me.GridColumn3.Width = 112
         '
         'RepositoryItemTextEdit1
         '
@@ -242,7 +242,7 @@ Partial Class FormPackaging
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 111
+        Me.GridColumn4.Width = 113
         '
         'RepositoryItemTextEdit2
         '
@@ -266,7 +266,7 @@ Partial Class FormPackaging
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 103
+        Me.GridColumn5.Width = 105
         '
         'RepositoryItemTextEdit3
         '
@@ -290,7 +290,7 @@ Partial Class FormPackaging
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 113
+        Me.GridColumn6.Width = 115
         '
         'RepositoryItemTextEdit4
         '
@@ -299,6 +299,44 @@ Partial Class FormPackaging
         Me.RepositoryItemTextEdit4.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RepositoryItemTextEdit4.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit4.Name = "RepositoryItemTextEdit4"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.Caption = "Berat Volume (gram)"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "berat_volume"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.AllowFocus = False
+        Me.GridColumn11.UnboundExpression = "[panjang] * [lebar] * [tinggi] / 6"
+        Me.GridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 6
+        Me.GridColumn11.Width = 83
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn12.Caption = "Berat Dipakai (gram)"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "berat_dipakai"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.OptionsColumn.AllowFocus = False
+        Me.GridColumn12.UnboundExpression = "Round(Iif([berat_volume] > [berat], [berat_volume], [berat]), 2)"
+        Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 7
+        Me.GridColumn12.Width = 74
         '
         'GridColumn8
         '
@@ -345,42 +383,6 @@ Partial Class FormPackaging
         Me.BUpdateData.Size = New System.Drawing.Size(1000, 40)
         Me.BUpdateData.TabIndex = 15
         Me.BUpdateData.Text = "Update"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.Caption = "Berat Volume (gram)"
-        Me.GridColumn11.DisplayFormat.FormatString = "N2"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "berat_volume"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowEdit = False
-        Me.GridColumn11.OptionsColumn.AllowFocus = False
-        Me.GridColumn11.UnboundExpression = "[panjang] * [lebar] * [tinggi] / 6"
-        Me.GridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 6
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn12.Caption = "Berat Dipakai (gram)"
-        Me.GridColumn12.DisplayFormat.FormatString = "N2"
-        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn12.FieldName = "berat_dipakai"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.AllowEdit = False
-        Me.GridColumn12.OptionsColumn.AllowFocus = False
-        Me.GridColumn12.UnboundExpression = "Round(Iif([berat_volume] > [berat], [berat_volume], [berat]), 2)"
-        Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 7
         '
         'FormPackaging
         '
