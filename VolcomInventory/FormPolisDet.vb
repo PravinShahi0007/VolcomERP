@@ -59,8 +59,8 @@ WHERE pps.id_polis_pps='" & id_pps & "'"
                 '
                 SLEPPSType.EditValue = dt.Rows(0)("id_pps_type").ToString
                 SLEPolisType.EditValue = dt.Rows(0)("id_desc_premi").ToString
-                DEStart.EditValue = dt.Rows(0)("start_polis").ToString
-                DEUntil.EditValue = dt.Rows(0)("end_polis").ToString
+                DEStart.EditValue = dt.Rows(0)("start_polis")
+                DEUntil.EditValue = dt.Rows(0)("end_polis")
                 '
                 If dt.Rows(0)("is_annual").ToString = "2" Then
                     CECustom.Checked = True
@@ -423,7 +423,7 @@ SELECT 2 AS id_pps_type,'Mandiri' AS pps_type"
                     If CECustom.Checked = True Then
                         is_annual = "2"
                     End If
-                    q = "INSERT INTO tb_polis_pps(`created_by`,`created_date`,`last_update_by`,`last_update_date`,`id_report_status`,id_desc_premi,id_pps_type,start_polis,end_polis,`step`,`is_annual`) VALUES('" & id_user & "',NOW(),'" & id_user & "',NOW(),'1','" & SLEPolisType.EditValue.ToString & "','" & SLEPPSType.EditValue.ToString & "','" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','1','" & is_annual & "'); SELECT LAST_INSERT_ID();"
+                    q = "INSERT INTO tb_polis_pps(`created_by`,`created_date`,`last_update_by`,`last_update_date`,`id_report_status`,id_desc_premi,id_pps_type,start_polis,end_polis,`step`,`is_annual`,`non_annual_reason`) VALUES('" & id_user & "',NOW(),'" & id_user & "',NOW(),'1','" & SLEPolisType.EditValue.ToString & "','" & SLEPPSType.EditValue.ToString & "','" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','1','" & is_annual & "','" & addSlashes(MENonAnnualReason.Text) & "'); SELECT LAST_INSERT_ID();"
                     id_pps = execute_query(q, 0, True, "", "", "", "")
                     q = "INSERT INTO tb_polis_pps_det(`id_polis_pps`,`id_comp`,`old_id_polis`,`old_end_date`,`old_nilai_stock`,`old_nilai_fit_out`,`old_nilai_building`,`old_nilai_peralatan`,`old_nilai_public_liability`,`old_nilai_total`,`old_polis_vendor`,`old_premi`) VALUES"
                     For i = 0 To BGVSummary.RowCount - 1
@@ -847,10 +847,21 @@ WHERE pps.id_polis_pps='" & id_pps & "'"
         Else
             'mandiri
             Dim Report As New ReportPolis()
+            If CECustom.Checked = True Then
+                Report.LNote1.Visible = True
+                Report.LNote2.Visible = True
+                Report.LNote3.Visible = True
+            Else
+                Report.LNote1.Visible = False
+                Report.LNote2.Visible = False
+                Report.LNote3.Visible = False
+            End If
             Report.dt = GCPenawaran.DataSource
             Report.id_pps = id_pps
             '
-            Dim q As String = "SELECT premi.description,DATE_FORMAT(pps.created_date,'%d %M %Y') AS created_date,emp.employee_name AS created_by,YEAR(pps.created_date) AS this_year,number FROM tb_polis_pps pps
+            Dim q As String = "SELECT premi.description,DATE_FORMAT(pps.created_date,'%d %M %Y') AS created_date,emp.employee_name AS created_by,YEAR(pps.created_date) AS this_year,number
+,pps.start_polis,pps.end_polis,pps.non_annual_reason,IF(pps.is_annual=1,'',CONCAT('Non annual, reason : ',pps.non_annual_reason)) AS note
+FROM tb_polis_pps pps
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_desc_premi premi ON premi.id_desc_premi=pps.id_desc_premi
@@ -1387,18 +1398,36 @@ WHERE pd.`id_polis_pps`='" & id_pps & "' "
     End Sub
 
     Private Sub SLEPPSType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPPSType.EditValueChanged
+        LNonAnnualReason.Visible = False
+        MENonAnnualReason.Visible = False
         If SLEPPSType.EditValue.ToString = "1" Then
             '1 untuk semua
+            LNonAnnualReason.Visible = False
+            MENonAnnualReason.Visible = False
+            '
             LDateFrom.Visible = True
             LDateUntil.Visible = True
             DEUntil.Visible = True
             DEStart.Visible = True
         Else
             'mandiri
-            LDateFrom.Visible = False
-            LDateUntil.Visible = False
-            DEUntil.Visible = False
-            DEStart.Visible = False
+            If CECustom.Checked = True Then
+                LNonAnnualReason.Visible = True
+                MENonAnnualReason.Visible = True
+                '
+                LDateFrom.Visible = False
+                LDateUntil.Visible = False
+                DEUntil.Visible = False
+                DEStart.Visible = False
+            Else
+                LNonAnnualReason.Visible = False
+                MENonAnnualReason.Visible = False
+                '
+                LDateFrom.Visible = False
+                LDateUntil.Visible = False
+                DEUntil.Visible = False
+                DEStart.Visible = False
+            End If
         End If
 
         If SLEPPSType.EditValue.ToString = "2" Then 'mandiri
@@ -1444,5 +1473,25 @@ WHERE pd.`id_polis_pps`='" & id_pps & "' "
 
     Private Sub SLEPolisType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPolisType.EditValueChanged
 
+    End Sub
+
+    Private Sub CECustom_CheckedChanged(sender As Object, e As EventArgs) Handles CECustom.CheckedChanged
+        If CECustom.Checked = True Then
+            LNonAnnualReason.Visible = True
+            MENonAnnualReason.Visible = True
+            '
+            LDateFrom.Visible = False
+            LDateUntil.Visible = False
+            DEUntil.Visible = False
+            DEStart.Visible = False
+        Else
+            LNonAnnualReason.Visible = False
+            MENonAnnualReason.Visible = False
+            '
+            LDateFrom.Visible = False
+            LDateUntil.Visible = False
+            DEUntil.Visible = False
+            DEStart.Visible = False
+        End If
     End Sub
 End Class
