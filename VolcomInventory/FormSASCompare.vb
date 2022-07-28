@@ -72,17 +72,30 @@
         Dim date_end As Date = DEUntil.EditValue
         Dim col_sas_target1 As String = ""
         Dim col_sas_target2 As String = ""
+
         Dim col_est_sal_order_qty As String = ""
         Dim col_est_sal_order_qty_select As String = ""
+        Dim col_est_sal_order_qty_total As String = ""
         Dim sum_est_sal_order_qty As String = "0"
+        Dim col_est_sal_order_price_raw As String = ""
         Dim col_est_sal_order_price_select As String = ""
+        Dim col_est_sal_order_price_total As String = ""
+
         Dim col_est_sal_rec_qty As String = ""
         Dim col_est_sal_rec_qty_select As String = ""
+        Dim col_est_sal_rec_qty_total As String = ""
         Dim sum_est_sal_rec_qty As String = "0"
+        Dim col_est_sal_rec_price_raw As String = ""
         Dim col_est_sal_rec_price_select As String = ""
+        Dim col_est_sal_rec_price_total As String = ""
+
         Dim col_sal1 As String = ""
         Dim col_sal2 As String = ""
+        Dim col_sal2_raw As String = ""
+        Dim col_sal2_total As String = ""
         Dim col_sal_value As String = ""
+        Dim col_sal_value_raw As String = ""
+        Dim col_sal_value_total As String = ""
         Dim l As Integer = 0
         While date_loop <= date_end
             Dim date_db As String = Date.Parse(date_loop).ToString("yyyy") + "-" + Date.Parse(date_loop).ToString("MM") + "-" + Date.Parse(date_loop).ToString("dd")
@@ -90,33 +103,52 @@
             If l > 0 Then
                 sum_est_sal_order_qty += "+" + col_est_sal_order_qty
                 sum_est_sal_rec_qty += "+" + col_est_sal_rec_qty
+                col_est_sal_order_qty_total += "+"
+                col_est_sal_rec_qty_total += "+"
+                col_sal2_total += "+"
+                col_est_sal_order_price_total += "+"
+                col_est_sal_rec_price_total += "+"
+                col_sal_value_total += "+"
             End If
 
             'col sas
             col_sas_target1 += "MAX(CASE WHEN sas.sas_period='" + date_db + "' THEN sas.sas_value END) AS `" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,"
-            col_sas_target2 += "IFNULL(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) AS `Target SAS (%)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_sas_target2 += "CONCAT(ROUND(IFNULL(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0),0),'%') AS `Target SAS (%)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
 
             'est sale (order)
             col_est_sal_order_qty = "ROUND(((pd.`total_qty_core`-(" + sum_est_sal_order_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
             col_est_sal_order_qty_select += col_est_sal_order_qty + " AS `Est Sal. Qty (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
-            col_est_sal_order_price_select += col_est_sal_order_qty + "*pd.pd_price AS `Est Sal. Value (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_est_sal_order_qty_total += col_est_sal_order_qty
+            col_est_sal_order_price_raw = "(" + col_est_sal_order_qty + " * pd.pd_price) "
+            col_est_sal_order_price_select += col_est_sal_order_price_raw + " AS `Est Sal. Value (Order)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_est_sal_order_price_total += col_est_sal_order_price_raw
+
+
 
             'est sale (rec)
             col_est_sal_rec_qty = "ROUND(((IFNULL(rec.qty_rec,0)-(" + sum_est_sal_rec_qty + "))*(tg_sas.`" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`/100)),0)"
             col_est_sal_rec_qty_select += col_est_sal_rec_qty + " AS `Est Sal. Qty (Receiving)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
-            col_est_sal_rec_price_select += col_est_sal_rec_qty + "*IFNULL(normal_prc.design_price,0) AS `Est Sal. Value (Receiving)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_est_sal_rec_qty_total += col_est_sal_rec_qty
+            col_est_sal_rec_price_raw = "(" + col_est_sal_rec_qty + "*IFNULL(normal_prc.design_price,0)) "
+            col_est_sal_rec_price_select += col_est_sal_rec_price_raw + " AS `Est Sal. Value (Receiving)|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_est_sal_rec_price_total += col_est_sal_rec_price_raw
 
             'sale
             col_sal1 += "(SUM(CASE WHEN s.soh_date='" + date_db + "' THEN s.qty END)*-1) AS `Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
-            col_sal2 += "IFNULL(sal.`Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) AS `Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
-            col_sal_value += "IFNULL(sal.`Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) * IFNULL(normal_prc.design_price,0) AS `Actual Sales Value|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_sal2_raw = "IFNULL(sal.`Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) "
+            col_sal2 += col_sal2_raw + " AS `Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_sal2_total += col_sal2_raw
+            col_sal_value_raw = "(" + "IFNULL(sal.`Actual Sales Qty|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`,0) * IFNULL(normal_prc.design_price,0)) "
+            col_sal_value += col_sal_value_raw + " AS `Actual Sales Value|" + Date.Parse(date_loop).ToString("MMM") + " " + Date.Parse(date_loop).ToString("yyyy") + "`, "
+            col_sal_value_total += col_sal_value_raw
+
             'loop
             date_loop = DateAdd(DateInterval.Month, 1, date_loop)
             l += 1
         End While
 
         'eksekusi 
-        Dim query As String = "SELECT d.id_design AS `Product Info|id_design`, d.design_code AS `Product Info|Code`,lso.lookup_status_order AS `Product Info|Move Status`, ss.season AS `Product Info|Season`, sd.delivery AS `Product Info|Del`,
+        Dim query As String = "SELECT d.id_design AS `Product Info|id_design`, d.design_code AS `Product Info|Code`,lso.lookup_status_order AS `Product Info|Move Status`, sspd.season AS `Product Info|Season Order`, dpd.delivery AS `Product Info|Del. Order`, ss.season AS `Product Info|Indo Season`, sd.delivery AS `Product Info|Del`,
         cd.class AS `Product Info|Class`, d.design_display_name AS `Product Info|Description`, cd.sht AS `Product Info|Silhouette`, cd.color AS `Product Info|Color`, cd.color_desc AS `Product Info|Color Descr.`,
         pd.`prod_demand_number` AS `Prod. Demand|Number`,
         pd.`total_qty_mkt` AS `Prod. Demand|MKT`,
@@ -129,11 +161,17 @@
         IFNULL(rec.qty_rec,0) AS `RECEIVED IN WH|QTY REC.`,
         " + col_sas_target2 + "
         " + col_est_sal_order_qty_select + "
-        " + col_est_sal_order_price_select + "
-        " + col_est_sal_rec_qty_select + "
-        " + col_est_sal_rec_price_select + "
+        (" + col_est_sal_order_qty_total + ") AS `Est Sal. Qty (Order)|Total`,
+         " + col_est_sal_rec_qty_select + "
+        (" + col_est_sal_rec_qty_total + ") AS `Est Sal. Qty (Receiving)|Total`,
         " + col_sal2 + "
+        (" + col_sal2_total + ") AS `Actual Sales Qty|Total`,
+        " + col_est_sal_order_price_select + "
+        (" + col_est_sal_order_price_total + ") AS `Est Sal. Value (Order)|Total`,
+        " + col_est_sal_rec_price_select + "
+        (" + col_est_sal_rec_price_total + ") AS `Est Sal. Value (Receiving)|Total`,
         " + col_sal_value + "
+        (" + col_sal_value_total + ") AS `Actual Sales Value|Total`,
         '' AS `*|*`
         FROM tb_m_design d
         INNER JOIN tb_season ss ON ss.id_season = d.id_season
@@ -171,18 +209,19 @@
 	        IFNULL(SUM(CASE WHEN pda.id_pd_alloc=7 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_core`,
 	        IFNULL(SUM(CASE WHEN alloc.is_include_so=1 THEN pda.prod_demand_alloc_qty END),0) AS `total_qty_act_order_sales`,
 	        SUM(pda.prod_demand_alloc_qty) AS `total_qty`,
-	        MAX(pdd.prod_demand_design_propose_price) AS `pd_price`
+	        MAX(pdd.prod_demand_design_propose_price) AS `pd_price`,
+            MAX(pd.id_season) AS `id_season_pd`, MAX(pdd.id_delivery) AS `id_delivery_pd`
 	        FROM tb_prod_demand pd
 	        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand = pd.id_prod_demand AND pdd.is_void=2
 	        INNER JOIN tb_m_design d ON d.id_design = pdd.id_design 
 	        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design = pdd.id_prod_demand_design
 	        INNER JOIN tb_prod_demand_alloc pda ON pda.id_prod_demand_product = pdp.id_prod_demand_product
 	        INNER JOIN tb_lookup_pd_alloc alloc ON alloc.id_pd_alloc = pda.id_pd_alloc
-	        INNER JOIN tb_season ss ON ss.id_season = d.id_season
-	        INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
 	        WHERE pd.id_report_status=6 AND pd.is_pd=1 AND (d.id_season IN(" + CCBESeason.EditValue.ToString + ") OR pd.id_season IN (" + CCBESeason.EditValue.ToString + "))
 	        GROUP BY d.id_design
         ) pd ON pd.id_design = d.id_design
+        INNER JOIN tb_season sspd ON sspd.id_season = pd.id_season_pd
+        INNER JOIN tb_season_delivery dpd ON dpd.id_delivery = pd.id_delivery_pd
         LEFT JOIN (
             SELECT d.id_design, SUM(rd.pl_prod_order_rec_det_qty) AS `qty_rec`
             FROM tb_pl_prod_order_rec r
@@ -313,10 +352,6 @@
 
                     If bandName.Contains("Target SAS (%)") Then
                         col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-
-                        'display format
-                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                        col.DisplayFormat.FormatString = "{0:n0}%"
                     End If
                 End If
             Next
@@ -324,6 +359,9 @@
 
         'hide
         GVData.Columns("Product Info|id_design").Visible = False
+        GVData.Columns("Prod. Demand|Number").Visible = False
+        GVData.Columns("Product Info|Color Descr.").Visible = False
+        GVData.Columns("Product Info|Silhouette").Visible = False
 
         GCData.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -378,7 +416,7 @@
             If Not IO.Directory.Exists(path) Then
                 System.IO.Directory.CreateDirectory(path)
             End If
-            path = path + "estimate_actual_sales.xlsx"
+            path = path + "salinv_by_sas.xlsx"
             exportToXLS(path, "list", GCData)
             Cursor = Cursors.Default
         End If

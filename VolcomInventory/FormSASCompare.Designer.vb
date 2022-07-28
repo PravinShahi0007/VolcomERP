@@ -214,7 +214,7 @@ Partial Class FormSASCompare
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormSASCompare"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Product Sales Estimate"
+        Me.Text = "Sales Inventory by SAS"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()

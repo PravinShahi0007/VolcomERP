@@ -151,8 +151,10 @@ WHERE qr.id_qc_report1='" + id + "' "
 
             If data.Rows(0)("need_wash").ToString = "1" Then
                 SLEWash.Visible = True
+                LWash.Visible = True
             Else
                 SLEWash.Visible = False
+                LWash.Visible = False
             End If
 
             SLEWash.EditValue = data.Rows(0)("id_qc_wash").ToString
