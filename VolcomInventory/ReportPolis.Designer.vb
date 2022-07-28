@@ -44,6 +44,9 @@ Partial Public Class ReportPolis
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.LNote1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LNote2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LNote3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
@@ -63,9 +66,6 @@ Partial Public Class ReportPolis
         Me.XRTableMark = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.LNote1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LNote2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LNote3 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTPolisPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTKolektif, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XRTableMark, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,7 +227,7 @@ Partial Public Class ReportPolis
         Me.XrTableCell9.StylePriority.UseTextAlignment = False
         Me.XrTableCell9.Text = "Total Nilai Pertanggungan"
         Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell9.Weight = 0.624071799837999R
+        Me.XrTableCell9.Weight = 0.66324150427514217R
         '
         'XrTableCell10
         '
@@ -240,7 +240,7 @@ Partial Public Class ReportPolis
         Me.XrTableCell10.StylePriority.UseTextAlignment = False
         Me.XrTableCell10.Text = "Nilai Stock" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Tahun Lalu"
         Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell10.Weight = 0.624071799837999R
+        Me.XrTableCell10.Weight = 0.5849020954008558R
         '
         'XrTableCell11
         '
@@ -357,6 +357,45 @@ Partial Public Class ReportPolis
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LNote1, Me.LNote2, Me.LNote3, Me.XrLabel10, Me.XrLabel11, Me.XrLabel12, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel5, Me.XrLabel6, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.LTitle})
         Me.PageHeader.HeightF = 143.4166!
         Me.PageHeader.Name = "PageHeader"
+        '
+        'LNote1
+        '
+        Me.LNote1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.LNote1.LocationFloat = New DevExpress.Utils.PointFloat(0.6416638!, 99.00002!)
+        Me.LNote1.Name = "LNote1"
+        Me.LNote1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LNote1.SizeF = New System.Drawing.SizeF(91.52659!, 20.0!)
+        Me.LNote1.StylePriority.UseFont = False
+        Me.LNote1.StylePriority.UseTextAlignment = False
+        Me.LNote1.Text = "Note"
+        Me.LNote1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.LNote1.Visible = False
+        '
+        'LNote2
+        '
+        Me.LNote2.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.LNote2.LocationFloat = New DevExpress.Utils.PointFloat(92.16821!, 99.00002!)
+        Me.LNote2.Name = "LNote2"
+        Me.LNote2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LNote2.SizeF = New System.Drawing.SizeF(16.52659!, 20.0!)
+        Me.LNote2.StylePriority.UseFont = False
+        Me.LNote2.StylePriority.UseTextAlignment = False
+        Me.LNote2.Text = ":"
+        Me.LNote2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.LNote2.Visible = False
+        '
+        'LNote3
+        '
+        Me.LNote3.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.LNote3.LocationFloat = New DevExpress.Utils.PointFloat(108.6949!, 99.00004!)
+        Me.LNote3.Name = "LNote3"
+        Me.LNote3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LNote3.SizeF = New System.Drawing.SizeF(1004.305!, 38.16659!)
+        Me.LNote3.StylePriority.UseFont = False
+        Me.LNote3.StylePriority.UseTextAlignment = False
+        Me.LNote3.Text = "[note]"
+        Me.LNote3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.LNote3.Visible = False
         '
         'XrLabel10
         '
@@ -572,45 +611,6 @@ Partial Public Class ReportPolis
         Me.XrTableCell15.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell15.Visible = False
         Me.XrTableCell15.Weight = 2.99999986405489R
-        '
-        'LNote1
-        '
-        Me.LNote1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.LNote1.LocationFloat = New DevExpress.Utils.PointFloat(0.6416638!, 99.00002!)
-        Me.LNote1.Name = "LNote1"
-        Me.LNote1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LNote1.SizeF = New System.Drawing.SizeF(91.52659!, 20.0!)
-        Me.LNote1.StylePriority.UseFont = False
-        Me.LNote1.StylePriority.UseTextAlignment = False
-        Me.LNote1.Text = "Note"
-        Me.LNote1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.LNote1.Visible = False
-        '
-        'LNote2
-        '
-        Me.LNote2.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.LNote2.LocationFloat = New DevExpress.Utils.PointFloat(92.16821!, 99.00002!)
-        Me.LNote2.Name = "LNote2"
-        Me.LNote2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LNote2.SizeF = New System.Drawing.SizeF(16.52659!, 20.0!)
-        Me.LNote2.StylePriority.UseFont = False
-        Me.LNote2.StylePriority.UseTextAlignment = False
-        Me.LNote2.Text = ":"
-        Me.LNote2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.LNote2.Visible = False
-        '
-        'LNote3
-        '
-        Me.LNote3.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.LNote3.LocationFloat = New DevExpress.Utils.PointFloat(108.6949!, 99.00004!)
-        Me.LNote3.Name = "LNote3"
-        Me.LNote3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LNote3.SizeF = New System.Drawing.SizeF(1004.305!, 38.16659!)
-        Me.LNote3.StylePriority.UseFont = False
-        Me.LNote3.StylePriority.UseTextAlignment = False
-        Me.LNote3.Text = "[note]"
-        Me.LNote3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.LNote3.Visible = False
         '
         'ReportPolis
         '
