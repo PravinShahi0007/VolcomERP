@@ -57,13 +57,13 @@
         Cursor = Cursors.WaitCursor
         If action = "ins" Then
             'cek on process
-            Dim qcek As String = "SELECT * FROM tb_pp_change c WHERE c.id_report_status<5 "
-            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
-            If dcek.Rows.Count > 0 Then
-                Cursor = Cursors.Default
-                stopCustom("Please complete all pending propose first")
-                Close()
-            End If
+            'Dim qcek As String = "SELECT * FROM tb_pp_change c WHERE c.id_report_status<5 "
+            'Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            'If dcek.Rows.Count > 0 Then
+            '    Cursor = Cursors.Default
+            '    stopCustom("Please complete all pending propose first")
+            '    Close()
+            'End If
 
             'option
             BtnCreateNew.Visible = True
