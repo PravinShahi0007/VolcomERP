@@ -1242,7 +1242,7 @@ Public Class FormSalesDelOrderDet
             stopCustomDialog("Data not found!")
         Else
             'jika akun normal/sale
-            If (id_store_type = "1" Or id_store_type = "2") And id_so_status <> 8 Then
+            If (id_store_type = "1" Or id_store_type = "2") And id_so_status <> 8 And id_commerce_type = "1" Then
                 If (id_store_type <> id_design_cat) And prc > 0 Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
